@@ -11,7 +11,7 @@ import Memory from 'bun-memory';
 
 // Import SDK types and offsets
 import type { Structs } from '..';
-import { GNAMES_OFFSET, GOBJECTS_OFFSET, UObject, FNameEntry } from '../types/offsets';
+import { GNames, GObjects, UObject, FNameEntry } from '../types/offsets';
 
 // CarComponent_Boost_TA offsets
 // Found in: classes/TAGame.ts - search for "CarComponent_Boost_TA"
@@ -35,8 +35,8 @@ if (!module) {
 const base = module.base;
 
 // Calculate absolute addresses from base + offset
-const gNamesPtr = rl.uPtr(base + GNAMES_OFFSET);
-const gObjectsPtr = rl.uPtr(base + GOBJECTS_OFFSET);
+const gNamesPtr = rl.uPtr(base + GNames);
+const gObjectsPtr = rl.uPtr(base + GObjects);
 
 console.log('=== Rocket League SDK Example ===');
 console.log(`Base: 0x${base.toString(16).toUpperCase()}`);
