@@ -1,47 +1,23 @@
 /**
  * Basic SDK Usage Example
  *
- * This example demonstrates step-by-step how to read game data
- * from Rocket League using the generated SDK types.
- *
- * All memory reading logic is inline so you can see exactly how it works.
+ * This example demonstrates how to read game data from Rocket League
+ * using the generated SDK types and offsets.
  *
  * Run with: bun run examples/basic.ts
  */
 
 import Memory from 'bun-memory';
 
-// Import SDK types for type safety
+// Import SDK types and offsets
 import type { Structs } from '..';
-
-// =============================================================================
-// OFFSETS (from SDK generation)
-// =============================================================================
-
-// GNames and GObjects offsets discovered during SDK generation
-// See: types/offsets.ts for the full list
-const GNAMES_OFFSET = 0x23ed570n;
-const GOBJECTS_OFFSET = 0x23ed5b8n;
-
-// UObject layout (UE3 structure)
-// These are the byte offsets to each field within a UObject
-const UObject = {
-  Outer: 0x40,     // Pointer to outer object (package/owner)
-  Name: 0x48,      // FName index - lookup in GNames to get string name
-  Class: 0x50,     // Pointer to the UClass that describes this object
-} as const;
-
-// FNameEntry layout - structure in GNames array
-const FNameEntry = {
-  Name: 0x18,      // Offset to the actual name string (wide string)
-} as const;
+import { GNAMES_OFFSET, GOBJECTS_OFFSET, UObject, FNameEntry } from '../types/offsets';
 
 // CarComponent_Boost_TA offsets
 // Found in: classes/TAGame.ts - search for "CarComponent_Boost_TA"
-// These offsets define where boost-related data is stored in the component
 const BoostOffsets = {
   CurrentBoostAmount: 0x0338,  // float - current boost (0.0 to MaxBoostAmount)
-  MaxBoostAmount: 0x032C,      // float - maximum boost capacity
+  MaxBoostAmount: 0x032c,      // float - maximum boost capacity
 } as const;
 
 // =============================================================================
