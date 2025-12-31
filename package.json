@@ -1,0 +1,100 @@
+{
+  "name": "rocketleaguesdk",
+  "version": "1.0.0",
+  "description": "TypeScript SDK for Rocket League - Auto-generated type definitions",
+  "type": "module",
+  "main": "index.ts",
+  "module": "index.ts",
+  "types": "index.ts",
+  "exports": {
+    ".": {
+      "bun": "./index.ts",
+      "import": "./index.ts",
+      "types": "./index.ts"
+    },
+    "./types": {
+      "bun": "./types/index.ts",
+      "import": "./types/index.ts",
+      "types": "./types/index.ts"
+    },
+    "./types/*": {
+      "bun": "./types/*.ts",
+      "import": "./types/*.ts",
+      "types": "./types/*.ts"
+    },
+    "./structs": {
+      "bun": "./structs/index.ts",
+      "import": "./structs/index.ts",
+      "types": "./structs/index.ts"
+    },
+    "./structs/*": {
+      "bun": "./structs/*.ts",
+      "import": "./structs/*.ts",
+      "types": "./structs/*.ts"
+    },
+    "./classes": {
+      "bun": "./classes/index.ts",
+      "import": "./classes/index.ts",
+      "types": "./classes/index.ts"
+    },
+    "./classes/*": {
+      "bun": "./classes/*.ts",
+      "import": "./classes/*.ts",
+      "types": "./classes/*.ts"
+    },
+    "./enums": {
+      "bun": "./enums/index.ts",
+      "import": "./enums/index.ts",
+      "types": "./enums/index.ts"
+    },
+    "./enums/*": {
+      "bun": "./enums/*.ts",
+      "import": "./enums/*.ts",
+      "types": "./enums/*.ts"
+    },
+    "./parameters": {
+      "bun": "./parameters/index.ts",
+      "import": "./parameters/index.ts",
+      "types": "./parameters/index.ts"
+    },
+    "./parameters/*": {
+      "bun": "./parameters/*.ts",
+      "import": "./parameters/*.ts",
+      "types": "./parameters/*.ts"
+    },
+    "./constants": {
+      "bun": "./constants/index.ts",
+      "import": "./constants/index.ts",
+      "types": "./constants/index.ts"
+    },
+    "./constants/*": {
+      "bun": "./constants/*.ts",
+      "import": "./constants/*.ts",
+      "types": "./constants/*.ts"
+    }
+  },
+  "keywords": [
+    "rocket-league",
+    "unreal-engine",
+    "sdk",
+    "types",
+    "typescript",
+    "bun"
+  ],
+  "author": "Stev Peifer",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ObscuritySRL/RocketLeagueSDK"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "bun-memory": "^1",
+    "typescript": "^5"
+  }
+}
