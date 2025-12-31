@@ -236,7 +236,7 @@ export enum EClassCastFlags {
   CASTCLASS_AllFlags = 0xffffffff,
 }
 
-export const UObject_Layout = {
+export const UObject = {
   VTable: 0x00,
   ObjectFlags: 0x08,
   HashNext: 0x10,
@@ -252,7 +252,7 @@ export const UObject_Layout = {
   ObjectArchetype: 0x58,
 } as const;
 
-export const FNameEntry_Layout = {
+export const FNameEntry = {
   HashNext: 0x00,
   Index: 0x08,
   Flags: 0x10,
@@ -284,7 +284,7 @@ export type FQWord = {
   B: number;
 };
 
-export const TArray_Layout = {
+export const TArray = {
   Data: 0x00,
   Count: 0x08,
   Max: 0x0c,
