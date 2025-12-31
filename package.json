@@ -1,6 +1,6 @@
 {
   "name": "rocketleaguesdk",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "TypeScript SDK for Rocket League - Auto-generated type definitions",
   "type": "module",
   "main": "index.ts",
