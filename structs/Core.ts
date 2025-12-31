@@ -22,11 +22,15 @@ export type FScriptDelegate = {
   _padding: bigint;  // 0x0010 (0x0008)
 };
 
+import type { AlphaBlendType, EInterpCurveMode, EInterpMethodType, OnlinePlatform } from '../enums/Core';
+import type { UInterfaceProperty, UObject, UObjectProperty } from '../classes/Core';
+
 /**
  * ScriptStruct Core.Object.Array_Mirror
  * Size: 0x0010
  */
 export type FArray_Mirror = {
+  Data: FPointer;  // 0x0000 (0x0008) [FPointer]
   ArrayNum: number;  // 0x0008 (0x0004) [int32]
   ArrayMax: number;  // 0x000c (0x0004) [int32]
 };
@@ -45,6 +49,7 @@ export type FAsyncDelegateInfo = {
  * Size: 0x0020
  */
 export type FBitArray_Mirror = {
+  IndirectData: FPointer;  // 0x0000 (0x0008) [FPointer]
   InlineData: number;  // 0x0008 (0x0010) [int32]
   NumBits: number;  // 0x0018 (0x0004) [int32]
   MaxBits: number;  // 0x001c (0x0004) [int32]
@@ -55,6 +60,8 @@ export type FBitArray_Mirror = {
  * Size: 0x0020
  */
 export type FBoneAtom = {
+  Rotation: FQuat;  // 0x0000 (0x0010) [FQuat]
+  Translation: FVector;  // 0x0010 (0x000c) [FVector]
   Scale: number;  // 0x001c (0x0004) [float]
 };
 
@@ -63,6 +70,9 @@ export type FBoneAtom = {
  * Size: 0x0019
  */
 export type FBox = {
+  Min: FVector;  // 0x0000 (0x000c) [FVector]
+  Max: FVector;  // 0x000c (0x000c) [FVector]
+  IsValid: number;  // 0x0018 (0x0001) [uint8]
 };
 
 /**
@@ -70,6 +80,8 @@ export type FBox = {
  * Size: 0x001C
  */
 export type FBoxSphereBounds = {
+  Origin: FVector;  // 0x0000 (0x000c) [FVector]
+  BoxExtent: FVector;  // 0x000c (0x000c) [FVector]
   SphereRadius: number;  // 0x0018 (0x0004) [float]
 };
 
@@ -87,6 +99,10 @@ export type FBreadcrumbEntry = {
  * Size: 0x0004
  */
 export type FColor = {
+  B: number;  // 0x0000 (0x0001) [uint8]
+  G: number;  // 0x0001 (0x0001) [uint8]
+  R: number;  // 0x0002 (0x0001) [uint8]
+  A: number;  // 0x0003 (0x0001) [uint8]
 };
 
 /**
@@ -127,6 +143,8 @@ export type FEncryptedKeyIndex = {
  * Size: 0x001C
  */
 export type FFColorVertexBuffer_Mirror = {
+  VfTable: FPointer;  // 0x0000 (0x0008) [FPointer]
+  VertexData: FPointer;  // 0x0008 (0x0008) [FPointer]
   Data: number;  // 0x0010 (0x0004) [int32]
   Stride: number;  // 0x0014 (0x0004) [int32]
   NumVertices: number;  // 0x0018 (0x0004) [int32]
@@ -156,6 +174,7 @@ export type FHatPointer = {
  * Size: 0x0010
  */
 export type FIndirectArray_Mirror = {
+  Data: FPointer;  // 0x0000 (0x0008) [FPointer]
   ArrayNum: number;  // 0x0008 (0x0004) [int32]
   ArrayMax: number;  // 0x000c (0x0004) [int32]
 };
@@ -165,6 +184,8 @@ export type FIndirectArray_Mirror = {
  * Size: 0x0018
  */
 export type FInlinePointerArray_Mirror = {
+  InlineData: FPointer;  // 0x0000 (0x0008) [FPointer]
+  SecondaryData: FArray_Mirror;  // 0x0008 (0x0010) [FArray_Mirror]
 };
 
 /**
@@ -172,6 +193,8 @@ export type FInlinePointerArray_Mirror = {
  * Size: 0x0010
  */
 export type FInterfacePropertyInjection = {
+  Subscriber: UObject;  // 0x0000 (0x0008) [UObject*]
+  Property: UInterfaceProperty;  // 0x0008 (0x0008) [UInterfaceProperty*]
 };
 
 /**
@@ -179,6 +202,8 @@ export type FInterfacePropertyInjection = {
  * Size: 0x0011
  */
 export type FInterpCurveFloat = {
+  Points: FInterpCurvePointFloat[];  // 0x0000 (0x0010) [TArray<FInterpCurvePointFloat>]
+  InterpMethod: EInterpMethodType;  // 0x0010 (0x0001) [EInterpMethodType]
 };
 
 /**
@@ -186,6 +211,8 @@ export type FInterpCurveFloat = {
  * Size: 0x0011
  */
 export type FInterpCurveLinearColor = {
+  Points: FInterpCurvePointLinearColor[];  // 0x0000 (0x0010) [TArray<FInterpCurvePointLinearColor>]
+  InterpMethod: EInterpMethodType;  // 0x0010 (0x0001) [EInterpMethodType]
 };
 
 /**
@@ -199,6 +226,7 @@ export type FInterpCurvePointFloat = {
   LeaveTangent: number;  // 0x000c (0x0004) [float]
   ArriveWeight: number;  // 0x0010 (0x0004) [float]
   LeaveWeight: number;  // 0x0014 (0x0004) [float]
+  InterpMode: EInterpCurveMode;  // 0x0018 (0x0001) [EInterpCurveMode]
 };
 
 /**
@@ -207,6 +235,12 @@ export type FInterpCurvePointFloat = {
  */
 export type FInterpCurvePointLinearColor = {
   InVal: number;  // 0x0000 (0x0004) [float]
+  OutVal: FLinearColor;  // 0x0004 (0x0010) [FLinearColor]
+  ArriveTangent: FLinearColor;  // 0x0014 (0x0010) [FLinearColor]
+  LeaveTangent: FLinearColor;  // 0x0024 (0x0010) [FLinearColor]
+  ArriveWeight: FLinearColor;  // 0x0034 (0x0010) [FLinearColor]
+  LeaveWeight: FLinearColor;  // 0x0044 (0x0010) [FLinearColor]
+  InterpMode: EInterpCurveMode;  // 0x0054 (0x0001) [EInterpCurveMode]
 };
 
 /**
@@ -215,6 +249,12 @@ export type FInterpCurvePointLinearColor = {
  */
 export type FInterpCurvePointQuat = {
   InVal: number;  // 0x0000 (0x0004) [float]
+  OutVal: FQuat;  // 0x0010 (0x0010) [FQuat]
+  ArriveTangent: FQuat;  // 0x0020 (0x0010) [FQuat]
+  LeaveTangent: FQuat;  // 0x0030 (0x0010) [FQuat]
+  ArriveWeight: FQuat;  // 0x0040 (0x0010) [FQuat]
+  LeaveWeight: FQuat;  // 0x0050 (0x0010) [FQuat]
+  InterpMode: EInterpCurveMode;  // 0x0060 (0x0001) [EInterpCurveMode]
 };
 
 /**
@@ -223,6 +263,12 @@ export type FInterpCurvePointQuat = {
  */
 export type FInterpCurvePointTwoVectors = {
   InVal: number;  // 0x0000 (0x0004) [float]
+  OutVal: FTwoVectors;  // 0x0004 (0x0018) [FTwoVectors]
+  ArriveTangent: FTwoVectors;  // 0x001c (0x0018) [FTwoVectors]
+  LeaveTangent: FTwoVectors;  // 0x0034 (0x0018) [FTwoVectors]
+  ArriveWeight: FTwoVectors;  // 0x004c (0x0018) [FTwoVectors]
+  LeaveWeight: FTwoVectors;  // 0x0064 (0x0018) [FTwoVectors]
+  InterpMode: EInterpCurveMode;  // 0x007c (0x0001) [EInterpCurveMode]
 };
 
 /**
@@ -231,6 +277,12 @@ export type FInterpCurvePointTwoVectors = {
  */
 export type FInterpCurvePointVector = {
   InVal: number;  // 0x0000 (0x0004) [float]
+  OutVal: FVector;  // 0x0004 (0x000c) [FVector]
+  ArriveTangent: FVector;  // 0x0010 (0x000c) [FVector]
+  LeaveTangent: FVector;  // 0x001c (0x000c) [FVector]
+  ArriveWeight: FVector;  // 0x0028 (0x000c) [FVector]
+  LeaveWeight: FVector;  // 0x0034 (0x000c) [FVector]
+  InterpMode: EInterpCurveMode;  // 0x0040 (0x0001) [EInterpCurveMode]
 };
 
 /**
@@ -239,6 +291,12 @@ export type FInterpCurvePointVector = {
  */
 export type FInterpCurvePointVector2D = {
   InVal: number;  // 0x0000 (0x0004) [float]
+  OutVal: FVector2D;  // 0x0004 (0x0008) [FVector2D]
+  ArriveTangent: FVector2D;  // 0x000c (0x0008) [FVector2D]
+  LeaveTangent: FVector2D;  // 0x0014 (0x0008) [FVector2D]
+  ArriveWeight: FVector2D;  // 0x001c (0x0008) [FVector2D]
+  LeaveWeight: FVector2D;  // 0x0024 (0x0008) [FVector2D]
+  InterpMode: EInterpCurveMode;  // 0x002c (0x0001) [EInterpCurveMode]
 };
 
 /**
@@ -246,6 +304,8 @@ export type FInterpCurvePointVector2D = {
  * Size: 0x0011
  */
 export type FInterpCurveQuat = {
+  Points: FInterpCurvePointQuat[];  // 0x0000 (0x0010) [TArray<FInterpCurvePointQuat>]
+  InterpMethod: EInterpMethodType;  // 0x0010 (0x0001) [EInterpMethodType]
 };
 
 /**
@@ -253,6 +313,8 @@ export type FInterpCurveQuat = {
  * Size: 0x0011
  */
 export type FInterpCurveTwoVectors = {
+  Points: FInterpCurvePointTwoVectors[];  // 0x0000 (0x0010) [TArray<FInterpCurvePointTwoVectors>]
+  InterpMethod: EInterpMethodType;  // 0x0010 (0x0001) [EInterpMethodType]
 };
 
 /**
@@ -260,6 +322,8 @@ export type FInterpCurveTwoVectors = {
  * Size: 0x0011
  */
 export type FInterpCurveVector = {
+  Points: FInterpCurvePointVector[];  // 0x0000 (0x0010) [TArray<FInterpCurvePointVector>]
+  InterpMethod: EInterpMethodType;  // 0x0010 (0x0001) [EInterpMethodType]
 };
 
 /**
@@ -267,6 +331,8 @@ export type FInterpCurveVector = {
  * Size: 0x0011
  */
 export type FInterpCurveVector2D = {
+  Points: FInterpCurvePointVector2D[];  // 0x0000 (0x0010) [TArray<FInterpCurvePointVector2D>]
+  InterpMethod: EInterpMethodType;  // 0x0010 (0x0001) [EInterpMethodType]
 };
 
 /**
@@ -306,6 +372,7 @@ export type FLinearColor = {
  * Size: 0x0050
  */
 export type FMap_Mirror = {
+  Pairs: FSet_Mirror;  // 0x0000 (0x0050) [FSet_Mirror]
 };
 
 /**
@@ -314,6 +381,14 @@ export type FMap_Mirror = {
  * Extends: FRawDistributionFloat
  */
 export type FMatineeRawDistributionFloat = FRawDistributionFloat & {
+  Type: number;  // 0x0000 (0x0001) [uint8]
+  Op: number;  // 0x0001 (0x0001) [uint8]
+  LookupTableNumElements: number;  // 0x0002 (0x0001) [uint8]
+  LookupTableChunkSize: number;  // 0x0003 (0x0001) [uint8]
+  LookupTable: number[];  // 0x0008 (0x0010) [TArray<float>]
+  LookupTableTimeScale: number;  // 0x0018 (0x0004) [float]
+  LookupTableStartTime: number;  // 0x001c (0x0004) [float]
+  Distribution: unknown;  // 0x0020 (0x0008) [unknown]
   MatineeValue: number;  // 0x0028 (0x0004) [float]
   bInMatinee: boolean;  // 0x002c (0x0004) [bool : 0x1]
 };
@@ -323,6 +398,10 @@ export type FMatineeRawDistributionFloat = FRawDistributionFloat & {
  * Size: 0x0040
  */
 export type FMatrix = {
+  XPlane: FPlane;  // 0x0000 (0x0010) [FPlane]
+  YPlane: FPlane;  // 0x0010 (0x0010) [FPlane]
+  ZPlane: FPlane;  // 0x0020 (0x0010) [FPlane]
+  WPlane: FPlane;  // 0x0030 (0x0010) [FPlane]
 };
 
 /**
@@ -330,6 +409,7 @@ export type FMatrix = {
  * Size: 0x0050
  */
 export type FMultiMap_Mirror = {
+  Pairs: FSet_Mirror;  // 0x0000 (0x0050) [FSet_Mirror]
 };
 
 /**
@@ -337,6 +417,8 @@ export type FMultiMap_Mirror = {
  * Size: 0x0010
  */
 export type FObjectPropertyInjection = {
+  Subscriber: UObject;  // 0x0000 (0x0008) [UObject*]
+  Property: UObjectProperty;  // 0x0008 (0x0008) [UObjectProperty*]
 };
 
 /**
@@ -345,6 +427,7 @@ export type FObjectPropertyInjection = {
  */
 export type FObjectProviderPendingCallback = {
   Callback: FScriptDelegate;  // 0x0000 (0x0018) [FScriptDelegate]
+  Value: UObject;  // 0x0018 (0x0008) [UObject*]
 };
 
 /**
@@ -352,6 +435,7 @@ export type FObjectProviderPendingCallback = {
  * Size: 0x0024
  */
 export type FObjectProviderSubscription = {
+  ObjClass: bigint;  // 0x0000 (0x0008) [UClass*]
   Callback: FScriptDelegate;  // 0x0008 (0x0018) [FScriptDelegate]
   bFireOnce: boolean;  // 0x0020 (0x0004) [bool : 0x1]
 };
@@ -361,6 +445,7 @@ export type FObjectProviderSubscription = {
  * Size: 0x000C
  */
 export type FOctreeElementId = {
+  Node: FPointer;  // 0x0000 (0x0008) [FPointer]
   ElementIndex: number;  // 0x0008 (0x0004) [int32]
 };
 
@@ -369,6 +454,10 @@ export type FOctreeElementId = {
  * Size: 0x0004
  */
 export type FPackedNormal = {
+  X: number;  // 0x0000 (0x0001) [uint8]
+  Y: number;  // 0x0001 (0x0001) [uint8]
+  Z: number;  // 0x0002 (0x0001) [uint8]
+  W: number;  // 0x0003 (0x0001) [uint8]
 };
 
 /**
@@ -377,6 +466,9 @@ export type FPackedNormal = {
  * Extends: FVector
  */
 export type FPlane = FVector & {
+  X: number;  // 0x0000 (0x0004) [float]
+  Y: number;  // 0x0004 (0x0004) [float]
+  Z: number;  // 0x0008 (0x0004) [float]
   W: number;  // 0x000c (0x0004) [float]
 };
 
@@ -421,6 +513,11 @@ export type FQuat = {
  * Size: 0x0020
  */
 export type FRawDistribution = {
+  Type: number;  // 0x0000 (0x0001) [uint8]
+  Op: number;  // 0x0001 (0x0001) [uint8]
+  LookupTableNumElements: number;  // 0x0002 (0x0001) [uint8]
+  LookupTableChunkSize: number;  // 0x0003 (0x0001) [uint8]
+  LookupTable: number[];  // 0x0008 (0x0010) [TArray<float>]
   LookupTableTimeScale: number;  // 0x0018 (0x0004) [float]
   LookupTableStartTime: number;  // 0x001c (0x0004) [float]
 };
@@ -431,6 +528,13 @@ export type FRawDistribution = {
  * Extends: FRawDistribution
  */
 export type FRawDistributionFloat = FRawDistribution & {
+  Type: number;  // 0x0000 (0x0001) [uint8]
+  Op: number;  // 0x0001 (0x0001) [uint8]
+  LookupTableNumElements: number;  // 0x0002 (0x0001) [uint8]
+  LookupTableChunkSize: number;  // 0x0003 (0x0001) [uint8]
+  LookupTable: number[];  // 0x0008 (0x0010) [TArray<float>]
+  LookupTableTimeScale: number;  // 0x0018 (0x0004) [float]
+  LookupTableStartTime: number;  // 0x001c (0x0004) [float]
   Distribution: unknown;  // 0x0020 (0x0008) [unknown]
 };
 
@@ -440,6 +544,13 @@ export type FRawDistributionFloat = FRawDistribution & {
  * Extends: FRawDistribution
  */
 export type FRawDistributionVector = FRawDistribution & {
+  Type: number;  // 0x0000 (0x0001) [uint8]
+  Op: number;  // 0x0001 (0x0001) [uint8]
+  LookupTableNumElements: number;  // 0x0002 (0x0001) [uint8]
+  LookupTableChunkSize: number;  // 0x0003 (0x0001) [uint8]
+  LookupTable: number[];  // 0x0008 (0x0010) [TArray<float>]
+  LookupTableTimeScale: number;  // 0x0018 (0x0004) [float]
+  LookupTableStartTime: number;  // 0x001c (0x0004) [float]
   Distribution: unknown;  // 0x0020 (0x0008) [unknown]
 };
 
@@ -494,6 +605,7 @@ export type FRotatorRadians = {
  * Size: 0x0028
  */
 export type FSceNpId = {
+  Handle: FSceNpOnlineId;  // 0x0000 (0x0018) [FSceNpOnlineId]
   Opt: bigint;  // 0x0018 (0x0008) [uint64]
   Reserved: bigint;  // 0x0020 (0x0008) [uint64]
 };
@@ -504,6 +616,8 @@ export type FSceNpId = {
  */
 export type FSceNpOnlineId = {
   Data: bigint;  // 0x0000 (0x0010) [uint64]
+  Term: number;  // 0x0010 (0x0001) [uint8]
+  Dummy: number;  // 0x0011 (0x0003) [uint8]
 };
 
 /**
@@ -522,7 +636,9 @@ export type FScriptWarning = {
  * Size: 0x004C
  */
 export type FSet_Mirror = {
+  Elements: FSparseArray_Mirror;  // 0x0000 (0x0038) [FSparseArray_Mirror]
   InlineHash: number;  // 0x0038 (0x0004) [int32]
+  Hash: FPointer;  // 0x0040 (0x0008) [FPointer]
   HashSize: number;  // 0x0048 (0x0004) [int32]
 };
 
@@ -540,6 +656,9 @@ export type FSHVector = {
  * Size: 0x0090
  */
 export type FSHVectorRGB = {
+  R: FSHVector;  // 0x0000 (0x0030) [FSHVector]
+  G: FSHVector;  // 0x0030 (0x0030) [FSHVector]
+  B: FSHVector;  // 0x0060 (0x0030) [FSHVector]
 };
 
 /**
@@ -547,6 +666,8 @@ export type FSHVectorRGB = {
  * Size: 0x0038
  */
 export type FSparseArray_Mirror = {
+  Elements: number[];  // 0x0000 (0x0010) [TArray<int32>]
+  AllocationFlags: FBitArray_Mirror;  // 0x0010 (0x0020) [FBitArray_Mirror]
   FirstFreeIndex: number;  // 0x0030 (0x0004) [int32]
   NumFreeIndices: number;  // 0x0034 (0x0004) [int32]
 };
@@ -561,6 +682,7 @@ export type FTAlphaBlend = {
   AlphaTarget: number;  // 0x0008 (0x0004) [float]
   BlendTime: number;  // 0x000c (0x0004) [float]
   BlendTimeToGo: number;  // 0x0010 (0x0004) [float]
+  BlendType: AlphaBlendType;  // 0x0014 (0x0001) [AlphaBlendType]
 };
 
 /**
@@ -576,6 +698,8 @@ export type FThreadSafeCounter = {
  * Size: 0x001C
  */
 export type FTPOV = {
+  Location: FVector;  // 0x0000 (0x000c) [FVector]
+  Rotation: FRotator;  // 0x000c (0x000c) [FRotator]
   FOV: number;  // 0x0018 (0x0004) [float]
 };
 
@@ -584,6 +708,8 @@ export type FTPOV = {
  * Size: 0x0018
  */
 export type FTwoVectors = {
+  v1: FVector;  // 0x0000 (0x000c) [FVector]
+  v2: FVector;  // 0x000c (0x000c) [FVector]
 };
 
 /**
@@ -592,7 +718,10 @@ export type FTwoVectors = {
  */
 export type FUniqueNetId = {
   Uid: bigint;  // 0x0000 (0x0008) [uint64]
+  NpId: FSceNpId;  // 0x0008 (0x0028) [FSceNpId]
   EpicAccountId: string;  // 0x0030 (0x0010) [FString]
+  Platform: OnlinePlatform;  // 0x0040 (0x0001) [OnlinePlatform]
+  SplitscreenID: number;  // 0x0041 (0x0001) [uint8]
 };
 
 /**
@@ -600,6 +729,7 @@ export type FUniqueNetId = {
  * Size: 0x0054
  */
 export type FUntypedBulkData_Mirror = {
+  VfTable: FPointer;  // 0x0000 (0x0008) [FPointer]
   BulkDataFlags: number;  // 0x0008 (0x0004) [int32]
   ElementCount: number;  // 0x000c (0x0004) [int32]
   BulkDataOffsetInFile: bigint;  // 0x0010 (0x0008) [uint64]
@@ -608,7 +738,9 @@ export type FUntypedBulkData_Mirror = {
   SavedElementCount: number;  // 0x0020 (0x0004) [int32]
   SavedBulkDataOffsetInFile: bigint;  // 0x0028 (0x0008) [uint64]
   SavedBulkDataSizeOnDisk: number;  // 0x0030 (0x0004) [int32]
+  BulkData: FPointer;  // 0x0038 (0x0008) [FPointer]
   LockStatus: number;  // 0x0040 (0x0004) [int32]
+  AttachedAr: FPointer;  // 0x0048 (0x0008) [FPointer]
   bShouldFreeOnEmpty: number;  // 0x0050 (0x0004) [int32]
 };
 

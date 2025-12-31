@@ -19,7 +19,7 @@
 
     "bun-kernel32": ["bun-kernel32@1.0.9", "", { "peerDependencies": { "typescript": "^5" } }, "sha512-BUPw2JC1q5Gdx9UOjQUUpSAC86dfQf0QkrbhR0WGtlyt+5HOfsBskB5puj0idEn3MSU+q6quGYZadhPHcAb/Tg=="],
 
-    "bun-memory": ["bun-memory@1.1.44", "", { "dependencies": { "bun-kernel32": "^1.0.9" }, "peerDependencies": { "typescript": "^5.9.2" } }, "sha512-8xHM9c3dJYiwkeS7UW07cYf0zn9AJmWtf4wtxvwxMBg1lsxtNQcOWe13c5YETDfgDTSGfKLuv+5oe6sFj+0GKw=="],
+    "bun-memory": ["bun-memory@1.1.45", "", { "dependencies": { "bun-kernel32": "^1.0.9" }, "peerDependencies": { "typescript": "^5.9.2" } }, "sha512-FPYI3clYesMd950XOdjV3XPVJwm2wQ90mD1NQQhynLSGNwcO7Pe+I5UyzrNyhzC98by7PhTqIYqdhqjbBTy7nw=="],
 
     "bun-types": ["bun-types@1.3.5", "", { "dependencies": { "@types/node": "*" } }, "sha512-inmAYe2PFLs0SUbFOWSVD24sg1jFlMPxOjOSSCYqUgn4Hsc3rDc7dFvfVYjFPNHtov6kgUeulV4SxbuIV/stPw=="],
 
