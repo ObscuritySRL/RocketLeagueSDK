@@ -11,7 +11,8 @@ import Memory from 'bun-memory';
 
 // Import SDK types and offsets
 import type { Structs } from '..';
-import { GNames, GObjects, UObject, FNameEntry } from '../types/offsets';
+import { GNames, GObjects } from '../types/offsets';
+import { UObject_Layout, FNameEntry_Layout } from '../types/GameDefines';
 
 // CarComponent_Boost_TA offsets
 // Found in: classes/TAGame.ts - search for "CarComponent_Boost_TA"
@@ -63,7 +64,7 @@ function getName(index: number): string {
 
     // Read the wide string at FNameEntry.Name offset
     // FNameEntry structure: [0x00-0x0F: metadata] [0x10+: name string]
-    const namePtr = entryPtr + BigInt(FNameEntry.Name);
+    const namePtr = entryPtr + BigInt(FNameEntry_Layout.Name);
 
     // Read up to 256 characters (512 bytes for UTF-16)
     const buf = Buffer.allocUnsafe(512);
@@ -92,11 +93,11 @@ function getName(index: number): string {
 function getClassName(objPtr: bigint): string {
   try {
     // Read the Class pointer from the UObject
-    const classPtr = rl.uPtr(objPtr + BigInt(UObject.Class));
+    const classPtr = rl.uPtr(objPtr + BigInt(UObject_Layout.Class));
     if (classPtr === 0n) return "";
 
     // Get the name index from the class UObject
-    const nameIndex = rl.i32(classPtr + BigInt(UObject.Name));
+    const nameIndex = rl.i32(classPtr + BigInt(UObject_Layout.Name));
     return getName(nameIndex);
   } catch {
     return "<error>";
@@ -115,16 +116,16 @@ function getClassName(objPtr: bigint): string {
 function getObjectFullName(objPtr: bigint): string {
   try {
     const className = getClassName(objPtr);
-    const nameIndex = rl.i32(objPtr + BigInt(UObject.Name));
+    const nameIndex = rl.i32(objPtr + BigInt(UObject_Layout.Name));
     const name = getName(nameIndex);
 
     // Build outer chain (package path)
     const outers: string[] = [];
-    let outer = rl.uPtr(objPtr + BigInt(UObject.Outer));
+    let outer = rl.uPtr(objPtr + BigInt(UObject_Layout.Outer));
     while (outer !== 0n) {
-      const outerNameIdx = rl.i32(outer + BigInt(UObject.Name));
+      const outerNameIdx = rl.i32(outer + BigInt(UObject_Layout.Name));
       outers.unshift(getName(outerNameIdx));
-      outer = rl.uPtr(outer + BigInt(UObject.Outer));
+      outer = rl.uPtr(outer + BigInt(UObject_Layout.Outer));
     }
 
     const path = outers.length > 0 ? outers.join('.') + '.' + name : name;

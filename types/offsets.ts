@@ -11,19 +11,3 @@ export const GNames = 0x23ed570n;
 
 /** GObjects offset from module base */
 export const GObjects = 0x23ed5b8n;
-
-/** UObject layout offsets */
-export const UObject = {
-  /** Pointer to outer object (package/owner) */
-  Outer: 0x40,
-  /** FName - index into GNames array */
-  Name: 0x48,
-  /** Pointer to class object */
-  Class: 0x50,
-} as const;
-
-/** FNameEntry layout */
-export const FNameEntry = {
-  /** Offset to name string (wide string) */
-  Name: 0x18,
-} as const;
