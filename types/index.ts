@@ -4,3 +4,4 @@
  */
 
 export * from './GameDefines';
+export * from './offsets';
