@@ -6,25 +6,17 @@
  * Import these to read/write memory at the correct locations.
  */
 
-/**
- * Engine.SequenceAction Offsets
- * Size: 0x0160
- * Extends: SequenceOp
- */
-export const SequenceAction = {
-  HandlerName: 0x0140,  // 0x0140 (0x0008) [FName]
-  bCallHandler: 0x0148,  // 0x0148 (0x0004) [bool : 0x1]
-  Targets: 0x0150,  // 0x0150 (0x0010) [TArray<UObject*>]
-} as const;
+import { Object_ } from './Core';
+import { Interaction, SequenceAction, SequenceEvent } from './Engine';
 
 /**
  * GFxUI.GFxAction_CloseMovie Offsets
- * Size: 0x016C
+ * Size: 0x016c
  * Extends: SequenceAction
  */
 export const GFxAction_CloseMovie = {
-  Movie: 0x0160,  // 0x0160 (0x0008) [UGFxMoviePlayer*]
-  bUnload: 0x0168,  // 0x0168 (0x0004) [bool : 0x1]
+  Movie: 0x0160n,  // 0x0160 (0x0008) [UGFxMoviePlayer*]
+  bUnload: 0x0168n,  // 0x0168 (0x0004) [bool : 0x1]
   ...SequenceAction,
 } as const;
 
@@ -34,8 +26,8 @@ export const GFxAction_CloseMovie = {
  * Extends: SequenceAction
  */
 export const GFxAction_GetVariable = {
-  Movie: 0x0160,  // 0x0160 (0x0008) [UGFxMoviePlayer*]
-  Variable: 0x0168,  // 0x0168 (0x0010) [FString]
+  Movie: 0x0160n,  // 0x0160 (0x0008) [UGFxMoviePlayer*]
+  Variable: 0x0168n,  // 0x0168 (0x0010) [FString]
   ...SequenceAction,
 } as const;
 
@@ -45,30 +37,30 @@ export const GFxAction_GetVariable = {
  * Extends: SequenceAction
  */
 export const GFxAction_Invoke = {
-  Movie: 0x0160,  // 0x0160 (0x0008) [UGFxMoviePlayer*]
-  MethodName: 0x0168,  // 0x0168 (0x0010) [FString]
-  Arguments: 0x0178,  // 0x0178 (0x0010) [TArray<FASValue>]
+  Movie: 0x0160n,  // 0x0160 (0x0008) [UGFxMoviePlayer*]
+  MethodName: 0x0168n,  // 0x0168 (0x0010) [FString]
+  Arguments: 0x0178n,  // 0x0178 (0x0010) [TArray<FASValue>]
   ...SequenceAction,
 } as const;
 
 /**
  * GFxUI.GFxAction_OpenMovie Offsets
- * Size: 0x01A8
+ * Size: 0x01a8
  * Extends: SequenceAction
  */
 export const GFxAction_OpenMovie = {
-  Movie: 0x0160,  // 0x0160 (0x0008) [USwfMovie*]
-  MoviePlayerClass: 0x0168,  // 0x0168 (0x0008) [UClass*]
-  MoviePlayer: 0x0170,  // 0x0170 (0x0008) [UGFxMoviePlayer*]
-  bTakeFocus: 0x0178,  // 0x0178 (0x0004) [bool : 0x1]
-  bCaptureInput: 0x0178,  // 0x0178 (0x0004) [bool : 0x2]
-  bStartPaused: 0x0178,  // 0x0178 (0x0004) [bool : 0x4]
-  bEnableGammaCorrection: 0x0178,  // 0x0178 (0x0004) [bool : 0x8]
-  bDisplayWithHudOff: 0x0178,  // 0x0178 (0x0004) [bool : 0x10]
-  RenderTextureMode: 0x017C,  // 0x017C (0x0001) [GFxRenderTextureMode]
-  RenderTexture: 0x0180,  // 0x0180 (0x0008) [UTextureRenderTarget2D*]
-  CaptureKeys: 0x0188,  // 0x0188 (0x0010) [TArray<FName>]
-  FocusIgnoreKeys: 0x0198,  // 0x0198 (0x0010) [TArray<FName>]
+  Movie: 0x0160n,  // 0x0160 (0x0008) [USwfMovie*]
+  MoviePlayerClass: 0x0168n,  // 0x0168 (0x0008) [UClass*]
+  MoviePlayer: 0x0170n,  // 0x0170 (0x0008) [UGFxMoviePlayer*]
+  bTakeFocus: 0x0178n,  // 0x0178 (0x0004) [bool : 0x1]
+  bCaptureInput: 0x0178n,  // 0x0178 (0x0004) [bool : 0x2]
+  bStartPaused: 0x0178n,  // 0x0178 (0x0004) [bool : 0x4]
+  bEnableGammaCorrection: 0x0178n,  // 0x0178 (0x0004) [bool : 0x8]
+  bDisplayWithHudOff: 0x0178n,  // 0x0178 (0x0004) [bool : 0x10]
+  RenderTextureMode: 0x017cn,  // 0x017c (0x0001) [GFxRenderTextureMode]
+  RenderTexture: 0x0180n,  // 0x0180 (0x0008) [UTextureRenderTarget2D*]
+  CaptureKeys: 0x0188n,  // 0x0188 (0x0010) [TArray<FName>]
+  FocusIgnoreKeys: 0x0198n,  // 0x0198 (0x0010) [TArray<FName>]
   ...SequenceAction,
 } as const;
 
@@ -78,8 +70,8 @@ export const GFxAction_OpenMovie = {
  * Extends: SequenceAction
  */
 export const GFxAction_SetCaptureKeys = {
-  Movie: 0x0160,  // 0x0160 (0x0008) [UGFxMoviePlayer*]
-  CaptureKeys: 0x0168,  // 0x0168 (0x0010) [TArray<FName>]
+  Movie: 0x0160n,  // 0x0160 (0x0008) [UGFxMoviePlayer*]
+  CaptureKeys: 0x0168n,  // 0x0168 (0x0010) [TArray<FName>]
   ...SequenceAction,
 } as const;
 
@@ -89,29 +81,9 @@ export const GFxAction_SetCaptureKeys = {
  * Extends: SequenceAction
  */
 export const GFxAction_SetVariable = {
-  Movie: 0x0160,  // 0x0160 (0x0008) [UGFxMoviePlayer*]
-  Variable: 0x0168,  // 0x0168 (0x0010) [FString]
+  Movie: 0x0160n,  // 0x0160 (0x0008) [UGFxMoviePlayer*]
+  Variable: 0x0168n,  // 0x0168 (0x0010) [FString]
   ...SequenceAction,
-} as const;
-
-/**
- * Core.Object Offsets
- * Size: 0x0060
- */
-export const Object_ = {
-  VfTableObject: 0x0000,  // 0x0000 (0x0008) [FPointer]
-  HashNext: 0x0008,  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: 0x0010,  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: 0x0018,  // 0x0018 (0x0008) [FPointer]
-  StateFrame: 0x0020,  // 0x0020 (0x0008) [FPointer]
-  Linker: 0x0028,  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: 0x0030,  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: 0x0038,  // 0x0038 (0x0004) [int32]
-  NetIndex: 0x003C,  // 0x003C (0x0004) [int32]
-  Outer: 0x0040,  // 0x0040 (0x0008) [UObject*]
-  Name: 0x0048,  // 0x0048 (0x0008) [FName]
-  Class: 0x0050,  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: 0x0058,  // 0x0058 (0x0008) [UObject*]
 } as const;
 
 /**
@@ -120,43 +92,22 @@ export const Object_ = {
  * Extends: Object
  */
 export const GFxEngine = {
-  GCReferences: 0x0060,  // 0x0060 (0x0010) [TArray<FGCReference>]
-  RefCount: 0x0070,  // 0x0070 (0x0004) [int32]
-  LoadingScreenInfo: 0x0078,  // 0x0078 (0x00A0) [FLoadingMovieMapInfo]
-  IgnoreWarningsThatStartWith: 0x0118,  // 0x0118 (0x0010) [TArray<FString>]
+  GCReferences: 0x0060n,  // 0x0060 (0x0010) [TArray<FGCReference>]
+  RefCount: 0x0070n,  // 0x0070 (0x0004) [int32]
+  LoadingScreenInfo: 0x0078n,  // 0x0078 (0x00a0) [FLoadingMovieMapInfo]
+  IgnoreWarningsThatStartWith: 0x0118n,  // 0x0118 (0x0010) [TArray<FString>]
   ...Object_,
 } as const;
 
 /**
- * Engine.SequenceEvent Offsets
- * Size: 0x017C
- * Extends: SequenceOp
- */
-export const SequenceEvent = {
-  DuplicateEvts: 0x0140,  // 0x0140 (0x0010) [TArray<USequenceEvent*>]
-  Originator: 0x0150,  // 0x0150 (0x0008) [UActor*]
-  Instigator: 0x0158,  // 0x0158 (0x0008) [UActor*]
-  ActivationTime: 0x0160,  // 0x0160 (0x0004) [float]
-  TriggerCount: 0x0164,  // 0x0164 (0x0004) [int32]
-  MaxTriggerCount: 0x0168,  // 0x0168 (0x0004) [int32]
-  ReTriggerDelay: 0x016C,  // 0x016C (0x0004) [float]
-  bEnabled: 0x0170,  // 0x0170 (0x0004) [bool : 0x1]
-  bPlayerOnly: 0x0170,  // 0x0170 (0x0004) [bool : 0x2]
-  bRegistered: 0x0170,  // 0x0170 (0x0004) [bool : 0x4]
-  bClientSideOnly: 0x0170,  // 0x0170 (0x0004) [bool : 0x8]
-  Priority: 0x0174,  // 0x0174 (0x0001) [uint8]
-  MaxWidth: 0x0178,  // 0x0178 (0x0004) [int32]
-} as const;
-
-/**
  * GFxUI.GFxEvent_FSCommand Offsets
- * Size: 0x01A0
+ * Size: 0x01a0
  * Extends: SequenceEvent
  */
 export const GFxEvent_FSCommand = {
-  Movie: 0x0180,  // 0x0180 (0x0008) [USwfMovie*]
-  FSCommand: 0x0188,  // 0x0188 (0x0010) [FString]
-  Handler: 0x0198,  // 0x0198 (0x0008) [UGFxFSCmdHandler_Kismet*]
+  Movie: 0x0180n,  // 0x0180 (0x0008) [USwfMovie*]
+  FSCommand: 0x0188n,  // 0x0188 (0x0010) [FString]
+  Handler: 0x0198n,  // 0x0198 (0x0008) [UGFxFSCmdHandler_Kismet*]
   ...SequenceEvent,
 } as const;
 
@@ -179,25 +130,13 @@ export const GFxFSCmdHandler_Kismet = {
 } as const;
 
 /**
- * Engine.Interaction Offsets
- * Size: 0x00D0
- * Extends: UIRoot
- */
-export const Interaction = {
-  __OnReceivedNativeInputKey__Delegate: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
-  __OnReceivedNativeInputAxis__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
-  __OnReceivedNativeInputChar__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
-  __OnInitialize__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
-} as const;
-
-/**
  * GFxUI.GFxInteraction Offsets
- * Size: 0x00DC
+ * Size: 0x00dc
  * Extends: Interaction
  */
 export const GFxInteraction = {
-  VfTable_FCallbackEventDevice: 0x00D0,  // 0x00D0 (0x0008) [FPointer]
-  bFakeMobileTouches: 0x00D8,  // 0x00D8 (0x0004) [bool : 0x1]
+  VfTable_FCallbackEventDevice: 0x00d0n,  // 0x00d0 (0x0008) [FPointer]
+  bFakeMobileTouches: 0x00d8n,  // 0x00d8 (0x0004) [bool : 0x1]
   ...Interaction,
 } as const;
 
@@ -207,89 +146,89 @@ export const GFxInteraction = {
  * Extends: Object
  */
 export const GFxMoviePlayer = {
-  pMovie: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  pCaptureKeys: 0x0068,  // 0x0068 (0x0008) [FPointer]
-  pFocusIgnoreKeys: 0x0070,  // 0x0070 (0x0008) [FPointer]
-  ASUClasses: 0x0078,  // 0x0078 (0x0050) [TMap<unknown, unknown>]
-  ASUObjects: 0x00C8,  // 0x00C8 (0x0050) [TMap<unknown, unknown>]
-  NextASUObject: 0x0118,  // 0x0118 (0x0004) [int32]
-  MovieInfo: 0x0120,  // 0x0120 (0x0008) [USwfMovie*]
-  bMovieIsOpen: 0x0128,  // 0x0128 (0x0004) [bool : 0x1]
-  bDisplayWithHudOff: 0x0128,  // 0x0128 (0x0004) [bool : 0x2]
-  bEnableGammaCorrection: 0x0128,  // 0x0128 (0x0004) [bool : 0x4]
-  bWidgetsInitializedThisFrame: 0x0128,  // 0x0128 (0x0004) [bool : 0x8]
-  bLogUnhandedWidgetInitializations: 0x0128,  // 0x0128 (0x0004) [bool : 0x10]
-  bAllowInput: 0x0128,  // 0x0128 (0x0004) [bool : 0x20]
-  bAllowFocus: 0x0128,  // 0x0128 (0x0004) [bool : 0x40]
-  bAutoPlay: 0x0128,  // 0x0128 (0x0004) [bool : 0x80]
-  bPauseGameWhileActive: 0x0128,  // 0x0128 (0x0004) [bool : 0x100]
-  bDisableWorldRendering: 0x0128,  // 0x0128 (0x0004) [bool : 0x200]
-  bCaptureWorldRendering: 0x0128,  // 0x0128 (0x0004) [bool : 0x400]
-  bCloseOnLevelChange: 0x0128,  // 0x0128 (0x0004) [bool : 0x800]
-  bOnlyOwnerFocusable: 0x0128,  // 0x0128 (0x0004) [bool : 0x1000]
-  bForceFullViewport: 0x0128,  // 0x0128 (0x0004) [bool : 0x2000]
-  bDiscardNonOwnerInput: 0x0128,  // 0x0128 (0x0004) [bool : 0x4000]
-  bCaptureInput: 0x0128,  // 0x0128 (0x0004) [bool : 0x8000]
-  bCaptureMouseInput: 0x0128,  // 0x0128 (0x0004) [bool : 0x10000]
-  bIgnoreMouseInput: 0x0128,  // 0x0128 (0x0004) [bool : 0x20000]
-  bIsSplitscreenLayoutModified: 0x0128,  // 0x0128 (0x0004) [bool : 0x40000]
-  bShowHardwareMouseCursor: 0x0128,  // 0x0128 (0x0004) [bool : 0x80000]
-  bForceFullScreen: 0x0128,  // 0x0128 (0x0004) [bool : 0x100000]
-  bBlurLesserMovies: 0x0128,  // 0x0128 (0x0004) [bool : 0x200000]
-  bHideLesserMovies: 0x0128,  // 0x0128 (0x0004) [bool : 0x400000]
-  bIsPriorityBlurred: 0x0128,  // 0x0128 (0x0004) [bool : 0x800000]
-  bIsPriorityHidden: 0x0128,  // 0x0128 (0x0004) [bool : 0x1000000]
-  bIgnoreVisibilityEffect: 0x0128,  // 0x0128 (0x0004) [bool : 0x2000000]
-  bIgnoreBlurEffect: 0x0128,  // 0x0128 (0x0004) [bool : 0x4000000]
-  RenderTexture: 0x0130,  // 0x0130 (0x0008) [UTextureRenderTarget2D*]
-  LocalPlayerOwnerIndex: 0x0138,  // 0x0138 (0x0004) [int32]
-  ExternalInterface: 0x0140,  // 0x0140 (0x0008) [UObject*]
-  CaptureKeys: 0x0148,  // 0x0148 (0x0010) [TArray<FName>]
-  FocusIgnoreKeys: 0x0158,  // 0x0158 (0x0010) [TArray<FName>]
-  ExternalTextures: 0x0168,  // 0x0168 (0x0010) [TArray<FExternalTexture>]
-  SoundThemes: 0x0178,  // 0x0178 (0x0010) [TArray<FSoundThemeBinding>]
-  TimingMode: 0x0188,  // 0x0188 (0x0001) [GFxTimingMode]
-  RenderTextureMode: 0x0189,  // 0x0189 (0x0001) [GFxRenderTextureMode]
-  Priority: 0x018A,  // 0x018A (0x0001) [uint8]
-  WidgetBindings: 0x0190,  // 0x0190 (0x0010) [TArray<FGFxWidgetBinding>]
-  WidgetPathBindings: 0x01A0,  // 0x01A0 (0x0050) [TMap<unknown, unknown>]
-  SplitscreenLayoutObject: 0x01F0,  // 0x01F0 (0x0008) [UGFxObject*]
-  SplitscreenLayoutYAdjust: 0x01F8,  // 0x01F8 (0x0004) [int32]
-  __OnPostAdvance__Delegate: 0x0200,  // 0x0200 (0x0018) [FScriptDelegate]
+  pMovie: 0x0060n,  // 0x0060 (0x0008) [FPointer]
+  pCaptureKeys: 0x0068n,  // 0x0068 (0x0008) [FPointer]
+  pFocusIgnoreKeys: 0x0070n,  // 0x0070 (0x0008) [FPointer]
+  ASUClasses: 0x0078n,  // 0x0078 (0x0050) [TMap<unknown, unknown>]
+  ASUObjects: 0x00c8n,  // 0x00c8 (0x0050) [TMap<unknown, unknown>]
+  NextASUObject: 0x0118n,  // 0x0118 (0x0004) [int32]
+  MovieInfo: 0x0120n,  // 0x0120 (0x0008) [USwfMovie*]
+  bMovieIsOpen: 0x0128n,  // 0x0128 (0x0004) [bool : 0x1]
+  bDisplayWithHudOff: 0x0128n,  // 0x0128 (0x0004) [bool : 0x2]
+  bEnableGammaCorrection: 0x0128n,  // 0x0128 (0x0004) [bool : 0x4]
+  bWidgetsInitializedThisFrame: 0x0128n,  // 0x0128 (0x0004) [bool : 0x8]
+  bLogUnhandedWidgetInitializations: 0x0128n,  // 0x0128 (0x0004) [bool : 0x10]
+  bAllowInput: 0x0128n,  // 0x0128 (0x0004) [bool : 0x20]
+  bAllowFocus: 0x0128n,  // 0x0128 (0x0004) [bool : 0x40]
+  bAutoPlay: 0x0128n,  // 0x0128 (0x0004) [bool : 0x80]
+  bPauseGameWhileActive: 0x0128n,  // 0x0128 (0x0004) [bool : 0x100]
+  bDisableWorldRendering: 0x0128n,  // 0x0128 (0x0004) [bool : 0x200]
+  bCaptureWorldRendering: 0x0128n,  // 0x0128 (0x0004) [bool : 0x400]
+  bCloseOnLevelChange: 0x0128n,  // 0x0128 (0x0004) [bool : 0x800]
+  bOnlyOwnerFocusable: 0x0128n,  // 0x0128 (0x0004) [bool : 0x1000]
+  bForceFullViewport: 0x0128n,  // 0x0128 (0x0004) [bool : 0x2000]
+  bDiscardNonOwnerInput: 0x0128n,  // 0x0128 (0x0004) [bool : 0x4000]
+  bCaptureInput: 0x0128n,  // 0x0128 (0x0004) [bool : 0x8000]
+  bCaptureMouseInput: 0x0128n,  // 0x0128 (0x0004) [bool : 0x10000]
+  bIgnoreMouseInput: 0x0128n,  // 0x0128 (0x0004) [bool : 0x20000]
+  bIsSplitscreenLayoutModified: 0x0128n,  // 0x0128 (0x0004) [bool : 0x40000]
+  bShowHardwareMouseCursor: 0x0128n,  // 0x0128 (0x0004) [bool : 0x80000]
+  bForceFullScreen: 0x0128n,  // 0x0128 (0x0004) [bool : 0x100000]
+  bBlurLesserMovies: 0x0128n,  // 0x0128 (0x0004) [bool : 0x200000]
+  bHideLesserMovies: 0x0128n,  // 0x0128 (0x0004) [bool : 0x400000]
+  bIsPriorityBlurred: 0x0128n,  // 0x0128 (0x0004) [bool : 0x800000]
+  bIsPriorityHidden: 0x0128n,  // 0x0128 (0x0004) [bool : 0x1000000]
+  bIgnoreVisibilityEffect: 0x0128n,  // 0x0128 (0x0004) [bool : 0x2000000]
+  bIgnoreBlurEffect: 0x0128n,  // 0x0128 (0x0004) [bool : 0x4000000]
+  RenderTexture: 0x0130n,  // 0x0130 (0x0008) [UTextureRenderTarget2D*]
+  LocalPlayerOwnerIndex: 0x0138n,  // 0x0138 (0x0004) [int32]
+  ExternalInterface: 0x0140n,  // 0x0140 (0x0008) [UObject*]
+  CaptureKeys: 0x0148n,  // 0x0148 (0x0010) [TArray<FName>]
+  FocusIgnoreKeys: 0x0158n,  // 0x0158 (0x0010) [TArray<FName>]
+  ExternalTextures: 0x0168n,  // 0x0168 (0x0010) [TArray<FExternalTexture>]
+  SoundThemes: 0x0178n,  // 0x0178 (0x0010) [TArray<FSoundThemeBinding>]
+  TimingMode: 0x0188n,  // 0x0188 (0x0001) [GFxTimingMode]
+  RenderTextureMode: 0x0189n,  // 0x0189 (0x0001) [GFxRenderTextureMode]
+  Priority: 0x018an,  // 0x018a (0x0001) [uint8]
+  WidgetBindings: 0x0190n,  // 0x0190 (0x0010) [TArray<FGFxWidgetBinding>]
+  WidgetPathBindings: 0x01a0n,  // 0x01a0 (0x0050) [TMap<unknown, unknown>]
+  SplitscreenLayoutObject: 0x01f0n,  // 0x01f0 (0x0008) [UGFxObject*]
+  SplitscreenLayoutYAdjust: 0x01f8n,  // 0x01f8 (0x0004) [int32]
+  __OnPostAdvance__Delegate: 0x0200n,  // 0x0200 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * GFxUI.GFxObject Offsets
- * Size: 0x00A0
+ * Size: 0x00a0
  * Extends: Object
  */
 export const GFxObject = {
-  Value: 0x0060,  // 0x0060 (0x0030) [int32]
-  SubWidgetBindings: 0x0090,  // 0x0090 (0x0010) [TArray<FGFxWidgetBinding>]
+  Value: 0x0060n,  // 0x0060 (0x0030) [int32]
+  SubWidgetBindings: 0x0090n,  // 0x0090 (0x0010) [TArray<FGFxWidgetBinding>]
   ...Object_,
 } as const;
 
 /**
  * GFxUI.GFxClikWidget Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: GFxObject
  */
 export const GFxClikWidget = {
-  __EventListener__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
+  __EventListener__Delegate: 0x00a0n,  // 0x00a0 (0x0018) [FScriptDelegate]
   ...GFxObject,
 } as const;
 
 /**
  * GFxUI.GFxRawData Offsets
- * Size: 0x00A0
+ * Size: 0x00a0
  * Extends: Object
  */
 export const GFxRawData = {
-  RawData: 0x0060,  // 0x0060 (0x0010) [TArray<uint8>]
-  ReferencedSwfs: 0x0070,  // 0x0070 (0x0010) [TArray<FString>]
-  References: 0x0080,  // 0x0080 (0x0010) [TArray<UObject*>]
-  UserReferences: 0x0090,  // 0x0090 (0x0010) [TArray<UObject*>]
+  RawData: 0x0060n,  // 0x0060 (0x0010) [TArray<uint8>]
+  ReferencedSwfs: 0x0070n,  // 0x0070 (0x0010) [TArray<FString>]
+  References: 0x0080n,  // 0x0080 (0x0010) [TArray<UObject*>]
+  UserReferences: 0x0090n,  // 0x0090 (0x0010) [TArray<UObject*>]
   ...Object_,
 } as const;
 
@@ -299,22 +238,22 @@ export const GFxRawData = {
  * Extends: GFxRawData
  */
 export const SwfMovie = {
-  bUsesFontlib: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x1]
-  bSetSRGBOnImportedTextures: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x2]
-  bPackTextures: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x4]
-  bForceSquarePacking: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x8]
-  SourceFile: 0x00A8,  // 0x00A8 (0x0010) [FString]
-  PackTextureSize: 0x00B8,  // 0x00B8 (0x0004) [int32]
-  TextureRescale: 0x00BC,  // 0x00BC (0x0001) [FlashTextureRescale]
-  TextureFormat: 0x00C0,  // 0x00C0 (0x0010) [FString]
-  SourceFileTimestamp: 0x00D0,  // 0x00D0 (0x0010) [FString]
-  SourceFileCRC: 0x00E0,  // 0x00E0 (0x0004) [int32]
-  PrioritizeImportSwfs: 0x00E8,  // 0x00E8 (0x0010) [TArray<FString>]
-  Editions: 0x00F8,  // 0x00F8 (0x0010) [TArray<EEdition>]
-  Features: 0x0108,  // 0x0108 (0x0010) [TArray<FName>]
-  RTTextures: 0x0118,  // 0x0118 (0x0004) [int32]
-  RTVideoTextures: 0x011C,  // 0x011C (0x0004) [int32]
-  ImportTimeStamp: 0x0120,  // 0x0120 (0x0008) [uint64]
+  bUsesFontlib: 0x00a0n,  // 0x00a0 (0x0004) [bool : 0x1]
+  bSetSRGBOnImportedTextures: 0x00a0n,  // 0x00a0 (0x0004) [bool : 0x2]
+  bPackTextures: 0x00a0n,  // 0x00a0 (0x0004) [bool : 0x4]
+  bForceSquarePacking: 0x00a0n,  // 0x00a0 (0x0004) [bool : 0x8]
+  SourceFile: 0x00a8n,  // 0x00a8 (0x0010) [FString]
+  PackTextureSize: 0x00b8n,  // 0x00b8 (0x0004) [int32]
+  TextureRescale: 0x00bcn,  // 0x00bc (0x0001) [FlashTextureRescale]
+  TextureFormat: 0x00c0n,  // 0x00c0 (0x0010) [FString]
+  SourceFileTimestamp: 0x00d0n,  // 0x00d0 (0x0010) [FString]
+  SourceFileCRC: 0x00e0n,  // 0x00e0 (0x0004) [int32]
+  PrioritizeImportSwfs: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FString>]
+  Editions: 0x00f8n,  // 0x00f8 (0x0010) [TArray<EEdition>]
+  Features: 0x0108n,  // 0x0108 (0x0010) [TArray<FName>]
+  RTTextures: 0x0118n,  // 0x0118 (0x0004) [int32]
+  RTVideoTextures: 0x011cn,  // 0x011c (0x0004) [int32]
+  ImportTimeStamp: 0x0120n,  // 0x0120 (0x0008) [uint64]
   ...GFxRawData,
 } as const;
 
@@ -332,37 +271,37 @@ export const FlashMovie = {
  * Size: 0x0020
  */
 export const ASColorTransform = {
-  Multiply: 0x0000,  // 0x0000 (0x0010) [FLinearColor]
-  Add: 0x0010,  // 0x0010 (0x0010) [FLinearColor]
+  Multiply: 0x0000n,  // 0x0000 (0x0010) [FLinearColor]
+  Add: 0x0010n,  // 0x0010 (0x0010) [FLinearColor]
 } as const;
 
 /**
  * ScriptStruct GFxUI.GFxObject.ASDisplayInfo Offsets
- * Size: 0x002C
+ * Size: 0x002c
  */
 export const ASDisplayInfo = {
-  X: 0x0000,  // 0x0000 (0x0004) [float]
-  Y: 0x0004,  // 0x0004 (0x0004) [float]
-  Z: 0x0008,  // 0x0008 (0x0004) [float]
-  Rotation: 0x000C,  // 0x000C (0x0004) [float]
-  XRotation: 0x0010,  // 0x0010 (0x0004) [float]
-  YRotation: 0x0014,  // 0x0014 (0x0004) [float]
-  XScale: 0x0018,  // 0x0018 (0x0004) [float]
-  YScale: 0x001C,  // 0x001C (0x0004) [float]
-  ZScale: 0x0020,  // 0x0020 (0x0004) [float]
-  Alpha: 0x0024,  // 0x0024 (0x0004) [float]
-  Visible: 0x0028,  // 0x0028 (0x0004) [bool : 0x1]
-  hasX: 0x0028,  // 0x0028 (0x0004) [bool : 0x2]
-  hasY: 0x0028,  // 0x0028 (0x0004) [bool : 0x4]
-  hasZ: 0x0028,  // 0x0028 (0x0004) [bool : 0x8]
-  hasRotation: 0x0028,  // 0x0028 (0x0004) [bool : 0x10]
-  hasXRotation: 0x0028,  // 0x0028 (0x0004) [bool : 0x20]
-  hasYRotation: 0x0028,  // 0x0028 (0x0004) [bool : 0x40]
-  hasXScale: 0x0028,  // 0x0028 (0x0004) [bool : 0x80]
-  hasYScale: 0x0028,  // 0x0028 (0x0004) [bool : 0x100]
-  hasZScale: 0x0028,  // 0x0028 (0x0004) [bool : 0x200]
-  hasAlpha: 0x0028,  // 0x0028 (0x0004) [bool : 0x400]
-  hasVisible: 0x0028,  // 0x0028 (0x0004) [bool : 0x800]
+  X: 0x0000n,  // 0x0000 (0x0004) [float]
+  Y: 0x0004n,  // 0x0004 (0x0004) [float]
+  Z: 0x0008n,  // 0x0008 (0x0004) [float]
+  Rotation: 0x000cn,  // 0x000c (0x0004) [float]
+  XRotation: 0x0010n,  // 0x0010 (0x0004) [float]
+  YRotation: 0x0014n,  // 0x0014 (0x0004) [float]
+  XScale: 0x0018n,  // 0x0018 (0x0004) [float]
+  YScale: 0x001cn,  // 0x001c (0x0004) [float]
+  ZScale: 0x0020n,  // 0x0020 (0x0004) [float]
+  Alpha: 0x0024n,  // 0x0024 (0x0004) [float]
+  Visible: 0x0028n,  // 0x0028 (0x0004) [bool : 0x1]
+  hasX: 0x0028n,  // 0x0028 (0x0004) [bool : 0x2]
+  hasY: 0x0028n,  // 0x0028 (0x0004) [bool : 0x4]
+  hasZ: 0x0028n,  // 0x0028 (0x0004) [bool : 0x8]
+  hasRotation: 0x0028n,  // 0x0028 (0x0004) [bool : 0x10]
+  hasXRotation: 0x0028n,  // 0x0028 (0x0004) [bool : 0x20]
+  hasYRotation: 0x0028n,  // 0x0028 (0x0004) [bool : 0x40]
+  hasXScale: 0x0028n,  // 0x0028 (0x0004) [bool : 0x80]
+  hasYScale: 0x0028n,  // 0x0028 (0x0004) [bool : 0x100]
+  hasZScale: 0x0028n,  // 0x0028 (0x0004) [bool : 0x200]
+  hasAlpha: 0x0028n,  // 0x0028 (0x0004) [bool : 0x400]
+  hasVisible: 0x0028n,  // 0x0028 (0x0004) [bool : 0x800]
 } as const;
 
 /**
@@ -370,12 +309,12 @@ export const ASDisplayInfo = {
  * Size: 0x0028
  */
 export const ASValue = {
-  Type: 0x0000,  // 0x0000 (0x0001) [ASType]
-  B: 0x0004,  // 0x0004 (0x0004) [bool : 0x1]
-  N: 0x0008,  // 0x0008 (0x0004) [float]
-  I: 0x000C,  // 0x000C (0x0004) [int32]
-  S: 0x0010,  // 0x0010 (0x0010) [FString]
-  T: 0x0020,  // 0x0020 (0x0008) [UTexture*]
+  Type: 0x0000n,  // 0x0000 (0x0001) [ASType]
+  B: 0x0004n,  // 0x0004 (0x0004) [bool : 0x1]
+  N: 0x0008n,  // 0x0008 (0x0004) [float]
+  I: 0x000cn,  // 0x000c (0x0004) [int32]
+  S: 0x0010n,  // 0x0010 (0x0010) [FString]
+  T: 0x0020n,  // 0x0020 (0x0008) [UTexture*]
 } as const;
 
 /**
@@ -383,14 +322,14 @@ export const ASValue = {
  * Size: 0x0034
  */
 export const EventData = {
-  _this: 0x0000,  // 0x0000 (0x0008) [UGFxObject*]
-  Target: 0x0008,  // 0x0008 (0x0008) [UGFxObject*]
-  Type: 0x0010,  // 0x0010 (0x0010) [FString]
-  Data: 0x0020,  // 0x0020 (0x0004) [int32]
-  mouseIndex: 0x0024,  // 0x0024 (0x0004) [int32]
-  Button: 0x0028,  // 0x0028 (0x0004) [int32]
-  Index: 0x002C,  // 0x002C (0x0004) [int32]
-  lastIndex: 0x0030,  // 0x0030 (0x0004) [int32]
+  _this: 0x0000n,  // 0x0000 (0x0008) [UGFxObject*]
+  Target: 0x0008n,  // 0x0008 (0x0008) [UGFxObject*]
+  Type: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Data: 0x0020n,  // 0x0020 (0x0004) [int32]
+  mouseIndex: 0x0024n,  // 0x0024 (0x0004) [int32]
+  Button: 0x0028n,  // 0x0028 (0x0004) [int32]
+  Index: 0x002cn,  // 0x002c (0x0004) [int32]
+  lastIndex: 0x0030n,  // 0x0030 (0x0004) [int32]
 } as const;
 
 /**
@@ -398,8 +337,8 @@ export const EventData = {
  * Size: 0x0018
  */
 export const ExternalTexture = {
-  Resource: 0x0000,  // 0x0000 (0x0010) [FString]
-  Texture: 0x0010,  // 0x0010 (0x0008) [UTexture*]
+  Resource: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Texture: 0x0010n,  // 0x0010 (0x0008) [UTexture*]
 } as const;
 
 /**
@@ -407,9 +346,9 @@ export const ExternalTexture = {
  * Size: 0x0010
  */
 export const GCReference = {
-  m_object: 0x0000,  // 0x0000 (0x0008) [UObject*]
-  m_count: 0x0008,  // 0x0008 (0x0004) [int32]
-  m_statid: 0x000C,  // 0x000C (0x0004) [int32]
+  m_object: 0x0000n,  // 0x0000 (0x0008) [UObject*]
+  m_count: 0x0008n,  // 0x0008 (0x0004) [int32]
+  m_statid: 0x000cn,  // 0x000c (0x0004) [int32]
 } as const;
 
 /**
@@ -417,28 +356,28 @@ export const GCReference = {
  * Size: 0x0010
  */
 export const GFxWidgetBinding = {
-  WidgetName: 0x0000,  // 0x0000 (0x0008) [FName]
-  WidgetClass: 0x0008,  // 0x0008 (0x0008) [UClass*]
+  WidgetName: 0x0000n,  // 0x0000 (0x0008) [FName]
+  WidgetClass: 0x0008n,  // 0x0008 (0x0008) [UClass*]
 } as const;
 
 /**
  * ScriptStruct GFxUI.GFxEngine.LoadingMovieMapInfo Offsets
- * Size: 0x009C
+ * Size: 0x009c
  */
 export const LoadingMovieMapInfo = {
-  InputType: 0x0000,  // 0x0000 (0x0001) [EInputPlatformType]
-  MapBaseName: 0x0008,  // 0x0008 (0x0010) [FString]
-  PlaylistName: 0x0018,  // 0x0018 (0x0010) [FString]
-  MapVariantName: 0x0028,  // 0x0028 (0x0010) [FString]
-  MaximumPlayerCounts: 0x0038,  // 0x0038 (0x0010) [FString]
-  ProtipMessage: 0x0048,  // 0x0048 (0x0010) [FString]
-  Language: 0x0058,  // 0x0058 (0x0010) [FString]
-  BuildEdition: 0x0068,  // 0x0068 (0x0010) [FString]
-  ProtipTitle: 0x0078,  // 0x0078 (0x0010) [FString]
-  WeatherVariant: 0x0088,  // 0x0088 (0x0001) [EWeatherVariant]
-  LargeMapImage: 0x0090,  // 0x0090 (0x0008) [UTexture2D*]
-  bSetBackgroundVisible: 0x0098,  // 0x0098 (0x0004) [bool : 0x1]
-  bDisplayGenericBackground: 0x0098,  // 0x0098 (0x0004) [bool : 0x2]
+  InputType: 0x0000n,  // 0x0000 (0x0001) [EInputPlatformType]
+  MapBaseName: 0x0008n,  // 0x0008 (0x0010) [FString]
+  PlaylistName: 0x0018n,  // 0x0018 (0x0010) [FString]
+  MapVariantName: 0x0028n,  // 0x0028 (0x0010) [FString]
+  MaximumPlayerCounts: 0x0038n,  // 0x0038 (0x0010) [FString]
+  ProtipMessage: 0x0048n,  // 0x0048 (0x0010) [FString]
+  Language: 0x0058n,  // 0x0058 (0x0010) [FString]
+  BuildEdition: 0x0068n,  // 0x0068 (0x0010) [FString]
+  ProtipTitle: 0x0078n,  // 0x0078 (0x0010) [FString]
+  WeatherVariant: 0x0088n,  // 0x0088 (0x0001) [EWeatherVariant]
+  LargeMapImage: 0x0090n,  // 0x0090 (0x0008) [UTexture2D*]
+  bSetBackgroundVisible: 0x0098n,  // 0x0098 (0x0004) [bool : 0x1]
+  bDisplayGenericBackground: 0x0098n,  // 0x0098 (0x0004) [bool : 0x2]
 } as const;
 
 /**
@@ -446,7 +385,7 @@ export const LoadingMovieMapInfo = {
  * Size: 0x0020
  */
 export const SoundThemeBinding = {
-  ThemeName: 0x0000,  // 0x0000 (0x0008) [FName]
-  Theme: 0x0008,  // 0x0008 (0x0008) [UUISoundTheme*]
-  ThemeClassName: 0x0010,  // 0x0010 (0x0010) [FString]
+  ThemeName: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Theme: 0x0008n,  // 0x0008 (0x0008) [UUISoundTheme*]
+  ThemeClassName: 0x0010n,  // 0x0010 (0x0010) [FString]
 } as const;

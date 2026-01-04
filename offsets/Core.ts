@@ -11,10 +11,10 @@
  * Size: 0x0020 (header only, Name is variable length)
  */
 export const FNameEntry = {
-  HashNext: 0x0000,  // 0x0000 (0x0008) [FPointer]
-  Index: 0x0008,  // 0x0008 (0x0008) [uint64]
-  Flags: 0x0010,  // 0x0010 (0x0008) [uint64]
-  Name: 0x0018,  // 0x0018 (variable) [wchar_t*] null-terminated, max ~1024 chars
+  HashNext: 0x0000n,  // 0x0000 (0x0008) [FPointer]
+  Index: 0x0008n,  // 0x0008 (0x0008) [uint64]
+  Flags: 0x0010n,  // 0x0010 (0x0008) [uint64]
+  Name: 0x0018n,  // 0x0018 (variable) [wchar_t*] null-terminated, max ~1024 chars
 } as const;
 
 /**
@@ -22,12 +22,12 @@ export const FNameEntry = {
  * Size: 0x0010
  */
 export const TArray = {
-  Data: 0x0000,  // 0x0000 (0x0008) [void*]
-  Count: 0x0008,  // 0x0008 (0x0004) [int32]
-  Max: 0x000C,  // 0x000C (0x0004) [int32]
+  Data: 0x0000n,  // 0x0000 (0x0008) [void*]
+  Count: 0x0008n,  // 0x0008 (0x0004) [int32]
+  Max: 0x000cn,  // 0x000c (0x0004) [int32]
 } as const;
 
-export const TArraySize = 0x10;
+export const TArraySize = 0x10n;
 
 /**
  * Engine.ScriptGroup_ORS Offsets
@@ -35,7 +35,7 @@ export const TArraySize = 0x10;
  * Extends: Object
  */
 export const ScriptGroup_ORS = {
-  GroupOwner: 0x0060,  // 0x0060 (0x0008) [UObject*]
+  GroupOwner: 0x0060n,  // 0x0060 (0x0008) [UObject*]
 } as const;
 
 /**
@@ -52,19 +52,19 @@ export const Group_ORS = {
  * Size: 0x0060
  */
 export const Object_ = {
-  VfTableObject: 0x0000,  // 0x0000 (0x0008) [FPointer]
-  HashNext: 0x0008,  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: 0x0010,  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: 0x0018,  // 0x0018 (0x0008) [FPointer]
-  StateFrame: 0x0020,  // 0x0020 (0x0008) [FPointer]
-  Linker: 0x0028,  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: 0x0030,  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: 0x0038,  // 0x0038 (0x0004) [int32]
-  NetIndex: 0x003C,  // 0x003C (0x0004) [int32]
-  Outer: 0x0040,  // 0x0040 (0x0008) [UObject*]
-  Name: 0x0048,  // 0x0048 (0x0008) [FName]
-  Class: 0x0050,  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: 0x0058,  // 0x0058 (0x0008) [UObject*]
+  VfTableObject: 0x0000n,  // 0x0000 (0x0008) [FPointer]
+  HashNext: 0x0008n,  // 0x0008 (0x0008) [FPointer]
+  ObjectFlags: 0x0010n,  // 0x0010 (0x0008) [uint64]
+  HashOuterNext: 0x0018n,  // 0x0018 (0x0008) [FPointer]
+  StateFrame: 0x0020n,  // 0x0020 (0x0008) [FPointer]
+  Linker: 0x0028n,  // 0x0028 (0x0008) [UObject*]
+  LinkerIndex: 0x0030n,  // 0x0030 (0x0008) [FPointer]
+  ObjectInternalInteger: 0x0038n,  // 0x0038 (0x0004) [int32]
+  NetIndex: 0x003cn,  // 0x003c (0x0004) [int32]
+  Outer: 0x0040n,  // 0x0040 (0x0008) [UObject*]
+  Name: 0x0048n,  // 0x0048 (0x0008) [FName]
+  Class: 0x0050n,  // 0x0050 (0x0008) [UClass*]
+  ObjectArchetype: 0x0058n,  // 0x0058 (0x0008) [UObject*]
 } as const;
 
 /**
@@ -78,23 +78,23 @@ export const ArrayFuncs = {
 
 /**
  * Core.AsyncTask Offsets
- * Size: 0x00D0
+ * Size: 0x00d0
  * Extends: Object
  */
 export const AsyncTask = {
-  bComplete: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
-  bDisposed: 0x0060,  // 0x0060 (0x0004) [bool : 0x2]
-  Error: 0x0068,  // 0x0068 (0x0008) [UError*]
-  __EventAsyncTaskSuccess__Delegate: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
-  __EventAsyncTaskFail__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
-  __EventAsyncTaskComplete__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
-  __EventDisposed__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
+  bComplete: 0x0060n,  // 0x0060 (0x0004) [bool : 0x1]
+  bDisposed: 0x0060n,  // 0x0060 (0x0004) [bool : 0x2]
+  Error: 0x0068n,  // 0x0068 (0x0008) [UError*]
+  __EventAsyncTaskSuccess__Delegate: 0x0070n,  // 0x0070 (0x0018) [FScriptDelegate]
+  __EventAsyncTaskFail__Delegate: 0x0088n,  // 0x0088 (0x0018) [FScriptDelegate]
+  __EventAsyncTaskComplete__Delegate: 0x00a0n,  // 0x00a0 (0x0018) [FScriptDelegate]
+  __EventDisposed__Delegate: 0x00b8n,  // 0x00b8 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * Core.AsyncResult Offsets
- * Size: 0x00D0
+ * Size: 0x00d0
  * Extends: AsyncTask
  */
 export const AsyncResult = {
@@ -103,14 +103,14 @@ export const AsyncResult = {
 
 /**
  * Core.AutomationTest Offsets
- * Size: 0x00A0
+ * Size: 0x00a0
  * Extends: Object
  */
 export const AutomationTest = {
-  MaterialsCompiled: 0x0060,  // 0x0060 (0x0010) [TArray<FString>]
-  MaterialsFailedCompile: 0x0070,  // 0x0070 (0x0010) [TArray<FString>]
-  AsyncPreloadPackagesMissing: 0x0080,  // 0x0080 (0x0010) [TArray<FString>]
-  ScriptWarnings: 0x0090,  // 0x0090 (0x0010) [TArray<FScriptWarning>]
+  MaterialsCompiled: 0x0060n,  // 0x0060 (0x0010) [TArray<FString>]
+  MaterialsFailedCompile: 0x0070n,  // 0x0070 (0x0010) [TArray<FString>]
+  AsyncPreloadPackagesMissing: 0x0080n,  // 0x0080 (0x0010) [TArray<FString>]
+  ScriptWarnings: 0x0090n,  // 0x0090 (0x0010) [TArray<FScriptWarning>]
   ...Object_,
 } as const;
 
@@ -129,13 +129,13 @@ export const Base64 = {
  * Extends: Object
  */
 export const Breadcrumbs = {
-  BreadcrumbInstance: 0x0060,  // 0x0060 (0x0008) [FPointer]
+  BreadcrumbInstance: 0x0060n,  // 0x0060 (0x0008) [FPointer]
   ...Object_,
 } as const;
 
 /**
  * Core.ClassTupleCollection_ORS Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: Object
  */
 export const ClassTupleCollection_ORS = {
@@ -144,7 +144,7 @@ export const ClassTupleCollection_ORS = {
 
 /**
  * Core.ClassTuple_ORS Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: Object
  */
 export const ClassTuple_ORS = {
@@ -153,20 +153,20 @@ export const ClassTuple_ORS = {
 
 /**
  * Core.Commandlet Offsets
- * Size: 0x00B4
+ * Size: 0x00b4
  * Extends: Object
  */
 export const Commandlet = {
-  HelpDescription: 0x0060,  // 0x0060 (0x0010) [FString]
-  HelpUsage: 0x0070,  // 0x0070 (0x0010) [FString]
-  HelpWebLink: 0x0080,  // 0x0080 (0x0010) [FString]
-  HelpParamNames: 0x0090,  // 0x0090 (0x0010) [TArray<FString>]
-  HelpParamDescriptions: 0x00A0,  // 0x00A0 (0x0010) [TArray<FString>]
-  IsServer: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x1]
-  IsClient: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x2]
-  IsEditor: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x4]
-  LogToConsole: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x8]
-  ShowErrorCount: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x10]
+  HelpDescription: 0x0060n,  // 0x0060 (0x0010) [FString]
+  HelpUsage: 0x0070n,  // 0x0070 (0x0010) [FString]
+  HelpWebLink: 0x0080n,  // 0x0080 (0x0010) [FString]
+  HelpParamNames: 0x0090n,  // 0x0090 (0x0010) [TArray<FString>]
+  HelpParamDescriptions: 0x00a0n,  // 0x00a0 (0x0010) [TArray<FString>]
+  IsServer: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x1]
+  IsClient: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x2]
+  IsEditor: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x4]
+  LogToConsole: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x8]
+  ShowErrorCount: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x10]
   ...Object_,
 } as const;
 
@@ -176,8 +176,8 @@ export const Commandlet = {
  * Extends: Object
  */
 export const Component = {
-  TemplateOwnerClass: 0x0060,  // 0x0060 (0x0008) [UClass*]
-  TemplateName: 0x0068,  // 0x0068 (0x0008) [FName]
+  TemplateOwnerClass: 0x0060n,  // 0x0060 (0x0008) [UClass*]
+  TemplateName: 0x0068n,  // 0x0068 (0x0008) [FName]
   ...Object_,
 } as const;
 
@@ -192,7 +192,7 @@ export const Compression = {
 
 /**
  * Core.Config_ORS Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: Object
  */
 export const Config_ORS = {
@@ -201,19 +201,19 @@ export const Config_ORS = {
 
 /**
  * Core.DebugDrawer Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: Object
  */
 export const DebugDrawer = {
-  DefaultTextColor: 0x0060,  // 0x0060 (0x0004) [FColor]
-  bSilent: 0x0064,  // 0x0064 (0x0004) [bool : 0x1]
-  bPrintActorsInline: 0x0064,  // 0x0064 (0x0004) [bool : 0x2]
-  Indentation: 0x0068,  // 0x0068 (0x0004) [int32]
-  IndentationString: 0x0070,  // 0x0070 (0x0010) [FString]
-  PrintedObjects: 0x0080,  // 0x0080 (0x0010) [TArray<UObject*>]
-  QueuedObjects: 0x0090,  // 0x0090 (0x0010) [TArray<UObject*>]
-  PrintObjectCount: 0x00A0,  // 0x00A0 (0x0004) [int32]
-  __LogFunc__Delegate: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
+  DefaultTextColor: 0x0060n,  // 0x0060 (0x0004) [FColor]
+  bSilent: 0x0064n,  // 0x0064 (0x0004) [bool : 0x1]
+  bPrintActorsInline: 0x0064n,  // 0x0064 (0x0004) [bool : 0x2]
+  Indentation: 0x0068n,  // 0x0068 (0x0004) [int32]
+  IndentationString: 0x0070n,  // 0x0070 (0x0010) [FString]
+  PrintedObjects: 0x0080n,  // 0x0080 (0x0010) [TArray<UObject*>]
+  QueuedObjects: 0x0090n,  // 0x0090 (0x0010) [TArray<UObject*>]
+  PrintObjectCount: 0x00a0n,  // 0x00a0 (0x0004) [int32]
+  __LogFunc__Delegate: 0x00a8n,  // 0x00a8 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -223,32 +223,32 @@ export const DebugDrawer = {
  * Extends: Object
  */
 export const DelegateTracker = {
-  AsyncDelegates: 0x0060,  // 0x0060 (0x0010) [TArray<FAsyncDelegateInfo>]
-  __PlaceholderDelegate__Delegate: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
+  AsyncDelegates: 0x0060n,  // 0x0060 (0x0010) [TArray<FAsyncDelegateInfo>]
+  __PlaceholderDelegate__Delegate: 0x0070n,  // 0x0070 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * Core.DistributionFloat Offsets
- * Size: 0x007C
+ * Size: 0x007c
  * Extends: Component
  */
 export const DistributionFloat = {
-  VfTable_FCurveEdInterface: 0x0070,  // 0x0070 (0x0008) [FPointer]
-  bCanBeBaked: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  bIsDirty: 0x0078,  // 0x0078 (0x0004) [bool : 0x2]
+  VfTable_FCurveEdInterface: 0x0070n,  // 0x0070 (0x0008) [FPointer]
+  bCanBeBaked: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
+  bIsDirty: 0x0078n,  // 0x0078 (0x0004) [bool : 0x2]
   ...Component,
 } as const;
 
 /**
  * Core.DistributionVector Offsets
- * Size: 0x007C
+ * Size: 0x007c
  * Extends: Component
  */
 export const DistributionVector = {
-  VfTable_FCurveEdInterface: 0x0070,  // 0x0070 (0x0008) [FPointer]
-  bCanBeBaked: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  bIsDirty: 0x0078,  // 0x0078 (0x0004) [bool : 0x2]
+  VfTable_FCurveEdInterface: 0x0070n,  // 0x0070 (0x0008) [FPointer]
+  bCanBeBaked: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
+  bIsDirty: 0x0078n,  // 0x0078 (0x0004) [bool : 0x2]
   ...Component,
 } as const;
 
@@ -258,10 +258,10 @@ export const DistributionVector = {
  * Extends: Object
  */
 export const Error_ = {
-  Type: 0x0060,  // 0x0060 (0x0008) [UErrorType*]
-  Message: 0x0068,  // 0x0068 (0x0010) [FString]
-  Code: 0x0078,  // 0x0078 (0x0004) [int32]
-  RetryKey: 0x007C,  // 0x007C (0x0008) [FName]
+  Type: 0x0060n,  // 0x0060 (0x0008) [UErrorType*]
+  Message: 0x0068n,  // 0x0068 (0x0010) [FString]
+  Code: 0x0078n,  // 0x0078 (0x0004) [int32]
+  RetryKey: 0x007cn,  // 0x007c (0x0008) [FName]
   ...Object_,
 } as const;
 
@@ -271,8 +271,8 @@ export const Error_ = {
  * Extends: Object
  */
 export const ErrorList = {
-  LocalizationPackage: 0x0060,  // 0x0060 (0x0010) [FString]
-  LocalizationSection: 0x0070,  // 0x0070 (0x0010) [FString]
+  LocalizationPackage: 0x0060n,  // 0x0060 (0x0010) [FString]
+  LocalizationSection: 0x0070n,  // 0x0070 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -282,8 +282,8 @@ export const ErrorList = {
  * Extends: ErrorList
  */
 export const ArrayErrors = {
-  Remove_NegativeNumberOfElements: 0x0080,  // 0x0080 (0x0008) [UErrorType*]
-  Remove_OutOfBounds: 0x0088,  // 0x0088 (0x0008) [UErrorType*]
+  Remove_NegativeNumberOfElements: 0x0080n,  // 0x0080 (0x0008) [UErrorType*]
+  Remove_OutOfBounds: 0x0088n,  // 0x0088 (0x0008) [UErrorType*]
   ...ErrorList,
 } as const;
 
@@ -293,7 +293,7 @@ export const ArrayErrors = {
  * Extends: Object
  */
 export const ErrorType = {
-  LocalizationKey: 0x0060,  // 0x0060 (0x0010) [FString]
+  LocalizationKey: 0x0060n,  // 0x0060 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -303,29 +303,29 @@ export const ErrorType = {
  * Extends: Object
  */
 export const Exporter = {
-  FormatExtension: 0x0068,  // 0x0068 (0x0010) [TArray<FString>]
-  FormatDescription: 0x0078,  // 0x0078 (0x0010) [TArray<FString>]
+  FormatExtension: 0x0068n,  // 0x0068 (0x0010) [TArray<FString>]
+  FormatDescription: 0x0078n,  // 0x0078 (0x0010) [TArray<FString>]
   ...Object_,
 } as const;
 
 /**
  * Core.Factory Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: Object
  */
 export const Factory = {
-  Category: 0x0060,  // 0x0060 (0x0010) [FString]
-  SupportedClass: 0x0070,  // 0x0070 (0x0008) [UClass*]
-  ContextClass: 0x0078,  // 0x0078 (0x0008) [UClass*]
-  Description: 0x0080,  // 0x0080 (0x0010) [FString]
-  Formats: 0x0090,  // 0x0090 (0x0010) [TArray<FString>]
-  bCreateNew: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x1]
-  bEditAfterNew: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x2]
-  bEditorImport: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x4]
-  bText: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x8]
-  bAssetNameMatchesPackageName: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x10]
-  AutoPriority: 0x00A4,  // 0x00A4 (0x0004) [int32]
-  ValidGameNames: 0x00A8,  // 0x00A8 (0x0010) [TArray<FString>]
+  Category: 0x0060n,  // 0x0060 (0x0010) [FString]
+  SupportedClass: 0x0070n,  // 0x0070 (0x0008) [UClass*]
+  ContextClass: 0x0078n,  // 0x0078 (0x0008) [UClass*]
+  Description: 0x0080n,  // 0x0080 (0x0010) [FString]
+  Formats: 0x0090n,  // 0x0090 (0x0010) [TArray<FString>]
+  bCreateNew: 0x00a0n,  // 0x00a0 (0x0004) [bool : 0x1]
+  bEditAfterNew: 0x00a0n,  // 0x00a0 (0x0004) [bool : 0x2]
+  bEditorImport: 0x00a0n,  // 0x00a0 (0x0004) [bool : 0x4]
+  bText: 0x00a0n,  // 0x00a0 (0x0004) [bool : 0x8]
+  bAssetNameMatchesPackageName: 0x00a0n,  // 0x00a0 (0x0004) [bool : 0x10]
+  AutoPriority: 0x00a4n,  // 0x00a4 (0x0004) [int32]
+  ValidGameNames: 0x00a8n,  // 0x00a8 (0x0010) [TArray<FString>]
   ...Object_,
 } as const;
 
@@ -335,130 +335,130 @@ export const Factory = {
  * Extends: Object
  */
 export const FeatureSystem = {
-  Prime: 0x0068,  // 0x0068 (0x0004) [bool : 0x2]
-  Matchmaking: 0x0068,  // 0x0068 (0x0004) [bool : 0x8]
-  PrivateMatch: 0x0068,  // 0x0068 (0x0004) [bool : 0x10]
-  SplitscreenMatch: 0x0068,  // 0x0068 (0x0004) [bool : 0x20]
-  SplitscreenJoin: 0x0068,  // 0x0068 (0x0004) [bool : 0x40]
-  SeasonMode: 0x0068,  // 0x0068 (0x0004) [bool : 0x80]
-  Tutorial: 0x0068,  // 0x0068 (0x0004) [bool : 0x100]
-  Garage: 0x0068,  // 0x0068 (0x0004) [bool : 0x200]
-  Options: 0x0068,  // 0x0068 (0x0004) [bool : 0x400]
-  ReplaySaves: 0x0068,  // 0x0068 (0x0004) [bool : 0x800]
-  MainMenu: 0x0068,  // 0x0068 (0x0004) [bool : 0x1000]
-  MidgameMenu: 0x0068,  // 0x0068 (0x0004) [bool : 0x2000]
-  Party: 0x0068,  // 0x0068 (0x0004) [bool : 0x4000]
-  PsyNetParty: 0x0068,  // 0x0068 (0x0004) [bool : 0x8000]
-  Achievements: 0x0068,  // 0x0068 (0x0004) [bool : 0x10000]
-  Stats: 0x0068,  // 0x0068 (0x0004) [bool : 0x20000]
-  Leaderboards: 0x0068,  // 0x0068 (0x0004) [bool : 0x40000]
-  XP: 0x0068,  // 0x0068 (0x0004) [bool : 0x80000]
-  Chat: 0x0068,  // 0x0068 (0x0004) [bool : 0x100000]
-  TrainingDifficulties: 0x0068,  // 0x0068 (0x0004) [bool : 0x200000]
-  Spectator: 0x0068,  // 0x0068 (0x0004) [bool : 0x400000]
-  CrossPlatformPrivateMatch: 0x0068,  // 0x0068 (0x0004) [bool : 0x800000]
-  Lan: 0x0068,  // 0x0068 (0x0004) [bool : 0x1000000]
-  PlayerReporting: 0x0068,  // 0x0068 (0x0004) [bool : 0x2000000]
-  OnlineServices: 0x0068,  // 0x0068 (0x0004) [bool : 0x40000000]
-  RemoveCrossPlatformProducts: 0x0068,  // 0x0068 (0x0004) [bool : 0x-80000000]
-  ProductValidation: 0x006C,  // 0x006C (0x0004) [bool : 0x1]
-  MapPrefs: 0x006C,  // 0x006C (0x0004) [bool : 0x2]
-  PreMatchLobby: 0x006C,  // 0x006C (0x0004) [bool : 0x8]
-  Challenges: 0x006C,  // 0x006C (0x0004) [bool : 0x10]
-  AntiAddiction: 0x006C,  // 0x006C (0x0004) [bool : 0x20]
-  TrainingEditor: 0x006C,  // 0x006C (0x0004) [bool : 0x40]
-  VoiceChat: 0x006C,  // 0x006C (0x0004) [bool : 0x80]
-  SplitScreen: 0x006C,  // 0x006C (0x0004) [bool : 0x100]
-  Clubs: 0x006C,  // 0x006C (0x0004) [bool : 0x200]
-  FilterContent: 0x006C,  // 0x006C (0x0004) [bool : 0x400]
-  EncryptContent: 0x006C,  // 0x006C (0x0004) [bool : 0x800]
-  EsportsCamera: 0x006C,  // 0x006C (0x0004) [bool : 0x4000]
-  OnlineXP: 0x006C,  // 0x006C (0x0004) [bool : 0x8000]
-  ClanforgeReservation: 0x006C,  // 0x006C (0x0004) [bool : 0x20000]
-  UserSettingObserver: 0x006C,  // 0x006C (0x0004) [bool : 0x40000]
-  Metrics: 0x006C,  // 0x006C (0x0004) [bool : 0x80000]
-  EOSMetrics: 0x006C,  // 0x006C (0x0004) [bool : 0x100000]
-  MusicPlaylistSelection: 0x006C,  // 0x006C (0x0004) [bool : 0x200000]
-  SpecialEvents: 0x006C,  // 0x006C (0x0004) [bool : 0x400000]
-  PlayerBannerCustomization: 0x006C,  // 0x006C (0x0004) [bool : 0x800000]
-  SecureUDP: 0x006C,  // 0x006C (0x0004) [bool : 0x1000000]
-  PsyNet: 0x006C,  // 0x006C (0x0004) [bool : 0x2000000]
-  OnlinePlayerStorage: 0x006C,  // 0x006C (0x0004) [bool : 0x4000000]
-  LocalSaveData: 0x006C,  // 0x006C (0x0004) [bool : 0x8000000]
-  CrowdV2: 0x006C,  // 0x006C (0x0004) [bool : 0x10000000]
-  ChatBan: 0x006C,  // 0x006C (0x0004) [bool : 0x20000000]
-  BacktraceCrashDumps: 0x006C,  // 0x006C (0x0004) [bool : 0x40000000]
-  SpotifyButton: 0x006C,  // 0x006C (0x0004) [bool : 0x-80000000]
-  SeasonRewards: 0x0070,  // 0x0070 (0x0004) [bool : 0x2]
-  FaceIt: 0x0070,  // 0x0070 (0x0004) [bool : 0x4]
-  KnockOut: 0x0070,  // 0x0070 (0x0004) [bool : 0x8]
-  OnlinePlayerTitles: 0x0070,  // 0x0070 (0x0004) [bool : 0x10]
-  RestrictByRegion: 0x0070,  // 0x0070 (0x0004) [bool : 0x20]
-  FirstTimeExperience: 0x0070,  // 0x0070 (0x0004) [bool : 0x80]
-  RLBot: 0x0070,  // 0x0070 (0x0004) [bool : 0x100]
-  UserBugReport: 0x0070,  // 0x0070 (0x0004) [bool : 0x200]
-  SteamInput: 0x0070,  // 0x0070 (0x0004) [bool : 0x400]
-  ReplayFXControls: 0x0070,  // 0x0070 (0x0004) [bool : 0x8000]
-  ESportsShop: 0x0070,  // 0x0070 (0x0004) [bool : 0x10000]
-  MatchHistory: 0x0070,  // 0x0070 (0x0004) [bool : 0x20000]
-  DynamicRangeAudioSettings: 0x0070,  // 0x0070 (0x0004) [bool : 0x100000]
-  QuickPlay: 0x0070,  // 0x0070 (0x0004) [bool : 0x200000]
-  NewsPanelV2: 0x0070,  // 0x0070 (0x0004) [bool : 0x400000]
-  Blueprints: 0x0070,  // 0x0070 (0x0004) [bool : 0x800000]
-  RocketBucks: 0x0070,  // 0x0070 (0x0004) [bool : 0x2000000]
-  Tritip: 0x0070,  // 0x0070 (0x0004) [bool : 0x8000000]
-  DiscordRichPresence: 0x0070,  // 0x0070 (0x0004) [bool : 0x20000000]
-  SupportACreator: 0x0070,  // 0x0070 (0x0004) [bool : 0x40000000]
-  CinematicIntro: 0x0070,  // 0x0070 (0x0004) [bool : 0x-80000000]
-  TinyCrowd: 0x0074,  // 0x0074 (0x0004) [bool : 0x1]
-  CrumbTrail: 0x0074,  // 0x0074 (0x0004) [bool : 0x2]
-  EpicGameStoreBuild: 0x0074,  // 0x0074 (0x0004) [bool : 0x4]
-  XPGatedPlaylists: 0x0074,  // 0x0074 (0x0004) [bool : 0x8]
-  TradeInV2: 0x0074,  // 0x0074 (0x0004) [bool : 0x20]
-  Football: 0x0074,  // 0x0074 (0x0004) [bool : 0x40]
-  RumbleSelection: 0x0074,  // 0x0074 (0x0004) [bool : 0x80]
-  UndersizedParty: 0x0074,  // 0x0074 (0x0004) [bool : 0x100]
-  StreamerSafeAudio: 0x0074,  // 0x0074 (0x0004) [bool : 0x200]
-  FreeplayCommands: 0x0074,  // 0x0074 (0x0004) [bool : 0x400]
-  Rumble_BM: 0x0074,  // 0x0074 (0x0004) [bool : 0x800]
-  PlayerReportingV2: 0x0074,  // 0x0074 (0x0004) [bool : 0x1000]
-  BlogScheduling: 0x0074,  // 0x0074 (0x0004) [bool : 0x2000]
-  EOSVoice: 0x0074,  // 0x0074 (0x0004) [bool : 0x4000]
-  QuickPostMatchRequeue: 0x0074,  // 0x0074 (0x0004) [bool : 0x8000]
-  TrainingNavigation: 0x0074,  // 0x0074 (0x0004) [bool : 0x40000]
-  TrainingManipulation: 0x0074,  // 0x0074 (0x0004) [bool : 0x80000]
-  FilterByColor: 0x0074,  // 0x0074 (0x0004) [bool : 0x200000]
-  Scoreboard: 0x0074,  // 0x0074 (0x0004) [bool : 0x400000]
-  DynamicMapEvents: 0x0074,  // 0x0074 (0x0004) [bool : 0x800000]
-  NameplateBoost: 0x0074,  // 0x0074 (0x0004) [bool : 0x2000000]
-  EOSGameClips: 0x0074,  // 0x0074 (0x0004) [bool : 0x4000000]
-  DynamicLogos: 0x0074,  // 0x0074 (0x0004) [bool : 0x8000000]
-  XETagging: 0x0074,  // 0x0074 (0x0004) [bool : 0x10000000]
-  PlayMenuV4: 0x0074,  // 0x0074 (0x0004) [bool : 0x20000000]
-  DemoUpgrades: 0x0074,  // 0x0074 (0x0004) [bool : 0x40000000]
-  QuickChatTimeStamp: 0x0074,  // 0x0074 (0x0004) [bool : 0x-80000000]
-  SoccarPong: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  OnlineFreeplay: 0x0078,  // 0x0078 (0x0004) [bool : 0x2]
-  MatchmakingSubRegion: 0x0078,  // 0x0078 (0x0004) [bool : 0x8]
-  CrossbarSFX: 0x0078,  // 0x0078 (0x0004) [bool : 0x10]
-  RugbyIteration: 0x0078,  // 0x0078 (0x0004) [bool : 0x20]
-  ChallengesV2: 0x0078,  // 0x0078 (0x0004) [bool : 0x80]
-  PossessionExpanded: 0x0078,  // 0x0078 (0x0004) [bool : 0x100]
-  KeepUp: 0x0078,  // 0x0078 (0x0004) [bool : 0x800]
-  RocketPassUpgrades: 0x0078,  // 0x0078 (0x0004) [bool : 0x2000]
-  PentathlonTournaments: 0x0078,  // 0x0078 (0x0004) [bool : 0x4000]
-  DemolishUpdates: 0x0078,  // 0x0078 (0x0004) [bool : 0x8000]
-  ViralItem: 0x0078,  // 0x0078 (0x0004) [bool : 0x10000]
-  ThankYouMessage: 0x0078,  // 0x0078 (0x0004) [bool : 0x20000]
-  AttackerDemoFX: 0x0078,  // 0x0078 (0x0004) [bool : 0x40000]
-  NewDriverChallengesV2: 0x0078,  // 0x0078 (0x0004) [bool : 0x80000]
-  TextModeration: 0x0078,  // 0x0078 (0x0004) [bool : 0x400000]
-  FilterToggle: 0x0078,  // 0x0078 (0x0004) [bool : 0x800000]
-  DdosPrevention: 0x0078,  // 0x0078 (0x0004) [bool : 0x1000000]
-  OunceEnhancements: 0x0078,  // 0x0078 (0x0004) [bool : 0x2000000]
-  FastFreeplay: 0x0078,  // 0x0078 (0x0004) [bool : 0x4000000]
-  MatchAdminMutator: 0x0078,  // 0x0078 (0x0004) [bool : 0x8000000]
-  Thistle: 0x0078,  // 0x0078 (0x0004) [bool : 0x10000000]
+  Prime: 0x0068n,  // 0x0068 (0x0004) [bool : 0x2]
+  Matchmaking: 0x0068n,  // 0x0068 (0x0004) [bool : 0x8]
+  PrivateMatch: 0x0068n,  // 0x0068 (0x0004) [bool : 0x10]
+  SplitscreenMatch: 0x0068n,  // 0x0068 (0x0004) [bool : 0x20]
+  SplitscreenJoin: 0x0068n,  // 0x0068 (0x0004) [bool : 0x40]
+  SeasonMode: 0x0068n,  // 0x0068 (0x0004) [bool : 0x80]
+  Tutorial: 0x0068n,  // 0x0068 (0x0004) [bool : 0x100]
+  Garage: 0x0068n,  // 0x0068 (0x0004) [bool : 0x200]
+  Options: 0x0068n,  // 0x0068 (0x0004) [bool : 0x400]
+  ReplaySaves: 0x0068n,  // 0x0068 (0x0004) [bool : 0x800]
+  MainMenu: 0x0068n,  // 0x0068 (0x0004) [bool : 0x1000]
+  MidgameMenu: 0x0068n,  // 0x0068 (0x0004) [bool : 0x2000]
+  Party: 0x0068n,  // 0x0068 (0x0004) [bool : 0x4000]
+  PsyNetParty: 0x0068n,  // 0x0068 (0x0004) [bool : 0x8000]
+  Achievements: 0x0068n,  // 0x0068 (0x0004) [bool : 0x10000]
+  Stats: 0x0068n,  // 0x0068 (0x0004) [bool : 0x20000]
+  Leaderboards: 0x0068n,  // 0x0068 (0x0004) [bool : 0x40000]
+  XP: 0x0068n,  // 0x0068 (0x0004) [bool : 0x80000]
+  Chat: 0x0068n,  // 0x0068 (0x0004) [bool : 0x100000]
+  TrainingDifficulties: 0x0068n,  // 0x0068 (0x0004) [bool : 0x200000]
+  Spectator: 0x0068n,  // 0x0068 (0x0004) [bool : 0x400000]
+  CrossPlatformPrivateMatch: 0x0068n,  // 0x0068 (0x0004) [bool : 0x800000]
+  Lan: 0x0068n,  // 0x0068 (0x0004) [bool : 0x1000000]
+  PlayerReporting: 0x0068n,  // 0x0068 (0x0004) [bool : 0x2000000]
+  OnlineServices: 0x0068n,  // 0x0068 (0x0004) [bool : 0x40000000]
+  RemoveCrossPlatformProducts: 0x0068n,  // 0x0068 (0x0004) [bool : 0x-80000000]
+  ProductValidation: 0x006cn,  // 0x006c (0x0004) [bool : 0x1]
+  MapPrefs: 0x006cn,  // 0x006c (0x0004) [bool : 0x2]
+  PreMatchLobby: 0x006cn,  // 0x006c (0x0004) [bool : 0x8]
+  Challenges: 0x006cn,  // 0x006c (0x0004) [bool : 0x10]
+  AntiAddiction: 0x006cn,  // 0x006c (0x0004) [bool : 0x20]
+  TrainingEditor: 0x006cn,  // 0x006c (0x0004) [bool : 0x40]
+  VoiceChat: 0x006cn,  // 0x006c (0x0004) [bool : 0x80]
+  SplitScreen: 0x006cn,  // 0x006c (0x0004) [bool : 0x100]
+  Clubs: 0x006cn,  // 0x006c (0x0004) [bool : 0x200]
+  FilterContent: 0x006cn,  // 0x006c (0x0004) [bool : 0x400]
+  EncryptContent: 0x006cn,  // 0x006c (0x0004) [bool : 0x800]
+  EsportsCamera: 0x006cn,  // 0x006c (0x0004) [bool : 0x4000]
+  OnlineXP: 0x006cn,  // 0x006c (0x0004) [bool : 0x8000]
+  ClanforgeReservation: 0x006cn,  // 0x006c (0x0004) [bool : 0x20000]
+  UserSettingObserver: 0x006cn,  // 0x006c (0x0004) [bool : 0x40000]
+  Metrics: 0x006cn,  // 0x006c (0x0004) [bool : 0x80000]
+  EOSMetrics: 0x006cn,  // 0x006c (0x0004) [bool : 0x100000]
+  MusicPlaylistSelection: 0x006cn,  // 0x006c (0x0004) [bool : 0x200000]
+  SpecialEvents: 0x006cn,  // 0x006c (0x0004) [bool : 0x400000]
+  PlayerBannerCustomization: 0x006cn,  // 0x006c (0x0004) [bool : 0x800000]
+  SecureUDP: 0x006cn,  // 0x006c (0x0004) [bool : 0x1000000]
+  PsyNet: 0x006cn,  // 0x006c (0x0004) [bool : 0x2000000]
+  OnlinePlayerStorage: 0x006cn,  // 0x006c (0x0004) [bool : 0x4000000]
+  LocalSaveData: 0x006cn,  // 0x006c (0x0004) [bool : 0x8000000]
+  CrowdV2: 0x006cn,  // 0x006c (0x0004) [bool : 0x10000000]
+  ChatBan: 0x006cn,  // 0x006c (0x0004) [bool : 0x20000000]
+  BacktraceCrashDumps: 0x006cn,  // 0x006c (0x0004) [bool : 0x40000000]
+  SpotifyButton: 0x006cn,  // 0x006c (0x0004) [bool : 0x-80000000]
+  SeasonRewards: 0x0070n,  // 0x0070 (0x0004) [bool : 0x2]
+  FaceIt: 0x0070n,  // 0x0070 (0x0004) [bool : 0x4]
+  KnockOut: 0x0070n,  // 0x0070 (0x0004) [bool : 0x8]
+  OnlinePlayerTitles: 0x0070n,  // 0x0070 (0x0004) [bool : 0x10]
+  RestrictByRegion: 0x0070n,  // 0x0070 (0x0004) [bool : 0x20]
+  FirstTimeExperience: 0x0070n,  // 0x0070 (0x0004) [bool : 0x80]
+  RLBot: 0x0070n,  // 0x0070 (0x0004) [bool : 0x100]
+  UserBugReport: 0x0070n,  // 0x0070 (0x0004) [bool : 0x200]
+  SteamInput: 0x0070n,  // 0x0070 (0x0004) [bool : 0x400]
+  ReplayFXControls: 0x0070n,  // 0x0070 (0x0004) [bool : 0x8000]
+  ESportsShop: 0x0070n,  // 0x0070 (0x0004) [bool : 0x10000]
+  MatchHistory: 0x0070n,  // 0x0070 (0x0004) [bool : 0x20000]
+  DynamicRangeAudioSettings: 0x0070n,  // 0x0070 (0x0004) [bool : 0x100000]
+  QuickPlay: 0x0070n,  // 0x0070 (0x0004) [bool : 0x200000]
+  NewsPanelV2: 0x0070n,  // 0x0070 (0x0004) [bool : 0x400000]
+  Blueprints: 0x0070n,  // 0x0070 (0x0004) [bool : 0x800000]
+  RocketBucks: 0x0070n,  // 0x0070 (0x0004) [bool : 0x2000000]
+  Tritip: 0x0070n,  // 0x0070 (0x0004) [bool : 0x8000000]
+  DiscordRichPresence: 0x0070n,  // 0x0070 (0x0004) [bool : 0x20000000]
+  SupportACreator: 0x0070n,  // 0x0070 (0x0004) [bool : 0x40000000]
+  CinematicIntro: 0x0070n,  // 0x0070 (0x0004) [bool : 0x-80000000]
+  TinyCrowd: 0x0074n,  // 0x0074 (0x0004) [bool : 0x1]
+  CrumbTrail: 0x0074n,  // 0x0074 (0x0004) [bool : 0x2]
+  EpicGameStoreBuild: 0x0074n,  // 0x0074 (0x0004) [bool : 0x4]
+  XPGatedPlaylists: 0x0074n,  // 0x0074 (0x0004) [bool : 0x8]
+  TradeInV2: 0x0074n,  // 0x0074 (0x0004) [bool : 0x20]
+  Football: 0x0074n,  // 0x0074 (0x0004) [bool : 0x40]
+  RumbleSelection: 0x0074n,  // 0x0074 (0x0004) [bool : 0x80]
+  UndersizedParty: 0x0074n,  // 0x0074 (0x0004) [bool : 0x100]
+  StreamerSafeAudio: 0x0074n,  // 0x0074 (0x0004) [bool : 0x200]
+  FreeplayCommands: 0x0074n,  // 0x0074 (0x0004) [bool : 0x400]
+  Rumble_BM: 0x0074n,  // 0x0074 (0x0004) [bool : 0x800]
+  PlayerReportingV2: 0x0074n,  // 0x0074 (0x0004) [bool : 0x1000]
+  BlogScheduling: 0x0074n,  // 0x0074 (0x0004) [bool : 0x2000]
+  EOSVoice: 0x0074n,  // 0x0074 (0x0004) [bool : 0x4000]
+  QuickPostMatchRequeue: 0x0074n,  // 0x0074 (0x0004) [bool : 0x8000]
+  TrainingNavigation: 0x0074n,  // 0x0074 (0x0004) [bool : 0x40000]
+  TrainingManipulation: 0x0074n,  // 0x0074 (0x0004) [bool : 0x80000]
+  FilterByColor: 0x0074n,  // 0x0074 (0x0004) [bool : 0x200000]
+  Scoreboard: 0x0074n,  // 0x0074 (0x0004) [bool : 0x400000]
+  DynamicMapEvents: 0x0074n,  // 0x0074 (0x0004) [bool : 0x800000]
+  NameplateBoost: 0x0074n,  // 0x0074 (0x0004) [bool : 0x2000000]
+  EOSGameClips: 0x0074n,  // 0x0074 (0x0004) [bool : 0x4000000]
+  DynamicLogos: 0x0074n,  // 0x0074 (0x0004) [bool : 0x8000000]
+  XETagging: 0x0074n,  // 0x0074 (0x0004) [bool : 0x10000000]
+  PlayMenuV4: 0x0074n,  // 0x0074 (0x0004) [bool : 0x20000000]
+  DemoUpgrades: 0x0074n,  // 0x0074 (0x0004) [bool : 0x40000000]
+  QuickChatTimeStamp: 0x0074n,  // 0x0074 (0x0004) [bool : 0x-80000000]
+  SoccarPong: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
+  OnlineFreeplay: 0x0078n,  // 0x0078 (0x0004) [bool : 0x2]
+  MatchmakingSubRegion: 0x0078n,  // 0x0078 (0x0004) [bool : 0x8]
+  CrossbarSFX: 0x0078n,  // 0x0078 (0x0004) [bool : 0x10]
+  RugbyIteration: 0x0078n,  // 0x0078 (0x0004) [bool : 0x20]
+  ChallengesV2: 0x0078n,  // 0x0078 (0x0004) [bool : 0x80]
+  PossessionExpanded: 0x0078n,  // 0x0078 (0x0004) [bool : 0x100]
+  KeepUp: 0x0078n,  // 0x0078 (0x0004) [bool : 0x800]
+  RocketPassUpgrades: 0x0078n,  // 0x0078 (0x0004) [bool : 0x2000]
+  PentathlonTournaments: 0x0078n,  // 0x0078 (0x0004) [bool : 0x4000]
+  DemolishUpdates: 0x0078n,  // 0x0078 (0x0004) [bool : 0x8000]
+  ViralItem: 0x0078n,  // 0x0078 (0x0004) [bool : 0x10000]
+  ThankYouMessage: 0x0078n,  // 0x0078 (0x0004) [bool : 0x20000]
+  AttackerDemoFX: 0x0078n,  // 0x0078 (0x0004) [bool : 0x40000]
+  NewDriverChallengesV2: 0x0078n,  // 0x0078 (0x0004) [bool : 0x80000]
+  TextModeration: 0x0078n,  // 0x0078 (0x0004) [bool : 0x400000]
+  FilterToggle: 0x0078n,  // 0x0078 (0x0004) [bool : 0x800000]
+  DdosPrevention: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1000000]
+  OunceEnhancements: 0x0078n,  // 0x0078 (0x0004) [bool : 0x2000000]
+  FastFreeplay: 0x0078n,  // 0x0078 (0x0004) [bool : 0x4000000]
+  MatchAdminMutator: 0x0078n,  // 0x0078 (0x0004) [bool : 0x8000000]
+  Thistle: 0x0078n,  // 0x0078 (0x0004) [bool : 0x10000000]
   ...Object_,
 } as const;
 
@@ -509,7 +509,7 @@ export const Global_ORS = {
 
 /**
  * Core.HelpCommandlet Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: Commandlet
  */
 export const HelpCommandlet = {
@@ -545,7 +545,7 @@ export const IDisposable = {
 
 /**
  * Core.Linker Offsets
- * Size: 0x01E8
+ * Size: 0x01e8
  * Extends: Object
  */
 export const Linker = {
@@ -563,7 +563,7 @@ export const LinkerLoad = {
 
 /**
  * Core.LinkerSave Offsets
- * Size: 0x02A8
+ * Size: 0x02a8
  * Extends: Linker
  */
 export const LinkerSave = {
@@ -572,7 +572,7 @@ export const LinkerSave = {
 
 /**
  * Core.MetaData Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: Object
  */
 export const MetaData = {
@@ -581,29 +581,29 @@ export const MetaData = {
 
 /**
  * Core.ObjectProvider Offsets
- * Size: 0x01E0
+ * Size: 0x01e0
  * Extends: Component
  */
 export const ObjectProvider = {
-  VfTable_FObjectDestructionSubscriber: 0x0070,  // 0x0070 (0x0008) [FPointer]
-  MyObjects: 0x0078,  // 0x0078 (0x0010) [TArray<UObject*>]
-  ObjectRefs: 0x0088,  // 0x0088 (0x0050) [FMap_Mirror]
-  TreeObjects: 0x00D8,  // 0x00D8 (0x0010) [TArray<UObject*>]
-  SubscribedToAdds: 0x00E8,  // 0x00E8 (0x0010) [TArray<FObjectProviderSubscription>]
-  SubscribedToRemoves: 0x00F8,  // 0x00F8 (0x0010) [TArray<FObjectProviderSubscription>]
-  SubscribedToLists: 0x0108,  // 0x0108 (0x0010) [TArray<FObjectProviderSubscription>]
-  Injections: 0x0118,  // 0x0118 (0x0010) [FArray_Mirror]
-  InterfaceInjections: 0x0128,  // 0x0128 (0x0010) [FArray_Mirror]
-  PendingInjectionClasses: 0x0138,  // 0x0138 (0x0010) [TArray<UClass*>]
-  PendingCallbacks: 0x0148,  // 0x0148 (0x0010) [TArray<FObjectProviderPendingCallback>]
-  bTriggeringCallbacks: 0x0158,  // 0x0158 (0x0001) [uint8]
-  Parent: 0x0160,  // 0x0160 (0x0008) [unknown]
-  Children: 0x0168,  // 0x0168 (0x0010) [TArray<unknown>]
-  Proxies: 0x0178,  // 0x0178 (0x0010) [TArray<unknown>]
-  PendingInjectionCallbacks: 0x0188,  // 0x0188 (0x0010) [TArray<FObjectProviderPendingCallback>]
-  __ObjectSubscriptionCallback__Delegate: 0x0198,  // 0x0198 (0x0018) [FScriptDelegate]
-  __ObjectListSubscriptionCallback__Delegate: 0x01B0,  // 0x01B0 (0x0018) [FScriptDelegate]
-  __ObjectChangeCallback__Delegate: 0x01C8,  // 0x01C8 (0x0018) [FScriptDelegate]
+  VfTable_FObjectDestructionSubscriber: 0x0070n,  // 0x0070 (0x0008) [FPointer]
+  MyObjects: 0x0078n,  // 0x0078 (0x0010) [TArray<UObject*>]
+  ObjectRefs: 0x0088n,  // 0x0088 (0x0050) [FMap_Mirror]
+  TreeObjects: 0x00d8n,  // 0x00d8 (0x0010) [TArray<UObject*>]
+  SubscribedToAdds: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FObjectProviderSubscription>]
+  SubscribedToRemoves: 0x00f8n,  // 0x00f8 (0x0010) [TArray<FObjectProviderSubscription>]
+  SubscribedToLists: 0x0108n,  // 0x0108 (0x0010) [TArray<FObjectProviderSubscription>]
+  Injections: 0x0118n,  // 0x0118 (0x0010) [FArray_Mirror]
+  InterfaceInjections: 0x0128n,  // 0x0128 (0x0010) [FArray_Mirror]
+  PendingInjectionClasses: 0x0138n,  // 0x0138 (0x0010) [TArray<UClass*>]
+  PendingCallbacks: 0x0148n,  // 0x0148 (0x0010) [TArray<FObjectProviderPendingCallback>]
+  bTriggeringCallbacks: 0x0158n,  // 0x0158 (0x0001) [uint8]
+  Parent: 0x0160n,  // 0x0160 (0x0008) [unknown]
+  Children: 0x0168n,  // 0x0168 (0x0010) [TArray<unknown>]
+  Proxies: 0x0178n,  // 0x0178 (0x0010) [TArray<unknown>]
+  PendingInjectionCallbacks: 0x0188n,  // 0x0188 (0x0010) [TArray<FObjectProviderPendingCallback>]
+  __ObjectSubscriptionCallback__Delegate: 0x0198n,  // 0x0198 (0x0018) [FScriptDelegate]
+  __ObjectListSubscriptionCallback__Delegate: 0x01b0n,  // 0x01b0 (0x0018) [FScriptDelegate]
+  __ObjectChangeCallback__Delegate: 0x01c8n,  // 0x01c8 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
@@ -654,7 +654,7 @@ export const PackageMap = {
 
 /**
  * Core.Property Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: Field
  */
 export const Property = {
@@ -663,7 +663,7 @@ export const Property = {
 
 /**
  * Core.ArrayProperty Offsets
- * Size: 0x00D0
+ * Size: 0x00d0
  * Extends: Property
  */
 export const ArrayProperty = {
@@ -672,7 +672,7 @@ export const ArrayProperty = {
 
 /**
  * Core.BoolProperty Offsets
- * Size: 0x00D0
+ * Size: 0x00d0
  * Extends: Property
  */
 export const BoolProperty = {
@@ -681,7 +681,7 @@ export const BoolProperty = {
 
 /**
  * Core.ByteProperty Offsets
- * Size: 0x00D0
+ * Size: 0x00d0
  * Extends: Property
  */
 export const ByteProperty = {
@@ -690,7 +690,7 @@ export const ByteProperty = {
 
 /**
  * Core.DelegateProperty Offsets
- * Size: 0x00D8
+ * Size: 0x00d8
  * Extends: Property
  */
 export const DelegateProperty = {
@@ -699,7 +699,7 @@ export const DelegateProperty = {
 
 /**
  * Core.FloatProperty Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: Property
  */
 export const FloatProperty = {
@@ -708,7 +708,7 @@ export const FloatProperty = {
 
 /**
  * Core.IntProperty Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: Property
  */
 export const IntProperty = {
@@ -717,7 +717,7 @@ export const IntProperty = {
 
 /**
  * Core.InterfaceProperty Offsets
- * Size: 0x00D8
+ * Size: 0x00d8
  * Extends: Property
  */
 export const InterfaceProperty = {
@@ -726,7 +726,7 @@ export const InterfaceProperty = {
 
 /**
  * Core.MapProperty Offsets
- * Size: 0x00D8
+ * Size: 0x00d8
  * Extends: Property
  */
 export const MapProperty = {
@@ -735,7 +735,7 @@ export const MapProperty = {
 
 /**
  * Core.NameProperty Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: Property
  */
 export const NameProperty = {
@@ -744,7 +744,7 @@ export const NameProperty = {
 
 /**
  * Core.ObjectProperty Offsets
- * Size: 0x00D8
+ * Size: 0x00d8
  * Extends: Property
  */
 export const ObjectProperty = {
@@ -753,7 +753,7 @@ export const ObjectProperty = {
 
 /**
  * Core.ClassProperty Offsets
- * Size: 0x00E0
+ * Size: 0x00e0
  * Extends: ObjectProperty
  */
 export const ClassProperty = {
@@ -762,7 +762,7 @@ export const ClassProperty = {
 
 /**
  * Core.ComponentProperty Offsets
- * Size: 0x00D8
+ * Size: 0x00d8
  * Extends: ObjectProperty
  */
 export const ComponentProperty = {
@@ -780,7 +780,7 @@ export const PropertyChangeDispatcher = {
 
 /**
  * Core.QWordProperty Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: Property
  */
 export const QWordProperty = {
@@ -798,7 +798,7 @@ export const RotatorConversions = {
 
 /**
  * Core.StrProperty Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: Property
  */
 export const StrProperty = {
@@ -807,22 +807,22 @@ export const StrProperty = {
 
 /**
  * Core.StringMap Offsets
- * Size: 0x00D8
+ * Size: 0x00d8
  * Extends: Component
  */
 export const StringMap = {
-  Map: 0x0070,  // 0x0070 (0x0050) [FMap_Mirror]
-  __PairCallback__Delegate: 0x00C0,  // 0x00C0 (0x0018) [FScriptDelegate]
+  Map: 0x0070n,  // 0x0070 (0x0050) [FMap_Mirror]
+  __PairCallback__Delegate: 0x00c0n,  // 0x00c0 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
 /**
  * Core.StringObjectMap Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: Component
  */
 export const StringObjectMap = {
-  Map: 0x0070,  // 0x0070 (0x0050) [FMap_Mirror]
+  Map: 0x0070n,  // 0x0070 (0x0050) [FMap_Mirror]
   ...Component,
 } as const;
 
@@ -864,7 +864,7 @@ export const State = {
 
 /**
  * Core.Class Offsets
- * Size: 0x03B8
+ * Size: 0x03b8
  * Extends: State
  */
 export const Class = {
@@ -873,7 +873,7 @@ export const Class = {
 
 /**
  * Core.StructProperty Offsets
- * Size: 0x00D0
+ * Size: 0x00d0
  * Extends: Property
  */
 export const StructProperty = {
@@ -886,7 +886,7 @@ export const StructProperty = {
  * Extends: Object
  */
 export const Subscription = {
-  __SubscriberCallback__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  __SubscriberCallback__Delegate: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -905,7 +905,7 @@ export const SubscriptionCollection_ORS = {
  * Extends: Object
  */
 export const Subsystem = {
-  VfTable_FExec: 0x0060,  // 0x0060 (0x0008) [FPointer]
+  VfTable_FExec: 0x0060n,  // 0x0060 (0x0008) [FPointer]
   ...Object_,
 } as const;
 
@@ -915,31 +915,31 @@ export const Subsystem = {
  * Extends: Subsystem
  */
 export const System = {
-  StaleCacheDays: 0x0068,  // 0x0068 (0x0004) [int32]
-  MaxStaleCacheSize: 0x006C,  // 0x006C (0x0004) [int32]
-  MaxOverallCacheSize: 0x0070,  // 0x0070 (0x0004) [int32]
-  PackageSizeSoftLimit: 0x0074,  // 0x0074 (0x0004) [int32]
-  AsyncIOBandwidthLimit: 0x0078,  // 0x0078 (0x0004) [float]
-  SavePath: 0x0080,  // 0x0080 (0x0010) [FString]
-  CachePath: 0x0090,  // 0x0090 (0x0010) [FString]
-  CacheExt: 0x00A0,  // 0x00A0 (0x0010) [FString]
-  Paths: 0x00B0,  // 0x00B0 (0x0010) [TArray<FString>]
-  SeekFreePCPaths: 0x00C0,  // 0x00C0 (0x0010) [TArray<FString>]
-  ScriptPaths: 0x00D0,  // 0x00D0 (0x0010) [TArray<FString>]
-  FRScriptPaths: 0x00E0,  // 0x00E0 (0x0010) [TArray<FString>]
-  CutdownPaths: 0x00F0,  // 0x00F0 (0x0010) [TArray<FString>]
-  Suppress: 0x0100,  // 0x0100 (0x0010) [TArray<FName>]
-  SuppressPublic: 0x0110,  // 0x0110 (0x0010) [TArray<FName>]
-  Extensions: 0x0120,  // 0x0120 (0x0010) [TArray<FString>]
-  SeekFreePCExtensions: 0x0130,  // 0x0130 (0x0010) [TArray<FString>]
-  LocalizationPaths: 0x0140,  // 0x0140 (0x0010) [TArray<FString>]
-  TextureFileCacheExtension: 0x0150,  // 0x0150 (0x0010) [FString]
+  StaleCacheDays: 0x0068n,  // 0x0068 (0x0004) [int32]
+  MaxStaleCacheSize: 0x006cn,  // 0x006c (0x0004) [int32]
+  MaxOverallCacheSize: 0x0070n,  // 0x0070 (0x0004) [int32]
+  PackageSizeSoftLimit: 0x0074n,  // 0x0074 (0x0004) [int32]
+  AsyncIOBandwidthLimit: 0x0078n,  // 0x0078 (0x0004) [float]
+  SavePath: 0x0080n,  // 0x0080 (0x0010) [FString]
+  CachePath: 0x0090n,  // 0x0090 (0x0010) [FString]
+  CacheExt: 0x00a0n,  // 0x00a0 (0x0010) [FString]
+  Paths: 0x00b0n,  // 0x00b0 (0x0010) [TArray<FString>]
+  SeekFreePCPaths: 0x00c0n,  // 0x00c0 (0x0010) [TArray<FString>]
+  ScriptPaths: 0x00d0n,  // 0x00d0 (0x0010) [TArray<FString>]
+  FRScriptPaths: 0x00e0n,  // 0x00e0 (0x0010) [TArray<FString>]
+  CutdownPaths: 0x00f0n,  // 0x00f0 (0x0010) [TArray<FString>]
+  Suppress: 0x0100n,  // 0x0100 (0x0010) [TArray<FName>]
+  SuppressPublic: 0x0110n,  // 0x0110 (0x0010) [TArray<FName>]
+  Extensions: 0x0120n,  // 0x0120 (0x0010) [TArray<FString>]
+  SeekFreePCExtensions: 0x0130n,  // 0x0130 (0x0010) [TArray<FString>]
+  LocalizationPaths: 0x0140n,  // 0x0140 (0x0010) [TArray<FString>]
+  TextureFileCacheExtension: 0x0150n,  // 0x0150 (0x0010) [FString]
   ...Subsystem,
 } as const;
 
 /**
  * Core.TAsyncResult Offsets
- * Size: 0x00D0
+ * Size: 0x00d0
  * Extends: AsyncTask
  */
 export const TAsyncResult = {
@@ -957,7 +957,7 @@ export const TextBuffer = {
 
 /**
  * Core.TextBufferFactory Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: Factory
  */
 export const TextBufferFactory = {
@@ -1006,8 +1006,8 @@ export const _Types_Generated = {
  * Extends: Object
  */
 export const __AsyncTask__All_0x1 = {
-  DependentsCount: 0x0060,  // 0x0060 (0x0004) [int32]
-  Parent: 0x0068,  // 0x0068 (0x0008) [UAsyncTask*]
+  DependentsCount: 0x0060n,  // 0x0060 (0x0004) [int32]
+  Parent: 0x0068n,  // 0x0068 (0x0008) [UAsyncTask*]
   ...Object_,
 } as const;
 
@@ -1016,9 +1016,9 @@ export const __AsyncTask__All_0x1 = {
  * Size: 0x0010
  */
 export const Array_Mirror = {
-  Data: 0x0000,  // 0x0000 (0x0008) [FPointer]
-  ArrayNum: 0x0008,  // 0x0008 (0x0004) [int32]
-  ArrayMax: 0x000C,  // 0x000C (0x0004) [int32]
+  Data: 0x0000n,  // 0x0000 (0x0008) [FPointer]
+  ArrayNum: 0x0008n,  // 0x0008 (0x0004) [int32]
+  ArrayMax: 0x000cn,  // 0x000c (0x0004) [int32]
 } as const;
 
 /**
@@ -1026,8 +1026,8 @@ export const Array_Mirror = {
  * Size: 0x0020
  */
 export const AsyncDelegateInfo = {
-  CallbackId: 0x0000,  // 0x0000 (0x0004) [int32]
-  AsyncDelegate: 0x0008,  // 0x0008 (0x0018) [FScriptDelegate]
+  CallbackId: 0x0000n,  // 0x0000 (0x0004) [int32]
+  AsyncDelegate: 0x0008n,  // 0x0008 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -1035,10 +1035,10 @@ export const AsyncDelegateInfo = {
  * Size: 0x0020
  */
 export const BitArray_Mirror = {
-  IndirectData: 0x0000,  // 0x0000 (0x0008) [FPointer]
-  InlineData: 0x0008,  // 0x0008 (0x0010) [int32]
-  NumBits: 0x0018,  // 0x0018 (0x0004) [int32]
-  MaxBits: 0x001C,  // 0x001C (0x0004) [int32]
+  IndirectData: 0x0000n,  // 0x0000 (0x0008) [FPointer]
+  InlineData: 0x0008n,  // 0x0008 (0x0010) [int32]
+  NumBits: 0x0018n,  // 0x0018 (0x0004) [int32]
+  MaxBits: 0x001cn,  // 0x001c (0x0004) [int32]
 } as const;
 
 /**
@@ -1046,9 +1046,9 @@ export const BitArray_Mirror = {
  * Size: 0x0020
  */
 export const BoneAtom = {
-  Rotation: 0x0000,  // 0x0000 (0x0010) [FQuat]
-  Translation: 0x0010,  // 0x0010 (0x000C) [FVector]
-  Scale: 0x001C,  // 0x001C (0x0004) [float]
+  Rotation: 0x0000n,  // 0x0000 (0x0010) [FQuat]
+  Translation: 0x0010n,  // 0x0010 (0x000c) [FVector]
+  Scale: 0x001cn,  // 0x001c (0x0004) [float]
 } as const;
 
 /**
@@ -1056,19 +1056,19 @@ export const BoneAtom = {
  * Size: 0x0019
  */
 export const Box = {
-  Min: 0x0000,  // 0x0000 (0x000C) [FVector]
-  Max: 0x000C,  // 0x000C (0x000C) [FVector]
-  IsValid: 0x0018,  // 0x0018 (0x0001) [uint8]
+  Min: 0x0000n,  // 0x0000 (0x000c) [FVector]
+  Max: 0x000cn,  // 0x000c (0x000c) [FVector]
+  IsValid: 0x0018n,  // 0x0018 (0x0001) [uint8]
 } as const;
 
 /**
  * ScriptStruct Core.Object.BoxSphereBounds Offsets
- * Size: 0x001C
+ * Size: 0x001c
  */
 export const BoxSphereBounds = {
-  Origin: 0x0000,  // 0x0000 (0x000C) [FVector]
-  BoxExtent: 0x000C,  // 0x000C (0x000C) [FVector]
-  SphereRadius: 0x0018,  // 0x0018 (0x0004) [float]
+  Origin: 0x0000n,  // 0x0000 (0x000c) [FVector]
+  BoxExtent: 0x000cn,  // 0x000c (0x000c) [FVector]
+  SphereRadius: 0x0018n,  // 0x0018 (0x0004) [float]
 } as const;
 
 /**
@@ -1076,8 +1076,8 @@ export const BoxSphereBounds = {
  * Size: 0x0020
  */
 export const BreadcrumbEntry = {
-  Category: 0x0000,  // 0x0000 (0x0010) [FString]
-  Value: 0x0010,  // 0x0010 (0x0010) [FString]
+  Category: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Value: 0x0010n,  // 0x0010 (0x0010) [FString]
 } as const;
 
 /**
@@ -1085,10 +1085,10 @@ export const BreadcrumbEntry = {
  * Size: 0x0004
  */
 export const Color = {
-  B: 0x0000,  // 0x0000 (0x0001) [uint8]
-  G: 0x0001,  // 0x0001 (0x0001) [uint8]
-  R: 0x0002,  // 0x0002 (0x0001) [uint8]
-  A: 0x0003,  // 0x0003 (0x0001) [uint8]
+  B: 0x0000n,  // 0x0000 (0x0001) [uint8]
+  G: 0x0001n,  // 0x0001 (0x0001) [uint8]
+  R: 0x0002n,  // 0x0002 (0x0001) [uint8]
+  A: 0x0003n,  // 0x0003 (0x0001) [uint8]
 } as const;
 
 /**
@@ -1096,8 +1096,8 @@ export const Color = {
  * Size: 0x0008
  */
 export const Cylinder = {
-  Radius: 0x0000,  // 0x0000 (0x0004) [float]
-  Height: 0x0004,  // 0x0004 (0x0004) [float]
+  Radius: 0x0000n,  // 0x0000 (0x0004) [float]
+  Height: 0x0004n,  // 0x0004 (0x0004) [float]
 } as const;
 
 /**
@@ -1105,8 +1105,8 @@ export const Cylinder = {
  * Size: 0x0008
  */
 export const Double = {
-  A: 0x0000,  // 0x0000 (0x0004) [int32]
-  B: 0x0004,  // 0x0004 (0x0004) [int32]
+  A: 0x0000n,  // 0x0000 (0x0004) [int32]
+  B: 0x0004n,  // 0x0004 (0x0004) [int32]
 } as const;
 
 /**
@@ -1114,19 +1114,19 @@ export const Double = {
  * Size: 0x0004
  */
 export const EncryptedKeyIndex = {
-  Index: 0x0000,  // 0x0000 (0x0004) [int32]
+  Index: 0x0000n,  // 0x0000 (0x0004) [int32]
 } as const;
 
 /**
  * ScriptStruct Core.Object.FColorVertexBuffer_Mirror Offsets
- * Size: 0x001C
+ * Size: 0x001c
  */
 export const FColorVertexBuffer_Mirror = {
-  VfTable: 0x0000,  // 0x0000 (0x0008) [FPointer]
-  VertexData: 0x0008,  // 0x0008 (0x0008) [FPointer]
-  Data: 0x0010,  // 0x0010 (0x0004) [int32]
-  Stride: 0x0014,  // 0x0014 (0x0004) [int32]
-  NumVertices: 0x0018,  // 0x0018 (0x0004) [int32]
+  VfTable: 0x0000n,  // 0x0000 (0x0008) [FPointer]
+  VertexData: 0x0008n,  // 0x0008 (0x0008) [FPointer]
+  Data: 0x0010n,  // 0x0010 (0x0004) [int32]
+  Stride: 0x0014n,  // 0x0014 (0x0004) [int32]
+  NumVertices: 0x0018n,  // 0x0018 (0x0004) [int32]
 } as const;
 
 /**
@@ -1134,10 +1134,10 @@ export const FColorVertexBuffer_Mirror = {
  * Size: 0x0010
  */
 export const Guid = {
-  A: 0x0000,  // 0x0000 (0x0004) [int32]
-  B: 0x0004,  // 0x0004 (0x0004) [int32]
-  C: 0x0008,  // 0x0008 (0x0004) [int32]
-  D: 0x000C,  // 0x000C (0x0004) [int32]
+  A: 0x0000n,  // 0x0000 (0x0004) [int32]
+  B: 0x0004n,  // 0x0004 (0x0004) [int32]
+  C: 0x0008n,  // 0x0008 (0x0004) [int32]
+  D: 0x000cn,  // 0x000c (0x0004) [int32]
 } as const;
 
 /**
@@ -1145,7 +1145,7 @@ export const Guid = {
  * Size: 0x0008
  */
 export const HatPointer = {
-  Dummy: 0x0000,  // 0x0000 (0x0008) [uint64]
+  Dummy: 0x0000n,  // 0x0000 (0x0008) [uint64]
 } as const;
 
 /**
@@ -1153,9 +1153,9 @@ export const HatPointer = {
  * Size: 0x0010
  */
 export const IndirectArray_Mirror = {
-  Data: 0x0000,  // 0x0000 (0x0008) [FPointer]
-  ArrayNum: 0x0008,  // 0x0008 (0x0004) [int32]
-  ArrayMax: 0x000C,  // 0x000C (0x0004) [int32]
+  Data: 0x0000n,  // 0x0000 (0x0008) [FPointer]
+  ArrayNum: 0x0008n,  // 0x0008 (0x0004) [int32]
+  ArrayMax: 0x000cn,  // 0x000c (0x0004) [int32]
 } as const;
 
 /**
@@ -1163,8 +1163,8 @@ export const IndirectArray_Mirror = {
  * Size: 0x0018
  */
 export const InlinePointerArray_Mirror = {
-  InlineData: 0x0000,  // 0x0000 (0x0008) [FPointer]
-  SecondaryData: 0x0008,  // 0x0008 (0x0010) [FArray_Mirror]
+  InlineData: 0x0000n,  // 0x0000 (0x0008) [FPointer]
+  SecondaryData: 0x0008n,  // 0x0008 (0x0010) [FArray_Mirror]
 } as const;
 
 /**
@@ -1172,8 +1172,8 @@ export const InlinePointerArray_Mirror = {
  * Size: 0x0008
  */
 export const IntPoint = {
-  X: 0x0000,  // 0x0000 (0x0004) [int32]
-  Y: 0x0004,  // 0x0004 (0x0004) [int32]
+  X: 0x0000n,  // 0x0000 (0x0004) [int32]
+  Y: 0x0004n,  // 0x0004 (0x0004) [int32]
 } as const;
 
 /**
@@ -1181,8 +1181,8 @@ export const IntPoint = {
  * Size: 0x0010
  */
 export const InterfacePropertyInjection = {
-  Subscriber: 0x0000,  // 0x0000 (0x0008) [UObject*]
-  Property: 0x0008,  // 0x0008 (0x0008) [UInterfaceProperty*]
+  Subscriber: 0x0000n,  // 0x0000 (0x0008) [UObject*]
+  Property: 0x0008n,  // 0x0008 (0x0008) [UInterfaceProperty*]
 } as const;
 
 /**
@@ -1190,8 +1190,8 @@ export const InterfacePropertyInjection = {
  * Size: 0x0011
  */
 export const InterpCurveFloat = {
-  Points: 0x0000,  // 0x0000 (0x0010) [TArray<FInterpCurvePointFloat>]
-  InterpMethod: 0x0010,  // 0x0010 (0x0001) [EInterpMethodType]
+  Points: 0x0000n,  // 0x0000 (0x0010) [TArray<FInterpCurvePointFloat>]
+  InterpMethod: 0x0010n,  // 0x0010 (0x0001) [EInterpMethodType]
 } as const;
 
 /**
@@ -1199,8 +1199,8 @@ export const InterpCurveFloat = {
  * Size: 0x0011
  */
 export const InterpCurveLinearColor = {
-  Points: 0x0000,  // 0x0000 (0x0010) [TArray<FInterpCurvePointLinearColor>]
-  InterpMethod: 0x0010,  // 0x0010 (0x0001) [EInterpMethodType]
+  Points: 0x0000n,  // 0x0000 (0x0010) [TArray<FInterpCurvePointLinearColor>]
+  InterpMethod: 0x0010n,  // 0x0010 (0x0001) [EInterpMethodType]
 } as const;
 
 /**
@@ -1208,13 +1208,13 @@ export const InterpCurveLinearColor = {
  * Size: 0x0019
  */
 export const InterpCurvePointFloat = {
-  InVal: 0x0000,  // 0x0000 (0x0004) [float]
-  OutVal: 0x0004,  // 0x0004 (0x0004) [float]
-  ArriveTangent: 0x0008,  // 0x0008 (0x0004) [float]
-  LeaveTangent: 0x000C,  // 0x000C (0x0004) [float]
-  ArriveWeight: 0x0010,  // 0x0010 (0x0004) [float]
-  LeaveWeight: 0x0014,  // 0x0014 (0x0004) [float]
-  InterpMode: 0x0018,  // 0x0018 (0x0001) [EInterpCurveMode]
+  InVal: 0x0000n,  // 0x0000 (0x0004) [float]
+  OutVal: 0x0004n,  // 0x0004 (0x0004) [float]
+  ArriveTangent: 0x0008n,  // 0x0008 (0x0004) [float]
+  LeaveTangent: 0x000cn,  // 0x000c (0x0004) [float]
+  ArriveWeight: 0x0010n,  // 0x0010 (0x0004) [float]
+  LeaveWeight: 0x0014n,  // 0x0014 (0x0004) [float]
+  InterpMode: 0x0018n,  // 0x0018 (0x0001) [EInterpCurveMode]
 } as const;
 
 /**
@@ -1222,13 +1222,13 @@ export const InterpCurvePointFloat = {
  * Size: 0x0055
  */
 export const InterpCurvePointLinearColor = {
-  InVal: 0x0000,  // 0x0000 (0x0004) [float]
-  OutVal: 0x0004,  // 0x0004 (0x0010) [FLinearColor]
-  ArriveTangent: 0x0014,  // 0x0014 (0x0010) [FLinearColor]
-  LeaveTangent: 0x0024,  // 0x0024 (0x0010) [FLinearColor]
-  ArriveWeight: 0x0034,  // 0x0034 (0x0010) [FLinearColor]
-  LeaveWeight: 0x0044,  // 0x0044 (0x0010) [FLinearColor]
-  InterpMode: 0x0054,  // 0x0054 (0x0001) [EInterpCurveMode]
+  InVal: 0x0000n,  // 0x0000 (0x0004) [float]
+  OutVal: 0x0004n,  // 0x0004 (0x0010) [FLinearColor]
+  ArriveTangent: 0x0014n,  // 0x0014 (0x0010) [FLinearColor]
+  LeaveTangent: 0x0024n,  // 0x0024 (0x0010) [FLinearColor]
+  ArriveWeight: 0x0034n,  // 0x0034 (0x0010) [FLinearColor]
+  LeaveWeight: 0x0044n,  // 0x0044 (0x0010) [FLinearColor]
+  InterpMode: 0x0054n,  // 0x0054 (0x0001) [EInterpCurveMode]
 } as const;
 
 /**
@@ -1236,27 +1236,27 @@ export const InterpCurvePointLinearColor = {
  * Size: 0x0061
  */
 export const InterpCurvePointQuat = {
-  InVal: 0x0000,  // 0x0000 (0x0004) [float]
-  OutVal: 0x0010,  // 0x0010 (0x0010) [FQuat]
-  ArriveTangent: 0x0020,  // 0x0020 (0x0010) [FQuat]
-  LeaveTangent: 0x0030,  // 0x0030 (0x0010) [FQuat]
-  ArriveWeight: 0x0040,  // 0x0040 (0x0010) [FQuat]
-  LeaveWeight: 0x0050,  // 0x0050 (0x0010) [FQuat]
-  InterpMode: 0x0060,  // 0x0060 (0x0001) [EInterpCurveMode]
+  InVal: 0x0000n,  // 0x0000 (0x0004) [float]
+  OutVal: 0x0010n,  // 0x0010 (0x0010) [FQuat]
+  ArriveTangent: 0x0020n,  // 0x0020 (0x0010) [FQuat]
+  LeaveTangent: 0x0030n,  // 0x0030 (0x0010) [FQuat]
+  ArriveWeight: 0x0040n,  // 0x0040 (0x0010) [FQuat]
+  LeaveWeight: 0x0050n,  // 0x0050 (0x0010) [FQuat]
+  InterpMode: 0x0060n,  // 0x0060 (0x0001) [EInterpCurveMode]
 } as const;
 
 /**
  * ScriptStruct Core.Object.InterpCurvePointTwoVectors Offsets
- * Size: 0x007D
+ * Size: 0x007d
  */
 export const InterpCurvePointTwoVectors = {
-  InVal: 0x0000,  // 0x0000 (0x0004) [float]
-  OutVal: 0x0004,  // 0x0004 (0x0018) [FTwoVectors]
-  ArriveTangent: 0x001C,  // 0x001C (0x0018) [FTwoVectors]
-  LeaveTangent: 0x0034,  // 0x0034 (0x0018) [FTwoVectors]
-  ArriveWeight: 0x004C,  // 0x004C (0x0018) [FTwoVectors]
-  LeaveWeight: 0x0064,  // 0x0064 (0x0018) [FTwoVectors]
-  InterpMode: 0x007C,  // 0x007C (0x0001) [EInterpCurveMode]
+  InVal: 0x0000n,  // 0x0000 (0x0004) [float]
+  OutVal: 0x0004n,  // 0x0004 (0x0018) [FTwoVectors]
+  ArriveTangent: 0x001cn,  // 0x001c (0x0018) [FTwoVectors]
+  LeaveTangent: 0x0034n,  // 0x0034 (0x0018) [FTwoVectors]
+  ArriveWeight: 0x004cn,  // 0x004c (0x0018) [FTwoVectors]
+  LeaveWeight: 0x0064n,  // 0x0064 (0x0018) [FTwoVectors]
+  InterpMode: 0x007cn,  // 0x007c (0x0001) [EInterpCurveMode]
 } as const;
 
 /**
@@ -1264,27 +1264,27 @@ export const InterpCurvePointTwoVectors = {
  * Size: 0x0041
  */
 export const InterpCurvePointVector = {
-  InVal: 0x0000,  // 0x0000 (0x0004) [float]
-  OutVal: 0x0004,  // 0x0004 (0x000C) [FVector]
-  ArriveTangent: 0x0010,  // 0x0010 (0x000C) [FVector]
-  LeaveTangent: 0x001C,  // 0x001C (0x000C) [FVector]
-  ArriveWeight: 0x0028,  // 0x0028 (0x000C) [FVector]
-  LeaveWeight: 0x0034,  // 0x0034 (0x000C) [FVector]
-  InterpMode: 0x0040,  // 0x0040 (0x0001) [EInterpCurveMode]
+  InVal: 0x0000n,  // 0x0000 (0x0004) [float]
+  OutVal: 0x0004n,  // 0x0004 (0x000c) [FVector]
+  ArriveTangent: 0x0010n,  // 0x0010 (0x000c) [FVector]
+  LeaveTangent: 0x001cn,  // 0x001c (0x000c) [FVector]
+  ArriveWeight: 0x0028n,  // 0x0028 (0x000c) [FVector]
+  LeaveWeight: 0x0034n,  // 0x0034 (0x000c) [FVector]
+  InterpMode: 0x0040n,  // 0x0040 (0x0001) [EInterpCurveMode]
 } as const;
 
 /**
  * ScriptStruct Core.Object.InterpCurvePointVector2D Offsets
- * Size: 0x002D
+ * Size: 0x002d
  */
 export const InterpCurvePointVector2D = {
-  InVal: 0x0000,  // 0x0000 (0x0004) [float]
-  OutVal: 0x0004,  // 0x0004 (0x0008) [FVector2D]
-  ArriveTangent: 0x000C,  // 0x000C (0x0008) [FVector2D]
-  LeaveTangent: 0x0014,  // 0x0014 (0x0008) [FVector2D]
-  ArriveWeight: 0x001C,  // 0x001C (0x0008) [FVector2D]
-  LeaveWeight: 0x0024,  // 0x0024 (0x0008) [FVector2D]
-  InterpMode: 0x002C,  // 0x002C (0x0001) [EInterpCurveMode]
+  InVal: 0x0000n,  // 0x0000 (0x0004) [float]
+  OutVal: 0x0004n,  // 0x0004 (0x0008) [FVector2D]
+  ArriveTangent: 0x000cn,  // 0x000c (0x0008) [FVector2D]
+  LeaveTangent: 0x0014n,  // 0x0014 (0x0008) [FVector2D]
+  ArriveWeight: 0x001cn,  // 0x001c (0x0008) [FVector2D]
+  LeaveWeight: 0x0024n,  // 0x0024 (0x0008) [FVector2D]
+  InterpMode: 0x002cn,  // 0x002c (0x0001) [EInterpCurveMode]
 } as const;
 
 /**
@@ -1292,8 +1292,8 @@ export const InterpCurvePointVector2D = {
  * Size: 0x0011
  */
 export const InterpCurveQuat = {
-  Points: 0x0000,  // 0x0000 (0x0010) [TArray<FInterpCurvePointQuat>]
-  InterpMethod: 0x0010,  // 0x0010 (0x0001) [EInterpMethodType]
+  Points: 0x0000n,  // 0x0000 (0x0010) [TArray<FInterpCurvePointQuat>]
+  InterpMethod: 0x0010n,  // 0x0010 (0x0001) [EInterpMethodType]
 } as const;
 
 /**
@@ -1301,8 +1301,8 @@ export const InterpCurveQuat = {
  * Size: 0x0011
  */
 export const InterpCurveTwoVectors = {
-  Points: 0x0000,  // 0x0000 (0x0010) [TArray<FInterpCurvePointTwoVectors>]
-  InterpMethod: 0x0010,  // 0x0010 (0x0001) [EInterpMethodType]
+  Points: 0x0000n,  // 0x0000 (0x0010) [TArray<FInterpCurvePointTwoVectors>]
+  InterpMethod: 0x0010n,  // 0x0010 (0x0001) [EInterpMethodType]
 } as const;
 
 /**
@@ -1310,8 +1310,8 @@ export const InterpCurveTwoVectors = {
  * Size: 0x0011
  */
 export const InterpCurveVector = {
-  Points: 0x0000,  // 0x0000 (0x0010) [TArray<FInterpCurvePointVector>]
-  InterpMethod: 0x0010,  // 0x0010 (0x0001) [EInterpMethodType]
+  Points: 0x0000n,  // 0x0000 (0x0010) [TArray<FInterpCurvePointVector>]
+  InterpMethod: 0x0010n,  // 0x0010 (0x0001) [EInterpMethodType]
 } as const;
 
 /**
@@ -1319,8 +1319,8 @@ export const InterpCurveVector = {
  * Size: 0x0011
  */
 export const InterpCurveVector2D = {
-  Points: 0x0000,  // 0x0000 (0x0010) [TArray<FInterpCurvePointVector2D>]
-  InterpMethod: 0x0010,  // 0x0010 (0x0001) [EInterpMethodType]
+  Points: 0x0000n,  // 0x0000 (0x0010) [TArray<FInterpCurvePointVector2D>]
+  InterpMethod: 0x0010n,  // 0x0010 (0x0001) [EInterpMethodType]
 } as const;
 
 /**
@@ -1328,11 +1328,11 @@ export const InterpCurveVector2D = {
  * Size: 0x0014
  */
 export const IpAddr = {
-  AddrA: 0x0000,  // 0x0000 (0x0004) [int32]
-  AddrB: 0x0004,  // 0x0004 (0x0004) [int32]
-  AddrC: 0x0008,  // 0x0008 (0x0004) [int32]
-  AddrD: 0x000C,  // 0x000C (0x0004) [int32]
-  Port: 0x0010,  // 0x0010 (0x0004) [int32]
+  AddrA: 0x0000n,  // 0x0000 (0x0004) [int32]
+  AddrB: 0x0004n,  // 0x0004 (0x0004) [int32]
+  AddrC: 0x0008n,  // 0x0008 (0x0004) [int32]
+  AddrD: 0x000cn,  // 0x000c (0x0004) [int32]
+  Port: 0x0010n,  // 0x0010 (0x0004) [int32]
 } as const;
 
 /**
@@ -1340,10 +1340,10 @@ export const IpAddr = {
  * Size: 0x0010
  */
 export const LinearColor = {
-  R: 0x0000,  // 0x0000 (0x0004) [float]
-  G: 0x0004,  // 0x0004 (0x0004) [float]
-  B: 0x0008,  // 0x0008 (0x0004) [float]
-  A: 0x000C,  // 0x000C (0x0004) [float]
+  R: 0x0000n,  // 0x0000 (0x0004) [float]
+  G: 0x0004n,  // 0x0004 (0x0004) [float]
+  B: 0x0008n,  // 0x0008 (0x0004) [float]
+  A: 0x000cn,  // 0x000c (0x0004) [float]
 } as const;
 
 /**
@@ -1351,7 +1351,7 @@ export const LinearColor = {
  * Size: 0x0050
  */
 export const Map_Mirror = {
-  Pairs: 0x0000,  // 0x0000 (0x0050) [FSet_Mirror]
+  Pairs: 0x0000n,  // 0x0000 (0x0050) [FSet_Mirror]
 } as const;
 
 /**
@@ -1359,10 +1359,10 @@ export const Map_Mirror = {
  * Size: 0x0040
  */
 export const Matrix = {
-  XPlane: 0x0000,  // 0x0000 (0x0010) [FPlane]
-  YPlane: 0x0010,  // 0x0010 (0x0010) [FPlane]
-  ZPlane: 0x0020,  // 0x0020 (0x0010) [FPlane]
-  WPlane: 0x0030,  // 0x0030 (0x0010) [FPlane]
+  XPlane: 0x0000n,  // 0x0000 (0x0010) [FPlane]
+  YPlane: 0x0010n,  // 0x0010 (0x0010) [FPlane]
+  ZPlane: 0x0020n,  // 0x0020 (0x0010) [FPlane]
+  WPlane: 0x0030n,  // 0x0030 (0x0010) [FPlane]
 } as const;
 
 /**
@@ -1370,7 +1370,7 @@ export const Matrix = {
  * Size: 0x0050
  */
 export const MultiMap_Mirror = {
-  Pairs: 0x0000,  // 0x0000 (0x0050) [FSet_Mirror]
+  Pairs: 0x0000n,  // 0x0000 (0x0050) [FSet_Mirror]
 } as const;
 
 /**
@@ -1378,8 +1378,8 @@ export const MultiMap_Mirror = {
  * Size: 0x0010
  */
 export const ObjectPropertyInjection = {
-  Subscriber: 0x0000,  // 0x0000 (0x0008) [UObject*]
-  Property: 0x0008,  // 0x0008 (0x0008) [UObjectProperty*]
+  Subscriber: 0x0000n,  // 0x0000 (0x0008) [UObject*]
+  Property: 0x0008n,  // 0x0008 (0x0008) [UObjectProperty*]
 } as const;
 
 /**
@@ -1387,8 +1387,8 @@ export const ObjectPropertyInjection = {
  * Size: 0x0020
  */
 export const ObjectProviderPendingCallback = {
-  Callback: 0x0000,  // 0x0000 (0x0018) [FScriptDelegate]
-  Value: 0x0018,  // 0x0018 (0x0008) [UObject*]
+  Callback: 0x0000n,  // 0x0000 (0x0018) [FScriptDelegate]
+  Value: 0x0018n,  // 0x0018 (0x0008) [UObject*]
 } as const;
 
 /**
@@ -1396,18 +1396,18 @@ export const ObjectProviderPendingCallback = {
  * Size: 0x0024
  */
 export const ObjectProviderSubscription = {
-  ObjClass: 0x0000,  // 0x0000 (0x0008) [UClass*]
-  Callback: 0x0008,  // 0x0008 (0x0018) [FScriptDelegate]
-  bFireOnce: 0x0020,  // 0x0020 (0x0004) [bool : 0x1]
+  ObjClass: 0x0000n,  // 0x0000 (0x0008) [UClass*]
+  Callback: 0x0008n,  // 0x0008 (0x0018) [FScriptDelegate]
+  bFireOnce: 0x0020n,  // 0x0020 (0x0004) [bool : 0x1]
 } as const;
 
 /**
  * ScriptStruct Core.Object.OctreeElementId Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const OctreeElementId = {
-  Node: 0x0000,  // 0x0000 (0x0008) [FPointer]
-  ElementIndex: 0x0008,  // 0x0008 (0x0004) [int32]
+  Node: 0x0000n,  // 0x0000 (0x0008) [FPointer]
+  ElementIndex: 0x0008n,  // 0x0008 (0x0004) [int32]
 } as const;
 
 /**
@@ -1415,10 +1415,10 @@ export const OctreeElementId = {
  * Size: 0x0004
  */
 export const PackedNormal = {
-  X: 0x0000,  // 0x0000 (0x0001) [uint8]
-  Y: 0x0001,  // 0x0001 (0x0001) [uint8]
-  Z: 0x0002,  // 0x0002 (0x0001) [uint8]
-  W: 0x0003,  // 0x0003 (0x0001) [uint8]
+  X: 0x0000n,  // 0x0000 (0x0001) [uint8]
+  Y: 0x0001n,  // 0x0001 (0x0001) [uint8]
+  Z: 0x0002n,  // 0x0002 (0x0001) [uint8]
+  W: 0x0003n,  // 0x0003 (0x0001) [uint8]
 } as const;
 
 /**
@@ -1426,7 +1426,7 @@ export const PackedNormal = {
  * Size: 0x0008
  */
 export const Pointer = {
-  Dummy: 0x0000,  // 0x0000 (0x0004) [int32]
+  Dummy: 0x0000n,  // 0x0000 (0x0004) [int32]
 } as const;
 
 /**
@@ -1434,7 +1434,7 @@ export const Pointer = {
  * Size: 0x0004
  */
 export const ProductHashID = {
-  Id: 0x0000,  // 0x0000 (0x0004) [int32]
+  Id: 0x0000n,  // 0x0000 (0x0004) [int32]
 } as const;
 
 /**
@@ -1442,8 +1442,8 @@ export const ProductHashID = {
  * Size: 0x0010
  */
 export const ProductInstanceID = {
-  UpperBits: 0x0000,  // 0x0000 (0x0008) [uint64]
-  LowerBits: 0x0008,  // 0x0008 (0x0008) [uint64]
+  UpperBits: 0x0000n,  // 0x0000 (0x0008) [uint64]
+  LowerBits: 0x0008n,  // 0x0008 (0x0008) [uint64]
 } as const;
 
 /**
@@ -1451,10 +1451,10 @@ export const ProductInstanceID = {
  * Size: 0x0010
  */
 export const Quat = {
-  X: 0x0000,  // 0x0000 (0x0004) [float]
-  Y: 0x0004,  // 0x0004 (0x0004) [float]
-  Z: 0x0008,  // 0x0008 (0x0004) [float]
-  W: 0x000C,  // 0x000C (0x0004) [float]
+  X: 0x0000n,  // 0x0000 (0x0004) [float]
+  Y: 0x0004n,  // 0x0004 (0x0004) [float]
+  Z: 0x0008n,  // 0x0008 (0x0004) [float]
+  W: 0x000cn,  // 0x000c (0x0004) [float]
 } as const;
 
 /**
@@ -1462,13 +1462,13 @@ export const Quat = {
  * Size: 0x0020
  */
 export const RawDistribution = {
-  Type: 0x0000,  // 0x0000 (0x0001) [uint8]
-  Op: 0x0001,  // 0x0001 (0x0001) [uint8]
-  LookupTableNumElements: 0x0002,  // 0x0002 (0x0001) [uint8]
-  LookupTableChunkSize: 0x0003,  // 0x0003 (0x0001) [uint8]
-  LookupTable: 0x0008,  // 0x0008 (0x0010) [TArray<float>]
-  LookupTableTimeScale: 0x0018,  // 0x0018 (0x0004) [float]
-  LookupTableStartTime: 0x001C,  // 0x001C (0x0004) [float]
+  Type: 0x0000n,  // 0x0000 (0x0001) [uint8]
+  Op: 0x0001n,  // 0x0001 (0x0001) [uint8]
+  LookupTableNumElements: 0x0002n,  // 0x0002 (0x0001) [uint8]
+  LookupTableChunkSize: 0x0003n,  // 0x0003 (0x0001) [uint8]
+  LookupTable: 0x0008n,  // 0x0008 (0x0010) [TArray<float>]
+  LookupTableTimeScale: 0x0018n,  // 0x0018 (0x0004) [float]
+  LookupTableStartTime: 0x001cn,  // 0x001c (0x0004) [float]
 } as const;
 
 /**
@@ -1477,7 +1477,7 @@ export const RawDistribution = {
  * Extends: RawDistribution
  */
 export const RawDistributionFloat = {
-  Distribution: 0x0020,  // 0x0020 (0x0008) [unknown]
+  Distribution: 0x0020n,  // 0x0020 (0x0008) [unknown]
   ...RawDistribution,
 } as const;
 
@@ -1487,8 +1487,8 @@ export const RawDistributionFloat = {
  * Extends: RawDistributionFloat
  */
 export const MatineeRawDistributionFloat = {
-  MatineeValue: 0x0028,  // 0x0028 (0x0004) [float]
-  bInMatinee: 0x002C,  // 0x002C (0x0004) [bool : 0x1]
+  MatineeValue: 0x0028n,  // 0x0028 (0x0004) [float]
+  bInMatinee: 0x002cn,  // 0x002c (0x0004) [bool : 0x1]
   ...RawDistributionFloat,
 } as const;
 
@@ -1498,7 +1498,7 @@ export const MatineeRawDistributionFloat = {
  * Extends: RawDistribution
  */
 export const RawDistributionVector = {
-  Distribution: 0x0020,  // 0x0020 (0x0008) [unknown]
+  Distribution: 0x0020n,  // 0x0020 (0x0008) [unknown]
   ...RawDistribution,
 } as const;
 
@@ -1507,7 +1507,7 @@ export const RawDistributionVector = {
  * Size: 0x0004
  */
 export const RenderCommandFence = {
-  NumPendingFences: 0x0000,  // 0x0000 (0x0004) [int32]
+  NumPendingFences: 0x0000n,  // 0x0000 (0x0004) [int32]
 } as const;
 
 /**
@@ -1515,37 +1515,37 @@ export const RenderCommandFence = {
  * Size: 0x0004
  */
 export const RenderCommandFence_Mirror = {
-  NumPendingFences: 0x0000,  // 0x0000 (0x0004) [int32]
+  NumPendingFences: 0x0000n,  // 0x0000 (0x0004) [int32]
 } as const;
 
 /**
  * ScriptStruct Core.Object.Rotator Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const Rotator = {
-  Pitch: 0x0000,  // 0x0000 (0x0004) [int32]
-  Yaw: 0x0004,  // 0x0004 (0x0004) [int32]
-  Roll: 0x0008,  // 0x0008 (0x0004) [int32]
+  Pitch: 0x0000n,  // 0x0000 (0x0004) [int32]
+  Yaw: 0x0004n,  // 0x0004 (0x0004) [int32]
+  Roll: 0x0008n,  // 0x0008 (0x0004) [int32]
 } as const;
 
 /**
  * ScriptStruct Core.RotatorConversions.RotatorDegrees Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const RotatorDegrees = {
-  Pitch: 0x0000,  // 0x0000 (0x0004) [float]
-  Yaw: 0x0004,  // 0x0004 (0x0004) [float]
-  Roll: 0x0008,  // 0x0008 (0x0004) [float]
+  Pitch: 0x0000n,  // 0x0000 (0x0004) [float]
+  Yaw: 0x0004n,  // 0x0004 (0x0004) [float]
+  Roll: 0x0008n,  // 0x0008 (0x0004) [float]
 } as const;
 
 /**
  * ScriptStruct Core.RotatorConversions.RotatorRadians Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const RotatorRadians = {
-  Pitch: 0x0000,  // 0x0000 (0x0004) [float]
-  Yaw: 0x0004,  // 0x0004 (0x0004) [float]
-  Roll: 0x0008,  // 0x0008 (0x0004) [float]
+  Pitch: 0x0000n,  // 0x0000 (0x0004) [float]
+  Yaw: 0x0004n,  // 0x0004 (0x0004) [float]
+  Roll: 0x0008n,  // 0x0008 (0x0004) [float]
 } as const;
 
 /**
@@ -1553,8 +1553,8 @@ export const RotatorRadians = {
  * Size: 0x0030
  */
 export const SHVector = {
-  V: 0x0000,  // 0x0000 (0x0024) [float]
-  Padding: 0x0024,  // 0x0024 (0x000C) [float]
+  V: 0x0000n,  // 0x0000 (0x0024) [float]
+  Padding: 0x0024n,  // 0x0024 (0x000c) [float]
 } as const;
 
 /**
@@ -1562,9 +1562,9 @@ export const SHVector = {
  * Size: 0x0090
  */
 export const SHVectorRGB = {
-  R: 0x0000,  // 0x0000 (0x0030) [FSHVector]
-  G: 0x0030,  // 0x0030 (0x0030) [FSHVector]
-  B: 0x0060,  // 0x0060 (0x0030) [FSHVector]
+  R: 0x0000n,  // 0x0000 (0x0030) [FSHVector]
+  G: 0x0030n,  // 0x0030 (0x0030) [FSHVector]
+  B: 0x0060n,  // 0x0060 (0x0030) [FSHVector]
 } as const;
 
 /**
@@ -1572,9 +1572,9 @@ export const SHVectorRGB = {
  * Size: 0x0028
  */
 export const SceNpId = {
-  Handle: 0x0000,  // 0x0000 (0x0018) [FSceNpOnlineId]
-  Opt: 0x0018,  // 0x0018 (0x0008) [uint64]
-  Reserved: 0x0020,  // 0x0020 (0x0008) [uint64]
+  Handle: 0x0000n,  // 0x0000 (0x0018) [FSceNpOnlineId]
+  Opt: 0x0018n,  // 0x0018 (0x0008) [uint64]
+  Reserved: 0x0020n,  // 0x0020 (0x0008) [uint64]
 } as const;
 
 /**
@@ -1582,9 +1582,9 @@ export const SceNpId = {
  * Size: 0x0014
  */
 export const SceNpOnlineId = {
-  Data: 0x0000,  // 0x0000 (0x0010) [uint64]
-  Term: 0x0010,  // 0x0010 (0x0001) [uint8]
-  Dummy: 0x0011,  // 0x0011 (0x0003) [uint8]
+  Data: 0x0000n,  // 0x0000 (0x0010) [uint64]
+  Term: 0x0010n,  // 0x0010 (0x0001) [uint8]
+  Dummy: 0x0011n,  // 0x0011 (0x0003) [uint8]
 } as const;
 
 /**
@@ -1592,21 +1592,21 @@ export const SceNpOnlineId = {
  * Size: 0x0034
  */
 export const ScriptWarning = {
-  Node: 0x0000,  // 0x0000 (0x0010) [FString]
-  Message: 0x0010,  // 0x0010 (0x0010) [FString]
-  StackTrace: 0x0020,  // 0x0020 (0x0010) [FString]
-  ScriptPosition: 0x0030,  // 0x0030 (0x0004) [int32]
+  Node: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Message: 0x0010n,  // 0x0010 (0x0010) [FString]
+  StackTrace: 0x0020n,  // 0x0020 (0x0010) [FString]
+  ScriptPosition: 0x0030n,  // 0x0030 (0x0004) [int32]
 } as const;
 
 /**
  * ScriptStruct Core.Object.Set_Mirror Offsets
- * Size: 0x004C
+ * Size: 0x004c
  */
 export const Set_Mirror = {
-  Elements: 0x0000,  // 0x0000 (0x0038) [FSparseArray_Mirror]
-  InlineHash: 0x0038,  // 0x0038 (0x0004) [int32]
-  Hash: 0x0040,  // 0x0040 (0x0008) [FPointer]
-  HashSize: 0x0048,  // 0x0048 (0x0004) [int32]
+  Elements: 0x0000n,  // 0x0000 (0x0038) [FSparseArray_Mirror]
+  InlineHash: 0x0038n,  // 0x0038 (0x0004) [int32]
+  Hash: 0x0040n,  // 0x0040 (0x0008) [FPointer]
+  HashSize: 0x0048n,  // 0x0048 (0x0004) [int32]
 } as const;
 
 /**
@@ -1614,10 +1614,10 @@ export const Set_Mirror = {
  * Size: 0x0038
  */
 export const SparseArray_Mirror = {
-  Elements: 0x0000,  // 0x0000 (0x0010) [TArray<int32>]
-  AllocationFlags: 0x0010,  // 0x0010 (0x0020) [FBitArray_Mirror]
-  FirstFreeIndex: 0x0030,  // 0x0030 (0x0004) [int32]
-  NumFreeIndices: 0x0034,  // 0x0034 (0x0004) [int32]
+  Elements: 0x0000n,  // 0x0000 (0x0010) [TArray<int32>]
+  AllocationFlags: 0x0010n,  // 0x0010 (0x0020) [FBitArray_Mirror]
+  FirstFreeIndex: 0x0030n,  // 0x0030 (0x0004) [int32]
+  NumFreeIndices: 0x0034n,  // 0x0034 (0x0004) [int32]
 } as const;
 
 /**
@@ -1625,22 +1625,22 @@ export const SparseArray_Mirror = {
  * Size: 0x0015
  */
 export const TAlphaBlend = {
-  AlphaIn: 0x0000,  // 0x0000 (0x0004) [float]
-  AlphaOut: 0x0004,  // 0x0004 (0x0004) [float]
-  AlphaTarget: 0x0008,  // 0x0008 (0x0004) [float]
-  BlendTime: 0x000C,  // 0x000C (0x0004) [float]
-  BlendTimeToGo: 0x0010,  // 0x0010 (0x0004) [float]
-  BlendType: 0x0014,  // 0x0014 (0x0001) [AlphaBlendType]
+  AlphaIn: 0x0000n,  // 0x0000 (0x0004) [float]
+  AlphaOut: 0x0004n,  // 0x0004 (0x0004) [float]
+  AlphaTarget: 0x0008n,  // 0x0008 (0x0004) [float]
+  BlendTime: 0x000cn,  // 0x000c (0x0004) [float]
+  BlendTimeToGo: 0x0010n,  // 0x0010 (0x0004) [float]
+  BlendType: 0x0014n,  // 0x0014 (0x0001) [AlphaBlendType]
 } as const;
 
 /**
  * ScriptStruct Core.Object.TPOV Offsets
- * Size: 0x001C
+ * Size: 0x001c
  */
 export const TPOV = {
-  Location: 0x0000,  // 0x0000 (0x000C) [FVector]
-  Rotation: 0x000C,  // 0x000C (0x000C) [FRotator]
-  FOV: 0x0018,  // 0x0018 (0x0004) [float]
+  Location: 0x0000n,  // 0x0000 (0x000c) [FVector]
+  Rotation: 0x000cn,  // 0x000c (0x000c) [FRotator]
+  FOV: 0x0018n,  // 0x0018 (0x0004) [float]
 } as const;
 
 /**
@@ -1648,7 +1648,7 @@ export const TPOV = {
  * Size: 0x0004
  */
 export const ThreadSafeCounter = {
-  Value: 0x0000,  // 0x0000 (0x0004) [int32]
+  Value: 0x0000n,  // 0x0000 (0x0004) [int32]
 } as const;
 
 /**
@@ -1656,8 +1656,8 @@ export const ThreadSafeCounter = {
  * Size: 0x0018
  */
 export const TwoVectors = {
-  v1: 0x0000,  // 0x0000 (0x000C) [FVector]
-  v2: 0x000C,  // 0x000C (0x000C) [FVector]
+  v1: 0x0000n,  // 0x0000 (0x000c) [FVector]
+  v2: 0x000cn,  // 0x000c (0x000c) [FVector]
 } as const;
 
 /**
@@ -1665,11 +1665,11 @@ export const TwoVectors = {
  * Size: 0x0042
  */
 export const UniqueNetId = {
-  Uid: 0x0000,  // 0x0000 (0x0008) [uint64]
-  NpId: 0x0008,  // 0x0008 (0x0028) [FSceNpId]
-  EpicAccountId: 0x0030,  // 0x0030 (0x0010) [FString]
-  Platform: 0x0040,  // 0x0040 (0x0001) [OnlinePlatform]
-  SplitscreenID: 0x0041,  // 0x0041 (0x0001) [uint8]
+  Uid: 0x0000n,  // 0x0000 (0x0008) [uint64]
+  NpId: 0x0008n,  // 0x0008 (0x0028) [FSceNpId]
+  EpicAccountId: 0x0030n,  // 0x0030 (0x0010) [FString]
+  Platform: 0x0040n,  // 0x0040 (0x0001) [OnlinePlatform]
+  SplitscreenID: 0x0041n,  // 0x0041 (0x0001) [uint8]
 } as const;
 
 /**
@@ -1677,29 +1677,29 @@ export const UniqueNetId = {
  * Size: 0x0054
  */
 export const UntypedBulkData_Mirror = {
-  VfTable: 0x0000,  // 0x0000 (0x0008) [FPointer]
-  BulkDataFlags: 0x0008,  // 0x0008 (0x0004) [int32]
-  ElementCount: 0x000C,  // 0x000C (0x0004) [int32]
-  BulkDataOffsetInFile: 0x0010,  // 0x0010 (0x0008) [uint64]
-  BulkDataSizeOnDisk: 0x0018,  // 0x0018 (0x0004) [int32]
-  SavedBulkDataFlags: 0x001C,  // 0x001C (0x0004) [int32]
-  SavedElementCount: 0x0020,  // 0x0020 (0x0004) [int32]
-  SavedBulkDataOffsetInFile: 0x0028,  // 0x0028 (0x0008) [uint64]
-  SavedBulkDataSizeOnDisk: 0x0030,  // 0x0030 (0x0004) [int32]
-  BulkData: 0x0038,  // 0x0038 (0x0008) [FPointer]
-  LockStatus: 0x0040,  // 0x0040 (0x0004) [int32]
-  AttachedAr: 0x0048,  // 0x0048 (0x0008) [FPointer]
-  bShouldFreeOnEmpty: 0x0050,  // 0x0050 (0x0004) [int32]
+  VfTable: 0x0000n,  // 0x0000 (0x0008) [FPointer]
+  BulkDataFlags: 0x0008n,  // 0x0008 (0x0004) [int32]
+  ElementCount: 0x000cn,  // 0x000c (0x0004) [int32]
+  BulkDataOffsetInFile: 0x0010n,  // 0x0010 (0x0008) [uint64]
+  BulkDataSizeOnDisk: 0x0018n,  // 0x0018 (0x0004) [int32]
+  SavedBulkDataFlags: 0x001cn,  // 0x001c (0x0004) [int32]
+  SavedElementCount: 0x0020n,  // 0x0020 (0x0004) [int32]
+  SavedBulkDataOffsetInFile: 0x0028n,  // 0x0028 (0x0008) [uint64]
+  SavedBulkDataSizeOnDisk: 0x0030n,  // 0x0030 (0x0004) [int32]
+  BulkData: 0x0038n,  // 0x0038 (0x0008) [FPointer]
+  LockStatus: 0x0040n,  // 0x0040 (0x0004) [int32]
+  AttachedAr: 0x0048n,  // 0x0048 (0x0008) [FPointer]
+  bShouldFreeOnEmpty: 0x0050n,  // 0x0050 (0x0004) [int32]
 } as const;
 
 /**
  * ScriptStruct Core.Object.Vector Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const Vector = {
-  X: 0x0000,  // 0x0000 (0x0004) [float]
-  Y: 0x0004,  // 0x0004 (0x0004) [float]
-  Z: 0x0008,  // 0x0008 (0x0004) [float]
+  X: 0x0000n,  // 0x0000 (0x0004) [float]
+  Y: 0x0004n,  // 0x0004 (0x0004) [float]
+  Z: 0x0008n,  // 0x0008 (0x0004) [float]
 } as const;
 
 /**
@@ -1708,7 +1708,7 @@ export const Vector = {
  * Extends: Vector
  */
 export const Plane = {
-  W: 0x000C,  // 0x000C (0x0004) [float]
+  W: 0x000cn,  // 0x000c (0x0004) [float]
   ...Vector,
 } as const;
 
@@ -1717,8 +1717,8 @@ export const Plane = {
  * Size: 0x0008
  */
 export const Vector2D = {
-  X: 0x0000,  // 0x0000 (0x0004) [float]
-  Y: 0x0004,  // 0x0004 (0x0004) [float]
+  X: 0x0000n,  // 0x0000 (0x0004) [float]
+  Y: 0x0004n,  // 0x0004 (0x0004) [float]
 } as const;
 
 /**
@@ -1726,10 +1726,10 @@ export const Vector2D = {
  * Size: 0x0010
  */
 export const Vector4 = {
-  X: 0x0000,  // 0x0000 (0x0004) [float]
-  Y: 0x0004,  // 0x0004 (0x0004) [float]
-  Z: 0x0008,  // 0x0008 (0x0004) [float]
-  W: 0x000C,  // 0x000C (0x0004) [float]
+  X: 0x0000n,  // 0x0000 (0x0004) [float]
+  Y: 0x0004n,  // 0x0004 (0x0004) [float]
+  Z: 0x0008n,  // 0x0008 (0x0004) [float]
+  W: 0x000cn,  // 0x000c (0x0004) [float]
 } as const;
 
 /**
@@ -1737,9 +1737,9 @@ export const Vector4 = {
  * Size: 0x0024
  */
 export const VoiceAudioDevice = {
-  Id: 0x0000,  // 0x0000 (0x0010) [FString]
-  Name: 0x0010,  // 0x0010 (0x0010) [FString]
-  bDefault: 0x0020,  // 0x0020 (0x0004) [bool : 0x1]
+  Id: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Name: 0x0010n,  // 0x0010 (0x0010) [FString]
+  bDefault: 0x0020n,  // 0x0020 (0x0004) [bool : 0x1]
 } as const;
 
 /**
@@ -1747,10 +1747,10 @@ export const VoiceAudioDevice = {
  * Size: 0x0004
  */
 export const VoiceRoomMemberStatus = {
-  bLocal: 0x0000,  // 0x0000 (0x0004) [bool : 0x1]
-  bSpeaking: 0x0000,  // 0x0000 (0x0004) [bool : 0x2]
-  bSelfMuted: 0x0000,  // 0x0000 (0x0004) [bool : 0x4]
-  bLocalMuted: 0x0000,  // 0x0000 (0x0004) [bool : 0x8]
-  bAdminMuted: 0x0000,  // 0x0000 (0x0004) [bool : 0x10]
-  bBlocked: 0x0000,  // 0x0000 (0x0004) [bool : 0x20]
+  bLocal: 0x0000n,  // 0x0000 (0x0004) [bool : 0x1]
+  bSpeaking: 0x0000n,  // 0x0000 (0x0004) [bool : 0x2]
+  bSelfMuted: 0x0000n,  // 0x0000 (0x0004) [bool : 0x4]
+  bLocalMuted: 0x0000n,  // 0x0000 (0x0004) [bool : 0x8]
+  bAdminMuted: 0x0000n,  // 0x0000 (0x0004) [bool : 0x10]
+  bBlocked: 0x0000n,  // 0x0000 (0x0004) [bool : 0x20]
 } as const;

@@ -6,87 +6,44 @@
  * Import these to read/write memory at the correct locations.
  */
 
-/**
- * Core.Component Offsets
- * Size: 0x0070
- * Extends: Object
- */
-export const Component = {
-  TemplateOwnerClass: 0x0060,  // 0x0060 (0x0008) [UClass*]
-  TemplateName: 0x0068,  // 0x0068 (0x0008) [FName]
-} as const;
+import { AsyncTask, Component, DebugDrawer, ErrorList, ErrorType, Interface, Object_ } from './Core';
+import { Actor, ActorComponent, AnimNodeBlendList, AnimNodeSequence, AnimNotify_PlayParticleEffect, Camera, CameraModifier_CameraShake, CheatManager, DistributionFloatParameterBase, EngineShare, GameEngine, GameInfo, GameReplicationInfo, GameViewportClient, HUD, LensFlareComponent, LocalPlayer, MaterialEffect, OnlineGameSearch, ParticleModuleBeamTarget, ParticleModuleLocationBoneSocket, ParticleModuleLocationSkelVertSurface, ParticleModuleVelocityBase, ParticleModuleWorldForcesBase, Pawn, PhysicalMaterialPropertyBase, PlayerController, PlayerInput, PlayerReplicationInfo, PointLightComponent, RadialBlurComponent, ReplicationInfo, SequenceAction, SequenceCondition, SequenceEvent, Settings, TextureRenderTarget2D } from './Engine';
+import { GFxEngine, GFxMoviePlayer } from './GFxUI';
+import { WebApplication } from './IpDrv';
 
 /**
  * ProjectX.ActionQueue_X Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: Component
  */
 export const ActionQueue_X = {
-  ActionsPerSecond: 0x0070,  // 0x0070 (0x0004) [float]
-  Queue: 0x0078,  // 0x0078 (0x0010) [TArray<FScriptDelegate>]
-  QueueIndex: 0x0088,  // 0x0088 (0x0004) [int32]
-  __ActionDelegate__Delegate: 0x0090,  // 0x0090 (0x0018) [FScriptDelegate]
-  __QueueEmptied__Delegate: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
-  ...Component,
-} as const;
-
-/**
- * Engine.ActorComponent Offsets
- * Size: 0x009D
- * Extends: Component
- */
-export const ActorComponent = {
-  LocalViewers: 0x0070,  // 0x0070 (0x0010) [TArray<UPlayerController*>]
-  BulletSceneGroup: 0x0080,  // 0x0080 (0x0001) [uint8]
-  Scene: 0x0088,  // 0x0088 (0x0008) [FPointer]
-  Owner: 0x0090,  // 0x0090 (0x0008) [UActor*]
-  bAttached: 0x0098,  // 0x0098 (0x0004) [bool : 0x1]
-  bTickInEditor: 0x0098,  // 0x0098 (0x0004) [bool : 0x2]
-  bNeedsReattach: 0x0098,  // 0x0098 (0x0004) [bool : 0x4]
-  bNeedsUpdateTransform: 0x0098,  // 0x0098 (0x0004) [bool : 0x8]
-  TickGroup: 0x009C,  // 0x009C (0x0001) [ETickingGroup]
+  ActionsPerSecond: 0x0070n,  // 0x0070 (0x0004) [float]
+  Queue: 0x0078n,  // 0x0078 (0x0010) [TArray<FScriptDelegate>]
+  QueueIndex: 0x0088n,  // 0x0088 (0x0004) [int32]
+  __ActionDelegate__Delegate: 0x0090n,  // 0x0090 (0x0018) [FScriptDelegate]
+  __QueueEmptied__Delegate: 0x00a8n,  // 0x00a8 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
 /**
  * ProjectX.ActorComponent_X Offsets
- * Size: 0x00A4
+ * Size: 0x00a4
  * Extends: ActorComponent
  */
 export const ActorComponent_X = {
-  bTick: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x1]
-  bIgnoreScriptAttach: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x2]
+  bTick: 0x00a0n,  // 0x00a0 (0x0004) [bool : 0x1]
+  bIgnoreScriptAttach: 0x00a0n,  // 0x00a0 (0x0004) [bool : 0x2]
   ...ActorComponent,
 } as const;
 
 /**
  * ProjectX.ActivateAnimSeriesComponent_X Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: ActorComponent_X
  */
 export const ActivateAnimSeriesComponent_X = {
-  AnimNodeName: 0x00A8,  // 0x00A8 (0x0008) [FName]
+  AnimNodeName: 0x00a8n,  // 0x00a8 (0x0008) [FName]
   ...ActorComponent_X,
-} as const;
-
-/**
- * Core.Object Offsets
- * Size: 0x0060
- */
-export const Object_ = {
-  VfTableObject: 0x0000,  // 0x0000 (0x0008) [FPointer]
-  HashNext: 0x0008,  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: 0x0010,  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: 0x0018,  // 0x0018 (0x0008) [FPointer]
-  StateFrame: 0x0020,  // 0x0020 (0x0008) [FPointer]
-  Linker: 0x0028,  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: 0x0030,  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: 0x0038,  // 0x0038 (0x0004) [int32]
-  NetIndex: 0x003C,  // 0x003C (0x0004) [int32]
-  Outer: 0x0040,  // 0x0040 (0x0008) [UObject*]
-  Name: 0x0048,  // 0x0048 (0x0008) [FName]
-  Class: 0x0050,  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: 0x0058,  // 0x0058 (0x0008) [UObject*]
 } as const;
 
 /**
@@ -95,8 +52,8 @@ export const Object_ = {
  * Extends: Object
  */
 export const AdHocBeacon_X = {
-  VfTable_FTickableObject: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  pAdHoc: 0x0068,  // 0x0068 (0x0008) [FPointer]
+  VfTable_FTickableObject: 0x0060n,  // 0x0060 (0x0008) [FPointer]
+  pAdHoc: 0x0068n,  // 0x0068 (0x0008) [FPointer]
   ...Object_,
 } as const;
 
@@ -106,10 +63,10 @@ export const AdHocBeacon_X = {
  * Extends: Object
  */
 export const AdHocInterface_X = {
-  OldLanBrowser: 0x0060,  // 0x0060 (0x0008) [ULanBrowser_X*]
-  AdHocBeacon: 0x0068,  // 0x0068 (0x0008) [UAdHocBeacon_X*]
-  OnlineGameParty: 0x0070,  // 0x0070 (0x0008) [UOnlineGameParty_X*]
-  Matchmaking: 0x0078,  // 0x0078 (0x0008) [UOnlineGameMatchmaking_X*]
+  OldLanBrowser: 0x0060n,  // 0x0060 (0x0008) [ULanBrowser_X*]
+  AdHocBeacon: 0x0068n,  // 0x0068 (0x0008) [UAdHocBeacon_X*]
+  OnlineGameParty: 0x0070n,  // 0x0070 (0x0008) [UOnlineGameParty_X*]
+  Matchmaking: 0x0078n,  // 0x0078 (0x0008) [UOnlineGameMatchmaking_X*]
   ...Object_,
 } as const;
 
@@ -119,36 +76,20 @@ export const AdHocInterface_X = {
  * Extends: Object
  */
 export const AgeGateRequiredResponse = {
-  ageGateRequired: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
+  ageGateRequired: 0x0060n,  // 0x0060 (0x0004) [bool : 0x1]
   ...Object_,
 } as const;
 
 /**
- * Engine.AnimNodeBlendList Offsets
- * Size: 0x016C
- * Extends: AnimNodeBlendBase
- */
-export const AnimNodeBlendList = {
-  TargetWeight: 0x0148,  // 0x0148 (0x0010) [TArray<float>]
-  BlendTimeToGo: 0x0158,  // 0x0158 (0x0004) [float]
-  ActiveChildIndex: 0x015C,  // 0x015C (0x0004) [int32]
-  bPlayActiveChild: 0x0160,  // 0x0160 (0x0004) [bool : 0x1]
-  bForceChildFullWeightWhenBecomingRelevant: 0x0160,  // 0x0160 (0x0004) [bool : 0x2]
-  bSkipBlendWhenNotRendered: 0x0160,  // 0x0160 (0x0004) [bool : 0x4]
-  SliderPosition: 0x0164,  // 0x0164 (0x0004) [float]
-  EditorActiveChildIndex: 0x0168,  // 0x0168 (0x0004) [int32]
-} as const;
-
-/**
  * ProjectX.AnimNodeBlendBase_X Offsets
- * Size: 0x018C
+ * Size: 0x018c
  * Extends: AnimNodeBlendList
  */
 export const AnimNodeBlendBase_X = {
-  BlendTime: 0x0170,  // 0x0170 (0x0004) [float]
-  ChildBlendTimes: 0x0178,  // 0x0178 (0x0010) [TArray<float>]
-  bRebuildChildren: 0x0188,  // 0x0188 (0x0004) [bool : 0x1]
-  bChildrenUpdated: 0x0188,  // 0x0188 (0x0004) [bool : 0x2]
+  BlendTime: 0x0170n,  // 0x0170 (0x0004) [float]
+  ChildBlendTimes: 0x0178n,  // 0x0178 (0x0010) [TArray<float>]
+  bRebuildChildren: 0x0188n,  // 0x0188 (0x0004) [bool : 0x1]
+  bChildrenUpdated: 0x0188n,  // 0x0188 (0x0004) [bool : 0x2]
   ...AnimNodeBlendList,
 } as const;
 
@@ -171,68 +112,22 @@ export const AnimNodeCustomSeries_X = {
 } as const;
 
 /**
- * Engine.AnimNodeSequence Offsets
- * Size: 0x01A8
- * Extends: AnimNode
- */
-export const AnimNodeSequence = {
-  AnimSeqName: 0x0130,  // 0x0130 (0x0008) [FName]
-  Rate: 0x0138,  // 0x0138 (0x0004) [float]
-  bPlaying: 0x013C,  // 0x013C (0x0004) [bool : 0x1]
-  bLooping: 0x013C,  // 0x013C (0x0004) [bool : 0x2]
-  bCauseActorAnimEnd: 0x013C,  // 0x013C (0x0004) [bool : 0x4]
-  bCauseActorAnimPlay: 0x013C,  // 0x013C (0x0004) [bool : 0x8]
-  bZeroRootRotation: 0x013C,  // 0x013C (0x0004) [bool : 0x10]
-  bZeroRootTranslation: 0x013C,  // 0x013C (0x0004) [bool : 0x20]
-  bDisableWarningWhenAnimNotFound: 0x013C,  // 0x013C (0x0004) [bool : 0x40]
-  bNoNotifies: 0x013C,  // 0x013C (0x0004) [bool : 0x80]
-  bForceRefposeWhenNotPlaying: 0x013C,  // 0x013C (0x0004) [bool : 0x100]
-  bIsIssuingNotifies: 0x013C,  // 0x013C (0x0004) [bool : 0x200]
-  bForceAlwaysSlave: 0x013C,  // 0x013C (0x0004) [bool : 0x400]
-  bSynchronize: 0x013C,  // 0x013C (0x0004) [bool : 0x800]
-  bReverseSync: 0x013C,  // 0x013C (0x0004) [bool : 0x1000]
-  bShowTimeLineSlider: 0x013C,  // 0x013C (0x0004) [bool : 0x2000]
-  bLoopCameraAnim: 0x013C,  // 0x013C (0x0004) [bool : 0x4000]
-  bRandomizeCameraAnimLoopStartTime: 0x013C,  // 0x013C (0x0004) [bool : 0x8000]
-  bEditorOnlyAddRefPoseToAdditiveAnimation: 0x013C,  // 0x013C (0x0004) [bool : 0x10000]
-  bCheckForFinishAnimEarly: 0x013C,  // 0x013C (0x0004) [bool : 0x20000]
-  bBlendingOut: 0x013C,  // 0x013C (0x0004) [bool : 0x40000]
-  CurrentTime: 0x0140,  // 0x0140 (0x0004) [float]
-  PreviousTime: 0x0144,  // 0x0144 (0x0004) [float]
-  EndTime: 0x0148,  // 0x0148 (0x0004) [float]
-  AnimSeq: 0x0150,  // 0x0150 (0x0008) [UAnimSequence*]
-  AnimLinkupIndex: 0x0158,  // 0x0158 (0x0004) [int32]
-  NotifyWeightThreshold: 0x015C,  // 0x015C (0x0004) [float]
-  SynchGroupName: 0x0160,  // 0x0160 (0x0008) [FName]
-  SynchPosOffset: 0x0168,  // 0x0168 (0x0004) [float]
-  CameraAnim: 0x0170,  // 0x0170 (0x0008) [UCameraAnim*]
-  ActiveCameraAnimInstance: 0x0178,  // 0x0178 (0x0008) [UCameraAnimInst*]
-  CameraAnimScale: 0x0180,  // 0x0180 (0x0004) [float]
-  CameraAnimPlayRate: 0x0184,  // 0x0184 (0x0004) [float]
-  CameraAnimBlendInTime: 0x0188,  // 0x0188 (0x0004) [float]
-  CameraAnimBlendOutTime: 0x018C,  // 0x018C (0x0004) [float]
-  RootBoneOption: 0x0190,  // 0x0190 (0x0003) [ERootBoneAxis]
-  RootRotationOption: 0x0193,  // 0x0193 (0x0003) [ERootRotationOption]
-  MetaDataSkelControlList: 0x0198,  // 0x0198 (0x0010) [TArray<USkelControlBase*>]
-} as const;
-
-/**
  * ProjectX.AnimNodeSequence_X Offsets
- * Size: 0x01C0
+ * Size: 0x01c0
  * Extends: AnimNodeSequence
  */
 export const AnimNodeSequence_X = {
-  AnimSetBlendTime: 0x01A8,  // 0x01A8 (0x0004) [float]
-  bResetOnRelevant: 0x01AC,  // 0x01AC (0x0004) [bool : 0x1]
-  PrevAnimSeq: 0x01B0,  // 0x01B0 (0x0008) [UAnimSequence*]
-  PrevAnimLinkupIndex: 0x01B8,  // 0x01B8 (0x0004) [int32]
-  BlendTimeLeft: 0x01BC,  // 0x01BC (0x0004) [float]
+  AnimSetBlendTime: 0x01a8n,  // 0x01a8 (0x0004) [float]
+  bResetOnRelevant: 0x01acn,  // 0x01ac (0x0004) [bool : 0x1]
+  PrevAnimSeq: 0x01b0n,  // 0x01b0 (0x0008) [UAnimSequence*]
+  PrevAnimLinkupIndex: 0x01b8n,  // 0x01b8 (0x0004) [int32]
+  BlendTimeLeft: 0x01bcn,  // 0x01bc (0x0004) [float]
   ...AnimNodeSequence,
 } as const;
 
 /**
  * ProjectX.AnimNodePose_X Offsets
- * Size: 0x01C0
+ * Size: 0x01c0
  * Extends: AnimNodeSequence_X
  */
 export const AnimNodePose_X = {
@@ -241,224 +136,40 @@ export const AnimNodePose_X = {
 
 /**
  * ProjectX.AnimNodeSeries_X Offsets
- * Size: 0x01A8
+ * Size: 0x01a8
  * Extends: AnimNodeBlendBase_X
  */
 export const AnimNodeSeries_X = {
-  bActive: 0x0190,  // 0x0190 (0x0004) [bool : 0x1]
-  bInitialized: 0x0190,  // 0x0190 (0x0004) [bool : 0x2]
-  IntroAnim: 0x0198,  // 0x0198 (0x0008) [UAnimNodeSequence*]
-  OutroAnim: 0x01A0,  // 0x01A0 (0x0008) [UAnimNodeSequence*]
+  bActive: 0x0190n,  // 0x0190 (0x0004) [bool : 0x1]
+  bInitialized: 0x0190n,  // 0x0190 (0x0004) [bool : 0x2]
+  IntroAnim: 0x0198n,  // 0x0198 (0x0008) [UAnimNodeSequence*]
+  OutroAnim: 0x01a0n,  // 0x01a0 (0x0008) [UAnimNodeSequence*]
   ...AnimNodeBlendBase_X,
 } as const;
 
 /**
- * Engine.AnimNotify_PlayParticleEffect Offsets
- * Size: 0x0098
- * Extends: AnimNotify
- */
-export const AnimNotify_PlayParticleEffect = {
-  PSTemplate: 0x0068,  // 0x0068 (0x0008) [UParticleSystem*]
-  bIsExtremeContent: 0x0070,  // 0x0070 (0x0004) [bool : 0x1]
-  bAttach: 0x0070,  // 0x0070 (0x0004) [bool : 0x2]
-  bPreview: 0x0070,  // 0x0070 (0x0004) [bool : 0x4]
-  bSkipIfOwnerIsHidden: 0x0070,  // 0x0070 (0x0004) [bool : 0x8]
-  PSNonExtremeContentTemplate: 0x0078,  // 0x0078 (0x0008) [UParticleSystem*]
-  SocketName: 0x0080,  // 0x0080 (0x0008) [FName]
-  BoneName: 0x0088,  // 0x0088 (0x0008) [FName]
-  BoneSocketModuleActorName: 0x0090,  // 0x0090 (0x0008) [FName]
-} as const;
-
-/**
  * ProjectX.AnimNotify_PlayParticleEffect_X Offsets
- * Size: 0x00A0
+ * Size: 0x00a0
  * Extends: AnimNotify_PlayParticleEffect
  */
 export const AnimNotify_PlayParticleEffect_X = {
-  PSC: 0x0098,  // 0x0098 (0x0008) [unknown]
+  PSC: 0x0098n,  // 0x0098 (0x0008) [unknown]
   ...AnimNotify_PlayParticleEffect,
 } as const;
 
 /**
  * ProjectX.AnimateParametersComponent_X Offsets
- * Size: 0x00DC
+ * Size: 0x00dc
  * Extends: ActorComponent
  */
 export const AnimateParametersComponent_X = {
-  FloatParameters: 0x00A0,  // 0x00A0 (0x0010) [TArray<FAnimatedFloatParam>]
-  VectorParameters: 0x00B0,  // 0x00B0 (0x0010) [TArray<FAnimatedVectorParam>]
-  ColorParameters: 0x00C0,  // 0x00C0 (0x0010) [TArray<FAnimatedLinearColorParam>]
-  bResetMaterialsOnComplete: 0x00D0,  // 0x00D0 (0x0004) [bool : 0x1]
-  AnimTime: 0x00D4,  // 0x00D4 (0x0004) [float]
-  EndTime: 0x00D8,  // 0x00D8 (0x0004) [float]
+  FloatParameters: 0x00a0n,  // 0x00a0 (0x0010) [TArray<FAnimatedFloatParam>]
+  VectorParameters: 0x00b0n,  // 0x00b0 (0x0010) [TArray<FAnimatedVectorParam>]
+  ColorParameters: 0x00c0n,  // 0x00c0 (0x0010) [TArray<FAnimatedLinearColorParam>]
+  bResetMaterialsOnComplete: 0x00d0n,  // 0x00d0 (0x0004) [bool : 0x1]
+  AnimTime: 0x00d4n,  // 0x00d4 (0x0004) [float]
+  EndTime: 0x00d8n,  // 0x00d8 (0x0004) [float]
   ...ActorComponent,
-} as const;
-
-/**
- * Engine.Actor Offsets
- * Size: 0x0268
- * Extends: Object
- */
-export const Actor = {
-  ActorDependantPSCs: 0x0060,  // 0x0060 (0x0010) [TArray<unknown>]
-  Components: 0x0070,  // 0x0070 (0x0010) [TArray<unknown>]
-  AllComponents: 0x0080,  // 0x0080 (0x0010) [TArray<unknown>]
-  Location: 0x0090,  // 0x0090 (0x000C) [FVector]
-  Rotation: 0x009C,  // 0x009C (0x000C) [FRotator]
-  DrawScale: 0x00A8,  // 0x00A8 (0x0004) [float]
-  DrawScale3D: 0x00AC,  // 0x00AC (0x000C) [FVector]
-  PrePivot: 0x00B8,  // 0x00B8 (0x000C) [FVector]
-  EditorIconColor: 0x00C4,  // 0x00C4 (0x0004) [FColor]
-  DetachFence: 0x00C8,  // 0x00C8 (0x0004) [FRenderCommandFence]
-  CustomTimeDilation: 0x00CC,  // 0x00CC (0x0004) [float]
-  Physics: 0x00D0,  // 0x00D0 (0x0001) [EPhysics]
-  RemoteRole: 0x00D1,  // 0x00D1 (0x0001) [ENetRole]
-  Role: 0x00D2,  // 0x00D2 (0x0001) [ENetRole]
-  CollisionType: 0x00D3,  // 0x00D3 (0x0001) [ECollisionType]
-  ReplicatedCollisionType: 0x00D4,  // 0x00D4 (0x0001) [ECollisionType]
-  TickGroup: 0x00D5,  // 0x00D5 (0x0001) [ETickingGroup]
-  Owner: 0x00D8,  // 0x00D8 (0x0008) [UActor*]
-  Base: 0x00E0,  // 0x00E0 (0x0008) [UActor*]
-  Timers: 0x00E8,  // 0x00E8 (0x0010) [TArray<FTimerData>]
-  bStatic: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x1]
-  bHidden: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x2]
-  bHiddenSelf: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x4]
-  bNoDelete: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x8]
-  bDeleteMe: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x10]
-  bTicked: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x20]
-  bOnlyOwnerSee: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x40]
-  bTickIsDisabled: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x80]
-  bWorldGeometry: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x100]
-  bIgnoreRigidBodyPawns: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x200]
-  bOrientOnSlope: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x400]
-  bIgnoreEncroachers: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x800]
-  bPushedByEncroachers: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x1000]
-  bDestroyedByInterpActor: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x2000]
-  bRouteBeginPlayEvenIfStatic: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x4000]
-  bIsMoving: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x8000]
-  bAlwaysEncroachCheck: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x10000]
-  bHasAlternateTargetLocation: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x20000]
-  bCanStepUpOn: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x40000]
-  bNetTemporary: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x80000]
-  bOnlyRelevantToOwner: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x100000]
-  bNetDirty: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x200000]
-  bAlwaysRelevant: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x400000]
-  bReplicateInstigator: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x800000]
-  bReplicateMovement: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x1000000]
-  bSkipActorPropertyReplication: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x2000000]
-  bUpdateSimulatedPosition: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x4000000]
-  bTearOff: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x8000000]
-  bOnlyDirtyReplication: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x10000000]
-  bAllowFluidSurfaceInteraction: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x20000000]
-  bDemoRecording: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x40000000]
-  bDemoOwner: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x-80000000]
-  bForceDemoRelevant: 0x00FC,  // 0x00FC (0x0004) [bool : 0x1]
-  bNetInitialRotation: 0x00FC,  // 0x00FC (0x0004) [bool : 0x2]
-  bReplicateRigidBodyLocation: 0x00FC,  // 0x00FC (0x0004) [bool : 0x4]
-  bKillDuringLevelTransition: 0x00FC,  // 0x00FC (0x0004) [bool : 0x8]
-  bExchangedRoles: 0x00FC,  // 0x00FC (0x0004) [bool : 0x10]
-  bConsiderAllStaticMeshComponentsForStreaming: 0x00FC,  // 0x00FC (0x0004) [bool : 0x20]
-  bDebug: 0x00FC,  // 0x00FC (0x0004) [bool : 0x40]
-  bPostRenderIfNotVisible: 0x00FC,  // 0x00FC (0x0004) [bool : 0x80]
-  bForceNetUpdate: 0x00FC,  // 0x00FC (0x0004) [bool : 0x100]
-  bForcePacketUpdate: 0x00FC,  // 0x00FC (0x0004) [bool : 0x200]
-  bPendingNetUpdate: 0x00FC,  // 0x00FC (0x0004) [bool : 0x400]
-  bHardAttach: 0x00FC,  // 0x00FC (0x0004) [bool : 0x800]
-  bIgnoreBaseRotation: 0x00FC,  // 0x00FC (0x0004) [bool : 0x1000]
-  bShadowParented: 0x00FC,  // 0x00FC (0x0004) [bool : 0x2000]
-  bSkipAttachedMoves: 0x00FC,  // 0x00FC (0x0004) [bool : 0x4000]
-  bCanBeAdheredTo: 0x00FC,  // 0x00FC (0x0004) [bool : 0x8000]
-  bCanBeFrictionedTo: 0x00FC,  // 0x00FC (0x0004) [bool : 0x10000]
-  bGameRelevant: 0x00FC,  // 0x00FC (0x0004) [bool : 0x20000]
-  bMovable: 0x00FC,  // 0x00FC (0x0004) [bool : 0x40000]
-  bShouldBaseAtStartup: 0x00FC,  // 0x00FC (0x0004) [bool : 0x80000]
-  bPendingDelete: 0x00FC,  // 0x00FC (0x0004) [bool : 0x100000]
-  bCanTeleport: 0x00FC,  // 0x00FC (0x0004) [bool : 0x200000]
-  bAlwaysTick: 0x00FC,  // 0x00FC (0x0004) [bool : 0x400000]
-  bBlocksNavigation: 0x00FC,  // 0x00FC (0x0004) [bool : 0x800000]
-  BlockRigidBody: 0x00FC,  // 0x00FC (0x0004) [bool : 0x1000000]
-  bCollideWhenPlacing: 0x00FC,  // 0x00FC (0x0004) [bool : 0x2000000]
-  bCollideActors: 0x00FC,  // 0x00FC (0x0004) [bool : 0x4000000]
-  bCollideWorld: 0x00FC,  // 0x00FC (0x0004) [bool : 0x8000000]
-  bCollideComplex: 0x00FC,  // 0x00FC (0x0004) [bool : 0x10000000]
-  bBlockActors: 0x00FC,  // 0x00FC (0x0004) [bool : 0x20000000]
-  bBlocksTeleport: 0x00FC,  // 0x00FC (0x0004) [bool : 0x40000000]
-  bMoveIgnoresDestruction: 0x00FC,  // 0x00FC (0x0004) [bool : 0x-80000000]
-  bProjectileMoveSingleBlocking: 0x0100,  // 0x0100 (0x0004) [bool : 0x1]
-  bNoEncroachCheck: 0x0100,  // 0x0100 (0x0004) [bool : 0x2]
-  bCollideAsEncroacher: 0x0100,  // 0x0100 (0x0004) [bool : 0x4]
-  bPhysRigidBodyOutOfWorldCheck: 0x0100,  // 0x0100 (0x0004) [bool : 0x8]
-  bComponentOutsideWorld: 0x0100,  // 0x0100 (0x0004) [bool : 0x10]
-  bForceOctreeSNFilter: 0x0100,  // 0x0100 (0x0004) [bool : 0x20]
-  bForceOctreeMNFilter: 0x0100,  // 0x0100 (0x0004) [bool : 0x40]
-  bRigidBodyWasAwake: 0x0100,  // 0x0100 (0x0004) [bool : 0x80]
-  bCallRigidBodyWakeEvents: 0x0100,  // 0x0100 (0x0004) [bool : 0x100]
-  bBounce: 0x0100,  // 0x0100 (0x0004) [bool : 0x200]
-  bJustTeleported: 0x0100,  // 0x0100 (0x0004) [bool : 0x400]
-  bEnableMobileTouch: 0x0100,  // 0x0100 (0x0004) [bool : 0x800]
-  bNetInitial: 0x0100,  // 0x0100 (0x0004) [bool : 0x1000]
-  bNetOwner: 0x0100,  // 0x0100 (0x0004) [bool : 0x2000]
-  bHiddenEd: 0x0100,  // 0x0100 (0x0004) [bool : 0x4000]
-  bEditable: 0x0100,  // 0x0100 (0x0004) [bool : 0x8000]
-  bHiddenEdGroup: 0x0100,  // 0x0100 (0x0004) [bool : 0x10000]
-  bHiddenEdLayer: 0x0100,  // 0x0100 (0x0004) [bool : 0x20000]
-  bHiddenEdCustom: 0x0100,  // 0x0100 (0x0004) [bool : 0x40000]
-  bHiddenEdTemporary: 0x0100,  // 0x0100 (0x0004) [bool : 0x80000]
-  bHiddenEdLevel: 0x0100,  // 0x0100 (0x0004) [bool : 0x100000]
-  bHiddenEdScene: 0x0100,  // 0x0100 (0x0004) [bool : 0x200000]
-  bHiddenEdNoPhysics: 0x0100,  // 0x0100 (0x0004) [bool : 0x400000]
-  bEdShouldSnap: 0x0100,  // 0x0100 (0x0004) [bool : 0x800000]
-  bTempEditor: 0x0100,  // 0x0100 (0x0004) [bool : 0x1000000]
-  bPathColliding: 0x0100,  // 0x0100 (0x0004) [bool : 0x2000000]
-  bPathTemp: 0x0100,  // 0x0100 (0x0004) [bool : 0x4000000]
-  bScriptInitialized: 0x0100,  // 0x0100 (0x0004) [bool : 0x8000000]
-  bLockLocation: 0x0100,  // 0x0100 (0x0004) [bool : 0x10000000]
-  bForceAllowKismetModification: 0x0100,  // 0x0100 (0x0004) [bool : 0x20000000]
-  bDedicatedServerRelevant: 0x0100,  // 0x0100 (0x0004) [bool : 0x40000000]
-  bLockedFromEditorDeletion: 0x0100,  // 0x0100 (0x0004) [bool : 0x-80000000]
-  bComponentsDirty: 0x0104,  // 0x0104 (0x0004) [bool : 0x1]
-  bUpdateComponentsIfEmpty: 0x0104,  // 0x0104 (0x0004) [bool : 0x2]
-  bDebugEffectIsRelevant: 0x0104,  // 0x0104 (0x0004) [bool : 0x4]
-  SkelMeshCompTickTag: 0x0108,  // 0x0108 (0x0004) [int32]
-  NetTag: 0x010C,  // 0x010C (0x0004) [int32]
-  NetUpdateTime: 0x0110,  // 0x0110 (0x0004) [float]
-  NetUpdateFrequency: 0x0114,  // 0x0114 (0x0004) [float]
-  NetPriority: 0x0118,  // 0x0118 (0x0004) [float]
-  LastNetUpdateTime: 0x011C,  // 0x011C (0x0004) [float]
-  LastForcePacketUpdateTime: 0x0120,  // 0x0120 (0x0004) [float]
-  TimeSinceLastTick: 0x0124,  // 0x0124 (0x0004) [float]
-  Instigator: 0x0128,  // 0x0128 (0x0008) [UPawn*]
-  WorldInfo: 0x0130,  // 0x0130 (0x0008) [UWorldInfo*]
-  LifeSpan: 0x0138,  // 0x0138 (0x0004) [float]
-  CreationTime: 0x013C,  // 0x013C (0x0004) [float]
-  LastRenderTime: 0x0140,  // 0x0140 (0x0004) [float]
-  Tag: 0x0144,  // 0x0144 (0x0008) [FName]
-  InitialState: 0x014C,  // 0x014C (0x0008) [FName]
-  Layer: 0x0154,  // 0x0154 (0x0008) [FName]
-  Group: 0x015C,  // 0x015C (0x0008) [FName]
-  HiddenEditorViews: 0x0168,  // 0x0168 (0x0008) [uint64]
-  Touching: 0x0170,  // 0x0170 (0x0010) [TArray<UActor*>]
-  Children: 0x0180,  // 0x0180 (0x0010) [TArray<UActor*>]
-  LatentFloat: 0x0190,  // 0x0190 (0x0004) [float]
-  LatentSeqNode: 0x0198,  // 0x0198 (0x0008) [UAnimNodeSequence*]
-  PhysicsVolume: 0x01A0,  // 0x01A0 (0x0008) [UPhysicsVolume*]
-  Velocity: 0x01A8,  // 0x01A8 (0x000C) [FVector]
-  Acceleration: 0x01B4,  // 0x01B4 (0x000C) [FVector]
-  AngularVelocity: 0x01C0,  // 0x01C0 (0x000C) [FVector]
-  BaseSkelComponent: 0x01D0,  // 0x01D0 (0x0008) [unknown]
-  BaseBoneName: 0x01D8,  // 0x01D8 (0x0008) [FName]
-  Attached: 0x01E0,  // 0x01E0 (0x0010) [TArray<UActor*>]
-  RelativeLocation: 0x01F0,  // 0x01F0 (0x000C) [FVector]
-  RelativeRotation: 0x01FC,  // 0x01FC (0x000C) [FRotator]
-  CollisionComponent: 0x0208,  // 0x0208 (0x0008) [unknown]
-  OverlapTag: 0x0210,  // 0x0210 (0x0004) [int32]
-  RotationRate: 0x0214,  // 0x0214 (0x000C) [FRotator]
-  PendingTouch: 0x0220,  // 0x0220 (0x0008) [UActor*]
-  SupportedEvents: 0x0228,  // 0x0228 (0x0010) [TArray<UClass*>]
-  GeneratedEvents: 0x0238,  // 0x0238 (0x0010) [TArray<USequenceEvent*>]
-  LatentActions: 0x0248,  // 0x0248 (0x0010) [TArray<USeqAct_Latent*>]
-  IgnoredTouchClasses: 0x0258,  // 0x0258 (0x0010) [TArray<UClass*>]
-  ...Object_,
 } as const;
 
 /**
@@ -467,44 +178,44 @@ export const Actor = {
  * Extends: Actor
  */
 export const ArchetypePrefab_X = {
-  PrefabArchetypes: 0x0268,  // 0x0268 (0x0010) [TArray<UActor*>]
-  ArchetypeInstances: 0x0278,  // 0x0278 (0x0010) [TArray<UActor*>]
+  PrefabArchetypes: 0x0268n,  // 0x0268 (0x0010) [TArray<UActor*>]
+  ArchetypeInstances: 0x0278n,  // 0x0278 (0x0010) [TArray<UActor*>]
   ...Actor,
 } as const;
 
 /**
  * ProjectX.ArchetypeSpawnPoint_X Offsets
- * Size: 0x02D8
+ * Size: 0x02d8
  * Extends: Actor
  */
 export const ArchetypeSpawnPoint_X = {
-  VfTable_IInterface_NavMeshPathObject: 0x0268,  // 0x0268 (0x0008) [FPointer]
-  ArchetypePath: 0x0270,  // 0x0270 (0x0010) [FString]
-  bSeedNavMesh: 0x0280,  // 0x0280 (0x0004) [bool : 0x1]
-  bSpawnOnLevelStart: 0x0280,  // 0x0280 (0x0004) [bool : 0x2]
-  bOnlyAllowOneInstance: 0x0280,  // 0x0280 (0x0004) [bool : 0x4]
-  ActorArchetype: 0x0288,  // 0x0288 (0x0008) [UActor*]
-  PlacementSprite: 0x0290,  // 0x0290 (0x0008) [unknown]
-  ArchetypeSkeletalMesh: 0x0298,  // 0x0298 (0x0008) [unknown]
-  ArchetypeStaticMesh: 0x02A0,  // 0x02A0 (0x0008) [unknown]
-  SpawnedActors: 0x02A8,  // 0x02A8 (0x0010) [TArray<UActor*>]
-  SpawnedActor: 0x02B8,  // 0x02B8 (0x0008) [UActor*]
-  __EventSpawned__Delegate: 0x02C0,  // 0x02C0 (0x0018) [FScriptDelegate]
+  VfTable_IInterface_NavMeshPathObject: 0x0268n,  // 0x0268 (0x0008) [FPointer]
+  ArchetypePath: 0x0270n,  // 0x0270 (0x0010) [FString]
+  bSeedNavMesh: 0x0280n,  // 0x0280 (0x0004) [bool : 0x1]
+  bSpawnOnLevelStart: 0x0280n,  // 0x0280 (0x0004) [bool : 0x2]
+  bOnlyAllowOneInstance: 0x0280n,  // 0x0280 (0x0004) [bool : 0x4]
+  ActorArchetype: 0x0288n,  // 0x0288 (0x0008) [UActor*]
+  PlacementSprite: 0x0290n,  // 0x0290 (0x0008) [unknown]
+  ArchetypeSkeletalMesh: 0x0298n,  // 0x0298 (0x0008) [unknown]
+  ArchetypeStaticMesh: 0x02a0n,  // 0x02a0 (0x0008) [unknown]
+  SpawnedActors: 0x02a8n,  // 0x02a8 (0x0010) [TArray<UActor*>]
+  SpawnedActor: 0x02b8n,  // 0x02b8 (0x0008) [UActor*]
+  __EventSpawned__Delegate: 0x02c0n,  // 0x02c0 (0x0018) [FScriptDelegate]
   ...Actor,
 } as const;
 
 /**
  * ProjectX.AvatarRequester_X Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: Object
  */
 export const AvatarRequester_X = {
-  VanityConfig: 0x0060,  // 0x0060 (0x0008) [UVanityConfig_X*]
-  AllRequests: 0x0068,  // 0x0068 (0x0010) [TArray<UPendingAvatarRequest_X*>]
-  PendingPermissionRequests: 0x0078,  // 0x0078 (0x0010) [TArray<UPendingAvatarRequest_X*>]
-  PendingAvatarRequests: 0x0088,  // 0x0088 (0x0010) [TArray<UPendingAvatarRequest_X*>]
-  __RequestAvatars__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
-  __RequestAvatarPermission__Delegate: 0x00B0,  // 0x00B0 (0x0018) [FScriptDelegate]
+  VanityConfig: 0x0060n,  // 0x0060 (0x0008) [UVanityConfig_X*]
+  AllRequests: 0x0068n,  // 0x0068 (0x0010) [TArray<UPendingAvatarRequest_X*>]
+  PendingPermissionRequests: 0x0078n,  // 0x0078 (0x0010) [TArray<UPendingAvatarRequest_X*>]
+  PendingAvatarRequests: 0x0088n,  // 0x0088 (0x0010) [TArray<UPendingAvatarRequest_X*>]
+  __RequestAvatars__Delegate: 0x0098n,  // 0x0098 (0x0018) [FScriptDelegate]
+  __RequestAvatarPermission__Delegate: 0x00b0n,  // 0x00b0 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -523,16 +234,16 @@ export const Aws4Signature_X = {
  * Extends: Object
  */
 export const BanMessage_X = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  BanType: 0x00A8,  // 0x00A8 (0x0001) [EBanType]
-  SeverityType: 0x00A9,  // 0x00A9 (0x0001) [ESeverityType]
-  Title: 0x00B0,  // 0x00B0 (0x0010) [FString]
-  Body: 0x00C0,  // 0x00C0 (0x0010) [FString]
-  BannedMinutes: 0x00D0,  // 0x00D0 (0x0004) [int32]
-  bContributedToBan: 0x00D4,  // 0x00D4 (0x0004) [bool : 0x1]
-  Citations: 0x00D8,  // 0x00D8 (0x0010) [TArray<FString>]
-  BannedUntilTime: 0x00E8,  // 0x00E8 (0x0004) [float]
-  __EventBanEnded__Delegate: 0x00F0,  // 0x00F0 (0x0018) [FScriptDelegate]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
+  BanType: 0x00a8n,  // 0x00a8 (0x0001) [EBanType]
+  SeverityType: 0x00a9n,  // 0x00a9 (0x0001) [ESeverityType]
+  Title: 0x00b0n,  // 0x00b0 (0x0010) [FString]
+  Body: 0x00c0n,  // 0x00c0 (0x0010) [FString]
+  BannedMinutes: 0x00d0n,  // 0x00d0 (0x0004) [int32]
+  bContributedToBan: 0x00d4n,  // 0x00d4 (0x0004) [bool : 0x1]
+  Citations: 0x00d8n,  // 0x00d8 (0x0010) [TArray<FString>]
+  BannedUntilTime: 0x00e8n,  // 0x00e8 (0x0004) [float]
+  __EventBanEnded__Delegate: 0x00f0n,  // 0x00f0 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -547,15 +258,15 @@ export const BeaconMessage_X = {
 
 /**
  * ProjectX.AddReservationMessage_X Offsets
- * Size: 0x00CC
+ * Size: 0x00cc
  * Extends: BeaconMessage_X
  */
 export const AddReservationMessage_X = {
-  Players: 0x0060,  // 0x0060 (0x0010) [TArray<FReservationPlayerData>]
-  PartyLeaderID: 0x0070,  // 0x0070 (0x0048) [FUniqueNetId]
-  ReservationID: 0x00B8,  // 0x00B8 (0x0010) [FString]
-  bDisableCrossPlay: 0x00C8,  // 0x00C8 (0x0004) [bool : 0x1]
-  bMarkSplitscreenAsRemote: 0x00C8,  // 0x00C8 (0x0004) [bool : 0x2]
+  Players: 0x0060n,  // 0x0060 (0x0010) [TArray<FReservationPlayerData>]
+  PartyLeaderID: 0x0070n,  // 0x0070 (0x0048) [FUniqueNetId]
+  ReservationID: 0x00b8n,  // 0x00b8 (0x0010) [FString]
+  bDisableCrossPlay: 0x00c8n,  // 0x00c8 (0x0004) [bool : 0x1]
+  bMarkSplitscreenAsRemote: 0x00c8n,  // 0x00c8 (0x0004) [bool : 0x2]
   ...BeaconMessage_X,
 } as const;
 
@@ -565,7 +276,7 @@ export const AddReservationMessage_X = {
  * Extends: AddReservationMessage_X
  */
 export const AddReservationMessagePrivate_X = {
-  Settings: 0x00D0,  // 0x00D0 (0x0088) [FCustomMatchSettings]
+  Settings: 0x00d0n,  // 0x00d0 (0x0088) [FCustomMatchSettings]
   ...AddReservationMessage_X,
 } as const;
 
@@ -575,22 +286,22 @@ export const AddReservationMessagePrivate_X = {
  * Extends: AddReservationMessage_X
  */
 export const AddReservationMessagePublic_X = {
-  Settings: 0x00D0,  // 0x00D0 (0x0020) [FJoinMatchSettings]
-  MapPrefs: 0x00F0,  // 0x00F0 (0x0010) [TArray<FOnlinePlayerMapPrefs>]
+  Settings: 0x00d0n,  // 0x00d0 (0x0020) [FJoinMatchSettings]
+  MapPrefs: 0x00f0n,  // 0x00f0 (0x0010) [TArray<FOnlinePlayerMapPrefs>]
   ...AddReservationMessage_X,
 } as const;
 
 /**
  * ProjectX.BlockStatusReporter_X Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: Object
  */
 export const BlockStatusReporter_X = {
-  PlayerSubscriptions: 0x0060,  // 0x0060 (0x0010) [TArray<FPlayerBlockListenData>]
-  PrimaryStatus: 0x0070,  // 0x0070 (0x0008) [unknown]
-  Config: 0x0078,  // 0x0078 (0x0008) [UBlockStatusReporterConfig_X*]
-  __EventBlockListDownloaded__Delegate: 0x0080,  // 0x0080 (0x0018) [FScriptDelegate]
-  __EventPlayerStatusDownloaded__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
+  PlayerSubscriptions: 0x0060n,  // 0x0060 (0x0010) [TArray<FPlayerBlockListenData>]
+  PrimaryStatus: 0x0070n,  // 0x0070 (0x0008) [unknown]
+  Config: 0x0078n,  // 0x0078 (0x0008) [UBlockStatusReporterConfig_X*]
+  __EventBlockListDownloaded__Delegate: 0x0080n,  // 0x0080 (0x0018) [FScriptDelegate]
+  __EventPlayerStatusDownloaded__Delegate: 0x0098n,  // 0x0098 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -600,23 +311,23 @@ export const BlockStatusReporter_X = {
  * Extends: Object
  */
 export const BlogTile_X = {
-  Title: 0x0060,  // 0x0060 (0x0010) [FString]
-  DescriptionHeader: 0x0070,  // 0x0070 (0x0010) [FString]
-  Description: 0x0080,  // 0x0080 (0x0010) [FString]
-  WebURL: 0x0090,  // 0x0090 (0x0010) [FString]
-  CarName: 0x00A0,  // 0x00A0 (0x0010) [FString]
-  ImageURL: 0x00B0,  // 0x00B0 (0x0010) [FString]
-  StartTime: 0x00C0,  // 0x00C0 (0x0010) [FString]
-  StartTimeEpoch: 0x00D0,  // 0x00D0 (0x0008) [uint64]
-  EndTime: 0x00D8,  // 0x00D8 (0x0010) [FString]
-  EndTimeEpoch: 0x00E8,  // 0x00E8 (0x0008) [uint64]
-  LinkType: 0x00F0,  // 0x00F0 (0x0001) [ELinkType]
-  ShopID: 0x00F4,  // 0x00F4 (0x0004) [int32]
-  ShopItemID: 0x00F8,  // 0x00F8 (0x0004) [int32]
-  ProductID: 0x00FC,  // 0x00FC (0x0004) [int32]
-  CategoryID: 0x0100,  // 0x0100 (0x0004) [int32]
-  PlaylistId: 0x0104,  // 0x0104 (0x0004) [int32]
-  InfoURL: 0x0108,  // 0x0108 (0x0010) [FString]
+  Title: 0x0060n,  // 0x0060 (0x0010) [FString]
+  DescriptionHeader: 0x0070n,  // 0x0070 (0x0010) [FString]
+  Description: 0x0080n,  // 0x0080 (0x0010) [FString]
+  WebURL: 0x0090n,  // 0x0090 (0x0010) [FString]
+  CarName: 0x00a0n,  // 0x00a0 (0x0010) [FString]
+  ImageURL: 0x00b0n,  // 0x00b0 (0x0010) [FString]
+  StartTime: 0x00c0n,  // 0x00c0 (0x0010) [FString]
+  StartTimeEpoch: 0x00d0n,  // 0x00d0 (0x0008) [uint64]
+  EndTime: 0x00d8n,  // 0x00d8 (0x0010) [FString]
+  EndTimeEpoch: 0x00e8n,  // 0x00e8 (0x0008) [uint64]
+  LinkType: 0x00f0n,  // 0x00f0 (0x0001) [ELinkType]
+  ShopID: 0x00f4n,  // 0x00f4 (0x0004) [int32]
+  ShopItemID: 0x00f8n,  // 0x00f8 (0x0004) [int32]
+  ProductID: 0x00fcn,  // 0x00fc (0x0004) [int32]
+  CategoryID: 0x0100n,  // 0x0100 (0x0004) [int32]
+  PlaylistId: 0x0104n,  // 0x0104 (0x0004) [int32]
+  InfoURL: 0x0108n,  // 0x0108 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -626,9 +337,9 @@ export const BlogTile_X = {
  * Extends: Object
  */
 export const BreadcrumbBroadcaster_X = {
-  BreadcrumbConfig: 0x0060,  // 0x0060 (0x0008) [UBreadcrumbConfig_X*]
-  BreadcrumbInstance: 0x0068,  // 0x0068 (0x0008) [FPointer]
-  __OnCrumbAddedDelegate__Delegate: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
+  BreadcrumbConfig: 0x0060n,  // 0x0060 (0x0008) [UBreadcrumbConfig_X*]
+  BreadcrumbInstance: 0x0068n,  // 0x0068 (0x0008) [FPointer]
+  __OnCrumbAddedDelegate__Delegate: 0x0070n,  // 0x0070 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -638,8 +349,8 @@ export const BreadcrumbBroadcaster_X = {
  * Extends: Object
  */
 export const CDN_X = {
-  URL: 0x0060,  // 0x0060 (0x0010) [FString]
-  BlogURL: 0x0070,  // 0x0070 (0x0010) [FString]
+  URL: 0x0060n,  // 0x0060 (0x0010) [FString]
+  BlogURL: 0x0070n,  // 0x0070 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -658,7 +369,7 @@ export const CRC_X = {
  * Extends: Object
  */
 export const CabinedModeResponse = {
-  ArrayOfCabinedModeData: 0x0060,  // 0x0060 (0x0010) [TArray<FCabinedModeData>]
+  ArrayOfCabinedModeData: 0x0060n,  // 0x0060 (0x0010) [TArray<FCabinedModeData>]
   ...Object_,
 } as const;
 
@@ -668,54 +379,44 @@ export const CabinedModeResponse = {
  * Extends: Component
  */
 export const CacheTimer_X = {
-  CacheTimeoutSeconds: 0x0070,  // 0x0070 (0x0004) [float]
-  CacheExpireTime: 0x0074,  // 0x0074 (0x0004) [float]
-  bEnabled: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  __EventExpired__Delegate: 0x0080,  // 0x0080 (0x0018) [FScriptDelegate]
+  CacheTimeoutSeconds: 0x0070n,  // 0x0070 (0x0004) [float]
+  CacheExpireTime: 0x0074n,  // 0x0074 (0x0004) [float]
+  bEnabled: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
+  __EventExpired__Delegate: 0x0080n,  // 0x0080 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
 /**
  * ProjectX.CachedWebData_X Offsets
- * Size: 0x00BC
+ * Size: 0x00bc
  * Extends: Object
  */
 export const CachedWebData_X = {
-  Data: 0x0060,  // 0x0060 (0x0010) [TArray<uint8>]
-  DataCRC: 0x0070,  // 0x0070 (0x0004) [int32]
-  ETag: 0x0078,  // 0x0078 (0x0010) [FString]
-  ContentType: 0x0088,  // 0x0088 (0x0010) [FString]
-  Signature: 0x0098,  // 0x0098 (0x0010) [FString]
-  LoadError: 0x00A8,  // 0x00A8 (0x0008) [UError*]
-  DownloadError: 0x00B0,  // 0x00B0 (0x0008) [UError*]
-  bNewData: 0x00B8,  // 0x00B8 (0x0004) [bool : 0x1]
+  Data: 0x0060n,  // 0x0060 (0x0010) [TArray<uint8>]
+  DataCRC: 0x0070n,  // 0x0070 (0x0004) [int32]
+  ETag: 0x0078n,  // 0x0078 (0x0010) [FString]
+  ContentType: 0x0088n,  // 0x0088 (0x0010) [FString]
+  Signature: 0x0098n,  // 0x0098 (0x0010) [FString]
+  LoadError: 0x00a8n,  // 0x00a8 (0x0008) [UError*]
+  DownloadError: 0x00b0n,  // 0x00b0 (0x0008) [UError*]
+  bNewData: 0x00b8n,  // 0x00b8 (0x0004) [bool : 0x1]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.CameraAttachmentComponent_X Offsets
- * Size: 0x00B4
+ * Size: 0x00b4
  * Extends: ActorComponent
  */
 export const CameraAttachmentComponent_X = {
-  Attachments: 0x00A0,  // 0x00A0 (0x0010) [TArray<unknown>]
-  bDirtyTransform: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x1]
+  Attachments: 0x00a0n,  // 0x00a0 (0x0010) [TArray<unknown>]
+  bDirtyTransform: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x1]
   ...ActorComponent,
 } as const;
 
 /**
- * Engine.CameraModifier_CameraShake Offsets
- * Size: 0x009C
- * Extends: CameraModifier
- */
-export const CameraModifier_CameraShake = {
-  ActiveShakes: 0x0088,  // 0x0088 (0x0010) [TArray<FCameraShakeInstance>]
-  SplitScreenShakeScale: 0x0098,  // 0x0098 (0x0004) [float]
-} as const;
-
-/**
  * ProjectX.CameraModifier_CameraShake_X Offsets
- * Size: 0x00A0
+ * Size: 0x00a0
  * Extends: CameraModifier_CameraShake
  */
 export const CameraModifier_CameraShake_X = {
@@ -728,10 +429,10 @@ export const CameraModifier_CameraShake_X = {
  * Extends: Component
  */
 export const CameraStateBlender_X = {
-  Transition: 0x0070,  // 0x0070 (0x0050) [FCameraTransition]
-  TransitionDelta: 0x00C0,  // 0x00C0 (0x002C) [FCameraOrientation]
-  CameraState: 0x00F0,  // 0x00F0 (0x0008) [UCameraState_X*]
-  __EventBlenderStateChanged__Delegate: 0x00F8,  // 0x00F8 (0x0018) [FScriptDelegate]
+  Transition: 0x0070n,  // 0x0070 (0x0050) [FCameraTransition]
+  TransitionDelta: 0x00c0n,  // 0x00c0 (0x002c) [FCameraOrientation]
+  CameraState: 0x00f0n,  // 0x00f0 (0x0008) [UCameraState_X*]
+  __EventBlenderStateChanged__Delegate: 0x00f8n,  // 0x00f8 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
@@ -745,86 +446,30 @@ export const CameraUtils_X = {
 } as const;
 
 /**
- * Engine.Camera Offsets
- * Size: 0x05B8
- * Extends: Actor
- */
-export const Camera = {
-  PCOwner: 0x0268,  // 0x0268 (0x0008) [UPlayerController*]
-  CameraStyle: 0x0270,  // 0x0270 (0x0008) [FName]
-  DefaultFOV: 0x0278,  // 0x0278 (0x0004) [float]
-  bLockedFOV: 0x027C,  // 0x027C (0x0004) [bool : 0x1]
-  bConstrainAspectRatio: 0x027C,  // 0x027C (0x0004) [bool : 0x2]
-  bEnableFading: 0x027C,  // 0x027C (0x0004) [bool : 0x4]
-  bFadeAudio: 0x027C,  // 0x027C (0x0004) [bool : 0x8]
-  bForceDisableTemporalAA: 0x027C,  // 0x027C (0x0004) [bool : 0x10]
-  bEnableColorScaling: 0x027C,  // 0x027C (0x0004) [bool : 0x20]
-  bEnableColorScaleInterp: 0x027C,  // 0x027C (0x0004) [bool : 0x40]
-  bUseClientSideCameraUpdates: 0x027C,  // 0x027C (0x0004) [bool : 0x80]
-  bDebugClientSideCamera: 0x027C,  // 0x027C (0x0004) [bool : 0x100]
-  bShouldSendClientSideCameraUpdate: 0x027C,  // 0x027C (0x0004) [bool : 0x200]
-  LockedFOV: 0x0280,  // 0x0280 (0x0004) [float]
-  ConstrainedAspectRatio: 0x0284,  // 0x0284 (0x0004) [float]
-  DefaultAspectRatio: 0x0288,  // 0x0288 (0x0004) [float]
-  OffAxisYawAngle: 0x028C,  // 0x028C (0x0004) [float]
-  OffAxisPitchAngle: 0x0290,  // 0x0290 (0x0004) [float]
-  FadeColor: 0x0294,  // 0x0294 (0x0004) [FColor]
-  FadeAmount: 0x0298,  // 0x0298 (0x0004) [float]
-  CamOverridePostProcessAlpha: 0x029C,  // 0x029C (0x0004) [float]
-  CamPostProcessSettings: 0x02A0,  // 0x02A0 (0x0168) [FPostProcessSettings]
-  RenderingOverrides: 0x0408,  // 0x0408 (0x0004) [FRenderingPerformanceOverrides]
-  ColorScale: 0x040C,  // 0x040C (0x000C) [FVector]
-  DesiredColorScale: 0x0418,  // 0x0418 (0x000C) [FVector]
-  OriginalColorScale: 0x0424,  // 0x0424 (0x000C) [FVector]
-  ColorScaleInterpDuration: 0x0430,  // 0x0430 (0x0004) [float]
-  ColorScaleInterpStartTime: 0x0434,  // 0x0434 (0x0004) [float]
-  CameraCache: 0x0438,  // 0x0438 (0x0020) [FTCameraCache]
-  LastFrameCameraCache: 0x0458,  // 0x0458 (0x0020) [FTCameraCache]
-  ViewTarget: 0x0478,  // 0x0478 (0x0038) [FTViewTarget]
-  PendingViewTarget: 0x04B0,  // 0x04B0 (0x0038) [FTViewTarget]
-  BlendTimeToGo: 0x04E8,  // 0x04E8 (0x0004) [float]
-  BlendParams: 0x04EC,  // 0x04EC (0x0010) [FViewTargetTransitionParams]
-  ModifierList: 0x0500,  // 0x0500 (0x0010) [TArray<UCameraModifier*>]
-  FreeCamDistance: 0x0510,  // 0x0510 (0x0004) [float]
-  FreeCamOffset: 0x0514,  // 0x0514 (0x000C) [FVector]
-  FadeAlpha: 0x0520,  // 0x0520 (0x0008) [FVector2D]
-  FadeTime: 0x0528,  // 0x0528 (0x0004) [float]
-  FadeTimeRemaining: 0x052C,  // 0x052C (0x0004) [float]
-  CameraLensEffects: 0x0530,  // 0x0530 (0x0010) [TArray<UEmitterCameraLensEffectBase*>]
-  CameraShakeCamMod: 0x0540,  // 0x0540 (0x0008) [UCameraModifier_CameraShake*]
-  CameraShakeCamModClass: 0x0548,  // 0x0548 (0x0008) [UClass*]
-  AnimInstPool: 0x0550,  // 0x0550 (0x0040) [UCameraAnimInst*]
-  ActiveAnims: 0x0590,  // 0x0590 (0x0010) [TArray<UCameraAnimInst*>]
-  FreeAnims: 0x05A0,  // 0x05A0 (0x0010) [TArray<UCameraAnimInst*>]
-  AnimCameraActor: 0x05B0,  // 0x05B0 (0x0008) [UDynamicCameraActor*]
-  ...Actor,
-} as const;
-
-/**
  * ProjectX.Camera_X Offsets
- * Size: 0x06C8
+ * Size: 0x06c8
  * Extends: Camera
  */
 export const Camera_X = {
-  States: 0x05B8,  // 0x05B8 (0x0010) [TArray<UCameraState_X*>]
-  PCDeltaRotation: 0x05C8,  // 0x05C8 (0x000C) [FRotator]
-  OldControllerRotation: 0x05D4,  // 0x05D4 (0x000C) [FRotator]
-  PCDeltaLocation: 0x05E0,  // 0x05E0 (0x000C) [FVector]
-  OldControllerLocation: 0x05EC,  // 0x05EC (0x000C) [FVector]
-  PreProcessPOV: 0x05F8,  // 0x05F8 (0x002C) [FCameraOrientation]
-  PostProcessPOV: 0x0624,  // 0x0624 (0x002C) [FCameraOrientation]
-  Blender: 0x0650,  // 0x0650 (0x0008) [unknown]
-  ShakeLocationOffset: 0x0658,  // 0x0658 (0x000C) [FVector]
-  ShakeRotationOffset: 0x0664,  // 0x0664 (0x000C) [FRotator]
-  ShakeFOVOffset: 0x0670,  // 0x0670 (0x0004) [float]
-  StartFadeColor: 0x0674,  // 0x0674 (0x0004) [FColor]
-  EndFadeColor: 0x0678,  // 0x0678 (0x0004) [FColor]
-  ClipOffset: 0x067C,  // 0x067C (0x000C) [FVector]
-  LocationKnocks: 0x0688,  // 0x0688 (0x0010) [TArray<FLocationCameraKnock>]
-  RotationKnocks: 0x0698,  // 0x0698 (0x0010) [TArray<FRotationCameraKnock>]
-  bDisableCameraShake: 0x06A8,  // 0x06A8 (0x0004) [bool : 0x1]
-  bSnapNextTransition: 0x06A8,  // 0x06A8 (0x0004) [bool : 0x2]
-  __EventCameraStateChanged__Delegate: 0x06B0,  // 0x06B0 (0x0018) [FScriptDelegate]
+  States: 0x05b8n,  // 0x05b8 (0x0010) [TArray<UCameraState_X*>]
+  PCDeltaRotation: 0x05c8n,  // 0x05c8 (0x000c) [FRotator]
+  OldControllerRotation: 0x05d4n,  // 0x05d4 (0x000c) [FRotator]
+  PCDeltaLocation: 0x05e0n,  // 0x05e0 (0x000c) [FVector]
+  OldControllerLocation: 0x05ecn,  // 0x05ec (0x000c) [FVector]
+  PreProcessPOV: 0x05f8n,  // 0x05f8 (0x002c) [FCameraOrientation]
+  PostProcessPOV: 0x0624n,  // 0x0624 (0x002c) [FCameraOrientation]
+  Blender: 0x0650n,  // 0x0650 (0x0008) [unknown]
+  ShakeLocationOffset: 0x0658n,  // 0x0658 (0x000c) [FVector]
+  ShakeRotationOffset: 0x0664n,  // 0x0664 (0x000c) [FRotator]
+  ShakeFOVOffset: 0x0670n,  // 0x0670 (0x0004) [float]
+  StartFadeColor: 0x0674n,  // 0x0674 (0x0004) [FColor]
+  EndFadeColor: 0x0678n,  // 0x0678 (0x0004) [FColor]
+  ClipOffset: 0x067cn,  // 0x067c (0x000c) [FVector]
+  LocationKnocks: 0x0688n,  // 0x0688 (0x0010) [TArray<FLocationCameraKnock>]
+  RotationKnocks: 0x0698n,  // 0x0698 (0x0010) [TArray<FRotationCameraKnock>]
+  bDisableCameraShake: 0x06a8n,  // 0x06a8 (0x0004) [bool : 0x1]
+  bSnapNextTransition: 0x06a8n,  // 0x06a8 (0x0004) [bool : 0x2]
+  __EventCameraStateChanged__Delegate: 0x06b0n,  // 0x06b0 (0x0018) [FScriptDelegate]
   ...Camera,
 } as const;
 
@@ -839,53 +484,25 @@ export const CancelJoinMessage_X = {
 
 /**
  * ProjectX.CanvasTextureComponent_X Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: ActorComponent
  */
 export const CanvasTextureComponent_X = {
-  Mesh: 0x00A0,  // 0x00A0 (0x0008) [unknown]
-  MaterialIndex: 0x00A8,  // 0x00A8 (0x0004) [int32]
-  MaterialParamName: 0x00AC,  // 0x00AC (0x0008) [FName]
-  Texture: 0x00B8,  // 0x00B8 (0x0008) [UCanvasTexture_X*]
+  Mesh: 0x00a0n,  // 0x00a0 (0x0008) [unknown]
+  MaterialIndex: 0x00a8n,  // 0x00a8 (0x0004) [int32]
+  MaterialParamName: 0x00acn,  // 0x00ac (0x0008) [FName]
+  Texture: 0x00b8n,  // 0x00b8 (0x0008) [UCanvasTexture_X*]
   ...ActorComponent,
 } as const;
 
 /**
- * Engine.TextureRenderTarget2D Offsets
- * Size: 0x0198
- * Extends: TextureRenderTarget
- */
-export const TextureRenderTarget2D = {
-  SizeX: 0x0158,  // 0x0158 (0x0004) [int32]
-  SizeY: 0x015C,  // 0x015C (0x0004) [int32]
-  Format: 0x0160,  // 0x0160 (0x0001) [EPixelFormat]
-  AddressX: 0x0161,  // 0x0161 (0x0001) [TextureAddress]
-  AddressY: 0x0162,  // 0x0162 (0x0001) [TextureAddress]
-  ClearColor: 0x0164,  // 0x0164 (0x0010) [FLinearColor]
-  bForceLinearGamma: 0x0174,  // 0x0174 (0x0004) [bool : 0x1]
-  ExtraTexCreateFlags: 0x0178,  // 0x0178 (0x0004) [int32]
-  __EventResourceUpdated__Delegate: 0x0180,  // 0x0180 (0x0018) [FScriptDelegate]
-} as const;
-
-/**
  * ProjectX.CanvasTexture_X Offsets
- * Size: 0x01B0
+ * Size: 0x01b0
  * Extends: TextureRenderTarget2D
  */
 export const CanvasTexture_X = {
-  __Draw__Delegate: 0x0198,  // 0x0198 (0x0018) [FScriptDelegate]
+  __Draw__Delegate: 0x0198n,  // 0x0198 (0x0018) [FScriptDelegate]
   ...TextureRenderTarget2D,
-} as const;
-
-/**
- * Engine.CheatManager Offsets
- * Size: 0x0080
- * Extends: Object
- */
-export const CheatManager = {
-  ViewingFrom: 0x0060,  // 0x0060 (0x0010) [FString]
-  OwnCamera: 0x0070,  // 0x0070 (0x0010) [FString]
-  ...Object_,
 } as const;
 
 /**
@@ -894,7 +511,7 @@ export const CheatManager = {
  * Extends: CheatManager
  */
 export const CheatManager_X = {
-  __EventDelegateTest__Delegate: 0x0080,  // 0x0080 (0x0018) [FScriptDelegate]
+  __EventDelegateTest__Delegate: 0x0080n,  // 0x0080 (0x0018) [FScriptDelegate]
   ...CheatManager,
 } as const;
 
@@ -913,70 +530,59 @@ export const CheatObject_X = {
  * Extends: Object
  */
 export const CheckReservation_X = {
-  StartDelay: 0x0060,  // 0x0060 (0x0004) [float]
-  Rate: 0x0064,  // 0x0064 (0x0004) [float]
-  LastMatchmakingHeartbeatTime: 0x0068,  // 0x0068 (0x0004) [float]
-  CheckReservationTask: 0x0070,  // 0x0070 (0x0008) [UAsyncTask*]
-  FoundReservationCallback: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
-  FoundReservation: 0x0090,  // 0x0090 (0x0070) [FServerReservationData]
-  Config: 0x0100,  // 0x0100 (0x0008) [UPsyNetConfig_X*]
-  ReservationBeacon: 0x0108,  // 0x0108 (0x0008) [unknown]
-  __OnStartSearch__Delegate: 0x0110,  // 0x0110 (0x0018) [FScriptDelegate]
-  __OnFoundReservation__Delegate: 0x0128,  // 0x0128 (0x0018) [FScriptDelegate]
+  StartDelay: 0x0060n,  // 0x0060 (0x0004) [float]
+  Rate: 0x0064n,  // 0x0064 (0x0004) [float]
+  LastMatchmakingHeartbeatTime: 0x0068n,  // 0x0068 (0x0004) [float]
+  CheckReservationTask: 0x0070n,  // 0x0070 (0x0008) [UAsyncTask*]
+  FoundReservationCallback: 0x0078n,  // 0x0078 (0x0018) [FScriptDelegate]
+  FoundReservation: 0x0090n,  // 0x0090 (0x0070) [FServerReservationData]
+  Config: 0x0100n,  // 0x0100 (0x0008) [UPsyNetConfig_X*]
+  ReservationBeacon: 0x0108n,  // 0x0108 (0x0008) [unknown]
+  __OnStartSearch__Delegate: 0x0110n,  // 0x0110 (0x0018) [FScriptDelegate]
+  __OnFoundReservation__Delegate: 0x0128n,  // 0x0128 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.ClanforgeReservation_X Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: Object
  */
 export const ClanforgeReservation_X = {
-  ReserveURLs: 0x0060,  // 0x0060 (0x0030) [FString]
-  ReserveState: 0x0090,  // 0x0090 (0x0001) [EReserveState]
-  RetryDelays: 0x0098,  // 0x0098 (0x0010) [TArray<float>]
-  SendFailures: 0x00A8,  // 0x00A8 (0x0004) [int32]
-  QueuedRequests: 0x00B0,  // 0x00B0 (0x0010) [TArray<UWebRequest_X*>]
-  PendingRequest: 0x00C0,  // 0x00C0 (0x0008) [UWebRequest_X*]
+  ReserveURLs: 0x0060n,  // 0x0060 (0x0030) [FString]
+  ReserveState: 0x0090n,  // 0x0090 (0x0001) [EReserveState]
+  RetryDelays: 0x0098n,  // 0x0098 (0x0010) [TArray<float>]
+  SendFailures: 0x00a8n,  // 0x00a8 (0x0004) [int32]
+  QueuedRequests: 0x00b0n,  // 0x00b0 (0x0010) [TArray<UWebRequest_X*>]
+  PendingRequest: 0x00c0n,  // 0x00c0 (0x0008) [UWebRequest_X*]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.ClientNetMetrics_X Offsets
- * Size: 0x00B5
+ * Size: 0x00b5
  * Extends: Object
  */
 export const ClientNetMetrics_X = {
-  RecordPeriod: 0x0060,  // 0x0060 (0x0004) [float]
-  LastRecordTime: 0x0064,  // 0x0064 (0x0004) [float]
-  OldStats: 0x0068,  // 0x0068 (0x001C) [FNetPacketStats]
-  GamePings: 0x0088,  // 0x0088 (0x0010) [TArray<float>]
-  Pinger: 0x0098,  // 0x0098 (0x0008) [unknown]
-  PsyPings: 0x00A0,  // 0x00A0 (0x0010) [TArray<float>]
-  PsyPacketsLost: 0x00B0,  // 0x00B0 (0x0004) [int32]
-  ConnectionType: 0x00B4,  // 0x00B4 (0x0001) [EConnectionType_X]
+  RecordPeriod: 0x0060n,  // 0x0060 (0x0004) [float]
+  LastRecordTime: 0x0064n,  // 0x0064 (0x0004) [float]
+  OldStats: 0x0068n,  // 0x0068 (0x001c) [FNetPacketStats]
+  GamePings: 0x0088n,  // 0x0088 (0x0010) [TArray<float>]
+  Pinger: 0x0098n,  // 0x0098 (0x0008) [unknown]
+  PsyPings: 0x00a0n,  // 0x00a0 (0x0010) [TArray<float>]
+  PsyPacketsLost: 0x00b0n,  // 0x00b0 (0x0004) [int32]
+  ConnectionType: 0x00b4n,  // 0x00b4 (0x0001) [EConnectionType_X]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.ClientReservationMessage_X Offsets
- * Size: 0x00D0
+ * Size: 0x00d0
  * Extends: BeaconMessage_X
  */
 export const ClientReservationMessage_X = {
-  Reservation: 0x0060,  // 0x0060 (0x0070) [FServerReservationData]
+  Reservation: 0x0060n,  // 0x0060 (0x0070) [FServerReservationData]
   ...BeaconMessage_X,
-} as const;
-
-/**
- * Core.ErrorList Offsets
- * Size: 0x0080
- * Extends: Object
- */
-export const ErrorList = {
-  LocalizationPackage: 0x0060,  // 0x0060 (0x0010) [FString]
-  LocalizationSection: 0x0070,  // 0x0070 (0x0010) [FString]
-  ...Object_,
 } as const;
 
 /**
@@ -985,28 +591,28 @@ export const ErrorList = {
  * Extends: ErrorList
  */
 export const ClubErrors_X = {
-  ClubNotFound: 0x0080,  // 0x0080 (0x0008) [UErrorType*]
-  PlayerAlreadyInClub: 0x0088,  // 0x0088 (0x0008) [UErrorType*]
-  PlayerInSameClub: 0x0090,  // 0x0090 (0x0008) [UErrorType*]
-  PlayerInDifferentClub: 0x0098,  // 0x0098 (0x0008) [UErrorType*]
-  NotClubOwner: 0x00A0,  // 0x00A0 (0x0008) [UErrorType*]
-  ClubNameChangeNotAllowed: 0x00A8,  // 0x00A8 (0x0008) [UErrorType*]
-  ClubFull: 0x00B0,  // 0x00B0 (0x0008) [UErrorType*]
-  ClubMemberNotFound: 0x00B8,  // 0x00B8 (0x0008) [UErrorType*]
-  ClubInviteNotFound: 0x00C0,  // 0x00C0 (0x0008) [UErrorType*]
-  ClubInvalidParameters: 0x00C8,  // 0x00C8 (0x0008) [UErrorType*]
-  ClubNameInvalid: 0x00D0,  // 0x00D0 (0x0008) [UErrorType*]
-  ClubTagInvalid: 0x00D8,  // 0x00D8 (0x0008) [UErrorType*]
-  ClubTagPlusNameInvalid: 0x00E0,  // 0x00E0 (0x0008) [UErrorType*]
-  ClubMotdInvalid: 0x00E8,  // 0x00E8 (0x0008) [UErrorType*]
-  ClubInvalidTitle: 0x00F0,  // 0x00F0 (0x0008) [UErrorType*]
-  ClubNameTaken: 0x00F8,  // 0x00F8 (0x0008) [UErrorType*]
-  ClubOwnerCannotLeaveUnlessEmpty: 0x0100,  // 0x0100 (0x0008) [UErrorType*]
-  CrossPlatformClubsDisabled: 0x0108,  // 0x0108 (0x0008) [UErrorType*]
-  ClubInviteCrossPlatformClubsDisabled: 0x0110,  // 0x0110 (0x0008) [UErrorType*]
-  ClubBanned: 0x0118,  // 0x0118 (0x0008) [UErrorType*]
-  ClubInsufficientRole: 0x0120,  // 0x0120 (0x0008) [UErrorType*]
-  AlreadyClubOwner: 0x0128,  // 0x0128 (0x0008) [UErrorType*]
+  ClubNotFound: 0x0080n,  // 0x0080 (0x0008) [UErrorType*]
+  PlayerAlreadyInClub: 0x0088n,  // 0x0088 (0x0008) [UErrorType*]
+  PlayerInSameClub: 0x0090n,  // 0x0090 (0x0008) [UErrorType*]
+  PlayerInDifferentClub: 0x0098n,  // 0x0098 (0x0008) [UErrorType*]
+  NotClubOwner: 0x00a0n,  // 0x00a0 (0x0008) [UErrorType*]
+  ClubNameChangeNotAllowed: 0x00a8n,  // 0x00a8 (0x0008) [UErrorType*]
+  ClubFull: 0x00b0n,  // 0x00b0 (0x0008) [UErrorType*]
+  ClubMemberNotFound: 0x00b8n,  // 0x00b8 (0x0008) [UErrorType*]
+  ClubInviteNotFound: 0x00c0n,  // 0x00c0 (0x0008) [UErrorType*]
+  ClubInvalidParameters: 0x00c8n,  // 0x00c8 (0x0008) [UErrorType*]
+  ClubNameInvalid: 0x00d0n,  // 0x00d0 (0x0008) [UErrorType*]
+  ClubTagInvalid: 0x00d8n,  // 0x00d8 (0x0008) [UErrorType*]
+  ClubTagPlusNameInvalid: 0x00e0n,  // 0x00e0 (0x0008) [UErrorType*]
+  ClubMotdInvalid: 0x00e8n,  // 0x00e8 (0x0008) [UErrorType*]
+  ClubInvalidTitle: 0x00f0n,  // 0x00f0 (0x0008) [UErrorType*]
+  ClubNameTaken: 0x00f8n,  // 0x00f8 (0x0008) [UErrorType*]
+  ClubOwnerCannotLeaveUnlessEmpty: 0x0100n,  // 0x0100 (0x0008) [UErrorType*]
+  CrossPlatformClubsDisabled: 0x0108n,  // 0x0108 (0x0008) [UErrorType*]
+  ClubInviteCrossPlatformClubsDisabled: 0x0110n,  // 0x0110 (0x0008) [UErrorType*]
+  ClubBanned: 0x0118n,  // 0x0118 (0x0008) [UErrorType*]
+  ClubInsufficientRole: 0x0120n,  // 0x0120 (0x0008) [UErrorType*]
+  AlreadyClubOwner: 0x0128n,  // 0x0128 (0x0008) [UErrorType*]
   ...ErrorList,
 } as const;
 
@@ -1016,24 +622,24 @@ export const ClubErrors_X = {
  * Extends: Object
  */
 export const ClubInvite_X = {
-  ClubID: 0x0060,  // 0x0060 (0x0008) [uint64]
-  ClubName: 0x0068,  // 0x0068 (0x0010) [FString]
-  ClubTag: 0x0078,  // 0x0078 (0x0010) [FString]
-  InvitedBy: 0x0088,  // 0x0088 (0x00B8) [FClubMember]
+  ClubID: 0x0060n,  // 0x0060 (0x0008) [uint64]
+  ClubName: 0x0068n,  // 0x0068 (0x0010) [FString]
+  ClubTag: 0x0078n,  // 0x0078 (0x0010) [FString]
+  InvitedBy: 0x0088n,  // 0x0088 (0x00b8) [FClubMember]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.ClubServerResult_X Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const ClubServerResult_X = {
-  Host: 0x0060,  // 0x0060 (0x0010) [FString]
-  Port: 0x0070,  // 0x0070 (0x0004) [int32]
-  ServerName: 0x0078,  // 0x0078 (0x0010) [FString]
-  CustomServerName: 0x0088,  // 0x0088 (0x0010) [FString]
-  CustomServerPassword: 0x0098,  // 0x0098 (0x0010) [FString]
+  Host: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Port: 0x0070n,  // 0x0070 (0x0004) [int32]
+  ServerName: 0x0078n,  // 0x0078 (0x0010) [FString]
+  CustomServerName: 0x0088n,  // 0x0088 (0x0010) [FString]
+  CustomServerPassword: 0x0098n,  // 0x0098 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -1043,10 +649,10 @@ export const ClubServerResult_X = {
  * Extends: Object
  */
 export const ClubSettings_X = {
-  ClubName: 0x0060,  // 0x0060 (0x0010) [FString]
-  ClubTag: 0x0070,  // 0x0070 (0x0010) [FString]
-  PrimaryColor: 0x0080,  // 0x0080 (0x0004) [int32]
-  AccentColor: 0x0084,  // 0x0084 (0x0004) [int32]
+  ClubName: 0x0060n,  // 0x0060 (0x0010) [FString]
+  ClubTag: 0x0070n,  // 0x0070 (0x0010) [FString]
+  PrimaryColor: 0x0080n,  // 0x0080 (0x0004) [int32]
+  AccentColor: 0x0084n,  // 0x0084 (0x0004) [int32]
   ...Object_,
 } as const;
 
@@ -1056,14 +662,14 @@ export const ClubSettings_X = {
  * Extends: ClubSettings_X
  */
 export const ClubDetails_X = {
-  ClubID: 0x0088,  // 0x0088 (0x0008) [uint64]
-  OwnerPlayerID: 0x0090,  // 0x0090 (0x0048) [FUniqueNetId]
-  bVerified: 0x00D8,  // 0x00D8 (0x0004) [bool : 0x1]
-  bServerReplicated: 0x00D8,  // 0x00D8 (0x0004) [bool : 0x2]
-  LastUpdatedTime: 0x00E0,  // 0x00E0 (0x0008) [uint64]
-  Badges: 0x00E8,  // 0x00E8 (0x0010) [TArray<FStatBadge>]
-  EquippedTitle: 0x00F8,  // 0x00F8 (0x0008) [FName]
-  Members: 0x0100,  // 0x0100 (0x0010) [TArray<FClubMember>]
+  ClubID: 0x0088n,  // 0x0088 (0x0008) [uint64]
+  OwnerPlayerID: 0x0090n,  // 0x0090 (0x0048) [FUniqueNetId]
+  bVerified: 0x00d8n,  // 0x00d8 (0x0004) [bool : 0x1]
+  bServerReplicated: 0x00d8n,  // 0x00d8 (0x0004) [bool : 0x2]
+  LastUpdatedTime: 0x00e0n,  // 0x00e0 (0x0008) [uint64]
+  Badges: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FStatBadge>]
+  EquippedTitle: 0x00f8n,  // 0x00f8 (0x0008) [FName]
+  Members: 0x0100n,  // 0x0100 (0x0010) [TArray<FClubMember>]
   ...ClubSettings_X,
 } as const;
 
@@ -1082,10 +688,10 @@ export const ClubUtil_X = {
  * Extends: Object
  */
 export const ColorPalette_X = {
-  DefaultId: 0x0060,  // 0x0060 (0x0004) [int32]
-  HueCount: 0x0064,  // 0x0064 (0x0004) [int32]
-  ValueCount: 0x0068,  // 0x0068 (0x0004) [int32]
-  Colors: 0x0070,  // 0x0070 (0x0010) [TArray<FLinearColor>]
+  DefaultId: 0x0060n,  // 0x0060 (0x0004) [int32]
+  HueCount: 0x0064n,  // 0x0064 (0x0004) [int32]
+  ValueCount: 0x0068n,  // 0x0068 (0x0004) [int32]
+  Colors: 0x0070n,  // 0x0070 (0x0010) [TArray<FLinearColor>]
   ...Object_,
 } as const;
 
@@ -1100,17 +706,17 @@ export const Compression_X = {
 
 /**
  * ProjectX.ControlPreset_X Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const ControlPreset_X = {
-  PCBindings: 0x0060,  // 0x0060 (0x0010) [TArray<FPlayerBinding>]
-  GamepadBindings: 0x0070,  // 0x0070 (0x0010) [TArray<FPlayerBinding>]
-  bRemovedPCOverrides: 0x0080,  // 0x0080 (0x0004) [bool : 0x1]
-  bRemovedGamepadOverrides: 0x0080,  // 0x0080 (0x0004) [bool : 0x2]
-  SteamInputBindings: 0x0088,  // 0x0088 (0x0010) [TArray<FPlayerBinding>]
-  CustomPresetName: 0x0098,  // 0x0098 (0x0008) [FName]
-  DefaultPresetName: 0x00A0,  // 0x00A0 (0x0008) [FName]
+  PCBindings: 0x0060n,  // 0x0060 (0x0010) [TArray<FPlayerBinding>]
+  GamepadBindings: 0x0070n,  // 0x0070 (0x0010) [TArray<FPlayerBinding>]
+  bRemovedPCOverrides: 0x0080n,  // 0x0080 (0x0004) [bool : 0x1]
+  bRemovedGamepadOverrides: 0x0080n,  // 0x0080 (0x0004) [bool : 0x2]
+  SteamInputBindings: 0x0088n,  // 0x0088 (0x0010) [TArray<FPlayerBinding>]
+  CustomPresetName: 0x0098n,  // 0x0098 (0x0008) [FName]
+  DefaultPresetName: 0x00a0n,  // 0x00a0 (0x0008) [FName]
   ...Object_,
 } as const;
 
@@ -1125,49 +731,31 @@ export const CrashReport_X = {
 
 /**
  * ProjectX.DDoSService_X Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: Object
  */
 export const DDoSService_X = {
-  DDoSServiceMessageSentTimestamp: 0x0060,  // 0x0060 (0x0008) [uint64]
-  DDoSServiceMessageRetryTime: 0x0068,  // 0x0068 (0x0004) [int32]
-  DDoSServiceURL: 0x0070,  // 0x0070 (0x0010) [FString]
-  DDoSServiceName: 0x0080,  // 0x0080 (0x0010) [FString]
-  DDoSServiceVersion: 0x0090,  // 0x0090 (0x0004) [int32]
-  CachedClientIPs: 0x0098,  // 0x0098 (0x0010) [TArray<FString>]
-  DDoSEndProtectionInFlight_Name: 0x00A8,  // 0x00A8 (0x0008) [FName]
-  DDoSStartProtectionInFlight_Name: 0x00B0,  // 0x00B0 (0x0008) [FName]
-  DDoSProtectionEnabled_Name: 0x00B8,  // 0x00B8 (0x0008) [FName]
-  DDoSProtectionDisabled_Name: 0x00C0,  // 0x00C0 (0x0008) [FName]
+  DDoSServiceMessageSentTimestamp: 0x0060n,  // 0x0060 (0x0008) [uint64]
+  DDoSServiceMessageRetryTime: 0x0068n,  // 0x0068 (0x0004) [int32]
+  DDoSServiceURL: 0x0070n,  // 0x0070 (0x0010) [FString]
+  DDoSServiceName: 0x0080n,  // 0x0080 (0x0010) [FString]
+  DDoSServiceVersion: 0x0090n,  // 0x0090 (0x0004) [int32]
+  CachedClientIPs: 0x0098n,  // 0x0098 (0x0010) [TArray<FString>]
+  DDoSEndProtectionInFlight_Name: 0x00a8n,  // 0x00a8 (0x0008) [FName]
+  DDoSStartProtectionInFlight_Name: 0x00b0n,  // 0x00b0 (0x0008) [FName]
+  DDoSProtectionEnabled_Name: 0x00b8n,  // 0x00b8 (0x0008) [FName]
+  DDoSProtectionDisabled_Name: 0x00c0n,  // 0x00c0 (0x0008) [FName]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.DSPendingMessage_X Offsets
- * Size: 0x006C
+ * Size: 0x006c
  * Extends: Object
  */
 export const DSPendingMessage_X = {
-  Message: 0x0060,  // 0x0060 (0x0008) [UDSR_DSMessage_X*]
-  TimeoutTime: 0x0068,  // 0x0068 (0x0004) [float]
-  ...Object_,
-} as const;
-
-/**
- * Core.DebugDrawer Offsets
- * Size: 0x00C0
- * Extends: Object
- */
-export const DebugDrawer = {
-  DefaultTextColor: 0x0060,  // 0x0060 (0x0004) [FColor]
-  bSilent: 0x0064,  // 0x0064 (0x0004) [bool : 0x1]
-  bPrintActorsInline: 0x0064,  // 0x0064 (0x0004) [bool : 0x2]
-  Indentation: 0x0068,  // 0x0068 (0x0004) [int32]
-  IndentationString: 0x0070,  // 0x0070 (0x0010) [FString]
-  PrintedObjects: 0x0080,  // 0x0080 (0x0010) [TArray<UObject*>]
-  QueuedObjects: 0x0090,  // 0x0090 (0x0010) [TArray<UObject*>]
-  PrintObjectCount: 0x00A0,  // 0x00A0 (0x0004) [int32]
-  __LogFunc__Delegate: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
+  Message: 0x0060n,  // 0x0060 (0x0008) [UDSR_DSMessage_X*]
+  TimeoutTime: 0x0068n,  // 0x0068 (0x0004) [float]
   ...Object_,
 } as const;
 
@@ -1177,14 +765,14 @@ export const DebugDrawer = {
  * Extends: DebugDrawer
  */
 export const DebugDrawer_X = {
-  TextScale: 0x00C0,  // 0x00C0 (0x0004) [float]
-  Canvas: 0x00C8,  // 0x00C8 (0x0008) [UCanvas*]
-  DebugCategories: 0x00D0,  // 0x00D0 (0x0010) [TArray<FName>]
-  PossibleDebugCategories: 0x00E0,  // 0x00E0 (0x0010) [TArray<FName>]
-  CharWidth: 0x00F0,  // 0x00F0 (0x0004) [float]
-  LastWidestElement: 0x00F4,  // 0x00F4 (0x0004) [float]
-  bHideDebug: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x1]
-  OffsetX: 0x00FC,  // 0x00FC (0x0004) [float]
+  TextScale: 0x00c0n,  // 0x00c0 (0x0004) [float]
+  Canvas: 0x00c8n,  // 0x00c8 (0x0008) [UCanvas*]
+  DebugCategories: 0x00d0n,  // 0x00d0 (0x0010) [TArray<FName>]
+  PossibleDebugCategories: 0x00e0n,  // 0x00e0 (0x0010) [TArray<FName>]
+  CharWidth: 0x00f0n,  // 0x00f0 (0x0004) [float]
+  LastWidestElement: 0x00f4n,  // 0x00f4 (0x0004) [float]
+  bHideDebug: 0x00f8n,  // 0x00f8 (0x0004) [bool : 0x1]
+  OffsetX: 0x00fcn,  // 0x00fc (0x0004) [float]
   ...DebugDrawer,
 } as const;
 
@@ -1203,8 +791,8 @@ export const DecodeObjectTypes_X = {
  * Extends: Object
  */
 export const DecodeObject_X = {
-  Checksum: 0x0060,  // 0x0060 (0x0004) [int32]
-  Error: 0x0068,  // 0x0068 (0x0008) [UError*]
+  Checksum: 0x0060n,  // 0x0060 (0x0004) [int32]
+  Error: 0x0068n,  // 0x0068 (0x0008) [UError*]
   ...Object_,
 } as const;
 
@@ -1214,8 +802,8 @@ export const DecodeObject_X = {
  * Extends: DecodeObject_X
  */
 export const DecodeObjectJson_X = {
-  JsonSerializer: 0x0070,  // 0x0070 (0x0008) [UJSONSerializer_X*]
-  Stream: 0x0078,  // 0x0078 (0x0010) [FString]
+  JsonSerializer: 0x0070n,  // 0x0070 (0x0008) [UJSONSerializer_X*]
+  Stream: 0x0078n,  // 0x0078 (0x0010) [FString]
   ...DecodeObject_X,
 } as const;
 
@@ -1225,28 +813,14 @@ export const DecodeObjectJson_X = {
  * Extends: DecodeObject_X
  */
 export const DecodeObjectUObject_X = {
-  ObjectSerializer: 0x0070,  // 0x0070 (0x0008) [UObjectSerializer_X*]
-  Stream: 0x0078,  // 0x0078 (0x0010) [TArray<uint8>]
+  ObjectSerializer: 0x0070n,  // 0x0070 (0x0008) [UObjectSerializer_X*]
+  Stream: 0x0078n,  // 0x0078 (0x0010) [TArray<uint8>]
   ...DecodeObject_X,
 } as const;
 
 /**
- * Engine.DistributionFloatParameterBase Offsets
- * Size: 0x00A1
- * Extends: DistributionFloatConstant
- */
-export const DistributionFloatParameterBase = {
-  ParameterName: 0x0088,  // 0x0088 (0x0008) [FName]
-  MinInput: 0x0090,  // 0x0090 (0x0004) [float]
-  MaxInput: 0x0094,  // 0x0094 (0x0004) [float]
-  MinOutput: 0x0098,  // 0x0098 (0x0004) [float]
-  MaxOutput: 0x009C,  // 0x009C (0x0004) [float]
-  ParamMode: 0x00A0,  // 0x00A0 (0x0001) [DistributionParamMode]
-} as const;
-
-/**
  * ProjectX.DistributionFloatShakeParameter_X Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: DistributionFloatParameterBase
  */
 export const DistributionFloatShakeParameter_X = {
@@ -1259,7 +833,7 @@ export const DistributionFloatShakeParameter_X = {
  * Extends: Object
  */
 export const DownloadedPlaylistsData_X = {
-  Playlists: 0x0060,  // 0x0060 (0x0010) [TArray<UGameSettingPlaylist_X*>]
+  Playlists: 0x0060n,  // 0x0060 (0x0010) [TArray<UGameSettingPlaylist_X*>]
   ...Object_,
 } as const;
 
@@ -1269,33 +843,33 @@ export const DownloadedPlaylistsData_X = {
  * Extends: Object
  */
 export const DynamicValueModifier_X = {
-  DisplayName: 0x0060,  // 0x0060 (0x0010) [FString]
-  Type: 0x0070,  // 0x0070 (0x0001) [EDynamicValueModType]
-  Priority: 0x0074,  // 0x0074 (0x0004) [int32]
+  DisplayName: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Type: 0x0070n,  // 0x0070 (0x0001) [EDynamicValueModType]
+  Priority: 0x0074n,  // 0x0074 (0x0004) [int32]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.DynamicValueModifierCurve_X Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: DynamicValueModifier_X
  */
 export const DynamicValueModifierCurve_X = {
-  Curve: 0x0078,  // 0x0078 (0x0018) [FInterpCurveFloat]
-  __GetValueDelegate__Delegate: 0x0090,  // 0x0090 (0x0018) [FScriptDelegate]
+  Curve: 0x0078n,  // 0x0078 (0x0018) [FInterpCurveFloat]
+  __GetValueDelegate__Delegate: 0x0090n,  // 0x0090 (0x0018) [FScriptDelegate]
   ...DynamicValueModifier_X,
 } as const;
 
 /**
  * ProjectX.DynamicValueModifierDuration_X Offsets
- * Size: 0x009C
+ * Size: 0x009c
  * Extends: DynamicValueModifier_X
  */
 export const DynamicValueModifierDuration_X = {
-  Duration: 0x0078,  // 0x0078 (0x0004) [float]
-  Value: 0x007C,  // 0x007C (0x0004) [float]
-  CurveValue: 0x0080,  // 0x0080 (0x0018) [FInterpCurveFloat]
-  bUseCurve: 0x0098,  // 0x0098 (0x0004) [bool : 0x1]
+  Duration: 0x0078n,  // 0x0078 (0x0004) [float]
+  Value: 0x007cn,  // 0x007c (0x0004) [float]
+  CurveValue: 0x0080n,  // 0x0080 (0x0018) [FInterpCurveFloat]
+  bUseCurve: 0x0098n,  // 0x0098 (0x0004) [bool : 0x1]
   ...DynamicValueModifier_X,
 } as const;
 
@@ -1305,31 +879,31 @@ export const DynamicValueModifierDuration_X = {
  * Extends: Object
  */
 export const DynamicValue_X = {
-  DefaultValue: 0x0060,  // 0x0060 (0x0004) [float]
-  bClampMax: 0x0064,  // 0x0064 (0x0004) [bool : 0x1]
-  bClampMin: 0x0064,  // 0x0064 (0x0004) [bool : 0x2]
-  MaxValue: 0x0068,  // 0x0068 (0x0004) [float]
-  MinValue: 0x006C,  // 0x006C (0x0004) [float]
-  Modifiers: 0x0070,  // 0x0070 (0x0010) [TArray<UDynamicValueModifier_X*>]
-  CachedValue: 0x0080,  // 0x0080 (0x0004) [float]
+  DefaultValue: 0x0060n,  // 0x0060 (0x0004) [float]
+  bClampMax: 0x0064n,  // 0x0064 (0x0004) [bool : 0x1]
+  bClampMin: 0x0064n,  // 0x0064 (0x0004) [bool : 0x2]
+  MaxValue: 0x0068n,  // 0x0068 (0x0004) [float]
+  MinValue: 0x006cn,  // 0x006c (0x0004) [float]
+  Modifiers: 0x0070n,  // 0x0070 (0x0010) [TArray<UDynamicValueModifier_X*>]
+  CachedValue: 0x0080n,  // 0x0080 (0x0004) [float]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.EASAuthResponse Offsets
- * Size: 0x00E8
+ * Size: 0x00e8
  * Extends: Object
  */
 export const EASAuthResponse = {
-  access_token: 0x0060,  // 0x0060 (0x0010) [FString]
-  token_type: 0x0070,  // 0x0070 (0x0010) [FString]
-  expires_at: 0x0080,  // 0x0080 (0x0010) [FString]
-  expires_in: 0x0090,  // 0x0090 (0x0004) [int32]
-  Features: 0x0098,  // 0x0098 (0x0010) [TArray<FString>]
-  organization_id: 0x00A8,  // 0x00A8 (0x0010) [FString]
-  product_id: 0x00B8,  // 0x00B8 (0x0010) [FString]
-  sandbox_id: 0x00C8,  // 0x00C8 (0x0010) [FString]
-  deployment_id: 0x00D8,  // 0x00D8 (0x0010) [FString]
+  access_token: 0x0060n,  // 0x0060 (0x0010) [FString]
+  token_type: 0x0070n,  // 0x0070 (0x0010) [FString]
+  expires_at: 0x0080n,  // 0x0080 (0x0010) [FString]
+  expires_in: 0x0090n,  // 0x0090 (0x0004) [int32]
+  Features: 0x0098n,  // 0x0098 (0x0010) [TArray<FString>]
+  organization_id: 0x00a8n,  // 0x00a8 (0x0010) [FString]
+  product_id: 0x00b8n,  // 0x00b8 (0x0010) [FString]
+  sandbox_id: 0x00c8n,  // 0x00c8 (0x0010) [FString]
+  deployment_id: 0x00d8n,  // 0x00d8 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -1339,8 +913,8 @@ export const EASAuthResponse = {
  * Extends: Object
  */
 export const EOSHelpers_X = {
-  __HTTPRequestCallback__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  __ConvertErrorFunction__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
+  __HTTPRequestCallback__Delegate: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
+  __ConvertErrorFunction__Delegate: 0x0078n,  // 0x0078 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -1350,40 +924,40 @@ export const EOSHelpers_X = {
  * Extends: Object
  */
 export const EOSMetricEvent_X = {
-  EventName: 0x0060,  // 0x0060 (0x0008) [FName]
+  EventName: 0x0060n,  // 0x0060 (0x0008) [FName]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.EOSEvent_Presence_X Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: EOSMetricEvent_X
  */
 export const EOSEvent_Presence_X = {
-  Location: 0x0068,  // 0x0068 (0x0010) [FString]
-  MapName: 0x0078,  // 0x0078 (0x0010) [FString]
-  StreamingService: 0x0088,  // 0x0088 (0x0010) [FString]
-  PlaylistId: 0x0098,  // 0x0098 (0x0004) [int32]
-  LevelSessionID: 0x009C,  // 0x009C (0x0010) [FGuid]
-  ServerRegion: 0x00B0,  // 0x00B0 (0x0010) [FString]
+  Location: 0x0068n,  // 0x0068 (0x0010) [FString]
+  MapName: 0x0078n,  // 0x0078 (0x0010) [FString]
+  StreamingService: 0x0088n,  // 0x0088 (0x0010) [FString]
+  PlaylistId: 0x0098n,  // 0x0098 (0x0004) [int32]
+  LevelSessionID: 0x009cn,  // 0x009c (0x0010) [FGuid]
+  ServerRegion: 0x00b0n,  // 0x00b0 (0x0010) [FString]
   ...EOSMetricEvent_X,
 } as const;
 
 /**
  * ProjectX.EOSMetrics_X Offsets
- * Size: 0x00D0
+ * Size: 0x00d0
  * Extends: Object
  */
 export const EOSMetrics_X = {
-  PsyNet: 0x0060,  // 0x0060 (0x0008) [UPsyNet_X*]
-  EOSMetricsConfig: 0x0068,  // 0x0068 (0x0008) [UEOSMetricsConfig_X*]
-  LocalPlayer: 0x0070,  // 0x0070 (0x0008) [ULocalPlayer_X*]
-  bCrashing: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  EMGuid: 0x0080,  // 0x0080 (0x0010) [FString]
-  QueryParamsTemplate: 0x0090,  // 0x0090 (0x0010) [FString]
-  CurrentEvents: 0x00A0,  // 0x00A0 (0x0010) [FMetricEventJsonStruct]
-  LatestLocation: 0x00B0,  // 0x00B0 (0x0010) [FString]
-  StreamingServiceType: 0x00C0,  // 0x00C0 (0x0010) [FString]
+  PsyNet: 0x0060n,  // 0x0060 (0x0008) [UPsyNet_X*]
+  EOSMetricsConfig: 0x0068n,  // 0x0068 (0x0008) [UEOSMetricsConfig_X*]
+  LocalPlayer: 0x0070n,  // 0x0070 (0x0008) [ULocalPlayer_X*]
+  bCrashing: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
+  EMGuid: 0x0080n,  // 0x0080 (0x0010) [FString]
+  QueryParamsTemplate: 0x0090n,  // 0x0090 (0x0010) [FString]
+  CurrentEvents: 0x00a0n,  // 0x00a0 (0x0010) [FMetricEventJsonStruct]
+  LatestLocation: 0x00b0n,  // 0x00b0 (0x0010) [FString]
+  StreamingServiceType: 0x00c0n,  // 0x00c0 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -1393,10 +967,10 @@ export const EOSMetrics_X = {
  * Extends: Object
  */
 export const EOS_ErrorResponse = {
-  ErrorMessage: 0x0060,  // 0x0060 (0x0010) [FString]
-  NumericErrorCode: 0x0070,  // 0x0070 (0x0004) [int32]
-  ErrorCode: 0x0078,  // 0x0078 (0x0010) [FString]
-  MessageVars: 0x0088,  // 0x0088 (0x0010) [TArray<FString>]
+  ErrorMessage: 0x0060n,  // 0x0060 (0x0010) [FString]
+  NumericErrorCode: 0x0070n,  // 0x0070 (0x0004) [int32]
+  ErrorCode: 0x0078n,  // 0x0078 (0x0010) [FString]
+  MessageVars: 0x0088n,  // 0x0088 (0x0010) [TArray<FString>]
   ...Object_,
 } as const;
 
@@ -1406,21 +980,21 @@ export const EOS_ErrorResponse = {
  * Extends: Object
  */
 export const EOS_GetAccountsResponse = {
-  Accounts: 0x0060,  // 0x0060 (0x0010) [TArray<FEOSAccountInfo>]
+  Accounts: 0x0060n,  // 0x0060 (0x0010) [TArray<FEOSAccountInfo>]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.EOS_AccountSummaryResponse Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: EOS_GetAccountsResponse
  */
 export const EOS_AccountSummaryResponse = {
-  Friends: 0x0070,  // 0x0070 (0x0010) [TArray<FEOSAccountInfo>]
-  Incoming: 0x0080,  // 0x0080 (0x0010) [TArray<FEOSAccountInfo>]
-  Outgoing: 0x0090,  // 0x0090 (0x0010) [TArray<FEOSAccountInfo>]
-  BlockList: 0x00A0,  // 0x00A0 (0x0010) [TArray<FEOSAccountInfo>]
-  Settings: 0x00B0,  // 0x00B0 (0x0010) [FAccountSettings]
+  Friends: 0x0070n,  // 0x0070 (0x0010) [TArray<FEOSAccountInfo>]
+  Incoming: 0x0080n,  // 0x0080 (0x0010) [TArray<FEOSAccountInfo>]
+  Outgoing: 0x0090n,  // 0x0090 (0x0010) [TArray<FEOSAccountInfo>]
+  BlockList: 0x00a0n,  // 0x00a0 (0x0010) [TArray<FEOSAccountInfo>]
+  Settings: 0x00b0n,  // 0x00b0 (0x0010) [FAccountSettings]
   ...EOS_GetAccountsResponse,
 } as const;
 
@@ -1430,8 +1004,8 @@ export const EOS_AccountSummaryResponse = {
  * Extends: Object
  */
 export const EOS_ManageBlockListResponse = {
-  AccountId: 0x0060,  // 0x0060 (0x0010) [FString]
-  Created: 0x0070,  // 0x0070 (0x0010) [FString]
+  AccountId: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Created: 0x0070n,  // 0x0070 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -1441,7 +1015,7 @@ export const EOS_ManageBlockListResponse = {
  * Extends: Object
  */
 export const EOS_ManageFriendsListResponse = {
-  Status: 0x0060,  // 0x0060 (0x0010) [FString]
+  Status: 0x0060n,  // 0x0060 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -1451,7 +1025,7 @@ export const EOS_ManageFriendsListResponse = {
  * Extends: Object
  */
 export const EffectsMap_X = {
-  Effects: 0x0060,  // 0x0060 (0x0010) [TArray<FEffectsMapping>]
+  Effects: 0x0060n,  // 0x0060 (0x0010) [TArray<FEffectsMapping>]
   ...Object_,
 } as const;
 
@@ -1470,8 +1044,8 @@ export const EnableOnlineSave_X = {
  * Extends: Object
  */
 export const EncodeObjectFactory_X = {
-  JsonSerializer: 0x0060,  // 0x0060 (0x0008) [UJSONSerializer_X*]
-  ObjectSerializer: 0x0068,  // 0x0068 (0x0008) [UObjectSerializer_X*]
+  JsonSerializer: 0x0060n,  // 0x0060 (0x0008) [UJSONSerializer_X*]
+  ObjectSerializer: 0x0068n,  // 0x0068 (0x0008) [UObjectSerializer_X*]
   ...Object_,
 } as const;
 
@@ -1490,9 +1064,9 @@ export const EncodeObjectTypes_X = {
  * Extends: Object
  */
 export const EncodeObject_X = {
-  Encoding: 0x0060,  // 0x0060 (0x0001) [EObjectEncoding]
-  Checksum: 0x0064,  // 0x0064 (0x0004) [int32]
-  Encoded: 0x0068,  // 0x0068 (0x0010) [FString]
+  Encoding: 0x0060n,  // 0x0060 (0x0001) [EObjectEncoding]
+  Checksum: 0x0064n,  // 0x0064 (0x0004) [int32]
+  Encoded: 0x0068n,  // 0x0068 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -1502,7 +1076,7 @@ export const EncodeObject_X = {
  * Extends: EncodeObject_X
  */
 export const EncodeObjectJson_X = {
-  JsonSerializer: 0x0078,  // 0x0078 (0x0008) [UJSONSerializer_X*]
+  JsonSerializer: 0x0078n,  // 0x0078 (0x0008) [UJSONSerializer_X*]
   ...EncodeObject_X,
 } as const;
 
@@ -1512,17 +1086,8 @@ export const EncodeObjectJson_X = {
  * Extends: EncodeObject_X
  */
 export const EncodeObjectUObject_X = {
-  ObjectSerializer: 0x0078,  // 0x0078 (0x0008) [UObjectSerializer_X*]
+  ObjectSerializer: 0x0078n,  // 0x0078 (0x0008) [UObjectSerializer_X*]
   ...EncodeObject_X,
-} as const;
-
-/**
- * Engine.EngineShare Offsets
- * Size: 0x0060
- * Extends: Object
- */
-export const EngineShare = {
-  ...Object_,
 } as const;
 
 /**
@@ -1531,22 +1096,22 @@ export const EngineShare = {
  * Extends: EngineShare
  */
 export const EngineShare_X = {
-  OnlineGame: 0x0060,  // 0x0060 (0x0008) [UOnlineGame_Base_X*]
-  LocalCache: 0x0068,  // 0x0068 (0x0008) [ULocalCache_X*]
-  ArchetypeString_OnlineGame: 0x0070,  // 0x0070 (0x0010) [FString]
-  ArchetypeString_OnlineGameDedicatedServer: 0x0080,  // 0x0080 (0x0010) [FString]
-  bDisableSaving: 0x0090,  // 0x0090 (0x0004) [bool : 0x1]
-  bIsShowingLoadmapMovie: 0x0090,  // 0x0090 (0x0004) [bool : 0x2]
-  bUndocked: 0x0090,  // 0x0090 (0x0004) [bool : 0x4]
-  __EventPreExit__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
-  __EventLoadingMovieClosed__Delegate: 0x00B0,  // 0x00B0 (0x0018) [FScriptDelegate]
-  __EventPreScriptsReloaded__Delegate: 0x00C8,  // 0x00C8 (0x0018) [FScriptDelegate]
-  __EventPostScriptsReloaded__Delegate: 0x00E0,  // 0x00E0 (0x0018) [FScriptDelegate]
-  __EventOnlineGameInitialized__Delegate: 0x00F8,  // 0x00F8 (0x0018) [FScriptDelegate]
-  __EventPreLoadMap__Delegate: 0x0110,  // 0x0110 (0x0018) [FScriptDelegate]
-  __EventPostLoadMap__Delegate: 0x0128,  // 0x0128 (0x0018) [FScriptDelegate]
-  __EventCrashed__Delegate: 0x0140,  // 0x0140 (0x0018) [FScriptDelegate]
-  __EventUndockedChanged__Delegate: 0x0158,  // 0x0158 (0x0018) [FScriptDelegate]
+  OnlineGame: 0x0060n,  // 0x0060 (0x0008) [UOnlineGame_Base_X*]
+  LocalCache: 0x0068n,  // 0x0068 (0x0008) [ULocalCache_X*]
+  ArchetypeString_OnlineGame: 0x0070n,  // 0x0070 (0x0010) [FString]
+  ArchetypeString_OnlineGameDedicatedServer: 0x0080n,  // 0x0080 (0x0010) [FString]
+  bDisableSaving: 0x0090n,  // 0x0090 (0x0004) [bool : 0x1]
+  bIsShowingLoadmapMovie: 0x0090n,  // 0x0090 (0x0004) [bool : 0x2]
+  bUndocked: 0x0090n,  // 0x0090 (0x0004) [bool : 0x4]
+  __EventPreExit__Delegate: 0x0098n,  // 0x0098 (0x0018) [FScriptDelegate]
+  __EventLoadingMovieClosed__Delegate: 0x00b0n,  // 0x00b0 (0x0018) [FScriptDelegate]
+  __EventPreScriptsReloaded__Delegate: 0x00c8n,  // 0x00c8 (0x0018) [FScriptDelegate]
+  __EventPostScriptsReloaded__Delegate: 0x00e0n,  // 0x00e0 (0x0018) [FScriptDelegate]
+  __EventOnlineGameInitialized__Delegate: 0x00f8n,  // 0x00f8 (0x0018) [FScriptDelegate]
+  __EventPreLoadMap__Delegate: 0x0110n,  // 0x0110 (0x0018) [FScriptDelegate]
+  __EventPostLoadMap__Delegate: 0x0128n,  // 0x0128 (0x0018) [FScriptDelegate]
+  __EventCrashed__Delegate: 0x0140n,  // 0x0140 (0x0018) [FScriptDelegate]
+  __EventUndockedChanged__Delegate: 0x0158n,  // 0x0158 (0x0018) [FScriptDelegate]
   ...EngineShare,
 } as const;
 
@@ -1556,33 +1121,33 @@ export const EngineShare_X = {
  * Extends: ErrorList
  */
 export const EpicErrors_X = {
-  EpicAccountLinkingFailed: 0x0080,  // 0x0080 (0x0008) [UErrorType*]
-  EOSFailedToConnect: 0x0088,  // 0x0088 (0x0008) [UErrorType*]
-  EOSFailedToConnectSplitscreen: 0x0090,  // 0x0090 (0x0008) [UErrorType*]
-  NotLoggedInToEOS: 0x0098,  // 0x0098 (0x0008) [UErrorType*]
-  EOSUpdateRequired: 0x00A0,  // 0x00A0 (0x0008) [UErrorType*]
-  PinGrantCodeExpired: 0x00A8,  // 0x00A8 (0x0008) [UErrorType*]
-  PrimaryAccountNotSet: 0x00B0,  // 0x00B0 (0x0008) [UErrorType*]
-  EpicInvalidPlayer: 0x00B8,  // 0x00B8 (0x0008) [UErrorType*]
-  EpicThrottlingHit: 0x00C0,  // 0x00C0 (0x0008) [UErrorType*]
-  EpicNotAcceptingFriendInvites: 0x00C8,  // 0x00C8 (0x0008) [UErrorType*]
-  EpicRemoteFriendLimitReached: 0x00D0,  // 0x00D0 (0x0008) [UErrorType*]
-  EpicMaxOutgoingInvitesReached: 0x00D8,  // 0x00D8 (0x0008) [UErrorType*]
-  EpicLocalFriendLimitReached: 0x00E0,  // 0x00E0 (0x0008) [UErrorType*]
-  EpicAccountLookupFailed: 0x00E8,  // 0x00E8 (0x0008) [UErrorType*]
-  EpicAccountCreationFailed: 0x00F0,  // 0x00F0 (0x0008) [UErrorType*]
-  EpicAccountRestricted: 0x00F8,  // 0x00F8 (0x0008) [UErrorType*]
-  EpicPartyInviteFailed: 0x0100,  // 0x0100 (0x0008) [UErrorType*]
-  IncorrectSaveLoaded: 0x0108,  // 0x0108 (0x0008) [UErrorType*]
-  EpicSocialBanned: 0x0110,  // 0x0110 (0x0008) [UErrorType*]
-  MaxPendingFriendInvitesReached: 0x0118,  // 0x0118 (0x0008) [UErrorType*]
-  PinRequiredForFriends: 0x0120,  // 0x0120 (0x0008) [UErrorType*]
-  InvalidPin: 0x0128,  // 0x0128 (0x0008) [UErrorType*]
-  EpicInvalidDateOfBirth: 0x0130,  // 0x0130 (0x0008) [UErrorType*]
-  EpicInvalidEmail: 0x0138,  // 0x0138 (0x0008) [UErrorType*]
-  EpicContinuationTokenNotFound: 0x0140,  // 0x0140 (0x0008) [UErrorType*]
-  EpicCabinedExtAuthCreateNotAllowed: 0x0148,  // 0x0148 (0x0008) [UErrorType*]
-  EpicEmailNotAllowed: 0x0150,  // 0x0150 (0x0008) [UErrorType*]
+  EpicAccountLinkingFailed: 0x0080n,  // 0x0080 (0x0008) [UErrorType*]
+  EOSFailedToConnect: 0x0088n,  // 0x0088 (0x0008) [UErrorType*]
+  EOSFailedToConnectSplitscreen: 0x0090n,  // 0x0090 (0x0008) [UErrorType*]
+  NotLoggedInToEOS: 0x0098n,  // 0x0098 (0x0008) [UErrorType*]
+  EOSUpdateRequired: 0x00a0n,  // 0x00a0 (0x0008) [UErrorType*]
+  PinGrantCodeExpired: 0x00a8n,  // 0x00a8 (0x0008) [UErrorType*]
+  PrimaryAccountNotSet: 0x00b0n,  // 0x00b0 (0x0008) [UErrorType*]
+  EpicInvalidPlayer: 0x00b8n,  // 0x00b8 (0x0008) [UErrorType*]
+  EpicThrottlingHit: 0x00c0n,  // 0x00c0 (0x0008) [UErrorType*]
+  EpicNotAcceptingFriendInvites: 0x00c8n,  // 0x00c8 (0x0008) [UErrorType*]
+  EpicRemoteFriendLimitReached: 0x00d0n,  // 0x00d0 (0x0008) [UErrorType*]
+  EpicMaxOutgoingInvitesReached: 0x00d8n,  // 0x00d8 (0x0008) [UErrorType*]
+  EpicLocalFriendLimitReached: 0x00e0n,  // 0x00e0 (0x0008) [UErrorType*]
+  EpicAccountLookupFailed: 0x00e8n,  // 0x00e8 (0x0008) [UErrorType*]
+  EpicAccountCreationFailed: 0x00f0n,  // 0x00f0 (0x0008) [UErrorType*]
+  EpicAccountRestricted: 0x00f8n,  // 0x00f8 (0x0008) [UErrorType*]
+  EpicPartyInviteFailed: 0x0100n,  // 0x0100 (0x0008) [UErrorType*]
+  IncorrectSaveLoaded: 0x0108n,  // 0x0108 (0x0008) [UErrorType*]
+  EpicSocialBanned: 0x0110n,  // 0x0110 (0x0008) [UErrorType*]
+  MaxPendingFriendInvitesReached: 0x0118n,  // 0x0118 (0x0008) [UErrorType*]
+  PinRequiredForFriends: 0x0120n,  // 0x0120 (0x0008) [UErrorType*]
+  InvalidPin: 0x0128n,  // 0x0128 (0x0008) [UErrorType*]
+  EpicInvalidDateOfBirth: 0x0130n,  // 0x0130 (0x0008) [UErrorType*]
+  EpicInvalidEmail: 0x0138n,  // 0x0138 (0x0008) [UErrorType*]
+  EpicContinuationTokenNotFound: 0x0140n,  // 0x0140 (0x0008) [UErrorType*]
+  EpicCabinedExtAuthCreateNotAllowed: 0x0148n,  // 0x0148 (0x0008) [UErrorType*]
+  EpicEmailNotAllowed: 0x0150n,  // 0x0150 (0x0008) [UErrorType*]
   ...ErrorList,
 } as const;
 
@@ -1592,18 +1157,18 @@ export const EpicErrors_X = {
  * Extends: Object
  */
 export const EpicFriendsPlugin_X = {
-  ServerURL: 0x0060,  // 0x0060 (0x0010) [FString]
-  FriendsServerURL: 0x0070,  // 0x0070 (0x0010) [FString]
-  AddFriendURL: 0x0080,  // 0x0080 (0x0010) [FString]
-  RemoveFriendURL: 0x0090,  // 0x0090 (0x0010) [FString]
-  OutgoingFriendRequestsURL: 0x00A0,  // 0x00A0 (0x0010) [FString]
-  IncomingFriendRequestsURL: 0x00B0,  // 0x00B0 (0x0010) [FString]
-  BlockPlayerURL: 0x00C0,  // 0x00C0 (0x0010) [FString]
-  BlockListURL: 0x00D0,  // 0x00D0 (0x0010) [FString]
-  AccountSummaryURL: 0x00E0,  // 0x00E0 (0x0010) [FString]
-  __HTTPRequestCallback__Delegate: 0x00F0,  // 0x00F0 (0x0018) [FScriptDelegate]
-  __AddFriendCallback__Delegate: 0x0108,  // 0x0108 (0x0018) [FScriptDelegate]
-  __GetOutgoingFriendsCallback__Delegate: 0x0120,  // 0x0120 (0x0018) [FScriptDelegate]
+  ServerURL: 0x0060n,  // 0x0060 (0x0010) [FString]
+  FriendsServerURL: 0x0070n,  // 0x0070 (0x0010) [FString]
+  AddFriendURL: 0x0080n,  // 0x0080 (0x0010) [FString]
+  RemoveFriendURL: 0x0090n,  // 0x0090 (0x0010) [FString]
+  OutgoingFriendRequestsURL: 0x00a0n,  // 0x00a0 (0x0010) [FString]
+  IncomingFriendRequestsURL: 0x00b0n,  // 0x00b0 (0x0010) [FString]
+  BlockPlayerURL: 0x00c0n,  // 0x00c0 (0x0010) [FString]
+  BlockListURL: 0x00d0n,  // 0x00d0 (0x0010) [FString]
+  AccountSummaryURL: 0x00e0n,  // 0x00e0 (0x0010) [FString]
+  __HTTPRequestCallback__Delegate: 0x00f0n,  // 0x00f0 (0x0018) [FScriptDelegate]
+  __AddFriendCallback__Delegate: 0x0108n,  // 0x0108 (0x0018) [FScriptDelegate]
+  __GetOutgoingFriendsCallback__Delegate: 0x0120n,  // 0x0120 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -1613,35 +1178,35 @@ export const EpicFriendsPlugin_X = {
  * Extends: Object
  */
 export const EpicLogin_X = {
-  PinGrantCode: 0x0060,  // 0x0060 (0x0010) [FString]
-  PinGrantURL: 0x0070,  // 0x0070 (0x0010) [FString]
-  PinGrantExpiration: 0x0080,  // 0x0080 (0x0008) [uint64]
-  bLoggedIn: 0x0088,  // 0x0088 (0x0004) [bool : 0x1]
-  bCorrectiveActionRequired: 0x0088,  // 0x0088 (0x0004) [bool : 0x2]
-  bSetAsPrimaryAccount: 0x0088,  // 0x0088 (0x0004) [bool : 0x4]
-  bPollDuringAccountLinking: 0x0088,  // 0x0088 (0x0004) [bool : 0x8]
-  bPinGrantRequestInProgress: 0x0088,  // 0x0088 (0x0004) [bool : 0x10]
-  bLoginInProgress: 0x0088,  // 0x0088 (0x0004) [bool : 0x20]
-  bNintendoServiceAccountLinkingNeeded: 0x0088,  // 0x0088 (0x0004) [bool : 0x40]
-  bRefusedNintendoAccountAuthorization: 0x0088,  // 0x0088 (0x0004) [bool : 0x80]
-  bUserSpecifiedPrimaryAccount: 0x0088,  // 0x0088 (0x0004) [bool : 0x100]
-  bInitialized: 0x0088,  // 0x0088 (0x0004) [bool : 0x200]
-  bIsExternalUIOpen: 0x0088,  // 0x0088 (0x0004) [bool : 0x400]
-  ParentalConsentURL: 0x0090,  // 0x0090 (0x0010) [FString]
-  CabinedFlowState: 0x00A0,  // 0x00A0 (0x0001) [AgeGateState]
-  OldCabinedFlowState_Switch: 0x00A1,  // 0x00A1 (0x0001) [AgeGateState]
-  LoginError: 0x00A8,  // 0x00A8 (0x0008) [UError*]
-  LoginErrorTimestamp: 0x00B0,  // 0x00B0 (0x0008) [uint64]
-  EpicConfig: 0x00B8,  // 0x00B8 (0x0008) [UEpicConfig_X*]
-  linkedAccounts: 0x00C0,  // 0x00C0 (0x0010) [TArray<FLinkedAccount>]
-  EpicAccountId: 0x00D0,  // 0x00D0 (0x0010) [FString]
-  __EventLoginSucceeded__Delegate: 0x00E0,  // 0x00E0 (0x0018) [FScriptDelegate]
-  __EventLoginFailed__Delegate: 0x00F8,  // 0x00F8 (0x0018) [FScriptDelegate]
-  __EventReceivedPinGrantCode__Delegate: 0x0110,  // 0x0110 (0x0018) [FScriptDelegate]
-  __EventLoginError__Delegate: 0x0128,  // 0x0128 (0x0018) [FScriptDelegate]
-  __EventReceivedEpicAuthTicket__Delegate: 0x0140,  // 0x0140 (0x0018) [FScriptDelegate]
-  __EventInitialized__Delegate: 0x0158,  // 0x0158 (0x0018) [FScriptDelegate]
-  __EventCreatedEpicGamesAccount__Delegate: 0x0170,  // 0x0170 (0x0018) [FScriptDelegate]
+  PinGrantCode: 0x0060n,  // 0x0060 (0x0010) [FString]
+  PinGrantURL: 0x0070n,  // 0x0070 (0x0010) [FString]
+  PinGrantExpiration: 0x0080n,  // 0x0080 (0x0008) [uint64]
+  bLoggedIn: 0x0088n,  // 0x0088 (0x0004) [bool : 0x1]
+  bCorrectiveActionRequired: 0x0088n,  // 0x0088 (0x0004) [bool : 0x2]
+  bSetAsPrimaryAccount: 0x0088n,  // 0x0088 (0x0004) [bool : 0x4]
+  bPollDuringAccountLinking: 0x0088n,  // 0x0088 (0x0004) [bool : 0x8]
+  bPinGrantRequestInProgress: 0x0088n,  // 0x0088 (0x0004) [bool : 0x10]
+  bLoginInProgress: 0x0088n,  // 0x0088 (0x0004) [bool : 0x20]
+  bNintendoServiceAccountLinkingNeeded: 0x0088n,  // 0x0088 (0x0004) [bool : 0x40]
+  bRefusedNintendoAccountAuthorization: 0x0088n,  // 0x0088 (0x0004) [bool : 0x80]
+  bUserSpecifiedPrimaryAccount: 0x0088n,  // 0x0088 (0x0004) [bool : 0x100]
+  bInitialized: 0x0088n,  // 0x0088 (0x0004) [bool : 0x200]
+  bIsExternalUIOpen: 0x0088n,  // 0x0088 (0x0004) [bool : 0x400]
+  ParentalConsentURL: 0x0090n,  // 0x0090 (0x0010) [FString]
+  CabinedFlowState: 0x00a0n,  // 0x00a0 (0x0001) [AgeGateState]
+  OldCabinedFlowState_Switch: 0x00a1n,  // 0x00a1 (0x0001) [AgeGateState]
+  LoginError: 0x00a8n,  // 0x00a8 (0x0008) [UError*]
+  LoginErrorTimestamp: 0x00b0n,  // 0x00b0 (0x0008) [uint64]
+  EpicConfig: 0x00b8n,  // 0x00b8 (0x0008) [UEpicConfig_X*]
+  linkedAccounts: 0x00c0n,  // 0x00c0 (0x0010) [TArray<FLinkedAccount>]
+  EpicAccountId: 0x00d0n,  // 0x00d0 (0x0010) [FString]
+  __EventLoginSucceeded__Delegate: 0x00e0n,  // 0x00e0 (0x0018) [FScriptDelegate]
+  __EventLoginFailed__Delegate: 0x00f8n,  // 0x00f8 (0x0018) [FScriptDelegate]
+  __EventReceivedPinGrantCode__Delegate: 0x0110n,  // 0x0110 (0x0018) [FScriptDelegate]
+  __EventLoginError__Delegate: 0x0128n,  // 0x0128 (0x0018) [FScriptDelegate]
+  __EventReceivedEpicAuthTicket__Delegate: 0x0140n,  // 0x0140 (0x0018) [FScriptDelegate]
+  __EventInitialized__Delegate: 0x0158n,  // 0x0158 (0x0018) [FScriptDelegate]
+  __EventCreatedEpicGamesAccount__Delegate: 0x0170n,  // 0x0170 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -1651,8 +1216,8 @@ export const EpicLogin_X = {
  * Extends: Object
  */
 export const EpochTimerTick_X = {
-  VfTable_FTickableObject: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  Timers: 0x0068,  // 0x0068 (0x0010) [TArray<FEpochTimer>]
+  VfTable_FTickableObject: 0x0060n,  // 0x0060 (0x0008) [FPointer]
+  Timers: 0x0068n,  // 0x0068 (0x0010) [TArray<FEpochTimer>]
   ...Object_,
 } as const;
 
@@ -1671,110 +1236,110 @@ export const EpochTimers_X = {
  * Extends: ErrorList
  */
 export const Errors_X = {
-  UnknownError: 0x0080,  // 0x0080 (0x0008) [UErrorType*]
-  RequestError: 0x0088,  // 0x0088 (0x0008) [UPsyNetErrorType_X*]
-  HTTPError: 0x0090,  // 0x0090 (0x0008) [UErrorType*]
-  SessionNotActive: 0x0098,  // 0x0098 (0x0008) [UErrorType*]
-  OSCS_NotConnected: 0x00A0,  // 0x00A0 (0x0008) [UErrorType*]
-  OSCS_Connected: 0x00A8,  // 0x00A8 (0x0008) [UErrorType*]
-  OSCS_ConnectionDropped: 0x00B0,  // 0x00B0 (0x0008) [UErrorType*]
-  OSCS_NoNetworkConnection: 0x00B8,  // 0x00B8 (0x0008) [UErrorType*]
-  OSCS_ServiceUnavailable: 0x00C0,  // 0x00C0 (0x0008) [UErrorType*]
-  OSCS_UpdateRequired: 0x00C8,  // 0x00C8 (0x0008) [UErrorType*]
-  OSCS_ServersTooBusy: 0x00D0,  // 0x00D0 (0x0008) [UErrorType*]
-  OSCS_DuplicateLoginDetected: 0x00D8,  // 0x00D8 (0x0008) [UErrorType*]
-  OSCS_InvalidUser: 0x00E0,  // 0x00E0 (0x0008) [UErrorType*]
-  OSCS_InvalidResponse: 0x00E8,  // 0x00E8 (0x0008) [UErrorType*]
-  OSCS_EpicAccountLinkingFailed: 0x00F0,  // 0x00F0 (0x0008) [UErrorType*]
-  ConnectionStatusErrors: 0x00F8,  // 0x00F8 (0x0060) [UErrorType*]
-  VersionMismatch: 0x0158,  // 0x0158 (0x0008) [UErrorType*]
-  NoServers: 0x0160,  // 0x0160 (0x0008) [UErrorType*]
-  FileDoesNotExist: 0x0168,  // 0x0168 (0x0008) [UErrorType*]
-  FileLoadFail: 0x0170,  // 0x0170 (0x0008) [UErrorType*]
-  FileLoadCorrupt: 0x0178,  // 0x0178 (0x0008) [UErrorType*]
-  FileMountCorrupt: 0x0180,  // 0x0180 (0x0008) [UErrorType*]
-  FileSaveFail: 0x0188,  // 0x0188 (0x0008) [UErrorType*]
-  FileSaveNoSpace: 0x0190,  // 0x0190 (0x0008) [UErrorType*]
-  FileSaveCorrupt: 0x0198,  // 0x0198 (0x0008) [UErrorType*]
-  UserAuthBanned: 0x01A0,  // 0x01A0 (0x0008) [UErrorType*]
-  UserSocialBanned: 0x01A8,  // 0x01A8 (0x0008) [UErrorType*]
-  NotLoggedInToPsynet: 0x01B0,  // 0x01B0 (0x0008) [UErrorType*]
-  FriendsList: 0x01B8,  // 0x01B8 (0x0008) [UErrorType*]
-  InviteLimitReached: 0x01C0,  // 0x01C0 (0x0008) [UErrorType*]
-  OutOfRetries: 0x01C8,  // 0x01C8 (0x0008) [UErrorType*]
-  AuthenticationFailed: 0x01D0,  // 0x01D0 (0x0008) [UErrorType*]
-  NoExportCountry: 0x01D8,  // 0x01D8 (0x0008) [UErrorType*]
-  UnauthorizedAccess: 0x01E0,  // 0x01E0 (0x0008) [UErrorType*]
-  ServiceNotFound: 0x01E8,  // 0x01E8 (0x0008) [UErrorType*]
-  FeatureDisabled: 0x01F0,  // 0x01F0 (0x0008) [UErrorType*]
-  OtherPlayerFeatureDisabled: 0x01F8,  // 0x01F8 (0x0008) [UErrorType*]
-  MatchmakingDisabled: 0x0200,  // 0x0200 (0x0008) [UErrorType*]
-  NoValidPlaylistsSelected: 0x0208,  // 0x0208 (0x0008) [UErrorType*]
-  PlaylistNotAvailable: 0x0210,  // 0x0210 (0x0008) [UErrorType*]
-  PlayerNameNotSet: 0x0218,  // 0x0218 (0x0008) [UErrorType*]
-  NotAuthorized: 0x0220,  // 0x0220 (0x0008) [UErrorType*]
-  GameServerPending: 0x0228,  // 0x0228 (0x0008) [UErrorType*]
-  CacheError: 0x0230,  // 0x0230 (0x0008) [UErrorType*]
-  WordFilterEvil: 0x0238,  // 0x0238 (0x0008) [UErrorType*]
-  WordFilterPlatformError: 0x0240,  // 0x0240 (0x0008) [UErrorType*]
-  WordFilterPlatformChatError: 0x0248,  // 0x0248 (0x0008) [UErrorType*]
-  InvalidSettings: 0x0250,  // 0x0250 (0x0008) [UErrorType*]
-  Maintenance: 0x0258,  // 0x0258 (0x0008) [UErrorType*]
-  PlatformAuthError: 0x0260,  // 0x0260 (0x0008) [UErrorType*]
-  MicrotransactionAuthExpired: 0x0268,  // 0x0268 (0x0008) [UErrorType*]
-  CannotFriendSelf: 0x0270,  // 0x0270 (0x0008) [UErrorType*]
-  CannotBlockSelf: 0x0278,  // 0x0278 (0x0008) [UErrorType*]
-  InvalidPlayer: 0x0280,  // 0x0280 (0x0008) [UErrorType*]
-  FriendRequestNotFound: 0x0288,  // 0x0288 (0x0008) [UErrorType*]
-  FriendRequestFailed: 0x0290,  // 0x0290 (0x0008) [UErrorType*]
-  AlreadyFriends: 0x0298,  // 0x0298 (0x0008) [UErrorType*]
-  FriendLimitReached: 0x02A0,  // 0x02A0 (0x0008) [UErrorType*]
-  LocalFriendLimitReached: 0x02A8,  // 0x02A8 (0x0008) [UErrorType*]
-  RemoteFriendLimitReached: 0x02B0,  // 0x02B0 (0x0008) [UErrorType*]
-  LocalHostConnectionError: 0x02B8,  // 0x02B8 (0x0008) [UErrorType*]
-  UGCRestricted: 0x02C0,  // 0x02C0 (0x0008) [UErrorType*]
-  MicrotransactionServiceMaintenance: 0x02C8,  // 0x02C8 (0x0008) [UErrorType*]
-  GenericStorageOutOfSync: 0x02D0,  // 0x02D0 (0x0008) [UErrorType*]
-  GenericStorageSync_RequestNotFound: 0x02D8,  // 0x02D8 (0x0008) [UErrorType*]
-  SignatureMismatch: 0x02E0,  // 0x02E0 (0x0008) [UErrorType*]
-  JsonDeserialization: 0x02E8,  // 0x02E8 (0x0008) [UErrorType*]
-  InvalidPlatform: 0x02F0,  // 0x02F0 (0x0008) [UErrorType*]
-  InvalidPlatformForCodeRedemption: 0x02F8,  // 0x02F8 (0x0008) [UErrorType*]
-  InvalidParameters: 0x0300,  // 0x0300 (0x0008) [UErrorType*]
-  NotMatchmaking: 0x0308,  // 0x0308 (0x0008) [UPsyNetErrorType_X*]
-  AccessDenied: 0x0310,  // 0x0310 (0x0008) [UErrorType*]
-  CallLimitReached: 0x0318,  // 0x0318 (0x0008) [UErrorType*]
-  PerConDisconnected: 0x0320,  // 0x0320 (0x0008) [UPsyNetErrorType_X*]
-  AccountNotFound: 0x0328,  // 0x0328 (0x0008) [UErrorType*]
-  ServerNotFound: 0x0330,  // 0x0330 (0x0008) [UErrorType*]
-  ExpiredDsConnectToken: 0x0338,  // 0x0338 (0x0008) [UPsyNetErrorType_X*]
-  MatchmakingNoInternet: 0x0340,  // 0x0340 (0x0008) [UErrorType*]
-  PartyRankDisparity: 0x0348,  // 0x0348 (0x0008) [UErrorType*]
-  FriendAddsThrottledGeneric: 0x0350,  // 0x0350 (0x0008) [UErrorType*]
-  PlayerLevelNotReached: 0x0358,  // 0x0358 (0x0008) [UErrorType*]
-  RankedCriteriaUnmet: 0x0360,  // 0x0360 (0x0008) [UErrorType*]
+  UnknownError: 0x0080n,  // 0x0080 (0x0008) [UErrorType*]
+  RequestError: 0x0088n,  // 0x0088 (0x0008) [UPsyNetErrorType_X*]
+  HTTPError: 0x0090n,  // 0x0090 (0x0008) [UErrorType*]
+  SessionNotActive: 0x0098n,  // 0x0098 (0x0008) [UErrorType*]
+  OSCS_NotConnected: 0x00a0n,  // 0x00a0 (0x0008) [UErrorType*]
+  OSCS_Connected: 0x00a8n,  // 0x00a8 (0x0008) [UErrorType*]
+  OSCS_ConnectionDropped: 0x00b0n,  // 0x00b0 (0x0008) [UErrorType*]
+  OSCS_NoNetworkConnection: 0x00b8n,  // 0x00b8 (0x0008) [UErrorType*]
+  OSCS_ServiceUnavailable: 0x00c0n,  // 0x00c0 (0x0008) [UErrorType*]
+  OSCS_UpdateRequired: 0x00c8n,  // 0x00c8 (0x0008) [UErrorType*]
+  OSCS_ServersTooBusy: 0x00d0n,  // 0x00d0 (0x0008) [UErrorType*]
+  OSCS_DuplicateLoginDetected: 0x00d8n,  // 0x00d8 (0x0008) [UErrorType*]
+  OSCS_InvalidUser: 0x00e0n,  // 0x00e0 (0x0008) [UErrorType*]
+  OSCS_InvalidResponse: 0x00e8n,  // 0x00e8 (0x0008) [UErrorType*]
+  OSCS_EpicAccountLinkingFailed: 0x00f0n,  // 0x00f0 (0x0008) [UErrorType*]
+  ConnectionStatusErrors: 0x00f8n,  // 0x00f8 (0x0060) [UErrorType*]
+  VersionMismatch: 0x0158n,  // 0x0158 (0x0008) [UErrorType*]
+  NoServers: 0x0160n,  // 0x0160 (0x0008) [UErrorType*]
+  FileDoesNotExist: 0x0168n,  // 0x0168 (0x0008) [UErrorType*]
+  FileLoadFail: 0x0170n,  // 0x0170 (0x0008) [UErrorType*]
+  FileLoadCorrupt: 0x0178n,  // 0x0178 (0x0008) [UErrorType*]
+  FileMountCorrupt: 0x0180n,  // 0x0180 (0x0008) [UErrorType*]
+  FileSaveFail: 0x0188n,  // 0x0188 (0x0008) [UErrorType*]
+  FileSaveNoSpace: 0x0190n,  // 0x0190 (0x0008) [UErrorType*]
+  FileSaveCorrupt: 0x0198n,  // 0x0198 (0x0008) [UErrorType*]
+  UserAuthBanned: 0x01a0n,  // 0x01a0 (0x0008) [UErrorType*]
+  UserSocialBanned: 0x01a8n,  // 0x01a8 (0x0008) [UErrorType*]
+  NotLoggedInToPsynet: 0x01b0n,  // 0x01b0 (0x0008) [UErrorType*]
+  FriendsList: 0x01b8n,  // 0x01b8 (0x0008) [UErrorType*]
+  InviteLimitReached: 0x01c0n,  // 0x01c0 (0x0008) [UErrorType*]
+  OutOfRetries: 0x01c8n,  // 0x01c8 (0x0008) [UErrorType*]
+  AuthenticationFailed: 0x01d0n,  // 0x01d0 (0x0008) [UErrorType*]
+  NoExportCountry: 0x01d8n,  // 0x01d8 (0x0008) [UErrorType*]
+  UnauthorizedAccess: 0x01e0n,  // 0x01e0 (0x0008) [UErrorType*]
+  ServiceNotFound: 0x01e8n,  // 0x01e8 (0x0008) [UErrorType*]
+  FeatureDisabled: 0x01f0n,  // 0x01f0 (0x0008) [UErrorType*]
+  OtherPlayerFeatureDisabled: 0x01f8n,  // 0x01f8 (0x0008) [UErrorType*]
+  MatchmakingDisabled: 0x0200n,  // 0x0200 (0x0008) [UErrorType*]
+  NoValidPlaylistsSelected: 0x0208n,  // 0x0208 (0x0008) [UErrorType*]
+  PlaylistNotAvailable: 0x0210n,  // 0x0210 (0x0008) [UErrorType*]
+  PlayerNameNotSet: 0x0218n,  // 0x0218 (0x0008) [UErrorType*]
+  NotAuthorized: 0x0220n,  // 0x0220 (0x0008) [UErrorType*]
+  GameServerPending: 0x0228n,  // 0x0228 (0x0008) [UErrorType*]
+  CacheError: 0x0230n,  // 0x0230 (0x0008) [UErrorType*]
+  WordFilterEvil: 0x0238n,  // 0x0238 (0x0008) [UErrorType*]
+  WordFilterPlatformError: 0x0240n,  // 0x0240 (0x0008) [UErrorType*]
+  WordFilterPlatformChatError: 0x0248n,  // 0x0248 (0x0008) [UErrorType*]
+  InvalidSettings: 0x0250n,  // 0x0250 (0x0008) [UErrorType*]
+  Maintenance: 0x0258n,  // 0x0258 (0x0008) [UErrorType*]
+  PlatformAuthError: 0x0260n,  // 0x0260 (0x0008) [UErrorType*]
+  MicrotransactionAuthExpired: 0x0268n,  // 0x0268 (0x0008) [UErrorType*]
+  CannotFriendSelf: 0x0270n,  // 0x0270 (0x0008) [UErrorType*]
+  CannotBlockSelf: 0x0278n,  // 0x0278 (0x0008) [UErrorType*]
+  InvalidPlayer: 0x0280n,  // 0x0280 (0x0008) [UErrorType*]
+  FriendRequestNotFound: 0x0288n,  // 0x0288 (0x0008) [UErrorType*]
+  FriendRequestFailed: 0x0290n,  // 0x0290 (0x0008) [UErrorType*]
+  AlreadyFriends: 0x0298n,  // 0x0298 (0x0008) [UErrorType*]
+  FriendLimitReached: 0x02a0n,  // 0x02a0 (0x0008) [UErrorType*]
+  LocalFriendLimitReached: 0x02a8n,  // 0x02a8 (0x0008) [UErrorType*]
+  RemoteFriendLimitReached: 0x02b0n,  // 0x02b0 (0x0008) [UErrorType*]
+  LocalHostConnectionError: 0x02b8n,  // 0x02b8 (0x0008) [UErrorType*]
+  UGCRestricted: 0x02c0n,  // 0x02c0 (0x0008) [UErrorType*]
+  MicrotransactionServiceMaintenance: 0x02c8n,  // 0x02c8 (0x0008) [UErrorType*]
+  GenericStorageOutOfSync: 0x02d0n,  // 0x02d0 (0x0008) [UErrorType*]
+  GenericStorageSync_RequestNotFound: 0x02d8n,  // 0x02d8 (0x0008) [UErrorType*]
+  SignatureMismatch: 0x02e0n,  // 0x02e0 (0x0008) [UErrorType*]
+  JsonDeserialization: 0x02e8n,  // 0x02e8 (0x0008) [UErrorType*]
+  InvalidPlatform: 0x02f0n,  // 0x02f0 (0x0008) [UErrorType*]
+  InvalidPlatformForCodeRedemption: 0x02f8n,  // 0x02f8 (0x0008) [UErrorType*]
+  InvalidParameters: 0x0300n,  // 0x0300 (0x0008) [UErrorType*]
+  NotMatchmaking: 0x0308n,  // 0x0308 (0x0008) [UPsyNetErrorType_X*]
+  AccessDenied: 0x0310n,  // 0x0310 (0x0008) [UErrorType*]
+  CallLimitReached: 0x0318n,  // 0x0318 (0x0008) [UErrorType*]
+  PerConDisconnected: 0x0320n,  // 0x0320 (0x0008) [UPsyNetErrorType_X*]
+  AccountNotFound: 0x0328n,  // 0x0328 (0x0008) [UErrorType*]
+  ServerNotFound: 0x0330n,  // 0x0330 (0x0008) [UErrorType*]
+  ExpiredDsConnectToken: 0x0338n,  // 0x0338 (0x0008) [UPsyNetErrorType_X*]
+  MatchmakingNoInternet: 0x0340n,  // 0x0340 (0x0008) [UErrorType*]
+  PartyRankDisparity: 0x0348n,  // 0x0348 (0x0008) [UErrorType*]
+  FriendAddsThrottledGeneric: 0x0350n,  // 0x0350 (0x0008) [UErrorType*]
+  PlayerLevelNotReached: 0x0358n,  // 0x0358 (0x0008) [UErrorType*]
+  RankedCriteriaUnmet: 0x0360n,  // 0x0360 (0x0008) [UErrorType*]
   ...ErrorList,
 } as const;
 
 /**
  * ProjectX.EulaTextResponse Offsets
- * Size: 0x00F4
+ * Size: 0x00f4
  * Extends: Object
  */
 export const EulaTextResponse = {
-  Key: 0x0060,  // 0x0060 (0x0010) [FString]
-  Title: 0x0070,  // 0x0070 (0x0010) [FString]
-  Body: 0x0080,  // 0x0080 (0x0010) [FString]
-  Locale: 0x0090,  // 0x0090 (0x0010) [FString]
-  Version: 0x00A0,  // 0x00A0 (0x0004) [int32]
-  Status: 0x00A4,  // 0x00A4 (0x0004) [int32]
-  Revision: 0x00A8,  // 0x00A8 (0x0004) [int32]
-  CreatedTimestamp: 0x00B0,  // 0x00B0 (0x0010) [FString]
-  LastModifiedTimestamp: 0x00C0,  // 0x00C0 (0x0010) [FString]
-  Custom: 0x00D0,  // 0x00D0 (0x0010) [FString]
-  URL: 0x00E0,  // 0x00E0 (0x0010) [FString]
-  WasDeclined: 0x00F0,  // 0x00F0 (0x0004) [bool : 0x1]
-  HasResponse: 0x00F0,  // 0x00F0 (0x0004) [bool : 0x2]
+  Key: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Title: 0x0070n,  // 0x0070 (0x0010) [FString]
+  Body: 0x0080n,  // 0x0080 (0x0010) [FString]
+  Locale: 0x0090n,  // 0x0090 (0x0010) [FString]
+  Version: 0x00a0n,  // 0x00a0 (0x0004) [int32]
+  Status: 0x00a4n,  // 0x00a4 (0x0004) [int32]
+  Revision: 0x00a8n,  // 0x00a8 (0x0004) [int32]
+  CreatedTimestamp: 0x00b0n,  // 0x00b0 (0x0010) [FString]
+  LastModifiedTimestamp: 0x00c0n,  // 0x00c0 (0x0010) [FString]
+  Custom: 0x00d0n,  // 0x00d0 (0x0010) [FString]
+  URL: 0x00e0n,  // 0x00e0 (0x0010) [FString]
+  WasDeclined: 0x00f0n,  // 0x00f0 (0x0004) [bool : 0x1]
+  HasResponse: 0x00f0n,  // 0x00f0 (0x0004) [bool : 0x2]
   ...Object_,
 } as const;
 
@@ -1784,28 +1349,28 @@ export const EulaTextResponse = {
  * Extends: Component
  */
 export const EventRecorderGroup_X = {
-  Category: 0x0070,  // 0x0070 (0x0010) [FString]
+  Category: 0x0070n,  // 0x0070 (0x0010) [FString]
   ...Component,
 } as const;
 
 /**
  * ProjectX.EventRecorder_X Offsets
- * Size: 0x00D0
+ * Size: 0x00d0
  * Extends: Component
  */
 export const EventRecorder_X = {
-  VfTable_FTickableObject: 0x0070,  // 0x0070 (0x0008) [FPointer]
-  Config: 0x0078,  // 0x0078 (0x0008) [UEventRecorderConfig_X*]
-  MaxQueuedEvents: 0x0080,  // 0x0080 (0x0004) [int32]
-  MaxQueuedMinutes: 0x0084,  // 0x0084 (0x0004) [int32]
-  bPaused: 0x0088,  // 0x0088 (0x0004) [bool : 0x1]
-  QueuedEvents: 0x0090,  // 0x0090 (0x0010) [TArray<FMetricsEvent>]
-  AppSessionID: 0x00A0,  // 0x00A0 (0x0010) [FGuid]
-  LevelSessionID: 0x00B0,  // 0x00B0 (0x0010) [FGuid]
-  NextSendTime: 0x00C0,  // 0x00C0 (0x0004) [float]
-  FloodPreventionTimeSeconds: 0x00C4,  // 0x00C4 (0x0004) [float]
-  LastFullSendTime: 0x00C8,  // 0x00C8 (0x0004) [float]
-  AppEventCount: 0x00CC,  // 0x00CC (0x0004) [int32]
+  VfTable_FTickableObject: 0x0070n,  // 0x0070 (0x0008) [FPointer]
+  Config: 0x0078n,  // 0x0078 (0x0008) [UEventRecorderConfig_X*]
+  MaxQueuedEvents: 0x0080n,  // 0x0080 (0x0004) [int32]
+  MaxQueuedMinutes: 0x0084n,  // 0x0084 (0x0004) [int32]
+  bPaused: 0x0088n,  // 0x0088 (0x0004) [bool : 0x1]
+  QueuedEvents: 0x0090n,  // 0x0090 (0x0010) [TArray<FMetricsEvent>]
+  AppSessionID: 0x00a0n,  // 0x00a0 (0x0010) [FGuid]
+  LevelSessionID: 0x00b0n,  // 0x00b0 (0x0010) [FGuid]
+  NextSendTime: 0x00c0n,  // 0x00c0 (0x0004) [float]
+  FloodPreventionTimeSeconds: 0x00c4n,  // 0x00c4 (0x0004) [float]
+  LastFullSendTime: 0x00c8n,  // 0x00c8 (0x0004) [float]
+  AppEventCount: 0x00ccn,  // 0x00cc (0x0004) [int32]
   ...Component,
 } as const;
 
@@ -1815,79 +1380,79 @@ export const EventRecorder_X = {
  * Extends: Component
  */
 export const ExplosionCollisionShapes_X = {
-  Location: 0x0070,  // 0x0070 (0x000C) [FVector]
-  GrowthAmount: 0x007C,  // 0x007C (0x0004) [float]
-  NormalizedLifetime: 0x0080,  // 0x0080 (0x0004) [float]
+  Location: 0x0070n,  // 0x0070 (0x000c) [FVector]
+  GrowthAmount: 0x007cn,  // 0x007c (0x0004) [float]
+  NormalizedLifetime: 0x0080n,  // 0x0080 (0x0004) [float]
   ...Component,
 } as const;
 
 /**
  * ProjectX.BoxCollisionShape_X Offsets
- * Size: 0x00A0
+ * Size: 0x00a0
  * Extends: ExplosionCollisionShapes_X
  */
 export const BoxCollisionShape_X = {
-  StartSize: 0x0088,  // 0x0088 (0x000C) [FVector]
-  EndSize: 0x0094,  // 0x0094 (0x000C) [FVector]
+  StartSize: 0x0088n,  // 0x0088 (0x000c) [FVector]
+  EndSize: 0x0094n,  // 0x0094 (0x000c) [FVector]
   ...ExplosionCollisionShapes_X,
 } as const;
 
 /**
  * ProjectX.ExplosionComponent_X Offsets
- * Size: 0x00E0
+ * Size: 0x00e0
  * Extends: ActorComponent_X
  */
 export const ExplosionComponent_X = {
-  RBVelocityChange: 0x00A8,  // 0x00A8 (0x0004) [float]
-  StartRadius: 0x00AC,  // 0x00AC (0x0004) [float]
-  EndRadius: 0x00B0,  // 0x00B0 (0x0004) [float]
-  Speed: 0x00B4,  // 0x00B4 (0x0004) [float]
-  Falloff: 0x00B8,  // 0x00B8 (0x0004) [float]
-  bPassThroughWorldGeometry: 0x00BC,  // 0x00BC (0x0004) [bool : 0x1]
-  bIgnoreInstigator: 0x00BC,  // 0x00BC (0x0004) [bool : 0x2]
-  bDebug: 0x00BC,  // 0x00BC (0x0004) [bool : 0x4]
-  MomentumOffset: 0x00C0,  // 0x00C0 (0x000C) [FVector]
-  LifeTime: 0x00CC,  // 0x00CC (0x0004) [float]
-  DamagedActors: 0x00D0,  // 0x00D0 (0x0010) [TArray<UActor*>]
+  RBVelocityChange: 0x00a8n,  // 0x00a8 (0x0004) [float]
+  StartRadius: 0x00acn,  // 0x00ac (0x0004) [float]
+  EndRadius: 0x00b0n,  // 0x00b0 (0x0004) [float]
+  Speed: 0x00b4n,  // 0x00b4 (0x0004) [float]
+  Falloff: 0x00b8n,  // 0x00b8 (0x0004) [float]
+  bPassThroughWorldGeometry: 0x00bcn,  // 0x00bc (0x0004) [bool : 0x1]
+  bIgnoreInstigator: 0x00bcn,  // 0x00bc (0x0004) [bool : 0x2]
+  bDebug: 0x00bcn,  // 0x00bc (0x0004) [bool : 0x4]
+  MomentumOffset: 0x00c0n,  // 0x00c0 (0x000c) [FVector]
+  LifeTime: 0x00ccn,  // 0x00cc (0x0004) [float]
+  DamagedActors: 0x00d0n,  // 0x00d0 (0x0010) [TArray<UActor*>]
   ...ActorComponent_X,
 } as const;
 
 /**
  * ProjectX.ExplosionHitHandler_X Offsets
- * Size: 0x00F4
+ * Size: 0x00f4
  * Extends: ActorComponent_X
  */
 export const ExplosionHitHandler_X = {
-  StartTime: 0x00A8,  // 0x00A8 (0x0004) [float]
-  EndTime: 0x00AC,  // 0x00AC (0x0004) [float]
-  CollisionInformation: 0x00B0,  // 0x00B0 (0x0008) [unknown]
-  bIgnoreInstigator: 0x00B8,  // 0x00B8 (0x0004) [bool : 0x1]
-  bPassThroughWorldGeometry: 0x00B8,  // 0x00B8 (0x0004) [bool : 0x2]
-  bOnlyApplyImpulseOnce: 0x00B8,  // 0x00B8 (0x0004) [bool : 0x4]
-  bDebug: 0x00B8,  // 0x00B8 (0x0004) [bool : 0x8]
-  bPullTowardHitLocation: 0x00B8,  // 0x00B8 (0x0004) [bool : 0x10]
-  Falloff: 0x00BC,  // 0x00BC (0x0004) [float]
-  RBVelocityChange: 0x00C0,  // 0x00C0 (0x0004) [float]
-  Speed: 0x00C4,  // 0x00C4 (0x0004) [float]
-  MomentumOffset: 0x00C8,  // 0x00C8 (0x000C) [FVector]
-  GoalWorldBox: 0x00D4,  // 0x00D4 (0x001C) [FBox]
-  LifeTime: 0x00F0,  // 0x00F0 (0x0004) [float]
+  StartTime: 0x00a8n,  // 0x00a8 (0x0004) [float]
+  EndTime: 0x00acn,  // 0x00ac (0x0004) [float]
+  CollisionInformation: 0x00b0n,  // 0x00b0 (0x0008) [unknown]
+  bIgnoreInstigator: 0x00b8n,  // 0x00b8 (0x0004) [bool : 0x1]
+  bPassThroughWorldGeometry: 0x00b8n,  // 0x00b8 (0x0004) [bool : 0x2]
+  bOnlyApplyImpulseOnce: 0x00b8n,  // 0x00b8 (0x0004) [bool : 0x4]
+  bDebug: 0x00b8n,  // 0x00b8 (0x0004) [bool : 0x8]
+  bPullTowardHitLocation: 0x00b8n,  // 0x00b8 (0x0004) [bool : 0x10]
+  Falloff: 0x00bcn,  // 0x00bc (0x0004) [float]
+  RBVelocityChange: 0x00c0n,  // 0x00c0 (0x0004) [float]
+  Speed: 0x00c4n,  // 0x00c4 (0x0004) [float]
+  MomentumOffset: 0x00c8n,  // 0x00c8 (0x000c) [FVector]
+  GoalWorldBox: 0x00d4n,  // 0x00d4 (0x001c) [FBox]
+  LifeTime: 0x00f0n,  // 0x00f0 (0x0004) [float]
   ...ActorComponent_X,
 } as const;
 
 /**
  * ProjectX.Explosion_X Offsets
- * Size: 0x02A4
+ * Size: 0x02a4
  * Extends: Actor
  */
 export const Explosion_X = {
-  ExplosionComponent: 0x0268,  // 0x0268 (0x0008) [unknown]
-  FXActorArchetype: 0x0270,  // 0x0270 (0x0008) [UFXActor_X*]
-  FXActor: 0x0278,  // 0x0278 (0x0008) [UFXActor_X*]
-  Scorer: 0x0280,  // 0x0280 (0x0008) [UPRI_X*]
-  PostSpawnEvents: 0x0288,  // 0x0288 (0x0010) [TArray<UFXActorEvent_X*>]
-  MuteExplosionOnSpawn: 0x0298,  // 0x0298 (0x0004) [bool : 0x1]
-  EnvDemoSoundAttachmentName: 0x029C,  // 0x029C (0x0008) [FName]
+  ExplosionComponent: 0x0268n,  // 0x0268 (0x0008) [unknown]
+  FXActorArchetype: 0x0270n,  // 0x0270 (0x0008) [UFXActor_X*]
+  FXActor: 0x0278n,  // 0x0278 (0x0008) [UFXActor_X*]
+  Scorer: 0x0280n,  // 0x0280 (0x0008) [UPRI_X*]
+  PostSpawnEvents: 0x0288n,  // 0x0288 (0x0010) [TArray<UFXActorEvent_X*>]
+  MuteExplosionOnSpawn: 0x0298n,  // 0x0298 (0x0004) [bool : 0x1]
+  EnvDemoSoundAttachmentName: 0x029cn,  // 0x029c (0x0008) [FName]
   ...Actor,
 } as const;
 
@@ -1906,29 +1471,29 @@ export const FXActorEvent_X = {
  * Extends: Actor
  */
 export const FXActor_X = {
-  SpawnState: 0x0268,  // 0x0268 (0x0008) [UFXActorEvent_X*]
-  ActivationState: 0x0270,  // 0x0270 (0x0008) [UFXActorEvent_X*]
-  Attachments: 0x0278,  // 0x0278 (0x0010) [TArray<FFXAttachment>]
-  Locality: 0x0288,  // 0x0288 (0x0001) [EFXLocality]
-  SocketOrBoneName: 0x028C,  // 0x028C (0x0008) [FName]
-  bDeactivateWhenOwnerDestroyed: 0x0294,  // 0x0294 (0x0004) [bool : 0x1]
-  bAllowShadowCasting: 0x0294,  // 0x0294 (0x0004) [bool : 0x2]
-  bAutoActivate: 0x0294,  // 0x0294 (0x0004) [bool : 0x4]
-  bRenderInactive: 0x0294,  // 0x0294 (0x0004) [bool : 0x8]
-  bActive: 0x0294,  // 0x0294 (0x0004) [bool : 0x10]
-  bHadOwner: 0x0294,  // 0x0294 (0x0004) [bool : 0x20]
-  Parent: 0x0298,  // 0x0298 (0x0008) [UFXActor_X*]
-  AttachmentActor: 0x02A0,  // 0x02A0 (0x0008) [UActor*]
-  FXStates: 0x02A8,  // 0x02A8 (0x0010) [TArray<UFXActorEvent_X*>]
-  FXEvents: 0x02B8,  // 0x02B8 (0x0010) [TArray<FFXActorEventCheck>]
-  DestroyWaitTime: 0x02C8,  // 0x02C8 (0x0004) [float]
-  DestroyTime: 0x02CC,  // 0x02CC (0x0004) [float]
-  Parameters: 0x02D0,  // 0x02D0 (0x0008) [unknown]
-  EditID: 0x02D8,  // 0x02D8 (0x0004) [int32]
-  EventSubscriptions: 0x02E0,  // 0x02E0 (0x0010) [TArray<FFXEventSubscription>]
-  AnimationEndState: 0x02F0,  // 0x02F0 (0x0008) [UFXActorEvent_X*]
-  __EventFXStatePushed__Delegate: 0x02F8,  // 0x02F8 (0x0018) [FScriptDelegate]
-  __EventFXStatePopped__Delegate: 0x0310,  // 0x0310 (0x0018) [FScriptDelegate]
+  SpawnState: 0x0268n,  // 0x0268 (0x0008) [UFXActorEvent_X*]
+  ActivationState: 0x0270n,  // 0x0270 (0x0008) [UFXActorEvent_X*]
+  Attachments: 0x0278n,  // 0x0278 (0x0010) [TArray<FFXAttachment>]
+  Locality: 0x0288n,  // 0x0288 (0x0001) [EFXLocality]
+  SocketOrBoneName: 0x028cn,  // 0x028c (0x0008) [FName]
+  bDeactivateWhenOwnerDestroyed: 0x0294n,  // 0x0294 (0x0004) [bool : 0x1]
+  bAllowShadowCasting: 0x0294n,  // 0x0294 (0x0004) [bool : 0x2]
+  bAutoActivate: 0x0294n,  // 0x0294 (0x0004) [bool : 0x4]
+  bRenderInactive: 0x0294n,  // 0x0294 (0x0004) [bool : 0x8]
+  bActive: 0x0294n,  // 0x0294 (0x0004) [bool : 0x10]
+  bHadOwner: 0x0294n,  // 0x0294 (0x0004) [bool : 0x20]
+  Parent: 0x0298n,  // 0x0298 (0x0008) [UFXActor_X*]
+  AttachmentActor: 0x02a0n,  // 0x02a0 (0x0008) [UActor*]
+  FXStates: 0x02a8n,  // 0x02a8 (0x0010) [TArray<UFXActorEvent_X*>]
+  FXEvents: 0x02b8n,  // 0x02b8 (0x0010) [TArray<FFXActorEventCheck>]
+  DestroyWaitTime: 0x02c8n,  // 0x02c8 (0x0004) [float]
+  DestroyTime: 0x02ccn,  // 0x02cc (0x0004) [float]
+  Parameters: 0x02d0n,  // 0x02d0 (0x0008) [unknown]
+  EditID: 0x02d8n,  // 0x02d8 (0x0004) [int32]
+  EventSubscriptions: 0x02e0n,  // 0x02e0 (0x0010) [TArray<FFXEventSubscription>]
+  AnimationEndState: 0x02f0n,  // 0x02f0 (0x0008) [UFXActorEvent_X*]
+  __EventFXStatePushed__Delegate: 0x02f8n,  // 0x02f8 (0x0018) [FScriptDelegate]
+  __EventFXStatePopped__Delegate: 0x0310n,  // 0x0310 (0x0018) [FScriptDelegate]
   ...Actor,
 } as const;
 
@@ -1947,39 +1512,23 @@ export const FXAttachmentTraitBase_X = {
  * Extends: Object
  */
 export const FakeData_X = {
-  RandomSeed: 0x0060,  // 0x0060 (0x0004) [int32]
-  Data1: 0x0068,  // 0x0068 (0x0038) [FFakeData1]
-  Data2: 0x00A0,  // 0x00A0 (0x0090) [FFakeData2]
-  Data3: 0x0130,  // 0x0130 (0x0130) [FFakeData3]
-  Data4: 0x0260,  // 0x0260 (0x0120) [FFakeData4]
-  ...Object_,
-} as const;
-
-/**
- * Core.AsyncTask Offsets
- * Size: 0x00D0
- * Extends: Object
- */
-export const AsyncTask = {
-  bComplete: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
-  bDisposed: 0x0060,  // 0x0060 (0x0004) [bool : 0x2]
-  Error: 0x0068,  // 0x0068 (0x0008) [UError*]
-  __EventAsyncTaskSuccess__Delegate: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
-  __EventAsyncTaskFail__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
-  __EventAsyncTaskComplete__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
-  __EventDisposed__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
+  RandomSeed: 0x0060n,  // 0x0060 (0x0004) [int32]
+  Data1: 0x0068n,  // 0x0068 (0x0038) [FFakeData1]
+  Data2: 0x00a0n,  // 0x00a0 (0x0090) [FFakeData2]
+  Data3: 0x0130n,  // 0x0130 (0x0130) [FFakeData3]
+  Data4: 0x0260n,  // 0x0260 (0x0120) [FFakeData4]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.FindServerTask_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: AsyncTask
  */
 export const FindServerTask_X = {
-  SearchTimeout: 0x00D0,  // 0x00D0 (0x0004) [float]
-  RPC: 0x00D8,  // 0x00D8 (0x0008) [URPC_X*]
-  __EventResult__Delegate: 0x00E0,  // 0x00E0 (0x0018) [FScriptDelegate]
+  SearchTimeout: 0x00d0n,  // 0x00d0 (0x0004) [float]
+  RPC: 0x00d8n,  // 0x00d8 (0x0008) [URPC_X*]
+  __EventResult__Delegate: 0x00e0n,  // 0x00e0 (0x0018) [FScriptDelegate]
   ...AsyncTask,
 } as const;
 
@@ -1989,8 +1538,8 @@ export const FindServerTask_X = {
  * Extends: Object
  */
 export const FuncTestCommandPair_X = {
-  Device: 0x0060,  // 0x0060 (0x0008) [FName]
-  Command: 0x0068,  // 0x0068 (0x0010) [FString]
+  Device: 0x0060n,  // 0x0060 (0x0008) [FName]
+  Command: 0x0068n,  // 0x0068 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -2000,9 +1549,9 @@ export const FuncTestCommandPair_X = {
  * Extends: Object
  */
 export const FuncTestDesc_X = {
-  TestName: 0x0060,  // 0x0060 (0x0010) [FString]
-  Tags: 0x0070,  // 0x0070 (0x0010) [TArray<FName>]
-  Groups: 0x0080,  // 0x0080 (0x0010) [TArray<UFuncTestGroup_X*>]
+  TestName: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Tags: 0x0070n,  // 0x0070 (0x0010) [TArray<FName>]
+  Groups: 0x0080n,  // 0x0080 (0x0010) [TArray<UFuncTestGroup_X*>]
   ...Object_,
 } as const;
 
@@ -2012,7 +1561,7 @@ export const FuncTestDesc_X = {
  * Extends: Object
  */
 export const FuncTestGroup_X = {
-  Commands: 0x0060,  // 0x0060 (0x0010) [TArray<UFuncTestCommandPair_X*>]
+  Commands: 0x0060n,  // 0x0060 (0x0010) [TArray<UFuncTestCommandPair_X*>]
   ...Object_,
 } as const;
 
@@ -2022,13 +1571,13 @@ export const FuncTestGroup_X = {
  * Extends: Object
  */
 export const GFxDataRow_X = {
-  TableName: 0x0060,  // 0x0060 (0x0008) [FName]
-  PrimaryKeyName: 0x0068,  // 0x0068 (0x0008) [FName]
-  ProxyClass: 0x0070,  // 0x0070 (0x0008) [UClass*]
-  bLevelTransitionPersistent: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  ProxyObject: 0x0080,  // 0x0080 (0x0008) [UObject*]
-  Shell: 0x0088,  // 0x0088 (0x0008) [UGFxShell_X*]
-  RowIndex: 0x0090,  // 0x0090 (0x0004) [int32]
+  TableName: 0x0060n,  // 0x0060 (0x0008) [FName]
+  PrimaryKeyName: 0x0068n,  // 0x0068 (0x0008) [FName]
+  ProxyClass: 0x0070n,  // 0x0070 (0x0008) [UClass*]
+  bLevelTransitionPersistent: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
+  ProxyObject: 0x0080n,  // 0x0080 (0x0008) [UObject*]
+  Shell: 0x0088n,  // 0x0088 (0x0008) [UGFxShell_X*]
+  RowIndex: 0x0090n,  // 0x0090 (0x0004) [int32]
   ...Object_,
 } as const;
 
@@ -2043,117 +1592,46 @@ export const GFxDataSingleton_X = {
 
 /**
  * ProjectX.GFxDataStore_X Offsets
- * Size: 0x00E4
+ * Size: 0x00e4
  * Extends: Component
  */
 export const GFxDataStore_X = {
-  Tables: 0x0070,  // 0x0070 (0x0010) [TArray<FGFxDataStoreTable>]
-  DirtyTables: 0x0080,  // 0x0080 (0x0010) [TArray<FGFxDirtyTable>]
-  ObjectNameToTable: 0x0090,  // 0x0090 (0x0050) [FMap_Mirror]
-  bDebugGetValue: 0x00E0,  // 0x00E0 (0x0004) [bool : 0x1]
+  Tables: 0x0070n,  // 0x0070 (0x0010) [TArray<FGFxDataStoreTable>]
+  DirtyTables: 0x0080n,  // 0x0080 (0x0010) [TArray<FGFxDirtyTable>]
+  ObjectNameToTable: 0x0090n,  // 0x0090 (0x0050) [FMap_Mirror]
+  bDebugGetValue: 0x00e0n,  // 0x00e0 (0x0004) [bool : 0x1]
   ...Component,
 } as const;
 
 /**
- * GFxUI.GFxEngine Offsets
- * Size: 0x0128
- * Extends: Object
- */
-export const GFxEngine = {
-  GCReferences: 0x0060,  // 0x0060 (0x0010) [TArray<FGCReference>]
-  RefCount: 0x0070,  // 0x0070 (0x0004) [int32]
-  LoadingScreenInfo: 0x0078,  // 0x0078 (0x00A0) [FLoadingMovieMapInfo]
-  IgnoreWarningsThatStartWith: 0x0118,  // 0x0118 (0x0010) [TArray<FString>]
-  ...Object_,
-} as const;
-
-/**
  * ProjectX.GFxEngine_X Offsets
- * Size: 0x01A0
+ * Size: 0x01a0
  * Extends: GFxEngine
  */
 export const GFxEngine_X = {
-  ShellArchetype: 0x0128,  // 0x0128 (0x0008) [UGFxShell_X*]
-  Shells: 0x0130,  // 0x0130 (0x0010) [TArray<UGFxShell_X*>]
-  DirtyObjects: 0x0140,  // 0x0140 (0x0010) [TArray<FDirtyObject>]
-  bAnyShellHasInput: 0x0150,  // 0x0150 (0x0004) [bool : 0x1]
-  AvailableGamepadType: 0x0154,  // 0x0154 (0x0001) [EInputPlatformType]
-  __EventShellCreated__Delegate: 0x0158,  // 0x0158 (0x0018) [FScriptDelegate]
-  __EventAvailableGamepadTypeChanged__Delegate: 0x0170,  // 0x0170 (0x0018) [FScriptDelegate]
-  __EventGameSessionEnded__Delegate: 0x0188,  // 0x0188 (0x0018) [FScriptDelegate]
+  ShellArchetype: 0x0128n,  // 0x0128 (0x0008) [UGFxShell_X*]
+  Shells: 0x0130n,  // 0x0130 (0x0010) [TArray<UGFxShell_X*>]
+  DirtyObjects: 0x0140n,  // 0x0140 (0x0010) [TArray<FDirtyObject>]
+  bAnyShellHasInput: 0x0150n,  // 0x0150 (0x0004) [bool : 0x1]
+  AvailableGamepadType: 0x0154n,  // 0x0154 (0x0001) [EInputPlatformType]
+  __EventShellCreated__Delegate: 0x0158n,  // 0x0158 (0x0018) [FScriptDelegate]
+  __EventAvailableGamepadTypeChanged__Delegate: 0x0170n,  // 0x0170 (0x0018) [FScriptDelegate]
+  __EventGameSessionEnded__Delegate: 0x0188n,  // 0x0188 (0x0018) [FScriptDelegate]
   ...GFxEngine,
 } as const;
 
 /**
  * ProjectX.GFxModal_X Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: Object
  */
 export const GFxModal_X = {
-  ActionScriptModalName: 0x0060,  // 0x0060 (0x0010) [FString]
-  GFxPopup: 0x0070,  // 0x0070 (0x0008) [UGFxObject*]
-  Callbacks: 0x0078,  // 0x0078 (0x0010) [TArray<FScriptDelegate>]
-  ConfirmString: 0x0088,  // 0x0088 (0x0010) [FString]
-  __ClickDelegate__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
-  __EventClosed__Delegate: 0x00B0,  // 0x00B0 (0x0018) [FScriptDelegate]
-  ...Object_,
-} as const;
-
-/**
- * GFxUI.GFxMoviePlayer Offsets
- * Size: 0x0218
- * Extends: Object
- */
-export const GFxMoviePlayer = {
-  pMovie: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  pCaptureKeys: 0x0068,  // 0x0068 (0x0008) [FPointer]
-  pFocusIgnoreKeys: 0x0070,  // 0x0070 (0x0008) [FPointer]
-  ASUClasses: 0x0078,  // 0x0078 (0x0050) [TMap<unknown, unknown>]
-  ASUObjects: 0x00C8,  // 0x00C8 (0x0050) [TMap<unknown, unknown>]
-  NextASUObject: 0x0118,  // 0x0118 (0x0004) [int32]
-  MovieInfo: 0x0120,  // 0x0120 (0x0008) [USwfMovie*]
-  bMovieIsOpen: 0x0128,  // 0x0128 (0x0004) [bool : 0x1]
-  bDisplayWithHudOff: 0x0128,  // 0x0128 (0x0004) [bool : 0x2]
-  bEnableGammaCorrection: 0x0128,  // 0x0128 (0x0004) [bool : 0x4]
-  bWidgetsInitializedThisFrame: 0x0128,  // 0x0128 (0x0004) [bool : 0x8]
-  bLogUnhandedWidgetInitializations: 0x0128,  // 0x0128 (0x0004) [bool : 0x10]
-  bAllowInput: 0x0128,  // 0x0128 (0x0004) [bool : 0x20]
-  bAllowFocus: 0x0128,  // 0x0128 (0x0004) [bool : 0x40]
-  bAutoPlay: 0x0128,  // 0x0128 (0x0004) [bool : 0x80]
-  bPauseGameWhileActive: 0x0128,  // 0x0128 (0x0004) [bool : 0x100]
-  bDisableWorldRendering: 0x0128,  // 0x0128 (0x0004) [bool : 0x200]
-  bCaptureWorldRendering: 0x0128,  // 0x0128 (0x0004) [bool : 0x400]
-  bCloseOnLevelChange: 0x0128,  // 0x0128 (0x0004) [bool : 0x800]
-  bOnlyOwnerFocusable: 0x0128,  // 0x0128 (0x0004) [bool : 0x1000]
-  bForceFullViewport: 0x0128,  // 0x0128 (0x0004) [bool : 0x2000]
-  bDiscardNonOwnerInput: 0x0128,  // 0x0128 (0x0004) [bool : 0x4000]
-  bCaptureInput: 0x0128,  // 0x0128 (0x0004) [bool : 0x8000]
-  bCaptureMouseInput: 0x0128,  // 0x0128 (0x0004) [bool : 0x10000]
-  bIgnoreMouseInput: 0x0128,  // 0x0128 (0x0004) [bool : 0x20000]
-  bIsSplitscreenLayoutModified: 0x0128,  // 0x0128 (0x0004) [bool : 0x40000]
-  bShowHardwareMouseCursor: 0x0128,  // 0x0128 (0x0004) [bool : 0x80000]
-  bForceFullScreen: 0x0128,  // 0x0128 (0x0004) [bool : 0x100000]
-  bBlurLesserMovies: 0x0128,  // 0x0128 (0x0004) [bool : 0x200000]
-  bHideLesserMovies: 0x0128,  // 0x0128 (0x0004) [bool : 0x400000]
-  bIsPriorityBlurred: 0x0128,  // 0x0128 (0x0004) [bool : 0x800000]
-  bIsPriorityHidden: 0x0128,  // 0x0128 (0x0004) [bool : 0x1000000]
-  bIgnoreVisibilityEffect: 0x0128,  // 0x0128 (0x0004) [bool : 0x2000000]
-  bIgnoreBlurEffect: 0x0128,  // 0x0128 (0x0004) [bool : 0x4000000]
-  RenderTexture: 0x0130,  // 0x0130 (0x0008) [UTextureRenderTarget2D*]
-  LocalPlayerOwnerIndex: 0x0138,  // 0x0138 (0x0004) [int32]
-  ExternalInterface: 0x0140,  // 0x0140 (0x0008) [UObject*]
-  CaptureKeys: 0x0148,  // 0x0148 (0x0010) [TArray<FName>]
-  FocusIgnoreKeys: 0x0158,  // 0x0158 (0x0010) [TArray<FName>]
-  ExternalTextures: 0x0168,  // 0x0168 (0x0010) [TArray<FExternalTexture>]
-  SoundThemes: 0x0178,  // 0x0178 (0x0010) [TArray<FSoundThemeBinding>]
-  TimingMode: 0x0188,  // 0x0188 (0x0001) [GFxTimingMode]
-  RenderTextureMode: 0x0189,  // 0x0189 (0x0001) [GFxRenderTextureMode]
-  Priority: 0x018A,  // 0x018A (0x0001) [uint8]
-  WidgetBindings: 0x0190,  // 0x0190 (0x0010) [TArray<FGFxWidgetBinding>]
-  WidgetPathBindings: 0x01A0,  // 0x01A0 (0x0050) [TMap<unknown, unknown>]
-  SplitscreenLayoutObject: 0x01F0,  // 0x01F0 (0x0008) [UGFxObject*]
-  SplitscreenLayoutYAdjust: 0x01F8,  // 0x01F8 (0x0004) [int32]
-  __OnPostAdvance__Delegate: 0x0200,  // 0x0200 (0x0018) [FScriptDelegate]
+  ActionScriptModalName: 0x0060n,  // 0x0060 (0x0010) [FString]
+  GFxPopup: 0x0070n,  // 0x0070 (0x0008) [UGFxObject*]
+  Callbacks: 0x0078n,  // 0x0078 (0x0010) [TArray<FScriptDelegate>]
+  ConfirmString: 0x0088n,  // 0x0088 (0x0010) [FString]
+  __ClickDelegate__Delegate: 0x0098n,  // 0x0098 (0x0018) [FScriptDelegate]
+  __EventClosed__Delegate: 0x00b0n,  // 0x00b0 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -2163,21 +1641,21 @@ export const GFxMoviePlayer = {
  * Extends: GFxMoviePlayer
  */
 export const GFxMoviePlayer_X = {
-  Shell: 0x0218,  // 0x0218 (0x0008) [UGFxShell_X*]
-  DataStore: 0x0220,  // 0x0220 (0x0008) [unknown]
-  DataCallbacks: 0x0228,  // 0x0228 (0x0010) [TArray<UGFxDataCallback_X*>]
-  ActionScriptClasses: 0x0238,  // 0x0238 (0x0010) [TArray<UGFxObjectReference_X*>]
-  ActionScriptClassMap: 0x0248,  // 0x0248 (0x0050) [FMap_Mirror]
-  CursorScenes: 0x0298,  // 0x0298 (0x0010) [TArray<FString>]
-  InputScenes: 0x02A8,  // 0x02A8 (0x0010) [TArray<FString>]
-  CaptureScenes: 0x02B8,  // 0x02B8 (0x0010) [TArray<FString>]
-  DebugTableCallback: 0x02C8,  // 0x02C8 (0x0008) [FName]
-  DebugColumnCallback: 0x02D0,  // 0x02D0 (0x0008) [FName]
-  ShellHooksClass: 0x02D8,  // 0x02D8 (0x0008) [UGFxObjectReference_X*]
-  LoadedSoundPacks: 0x02E0,  // 0x02E0 (0x0010) [TArray<UGFxSoundPack_X*>]
-  __EventStarted__Delegate: 0x02F0,  // 0x02F0 (0x0018) [FScriptDelegate]
-  __EventClosed__Delegate: 0x0308,  // 0x0308 (0x0018) [FScriptDelegate]
-  __EventInputCaptureChanged__Delegate: 0x0320,  // 0x0320 (0x0018) [FScriptDelegate]
+  Shell: 0x0218n,  // 0x0218 (0x0008) [UGFxShell_X*]
+  DataStore: 0x0220n,  // 0x0220 (0x0008) [unknown]
+  DataCallbacks: 0x0228n,  // 0x0228 (0x0010) [TArray<UGFxDataCallback_X*>]
+  ActionScriptClasses: 0x0238n,  // 0x0238 (0x0010) [TArray<UGFxObjectReference_X*>]
+  ActionScriptClassMap: 0x0248n,  // 0x0248 (0x0050) [FMap_Mirror]
+  CursorScenes: 0x0298n,  // 0x0298 (0x0010) [TArray<FString>]
+  InputScenes: 0x02a8n,  // 0x02a8 (0x0010) [TArray<FString>]
+  CaptureScenes: 0x02b8n,  // 0x02b8 (0x0010) [TArray<FString>]
+  DebugTableCallback: 0x02c8n,  // 0x02c8 (0x0008) [FName]
+  DebugColumnCallback: 0x02d0n,  // 0x02d0 (0x0008) [FName]
+  ShellHooksClass: 0x02d8n,  // 0x02d8 (0x0008) [UGFxObjectReference_X*]
+  LoadedSoundPacks: 0x02e0n,  // 0x02e0 (0x0010) [TArray<UGFxSoundPack_X*>]
+  __EventStarted__Delegate: 0x02f0n,  // 0x02f0 (0x0018) [FScriptDelegate]
+  __EventClosed__Delegate: 0x0308n,  // 0x0308 (0x0018) [FScriptDelegate]
+  __EventInputCaptureChanged__Delegate: 0x0320n,  // 0x0320 (0x0018) [FScriptDelegate]
   ...GFxMoviePlayer,
 } as const;
 
@@ -2187,20 +1665,20 @@ export const GFxMoviePlayer_X = {
  * Extends: Object
  */
 export const GFxObjectReference_X = {
-  Value: 0x0060,  // 0x0060 (0x0030) [int32]
+  Value: 0x0060n,  // 0x0060 (0x0030) [int32]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.GFxDataCallback_X Offsets
- * Size: 0x00A5
+ * Size: 0x00a5
  * Extends: GFxObjectReference_X
  */
 export const GFxDataCallback_X = {
-  Table: 0x0090,  // 0x0090 (0x0008) [FName]
-  Row: 0x0098,  // 0x0098 (0x0004) [int32]
-  Column: 0x009C,  // 0x009C (0x0008) [FName]
-  Type: 0x00A4,  // 0x00A4 (0x0001) [EDataCallbackType]
+  Table: 0x0090n,  // 0x0090 (0x0008) [FName]
+  Row: 0x0098n,  // 0x0098 (0x0004) [int32]
+  Column: 0x009cn,  // 0x009c (0x0008) [FName]
+  Type: 0x00a4n,  // 0x00a4 (0x0001) [EDataCallbackType]
   ...GFxObjectReference_X,
 } as const;
 
@@ -2210,22 +1688,22 @@ export const GFxDataCallback_X = {
  * Extends: GFxDataSingleton_X
  */
 export const GFxShell_X = {
-  MoviePlayerArchetype: 0x0098,  // 0x0098 (0x0008) [UGFxMoviePlayer_X*]
-  Player: 0x00A0,  // 0x00A0 (0x0008) [ULocalPlayer_X*]
-  bGamePaused: 0x00A8,  // 0x00A8 (0x0004) [bool : 0x1]
-  bWasFullscreen: 0x00A8,  // 0x00A8 (0x0004) [bool : 0x2]
-  LeftX: 0x00AC,  // 0x00AC (0x0004) [float]
-  LeftY: 0x00B0,  // 0x00B0 (0x0004) [float]
-  RightX: 0x00B4,  // 0x00B4 (0x0004) [float]
-  RightY: 0x00B8,  // 0x00B8 (0x0004) [float]
-  Movies: 0x00C0,  // 0x00C0 (0x0010) [TArray<UGFxMoviePlayer_X*>]
-  DataStore: 0x00D0,  // 0x00D0 (0x0008) [unknown]
-  InputType: 0x00D8,  // 0x00D8 (0x0001) [EInputPlatformType]
-  OnlinePlatformType: 0x00D9,  // 0x00D9 (0x0001) [OnlinePlatform]
-  OnlineSub: 0x00E0,  // 0x00E0 (0x0008) [UOnlineSubsystem*]
-  __EventInputCaptureChanged__Delegate: 0x00E8,  // 0x00E8 (0x0018) [FScriptDelegate]
-  __EventInputTypeChanged__Delegate: 0x0100,  // 0x0100 (0x0018) [FScriptDelegate]
-  __EventReceivedInput__Delegate: 0x0118,  // 0x0118 (0x0018) [FScriptDelegate]
+  MoviePlayerArchetype: 0x0098n,  // 0x0098 (0x0008) [UGFxMoviePlayer_X*]
+  Player: 0x00a0n,  // 0x00a0 (0x0008) [ULocalPlayer_X*]
+  bGamePaused: 0x00a8n,  // 0x00a8 (0x0004) [bool : 0x1]
+  bWasFullscreen: 0x00a8n,  // 0x00a8 (0x0004) [bool : 0x2]
+  LeftX: 0x00acn,  // 0x00ac (0x0004) [float]
+  LeftY: 0x00b0n,  // 0x00b0 (0x0004) [float]
+  RightX: 0x00b4n,  // 0x00b4 (0x0004) [float]
+  RightY: 0x00b8n,  // 0x00b8 (0x0004) [float]
+  Movies: 0x00c0n,  // 0x00c0 (0x0010) [TArray<UGFxMoviePlayer_X*>]
+  DataStore: 0x00d0n,  // 0x00d0 (0x0008) [unknown]
+  InputType: 0x00d8n,  // 0x00d8 (0x0001) [EInputPlatformType]
+  OnlinePlatformType: 0x00d9n,  // 0x00d9 (0x0001) [OnlinePlatform]
+  OnlineSub: 0x00e0n,  // 0x00e0 (0x0008) [UOnlineSubsystem*]
+  __EventInputCaptureChanged__Delegate: 0x00e8n,  // 0x00e8 (0x0018) [FScriptDelegate]
+  __EventInputTypeChanged__Delegate: 0x0100n,  // 0x0100 (0x0018) [FScriptDelegate]
+  __EventReceivedInput__Delegate: 0x0118n,  // 0x0118 (0x0018) [FScriptDelegate]
   ...GFxDataSingleton_X,
 } as const;
 
@@ -2235,102 +1713,38 @@ export const GFxShell_X = {
  * Extends: Object
  */
 export const GFxSoundPack_X = {
-  ExportClassName: 0x0060,  // 0x0060 (0x0010) [FString]
-  Sounds: 0x0070,  // 0x0070 (0x0010) [TArray<FSoundPackSoundRef>]
-  bHasSubtitles: 0x0080,  // 0x0080 (0x0004) [bool : 0x1]
+  ExportClassName: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Sounds: 0x0070n,  // 0x0070 (0x0010) [TArray<FSoundPackSoundRef>]
+  bHasSubtitles: 0x0080n,  // 0x0080 (0x0004) [bool : 0x1]
   ...Object_,
 } as const;
 
 /**
- * Engine.GameReplicationInfo Offsets
- * Size: 0x02D8
- * Extends: ReplicationInfo
- */
-export const GameReplicationInfo = {
-  RegistryGroup: 0x0268,  // 0x0268 (0x0008) [unknown]
-  GameClass: 0x0270,  // 0x0270 (0x0008) [UClass*]
-  bStopCountDown: 0x0278,  // 0x0278 (0x0004) [bool : 0x1]
-  bMatchHasBegun: 0x0278,  // 0x0278 (0x0004) [bool : 0x2]
-  bMatchIsOver: 0x0278,  // 0x0278 (0x0004) [bool : 0x4]
-  RemainingTime: 0x027C,  // 0x027C (0x0004) [int32]
-  ElapsedTime: 0x0280,  // 0x0280 (0x0004) [int32]
-  RemainingMinute: 0x0284,  // 0x0284 (0x0004) [int32]
-  GoalScore: 0x0288,  // 0x0288 (0x0004) [int32]
-  TimeLimit: 0x028C,  // 0x028C (0x0004) [int32]
-  Teams: 0x0290,  // 0x0290 (0x0010) [TArray<UTeamInfo*>]
-  ServerName: 0x02A0,  // 0x02A0 (0x0010) [FString]
-  Winner: 0x02B0,  // 0x02B0 (0x0008) [UActor*]
-  PRIArray: 0x02B8,  // 0x02B8 (0x0010) [TArray<UPlayerReplicationInfo*>]
-  InactivePRIArray: 0x02C8,  // 0x02C8 (0x0010) [TArray<UPlayerReplicationInfo*>]
-} as const;
-
-/**
  * ProjectX.GRI_X Offsets
- * Size: 0x06A8
+ * Size: 0x06a8
  * Extends: GameReplicationInfo
  */
 export const GRI_X = {
-  ReplicatedGamePlaylist: 0x02D8,  // 0x02D8 (0x0004) [int32]
-  ReplicatedGameMutatorIndex: 0x02DC,  // 0x02DC (0x0004) [int32]
-  ReplicatedServerRegion: 0x02E0,  // 0x02E0 (0x0010) [FString]
-  Reservations: 0x02F0,  // 0x02F0 (0x0300) [FReplicatedReservationData]
-  GameServerID: 0x05F0,  // 0x05F0 (0x0010) [FString]
-  bGameStarted: 0x0600,  // 0x0600 (0x0004) [bool : 0x1]
-  bGameEnded: 0x0600,  // 0x0600 (0x0004) [bool : 0x2]
-  MatchGUID: 0x0608,  // 0x0608 (0x0010) [FString]
-  __EventSpawned__Delegate: 0x0618,  // 0x0618 (0x0018) [FScriptDelegate]
-  __EventGameDataSelected__Delegate: 0x0630,  // 0x0630 (0x0018) [FScriptDelegate]
-  __EventReservationsUpdated__Delegate: 0x0648,  // 0x0648 (0x0018) [FScriptDelegate]
-  __EventServerNameChanged__Delegate: 0x0660,  // 0x0660 (0x0018) [FScriptDelegate]
-  __EventGameStarted__Delegate: 0x0678,  // 0x0678 (0x0018) [FScriptDelegate]
-  __EventMatchGUIDChanged__Delegate: 0x0690,  // 0x0690 (0x0018) [FScriptDelegate]
+  ReplicatedGamePlaylist: 0x02d8n,  // 0x02d8 (0x0004) [int32]
+  ReplicatedGameMutatorIndex: 0x02dcn,  // 0x02dc (0x0004) [int32]
+  ReplicatedServerRegion: 0x02e0n,  // 0x02e0 (0x0010) [FString]
+  Reservations: 0x02f0n,  // 0x02f0 (0x0300) [FReplicatedReservationData]
+  GameServerID: 0x05f0n,  // 0x05f0 (0x0010) [FString]
+  bGameStarted: 0x0600n,  // 0x0600 (0x0004) [bool : 0x1]
+  bGameEnded: 0x0600n,  // 0x0600 (0x0004) [bool : 0x2]
+  MatchGUID: 0x0608n,  // 0x0608 (0x0010) [FString]
+  __EventSpawned__Delegate: 0x0618n,  // 0x0618 (0x0018) [FScriptDelegate]
+  __EventGameDataSelected__Delegate: 0x0630n,  // 0x0630 (0x0018) [FScriptDelegate]
+  __EventReservationsUpdated__Delegate: 0x0648n,  // 0x0648 (0x0018) [FScriptDelegate]
+  __EventServerNameChanged__Delegate: 0x0660n,  // 0x0660 (0x0018) [FScriptDelegate]
+  __EventGameStarted__Delegate: 0x0678n,  // 0x0678 (0x0018) [FScriptDelegate]
+  __EventMatchGUIDChanged__Delegate: 0x0690n,  // 0x0690 (0x0018) [FScriptDelegate]
   ...GameReplicationInfo,
 } as const;
 
 /**
- * Engine.GameEngine Offsets
- * Size: 0x0B48
- * Extends: Engine
- */
-export const GameEngine = {
-  GPendingLevel: 0x0958,  // 0x0958 (0x0008) [UPendingLevel*]
-  PendingLevelPlayerControllerClassName: 0x0960,  // 0x0960 (0x0010) [FString]
-  LastURL: 0x0970,  // 0x0970 (0x0060) [FURL]
-  LastRemoteURL: 0x09D0,  // 0x09D0 (0x0060) [FURL]
-  ServerActors: 0x0A30,  // 0x0A30 (0x0010) [TArray<FString>]
-  TravelURL: 0x0A40,  // 0x0A40 (0x0010) [FString]
-  TravelType: 0x0A50,  // 0x0A50 (0x0001) [uint8]
-  bWorldWasLoadedThisTick: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x1]
-  bCheckForMovieCapture: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x2]
-  bTriggerPostLoadMap: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x4]
-  bStartedLoadMapMovie: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x8]
-  bUnloadingMap: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x10]
-  bShouldCommitPendingMapChange: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x20]
-  bClearAnimSetLinkupCachesOnLoadMap: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x40]
-  bEnableSecondaryDisplay: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x80]
-  bEnableSecondaryViewport: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x100]
-  OnlineSubsystem: 0x0A58,  // 0x0A58 (0x0008) [UOnlineSubsystem*]
-  DLCEnumerator: 0x0A60,  // 0x0A60 (0x0008) [UDownloadableContentEnumerator*]
-  DownloadableContentEnumeratorClassName: 0x0A68,  // 0x0A68 (0x0010) [FString]
-  DLCManager: 0x0A78,  // 0x0A78 (0x0008) [UDownloadableContentManager*]
-  DownloadableContentManagerClassName: 0x0A80,  // 0x0A80 (0x0010) [FString]
-  LevelsToLoadForPendingMapChange: 0x0A90,  // 0x0A90 (0x0010) [TArray<FName>]
-  LoadedLevelsForPendingMapChange: 0x0AA0,  // 0x0AA0 (0x0010) [TArray<ULevel*>]
-  PendingMapChangeFailureDescription: 0x0AB0,  // 0x0AB0 (0x0010) [FString]
-  MaxDeltaTime: 0x0AC0,  // 0x0AC0 (0x0004) [float]
-  SecondaryViewportClientClassName: 0x0AC8,  // 0x0AC8 (0x0010) [FString]
-  SecondaryViewportClients: 0x0AD8,  // 0x0AD8 (0x0010) [TArray<UScriptViewportClient*>]
-  SecondaryViewportFrames: 0x0AE8,  // 0x0AE8 (0x0010) [TArray<FPointer>]
-  PendingLevelStreamingStatusUpdates: 0x0AF8,  // 0x0AF8 (0x0010) [TArray<FLevelStreamingStatus>]
-  ObjectReferencers: 0x0B08,  // 0x0B08 (0x0010) [TArray<UObjectReferencer*>]
-  PackagesToFullyLoad: 0x0B18,  // 0x0B18 (0x0010) [TArray<FFullyLoadedPackagesInfo>]
-  NamedNetDrivers: 0x0B28,  // 0x0B28 (0x0010) [TArray<FNamedNetDriver>]
-  AnimTags: 0x0B38,  // 0x0B38 (0x0010) [TArray<FAnimTag>]
-} as const;
-
-/**
  * ProjectX.GameEngine_X Offsets
- * Size: 0x0B48
+ * Size: 0x0b48
  * Extends: GameEngine
  */
 export const GameEngine_X = {
@@ -2338,118 +1752,23 @@ export const GameEngine_X = {
 } as const;
 
 /**
- * Engine.GameInfo Offsets
- * Size: 0x0488
- * Extends: Info
- */
-export const GameInfo = {
-  RegistryGroup: 0x0268,  // 0x0268 (0x0008) [unknown]
-  BulletScenesCount: 0x0270,  // 0x0270 (0x0004) [int32]
-  bRestartLevel: 0x0274,  // 0x0274 (0x0004) [bool : 0x1]
-  bPauseable: 0x0274,  // 0x0274 (0x0004) [bool : 0x2]
-  bTeamGame: 0x0274,  // 0x0274 (0x0004) [bool : 0x4]
-  bGameEnded: 0x0274,  // 0x0274 (0x0004) [bool : 0x8]
-  bOverTime: 0x0274,  // 0x0274 (0x0004) [bool : 0x10]
-  bDelayedStart: 0x0274,  // 0x0274 (0x0004) [bool : 0x20]
-  bWaitingToStartMatch: 0x0274,  // 0x0274 (0x0004) [bool : 0x40]
-  bChangeLevels: 0x0274,  // 0x0274 (0x0004) [bool : 0x80]
-  bAlreadyChanged: 0x0274,  // 0x0274 (0x0004) [bool : 0x100]
-  bGameRestarted: 0x0274,  // 0x0274 (0x0004) [bool : 0x200]
-  bLevelChange: 0x0274,  // 0x0274 (0x0004) [bool : 0x400]
-  bKickLiveIdlers: 0x0274,  // 0x0274 (0x0004) [bool : 0x800]
-  bFixedPlayerStart: 0x0274,  // 0x0274 (0x0004) [bool : 0x1000]
-  bDoFearCostFallOff: 0x0274,  // 0x0274 (0x0004) [bool : 0x2000]
-  bUseSeamlessTravel: 0x0274,  // 0x0274 (0x0004) [bool : 0x4000]
-  bHasNetworkError: 0x0274,  // 0x0274 (0x0004) [bool : 0x8000]
-  bRequiresPushToTalk: 0x0274,  // 0x0274 (0x0004) [bool : 0x10000]
-  bIsStandbyCheckingEnabled: 0x0274,  // 0x0274 (0x0004) [bool : 0x20000]
-  bIsStandbyCheckingOn: 0x0274,  // 0x0274 (0x0004) [bool : 0x40000]
-  bHasStandbyCheatTriggered: 0x0274,  // 0x0274 (0x0004) [bool : 0x80000]
-  bKeepingLoadingMovieOpen: 0x0274,  // 0x0274 (0x0004) [bool : 0x100000]
-  CauseEventCommand: 0x0278,  // 0x0278 (0x0010) [FString]
-  BugLocString: 0x0288,  // 0x0288 (0x0010) [FString]
-  BugRotString: 0x0298,  // 0x0298 (0x0010) [FString]
-  GameDifficulty: 0x02A8,  // 0x02A8 (0x0004) [float]
-  GameSpeed: 0x02AC,  // 0x02AC (0x0004) [float]
-  DefaultPawnClass: 0x02B0,  // 0x02B0 (0x0008) [UClass*]
-  HUDType: 0x02B8,  // 0x02B8 (0x0008) [UClass*]
-  SecondaryHUDType: 0x02C0,  // 0x02C0 (0x0008) [UClass*]
-  MaxSpectators: 0x02C8,  // 0x02C8 (0x0004) [int32]
-  MaxSpectatorsAllowed: 0x02CC,  // 0x02CC (0x0004) [int32]
-  NumSpectators: 0x02D0,  // 0x02D0 (0x0004) [int32]
-  MaxPlayers: 0x02D4,  // 0x02D4 (0x0004) [int32]
-  MaxPlayersAllowed: 0x02D8,  // 0x02D8 (0x0004) [int32]
-  NumPlayers: 0x02DC,  // 0x02DC (0x0004) [int32]
-  NumBots: 0x02E0,  // 0x02E0 (0x0004) [int32]
-  NumTravellingPlayers: 0x02E4,  // 0x02E4 (0x0004) [int32]
-  CurrentID: 0x02E8,  // 0x02E8 (0x0004) [int32]
-  DefaultPlayerName: 0x02F0,  // 0x02F0 (0x0010) [FString]
-  GameName: 0x0300,  // 0x0300 (0x0010) [FString]
-  FearCostFallOff: 0x0310,  // 0x0310 (0x0004) [float]
-  GoalScore: 0x0314,  // 0x0314 (0x0004) [int32]
-  MaxLives: 0x0318,  // 0x0318 (0x0004) [int32]
-  TimeLimit: 0x031C,  // 0x031C (0x0004) [int32]
-  BaseMutator: 0x0320,  // 0x0320 (0x0008) [UMutator*]
-  AutoTestManagerClass: 0x0328,  // 0x0328 (0x0008) [UClass*]
-  MyAutoTestManager: 0x0330,  // 0x0330 (0x0008) [UAutoTestManager*]
-  PlayerControllerClass: 0x0338,  // 0x0338 (0x0008) [UClass*]
-  PlayerReplicationInfoClass: 0x0340,  // 0x0340 (0x0008) [UClass*]
-  GameReplicationInfoClass: 0x0348,  // 0x0348 (0x0008) [UClass*]
-  GameReplicationInfo: 0x0350,  // 0x0350 (0x0008) [UGameReplicationInfo*]
-  PopulationManager: 0x0358,  // 0x0358 (0x0008) [UCrowdPopulationManagerBase*]
-  PopulationManagerClass: 0x0360,  // 0x0360 (0x0008) [UClass*]
-  MaxIdleTime: 0x0368,  // 0x0368 (0x0004) [float]
-  MaxTimeMargin: 0x036C,  // 0x036C (0x0004) [float]
-  TimeMarginSlack: 0x0370,  // 0x0370 (0x0004) [float]
-  MinTimeMargin: 0x0374,  // 0x0374 (0x0004) [float]
-  InactivePRIArray: 0x0378,  // 0x0378 (0x0010) [TArray<UPlayerReplicationInfo*>]
-  Pausers: 0x0388,  // 0x0388 (0x0010) [TArray<FScriptDelegate>]
-  OnlineSub: 0x0398,  // 0x0398 (0x0008) [UOnlineSubsystem*]
-  GameInterface: 0x03A0,  // 0x03A0 (0x0010) [TScriptInterface<UOnlineGameInterface>]
-  OnlineStatsWriteClass: 0x03B0,  // 0x03B0 (0x0008) [UClass*]
-  CoverReplicatorBase: 0x03B8,  // 0x03B8 (0x0008) [UCoverReplicator*]
-  OnlineGameSettingsClass: 0x03C0,  // 0x03C0 (0x0008) [UClass*]
-  ServerOptions: 0x03C8,  // 0x03C8 (0x0010) [FString]
-  AdjustedNetSpeed: 0x03D8,  // 0x03D8 (0x0004) [int32]
-  LastNetSpeedUpdateTime: 0x03DC,  // 0x03DC (0x0004) [float]
-  TotalNetBandwidth: 0x03E0,  // 0x03E0 (0x0004) [int32]
-  MinDynamicBandwidth: 0x03E4,  // 0x03E4 (0x0004) [int32]
-  MaxDynamicBandwidth: 0x03E8,  // 0x03E8 (0x0004) [int32]
-  StandbyRxCheatTime: 0x03EC,  // 0x03EC (0x0004) [float]
-  StandbyTxCheatTime: 0x03F0,  // 0x03F0 (0x0004) [float]
-  BadPingThreshold: 0x03F4,  // 0x03F4 (0x0004) [int32]
-  PercentMissingForRxStandby: 0x03F8,  // 0x03F8 (0x0004) [float]
-  PercentMissingForTxStandby: 0x03FC,  // 0x03FC (0x0004) [float]
-  PercentForBadPing: 0x0400,  // 0x0400 (0x0004) [float]
-  JoinInProgressStandbyWaitTime: 0x0404,  // 0x0404 (0x0004) [float]
-  StreamingPauseIcon: 0x0408,  // 0x0408 (0x0008) [UMaterial*]
-  GameInfoClassAliases: 0x0410,  // 0x0410 (0x0010) [TArray<FGameClassShortName>]
-  DefaultGameType: 0x0420,  // 0x0420 (0x0010) [FString]
-  DefaultMapPrefixes: 0x0430,  // 0x0430 (0x0010) [TArray<FGameTypePrefix>]
-  CustomMapPrefixes: 0x0440,  // 0x0440 (0x0010) [TArray<FGameTypePrefix>]
-  AnimTreePoolSize: 0x0450,  // 0x0450 (0x0004) [int32]
-  __CanUnpause__Delegate: 0x0458,  // 0x0458 (0x0018) [FScriptDelegate]
-  __NameSanitizedDelegate__Delegate: 0x0470,  // 0x0470 (0x0018) [FScriptDelegate]
-} as const;
-
-/**
  * ProjectX.GameInfo_X Offsets
- * Size: 0x04E0
+ * Size: 0x04e0
  * Extends: GameInfo
  */
 export const GameInfo_X = {
-  GameReplicationInfoArchetype: 0x0488,  // 0x0488 (0x0008) [UGameReplicationInfo*]
-  PlayerControllerArchetype: 0x0490,  // 0x0490 (0x0008) [UPlayerController*]
-  PawnArchetype: 0x0498,  // 0x0498 (0x0008) [UPawn*]
-  PCPausers: 0x04A0,  // 0x04A0 (0x0010) [TArray<FPauserData>]
-  __EventSpawned__Delegate: 0x04B0,  // 0x04B0 (0x0018) [FScriptDelegate]
-  __EventInit__Delegate: 0x04C8,  // 0x04C8 (0x0018) [FScriptDelegate]
+  GameReplicationInfoArchetype: 0x0488n,  // 0x0488 (0x0008) [UGameReplicationInfo*]
+  PlayerControllerArchetype: 0x0490n,  // 0x0490 (0x0008) [UPlayerController*]
+  PawnArchetype: 0x0498n,  // 0x0498 (0x0008) [UPawn*]
+  PCPausers: 0x04a0n,  // 0x04a0 (0x0010) [TArray<FPauserData>]
+  __EventSpawned__Delegate: 0x04b0n,  // 0x04b0 (0x0018) [FScriptDelegate]
+  __EventInit__Delegate: 0x04c8n,  // 0x04c8 (0x0018) [FScriptDelegate]
   ...GameInfo,
 } as const;
 
 /**
  * ProjectX.GameInfo_MapProfiler_X Offsets
- * Size: 0x04E0
+ * Size: 0x04e0
  * Extends: GameInfo_X
  */
 export const GameInfo_MapProfiler_X = {
@@ -2458,32 +1777,32 @@ export const GameInfo_MapProfiler_X = {
 
 /**
  * ProjectX.GameServerPinger_X Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: Component
  */
 export const GameServerPinger_X = {
-  Config: 0x0070,  // 0x0070 (0x0008) [UBeaconConfig_X*]
-  Address: 0x0078,  // 0x0078 (0x0008) [FName]
-  PingBeacon: 0x0080,  // 0x0080 (0x0008) [unknown]
-  __EventPong__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
-  __EventLost__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
+  Config: 0x0070n,  // 0x0070 (0x0008) [UBeaconConfig_X*]
+  Address: 0x0078n,  // 0x0078 (0x0008) [FName]
+  PingBeacon: 0x0080n,  // 0x0080 (0x0008) [unknown]
+  __EventPong__Delegate: 0x0088n,  // 0x0088 (0x0018) [FScriptDelegate]
+  __EventLost__Delegate: 0x00a0n,  // 0x00a0 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
 /**
  * ProjectX.GameSettingCategory_X Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: Object
  */
 export const GameSettingCategory_X = {
-  SelectedNames: 0x0060,  // 0x0060 (0x0010) [TArray<FName>]
-  bHidden: 0x0070,  // 0x0070 (0x0004) [bool : 0x1]
-  bUseableWhileHidden: 0x0070,  // 0x0070 (0x0004) [bool : 0x2]
-  GamemodeVisibleOverrideList: 0x0078,  // 0x0078 (0x0010) [TArray<FName>]
-  GamemodeHiddenOverrideList: 0x0088,  // 0x0088 (0x0010) [TArray<FName>]
-  GameSettings: 0x0098,  // 0x0098 (0x0010) [TArray<UGameSetting_X*>]
-  SortPriority: 0x00A8,  // 0x00A8 (0x0004) [int32]
-  ColorOverride: 0x00AC,  // 0x00AC (0x0004) [FColor]
+  SelectedNames: 0x0060n,  // 0x0060 (0x0010) [TArray<FName>]
+  bHidden: 0x0070n,  // 0x0070 (0x0004) [bool : 0x1]
+  bUseableWhileHidden: 0x0070n,  // 0x0070 (0x0004) [bool : 0x2]
+  GamemodeVisibleOverrideList: 0x0078n,  // 0x0078 (0x0010) [TArray<FName>]
+  GamemodeHiddenOverrideList: 0x0088n,  // 0x0088 (0x0010) [TArray<FName>]
+  GameSettings: 0x0098n,  // 0x0098 (0x0010) [TArray<UGameSetting_X*>]
+  SortPriority: 0x00a8n,  // 0x00a8 (0x0004) [int32]
+  ColorOverride: 0x00acn,  // 0x00ac (0x0004) [FColor]
   ...Object_,
 } as const;
 
@@ -2493,7 +1812,7 @@ export const GameSettingCategory_X = {
  * Extends: Object
  */
 export const GameSetting_X = {
-  bHidden: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
+  bHidden: 0x0060n,  // 0x0060 (0x0004) [bool : 0x1]
   ...Object_,
 } as const;
 
@@ -2503,117 +1822,66 @@ export const GameSetting_X = {
  * Extends: GameSetting_X
  */
 export const GameSettingPlaylist_X = {
-  Title: 0x0068,  // 0x0068 (0x0010) [FString]
-  Description: 0x0078,  // 0x0078 (0x0010) [FString]
-  BadgeTitle: 0x0088,  // 0x0088 (0x0010) [FString]
-  PlayerCount: 0x0098,  // 0x0098 (0x0004) [int32]
-  bStandard: 0x009C,  // 0x009C (0x0004) [bool : 0x1]
-  bRanked: 0x009C,  // 0x009C (0x0004) [bool : 0x2]
-  bSolo: 0x009C,  // 0x009C (0x0004) [bool : 0x4]
-  bExtraMode: 0x009C,  // 0x009C (0x0004) [bool : 0x8]
-  bPrivate: 0x009C,  // 0x009C (0x0004) [bool : 0x10]
-  bTournament: 0x009C,  // 0x009C (0x0004) [bool : 0x20]
-  bApplyQuitPenalty: 0x009C,  // 0x009C (0x0004) [bool : 0x40]
-  bAllowForfeit: 0x009C,  // 0x009C (0x0004) [bool : 0x80]
-  bDisableRankedReconnect: 0x009C,  // 0x009C (0x0004) [bool : 0x100]
-  bIgnoreAssignTeams: 0x009C,  // 0x009C (0x0004) [bool : 0x200]
-  bAllowBotFills: 0x009C,  // 0x009C (0x0004) [bool : 0x400]
-  bKickOnMigrate: 0x009C,  // 0x009C (0x0004) [bool : 0x800]
-  bCheckRankedMatchReservationID: 0x009C,  // 0x009C (0x0004) [bool : 0x1000]
-  bServerBroadcastCancellations: 0x009C,  // 0x009C (0x0004) [bool : 0x2000]
-  bSkipGameModeVerification: 0x009C,  // 0x009C (0x0004) [bool : 0x4000]
-  bNoBackFill: 0x009C,  // 0x009C (0x0004) [bool : 0x8000]
-  bIsMicroEventPlaylist: 0x009C,  // 0x009C (0x0004) [bool : 0x10000]
-  bHasVariablePlayerCount: 0x009C,  // 0x009C (0x0004) [bool : 0x20000]
-  bNew: 0x009C,  // 0x009C (0x0004) [bool : 0x40000]
-  bAllowClubs: 0x009C,  // 0x009C (0x0004) [bool : 0x80000]
-  bDisableSaveReplays: 0x009C,  // 0x009C (0x0004) [bool : 0x100000]
-  bOpenDetailsOnFirstTimeClicked: 0x009C,  // 0x009C (0x0004) [bool : 0x200000]
-  bEnforceDDoSPrevention: 0x009C,  // 0x009C (0x0004) [bool : 0x400000]
-  bAllowStayAsParty: 0x009C,  // 0x009C (0x0004) [bool : 0x800000]
-  PlaylistImageURL: 0x00A0,  // 0x00A0 (0x0010) [FString]
-  PlaylistImageTexture: 0x00B0,  // 0x00B0 (0x0010) [FString]
-  PlaylistIconActiveURL: 0x00C0,  // 0x00C0 (0x0010) [FString]
-  PlaylistIconInactiveURL: 0x00D0,  // 0x00D0 (0x0010) [FString]
-  PlaylistNodeThumbnailURL: 0x00E0,  // 0x00E0 (0x0010) [FString]
-  PlaylistNodeDefaultThumbnailPackage: 0x00F0,  // 0x00F0 (0x0010) [FString]
-  SecondaryTitleOverride: 0x0100,  // 0x0100 (0x0010) [FString]
-  PlaylistId: 0x0110,  // 0x0110 (0x0004) [int32]
-  PlaylistTimeWindow: 0x0118,  // 0x0118 (0x0008) [UTimeWindow*]
-  PresetMutators: 0x0120,  // 0x0120 (0x0010) [TArray<UPresetMutators_X*>]
-  MapName: 0x0130,  // 0x0130 (0x0008) [FName]
-  ServerCommand: 0x0138,  // 0x0138 (0x0010) [FString]
-  MapSetName: 0x0148,  // 0x0148 (0x0008) [FName]
-  PopulationBuckets: 0x0150,  // 0x0150 (0x0010) [TArray<int32>]
+  Title: 0x0068n,  // 0x0068 (0x0010) [FString]
+  Description: 0x0078n,  // 0x0078 (0x0010) [FString]
+  BadgeTitle: 0x0088n,  // 0x0088 (0x0010) [FString]
+  PlayerCount: 0x0098n,  // 0x0098 (0x0004) [int32]
+  bStandard: 0x009cn,  // 0x009c (0x0004) [bool : 0x1]
+  bRanked: 0x009cn,  // 0x009c (0x0004) [bool : 0x2]
+  bSolo: 0x009cn,  // 0x009c (0x0004) [bool : 0x4]
+  bExtraMode: 0x009cn,  // 0x009c (0x0004) [bool : 0x8]
+  bPrivate: 0x009cn,  // 0x009c (0x0004) [bool : 0x10]
+  bTournament: 0x009cn,  // 0x009c (0x0004) [bool : 0x20]
+  bApplyQuitPenalty: 0x009cn,  // 0x009c (0x0004) [bool : 0x40]
+  bAllowForfeit: 0x009cn,  // 0x009c (0x0004) [bool : 0x80]
+  bDisableRankedReconnect: 0x009cn,  // 0x009c (0x0004) [bool : 0x100]
+  bIgnoreAssignTeams: 0x009cn,  // 0x009c (0x0004) [bool : 0x200]
+  bAllowBotFills: 0x009cn,  // 0x009c (0x0004) [bool : 0x400]
+  bKickOnMigrate: 0x009cn,  // 0x009c (0x0004) [bool : 0x800]
+  bCheckRankedMatchReservationID: 0x009cn,  // 0x009c (0x0004) [bool : 0x1000]
+  bServerBroadcastCancellations: 0x009cn,  // 0x009c (0x0004) [bool : 0x2000]
+  bSkipGameModeVerification: 0x009cn,  // 0x009c (0x0004) [bool : 0x4000]
+  bNoBackFill: 0x009cn,  // 0x009c (0x0004) [bool : 0x8000]
+  bIsMicroEventPlaylist: 0x009cn,  // 0x009c (0x0004) [bool : 0x10000]
+  bHasVariablePlayerCount: 0x009cn,  // 0x009c (0x0004) [bool : 0x20000]
+  bNew: 0x009cn,  // 0x009c (0x0004) [bool : 0x40000]
+  bAllowClubs: 0x009cn,  // 0x009c (0x0004) [bool : 0x80000]
+  bDisableSaveReplays: 0x009cn,  // 0x009c (0x0004) [bool : 0x100000]
+  bOpenDetailsOnFirstTimeClicked: 0x009cn,  // 0x009c (0x0004) [bool : 0x200000]
+  bEnforceDDoSPrevention: 0x009cn,  // 0x009c (0x0004) [bool : 0x400000]
+  bAllowStayAsParty: 0x009cn,  // 0x009c (0x0004) [bool : 0x800000]
+  PlaylistImageURL: 0x00a0n,  // 0x00a0 (0x0010) [FString]
+  PlaylistImageTexture: 0x00b0n,  // 0x00b0 (0x0010) [FString]
+  PlaylistIconActiveURL: 0x00c0n,  // 0x00c0 (0x0010) [FString]
+  PlaylistIconInactiveURL: 0x00d0n,  // 0x00d0 (0x0010) [FString]
+  PlaylistNodeThumbnailURL: 0x00e0n,  // 0x00e0 (0x0010) [FString]
+  PlaylistNodeDefaultThumbnailPackage: 0x00f0n,  // 0x00f0 (0x0010) [FString]
+  SecondaryTitleOverride: 0x0100n,  // 0x0100 (0x0010) [FString]
+  PlaylistId: 0x0110n,  // 0x0110 (0x0004) [int32]
+  PlaylistTimeWindow: 0x0118n,  // 0x0118 (0x0008) [UTimeWindow*]
+  PresetMutators: 0x0120n,  // 0x0120 (0x0010) [TArray<UPresetMutators_X*>]
+  MapName: 0x0130n,  // 0x0130 (0x0008) [FName]
+  ServerCommand: 0x0138n,  // 0x0138 (0x0010) [FString]
+  MapSetName: 0x0148n,  // 0x0148 (0x0008) [FName]
+  PopulationBuckets: 0x0150n,  // 0x0150 (0x0010) [TArray<int32>]
   ...GameSetting_X,
 } as const;
 
 /**
- * Engine.GameViewportClient Offsets
- * Size: 0x0260
- * Extends: ScriptViewportClient
- */
-export const GameViewportClient = {
-  VfTable_FExec: 0x0068,  // 0x0068 (0x0008) [FPointer]
-  Viewport: 0x0070,  // 0x0070 (0x0008) [FPointer]
-  ViewportFrame: 0x0078,  // 0x0078 (0x0008) [FPointer]
-  GlobalInteractions: 0x0080,  // 0x0080 (0x0010) [TArray<UInteraction*>]
-  UIControllerClass: 0x0090,  // 0x0090 (0x0008) [UClass*]
-  UIController: 0x0098,  // 0x0098 (0x0008) [UUIInteraction*]
-  ViewportConsole: 0x00A0,  // 0x00A0 (0x0008) [UConsole*]
-  ShowFlags: 0x00A8,  // 0x00A8 (0x0010) [FExportShowFlags_Mirror]
-  LoadingMessage: 0x00B8,  // 0x00B8 (0x0010) [FString]
-  SavingMessage: 0x00C8,  // 0x00C8 (0x0010) [FString]
-  ConnectingMessage: 0x00D8,  // 0x00D8 (0x0010) [FString]
-  PausedMessage: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  PrecachingMessage: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  bShowTitleSafeZone: 0x0108,  // 0x0108 (0x0004) [bool : 0x1]
-  bDisplayHardwareMouseCursor: 0x0108,  // 0x0108 (0x0004) [bool : 0x2]
-  bOverrideDiffuseAndSpecular: 0x0108,  // 0x0108 (0x0004) [bool : 0x4]
-  bIsPlayInEditorViewport: 0x0108,  // 0x0108 (0x0004) [bool : 0x8]
-  bShowSystemMouseCursor: 0x0108,  // 0x0108 (0x0004) [bool : 0x10]
-  bDisableWorldRendering: 0x0108,  // 0x0108 (0x0004) [bool : 0x20]
-  bCapturedWorldRendering: 0x0108,  // 0x0108 (0x0004) [bool : 0x40]
-  bDebugNoGFxUI: 0x0108,  // 0x0108 (0x0004) [bool : 0x80]
-  TitleSafeZone: 0x010C,  // 0x010C (0x0010) [FTitleSafeZoneArea]
-  GamepadInputAPI: 0x011C,  // 0x011C (0x0001) [EInputAPI]
-  DesiredSplitscreenType: 0x011D,  // 0x011D (0x0001) [ESplitScreenType]
-  ActiveSplitscreenType: 0x011E,  // 0x011E (0x0001) [ESplitScreenType]
-  Default2PSplitType: 0x011F,  // 0x011F (0x0001) [ESplitScreenType]
-  Default3PSplitType: 0x0120,  // 0x0120 (0x0001) [ESplitScreenType]
-  Gamepads: 0x0128,  // 0x0128 (0x0010) [TArray<FGamepadInfo>]
-  SplitscreenInfo: 0x0138,  // 0x0138 (0x0010) [TArray<FSplitscreenData>]
-  ProgressMessage: 0x0148,  // 0x0148 (0x0020) [FString]
-  ProgressTimeOut: 0x0168,  // 0x0168 (0x0004) [float]
-  ProgressFadeTime: 0x016C,  // 0x016C (0x0004) [float]
-  DebugProperties: 0x0170,  // 0x0170 (0x0010) [TArray<FDebugDisplayProperty>]
-  ScaleformInteraction: 0x0180,  // 0x0180 (0x0008) [FPointer]
-  __HandleInputKey__Delegate: 0x0188,  // 0x0188 (0x0018) [FScriptDelegate]
-  __HandleInputAxis__Delegate: 0x01A0,  // 0x01A0 (0x0018) [FScriptDelegate]
-  __HandleInputChar__Delegate: 0x01B8,  // 0x01B8 (0x0018) [FScriptDelegate]
-  __EventScreenDraggedOnNewScreen__Delegate: 0x01D0,  // 0x01D0 (0x0018) [FScriptDelegate]
-  __EventScaleformEnabledChanged__Delegate: 0x01E8,  // 0x01E8 (0x0018) [FScriptDelegate]
-  __EventGamepadInputAPIChanged__Delegate: 0x0200,  // 0x0200 (0x0018) [FScriptDelegate]
-  __EventGamepadConnectionStatusChanged__Delegate: 0x0218,  // 0x0218 (0x0018) [FScriptDelegate]
-  __EventGampadConnected__Delegate: 0x0230,  // 0x0230 (0x0018) [FScriptDelegate]
-  __EventGampadDisconnected__Delegate: 0x0248,  // 0x0248 (0x0018) [FScriptDelegate]
-} as const;
-
-/**
  * ProjectX.GameViewportClient_X Offsets
- * Size: 0x02E0
+ * Size: 0x02e0
  * Extends: GameViewportClient
  */
 export const GameViewportClient_X = {
-  bHandCursor: 0x0260,  // 0x0260 (0x0004) [bool : 0x1]
-  bMuteSoundOnFocusLost: 0x0260,  // 0x0260 (0x0004) [bool : 0x2]
-  bIsFinishedLoadingSaveSettings: 0x0260,  // 0x0260 (0x0004) [bool : 0x4]
-  MaxSplitScreenPlayers: 0x0264,  // 0x0264 (0x0004) [int32]
-  __EventLocalPlayerJoin__Delegate: 0x0268,  // 0x0268 (0x0018) [FScriptDelegate]
-  __EventLocalPlayerLeave__Delegate: 0x0280,  // 0x0280 (0x0018) [FScriptDelegate]
-  __EventNotifyConnectionError__Delegate: 0x0298,  // 0x0298 (0x0018) [FScriptDelegate]
-  __EventPrimaryPlayerChange__Delegate: 0x02B0,  // 0x02B0 (0x0018) [FScriptDelegate]
-  __EventFocusChanged__Delegate: 0x02C8,  // 0x02C8 (0x0018) [FScriptDelegate]
+  bHandCursor: 0x0260n,  // 0x0260 (0x0004) [bool : 0x1]
+  bMuteSoundOnFocusLost: 0x0260n,  // 0x0260 (0x0004) [bool : 0x2]
+  bIsFinishedLoadingSaveSettings: 0x0260n,  // 0x0260 (0x0004) [bool : 0x4]
+  MaxSplitScreenPlayers: 0x0264n,  // 0x0264 (0x0004) [int32]
+  __EventLocalPlayerJoin__Delegate: 0x0268n,  // 0x0268 (0x0018) [FScriptDelegate]
+  __EventLocalPlayerLeave__Delegate: 0x0280n,  // 0x0280 (0x0018) [FScriptDelegate]
+  __EventNotifyConnectionError__Delegate: 0x0298n,  // 0x0298 (0x0018) [FScriptDelegate]
+  __EventPrimaryPlayerChange__Delegate: 0x02b0n,  // 0x02b0 (0x0018) [FScriptDelegate]
+  __EventFocusChanged__Delegate: 0x02c8n,  // 0x02c8 (0x0018) [FScriptDelegate]
   ...GameViewportClient,
 } as const;
 
@@ -2632,12 +1900,12 @@ export const GeForceNow_X = {
  * Extends: Object
  */
 export const GetPlayerStorageResultItem_X = {
-  Category: 0x0060,  // 0x0060 (0x0008) [FName]
-  Tick: 0x0068,  // 0x0068 (0x0004) [int32]
-  Data: 0x0070,  // 0x0070 (0x0010) [FString]
-  Checksum: 0x0080,  // 0x0080 (0x0004) [int32]
-  bChecksumMatch: 0x0084,  // 0x0084 (0x0004) [bool : 0x1]
-  Encoding: 0x0088,  // 0x0088 (0x0001) [EObjectEncoding]
+  Category: 0x0060n,  // 0x0060 (0x0008) [FName]
+  Tick: 0x0068n,  // 0x0068 (0x0004) [int32]
+  Data: 0x0070n,  // 0x0070 (0x0010) [FString]
+  Checksum: 0x0080n,  // 0x0080 (0x0004) [int32]
+  bChecksumMatch: 0x0084n,  // 0x0084 (0x0004) [bool : 0x1]
+  Encoding: 0x0088n,  // 0x0088 (0x0001) [EObjectEncoding]
   ...Object_,
 } as const;
 
@@ -2647,7 +1915,7 @@ export const GetPlayerStorageResultItem_X = {
  * Extends: Object
  */
 export const GetPlayerStorageResult_X = {
-  Items: 0x0060,  // 0x0060 (0x0010) [TArray<UGetPlayerStorageResultItem_X*>]
+  Items: 0x0060n,  // 0x0060 (0x0010) [TArray<UGetPlayerStorageResultItem_X*>]
   ...Object_,
 } as const;
 
@@ -2661,56 +1929,14 @@ export const GoalCollisionShape_X = {
 } as const;
 
 /**
- * Engine.HUD Offsets
- * Size: 0x0308
- * Extends: Actor
- */
-export const HUD = {
-  WhiteColor: 0x0268,  // 0x0268 (0x0004) [FColor]
-  GreenColor: 0x026C,  // 0x026C (0x0004) [FColor]
-  RedColor: 0x0270,  // 0x0270 (0x0004) [FColor]
-  PlayerOwner: 0x0278,  // 0x0278 (0x0008) [UPlayerController*]
-  bLostFocusPaused: 0x0280,  // 0x0280 (0x0004) [bool : 0x1]
-  bShowHUD: 0x0280,  // 0x0280 (0x0004) [bool : 0x2]
-  bShowScores: 0x0280,  // 0x0280 (0x0004) [bool : 0x4]
-  bShowDebugInfo: 0x0280,  // 0x0280 (0x0004) [bool : 0x8]
-  bShowBadConnectionAlert: 0x0280,  // 0x0280 (0x0004) [bool : 0x10]
-  bShowDirectorInfoDebug: 0x0280,  // 0x0280 (0x0004) [bool : 0x20]
-  bShowDirectorInfoHUD: 0x0280,  // 0x0280 (0x0004) [bool : 0x40]
-  bRenderFullScreen: 0x0280,  // 0x0280 (0x0004) [bool : 0x80]
-  bScaleCanvasForCinematicMode: 0x0280,  // 0x0280 (0x0004) [bool : 0x100]
-  bShowOverlays: 0x0280,  // 0x0280 (0x0004) [bool : 0x200]
-  HudCanvasScale: 0x0284,  // 0x0284 (0x0004) [float]
-  PostRenderedActors: 0x0288,  // 0x0288 (0x0010) [TArray<UActor*>]
-  ConsoleMessages: 0x0298,  // 0x0298 (0x0010) [TArray<FConsoleMessage>]
-  ConsoleColor: 0x02A8,  // 0x02A8 (0x0004) [FColor]
-  ConsoleMessageCount: 0x02AC,  // 0x02AC (0x0004) [int32]
-  ConsoleFontSize: 0x02B0,  // 0x02B0 (0x0004) [int32]
-  ConsoleMessagePosX: 0x02B4,  // 0x02B4 (0x0004) [float]
-  ConsoleMessagePosY: 0x02B8,  // 0x02B8 (0x0004) [float]
-  Canvas: 0x02C0,  // 0x02C0 (0x0008) [UCanvas*]
-  LastHUDRenderTime: 0x02C8,  // 0x02C8 (0x0004) [float]
-  RenderDelta: 0x02CC,  // 0x02CC (0x0004) [float]
-  SizeX: 0x02D0,  // 0x02D0 (0x0004) [float]
-  SizeY: 0x02D4,  // 0x02D4 (0x0004) [float]
-  CenterX: 0x02D8,  // 0x02D8 (0x0004) [float]
-  CenterY: 0x02DC,  // 0x02DC (0x0004) [float]
-  RatioX: 0x02E0,  // 0x02E0 (0x0004) [float]
-  RatioY: 0x02E4,  // 0x02E4 (0x0004) [float]
-  DebugDisplay: 0x02E8,  // 0x02E8 (0x0010) [TArray<FName>]
-  KismetTextInfo: 0x02F8,  // 0x02F8 (0x0010) [TArray<FKismetDrawTextInfo>]
-  ...Actor,
-} as const;
-
-/**
  * ProjectX.HUD_X Offsets
  * Size: 0x0320
  * Extends: HUD
  */
 export const HUD_X = {
-  ShowDebugObject: 0x0308,  // 0x0308 (0x0008) [UObject*]
-  DebugDrawer: 0x0310,  // 0x0310 (0x0008) [UDebugDrawer_X*]
-  DebugTexture: 0x0318,  // 0x0318 (0x0008) [UTexture*]
+  ShowDebugObject: 0x0308n,  // 0x0308 (0x0008) [UObject*]
+  DebugDrawer: 0x0310n,  // 0x0310 (0x0008) [UDebugDrawer_X*]
+  DebugTexture: 0x0318n,  // 0x0318 (0x0008) [UTexture*]
   ...HUD,
 } as const;
 
@@ -2720,15 +1946,6 @@ export const HUD_X = {
  * Extends: Object
  */
 export const Hashes_X = {
-  ...Object_,
-} as const;
-
-/**
- * Core.Interface Offsets
- * Size: 0x0060
- * Extends: Object
- */
-export const Interface = {
   ...Object_,
 } as const;
 
@@ -2792,12 +2009,12 @@ export const InitialServerToClientMessage_X = {
  * Extends: ActorComponent
  */
 export const InterpComponent_X = {
-  InterpStart: 0x00A0,  // 0x00A0 (0x0040) [FMatrix]
-  InterpEnd: 0x00E0,  // 0x00E0 (0x0040) [FMatrix]
-  InterpLocalToWorld: 0x0120,  // 0x0120 (0x0040) [FMatrix]
-  InterpStartTime: 0x0160,  // 0x0160 (0x0004) [float]
-  InterpEndTime: 0x0164,  // 0x0164 (0x0004) [float]
-  Attachments: 0x0168,  // 0x0168 (0x0010) [TArray<FAttachment>]
+  InterpStart: 0x00a0n,  // 0x00a0 (0x0040) [FMatrix]
+  InterpEnd: 0x00e0n,  // 0x00e0 (0x0040) [FMatrix]
+  InterpLocalToWorld: 0x0120n,  // 0x0120 (0x0040) [FMatrix]
+  InterpStartTime: 0x0160n,  // 0x0160 (0x0004) [float]
+  InterpEndTime: 0x0164n,  // 0x0164 (0x0004) [float]
+  Attachments: 0x0168n,  // 0x0168 (0x0010) [TArray<FAttachment>]
   ...ActorComponent,
 } as const;
 
@@ -2816,23 +2033,23 @@ export const JsonTests_X = {
  * Extends: Object
  */
 export const KeyRequestResponse = {
-  requiredKeys: 0x0060,  // 0x0060 (0x0010) [TArray<FString>]
+  requiredKeys: 0x0060n,  // 0x0060 (0x0010) [TArray<FString>]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.LanBeacon_X Offsets
- * Size: 0x00A4
+ * Size: 0x00a4
  * Extends: Component
  */
 export const LanBeacon_X = {
-  VfTable_FTickableObject: 0x0070,  // 0x0070 (0x0008) [FPointer]
-  LanBeacon: 0x0078,  // 0x0078 (0x0008) [FPointer]
-  LanAnnouncePort: 0x0080,  // 0x0080 (0x0004) [int32]
-  QueryNonce: 0x0088,  // 0x0088 (0x0008) [uint64]
-  BeaconState: 0x0090,  // 0x0090 (0x0001) [ELanBeaconState]
-  MessageComponent: 0x0098,  // 0x0098 (0x0008) [unknown]
-  MaxPacketSize: 0x00A0,  // 0x00A0 (0x0004) [int32]
+  VfTable_FTickableObject: 0x0070n,  // 0x0070 (0x0008) [FPointer]
+  LanBeacon: 0x0078n,  // 0x0078 (0x0008) [FPointer]
+  LanAnnouncePort: 0x0080n,  // 0x0080 (0x0004) [int32]
+  QueryNonce: 0x0088n,  // 0x0088 (0x0008) [uint64]
+  BeaconState: 0x0090n,  // 0x0090 (0x0001) [ELanBeaconState]
+  MessageComponent: 0x0098n,  // 0x0098 (0x0008) [unknown]
+  MaxPacketSize: 0x00a0n,  // 0x00a0 (0x0004) [int32]
   ...Component,
 } as const;
 
@@ -2847,16 +2064,16 @@ export const LanBrowser_X = {
 
 /**
  * ProjectX.AdHocBrowser_X Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: LanBrowser_X
  */
 export const AdHocBrowser_X = {
-  AdHocBeacon: 0x0060,  // 0x0060 (0x0008) [UAdHocBeacon_X*]
-  AdHocNodesOnNetwork: 0x0068,  // 0x0068 (0x0010) [TArray<FAdHocAccessPointInfo>]
-  SearchTimeout: 0x0078,  // 0x0078 (0x0004) [float]
-  SearchTask: 0x0080,  // 0x0080 (0x0008) [UTAsyncResult__array_LanServerRecord_X*]
-  SearchResults: 0x0088,  // 0x0088 (0x0010) [TArray<ULanServerRecord_X*>]
-  AdHocAccessPointsAvailable: 0x0098,  // 0x0098 (0x0010) [TArray<FAdHocAccessPointInfo>]
+  AdHocBeacon: 0x0060n,  // 0x0060 (0x0008) [UAdHocBeacon_X*]
+  AdHocNodesOnNetwork: 0x0068n,  // 0x0068 (0x0010) [TArray<FAdHocAccessPointInfo>]
+  SearchTimeout: 0x0078n,  // 0x0078 (0x0004) [float]
+  SearchTask: 0x0080n,  // 0x0080 (0x0008) [UTAsyncResult__array_LanServerRecord_X*]
+  SearchResults: 0x0088n,  // 0x0088 (0x0010) [TArray<ULanServerRecord_X*>]
+  AdHocAccessPointsAvailable: 0x0098n,  // 0x0098 (0x0010) [TArray<FAdHocAccessPointInfo>]
   ...LanBrowser_X,
 } as const;
 
@@ -2866,64 +2083,34 @@ export const AdHocBrowser_X = {
  * Extends: Object
  */
 export const LanServerRecord_X = {
-  ServerId: 0x0060,  // 0x0060 (0x0010) [FString]
-  MetaData: 0x0070,  // 0x0070 (0x0010) [FString]
+  ServerId: 0x0060n,  // 0x0060 (0x0010) [FString]
+  MetaData: 0x0070n,  // 0x0070 (0x0010) [FString]
   ...Object_,
 } as const;
 
 /**
- * Engine.LensFlareComponent Offsets
- * Size: 0x02BC
- * Extends: PrimitiveComponent
- */
-export const LensFlareComponent = {
-  Template: 0x0258,  // 0x0258 (0x0008) [ULensFlare*]
-  PreviewInnerCone: 0x0260,  // 0x0260 (0x0008) [unknown]
-  PreviewOuterCone: 0x0268,  // 0x0268 (0x0008) [unknown]
-  PreviewRadius: 0x0270,  // 0x0270 (0x0008) [unknown]
-  bAutoActivate: 0x0278,  // 0x0278 (0x0004) [bool : 0x1]
-  bIsActive: 0x0278,  // 0x0278 (0x0004) [bool : 0x2]
-  bHasTranslucency: 0x0278,  // 0x0278 (0x0004) [bool : 0x4]
-  bHasUnlitTranslucency: 0x0278,  // 0x0278 (0x0004) [bool : 0x8]
-  bHasUnlitDistortion: 0x0278,  // 0x0278 (0x0004) [bool : 0x10]
-  bUsesSceneColor: 0x0278,  // 0x0278 (0x0004) [bool : 0x20]
-  bHasSeparateTranslucency: 0x0278,  // 0x0278 (0x0004) [bool : 0x40]
-  bUseTrueConeCalculation: 0x0278,  // 0x0278 (0x0004) [bool : 0x80]
-  bVisibleForMobile: 0x0278,  // 0x0278 (0x0004) [bool : 0x100]
-  OuterCone: 0x027C,  // 0x027C (0x0004) [float]
-  InnerCone: 0x0280,  // 0x0280 (0x0004) [float]
-  ConeFudgeFactor: 0x0284,  // 0x0284 (0x0004) [float]
-  Radius: 0x0288,  // 0x0288 (0x0004) [float]
-  MinStrength: 0x028C,  // 0x028C (0x0004) [float]
-  SourceColor: 0x0290,  // 0x0290 (0x0010) [FLinearColor]
-  Materials: 0x02A0,  // 0x02A0 (0x0010) [TArray<FLensFlareElementMaterials>]
-  ReleaseResourcesFence: 0x02B0,  // 0x02B0 (0x0008) [FPointer]
-  NextTraceTime: 0x02B8,  // 0x02B8 (0x0004) [float]
-} as const;
-
-/**
  * ProjectX.LensFlareComponent_X Offsets
- * Size: 0x033C
+ * Size: 0x033c
  * Extends: LensFlareComponent
  */
 export const LensFlareComponent_X = {
-  VfTable_IISetParameter: 0x02C0,  // 0x02C0 (0x0008) [FPointer]
-  AlphaOverTime: 0x02C8,  // 0x02C8 (0x0028) [FRawDistributionFloat]
-  ColorOverTime: 0x02F0,  // 0x02F0 (0x0028) [FRawDistributionVector]
-  MaterialFloatParamValuesOverTime: 0x0318,  // 0x0318 (0x0010) [TArray<FLensFlareFloatParamCurve>]
-  SourceColorParamName: 0x0328,  // 0x0328 (0x0008) [FName]
-  SourceColorAlphaParamName: 0x0330,  // 0x0330 (0x0008) [FName]
-  AttachTime: 0x0338,  // 0x0338 (0x0004) [float]
+  VfTable_IISetParameter: 0x02c0n,  // 0x02c0 (0x0008) [FPointer]
+  AlphaOverTime: 0x02c8n,  // 0x02c8 (0x0028) [FRawDistributionFloat]
+  ColorOverTime: 0x02f0n,  // 0x02f0 (0x0028) [FRawDistributionVector]
+  MaterialFloatParamValuesOverTime: 0x0318n,  // 0x0318 (0x0010) [TArray<FLensFlareFloatParamCurve>]
+  SourceColorParamName: 0x0328n,  // 0x0328 (0x0008) [FName]
+  SourceColorAlphaParamName: 0x0330n,  // 0x0330 (0x0008) [FName]
+  AttachTime: 0x0338n,  // 0x0338 (0x0004) [float]
   ...LensFlareComponent,
 } as const;
 
 /**
  * ProjectX.LinkedAccountMap_X Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: Component
  */
 export const LinkedAccountMap_X = {
-  PlayerMap: 0x0070,  // 0x0070 (0x0050) [FMap_Mirror]
+  PlayerMap: 0x0070n,  // 0x0070 (0x0050) [FMap_Mirror]
   ...Component,
 } as const;
 
@@ -2933,24 +2120,24 @@ export const LinkedAccountMap_X = {
  * Extends: Object
  */
 export const LocalCacheTests_X = {
-  CacheFilePath: 0x0060,  // 0x0060 (0x0010) [FString]
+  CacheFilePath: 0x0060n,  // 0x0060 (0x0010) [FString]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.LocalCache_X Offsets
- * Size: 0x00E0
+ * Size: 0x00e0
  * Extends: Object
  */
 export const LocalCache_X = {
-  VfTable_FTickableObject: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  ImportTasks: 0x0068,  // 0x0068 (0x0010) [TArray<FPointer>]
-  ImportCallbacks: 0x0078,  // 0x0078 (0x0010) [TArray<FCacheImportCallbackData>]
-  ExportTasks: 0x0088,  // 0x0088 (0x0010) [TArray<FPointer>]
-  ExportCallbacks: 0x0098,  // 0x0098 (0x0010) [TArray<FCacheExportCallbackData>]
-  bDebug: 0x00A8,  // 0x00A8 (0x0004) [bool : 0x1]
-  __EventImportFinished__Delegate: 0x00B0,  // 0x00B0 (0x0018) [FScriptDelegate]
-  __EventExportFinished__Delegate: 0x00C8,  // 0x00C8 (0x0018) [FScriptDelegate]
+  VfTable_FTickableObject: 0x0060n,  // 0x0060 (0x0008) [FPointer]
+  ImportTasks: 0x0068n,  // 0x0068 (0x0010) [TArray<FPointer>]
+  ImportCallbacks: 0x0078n,  // 0x0078 (0x0010) [TArray<FCacheImportCallbackData>]
+  ExportTasks: 0x0088n,  // 0x0088 (0x0010) [TArray<FPointer>]
+  ExportCallbacks: 0x0098n,  // 0x0098 (0x0010) [TArray<FCacheExportCallbackData>]
+  bDebug: 0x00a8n,  // 0x00a8 (0x0004) [bool : 0x1]
+  __EventImportFinished__Delegate: 0x00b0n,  // 0x00b0 (0x0018) [FScriptDelegate]
+  __EventExportFinished__Delegate: 0x00c8n,  // 0x00c8 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -2960,58 +2147,20 @@ export const LocalCache_X = {
  * Extends: Object
  */
 export const LocalClubData_X = {
-  Clubs: 0x0060,  // 0x0060 (0x0010) [TArray<UClubDetails_X*>]
-  Invites: 0x0070,  // 0x0070 (0x0010) [TArray<FPlayerClubPair>]
-  NextClubID: 0x0080,  // 0x0080 (0x0004) [int32]
+  Clubs: 0x0060n,  // 0x0060 (0x0010) [TArray<UClubDetails_X*>]
+  Invites: 0x0070n,  // 0x0070 (0x0010) [TArray<FPlayerClubPair>]
+  NextClubID: 0x0080n,  // 0x0080 (0x0004) [int32]
   ...Object_,
 } as const;
 
 /**
- * Engine.LocalPlayer Offsets
- * Size: 0x04D0
- * Extends: Player
- */
-export const LocalPlayer = {
-  VfTable_FObserverInterface: 0x00B8,  // 0x00B8 (0x0008) [FPointer]
-  ControllerId: 0x00C0,  // 0x00C0 (0x0004) [int32]
-  ViewportClient: 0x00C8,  // 0x00C8 (0x0008) [UGameViewportClient*]
-  Origin: 0x00D0,  // 0x00D0 (0x0008) [FVector2D]
-  Size: 0x00D8,  // 0x00D8 (0x0008) [FVector2D]
-  PlayerPostProcess: 0x00E0,  // 0x00E0 (0x0008) [UPostProcessChain*]
-  PlayerPostProcessChains: 0x00E8,  // 0x00E8 (0x0010) [TArray<UPostProcessChain*>]
-  bForceDefaultPostProcessChain: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x1]
-  bWantToResetToMapDefaultPP: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x2]
-  bSentSplitJoin: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x4]
-  bPendingServerAuth: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x8]
-  bDrawWorldFullScreen: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x10]
-  bReplayFXDirtied: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x20]
-  ViewState: 0x0100,  // 0x0100 (0x0008) [FPointer]
-  ViewState2: 0x0108,  // 0x0108 (0x0008) [FPointer]
-  ActorVisibilityHistory: 0x0110,  // 0x0110 (0x0010) [FSynchronizedActorVisibilityHistory]
-  LastViewLocation: 0x0120,  // 0x0120 (0x000C) [FVector]
-  CurrentPPInfo: 0x0130,  // 0x0130 (0x0178) [FCurrentPostProcessVolumeInfo]
-  LevelPPInfo: 0x02A8,  // 0x02A8 (0x0178) [FCurrentPostProcessVolumeInfo]
-  ActivePPOverrides: 0x0420,  // 0x0420 (0x0010) [TArray<FPostProcessSettingsOverride>]
-  AspectRatioAxisConstraint: 0x0430,  // 0x0430 (0x0001) [EAspectRatioAxisConstraint]
-  LastMap: 0x0438,  // 0x0438 (0x0010) [FString]
-  TagContext: 0x0448,  // 0x0448 (0x0008) [UTranslationContext*]
-  CachedAuthInt: 0x0450,  // 0x0450 (0x0010) [TScriptInterface<UOnlineAuthInterface>]
-  ServerAuthTimestamp: 0x0460,  // 0x0460 (0x0004) [float]
-  ServerAuthTimeout: 0x0464,  // 0x0464 (0x0004) [int32]
-  ServerAuthRetryCount: 0x0468,  // 0x0468 (0x0004) [int32]
-  MaxServerAuthRetryCount: 0x046C,  // 0x046C (0x0004) [int32]
-  ServerAuthUID: 0x0470,  // 0x0470 (0x0048) [FUniqueNetId]
-  __bForceDefaultPostProcessChain__ChangeNotify: 0x04B8,  // 0x04B8 (0x0018) [FScriptDelegate]
-} as const;
-
-/**
  * ProjectX.LocalPlayer_X Offsets
- * Size: 0x04E8
+ * Size: 0x04e8
  * Extends: LocalPlayer
  */
 export const LocalPlayer_X = {
-  OnlinePlayer: 0x04D0,  // 0x04D0 (0x0008) [UOnlinePlayer_X*]
-  CabinedOrGuest: 0x04D8,  // 0x04D8 (0x0010) [TScriptInterface<UICabinedOrGuest>]
+  OnlinePlayer: 0x04d0n,  // 0x04d0 (0x0008) [UOnlinePlayer_X*]
+  CabinedOrGuest: 0x04d8n,  // 0x04d8 (0x0010) [TScriptInterface<UICabinedOrGuest>]
   ...LocalPlayer,
 } as const;
 
@@ -3021,8 +2170,8 @@ export const LocalPlayer_X = {
  * Extends: Object
  */
 export const LocalizedAccountLinkURL = {
-  Language: 0x0060,  // 0x0060 (0x0010) [FString]
-  URL: 0x0070,  // 0x0070 (0x0010) [FString]
+  Language: 0x0060n,  // 0x0060 (0x0010) [FString]
+  URL: 0x0070n,  // 0x0070 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -3032,37 +2181,37 @@ export const LocalizedAccountLinkURL = {
  * Extends: Object
  */
 export const LoginResponse_X = {
-  BannedMessage: 0x0060,  // 0x0060 (0x0010) [FString]
-  BannedMinutes: 0x0070,  // 0x0070 (0x0004) [int32]
+  BannedMessage: 0x0060n,  // 0x0060 (0x0010) [FString]
+  BannedMinutes: 0x0070n,  // 0x0070 (0x0004) [int32]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.MICParamDispenserComponent_X Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: ActorComponent_X
  */
 export const MICParamDispenserComponent_X = {
-  VfTable_IISetParameter: 0x00A8,  // 0x00A8 (0x0008) [FPointer]
-  MaterialIndex: 0x00B0,  // 0x00B0 (0x0004) [int32]
-  AttachedComponentName: 0x00B4,  // 0x00B4 (0x0008) [FName]
-  MeshComp: 0x00C0,  // 0x00C0 (0x0008) [unknown]
+  VfTable_IISetParameter: 0x00a8n,  // 0x00a8 (0x0008) [FPointer]
+  MaterialIndex: 0x00b0n,  // 0x00b0 (0x0004) [int32]
+  AttachedComponentName: 0x00b4n,  // 0x00b4 (0x0008) [FName]
+  MeshComp: 0x00c0n,  // 0x00c0 (0x0008) [unknown]
   ...ActorComponent_X,
 } as const;
 
 /**
  * ProjectX.MapFlythroughProfiler_X Offsets
- * Size: 0x02C0
+ * Size: 0x02c0
  * Extends: Actor
  */
 export const MapFlythroughProfiler_X = {
-  Accel: 0x0268,  // 0x0268 (0x0004) [float]
-  TurnRate: 0x026C,  // 0x026C (0x0004) [float]
-  ProfileTime: 0x0270,  // 0x0270 (0x0004) [float]
-  FinishTime: 0x0274,  // 0x0274 (0x0004) [float]
-  Speed: 0x0278,  // 0x0278 (0x0004) [float]
-  Profile: 0x027C,  // 0x027C (0x0028) [FRenderProfile]
-  __EventFinished__Delegate: 0x02A8,  // 0x02A8 (0x0018) [FScriptDelegate]
+  Accel: 0x0268n,  // 0x0268 (0x0004) [float]
+  TurnRate: 0x026cn,  // 0x026c (0x0004) [float]
+  ProfileTime: 0x0270n,  // 0x0270 (0x0004) [float]
+  FinishTime: 0x0274n,  // 0x0274 (0x0004) [float]
+  Speed: 0x0278n,  // 0x0278 (0x0004) [float]
+  Profile: 0x027cn,  // 0x027c (0x0028) [FRenderProfile]
+  __EventFinished__Delegate: 0x02a8n,  // 0x02a8 (0x0018) [FScriptDelegate]
   ...Actor,
 } as const;
 
@@ -3072,29 +2221,29 @@ export const MapFlythroughProfiler_X = {
  * Extends: Object
  */
 export const MatchData_X = {
-  MatchGUID: 0x0060,  // 0x0060 (0x0010) [FString]
-  RecordStartTimestamp: 0x0070,  // 0x0070 (0x0008) [uint64]
-  RecordEndTimestamp: 0x0078,  // 0x0078 (0x0008) [uint64]
-  MatchStartTimestamp: 0x0080,  // 0x0080 (0x0008) [uint64]
-  MatchEndTimestamp: 0x0088,  // 0x0088 (0x0008) [uint64]
-  MapName: 0x0090,  // 0x0090 (0x0008) [FName]
-  Playlist: 0x0098,  // 0x0098 (0x0004) [int32]
-  Mutators: 0x00A0,  // 0x00A0 (0x0010) [TArray<FName>]
-  bIsBotMatch: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x1]
-  bClubVsClub: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x2]
-  bOverTime: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x4]
-  bNoContest: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x8]
-  bForfeit: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x10]
-  ClubID: 0x00B4,  // 0x00B4 (0x0004) [int32]
-  CustomMatchCreatorPlayerID: 0x00B8,  // 0x00B8 (0x0048) [FUniqueNetId]
-  CustomServerName: 0x0100,  // 0x0100 (0x0010) [FString]
-  CustomServerPassword: 0x0110,  // 0x0110 (0x0010) [FString]
-  SecondsPlayed: 0x0120,  // 0x0120 (0x0004) [float]
-  OvertimeSecondsPlayed: 0x0124,  // 0x0124 (0x0004) [float]
-  WinningTeam: 0x0128,  // 0x0128 (0x0004) [int32]
-  Team0Score: 0x012C,  // 0x012C (0x0004) [int32]
-  Team1Score: 0x0130,  // 0x0130 (0x0004) [int32]
-  Players: 0x0138,  // 0x0138 (0x0010) [TArray<UMatchPlayerData_X*>]
+  MatchGUID: 0x0060n,  // 0x0060 (0x0010) [FString]
+  RecordStartTimestamp: 0x0070n,  // 0x0070 (0x0008) [uint64]
+  RecordEndTimestamp: 0x0078n,  // 0x0078 (0x0008) [uint64]
+  MatchStartTimestamp: 0x0080n,  // 0x0080 (0x0008) [uint64]
+  MatchEndTimestamp: 0x0088n,  // 0x0088 (0x0008) [uint64]
+  MapName: 0x0090n,  // 0x0090 (0x0008) [FName]
+  Playlist: 0x0098n,  // 0x0098 (0x0004) [int32]
+  Mutators: 0x00a0n,  // 0x00a0 (0x0010) [TArray<FName>]
+  bIsBotMatch: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x1]
+  bClubVsClub: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x2]
+  bOverTime: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x4]
+  bNoContest: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x8]
+  bForfeit: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x10]
+  ClubID: 0x00b4n,  // 0x00b4 (0x0004) [int32]
+  CustomMatchCreatorPlayerID: 0x00b8n,  // 0x00b8 (0x0048) [FUniqueNetId]
+  CustomServerName: 0x0100n,  // 0x0100 (0x0010) [FString]
+  CustomServerPassword: 0x0110n,  // 0x0110 (0x0010) [FString]
+  SecondsPlayed: 0x0120n,  // 0x0120 (0x0004) [float]
+  OvertimeSecondsPlayed: 0x0124n,  // 0x0124 (0x0004) [float]
+  WinningTeam: 0x0128n,  // 0x0128 (0x0004) [int32]
+  Team0Score: 0x012cn,  // 0x012c (0x0004) [int32]
+  Team1Score: 0x0130n,  // 0x0130 (0x0004) [int32]
+  Players: 0x0138n,  // 0x0138 (0x0010) [TArray<UMatchPlayerData_X*>]
   ...Object_,
 } as const;
 
@@ -3108,24 +2257,12 @@ export const MatchEndedMessage_X = {
 } as const;
 
 /**
- * IpDrv.WebApplication Offsets
- * Size: 0x0080
- * Extends: Object
- */
-export const WebApplication = {
-  WorldInfo: 0x0060,  // 0x0060 (0x0008) [UWorldInfo*]
-  WebServer: 0x0068,  // 0x0068 (0x0008) [UWebServer*]
-  Path: 0x0070,  // 0x0070 (0x0010) [FString]
-  ...Object_,
-} as const;
-
-/**
  * ProjectX.MatchInfoWebService_X Offsets
  * Size: 0x0088
  * Extends: WebApplication
  */
 export const MatchInfoWebService_X = {
-  DedicatedServer: 0x0080,  // 0x0080 (0x0008) [UOnlineGameDedicatedServer_X*]
+  DedicatedServer: 0x0080n,  // 0x0080 (0x0008) [UOnlineGameDedicatedServer_X*]
   ...WebApplication,
 } as const;
 
@@ -3135,9 +2272,9 @@ export const MatchInfoWebService_X = {
  * Extends: Object
  */
 export const MatchLog_X = {
-  LogFileStartSize: 0x0060,  // 0x0060 (0x0004) [int32]
-  URL: 0x0068,  // 0x0068 (0x0010) [FString]
-  Content: 0x0078,  // 0x0078 (0x0010) [TArray<uint8>]
+  LogFileStartSize: 0x0060n,  // 0x0060 (0x0004) [int32]
+  URL: 0x0068n,  // 0x0068 (0x0010) [FString]
+  Content: 0x0078n,  // 0x0078 (0x0010) [TArray<uint8>]
   ...Object_,
 } as const;
 
@@ -3147,28 +2284,28 @@ export const MatchLog_X = {
  * Extends: Object
  */
 export const MatchPlayerData_X = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  PlayerName: 0x00A8,  // 0x00A8 (0x0010) [FString]
-  ConnectTimestamp: 0x00B8,  // 0x00B8 (0x0008) [uint64]
-  JoinTimestamp: 0x00C0,  // 0x00C0 (0x0008) [uint64]
-  LeaveTimestamp: 0x00C8,  // 0x00C8 (0x0008) [uint64]
-  InParty: 0x00D0,  // 0x00D0 (0x0004) [bool : 0x1]
-  bAbandoned: 0x00D0,  // 0x00D0 (0x0004) [bool : 0x2]
-  bMvp: 0x00D0,  // 0x00D0 (0x0004) [bool : 0x4]
-  PartyLeaderID: 0x00D8,  // 0x00D8 (0x0048) [FUniqueNetId]
-  LastTeam: 0x0120,  // 0x0120 (0x0004) [int32]
-  TeamColor: 0x0128,  // 0x0128 (0x0010) [FString]
-  SecondsPlayed: 0x0138,  // 0x0138 (0x0004) [float]
-  Goals: 0x013C,  // 0x013C (0x0004) [int32]
-  Assists: 0x0140,  // 0x0140 (0x0004) [int32]
-  Saves: 0x0144,  // 0x0144 (0x0004) [int32]
-  Shots: 0x0148,  // 0x0148 (0x0004) [int32]
-  Demolishes: 0x014C,  // 0x014C (0x0004) [int32]
-  Score: 0x0150,  // 0x0150 (0x0004) [int32]
-  OwnGoals: 0x0154,  // 0x0154 (0x0004) [int32]
-  ClubID: 0x0158,  // 0x0158 (0x0004) [int32]
-  Skills: 0x015C,  // 0x015C (0x0024) [FMatchSkillUpdate]
-  ActorID: 0x0180,  // 0x0180 (0x0004) [int32]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
+  PlayerName: 0x00a8n,  // 0x00a8 (0x0010) [FString]
+  ConnectTimestamp: 0x00b8n,  // 0x00b8 (0x0008) [uint64]
+  JoinTimestamp: 0x00c0n,  // 0x00c0 (0x0008) [uint64]
+  LeaveTimestamp: 0x00c8n,  // 0x00c8 (0x0008) [uint64]
+  InParty: 0x00d0n,  // 0x00d0 (0x0004) [bool : 0x1]
+  bAbandoned: 0x00d0n,  // 0x00d0 (0x0004) [bool : 0x2]
+  bMvp: 0x00d0n,  // 0x00d0 (0x0004) [bool : 0x4]
+  PartyLeaderID: 0x00d8n,  // 0x00d8 (0x0048) [FUniqueNetId]
+  LastTeam: 0x0120n,  // 0x0120 (0x0004) [int32]
+  TeamColor: 0x0128n,  // 0x0128 (0x0010) [FString]
+  SecondsPlayed: 0x0138n,  // 0x0138 (0x0004) [float]
+  Goals: 0x013cn,  // 0x013c (0x0004) [int32]
+  Assists: 0x0140n,  // 0x0140 (0x0004) [int32]
+  Saves: 0x0144n,  // 0x0144 (0x0004) [int32]
+  Shots: 0x0148n,  // 0x0148 (0x0004) [int32]
+  Demolishes: 0x014cn,  // 0x014c (0x0004) [int32]
+  Score: 0x0150n,  // 0x0150 (0x0004) [int32]
+  OwnGoals: 0x0154n,  // 0x0154 (0x0004) [int32]
+  ClubID: 0x0158n,  // 0x0158 (0x0004) [int32]
+  Skills: 0x015cn,  // 0x015c (0x0024) [FMatchSkillUpdate]
+  ActorID: 0x0180n,  // 0x0180 (0x0004) [int32]
   ...Object_,
 } as const;
 
@@ -3178,38 +2315,29 @@ export const MatchPlayerData_X = {
  * Extends: Object
  */
 export const MatchRecorder_X = {
-  MatchDataClass: 0x0060,  // 0x0060 (0x0008) [UClass*]
-  PlayerDataClass: 0x0068,  // 0x0068 (0x0008) [UClass*]
-  Match: 0x0070,  // 0x0070 (0x0008) [UMatchData_X*]
+  MatchDataClass: 0x0060n,  // 0x0060 (0x0008) [UClass*]
+  PlayerDataClass: 0x0068n,  // 0x0068 (0x0008) [UClass*]
+  Match: 0x0070n,  // 0x0070 (0x0008) [UMatchData_X*]
   ...Object_,
 } as const;
 
 /**
- * Engine.MaterialEffect Offsets
- * Size: 0x0090
- * Extends: PostProcessEffect
- */
-export const MaterialEffect = {
-  Material: 0x0088,  // 0x0088 (0x0008) [UMaterialInterface*]
-} as const;
-
-/**
  * ProjectX.MaterialEffect_X Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: MaterialEffect
  */
 export const MaterialEffect_X = {
-  TimeParamName: 0x0090,  // 0x0090 (0x0008) [FName]
-  FadeInTime: 0x0098,  // 0x0098 (0x0004) [float]
-  FadeInFalloff: 0x009C,  // 0x009C (0x0004) [float]
-  FadeOutTime: 0x00A0,  // 0x00A0 (0x0004) [float]
-  FadeOutFalloff: 0x00A4,  // 0x00A4 (0x0004) [float]
-  ActiveTime: 0x00A8,  // 0x00A8 (0x0004) [float]
-  ValueMin: 0x00AC,  // 0x00AC (0x0004) [float]
-  ValueMax: 0x00B0,  // 0x00B0 (0x0004) [float]
-  MatInst: 0x00B8,  // 0x00B8 (0x0008) [UMaterialInstanceConstant*]
-  Stage: 0x00C0,  // 0x00C0 (0x0001) [EMaterialEffectStage]
-  StageTime: 0x00C4,  // 0x00C4 (0x0004) [float]
+  TimeParamName: 0x0090n,  // 0x0090 (0x0008) [FName]
+  FadeInTime: 0x0098n,  // 0x0098 (0x0004) [float]
+  FadeInFalloff: 0x009cn,  // 0x009c (0x0004) [float]
+  FadeOutTime: 0x00a0n,  // 0x00a0 (0x0004) [float]
+  FadeOutFalloff: 0x00a4n,  // 0x00a4 (0x0004) [float]
+  ActiveTime: 0x00a8n,  // 0x00a8 (0x0004) [float]
+  ValueMin: 0x00acn,  // 0x00ac (0x0004) [float]
+  ValueMax: 0x00b0n,  // 0x00b0 (0x0004) [float]
+  MatInst: 0x00b8n,  // 0x00b8 (0x0008) [UMaterialInstanceConstant*]
+  Stage: 0x00c0n,  // 0x00c0 (0x0001) [EMaterialEffectStage]
+  StageTime: 0x00c4n,  // 0x00c4 (0x0004) [float]
   ...MaterialEffect,
 } as const;
 
@@ -3237,7 +2365,7 @@ export const BlockStatusMetrics_X = {
  * Extends: MetricsGroup_X
  */
 export const BugMetrics_X = {
-  ReportedIDs: 0x0080,  // 0x0080 (0x0010) [TArray<FName>]
+  ReportedIDs: 0x0080n,  // 0x0080 (0x0010) [TArray<FName>]
   ...MetricsGroup_X,
 } as const;
 
@@ -3252,21 +2380,21 @@ export const ClubMetrics_X = {
 
 /**
  * ProjectX.MatchmakingMetrics_X Offsets
- * Size: 0x00A0
+ * Size: 0x00a0
  * Extends: MetricsGroup_X
  */
 export const MatchmakingMetrics_X = {
-  StartTime: 0x0080,  // 0x0080 (0x0004) [float]
-  MMGuid: 0x0084,  // 0x0084 (0x0010) [FGuid]
-  bIsCrossplayDisabled: 0x0094,  // 0x0094 (0x0004) [bool : 0x1]
-  PartyLeaderMMR: 0x0098,  // 0x0098 (0x0004) [float]
-  PartyLeaderTier: 0x009C,  // 0x009C (0x0004) [int32]
+  StartTime: 0x0080n,  // 0x0080 (0x0004) [float]
+  MMGuid: 0x0084n,  // 0x0084 (0x0010) [FGuid]
+  bIsCrossplayDisabled: 0x0094n,  // 0x0094 (0x0004) [bool : 0x1]
+  PartyLeaderMMR: 0x0098n,  // 0x0098 (0x0004) [float]
+  PartyLeaderTier: 0x009cn,  // 0x009c (0x0004) [int32]
   ...MetricsGroup_X,
 } as const;
 
 /**
  * ProjectX.MetricsSystem_X Offsets
- * Size: 0x00D0
+ * Size: 0x00d0
  * Extends: EventRecorder_X
  */
 export const MetricsSystem_X = {
@@ -3288,7 +2416,7 @@ export const MirrorUtils_X = {
  * Extends: ErrorList
  */
 export const NNXErrors_X = {
-  SwitchServiceMaintenance: 0x0080,  // 0x0080 (0x0008) [UErrorType*]
+  SwitchServiceMaintenance: 0x0080n,  // 0x0080 (0x0008) [UErrorType*]
   ...ErrorList,
 } as const;
 
@@ -3307,8 +2435,8 @@ export const NetMetricsSystem_X = {
  * Extends: MetricsGroup_X
  */
 export const NetMetrics_X = {
-  Config: 0x0080,  // 0x0080 (0x0008) [UEventRecorderConfig_X*]
-  UnstableConnectionsQueue: 0x0088,  // 0x0088 (0x0010) [TArray<FString>]
+  Config: 0x0080n,  // 0x0080 (0x0008) [UEventRecorderConfig_X*]
+  UnstableConnectionsQueue: 0x0088n,  // 0x0088 (0x0010) [TArray<FString>]
   ...MetricsGroup_X,
 } as const;
 
@@ -3319,14 +2447,6 @@ export const NetMetrics_X = {
  */
 export const NetModeBase = {
   ...Object_,
-} as const;
-
-/**
- * Engine.ReplicationInfo Offsets
- * Size: 0x0268
- * Extends: Info
- */
-export const ReplicationInfo = {
 } as const;
 
 /**
@@ -3425,7 +2545,7 @@ export const NetMode_Standalone = {
  * Extends: Object
  */
 export const NetworkPingEvent_X = {
-  DeltaSeconds: 0x0060,  // 0x0060 (0x0004) [float]
+  DeltaSeconds: 0x0060n,  // 0x0060 (0x0004) [float]
   ...Object_,
 } as const;
 
@@ -3444,8 +2564,8 @@ export const NullResponse = {
  * Extends: Component
  */
 export const OnlineClubCache_X = {
-  ClubDetailsCache: 0x0070,  // 0x0070 (0x0010) [TArray<UClubDetails_X*>]
-  __EventClubUpdated__Delegate: 0x0080,  // 0x0080 (0x0018) [FScriptDelegate]
+  ClubDetailsCache: 0x0070n,  // 0x0070 (0x0010) [TArray<UClubDetails_X*>]
+  __EventClubUpdated__Delegate: 0x0080n,  // 0x0080 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
@@ -3455,24 +2575,24 @@ export const OnlineClubCache_X = {
  * Extends: Object
  */
 export const OnlineClubManager_X = {
-  Connection: 0x0060,  // 0x0060 (0x0008) [UPsyNetConnection_X*]
-  __EventClubChanged__Delegate: 0x0068,  // 0x0068 (0x0018) [FScriptDelegate]
+  Connection: 0x0060n,  // 0x0060 (0x0008) [UPsyNetConnection_X*]
+  __EventClubChanged__Delegate: 0x0068n,  // 0x0068 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.OnlineClubProvider_X Offsets
- * Size: 0x00D8
+ * Size: 0x00d8
  * Extends: Object
  */
 export const OnlineClubProvider_X = {
-  Cache: 0x0060,  // 0x0060 (0x0008) [unknown]
-  SyncingClubs: 0x0068,  // 0x0068 (0x0010) [TArray<URPC_GetClubDetails_X*>]
-  SyncingPlayers: 0x0078,  // 0x0078 (0x0010) [TArray<URPC_GetPlayerClubDetails_X*>]
-  SyncingClubsArray: 0x0088,  // 0x0088 (0x0010) [TArray<URPC_GetClubDetailsArray_X*>]
-  PlayerClubSyncResults: 0x0098,  // 0x0098 (0x0010) [TArray<FPlayerClubSyncResult>]
-  __EventSyncComplete__Delegate: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
-  __EventPlayerSynced__Delegate: 0x00C0,  // 0x00C0 (0x0018) [FScriptDelegate]
+  Cache: 0x0060n,  // 0x0060 (0x0008) [unknown]
+  SyncingClubs: 0x0068n,  // 0x0068 (0x0010) [TArray<URPC_GetClubDetails_X*>]
+  SyncingPlayers: 0x0078n,  // 0x0078 (0x0010) [TArray<URPC_GetPlayerClubDetails_X*>]
+  SyncingClubsArray: 0x0088n,  // 0x0088 (0x0010) [TArray<URPC_GetClubDetailsArray_X*>]
+  PlayerClubSyncResults: 0x0098n,  // 0x0098 (0x0010) [TArray<FPlayerClubSyncResult>]
+  __EventSyncComplete__Delegate: 0x00a8n,  // 0x00a8 (0x0018) [FScriptDelegate]
+  __EventPlayerSynced__Delegate: 0x00c0n,  // 0x00c0 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -3482,9 +2602,9 @@ export const OnlineClubProvider_X = {
  * Extends: Object
  */
 export const OnlineClubServerList_X = {
-  Servers: 0x0060,  // 0x0060 (0x0010) [TArray<UClubServerResult_X*>]
-  RPC: 0x0070,  // 0x0070 (0x0008) [URPC_GetClubPrivateMatches_X*]
-  Error: 0x0078,  // 0x0078 (0x0008) [UError*]
+  Servers: 0x0060n,  // 0x0060 (0x0010) [TArray<UClubServerResult_X*>]
+  RPC: 0x0070n,  // 0x0070 (0x0008) [URPC_GetClubPrivateMatches_X*]
+  Error: 0x0078n,  // 0x0078 (0x0008) [UError*]
   ...Object_,
 } as const;
 
@@ -3494,7 +2614,7 @@ export const OnlineClubServerList_X = {
  * Extends: Object
  */
 export const OnlineConfigDispatcher_X = {
-  bDebug: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
+  bDebug: 0x0060n,  // 0x0060 (0x0004) [bool : 0x1]
   ...Object_,
 } as const;
 
@@ -3504,35 +2624,35 @@ export const OnlineConfigDispatcher_X = {
  * Extends: Object
  */
 export const OnlineConfig_X = {
-  bAllowOnServer: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
-  AllSubscriptions: 0x0068,  // 0x0068 (0x0010) [TArray<FModifierSubscription>]
+  bAllowOnServer: 0x0060n,  // 0x0060 (0x0004) [bool : 0x1]
+  AllSubscriptions: 0x0068n,  // 0x0068 (0x0010) [TArray<FModifierSubscription>]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.AppConfig_X Offsets
- * Size: 0x007C
+ * Size: 0x007c
  * Extends: OnlineConfig_X
  */
 export const AppConfig_X = {
-  bSpinSleep: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
+  bSpinSleep: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
   ...OnlineConfig_X,
 } as const;
 
 /**
  * ProjectX.AprilConfig_X Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: OnlineConfig_X
  */
 export const AprilConfig_X = {
-  StartTime: 0x0078,  // 0x0078 (0x0008) [uint64]
-  EndTime: 0x0080,  // 0x0080 (0x0008) [uint64]
-  bChangeRankedIcons: 0x0088,  // 0x0088 (0x0004) [bool : 0x1]
-  bChangePlaylists: 0x0088,  // 0x0088 (0x0004) [bool : 0x2]
-  bChangeCrowd: 0x0088,  // 0x0088 (0x0004) [bool : 0x4]
-  QuickChatDisplayOverrides: 0x0090,  // 0x0090 (0x0010) [TArray<FQuickChatOverridePair>]
-  HatScale: 0x00A0,  // 0x00A0 (0x0004) [float]
-  AntennaScale: 0x00A4,  // 0x00A4 (0x0004) [float]
+  StartTime: 0x0078n,  // 0x0078 (0x0008) [uint64]
+  EndTime: 0x0080n,  // 0x0080 (0x0008) [uint64]
+  bChangeRankedIcons: 0x0088n,  // 0x0088 (0x0004) [bool : 0x1]
+  bChangePlaylists: 0x0088n,  // 0x0088 (0x0004) [bool : 0x2]
+  bChangeCrowd: 0x0088n,  // 0x0088 (0x0004) [bool : 0x4]
+  QuickChatDisplayOverrides: 0x0090n,  // 0x0090 (0x0010) [TArray<FQuickChatOverridePair>]
+  HatScale: 0x00a0n,  // 0x00a0 (0x0004) [float]
+  AntennaScale: 0x00a4n,  // 0x00a4 (0x0004) [float]
   ...OnlineConfig_X,
 } as const;
 
@@ -3542,12 +2662,12 @@ export const AprilConfig_X = {
  * Extends: OnlineConfig_X
  */
 export const BeaconConfig_X = {
-  bUdpPingMetrics: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  MaxPingsPerAddress: 0x007C,  // 0x007C (0x0004) [int32]
-  MaxPingsWindowSeconds: 0x0080,  // 0x0080 (0x0004) [int32]
-  StatsLogDelaySeconds: 0x0084,  // 0x0084 (0x0004) [int32]
-  WaitForPongSeconds: 0x0088,  // 0x0088 (0x0004) [float]
-  PingsPerSecond: 0x008C,  // 0x008C (0x0004) [int32]
+  bUdpPingMetrics: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
+  MaxPingsPerAddress: 0x007cn,  // 0x007c (0x0004) [int32]
+  MaxPingsWindowSeconds: 0x0080n,  // 0x0080 (0x0004) [int32]
+  StatsLogDelaySeconds: 0x0084n,  // 0x0084 (0x0004) [int32]
+  WaitForPongSeconds: 0x0088n,  // 0x0088 (0x0004) [float]
+  PingsPerSecond: 0x008cn,  // 0x008c (0x0004) [int32]
   ...OnlineConfig_X,
 } as const;
 
@@ -3557,8 +2677,8 @@ export const BeaconConfig_X = {
  * Extends: OnlineConfig_X
  */
 export const BlockStatusReporterConfig_X = {
-  DownloadTimeoutSeconds: 0x0078,  // 0x0078 (0x0004) [float]
-  bSubmitBugReportOnTimeout: 0x007C,  // 0x007C (0x0004) [bool : 0x1]
+  DownloadTimeoutSeconds: 0x0078n,  // 0x0078 (0x0004) [float]
+  bSubmitBugReportOnTimeout: 0x007cn,  // 0x007c (0x0004) [bool : 0x1]
   ...OnlineConfig_X,
 } as const;
 
@@ -3568,18 +2688,18 @@ export const BlockStatusReporterConfig_X = {
  * Extends: OnlineConfig_X
  */
 export const BlogConfig_X = {
-  Entries: 0x0078,  // 0x0078 (0x0010) [TArray<UBlogTile_X*>]
-  MotD: 0x0088,  // 0x0088 (0x0010) [FString]
+  Entries: 0x0078n,  // 0x0078 (0x0010) [TArray<UBlogTile_X*>]
+  MotD: 0x0088n,  // 0x0088 (0x0010) [FString]
   ...OnlineConfig_X,
 } as const;
 
 /**
  * ProjectX.BreadcrumbConfig_X Offsets
- * Size: 0x007C
+ * Size: 0x007c
  * Extends: OnlineConfig_X
  */
 export const BreadcrumbConfig_X = {
-  PollCrumbsIntervalSeconds: 0x0078,  // 0x0078 (0x0004) [int32]
+  PollCrumbsIntervalSeconds: 0x0078n,  // 0x0078 (0x0004) [int32]
   ...OnlineConfig_X,
 } as const;
 
@@ -3589,7 +2709,7 @@ export const BreadcrumbConfig_X = {
  * Extends: OnlineConfig_X
  */
 export const ClassPropertyConfig_X = {
-  Overrides: 0x0078,  // 0x0078 (0x0010) [TArray<FPropertyOverride>]
+  Overrides: 0x0078n,  // 0x0078 (0x0010) [TArray<FPropertyOverride>]
   ...OnlineConfig_X,
 } as const;
 
@@ -3599,87 +2719,87 @@ export const ClassPropertyConfig_X = {
  * Extends: OnlineConfig_X
  */
 export const ContentConfig_X = {
-  ContentMap: 0x0078,  // 0x0078 (0x0010) [TArray<FContentPair>]
+  ContentMap: 0x0078n,  // 0x0078 (0x0010) [TArray<FContentPair>]
   ...OnlineConfig_X,
 } as const;
 
 /**
  * ProjectX.CrossplayConfig_X Offsets
- * Size: 0x009C
+ * Size: 0x009c
  * Extends: OnlineConfig_X
  */
 export const CrossplayConfig_X = {
-  Groups: 0x0078,  // 0x0078 (0x0010) [TArray<FCrossplayGroup>]
-  DisabledCrossplayGroups: 0x0088,  // 0x0088 (0x0010) [TArray<FCrossplayGroup>]
-  bAllowCrossplayTextChat: 0x0098,  // 0x0098 (0x0004) [bool : 0x1]
+  Groups: 0x0078n,  // 0x0078 (0x0010) [TArray<FCrossplayGroup>]
+  DisabledCrossplayGroups: 0x0088n,  // 0x0088 (0x0010) [TArray<FCrossplayGroup>]
+  bAllowCrossplayTextChat: 0x0098n,  // 0x0098 (0x0004) [bool : 0x1]
   ...OnlineConfig_X,
 } as const;
 
 /**
  * ProjectX.EOSMetricsConfig_X Offsets
- * Size: 0x008C
+ * Size: 0x008c
  * Extends: OnlineConfig_X
  */
 export const EOSMetricsConfig_X = {
-  DataRouterURL: 0x0078,  // 0x0078 (0x0010) [FString]
-  PingDelayTime: 0x0088,  // 0x0088 (0x0004) [float]
+  DataRouterURL: 0x0078n,  // 0x0078 (0x0010) [FString]
+  PingDelayTime: 0x0088n,  // 0x0088 (0x0004) [float]
   ...OnlineConfig_X,
 } as const;
 
 /**
  * ProjectX.EpicConfig_X Offsets
- * Size: 0x01C8
+ * Size: 0x01c8
  * Extends: OnlineConfig_X
  */
 export const EpicConfig_X = {
-  bAllowRemoteAvatars: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  bPollDuringAccountLinking: 0x0078,  // 0x0078 (0x0004) [bool : 0x2]
-  bEnforcePinRequirementForFriends: 0x0078,  // 0x0078 (0x0004) [bool : 0x4]
-  bEnforceCabinedMode: 0x0078,  // 0x0078 (0x0004) [bool : 0x8]
-  bPromptForPin: 0x0078,  // 0x0078 (0x0004) [bool : 0x10]
-  bForceEnableTrade: 0x0078,  // 0x0078 (0x0004) [bool : 0x20]
-  RemoteAvatarPermissionRequestDelay: 0x007C,  // 0x007C (0x0004) [float]
-  SecondsBetweenPolling: 0x0080,  // 0x0080 (0x0004) [int32]
-  SecondsBeforeRequestsTimeout: 0x0084,  // 0x0084 (0x0004) [int32]
-  SecondsToWaitBeforeRetryingAuth: 0x0088,  // 0x0088 (0x0004) [int32]
-  SecondsToWaitBeforeUpdatingFriendsList: 0x008C,  // 0x008C (0x0004) [int32]
-  AccountLinkURLOverrides: 0x0090,  // 0x0090 (0x0010) [TArray<ULocalizedAccountLinkURL*>]
-  DefaultAccountLinkURL: 0x00A0,  // 0x00A0 (0x0010) [FString]
-  PermissionServerURL: 0x00B0,  // 0x00B0 (0x0010) [FString]
-  IdentityServerURL: 0x00C0,  // 0x00C0 (0x0010) [FString]
-  CabinedModeURL: 0x00D0,  // 0x00D0 (0x0010) [FString]
-  CreateAccountURL: 0x00E0,  // 0x00E0 (0x0010) [FString]
-  ChatPermissionPairs: 0x00F0,  // 0x00F0 (0x0010) [TArray<FChatPermissionPair>]
-  DefaultChatPermissionLevel: 0x0100,  // 0x0100 (0x0001) [EChatPermissionLevel]
-  DefaultPermissions: 0x0104,  // 0x0104 (0x0010) [FPlayerPermissions]
-  ForgotPinURL: 0x0118,  // 0x0118 (0x0010) [FString]
-  ParentalControlsURL: 0x0128,  // 0x0128 (0x0010) [FString]
-  PrivacyPolicyURL: 0x0138,  // 0x0138 (0x0010) [FString]
-  ActivateURL: 0x0148,  // 0x0148 (0x0010) [FString]
-  AccountURL: 0x0158,  // 0x0158 (0x0010) [FString]
-  TOSURL: 0x0168,  // 0x0168 (0x0010) [FString]
-  EOSAccessTokenURL: 0x0178,  // 0x0178 (0x0010) [FString]
-  EOSAccessContentString: 0x0188,  // 0x0188 (0x0010) [FString]
-  PublicKeyURL: 0x0198,  // 0x0198 (0x0010) [FString]
-  SandboxId: 0x01A8,  // 0x01A8 (0x0010) [FString]
-  DeploymentId: 0x01B8,  // 0x01B8 (0x0010) [FString]
+  bAllowRemoteAvatars: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
+  bPollDuringAccountLinking: 0x0078n,  // 0x0078 (0x0004) [bool : 0x2]
+  bEnforcePinRequirementForFriends: 0x0078n,  // 0x0078 (0x0004) [bool : 0x4]
+  bEnforceCabinedMode: 0x0078n,  // 0x0078 (0x0004) [bool : 0x8]
+  bPromptForPin: 0x0078n,  // 0x0078 (0x0004) [bool : 0x10]
+  bForceEnableTrade: 0x0078n,  // 0x0078 (0x0004) [bool : 0x20]
+  RemoteAvatarPermissionRequestDelay: 0x007cn,  // 0x007c (0x0004) [float]
+  SecondsBetweenPolling: 0x0080n,  // 0x0080 (0x0004) [int32]
+  SecondsBeforeRequestsTimeout: 0x0084n,  // 0x0084 (0x0004) [int32]
+  SecondsToWaitBeforeRetryingAuth: 0x0088n,  // 0x0088 (0x0004) [int32]
+  SecondsToWaitBeforeUpdatingFriendsList: 0x008cn,  // 0x008c (0x0004) [int32]
+  AccountLinkURLOverrides: 0x0090n,  // 0x0090 (0x0010) [TArray<ULocalizedAccountLinkURL*>]
+  DefaultAccountLinkURL: 0x00a0n,  // 0x00a0 (0x0010) [FString]
+  PermissionServerURL: 0x00b0n,  // 0x00b0 (0x0010) [FString]
+  IdentityServerURL: 0x00c0n,  // 0x00c0 (0x0010) [FString]
+  CabinedModeURL: 0x00d0n,  // 0x00d0 (0x0010) [FString]
+  CreateAccountURL: 0x00e0n,  // 0x00e0 (0x0010) [FString]
+  ChatPermissionPairs: 0x00f0n,  // 0x00f0 (0x0010) [TArray<FChatPermissionPair>]
+  DefaultChatPermissionLevel: 0x0100n,  // 0x0100 (0x0001) [EChatPermissionLevel]
+  DefaultPermissions: 0x0104n,  // 0x0104 (0x0010) [FPlayerPermissions]
+  ForgotPinURL: 0x0118n,  // 0x0118 (0x0010) [FString]
+  ParentalControlsURL: 0x0128n,  // 0x0128 (0x0010) [FString]
+  PrivacyPolicyURL: 0x0138n,  // 0x0138 (0x0010) [FString]
+  ActivateURL: 0x0148n,  // 0x0148 (0x0010) [FString]
+  AccountURL: 0x0158n,  // 0x0158 (0x0010) [FString]
+  TOSURL: 0x0168n,  // 0x0168 (0x0010) [FString]
+  EOSAccessTokenURL: 0x0178n,  // 0x0178 (0x0010) [FString]
+  EOSAccessContentString: 0x0188n,  // 0x0188 (0x0010) [FString]
+  PublicKeyURL: 0x0198n,  // 0x0198 (0x0010) [FString]
+  SandboxId: 0x01a8n,  // 0x01a8 (0x0010) [FString]
+  DeploymentId: 0x01b8n,  // 0x01b8 (0x0010) [FString]
   ...OnlineConfig_X,
 } as const;
 
 /**
  * ProjectX.EventRecorderConfig_X Offsets
- * Size: 0x00A4
+ * Size: 0x00a4
  * Extends: OnlineConfig_X
  */
 export const EventRecorderConfig_X = {
-  bEnabled: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  bSeparatePlayerIDs: 0x0078,  // 0x0078 (0x0004) [bool : 0x2]
-  bExcludePlayerIDs: 0x0078,  // 0x0078 (0x0004) [bool : 0x4]
-  DisabledEvents: 0x0080,  // 0x0080 (0x0010) [TArray<FName>]
-  EventRecorderClass: 0x0090,  // 0x0090 (0x0008) [UClass*]
-  PlayerNetMetricsPeriod: 0x0098,  // 0x0098 (0x0004) [float]
-  MaxUnstableConnections: 0x009C,  // 0x009C (0x0004) [int32]
-  UnstableConnectionsTimePeriodSeconds: 0x00A0,  // 0x00A0 (0x0004) [int32]
+  bEnabled: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
+  bSeparatePlayerIDs: 0x0078n,  // 0x0078 (0x0004) [bool : 0x2]
+  bExcludePlayerIDs: 0x0078n,  // 0x0078 (0x0004) [bool : 0x4]
+  DisabledEvents: 0x0080n,  // 0x0080 (0x0010) [TArray<FName>]
+  EventRecorderClass: 0x0090n,  // 0x0090 (0x0008) [UClass*]
+  PlayerNetMetricsPeriod: 0x0098n,  // 0x0098 (0x0004) [float]
+  MaxUnstableConnections: 0x009cn,  // 0x009c (0x0004) [int32]
+  UnstableConnectionsTimePeriodSeconds: 0x00a0n,  // 0x00a0 (0x0004) [int32]
   ...OnlineConfig_X,
 } as const;
 
@@ -3689,7 +2809,7 @@ export const EventRecorderConfig_X = {
  * Extends: OnlineConfig_X
  */
 export const GameSettingConfig_X = {
-  HidingOverrides: 0x0078,  // 0x0078 (0x0010) [TArray<FGameSettingHidingOverride>]
+  HidingOverrides: 0x0078n,  // 0x0078 (0x0010) [TArray<FGameSettingHidingOverride>]
   ...OnlineConfig_X,
 } as const;
 
@@ -3699,7 +2819,7 @@ export const GameSettingConfig_X = {
  * Extends: OnlineConfig_X
  */
 export const LegalConfig_X = {
-  EULAOfflineFolder: 0x0078,  // 0x0078 (0x0010) [FString]
+  EULAOfflineFolder: 0x0078n,  // 0x0078 (0x0010) [FString]
   ...OnlineConfig_X,
 } as const;
 
@@ -3709,7 +2829,7 @@ export const LegalConfig_X = {
  * Extends: OnlineConfig_X
  */
 export const LocalizationConfig_X = {
-  Overrides: 0x0078,  // 0x0078 (0x0010) [TArray<FLocOverride>]
+  Overrides: 0x0078n,  // 0x0078 (0x0010) [TArray<FLocOverride>]
   ...OnlineConfig_X,
 } as const;
 
@@ -3719,9 +2839,9 @@ export const LocalizationConfig_X = {
  * Extends: OnlineConfig_X
  */
 export const MapPrefsConfig_X = {
-  PreferenceWeight: 0x0078,  // 0x0078 (0x0004) [float]
-  MaxLikes: 0x007C,  // 0x007C (0x0004) [int32]
-  MaxDislikes: 0x0080,  // 0x0080 (0x0004) [int32]
+  PreferenceWeight: 0x0078n,  // 0x0078 (0x0004) [float]
+  MaxLikes: 0x007cn,  // 0x007c (0x0004) [int32]
+  MaxDislikes: 0x0080n,  // 0x0080 (0x0004) [int32]
   ...OnlineConfig_X,
 } as const;
 
@@ -3731,26 +2851,26 @@ export const MapPrefsConfig_X = {
  * Extends: OnlineConfig_X
  */
 export const OSSConfig_X = {
-  bEnablePresence: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  EosInitTimeoutSeconds: 0x007C,  // 0x007C (0x0004) [float]
-  GdkUpdateDlcTimeoutSeconds: 0x0080,  // 0x0080 (0x0004) [float]
-  GdkMaxConcurrentDlcLicenseRequests: 0x0084,  // 0x0084 (0x0004) [int32]
+  bEnablePresence: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
+  EosInitTimeoutSeconds: 0x007cn,  // 0x007c (0x0004) [float]
+  GdkUpdateDlcTimeoutSeconds: 0x0080n,  // 0x0080 (0x0004) [float]
+  GdkMaxConcurrentDlcLicenseRequests: 0x0084n,  // 0x0084 (0x0004) [int32]
   ...OnlineConfig_X,
 } as const;
 
 /**
  * ProjectX.OnlineFriendMap_X Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: Component
  */
 export const OnlineFriendMap_X = {
-  PlayerMap: 0x0070,  // 0x0070 (0x0050) [FMap_Mirror]
+  PlayerMap: 0x0070n,  // 0x0070 (0x0050) [FMap_Mirror]
   ...Component,
 } as const;
 
 /**
  * ProjectX.EpicFriends_X Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: OnlineFriendMap_X
  */
 export const EpicFriends_X = {
@@ -3767,127 +2887,92 @@ export const OnlineGameReservations_AssignTeamsByParty_X = {
 } as const;
 
 /**
- * Engine.OnlineGameSearch Offsets
- * Size: 0x0154
- * Extends: Settings
- */
-export const OnlineGameSearch = {
-  MaxSearchResults: 0x00A0,  // 0x00A0 (0x0004) [int32]
-  Query: 0x00A4,  // 0x00A4 (0x000C) [FLocalizedStringSetting]
-  bIsLanQuery: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x1]
-  bUsesArbitration: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x2]
-  bIsSearchInProgress: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x4]
-  GameSettingsClass: 0x00B8,  // 0x00B8 (0x0008) [UClass*]
-  Results: 0x00C0,  // 0x00C0 (0x0010) [TArray<FOnlineGameSearchResult>]
-  ManualSkillOverride: 0x00D0,  // 0x00D0 (0x0038) [FOverrideSkill]
-  NamedProperties: 0x0108,  // 0x0108 (0x0010) [TArray<FNamedObjectProperty>]
-  FilterQuery: 0x0118,  // 0x0118 (0x0020) [FOnlineGameSearchQuery]
-  AdditionalSearchCriteria: 0x0138,  // 0x0138 (0x0010) [FString]
-  PingBucketSize: 0x0148,  // 0x0148 (0x0004) [int32]
-  NumPingProbes: 0x014C,  // 0x014C (0x0004) [int32]
-  MaxPingBytes: 0x0150,  // 0x0150 (0x0004) [int32]
-} as const;
-
-/**
  * ProjectX.OnlineGameSearch_X Offsets
  * Size: 0x0198
  * Extends: OnlineGameSearch
  */
 export const OnlineGameSearch_X = {
-  InclusiveGameTagsArray: 0x0158,  // 0x0158 (0x0010) [TArray<FString>]
-  ExclusiveGameTagsArray: 0x0168,  // 0x0168 (0x0010) [TArray<FString>]
-  MapName: 0x0178,  // 0x0178 (0x0010) [FString]
-  GameTagsDelimiter: 0x0188,  // 0x0188 (0x0010) [FString]
+  InclusiveGameTagsArray: 0x0158n,  // 0x0158 (0x0010) [TArray<FString>]
+  ExclusiveGameTagsArray: 0x0168n,  // 0x0168 (0x0010) [TArray<FString>]
+  MapName: 0x0178n,  // 0x0178 (0x0010) [FString]
+  GameTagsDelimiter: 0x0188n,  // 0x0188 (0x0010) [FString]
   ...OnlineGameSearch,
 } as const;
 
 /**
- * Engine.Settings Offsets
- * Size: 0x00A0
- * Extends: Object
- */
-export const Settings = {
-  LocalizedSettings: 0x0060,  // 0x0060 (0x0010) [TArray<FLocalizedStringSetting>]
-  Properties: 0x0070,  // 0x0070 (0x0010) [TArray<FSettingsProperty>]
-  LocalizedSettingsMappings: 0x0080,  // 0x0080 (0x0010) [TArray<FLocalizedStringSettingMetaData>]
-  PropertyMappings: 0x0090,  // 0x0090 (0x0010) [TArray<FSettingsPropertyPropertyMetaData>]
-  ...Object_,
-} as const;
-
-/**
  * ProjectX.OnlineGameSettings_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: Settings
  */
 export const OnlineGameSettings_X = {
-  NumPublicConnections: 0x00A0,  // 0x00A0 (0x0004) [int32]
-  NumOpenPublicConnections: 0x00A4,  // 0x00A4 (0x0004) [int32]
-  GameSettingCategories: 0x00A8,  // 0x00A8 (0x0010) [TArray<UGameSettingCategory_X*>]
-  GameModeMutatorSettingPresets: 0x00B8,  // 0x00B8 (0x0010) [TArray<UGameSetting_X*>]
-  bOffline: 0x00C8,  // 0x00C8 (0x0004) [bool : 0x1]
-  bIgnoreHiddenMutatorsOverride: 0x00C8,  // 0x00C8 (0x0004) [bool : 0x2]
-  MinimumPlayersRequired: 0x00CC,  // 0x00CC (0x0004) [int32]
-  NumSecondsWaitingForPlayers: 0x00D0,  // 0x00D0 (0x0004) [int32]
-  SearchScore: 0x00D4,  // 0x00D4 (0x0004) [int32]
-  LogTime: 0x00D8,  // 0x00D8 (0x0004) [float]
-  __EventNumPlayersUpdated__Delegate: 0x00E0,  // 0x00E0 (0x0018) [FScriptDelegate]
+  NumPublicConnections: 0x00a0n,  // 0x00a0 (0x0004) [int32]
+  NumOpenPublicConnections: 0x00a4n,  // 0x00a4 (0x0004) [int32]
+  GameSettingCategories: 0x00a8n,  // 0x00a8 (0x0010) [TArray<UGameSettingCategory_X*>]
+  GameModeMutatorSettingPresets: 0x00b8n,  // 0x00b8 (0x0010) [TArray<UGameSetting_X*>]
+  bOffline: 0x00c8n,  // 0x00c8 (0x0004) [bool : 0x1]
+  bIgnoreHiddenMutatorsOverride: 0x00c8n,  // 0x00c8 (0x0004) [bool : 0x2]
+  MinimumPlayersRequired: 0x00ccn,  // 0x00cc (0x0004) [int32]
+  NumSecondsWaitingForPlayers: 0x00d0n,  // 0x00d0 (0x0004) [int32]
+  SearchScore: 0x00d4n,  // 0x00d4 (0x0004) [int32]
+  LogTime: 0x00d8n,  // 0x00d8 (0x0004) [float]
+  __EventNumPlayersUpdated__Delegate: 0x00e0n,  // 0x00e0 (0x0018) [FScriptDelegate]
   ...Settings,
 } as const;
 
 /**
  * ProjectX.OnlineLegalTextEOS_X Offsets
- * Size: 0x01A0
+ * Size: 0x01a0
  * Extends: Component
  */
 export const OnlineLegalTextEOS_X = {
-  EOSKey: 0x0070,  // 0x0070 (0x0010) [FString]
-  OfflineFolder: 0x0080,  // 0x0080 (0x0010) [FString]
-  OfflineTitleKey: 0x0090,  // 0x0090 (0x0010) [FString]
-  bNeedsKeyRequest: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x1]
-  bInputRecorded: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x2]
-  KeyRequestURL: 0x00A8,  // 0x00A8 (0x0010) [FString]
-  LastResponse: 0x00B8,  // 0x00B8 (0x0008) [UEulaTextResponse*]
-  LastResponseCode: 0x00C0,  // 0x00C0 (0x0004) [int32]
-  TextResponse: 0x00C8,  // 0x00C8 (0x0008) [UEulaTextResponse*]
-  TextResponseCode: 0x00D0,  // 0x00D0 (0x0004) [int32]
-  SyncState: 0x00D4,  // 0x00D4 (0x0001) [ELegalSyncState]
-  PendingResponseToAccept: 0x00D8,  // 0x00D8 (0x0008) [UEulaTextResponse*]
-  EOSServerURL: 0x00E0,  // 0x00E0 (0x0010) [FString]
-  EOSTextURL: 0x00F0,  // 0x00F0 (0x0010) [FString]
-  EOSSyncURL: 0x0100,  // 0x0100 (0x0010) [FString]
-  EOSAcceptURL: 0x0110,  // 0x0110 (0x0010) [FString]
-  EOSDeclineURL: 0x0120,  // 0x0120 (0x0010) [FString]
-  OfflineURL: 0x0130,  // 0x0130 (0x0010) [FString]
-  __EventNewText__Delegate: 0x0140,  // 0x0140 (0x0018) [FScriptDelegate]
-  __EventHandleSyncStarted__Delegate: 0x0158,  // 0x0158 (0x0018) [FScriptDelegate]
-  __EventHandleSyncResponse__Delegate: 0x0170,  // 0x0170 (0x0018) [FScriptDelegate]
-  __EventKeyReceived__Delegate: 0x0188,  // 0x0188 (0x0018) [FScriptDelegate]
+  EOSKey: 0x0070n,  // 0x0070 (0x0010) [FString]
+  OfflineFolder: 0x0080n,  // 0x0080 (0x0010) [FString]
+  OfflineTitleKey: 0x0090n,  // 0x0090 (0x0010) [FString]
+  bNeedsKeyRequest: 0x00a0n,  // 0x00a0 (0x0004) [bool : 0x1]
+  bInputRecorded: 0x00a0n,  // 0x00a0 (0x0004) [bool : 0x2]
+  KeyRequestURL: 0x00a8n,  // 0x00a8 (0x0010) [FString]
+  LastResponse: 0x00b8n,  // 0x00b8 (0x0008) [UEulaTextResponse*]
+  LastResponseCode: 0x00c0n,  // 0x00c0 (0x0004) [int32]
+  TextResponse: 0x00c8n,  // 0x00c8 (0x0008) [UEulaTextResponse*]
+  TextResponseCode: 0x00d0n,  // 0x00d0 (0x0004) [int32]
+  SyncState: 0x00d4n,  // 0x00d4 (0x0001) [ELegalSyncState]
+  PendingResponseToAccept: 0x00d8n,  // 0x00d8 (0x0008) [UEulaTextResponse*]
+  EOSServerURL: 0x00e0n,  // 0x00e0 (0x0010) [FString]
+  EOSTextURL: 0x00f0n,  // 0x00f0 (0x0010) [FString]
+  EOSSyncURL: 0x0100n,  // 0x0100 (0x0010) [FString]
+  EOSAcceptURL: 0x0110n,  // 0x0110 (0x0010) [FString]
+  EOSDeclineURL: 0x0120n,  // 0x0120 (0x0010) [FString]
+  OfflineURL: 0x0130n,  // 0x0130 (0x0010) [FString]
+  __EventNewText__Delegate: 0x0140n,  // 0x0140 (0x0018) [FScriptDelegate]
+  __EventHandleSyncStarted__Delegate: 0x0158n,  // 0x0158 (0x0018) [FScriptDelegate]
+  __EventHandleSyncResponse__Delegate: 0x0170n,  // 0x0170 (0x0018) [FScriptDelegate]
+  __EventKeyReceived__Delegate: 0x0188n,  // 0x0188 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
 /**
  * ProjectX.OnlineLegalText_X Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: Component
  */
 export const OnlineLegalText_X = {
-  Folder: 0x0070,  // 0x0070 (0x0010) [FString]
-  CachedData: 0x0080,  // 0x0080 (0x0008) [UCachedWebData_X*]
-  AppendedPath: 0x0088,  // 0x0088 (0x0010) [FString]
-  __EventNewText__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
+  Folder: 0x0070n,  // 0x0070 (0x0010) [FString]
+  CachedData: 0x0080n,  // 0x0080 (0x0008) [UCachedWebData_X*]
+  AppendedPath: 0x0088n,  // 0x0088 (0x0010) [FString]
+  __EventNewText__Delegate: 0x0098n,  // 0x0098 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
 /**
  * ProjectX.OnlineMessageComponent_X Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Component
  */
 export const OnlineMessageComponent_X = {
-  Serializer: 0x0070,  // 0x0070 (0x0008) [USerializer_X*]
-  Compressor: 0x0078,  // 0x0078 (0x0008) [UCompression_X*]
-  MessageHandlers: 0x0080,  // 0x0080 (0x0010) [TArray<FOnlineMessageHandler>]
-  __MessageReceivedDelegate__Delegate: 0x0090,  // 0x0090 (0x0018) [FScriptDelegate]
+  Serializer: 0x0070n,  // 0x0070 (0x0008) [USerializer_X*]
+  Compressor: 0x0078n,  // 0x0078 (0x0008) [UCompression_X*]
+  MessageHandlers: 0x0080n,  // 0x0080 (0x0010) [TArray<FOnlineMessageHandler>]
+  __MessageReceivedDelegate__Delegate: 0x0090n,  // 0x0090 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
@@ -3906,19 +2991,19 @@ export const OnlineMessage_X = {
  * Extends: OnlineMessage_X
  */
 export const LanMessage_X = {
-  Nonce: 0x0060,  // 0x0060 (0x0008) [uint64]
+  Nonce: 0x0060n,  // 0x0060 (0x0008) [uint64]
   ...OnlineMessage_X,
 } as const;
 
 /**
  * ProjectX.LanMessage_HostQuery_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: LanMessage_X
  */
 export const LanMessage_HostQuery_X = {
-  Filter: 0x0068,  // 0x0068 (0x0088) [FCustomMatchSettings]
-  BuildID: 0x00F0,  // 0x00F0 (0x0004) [int32]
-  bHost: 0x00F4,  // 0x00F4 (0x0004) [bool : 0x1]
+  Filter: 0x0068n,  // 0x0068 (0x0088) [FCustomMatchSettings]
+  BuildID: 0x00f0n,  // 0x00f0 (0x0004) [int32]
+  bHost: 0x00f4n,  // 0x00f4 (0x0004) [bool : 0x1]
   ...LanMessage_X,
 } as const;
 
@@ -3928,9 +3013,9 @@ export const LanMessage_HostQuery_X = {
  * Extends: LanMessage_X
  */
 export const LanMessage_HostResponse_X = {
-  Result: 0x0068,  // 0x0068 (0x00A8) [FServerResult]
-  ServerId: 0x0110,  // 0x0110 (0x0010) [FString]
-  MetaData: 0x0120,  // 0x0120 (0x0010) [FString]
+  Result: 0x0068n,  // 0x0068 (0x00a8) [FServerResult]
+  ServerId: 0x0110n,  // 0x0110 (0x0010) [FString]
+  MetaData: 0x0120n,  // 0x0120 (0x0010) [FString]
   ...LanMessage_X,
 } as const;
 
@@ -3945,24 +3030,24 @@ export const LanMessage_Ping_X = {
 
 /**
  * ProjectX.OnlinePlayerPermissions_X Offsets
- * Size: 0x00A0
+ * Size: 0x00a0
  * Extends: Object
  */
 export const OnlinePlayerPermissions_X = {
-  SyncDelay: 0x0060,  // 0x0060 (0x0004) [float]
-  PendingPlayerRequests: 0x0068,  // 0x0068 (0x0010) [TArray<FUniqueNetId>]
-  PlayerPermissions: 0x0078,  // 0x0078 (0x0010) [TArray<FPlayerPermissionsList>]
-  __EventUpdated__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
+  SyncDelay: 0x0060n,  // 0x0060 (0x0004) [float]
+  PendingPlayerRequests: 0x0068n,  // 0x0068 (0x0010) [TArray<FUniqueNetId>]
+  PlayerPermissions: 0x0078n,  // 0x0078 (0x0010) [TArray<FPlayerPermissionsList>]
+  __EventUpdated__Delegate: 0x0088n,  // 0x0088 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.OnlinePlayerStorageConfig_X Offsets
- * Size: 0x007C
+ * Size: 0x007c
  * Extends: OnlineConfig_X
  */
 export const OnlinePlayerStorageConfig_X = {
-  QueueBatchDelay: 0x0078,  // 0x0078 (0x0004) [float]
+  QueueBatchDelay: 0x0078n,  // 0x0078 (0x0004) [float]
   ...OnlineConfig_X,
 } as const;
 
@@ -3972,24 +3057,24 @@ export const OnlinePlayerStorageConfig_X = {
  * Extends: Object
  */
 export const OnlinePlayerStorageManifest_X = {
-  MetaData: 0x0060,  // 0x0060 (0x0010) [TArray<FStorageMetadata>]
+  MetaData: 0x0060n,  // 0x0060 (0x0010) [TArray<FStorageMetadata>]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.OnlinePlayerStorageQueue_X Offsets
- * Size: 0x00E8
+ * Size: 0x00e8
  * Extends: Object
  */
 export const OnlinePlayerStorageQueue_X = {
-  Config: 0x0060,  // 0x0060 (0x0008) [UOnlinePlayerStorageConfig_X*]
-  QueuedObjects: 0x0068,  // 0x0068 (0x0010) [TArray<FPendingStorage>]
-  PendingObjects: 0x0078,  // 0x0078 (0x0010) [TArray<FPendingStorage>]
-  DefaultStorageMaxSizeBytes: 0x0088,  // 0x0088 (0x0004) [float]
-  StorageMaxSizes: 0x0090,  // 0x0090 (0x0010) [TArray<FStorageMaxSize>]
-  __EventStorageSuccess__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
-  __EventOutOfSync__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
-  __EventStorageError__Delegate: 0x00D0,  // 0x00D0 (0x0018) [FScriptDelegate]
+  Config: 0x0060n,  // 0x0060 (0x0008) [UOnlinePlayerStorageConfig_X*]
+  QueuedObjects: 0x0068n,  // 0x0068 (0x0010) [TArray<FPendingStorage>]
+  PendingObjects: 0x0078n,  // 0x0078 (0x0010) [TArray<FPendingStorage>]
+  DefaultStorageMaxSizeBytes: 0x0088n,  // 0x0088 (0x0004) [float]
+  StorageMaxSizes: 0x0090n,  // 0x0090 (0x0010) [TArray<FStorageMaxSize>]
+  __EventStorageSuccess__Delegate: 0x00a0n,  // 0x00a0 (0x0018) [FScriptDelegate]
+  __EventOutOfSync__Delegate: 0x00b8n,  // 0x00b8 (0x0018) [FScriptDelegate]
+  __EventStorageError__Delegate: 0x00d0n,  // 0x00d0 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -3999,7 +3084,7 @@ export const OnlinePlayerStorageQueue_X = {
  * Extends: Object
  */
 export const OnlinePlayerStorageSync_X = {
-  __EventSyncSuccess__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  __EventSyncSuccess__Delegate: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -4009,20 +3094,20 @@ export const OnlinePlayerStorageSync_X = {
  * Extends: Component
  */
 export const OnlineResource_X = {
-  URL: 0x0070,  // 0x0070 (0x0010) [FString]
-  RetryDelays: 0x0080,  // 0x0080 (0x0010) [TArray<float>]
-  CacheSeconds: 0x0090,  // 0x0090 (0x0004) [float]
-  bZipResponse: 0x0094,  // 0x0094 (0x0004) [bool : 0x1]
-  bSyncing: 0x0094,  // 0x0094 (0x0004) [bool : 0x2]
-  Headers: 0x0098,  // 0x0098 (0x0008) [unknown]
-  CachedData: 0x00A0,  // 0x00A0 (0x0008) [UCachedWebData_X*]
-  RetryCount: 0x00A8,  // 0x00A8 (0x0004) [int32]
-  LastSyncTime: 0x00AC,  // 0x00AC (0x0004) [float]
-  RetryConfig: 0x00B0,  // 0x00B0 (0x0008) [UPsyNetRetryConfig_X*]
-  ServiceName: 0x00B8,  // 0x00B8 (0x0010) [FString]
-  __EventSyncComplete__Delegate: 0x00C8,  // 0x00C8 (0x0018) [FScriptDelegate]
-  __EventSyncError__Delegate: 0x00E0,  // 0x00E0 (0x0018) [FScriptDelegate]
-  __EventDataChanged__Delegate: 0x00F8,  // 0x00F8 (0x0018) [FScriptDelegate]
+  URL: 0x0070n,  // 0x0070 (0x0010) [FString]
+  RetryDelays: 0x0080n,  // 0x0080 (0x0010) [TArray<float>]
+  CacheSeconds: 0x0090n,  // 0x0090 (0x0004) [float]
+  bZipResponse: 0x0094n,  // 0x0094 (0x0004) [bool : 0x1]
+  bSyncing: 0x0094n,  // 0x0094 (0x0004) [bool : 0x2]
+  Headers: 0x0098n,  // 0x0098 (0x0008) [unknown]
+  CachedData: 0x00a0n,  // 0x00a0 (0x0008) [UCachedWebData_X*]
+  RetryCount: 0x00a8n,  // 0x00a8 (0x0004) [int32]
+  LastSyncTime: 0x00acn,  // 0x00ac (0x0004) [float]
+  RetryConfig: 0x00b0n,  // 0x00b0 (0x0008) [UPsyNetRetryConfig_X*]
+  ServiceName: 0x00b8n,  // 0x00b8 (0x0010) [FString]
+  __EventSyncComplete__Delegate: 0x00c8n,  // 0x00c8 (0x0018) [FScriptDelegate]
+  __EventSyncError__Delegate: 0x00e0n,  // 0x00e0 (0x0018) [FScriptDelegate]
+  __EventDataChanged__Delegate: 0x00f8n,  // 0x00f8 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
@@ -4032,54 +3117,8 @@ export const OnlineResource_X = {
  * Extends: Object
  */
 export const OnlineSaveLock_X = {
-  EnableCount: 0x0060,  // 0x0060 (0x0004) [int32]
+  EnableCount: 0x0060n,  // 0x0060 (0x0004) [int32]
   ...Object_,
-} as const;
-
-/**
- * Engine.PlayerReplicationInfo Offsets
- * Size: 0x0410
- * Extends: ReplicationInfo
- */
-export const PlayerReplicationInfo = {
-  ObjectProvider: 0x0268,  // 0x0268 (0x0008) [unknown]
-  RegistryGroup: 0x0270,  // 0x0270 (0x0008) [unknown]
-  Score: 0x0278,  // 0x0278 (0x0004) [int32]
-  Deaths: 0x027C,  // 0x027C (0x0004) [int32]
-  Ping: 0x0280,  // 0x0280 (0x0001) [uint8]
-  TTSSpeaker: 0x0281,  // 0x0281 (0x0001) [ETTSSpeaker]
-  NumLives: 0x0284,  // 0x0284 (0x0004) [int32]
-  PlayerName: 0x0288,  // 0x0288 (0x0010) [FString]
-  OldName: 0x0298,  // 0x0298 (0x0010) [FString]
-  PlayerID: 0x02A8,  // 0x02A8 (0x0004) [int32]
-  Team: 0x02B0,  // 0x02B0 (0x0008) [UTeamInfo*]
-  bAdmin: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x1]
-  bIsSpectator: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x2]
-  bOnlySpectator: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x4]
-  bWaitingPlayer: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x8]
-  bReadyToPlay: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x10]
-  bOutOfLives: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x20]
-  bBot: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x40]
-  bIsInactive: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x80]
-  bFromPreviousLevel: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x100]
-  bTimedOut: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x200]
-  bUnregistered: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x400]
-  StartTime: 0x02BC,  // 0x02BC (0x0004) [int32]
-  StringSpectating: 0x02C0,  // 0x02C0 (0x0010) [FString]
-  StringUnknown: 0x02D0,  // 0x02D0 (0x0010) [FString]
-  Kills: 0x02E0,  // 0x02E0 (0x0004) [int32]
-  ExactPing: 0x02E4,  // 0x02E4 (0x0004) [float]
-  SavedNetworkAddress: 0x02E8,  // 0x02E8 (0x0010) [FString]
-  UniqueId: 0x02F8,  // 0x02F8 (0x0048) [FUniqueNetId]
-  SessionName: 0x0340,  // 0x0340 (0x0008) [FName]
-  AutomatedTestingData: 0x0348,  // 0x0348 (0x0008) [FAutomatedTestingDatum]
-  Avatar: 0x0350,  // 0x0350 (0x0008) [UTexture2D*]
-  PacketStats: 0x0358,  // 0x0358 (0x001C) [FNetPacketStats]
-  PrevPacketStats: 0x0374,  // 0x0374 (0x001C) [FNetPacketStats]
-  NetStats: 0x0390,  // 0x0390 (0x0058) [FClientConnectionStats]
-  RemoteUserData: 0x03E8,  // 0x03E8 (0x0010) [FPRIRemoteUserData]
-  __EventTeamChanged__Delegate: 0x03F8,  // 0x03F8 (0x0018) [FScriptDelegate]
-  ...ReplicationInfo,
 } as const;
 
 /**
@@ -4088,46 +3127,26 @@ export const PlayerReplicationInfo = {
  * Extends: PlayerReplicationInfo
  */
 export const PRI_X = {
-  __EventPlayerNameChanged__Delegate: 0x0410,  // 0x0410 (0x0018) [FScriptDelegate]
-  __EventUniqueIdChanged__Delegate: 0x0428,  // 0x0428 (0x0018) [FScriptDelegate]
-  __EventDestroyed__Delegate: 0x0440,  // 0x0440 (0x0018) [FScriptDelegate]
+  __EventPlayerNameChanged__Delegate: 0x0410n,  // 0x0410 (0x0018) [FScriptDelegate]
+  __EventUniqueIdChanged__Delegate: 0x0428n,  // 0x0428 (0x0018) [FScriptDelegate]
+  __EventDestroyed__Delegate: 0x0440n,  // 0x0440 (0x0018) [FScriptDelegate]
   ...PlayerReplicationInfo,
 } as const;
 
 /**
  * ProjectX.ParameterDispenser_X Offsets
- * Size: 0x00D8
+ * Size: 0x00d8
  * Extends: Component
  */
 export const ParameterDispenser_X = {
-  VfTable_IISetParameter: 0x0070,  // 0x0070 (0x0008) [FPointer]
-  NameParams: 0x0078,  // 0x0078 (0x0010) [TArray<FNameParamPair>]
-  FloatParams: 0x0088,  // 0x0088 (0x0010) [TArray<FFloatParamPair>]
-  VectorParams: 0x0098,  // 0x0098 (0x0010) [TArray<FVectorParamPair>]
-  ColorParams: 0x00A8,  // 0x00A8 (0x0010) [TArray<FColorParamPair>]
-  ActorParams: 0x00B8,  // 0x00B8 (0x0010) [TArray<FActorParamPair>]
-  AllComponents: 0x00C8,  // 0x00C8 (0x0010) [TArray<TScriptInterface<UISetParameter>>]
+  VfTable_IISetParameter: 0x0070n,  // 0x0070 (0x0008) [FPointer]
+  NameParams: 0x0078n,  // 0x0078 (0x0010) [TArray<FNameParamPair>]
+  FloatParams: 0x0088n,  // 0x0088 (0x0010) [TArray<FFloatParamPair>]
+  VectorParams: 0x0098n,  // 0x0098 (0x0010) [TArray<FVectorParamPair>]
+  ColorParams: 0x00a8n,  // 0x00a8 (0x0010) [TArray<FColorParamPair>]
+  ActorParams: 0x00b8n,  // 0x00b8 (0x0010) [TArray<FActorParamPair>]
+  AllComponents: 0x00c8n,  // 0x00c8 (0x0010) [TArray<TScriptInterface<UISetParameter>>]
   ...Component,
-} as const;
-
-/**
- * Engine.ParticleModuleBeamTarget Offsets
- * Size: 0x010C
- * Extends: ParticleModuleBeamBase
- */
-export const ParticleModuleBeamTarget = {
-  TargetMethod: 0x0070,  // 0x0070 (0x0001) [Beam2SourceTargetMethod]
-  TargetTangentMethod: 0x0071,  // 0x0071 (0x0001) [Beam2SourceTargetTangentMethod]
-  TargetName: 0x0074,  // 0x0074 (0x0008) [FName]
-  Target: 0x0080,  // 0x0080 (0x0028) [FRawDistributionVector]
-  bTargetAbsolute: 0x00A8,  // 0x00A8 (0x0004) [bool : 0x1]
-  bLockTarget: 0x00A8,  // 0x00A8 (0x0004) [bool : 0x2]
-  bLockTargetTangent: 0x00A8,  // 0x00A8 (0x0004) [bool : 0x4]
-  bLockTargetStength: 0x00A8,  // 0x00A8 (0x0004) [bool : 0x8]
-  TargetTangent: 0x00B0,  // 0x00B0 (0x0028) [FRawDistributionVector]
-  TargetBone: 0x00D8,  // 0x00D8 (0x0008) [FName]
-  TargetStrength: 0x00E0,  // 0x00E0 (0x0028) [FRawDistributionFloat]
-  LockRadius: 0x0108,  // 0x0108 (0x0004) [float]
 } as const;
 
 /**
@@ -4140,26 +3159,8 @@ export const ParticleModuleBeamTarget_X = {
 } as const;
 
 /**
- * Engine.ParticleModuleLocationBoneSocket Offsets
- * Size: 0x00AC
- * Extends: ParticleModuleLocationBase
- */
-export const ParticleModuleLocationBoneSocket = {
-  SourceType: 0x0070,  // 0x0070 (0x0001) [ELocationBoneSocketSource]
-  SelectionMethod: 0x0071,  // 0x0071 (0x0001) [ELocationBoneSocketSelectionMethod]
-  UniversalOffset: 0x0074,  // 0x0074 (0x000C) [FVector]
-  SourceLocations: 0x0080,  // 0x0080 (0x0010) [TArray<FLocationBoneSocketInfo>]
-  bUpdatePositionEachFrame: 0x0090,  // 0x0090 (0x0004) [bool : 0x1]
-  bOrientMeshEmitters: 0x0090,  // 0x0090 (0x0004) [bool : 0x2]
-  bInheritVelocityAtSpawn: 0x0090,  // 0x0090 (0x0004) [bool : 0x4]
-  SkelMeshActorParamName: 0x0094,  // 0x0094 (0x0008) [FName]
-  EditorSkelMesh: 0x00A0,  // 0x00A0 (0x0008) [USkeletalMesh*]
-  LastUpdateTime: 0x00A8,  // 0x00A8 (0x0004) [float]
-} as const;
-
-/**
  * ProjectX.ParticleModuleLocationBoneSocket_X Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: ParticleModuleLocationBoneSocket
  */
 export const ParticleModuleLocationBoneSocket_X = {
@@ -4167,28 +3168,8 @@ export const ParticleModuleLocationBoneSocket_X = {
 } as const;
 
 /**
- * Engine.ParticleModuleLocationSkelVertSurface Offsets
- * Size: 0x00D0
- * Extends: ParticleModuleLocationBase
- */
-export const ParticleModuleLocationSkelVertSurface = {
-  SourceType: 0x0070,  // 0x0070 (0x0001) [ELocationSkelVertSurfaceSource]
-  UniversalOffset: 0x0074,  // 0x0074 (0x000C) [FVector]
-  bUpdatePositionEachFrame: 0x0080,  // 0x0080 (0x0004) [bool : 0x1]
-  bOrientMeshEmitters: 0x0080,  // 0x0080 (0x0004) [bool : 0x2]
-  bEnforceNormalCheck: 0x0080,  // 0x0080 (0x0004) [bool : 0x4]
-  SkelMeshActorParamName: 0x0084,  // 0x0084 (0x0008) [FName]
-  EditorSkelMesh: 0x0090,  // 0x0090 (0x0008) [USkeletalMesh*]
-  ValidAssociatedBones: 0x0098,  // 0x0098 (0x0010) [TArray<FName>]
-  NormalToCompare: 0x00A8,  // 0x00A8 (0x000C) [FVector]
-  NormalCheckToleranceDegrees: 0x00B4,  // 0x00B4 (0x0004) [float]
-  NormalCheckTolerance: 0x00B8,  // 0x00B8 (0x0004) [float]
-  ValidMaterialIndices: 0x00C0,  // 0x00C0 (0x0010) [TArray<int32>]
-} as const;
-
-/**
  * ProjectX.ParticleModuleLocationSkelVertSurface_X Offsets
- * Size: 0x00D0
+ * Size: 0x00d0
  * Extends: ParticleModuleLocationSkelVertSurface
  */
 export const ParticleModuleLocationSkelVertSurface_X = {
@@ -4196,29 +3177,19 @@ export const ParticleModuleLocationSkelVertSurface_X = {
 } as const;
 
 /**
- * Engine.ParticleModuleVelocityBase Offsets
- * Size: 0x0074
- * Extends: ParticleModule
- */
-export const ParticleModuleVelocityBase = {
-  bInWorldSpace: 0x0070,  // 0x0070 (0x0004) [bool : 0x1]
-  bApplyOwnerScale: 0x0070,  // 0x0070 (0x0004) [bool : 0x2]
-} as const;
-
-/**
  * ProjectX.ParticleModuleVelocitySurfaceNormal_X Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: ParticleModuleVelocityBase
  */
 export const ParticleModuleVelocitySurfaceNormal_X = {
-  MeshActorParamName: 0x0078,  // 0x0078 (0x0008) [FName]
-  VelocityMultiplier: 0x0080,  // 0x0080 (0x0028) [FRawDistributionFloat]
+  MeshActorParamName: 0x0078n,  // 0x0078 (0x0008) [FName]
+  VelocityMultiplier: 0x0080n,  // 0x0080 (0x0028) [FRawDistributionFloat]
   ...ParticleModuleVelocityBase,
 } as const;
 
 /**
  * ProjectX.ParticleModuleVelocitySurfaceNormalStatic_X Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: ParticleModuleVelocitySurfaceNormal_X
  */
 export const ParticleModuleVelocitySurfaceNormalStatic_X = {
@@ -4226,135 +3197,127 @@ export const ParticleModuleVelocitySurfaceNormalStatic_X = {
 } as const;
 
 /**
- * Engine.ParticleModuleWorldForcesBase Offsets
- * Size: 0x0070
- * Extends: ParticleModule
- */
-export const ParticleModuleWorldForcesBase = {
-} as const;
-
-/**
  * ProjectX.ParticleModuleWind_X Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: ParticleModuleWorldForcesBase
  */
 export const ParticleModuleWind_X = {
-  StrengthScaleOverLife: 0x0070,  // 0x0070 (0x0028) [FRawDistributionFloat]
-  AccelerationOverLife: 0x0098,  // 0x0098 (0x0028) [FRawDistributionFloat]
+  StrengthScaleOverLife: 0x0070n,  // 0x0070 (0x0028) [FRawDistributionFloat]
+  AccelerationOverLife: 0x0098n,  // 0x0098 (0x0028) [FRawDistributionFloat]
   ...ParticleModuleWorldForcesBase,
 } as const;
 
 /**
  * ProjectX.Parties_X Offsets
- * Size: 0x03D8
+ * Size: 0x03d8
  * Extends: Object
  */
 export const Parties_X = {
-  ActiveLobby: 0x0060,  // 0x0060 (0x0030) [FActiveLobbyInfo]
-  LastActiveLobby: 0x0090,  // 0x0090 (0x0010) [FUniqueLobbyId]
-  PartyLeaderID: 0x00A0,  // 0x00A0 (0x0048) [FUniqueNetId]
-  PsyNet: 0x00E8,  // 0x00E8 (0x0008) [UPsyNet_X*]
-  OnlineGameParty: 0x00F0,  // 0x00F0 (0x0008) [UOnlineGameParty_X*]
-  MessageQueue: 0x00F8,  // 0x00F8 (0x0008) [unknown]
-  PsyNetConnection: 0x0100,  // 0x0100 (0x0008) [UPsyNetConnection_X*]
-  PsyNetChannel: 0x0108,  // 0x0108 (0x0008) [UPsyNetChannel_X*]
-  Subscriptions: 0x0110,  // 0x0110 (0x0008) [unknown]
-  PlatformSession: 0x0118,  // 0x0118 (0x0008) [UPartyPlatformSession_X*]
-  SequenceCreateParty: 0x0120,  // 0x0120 (0x0008) [UPartySequence_CreateParty_X*]
-  SequenceJoinParty: 0x0128,  // 0x0128 (0x0008) [UPartySequence_JoinParty_X*]
-  SequenceLeaveParty: 0x0130,  // 0x0130 (0x0008) [UPartySequence_LeaveParty_X*]
-  SequenceInviteToParty: 0x0138,  // 0x0138 (0x0008) [UPartySequence_InviteToParty_X*]
-  SequenceJoinRequest: 0x0140,  // 0x0140 (0x0008) [UPartySequence_JoinRequest_X*]
-  bRejoiningParty: 0x0148,  // 0x0148 (0x0004) [bool : 0x1]
-  SecondToWaitForPerConReconnect: 0x014C,  // 0x014C (0x0004) [float]
-  PartySetting_PsyNetPartyId: 0x0150,  // 0x0150 (0x0010) [FString]
-  PartySetting_JoinKey: 0x0160,  // 0x0160 (0x0010) [FString]
-  PendingNotifications: 0x0170,  // 0x0170 (0x0010) [TArray<UPsyNetService_Party_X*>]
-  __EventShowInviteUI__Delegate: 0x0180,  // 0x0180 (0x0018) [FScriptDelegate]
-  __EventLobbyInviteComplete__Delegate: 0x0198,  // 0x0198 (0x0018) [FScriptDelegate]
-  __EventJoinRequestSent__Delegate: 0x01B0,  // 0x01B0 (0x0018) [FScriptDelegate]
-  __EventJoinRequestAccepted__Delegate: 0x01C8,  // 0x01C8 (0x0018) [FScriptDelegate]
-  __EventJoinRequestReceived__Delegate: 0x01E0,  // 0x01E0 (0x0018) [FScriptDelegate]
-  __EventJoinRequestDeleted__Delegate: 0x01F8,  // 0x01F8 (0x0018) [FScriptDelegate]
-  __OnCreateLobbyComplete__Delegate: 0x0210,  // 0x0210 (0x0018) [FScriptDelegate]
-  __OnLobbyError__Delegate: 0x0228,  // 0x0228 (0x0018) [FScriptDelegate]
-  __OnLobbySessionCreated__Delegate: 0x0240,  // 0x0240 (0x0018) [FScriptDelegate]
-  __OnFindLobbiesComplete__Delegate: 0x0258,  // 0x0258 (0x0018) [FScriptDelegate]
-  __OnJoinLobbyComplete__Delegate: 0x0270,  // 0x0270 (0x0018) [FScriptDelegate]
-  __OnLobbySettingsUpdate__Delegate: 0x0288,  // 0x0288 (0x0018) [FScriptDelegate]
-  __OnLobbyMemberSettingsUpdate__Delegate: 0x02A0,  // 0x02A0 (0x0018) [FScriptDelegate]
-  __OnLobbyMemberStatusUpdate__Delegate: 0x02B8,  // 0x02B8 (0x0018) [FScriptDelegate]
-  __OnLobbyReceiveMessage__Delegate: 0x02D0,  // 0x02D0 (0x0018) [FScriptDelegate]
-  __OnLobbyReceiveBinaryData__Delegate: 0x02E8,  // 0x02E8 (0x0018) [FScriptDelegate]
-  __OnLobbyJoinGame__Delegate: 0x0300,  // 0x0300 (0x0018) [FScriptDelegate]
-  __OnLobbyInvite__Delegate: 0x0318,  // 0x0318 (0x0018) [FScriptDelegate]
-  __EventLobbyInvitePending__Delegate: 0x0330,  // 0x0330 (0x0018) [FScriptDelegate]
-  __OnLobbyDestroyed__Delegate: 0x0348,  // 0x0348 (0x0018) [FScriptDelegate]
-  __EventPartyChatRecieved__Delegate: 0x0360,  // 0x0360 (0x0018) [FScriptDelegate]
-  __EventLobbyMessageFailed__Delegate: 0x0378,  // 0x0378 (0x0018) [FScriptDelegate]
-  __EventSignedPartyChatRecieved__Delegate: 0x0390,  // 0x0390 (0x0018) [FScriptDelegate]
-  __EventSignedPartyChatSent__Delegate: 0x03A8,  // 0x03A8 (0x0018) [FScriptDelegate]
-  __OnHostStartPlayTogether__Delegate: 0x03C0,  // 0x03C0 (0x0018) [FScriptDelegate]
+  ActiveLobby: 0x0060n,  // 0x0060 (0x0030) [FActiveLobbyInfo]
+  LastActiveLobby: 0x0090n,  // 0x0090 (0x0010) [FUniqueLobbyId]
+  PartyLeaderID: 0x00a0n,  // 0x00a0 (0x0048) [FUniqueNetId]
+  PsyNet: 0x00e8n,  // 0x00e8 (0x0008) [UPsyNet_X*]
+  OnlineGameParty: 0x00f0n,  // 0x00f0 (0x0008) [UOnlineGameParty_X*]
+  MessageQueue: 0x00f8n,  // 0x00f8 (0x0008) [unknown]
+  PsyNetConnection: 0x0100n,  // 0x0100 (0x0008) [UPsyNetConnection_X*]
+  PsyNetChannel: 0x0108n,  // 0x0108 (0x0008) [UPsyNetChannel_X*]
+  Subscriptions: 0x0110n,  // 0x0110 (0x0008) [unknown]
+  PlatformSession: 0x0118n,  // 0x0118 (0x0008) [UPartyPlatformSession_X*]
+  SequenceCreateParty: 0x0120n,  // 0x0120 (0x0008) [UPartySequence_CreateParty_X*]
+  SequenceJoinParty: 0x0128n,  // 0x0128 (0x0008) [UPartySequence_JoinParty_X*]
+  SequenceLeaveParty: 0x0130n,  // 0x0130 (0x0008) [UPartySequence_LeaveParty_X*]
+  SequenceInviteToParty: 0x0138n,  // 0x0138 (0x0008) [UPartySequence_InviteToParty_X*]
+  SequenceJoinRequest: 0x0140n,  // 0x0140 (0x0008) [UPartySequence_JoinRequest_X*]
+  bRejoiningParty: 0x0148n,  // 0x0148 (0x0004) [bool : 0x1]
+  SecondToWaitForPerConReconnect: 0x014cn,  // 0x014c (0x0004) [float]
+  PartySetting_PsyNetPartyId: 0x0150n,  // 0x0150 (0x0010) [FString]
+  PartySetting_JoinKey: 0x0160n,  // 0x0160 (0x0010) [FString]
+  PendingNotifications: 0x0170n,  // 0x0170 (0x0010) [TArray<UPsyNetService_Party_X*>]
+  __EventShowInviteUI__Delegate: 0x0180n,  // 0x0180 (0x0018) [FScriptDelegate]
+  __EventLobbyInviteComplete__Delegate: 0x0198n,  // 0x0198 (0x0018) [FScriptDelegate]
+  __EventJoinRequestSent__Delegate: 0x01b0n,  // 0x01b0 (0x0018) [FScriptDelegate]
+  __EventJoinRequestAccepted__Delegate: 0x01c8n,  // 0x01c8 (0x0018) [FScriptDelegate]
+  __EventJoinRequestReceived__Delegate: 0x01e0n,  // 0x01e0 (0x0018) [FScriptDelegate]
+  __EventJoinRequestDeleted__Delegate: 0x01f8n,  // 0x01f8 (0x0018) [FScriptDelegate]
+  __OnCreateLobbyComplete__Delegate: 0x0210n,  // 0x0210 (0x0018) [FScriptDelegate]
+  __OnLobbyError__Delegate: 0x0228n,  // 0x0228 (0x0018) [FScriptDelegate]
+  __OnLobbySessionCreated__Delegate: 0x0240n,  // 0x0240 (0x0018) [FScriptDelegate]
+  __OnFindLobbiesComplete__Delegate: 0x0258n,  // 0x0258 (0x0018) [FScriptDelegate]
+  __OnJoinLobbyComplete__Delegate: 0x0270n,  // 0x0270 (0x0018) [FScriptDelegate]
+  __OnLobbySettingsUpdate__Delegate: 0x0288n,  // 0x0288 (0x0018) [FScriptDelegate]
+  __OnLobbyMemberSettingsUpdate__Delegate: 0x02a0n,  // 0x02a0 (0x0018) [FScriptDelegate]
+  __OnLobbyMemberStatusUpdate__Delegate: 0x02b8n,  // 0x02b8 (0x0018) [FScriptDelegate]
+  __OnLobbyReceiveMessage__Delegate: 0x02d0n,  // 0x02d0 (0x0018) [FScriptDelegate]
+  __OnLobbyReceiveBinaryData__Delegate: 0x02e8n,  // 0x02e8 (0x0018) [FScriptDelegate]
+  __OnLobbyJoinGame__Delegate: 0x0300n,  // 0x0300 (0x0018) [FScriptDelegate]
+  __OnLobbyInvite__Delegate: 0x0318n,  // 0x0318 (0x0018) [FScriptDelegate]
+  __EventLobbyInvitePending__Delegate: 0x0330n,  // 0x0330 (0x0018) [FScriptDelegate]
+  __OnLobbyDestroyed__Delegate: 0x0348n,  // 0x0348 (0x0018) [FScriptDelegate]
+  __EventPartyChatRecieved__Delegate: 0x0360n,  // 0x0360 (0x0018) [FScriptDelegate]
+  __EventLobbyMessageFailed__Delegate: 0x0378n,  // 0x0378 (0x0018) [FScriptDelegate]
+  __EventSignedPartyChatRecieved__Delegate: 0x0390n,  // 0x0390 (0x0018) [FScriptDelegate]
+  __EventSignedPartyChatSent__Delegate: 0x03a8n,  // 0x03a8 (0x0018) [FScriptDelegate]
+  __OnHostStartPlayTogether__Delegate: 0x03c0n,  // 0x03c0 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.PartyConfig_X Offsets
- * Size: 0x007C
+ * Size: 0x007c
  * Extends: OnlineConfig_X
  */
 export const PartyConfig_X = {
-  bCompressMessages: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
+  bCompressMessages: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
   ...OnlineConfig_X,
 } as const;
 
 /**
  * ProjectX.PartyErrors_X Offsets
- * Size: 0x01C8
+ * Size: 0x01c8
  * Extends: ErrorList
  */
 export const PartyErrors_X = {
-  AlreadyInParty: 0x0080,  // 0x0080 (0x0008) [UErrorType*]
-  CreatePartyFailed: 0x0088,  // 0x0088 (0x0008) [UErrorType*]
-  CreatePartyFailedTeamFull: 0x0090,  // 0x0090 (0x0008) [UErrorType*]
-  CreatePlayerFailedPartyFull: 0x0098,  // 0x0098 (0x0008) [UErrorType*]
-  InvitePlayerToPartyFailedPartyFull: 0x00A0,  // 0x00A0 (0x0008) [UErrorType*]
-  JoinPartyFailedPartyFull: 0x00A8,  // 0x00A8 (0x0008) [UErrorType*]
-  JoinPartyFailedPartyMatchmaking: 0x00B0,  // 0x00B0 (0x0008) [UErrorType*]
-  JoinPartyFailedPartyInGame: 0x00B8,  // 0x00B8 (0x0008) [UErrorType*]
-  JoinRequestNotFound: 0x00C0,  // 0x00C0 (0x0008) [UErrorType*]
-  KickedFromParty: 0x00C8,  // 0x00C8 (0x0008) [UErrorType*]
-  PartyDestroyedConnectionError: 0x00D0,  // 0x00D0 (0x0008) [UErrorType*]
-  PartyDestroyedSignedOut: 0x00D8,  // 0x00D8 (0x0008) [UErrorType*]
-  PlayerOffline: 0x00E0,  // 0x00E0 (0x0008) [UErrorType*]
-  JoinPartyFailed: 0x00E8,  // 0x00E8 (0x0008) [UErrorType*]
-  JoinPartyFailedNotAllowed: 0x00F0,  // 0x00F0 (0x0008) [UErrorType*]
-  JoinPartyFailedNotJoinable: 0x00F8,  // 0x00F8 (0x0008) [UErrorType*]
-  PartyBuildID: 0x0100,  // 0x0100 (0x0008) [UErrorType*]
-  PartyNotFound: 0x0108,  // 0x0108 (0x0008) [UErrorType*]
-  UserNotOwner: 0x0110,  // 0x0110 (0x0008) [UErrorType*]
-  PartyIsFull: 0x0118,  // 0x0118 (0x0008) [UErrorType*]
-  CannotAddToParty: 0x0120,  // 0x0120 (0x0008) [UErrorType*]
-  UserListInvalid: 0x0128,  // 0x0128 (0x0008) [UErrorType*]
-  InvalidOwner: 0x0130,  // 0x0130 (0x0008) [UErrorType*]
-  ChatDisabled: 0x0138,  // 0x0138 (0x0008) [UErrorType*]
-  MissingOrExpiredInvite: 0x0140,  // 0x0140 (0x0008) [UErrorType*]
-  MemberNotFound: 0x0148,  // 0x0148 (0x0008) [UErrorType*]
-  PartyIdConflict: 0x0150,  // 0x0150 (0x0008) [UErrorType*]
-  CannotKickSelf: 0x0158,  // 0x0158 (0x0008) [UErrorType*]
-  RegionRestrictedTrade: 0x0160,  // 0x0160 (0x0008) [UErrorType*]
-  CannotCrossPlayInvite: 0x0168,  // 0x0168 (0x0008) [UErrorType*]
-  RestrictedPlatformInvite: 0x0170,  // 0x0170 (0x0008) [UErrorType*]
-  PlatformNotSupported: 0x0178,  // 0x0178 (0x0008) [UErrorType*]
-  KickedCrossplayDisabled: 0x0180,  // 0x0180 (0x0008) [UErrorType*]
-  KickedLeaderPartyUp: 0x0188,  // 0x0188 (0x0008) [UErrorType*]
-  VoterDisconnected: 0x0190,  // 0x0190 (0x0008) [UErrorType*]
-  VoteEnded: 0x0198,  // 0x0198 (0x0008) [UErrorType*]
-  UsePlatformPartySystem: 0x01A0,  // 0x01A0 (0x0008) [UErrorType*]
-  InvitationRejected: 0x01A8,  // 0x01A8 (0x0008) [UErrorType*]
-  SplitScreenNotAllowedInLan: 0x01B0,  // 0x01B0 (0x0008) [UErrorType*]
-  PartyChatBlockedNotFriendsWithSomeone: 0x01B8,  // 0x01B8 (0x0008) [UErrorType*]
-  PartyChatBlockedChatDisabled: 0x01C0,  // 0x01C0 (0x0008) [UErrorType*]
+  AlreadyInParty: 0x0080n,  // 0x0080 (0x0008) [UErrorType*]
+  CreatePartyFailed: 0x0088n,  // 0x0088 (0x0008) [UErrorType*]
+  CreatePartyFailedTeamFull: 0x0090n,  // 0x0090 (0x0008) [UErrorType*]
+  CreatePlayerFailedPartyFull: 0x0098n,  // 0x0098 (0x0008) [UErrorType*]
+  InvitePlayerToPartyFailedPartyFull: 0x00a0n,  // 0x00a0 (0x0008) [UErrorType*]
+  JoinPartyFailedPartyFull: 0x00a8n,  // 0x00a8 (0x0008) [UErrorType*]
+  JoinPartyFailedPartyMatchmaking: 0x00b0n,  // 0x00b0 (0x0008) [UErrorType*]
+  JoinPartyFailedPartyInGame: 0x00b8n,  // 0x00b8 (0x0008) [UErrorType*]
+  JoinRequestNotFound: 0x00c0n,  // 0x00c0 (0x0008) [UErrorType*]
+  KickedFromParty: 0x00c8n,  // 0x00c8 (0x0008) [UErrorType*]
+  PartyDestroyedConnectionError: 0x00d0n,  // 0x00d0 (0x0008) [UErrorType*]
+  PartyDestroyedSignedOut: 0x00d8n,  // 0x00d8 (0x0008) [UErrorType*]
+  PlayerOffline: 0x00e0n,  // 0x00e0 (0x0008) [UErrorType*]
+  JoinPartyFailed: 0x00e8n,  // 0x00e8 (0x0008) [UErrorType*]
+  JoinPartyFailedNotAllowed: 0x00f0n,  // 0x00f0 (0x0008) [UErrorType*]
+  JoinPartyFailedNotJoinable: 0x00f8n,  // 0x00f8 (0x0008) [UErrorType*]
+  PartyBuildID: 0x0100n,  // 0x0100 (0x0008) [UErrorType*]
+  PartyNotFound: 0x0108n,  // 0x0108 (0x0008) [UErrorType*]
+  UserNotOwner: 0x0110n,  // 0x0110 (0x0008) [UErrorType*]
+  PartyIsFull: 0x0118n,  // 0x0118 (0x0008) [UErrorType*]
+  CannotAddToParty: 0x0120n,  // 0x0120 (0x0008) [UErrorType*]
+  UserListInvalid: 0x0128n,  // 0x0128 (0x0008) [UErrorType*]
+  InvalidOwner: 0x0130n,  // 0x0130 (0x0008) [UErrorType*]
+  ChatDisabled: 0x0138n,  // 0x0138 (0x0008) [UErrorType*]
+  MissingOrExpiredInvite: 0x0140n,  // 0x0140 (0x0008) [UErrorType*]
+  MemberNotFound: 0x0148n,  // 0x0148 (0x0008) [UErrorType*]
+  PartyIdConflict: 0x0150n,  // 0x0150 (0x0008) [UErrorType*]
+  CannotKickSelf: 0x0158n,  // 0x0158 (0x0008) [UErrorType*]
+  RegionRestrictedTrade: 0x0160n,  // 0x0160 (0x0008) [UErrorType*]
+  CannotCrossPlayInvite: 0x0168n,  // 0x0168 (0x0008) [UErrorType*]
+  RestrictedPlatformInvite: 0x0170n,  // 0x0170 (0x0008) [UErrorType*]
+  PlatformNotSupported: 0x0178n,  // 0x0178 (0x0008) [UErrorType*]
+  KickedCrossplayDisabled: 0x0180n,  // 0x0180 (0x0008) [UErrorType*]
+  KickedLeaderPartyUp: 0x0188n,  // 0x0188 (0x0008) [UErrorType*]
+  VoterDisconnected: 0x0190n,  // 0x0190 (0x0008) [UErrorType*]
+  VoteEnded: 0x0198n,  // 0x0198 (0x0008) [UErrorType*]
+  UsePlatformPartySystem: 0x01a0n,  // 0x01a0 (0x0008) [UErrorType*]
+  InvitationRejected: 0x01a8n,  // 0x01a8 (0x0008) [UErrorType*]
+  SplitScreenNotAllowedInLan: 0x01b0n,  // 0x01b0 (0x0008) [UErrorType*]
+  PartyChatBlockedNotFriendsWithSomeone: 0x01b8n,  // 0x01b8 (0x0008) [UErrorType*]
+  PartyChatBlockedChatDisabled: 0x01c0n,  // 0x01c0 (0x0008) [UErrorType*]
   ...ErrorList,
 } as const;
 
@@ -4369,45 +3332,45 @@ export const PartyJoinedEvent_X = {
 
 /**
  * ProjectX.PartyMessageQueue_X Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: Component
  */
 export const PartyMessageQueue_X = {
-  Pending: 0x0070,  // 0x0070 (0x0010) [TArray<FPendingMessage>]
-  CurrentBatch: 0x0080,  // 0x0080 (0x0010) [TArray<UAsyncTask*>]
-  bPaused: 0x0090,  // 0x0090 (0x0004) [bool : 0x1]
-  BatchDelayTime: 0x0094,  // 0x0094 (0x0004) [float]
-  __SendMessageServiceDelegate__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
+  Pending: 0x0070n,  // 0x0070 (0x0010) [TArray<FPendingMessage>]
+  CurrentBatch: 0x0080n,  // 0x0080 (0x0010) [TArray<UAsyncTask*>]
+  bPaused: 0x0090n,  // 0x0090 (0x0004) [bool : 0x1]
+  BatchDelayTime: 0x0094n,  // 0x0094 (0x0004) [float]
+  __SendMessageServiceDelegate__Delegate: 0x0098n,  // 0x0098 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
 /**
  * ProjectX.PartyMessage_X Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: OnlineMessage_X
  */
 export const PartyMessage_X = {
-  Sender: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
+  Sender: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
   ...OnlineMessage_X,
 } as const;
 
 /**
  * ProjectX.PartyMessage_CrossPlayTextChat_X Offsets
- * Size: 0x00A9
+ * Size: 0x00a9
  * Extends: PartyMessage_X
  */
 export const PartyMessage_CrossPlayTextChat_X = {
-  CrossChatState: 0x00A8,  // 0x00A8 (0x0001) [ECrossPlatformChatState]
+  CrossChatState: 0x00a8n,  // 0x00a8 (0x0001) [ECrossPlatformChatState]
   ...PartyMessage_X,
 } as const;
 
 /**
  * ProjectX.PartyMessage_DisableCrossPlay_X Offsets
- * Size: 0x00AC
+ * Size: 0x00ac
  * Extends: PartyMessage_X
  */
 export const PartyMessage_DisableCrossPlay_X = {
-  bDisableCrossPlay: 0x00A8,  // 0x00A8 (0x0004) [bool : 0x1]
+  bDisableCrossPlay: 0x00a8n,  // 0x00a8 (0x0004) [bool : 0x1]
   ...PartyMessage_X,
 } as const;
 
@@ -4417,14 +3380,14 @@ export const PartyMessage_DisableCrossPlay_X = {
  * Extends: PartyMessage_X
  */
 export const PartyMessage_GetPlatformPartyResponse_X = {
-  PlatformPartyID: 0x00A8,  // 0x00A8 (0x0010) [FUniqueLobbyId]
-  OriginalSender: 0x00B8,  // 0x00B8 (0x0048) [FUniqueNetId]
+  PlatformPartyID: 0x00a8n,  // 0x00a8 (0x0010) [FUniqueLobbyId]
+  OriginalSender: 0x00b8n,  // 0x00b8 (0x0048) [FUniqueNetId]
   ...PartyMessage_X,
 } as const;
 
 /**
  * ProjectX.PartyMessage_GetPlatformParty_X Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: PartyMessage_X
  */
 export const PartyMessage_GetPlatformParty_X = {
@@ -4437,28 +3400,28 @@ export const PartyMessage_GetPlatformParty_X = {
  * Extends: PartyMessage_X
  */
 export const PartyMessage_JoinGame_X = {
-  Settings: 0x00A8,  // 0x00A8 (0x0058) [FPartyJoinMatchSettings]
+  Settings: 0x00a8n,  // 0x00a8 (0x0058) [FPartyJoinMatchSettings]
   ...PartyMessage_X,
 } as const;
 
 /**
  * ProjectX.PartyMessage_Kick_X Offsets
- * Size: 0x00F1
+ * Size: 0x00f1
  * Extends: PartyMessage_X
  */
 export const PartyMessage_Kick_X = {
-  KickPlayer: 0x00A8,  // 0x00A8 (0x0048) [FUniqueNetId]
-  KickReason: 0x00F0,  // 0x00F0 (0x0001) [ELobbyKickReason]
+  KickPlayer: 0x00a8n,  // 0x00a8 (0x0048) [FUniqueNetId]
+  KickReason: 0x00f0n,  // 0x00f0 (0x0001) [ELobbyKickReason]
   ...PartyMessage_X,
 } as const;
 
 /**
  * ProjectX.PartyMessage_LobbySettings_X Offsets
- * Size: 0x00AC
+ * Size: 0x00ac
  * Extends: PartyMessage_X
  */
 export const PartyMessage_LobbySettings_X = {
-  BuildID: 0x00A8,  // 0x00A8 (0x0004) [int32]
+  BuildID: 0x00a8n,  // 0x00a8 (0x0004) [int32]
   ...PartyMessage_X,
 } as const;
 
@@ -4468,60 +3431,60 @@ export const PartyMessage_LobbySettings_X = {
  * Extends: PartyMessage_X
  */
 export const PartyMessage_LocalPlayers_X = {
-  PrimaryMemberId: 0x00A8,  // 0x00A8 (0x0048) [FUniqueNetId]
-  Members: 0x00F0,  // 0x00F0 (0x0010) [TArray<FSimplePartyMember>]
+  PrimaryMemberId: 0x00a8n,  // 0x00a8 (0x0048) [FUniqueNetId]
+  Members: 0x00f0n,  // 0x00f0 (0x0010) [TArray<FSimplePartyMember>]
   ...PartyMessage_X,
 } as const;
 
 /**
  * ProjectX.PartyMessage_MatchmakingAvailability_X Offsets
- * Size: 0x00AC
+ * Size: 0x00ac
  * Extends: PartyMessage_X
  */
 export const PartyMessage_MatchmakingAvailability_X = {
-  MatchmakeRestrictions: 0x00A8,  // 0x00A8 (0x0004) [int32]
+  MatchmakeRestrictions: 0x00a8n,  // 0x00a8 (0x0004) [int32]
   ...PartyMessage_X,
 } as const;
 
 /**
  * ProjectX.PartyMessage_PartyMemberJoinGame_X Offsets
- * Size: 0x00F0
+ * Size: 0x00f0
  * Extends: PartyMessage_X
  */
 export const PartyMessage_PartyMemberJoinGame_X = {
-  Server: 0x00A8,  // 0x00A8 (0x0048) [FPartyMemberServer]
+  Server: 0x00a8n,  // 0x00a8 (0x0048) [FPartyMemberServer]
   ...PartyMessage_X,
 } as const;
 
 /**
  * ProjectX.PartyMessage_SearchStatus_X Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: PartyMessage_X
  */
 export const PartyMessage_SearchStatus_X = {
-  SearchState: 0x00A8,  // 0x00A8 (0x0008) [FName]
-  bIsSearching: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x1]
-  PreferredPlaylists: 0x00B8,  // 0x00B8 (0x0010) [TArray<int32>]
+  SearchState: 0x00a8n,  // 0x00a8 (0x0008) [FName]
+  bIsSearching: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x1]
+  PreferredPlaylists: 0x00b8n,  // 0x00b8 (0x0010) [TArray<int32>]
   ...PartyMessage_X,
 } as const;
 
 /**
  * ProjectX.PartyMessage_SetPlatformParty_X Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: PartyMessage_X
  */
 export const PartyMessage_SetPlatformParty_X = {
-  PlatformPartyID: 0x00A8,  // 0x00A8 (0x0010) [FUniqueLobbyId]
+  PlatformPartyID: 0x00a8n,  // 0x00a8 (0x0010) [FUniqueLobbyId]
   ...PartyMessage_X,
 } as const;
 
 /**
  * ProjectX.PartyMetrics_X Offsets
- * Size: 0x008C
+ * Size: 0x008c
  * Extends: MetricsGroup_X
  */
 export const PartyMetrics_X = {
-  PartyData: 0x0080,  // 0x0080 (0x000C) [FPartyMetricsData]
+  PartyData: 0x0080n,  // 0x0080 (0x000c) [FPartyMetricsData]
   ...MetricsGroup_X,
 } as const;
 
@@ -4531,8 +3494,8 @@ export const PartyMetrics_X = {
  * Extends: Object
  */
 export const PartyPlatformSession_X = {
-  PartyID: 0x0060,  // 0x0060 (0x0010) [FUniqueLobbyId]
-  __EventPartyIdChanged__Delegate: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
+  PartyID: 0x0060n,  // 0x0060 (0x0010) [FUniqueLobbyId]
+  __EventPartyIdChanged__Delegate: 0x0070n,  // 0x0070 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -4542,8 +3505,8 @@ export const PartyPlatformSession_X = {
  * Extends: Object
  */
 export const PartySequence_CreateParty_X = {
-  PendingRPC: 0x0060,  // 0x0060 (0x0008) [URPC_PartyCreate_X*]
-  __EventPartyCreated__Delegate: 0x0068,  // 0x0068 (0x0018) [FScriptDelegate]
+  PendingRPC: 0x0060n,  // 0x0060 (0x0008) [URPC_PartyCreate_X*]
+  __EventPartyCreated__Delegate: 0x0068n,  // 0x0068 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -4580,7 +3543,7 @@ export const PartySequence_InvitedToPsyNetParty_X = {
  * Extends: Object
  */
 export const PartySequence_JoinParty_X = {
-  __EventJoinedParty__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  __EventJoinedParty__Delegate: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -4630,208 +3593,43 @@ export const PauseStaticDataSync_X = {
 } as const;
 
 /**
- * Engine.Pawn Offsets
- * Size: 0x0514
- * Extends: Actor
- */
-export const Pawn = {
-  VfTable_IInterface_Speaker: 0x0268,  // 0x0268 (0x0008) [FPointer]
-  ObjectProvider: 0x0270,  // 0x0270 (0x0008) [unknown]
-  RegistryGroup: 0x0278,  // 0x0278 (0x0008) [unknown]
-  MaxStepHeight: 0x0280,  // 0x0280 (0x0004) [float]
-  MaxJumpHeight: 0x0284,  // 0x0284 (0x0004) [float]
-  WalkableFloorZ: 0x0288,  // 0x0288 (0x0004) [float]
-  LedgeCheckThreshold: 0x028C,  // 0x028C (0x0004) [float]
-  PartialLedgeMoveDir: 0x0290,  // 0x0290 (0x000C) [FVector]
-  Controller: 0x02A0,  // 0x02A0 (0x0008) [UController*]
-  NextPawn: 0x02A8,  // 0x02A8 (0x0008) [UPawn*]
-  NetRelevancyTime: 0x02B0,  // 0x02B0 (0x0004) [float]
-  LastRealViewer: 0x02B8,  // 0x02B8 (0x0008) [UPlayerController*]
-  LastViewer: 0x02C0,  // 0x02C0 (0x0008) [UActor*]
-  bScriptTickSpecial: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x1]
-  bUpAndOut: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x2]
-  bIsWalking: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x4]
-  bWantsToCrouch: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x8]
-  bIsCrouched: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x10]
-  bTryToUncrouch: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x20]
-  bCanCrouch: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x40]
-  bCrawler: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x80]
-  bReducedSpeed: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x100]
-  bJumpCapable: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x200]
-  bCanJump: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x400]
-  bCanWalk: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x800]
-  bCanFly: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x1000]
-  bCanStrafe: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x2000]
-  bAvoidLedges: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x4000]
-  bStopAtLedges: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x8000]
-  bAllowLedgeOverhang: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x10000]
-  bPartiallyOverLedge: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x20000]
-  bSimulateGravity: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x40000]
-  bIgnoreForces: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x80000]
-  bCanWalkOffLedges: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x100000]
-  bCanBeBaseForPawns: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x200000]
-  bSimGravityDisabled: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x400000]
-  bDirectHitWall: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x800000]
-  bPushesRigidBodies: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x1000000]
-  bForceFloorCheck: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x2000000]
-  bForceKeepAnchor: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x4000000]
-  bCanMantle: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x8000000]
-  bCanClimbUp: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x10000000]
-  bCanClimbCeilings: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x20000000]
-  bCanSwatTurn: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x40000000]
-  bCanLeap: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x-80000000]
-  bCanCoverSlip: 0x02CC,  // 0x02CC (0x0004) [bool : 0x1]
-  bDisplayPathErrors: 0x02CC,  // 0x02CC (0x0004) [bool : 0x2]
-  bAmbientCreature: 0x02CC,  // 0x02CC (0x0004) [bool : 0x4]
-  bLOSHearing: 0x02CC,  // 0x02CC (0x0004) [bool : 0x8]
-  bMuffledHearing: 0x02CC,  // 0x02CC (0x0004) [bool : 0x10]
-  bDontPossess: 0x02CC,  // 0x02CC (0x0004) [bool : 0x20]
-  bRollToDesired: 0x02CC,  // 0x02CC (0x0004) [bool : 0x40]
-  bStationary: 0x02CC,  // 0x02CC (0x0004) [bool : 0x80]
-  bCachedRelevant: 0x02CC,  // 0x02CC (0x0004) [bool : 0x100]
-  bModifyReachSpecCost: 0x02CC,  // 0x02CC (0x0004) [bool : 0x200]
-  bModifyNavPointDest: 0x02CC,  // 0x02CC (0x0004) [bool : 0x400]
-  bPrevBypassSimulatedClientPhysics: 0x02CC,  // 0x02CC (0x0004) [bool : 0x800]
-  bRunPhysicsWithNoController: 0x02CC,  // 0x02CC (0x0004) [bool : 0x1000]
-  bForceMaxAccel: 0x02CC,  // 0x02CC (0x0004) [bool : 0x2000]
-  bLimitFallAccel: 0x02CC,  // 0x02CC (0x0004) [bool : 0x4000]
-  bForceRMVelocity: 0x02CC,  // 0x02CC (0x0004) [bool : 0x8000]
-  bForceRegularVelocity: 0x02CC,  // 0x02CC (0x0004) [bool : 0x10000]
-  bDesiredRotationSet: 0x02CC,  // 0x02CC (0x0004) [bool : 0x20000]
-  bLockDesiredRotation: 0x02CC,  // 0x02CC (0x0004) [bool : 0x40000]
-  bUnlockWhenReached: 0x02CC,  // 0x02CC (0x0004) [bool : 0x80000]
-  bNeedsBaseTickedFirst: 0x02CC,  // 0x02CC (0x0004) [bool : 0x100000]
-  bUsedByMatinee: 0x02CC,  // 0x02CC (0x0004) [bool : 0x200000]
-  bRootMotionFromInterpCurve: 0x02CC,  // 0x02CC (0x0004) [bool : 0x400000]
-  bDebugShowCameraLocation: 0x02CC,  // 0x02CC (0x0004) [bool : 0x800000]
-  bFastAttachedMove: 0x02CC,  // 0x02CC (0x0004) [bool : 0x1000000]
-  WalkingPhysics: 0x02D0,  // 0x02D0 (0x0001) [EPhysics]
-  PathSearchType: 0x02D1,  // 0x02D1 (0x0001) [EPathSearchType]
-  RemoteViewPitch: 0x02D2,  // 0x02D2 (0x0001) [uint8]
-  UncrouchTime: 0x02D4,  // 0x02D4 (0x0004) [float]
-  CrouchHeight: 0x02D8,  // 0x02D8 (0x0004) [float]
-  CrouchRadius: 0x02DC,  // 0x02DC (0x0004) [float]
-  FullHeight: 0x02E0,  // 0x02E0 (0x0004) [int32]
-  PathConstraintList: 0x02E8,  // 0x02E8 (0x0008) [UPathConstraint*]
-  PathGoalList: 0x02F0,  // 0x02F0 (0x0008) [UPathGoalEvaluator*]
-  DesiredSpeed: 0x02F8,  // 0x02F8 (0x0004) [float]
-  MaxDesiredSpeed: 0x02FC,  // 0x02FC (0x0004) [float]
-  HearingThreshold: 0x0300,  // 0x0300 (0x0004) [float]
-  Alertness: 0x0304,  // 0x0304 (0x0004) [float]
-  SightRadius: 0x0308,  // 0x0308 (0x0004) [float]
-  PeripheralVision: 0x030C,  // 0x030C (0x0004) [float]
-  AvgPhysicsTime: 0x0310,  // 0x0310 (0x0004) [float]
-  Mass: 0x0314,  // 0x0314 (0x0004) [float]
-  Buoyancy: 0x0318,  // 0x0318 (0x0004) [float]
-  MeleeRange: 0x031C,  // 0x031C (0x0004) [float]
-  Anchor: 0x0320,  // 0x0320 (0x0008) [UNavigationPoint*]
-  AnchorItem: 0x0328,  // 0x0328 (0x0004) [int32]
-  LastAnchor: 0x0330,  // 0x0330 (0x0008) [UNavigationPoint*]
-  FindAnchorFailedTime: 0x0338,  // 0x0338 (0x0004) [float]
-  LastValidAnchorTime: 0x033C,  // 0x033C (0x0004) [float]
-  DestinationOffset: 0x0340,  // 0x0340 (0x0004) [float]
-  NextPathRadius: 0x0344,  // 0x0344 (0x0004) [float]
-  SerpentineDir: 0x0348,  // 0x0348 (0x000C) [FVector]
-  SerpentineDist: 0x0354,  // 0x0354 (0x0004) [float]
-  SerpentineTime: 0x0358,  // 0x0358 (0x0004) [float]
-  MaxPitchLimit: 0x035C,  // 0x035C (0x0004) [int32]
-  GroundSpeed: 0x0360,  // 0x0360 (0x0004) [float]
-  AirSpeed: 0x0364,  // 0x0364 (0x0004) [float]
-  AccelRate: 0x0368,  // 0x0368 (0x0004) [float]
-  JumpZ: 0x036C,  // 0x036C (0x0004) [float]
-  OutofWaterZ: 0x0370,  // 0x0370 (0x0004) [float]
-  MaxOutOfWaterStepHeight: 0x0374,  // 0x0374 (0x0004) [float]
-  AirControl: 0x0378,  // 0x0378 (0x0004) [float]
-  WalkingPct: 0x037C,  // 0x037C (0x0004) [float]
-  MovementSpeedModifier: 0x0380,  // 0x0380 (0x0004) [float]
-  CrouchedPct: 0x0384,  // 0x0384 (0x0004) [float]
-  MaxFallSpeed: 0x0388,  // 0x0388 (0x0004) [float]
-  AIMaxFallSpeedFactor: 0x038C,  // 0x038C (0x0004) [float]
-  BaseEyeHeight: 0x0390,  // 0x0390 (0x0004) [float]
-  EyeHeight: 0x0394,  // 0x0394 (0x0004) [float]
-  Floor: 0x0398,  // 0x0398 (0x000C) [FVector]
-  RMVelocity: 0x03A4,  // 0x03A4 (0x000C) [FVector]
-  noise1spot: 0x03B0,  // 0x03B0 (0x000C) [FVector]
-  noise1time: 0x03BC,  // 0x03BC (0x0004) [float]
-  noise1other: 0x03C0,  // 0x03C0 (0x0008) [UPawn*]
-  noise1loudness: 0x03C8,  // 0x03C8 (0x0004) [float]
-  noise2spot: 0x03CC,  // 0x03CC (0x000C) [FVector]
-  noise2time: 0x03D8,  // 0x03D8 (0x0004) [float]
-  noise2other: 0x03E0,  // 0x03E0 (0x0008) [UPawn*]
-  noise2loudness: 0x03E8,  // 0x03E8 (0x0004) [float]
-  SoundDampening: 0x03EC,  // 0x03EC (0x0004) [float]
-  DamageScaling: 0x03F0,  // 0x03F0 (0x0004) [float]
-  MenuName: 0x03F8,  // 0x03F8 (0x0010) [FString]
-  ControllerClass: 0x0408,  // 0x0408 (0x0008) [UClass*]
-  PlayerReplicationInfo: 0x0410,  // 0x0410 (0x0008) [UPlayerReplicationInfo*]
-  LandMovementState: 0x0418,  // 0x0418 (0x0008) [FName]
-  WaterMovementState: 0x0420,  // 0x0420 (0x0008) [FName]
-  LastStartSpot: 0x0428,  // 0x0428 (0x0008) [UPlayerStart*]
-  LastStartTime: 0x0430,  // 0x0430 (0x0004) [float]
-  Mesh: 0x0438,  // 0x0438 (0x0008) [unknown]
-  CylinderComponent: 0x0440,  // 0x0440 (0x0008) [unknown]
-  RBPushRadius: 0x0448,  // 0x0448 (0x0004) [float]
-  RBPushStrength: 0x044C,  // 0x044C (0x0004) [float]
-  AlwaysRelevantDistanceSquared: 0x0450,  // 0x0450 (0x0004) [float]
-  LastHitBy: 0x0458,  // 0x0458 (0x0008) [UController*]
-  ViewPitchMin: 0x0460,  // 0x0460 (0x0004) [float]
-  ViewPitchMax: 0x0464,  // 0x0464 (0x0004) [float]
-  AllowedYawError: 0x0468,  // 0x0468 (0x0004) [int32]
-  DesiredRotation: 0x046C,  // 0x046C (0x000C) [FRotator]
-  PreRagdollCollisionComponent: 0x0478,  // 0x0478 (0x0008) [unknown]
-  PhysicsPushBody: 0x0480,  // 0x0480 (0x0008) [URB_BodyInstance*]
-  FailedLandingCount: 0x0488,  // 0x0488 (0x0004) [int32]
-  SlotNodes: 0x0490,  // 0x0490 (0x0010) [TArray<UAnimNodeSlot*>]
-  InterpGroupList: 0x04A0,  // 0x04A0 (0x0010) [TArray<UInterpGroup*>]
-  FacialAudioComp: 0x04B0,  // 0x04B0 (0x0008) [unknown]
-  MIC_PawnMat: 0x04B8,  // 0x04B8 (0x0008) [UMaterialInstanceConstant*]
-  MIC_PawnHair: 0x04C0,  // 0x04C0 (0x0008) [UMaterialInstanceConstant*]
-  ScalarParameterInterpArray: 0x04C8,  // 0x04C8 (0x0010) [TArray<FScalarParameterInterpStruct>]
-  RootMotionInterpCurve: 0x04D8,  // 0x04D8 (0x0028) [FRootMotionCurve]
-  RootMotionInterpRate: 0x0500,  // 0x0500 (0x0004) [float]
-  RootMotionInterpCurrentTime: 0x0504,  // 0x0504 (0x0004) [float]
-  RootMotionInterpCurveLastValue: 0x0508,  // 0x0508 (0x000C) [FVector]
-  ...Actor,
-} as const;
-
-/**
  * ProjectX.Pawn_X Offsets
  * Size: 0x0558
  * Extends: Pawn
  */
 export const Pawn_X = {
-  GravityScale: 0x0518,  // 0x0518 (0x0004) [float]
-  PreviousController: 0x0520,  // 0x0520 (0x0008) [UController*]
-  __EventDestroyed__Delegate: 0x0528,  // 0x0528 (0x0018) [FScriptDelegate]
-  __EventAnimEnd__Delegate: 0x0540,  // 0x0540 (0x0018) [FScriptDelegate]
+  GravityScale: 0x0518n,  // 0x0518 (0x0004) [float]
+  PreviousController: 0x0520n,  // 0x0520 (0x0008) [UController*]
+  __EventDestroyed__Delegate: 0x0528n,  // 0x0528 (0x0018) [FScriptDelegate]
+  __EventAnimEnd__Delegate: 0x0540n,  // 0x0540 (0x0018) [FScriptDelegate]
   ...Pawn,
 } as const;
 
 /**
  * ProjectX.PendingAvatarRequest_X Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: Object
  */
 export const PendingAvatarRequest_X = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  Size: 0x00A8,  // 0x00A8 (0x0001) [AvatarSize]
-  OnAvatarRequestComplete: 0x00B0,  // 0x00B0 (0x0018) [FScriptDelegate]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
+  Size: 0x00a8n,  // 0x00a8 (0x0001) [AvatarSize]
+  OnAvatarRequestComplete: 0x00b0n,  // 0x00b0 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.PerConMetrics_X Offsets
- * Size: 0x009C
+ * Size: 0x009c
  * Extends: MetricsGroup_X
  */
 export const PerConMetrics_X = {
-  StartConnectFailCount: 0x0080,  // 0x0080 (0x0004) [int32]
-  ConnectFailCount: 0x0084,  // 0x0084 (0x0004) [int32]
-  DisconnectCount: 0x0088,  // 0x0088 (0x0004) [int32]
-  RPCErrorCount: 0x008C,  // 0x008C (0x0004) [int32]
-  InvalidMessageCount: 0x0090,  // 0x0090 (0x0004) [int32]
-  bConnected: 0x0094,  // 0x0094 (0x0004) [bool : 0x1]
-  StartTime: 0x0098,  // 0x0098 (0x0004) [float]
+  StartConnectFailCount: 0x0080n,  // 0x0080 (0x0004) [int32]
+  ConnectFailCount: 0x0084n,  // 0x0084 (0x0004) [int32]
+  DisconnectCount: 0x0088n,  // 0x0088 (0x0004) [int32]
+  RPCErrorCount: 0x008cn,  // 0x008c (0x0004) [int32]
+  InvalidMessageCount: 0x0090n,  // 0x0090 (0x0004) [int32]
+  bConnected: 0x0094n,  // 0x0094 (0x0004) [bool : 0x1]
+  StartTime: 0x0098n,  // 0x0098 (0x0004) [float]
   ...MetricsGroup_X,
 } as const;
 
@@ -4841,19 +3639,10 @@ export const PerConMetrics_X = {
  * Extends: Object
  */
 export const PerCon_X = {
-  Config: 0x0060,  // 0x0060 (0x0008) [UPsyNetConfig_X*]
-  URL: 0x0068,  // 0x0068 (0x0010) [FString]
-  Status: 0x0078,  // 0x0078 (0x0001) [EPerConStatus]
-  __EventStatusChanged__Delegate: 0x0080,  // 0x0080 (0x0018) [FScriptDelegate]
-  ...Object_,
-} as const;
-
-/**
- * Engine.PhysicalMaterialPropertyBase Offsets
- * Size: 0x0060
- * Extends: Object
- */
-export const PhysicalMaterialPropertyBase = {
+  Config: 0x0060n,  // 0x0060 (0x0008) [UPsyNetConfig_X*]
+  URL: 0x0068n,  // 0x0068 (0x0010) [FString]
+  Status: 0x0078n,  // 0x0078 (0x0001) [EPerConStatus]
+  __EventStatusChanged__Delegate: 0x0080n,  // 0x0080 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -4863,7 +3652,7 @@ export const PhysicalMaterialPropertyBase = {
  * Extends: PhysicalMaterialPropertyBase
  */
 export const PhysicalMaterialProperty_X = {
-  SurfaceType: 0x0060,  // 0x0060 (0x0008) [FName]
+  SurfaceType: 0x0060n,  // 0x0060 (0x0008) [FName]
   ...PhysicalMaterialPropertyBase,
 } as const;
 
@@ -4873,13 +3662,13 @@ export const PhysicalMaterialProperty_X = {
  * Extends: BeaconMessage_X
  */
 export const PingMessage_X = {
-  bIsResponse: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
+  bIsResponse: 0x0060n,  // 0x0060 (0x0004) [bool : 0x1]
   ...BeaconMessage_X,
 } as const;
 
 /**
  * ProjectX.PlatformFriends_X Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: OnlineFriendMap_X
  */
 export const PlatformFriends_X = {
@@ -4969,16 +3758,16 @@ export const Platform_Server = {
 
 /**
  * ProjectX.PlayerActivityMetricsConfig_X Offsets
- * Size: 0x009C
+ * Size: 0x009c
  * Extends: OnlineConfig_X
  */
 export const PlayerActivityMetricsConfig_X = {
-  SecondsUntilClientInactive: 0x0078,  // 0x0078 (0x0004) [float]
-  SecondsUntilMatchInactive: 0x007C,  // 0x007C (0x0004) [float]
-  HeartbeatSeconds: 0x0080,  // 0x0080 (0x0004) [float]
-  AxisDeadzone: 0x0084,  // 0x0084 (0x0004) [float]
-  IgnoredInputTypes: 0x0088,  // 0x0088 (0x0010) [TArray<EInputEvent>]
-  bIgnoreKBMAxis: 0x0098,  // 0x0098 (0x0004) [bool : 0x1]
+  SecondsUntilClientInactive: 0x0078n,  // 0x0078 (0x0004) [float]
+  SecondsUntilMatchInactive: 0x007cn,  // 0x007c (0x0004) [float]
+  HeartbeatSeconds: 0x0080n,  // 0x0080 (0x0004) [float]
+  AxisDeadzone: 0x0084n,  // 0x0084 (0x0004) [float]
+  IgnoredInputTypes: 0x0088n,  // 0x0088 (0x0010) [TArray<EInputEvent>]
+  bIgnoreKBMAxis: 0x0098n,  // 0x0098 (0x0004) [bool : 0x1]
   ...OnlineConfig_X,
 } as const;
 
@@ -4992,211 +3781,23 @@ export const PlayerActivityMetrics_X = {
 } as const;
 
 /**
- * Engine.PlayerController Offsets
- * Size: 0x07E8
- * Extends: Controller
- */
-export const PlayerController = {
-  Player: 0x0478,  // 0x0478 (0x0008) [UPlayer*]
-  PlayerCamera: 0x0480,  // 0x0480 (0x0008) [UCamera*]
-  CameraClass: 0x0488,  // 0x0488 (0x0008) [UClass*]
-  bFrozen: 0x0490,  // 0x0490 (0x0004) [bool : 0x1]
-  bPressedJump: 0x0490,  // 0x0490 (0x0004) [bool : 0x2]
-  bDoubleJump: 0x0490,  // 0x0490 (0x0004) [bool : 0x4]
-  bUpdatePosition: 0x0490,  // 0x0490 (0x0004) [bool : 0x8]
-  bUpdating: 0x0490,  // 0x0490 (0x0004) [bool : 0x10]
-  bCheatFlying: 0x0490,  // 0x0490 (0x0004) [bool : 0x20]
-  bCameraPositionLocked: 0x0490,  // 0x0490 (0x0004) [bool : 0x40]
-  bShortConnectTimeOut: 0x0490,  // 0x0490 (0x0004) [bool : 0x80]
-  bPendingDestroy: 0x0490,  // 0x0490 (0x0004) [bool : 0x100]
-  bWasSpeedHack: 0x0490,  // 0x0490 (0x0004) [bool : 0x200]
-  bWasSaturated: 0x0490,  // 0x0490 (0x0004) [bool : 0x400]
-  bAimingHelp: 0x0490,  // 0x0490 (0x0004) [bool : 0x800]
-  bCameraCut: 0x0490,  // 0x0490 (0x0004) [bool : 0x1000]
-  bClientSimulatingViewTarget: 0x0490,  // 0x0490 (0x0004) [bool : 0x2000]
-  bHasVoiceHandshakeCompleted: 0x0490,  // 0x0490 (0x0004) [bool : 0x4000]
-  bIsChatBanned: 0x0490,  // 0x0490 (0x0004) [bool : 0x8000]
-  bIsSocialBanned: 0x0490,  // 0x0490 (0x0004) [bool : 0x10000]
-  bCinematicMode: 0x0490,  // 0x0490 (0x0004) [bool : 0x20000]
-  bInteractiveMode: 0x0490,  // 0x0490 (0x0004) [bool : 0x40000]
-  bCinemaDisableInputMove: 0x0490,  // 0x0490 (0x0004) [bool : 0x80000]
-  bCinemaDisableInputLook: 0x0490,  // 0x0490 (0x0004) [bool : 0x100000]
-  bIgnoreNetworkMessages: 0x0490,  // 0x0490 (0x0004) [bool : 0x200000]
-  bShowKismetDrawText: 0x0490,  // 0x0490 (0x0004) [bool : 0x400000]
-  bReplicateAllPawns: 0x0490,  // 0x0490 (0x0004) [bool : 0x800000]
-  bIsUsingStreamingVolumes: 0x0490,  // 0x0490 (0x0004) [bool : 0x1000000]
-  bIsExternalUIOpen: 0x0490,  // 0x0490 (0x0004) [bool : 0x2000000]
-  bIsControllerConnected: 0x0490,  // 0x0490 (0x0004) [bool : 0x4000000]
-  bCheckSoundOcclusion: 0x0490,  // 0x0490 (0x0004) [bool : 0x8000000]
-  bDebugCameraAnims: 0x0490,  // 0x0490 (0x0004) [bool : 0x10000000]
-  bBlockCameraAnimsFromOverridingPostProcess: 0x0490,  // 0x0490 (0x0004) [bool : 0x20000000]
-  bLogHearSoundOverflow: 0x0490,  // 0x0490 (0x0004) [bool : 0x40000000]
-  bCheckRelevancyThroughPortals: 0x0490,  // 0x0490 (0x0004) [bool : 0x-80000000]
-  bDebugClientAdjustPosition: 0x0494,  // 0x0494 (0x0004) [bool : 0x1]
-  MaxResponseTime: 0x0498,  // 0x0498 (0x0004) [float]
-  WaitDelay: 0x049C,  // 0x049C (0x0004) [float]
-  AcknowledgedPawn: 0x04A0,  // 0x04A0 (0x0008) [UPawn*]
-  DoubleClickDir: 0x04A8,  // 0x04A8 (0x0001) [EDoubleClickDir]
-  bIgnoreMoveInput: 0x04A9,  // 0x04A9 (0x0001) [uint8]
-  bIgnoreLookInput: 0x04AA,  // 0x04AA (0x0001) [uint8]
-  bRun: 0x04AB,  // 0x04AB (0x0001) [uint8]
-  bDuck: 0x04AC,  // 0x04AC (0x0001) [uint8]
-  NetPlayerIndex: 0x04AD,  // 0x04AD (0x0001) [uint8]
-  ViewTarget: 0x04B0,  // 0x04B0 (0x0008) [UActor*]
-  RealViewTarget: 0x04B8,  // 0x04B8 (0x0008) [UPlayerReplicationInfo*]
-  ControllingDirTrackInst: 0x04C0,  // 0x04C0 (0x0008) [UInterpTrackInstDirector*]
-  FOVAngle: 0x04C8,  // 0x04C8 (0x0004) [float]
-  DesiredFOV: 0x04CC,  // 0x04CC (0x0004) [float]
-  DefaultFOV: 0x04D0,  // 0x04D0 (0x0004) [float]
-  LODDistanceFactor: 0x04D4,  // 0x04D4 (0x0004) [float]
-  TargetViewRotation: 0x04D8,  // 0x04D8 (0x000C) [FRotator]
-  TargetEyeHeight: 0x04E4,  // 0x04E4 (0x0004) [float]
-  BlendedTargetViewRotation: 0x04E8,  // 0x04E8 (0x000C) [FRotator]
-  myHUD: 0x04F8,  // 0x04F8 (0x0008) [UHUD*]
-  mySecondaryHUD: 0x0500,  // 0x0500 (0x0008) [UHUD*]
-  SavedMoveClass: 0x0508,  // 0x0508 (0x0008) [UClass*]
-  SavedMoves: 0x0510,  // 0x0510 (0x0008) [USavedMove*]
-  FreeMoves: 0x0518,  // 0x0518 (0x0008) [USavedMove*]
-  PendingMove: 0x0520,  // 0x0520 (0x0008) [USavedMove*]
-  LastAckedAccel: 0x0528,  // 0x0528 (0x000C) [FVector]
-  CurrentTimeStamp: 0x0534,  // 0x0534 (0x0004) [float]
-  LastUpdateTime: 0x0538,  // 0x0538 (0x0004) [float]
-  ServerTimeStamp: 0x053C,  // 0x053C (0x0004) [float]
-  TimeMargin: 0x0540,  // 0x0540 (0x0004) [float]
-  ClientUpdateTime: 0x0544,  // 0x0544 (0x0004) [float]
-  MaxTimeMargin: 0x0548,  // 0x0548 (0x0004) [float]
-  LastActiveTime: 0x054C,  // 0x054C (0x0004) [float]
-  DynamicPingThreshold: 0x0550,  // 0x0550 (0x0004) [float]
-  LastPingUpdate: 0x0554,  // 0x0554 (0x0004) [float]
-  LastSpeedHackLog: 0x0558,  // 0x0558 (0x0004) [float]
-  PendingAdjustment: 0x0560,  // 0x0560 (0x0038) [FClientAdjustment]
-  GroundPitch: 0x0598,  // 0x0598 (0x0004) [int32]
-  CheatManager: 0x05A0,  // 0x05A0 (0x0008) [UCheatManager*]
-  CheatClass: 0x05A8,  // 0x05A8 (0x0008) [UClass*]
-  PlayerInput: 0x05B0,  // 0x05B0 (0x0008) [UPlayerInput*]
-  InputClass: 0x05B8,  // 0x05B8 (0x0008) [UClass*]
-  FailedPathStart: 0x05C0,  // 0x05C0 (0x000C) [FVector]
-  CylinderComponent: 0x05D0,  // 0x05D0 (0x0008) [unknown]
-  ForceFeedbackManagerClassName: 0x05D8,  // 0x05D8 (0x0010) [FString]
-  ForceFeedbackManager: 0x05E8,  // 0x05E8 (0x0008) [UForceFeedbackManager*]
-  Interactions: 0x05F0,  // 0x05F0 (0x0010) [TArray<UInteraction*>]
-  VoiceMuteList: 0x0600,  // 0x0600 (0x0010) [TArray<FUniqueNetId>]
-  GameplayVoiceMuteList: 0x0610,  // 0x0610 (0x0010) [TArray<FUniqueNetId>]
-  VoicePacketFilter: 0x0620,  // 0x0620 (0x0010) [TArray<FUniqueNetId>]
-  ConnectedPeers: 0x0630,  // 0x0630 (0x0010) [TArray<FConnectedPeerInfo>]
-  BestNextHostPeers: 0x0640,  // 0x0640 (0x0010) [TArray<FUniqueNetId>]
-  MigratedSearchToJoin: 0x0650,  // 0x0650 (0x0008) [UOnlineGameSearch*]
-  OnlineSub: 0x0658,  // 0x0658 (0x0008) [UOnlineSubsystem*]
-  VoiceInterface: 0x0660,  // 0x0660 (0x0010) [TScriptInterface<UOnlineVoiceInterface>]
-  OnlinePlayerData: 0x0670,  // 0x0670 (0x0008) [UUIDataStore_OnlinePlayerData*]
-  InteractDistance: 0x0678,  // 0x0678 (0x0004) [float]
-  DelayedJoinSessionName: 0x067C,  // 0x067C (0x0008) [FName]
-  InputRequests: 0x0688,  // 0x0688 (0x0010) [TArray<FInputMatchRequest>]
-  LastBroadcastTime: 0x0698,  // 0x0698 (0x0004) [float]
-  LastBroadcastString: 0x06A0,  // 0x06A0 (0x0040) [FString]
-  PendingMapChangeLevelNames: 0x06E0,  // 0x06E0 (0x0010) [TArray<FName>]
-  MyCoverReplicator: 0x06F0,  // 0x06F0 (0x0008) [UCoverReplicator*]
-  DebugTextList: 0x06F8,  // 0x06F8 (0x0010) [TArray<FDebugTextInfo>]
-  SpectatorCameraSpeed: 0x0708,  // 0x0708 (0x0004) [float]
-  PendingSwapConnection: 0x0710,  // 0x0710 (0x0008) [UNetConnection*]
-  MinRespawnDelay: 0x0718,  // 0x0718 (0x0004) [float]
-  MaxConcurrentHearSounds: 0x071C,  // 0x071C (0x0004) [int32]
-  HearSoundActiveComponents: 0x0720,  // 0x0720 (0x0010) [TArray<unknown>]
-  HearSoundPoolComponents: 0x0730,  // 0x0730 (0x0010) [TArray<unknown>]
-  HiddenActors: 0x0740,  // 0x0740 (0x0010) [TArray<UActor*>]
-  LastSpectatorStateSynchTime: 0x0750,  // 0x0750 (0x0004) [float]
-  __EventConnectionTimedOut__Delegate: 0x0758,  // 0x0758 (0x0018) [FScriptDelegate]
-  __EventDisconnected__Delegate: 0x0770,  // 0x0770 (0x0018) [FScriptDelegate]
-  __EventUnrecoverableActorChannelOverflow__Delegate: 0x0788,  // 0x0788 (0x0018) [FScriptDelegate]
-  __OnMissingPeersUnregistered__Delegate: 0x07A0,  // 0x07A0 (0x0018) [FScriptDelegate]
-  __CanUnpause__Delegate: 0x07B8,  // 0x07B8 (0x0018) [FScriptDelegate]
-  __InputMatchDelegate__Delegate: 0x07D0,  // 0x07D0 (0x0018) [FScriptDelegate]
-} as const;
-
-/**
  * ProjectX.PlayerController_X Offsets
  * Size: 0x0890
  * Extends: PlayerController
  */
 export const PlayerController_X = {
-  CameraArchetype: 0x07E8,  // 0x07E8 (0x0008) [UCamera*]
-  HUDArchetype: 0x07F0,  // 0x07F0 (0x0008) [UHUD*]
-  OldPawnReference: 0x07F8,  // 0x07F8 (0x0008) [UPawn*]
-  LockedDebugActor: 0x0800,  // 0x0800 (0x0008) [UActor*]
-  bPausedForExternalUI: 0x0808,  // 0x0808 (0x0004) [bool : 0x1]
-  NetConnection: 0x0810,  // 0x0810 (0x0008) [UNetConnection*]
-  __EventReceivedPRI__Delegate: 0x0818,  // 0x0818 (0x0018) [FScriptDelegate]
-  __EventPawnChange__Delegate: 0x0830,  // 0x0830 (0x0018) [FScriptDelegate]
-  __EventReceivedPlayer__Delegate: 0x0848,  // 0x0848 (0x0018) [FScriptDelegate]
-  __EventDestroyed__Delegate: 0x0860,  // 0x0860 (0x0018) [FScriptDelegate]
-  __EventPlayerCameraChange__Delegate: 0x0878,  // 0x0878 (0x0018) [FScriptDelegate]
+  CameraArchetype: 0x07e8n,  // 0x07e8 (0x0008) [UCamera*]
+  HUDArchetype: 0x07f0n,  // 0x07f0 (0x0008) [UHUD*]
+  OldPawnReference: 0x07f8n,  // 0x07f8 (0x0008) [UPawn*]
+  LockedDebugActor: 0x0800n,  // 0x0800 (0x0008) [UActor*]
+  bPausedForExternalUI: 0x0808n,  // 0x0808 (0x0004) [bool : 0x1]
+  NetConnection: 0x0810n,  // 0x0810 (0x0008) [UNetConnection*]
+  __EventReceivedPRI__Delegate: 0x0818n,  // 0x0818 (0x0018) [FScriptDelegate]
+  __EventPawnChange__Delegate: 0x0830n,  // 0x0830 (0x0018) [FScriptDelegate]
+  __EventReceivedPlayer__Delegate: 0x0848n,  // 0x0848 (0x0018) [FScriptDelegate]
+  __EventDestroyed__Delegate: 0x0860n,  // 0x0860 (0x0018) [FScriptDelegate]
+  __EventPlayerCameraChange__Delegate: 0x0878n,  // 0x0878 (0x0018) [FScriptDelegate]
   ...PlayerController,
-} as const;
-
-/**
- * Engine.PlayerInput Offsets
- * Size: 0x02F8
- * Extends: Input
- */
-export const PlayerInput = {
-  bUsingGamepad: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x1]
-  bInvertMouse: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x2]
-  bInvertTurn: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x4]
-  bWasForward: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x8]
-  bWasBack: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x10]
-  bWasLeft: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x20]
-  bWasRight: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x40]
-  bEdgeForward: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x80]
-  bEdgeBack: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x100]
-  bEdgeLeft: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x200]
-  bEdgeRight: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x400]
-  bEnableMouseSmoothing: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x800]
-  bEnableFOVScaling: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x1000]
-  bLockTurnUntilRelease: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x2000]
-  LastAxisKeyName: 0x01B4,  // 0x01B4 (0x0008) [FName]
-  DoubleClickTimer: 0x01BC,  // 0x01BC (0x0004) [float]
-  DoubleClickTime: 0x01C0,  // 0x01C0 (0x0004) [float]
-  MouseSensitivity: 0x01C4,  // 0x01C4 (0x0004) [float]
-  aBaseX: 0x01C8,  // 0x01C8 (0x0004) [float]
-  aBaseY: 0x01CC,  // 0x01CC (0x0004) [float]
-  aBaseZ: 0x01D0,  // 0x01D0 (0x0004) [float]
-  aMouseX: 0x01D4,  // 0x01D4 (0x0004) [float]
-  aMouseY: 0x01D8,  // 0x01D8 (0x0004) [float]
-  aForward: 0x01DC,  // 0x01DC (0x0004) [float]
-  aTurn: 0x01E0,  // 0x01E0 (0x0004) [float]
-  aStrafe: 0x01E4,  // 0x01E4 (0x0004) [float]
-  aUp: 0x01E8,  // 0x01E8 (0x0004) [float]
-  aLookUp: 0x01EC,  // 0x01EC (0x0004) [float]
-  aRightAnalogTrigger: 0x01F0,  // 0x01F0 (0x0004) [float]
-  aLeftAnalogTrigger: 0x01F4,  // 0x01F4 (0x0004) [float]
-  aPS3AccelX: 0x01F8,  // 0x01F8 (0x0004) [float]
-  aPS3AccelY: 0x01FC,  // 0x01FC (0x0004) [float]
-  aPS3AccelZ: 0x0200,  // 0x0200 (0x0004) [float]
-  aPS3Gyro: 0x0204,  // 0x0204 (0x0004) [float]
-  aWiiUPointerX: 0x0208,  // 0x0208 (0x0004) [float]
-  aWiiUPointerY: 0x020C,  // 0x020C (0x0004) [float]
-  aTilt: 0x0210,  // 0x0210 (0x000C) [FVector]
-  aRotationRate: 0x021C,  // 0x021C (0x000C) [FVector]
-  aGravity: 0x0228,  // 0x0228 (0x000C) [FVector]
-  aAcceleration: 0x0234,  // 0x0234 (0x000C) [FVector]
-  aTouch: 0x0240,  // 0x0240 (0x003C) [FVector]
-  aBackTouch: 0x027C,  // 0x027C (0x003C) [FVector]
-  RawJoyUp: 0x02B8,  // 0x02B8 (0x0004) [float]
-  RawJoyRight: 0x02BC,  // 0x02BC (0x0004) [float]
-  RawJoyLookRight: 0x02C0,  // 0x02C0 (0x0004) [float]
-  RawJoyLookUp: 0x02C4,  // 0x02C4 (0x0004) [float]
-  MoveForwardSpeed: 0x02C8,  // 0x02C8 (0x0004) [float]
-  MoveStrafeSpeed: 0x02CC,  // 0x02CC (0x0004) [float]
-  LookRightScale: 0x02D0,  // 0x02D0 (0x0004) [float]
-  LookUpScale: 0x02D4,  // 0x02D4 (0x0004) [float]
-  bStrafe: 0x02D8,  // 0x02D8 (0x0001) [uint8]
-  bXAxis: 0x02D9,  // 0x02D9 (0x0001) [uint8]
-  bYAxis: 0x02DA,  // 0x02DA (0x0001) [uint8]
-  ZeroTime: 0x02DC,  // 0x02DC (0x0008) [float]
-  SmoothedMouse: 0x02E4,  // 0x02E4 (0x0008) [float]
-  MouseSamples: 0x02EC,  // 0x02EC (0x0004) [int32]
-  MouseSamplingTotal: 0x02F0,  // 0x02F0 (0x0004) [float]
-  AutoUnlockTurnTime: 0x02F4,  // 0x02F4 (0x0004) [float]
 } as const;
 
 /**
@@ -5205,30 +3806,30 @@ export const PlayerInput = {
  * Extends: PlayerInput
  */
 export const PlayerInput_X = {
-  GamepadDeadzone: 0x02F8,  // 0x02F8 (0x0004) [float]
-  GamepadDeadzones: 0x0300,  // 0x0300 (0x0010) [TArray<FGamepadDeadzoneSettings>]
-  KeyboardAxisBlendTime: 0x0310,  // 0x0310 (0x0004) [float]
-  KeyboardAxisBlendTimes: 0x0318,  // 0x0318 (0x0010) [TArray<FKeyboardAxisBlendSettings>]
-  CurrentKey: 0x0328,  // 0x0328 (0x0008) [FName]
-  ActiveDPadButton: 0x0330,  // 0x0330 (0x0008) [FName]
-  LastDoubleTapKey: 0x0338,  // 0x0338 (0x0008) [FName]
-  DisabledActions: 0x0340,  // 0x0340 (0x0010) [TArray<FName>]
-  DisabledActionsUntilNextUse: 0x0350,  // 0x0350 (0x0010) [TArray<FName>]
-  Actions: 0x0360,  // 0x0360 (0x0010) [TArray<FBindingAction>]
-  ControlPreset: 0x0370,  // 0x0370 (0x0008) [UControlPreset_X*]
-  PCBindings: 0x0378,  // 0x0378 (0x0010) [TArray<FPlayerBinding>]
-  GamepadBindings: 0x0388,  // 0x0388 (0x0010) [TArray<FPlayerBinding>]
-  SteamInputBindings: 0x0398,  // 0x0398 (0x0010) [TArray<FPlayerBinding>]
-  TapTime: 0x03A8,  // 0x03A8 (0x0004) [float]
-  DoubleTapTime: 0x03AC,  // 0x03AC (0x0004) [float]
-  HeldBindings: 0x03B0,  // 0x03B0 (0x0010) [TArray<FPointer>]
-  bDebugInput: 0x03C0,  // 0x03C0 (0x0004) [bool : 0x1]
-  bAbsorbCurrentKeyPress: 0x03C0,  // 0x03C0 (0x0004) [bool : 0x2]
-  RawAxisValues: 0x03C8,  // 0x03C8 (0x0050) [TMap<unknown, unknown>]
-  __EventActionToggled__Delegate: 0x0418,  // 0x0418 (0x0018) [FScriptDelegate]
-  __EventBindingsChanged__Delegate: 0x0430,  // 0x0430 (0x0018) [FScriptDelegate]
-  __EventSetBindingsToUserBindings__Delegate: 0x0448,  // 0x0448 (0x0018) [FScriptDelegate]
-  __EventInitialized__Delegate: 0x0460,  // 0x0460 (0x0018) [FScriptDelegate]
+  GamepadDeadzone: 0x02f8n,  // 0x02f8 (0x0004) [float]
+  GamepadDeadzones: 0x0300n,  // 0x0300 (0x0010) [TArray<FGamepadDeadzoneSettings>]
+  KeyboardAxisBlendTime: 0x0310n,  // 0x0310 (0x0004) [float]
+  KeyboardAxisBlendTimes: 0x0318n,  // 0x0318 (0x0010) [TArray<FKeyboardAxisBlendSettings>]
+  CurrentKey: 0x0328n,  // 0x0328 (0x0008) [FName]
+  ActiveDPadButton: 0x0330n,  // 0x0330 (0x0008) [FName]
+  LastDoubleTapKey: 0x0338n,  // 0x0338 (0x0008) [FName]
+  DisabledActions: 0x0340n,  // 0x0340 (0x0010) [TArray<FName>]
+  DisabledActionsUntilNextUse: 0x0350n,  // 0x0350 (0x0010) [TArray<FName>]
+  Actions: 0x0360n,  // 0x0360 (0x0010) [TArray<FBindingAction>]
+  ControlPreset: 0x0370n,  // 0x0370 (0x0008) [UControlPreset_X*]
+  PCBindings: 0x0378n,  // 0x0378 (0x0010) [TArray<FPlayerBinding>]
+  GamepadBindings: 0x0388n,  // 0x0388 (0x0010) [TArray<FPlayerBinding>]
+  SteamInputBindings: 0x0398n,  // 0x0398 (0x0010) [TArray<FPlayerBinding>]
+  TapTime: 0x03a8n,  // 0x03a8 (0x0004) [float]
+  DoubleTapTime: 0x03acn,  // 0x03ac (0x0004) [float]
+  HeldBindings: 0x03b0n,  // 0x03b0 (0x0010) [TArray<FPointer>]
+  bDebugInput: 0x03c0n,  // 0x03c0 (0x0004) [bool : 0x1]
+  bAbsorbCurrentKeyPress: 0x03c0n,  // 0x03c0 (0x0004) [bool : 0x2]
+  RawAxisValues: 0x03c8n,  // 0x03c8 (0x0050) [TMap<unknown, unknown>]
+  __EventActionToggled__Delegate: 0x0418n,  // 0x0418 (0x0018) [FScriptDelegate]
+  __EventBindingsChanged__Delegate: 0x0430n,  // 0x0430 (0x0018) [FScriptDelegate]
+  __EventSetBindingsToUserBindings__Delegate: 0x0448n,  // 0x0448 (0x0018) [FScriptDelegate]
+  __EventInitialized__Delegate: 0x0460n,  // 0x0460 (0x0018) [FScriptDelegate]
   ...PlayerInput,
 } as const;
 
@@ -5238,49 +3839,49 @@ export const PlayerInput_X = {
  * Extends: Object
  */
 export const PlaylistSettings_X = {
-  Title: 0x0060,  // 0x0060 (0x0010) [FString]
-  Description: 0x0070,  // 0x0070 (0x0010) [FString]
-  BadgeTitle: 0x0080,  // 0x0080 (0x0010) [FString]
-  PlaylistId: 0x0090,  // 0x0090 (0x0004) [int32]
-  PlayerCount: 0x0094,  // 0x0094 (0x0004) [int32]
-  bStandard: 0x0098,  // 0x0098 (0x0004) [bool : 0x1]
-  bRanked: 0x0098,  // 0x0098 (0x0004) [bool : 0x2]
-  bCheckRankedMatchReservationID: 0x0098,  // 0x0098 (0x0004) [bool : 0x4]
-  bSolo: 0x0098,  // 0x0098 (0x0004) [bool : 0x8]
-  bHidden: 0x0098,  // 0x0098 (0x0004) [bool : 0x10]
-  bExtraMode: 0x0098,  // 0x0098 (0x0004) [bool : 0x20]
-  bPrivate: 0x0098,  // 0x0098 (0x0004) [bool : 0x40]
-  bTournament: 0x0098,  // 0x0098 (0x0004) [bool : 0x80]
-  bApplyQuitPenalty: 0x0098,  // 0x0098 (0x0004) [bool : 0x100]
-  bAllowForfeit: 0x0098,  // 0x0098 (0x0004) [bool : 0x200]
-  bDisableRankedReconnect: 0x0098,  // 0x0098 (0x0004) [bool : 0x400]
-  bIgnoreAssignTeams: 0x0098,  // 0x0098 (0x0004) [bool : 0x800]
-  bKickOnMigrate: 0x0098,  // 0x0098 (0x0004) [bool : 0x1000]
-  bAllowBotFills: 0x0098,  // 0x0098 (0x0004) [bool : 0x2000]
-  bServerBroadcastCancellations: 0x0098,  // 0x0098 (0x0004) [bool : 0x4000]
-  bSkipGameModeVerification: 0x0098,  // 0x0098 (0x0004) [bool : 0x8000]
-  bNoBackFill: 0x0098,  // 0x0098 (0x0004) [bool : 0x10000]
-  bIsMicroEventPlaylist: 0x0098,  // 0x0098 (0x0004) [bool : 0x20000]
-  bHasVariablePlayerCount: 0x0098,  // 0x0098 (0x0004) [bool : 0x40000]
-  bNew: 0x0098,  // 0x0098 (0x0004) [bool : 0x80000]
-  bAllowClubs: 0x0098,  // 0x0098 (0x0004) [bool : 0x100000]
-  bDisableSaveReplays: 0x0098,  // 0x0098 (0x0004) [bool : 0x200000]
-  bOpenDetailsOnFirstTimeClicked: 0x0098,  // 0x0098 (0x0004) [bool : 0x400000]
-  bAllowStayAsParty: 0x0098,  // 0x0098 (0x0004) [bool : 0x800000]
-  bEnforceDDoSPrevention: 0x0098,  // 0x0098 (0x0004) [bool : 0x1000000]
-  PlaylistImageURL: 0x00A0,  // 0x00A0 (0x0010) [FString]
-  PlaylistImageTexture: 0x00B0,  // 0x00B0 (0x0010) [FString]
-  PlaylistIconActiveURL: 0x00C0,  // 0x00C0 (0x0010) [FString]
-  PlaylistIconInactiveURL: 0x00D0,  // 0x00D0 (0x0010) [FString]
-  PlaylistNodeThumbnailURL: 0x00E0,  // 0x00E0 (0x0010) [FString]
-  PlaylistNodeDefaultThumbnailPackage: 0x00F0,  // 0x00F0 (0x0010) [FString]
-  SecondaryTitleOverride: 0x0100,  // 0x0100 (0x0010) [FString]
-  PlaylistTimeWindow: 0x0110,  // 0x0110 (0x0008) [UTimeWindow*]
-  PresetMutators: 0x0118,  // 0x0118 (0x0010) [TArray<UPresetMutators_X*>]
-  MapName: 0x0128,  // 0x0128 (0x0008) [FName]
-  ServerCommand: 0x0130,  // 0x0130 (0x0010) [FString]
-  MapSetName: 0x0140,  // 0x0140 (0x0008) [FName]
-  PopulationBuckets: 0x0148,  // 0x0148 (0x0010) [TArray<int32>]
+  Title: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Description: 0x0070n,  // 0x0070 (0x0010) [FString]
+  BadgeTitle: 0x0080n,  // 0x0080 (0x0010) [FString]
+  PlaylistId: 0x0090n,  // 0x0090 (0x0004) [int32]
+  PlayerCount: 0x0094n,  // 0x0094 (0x0004) [int32]
+  bStandard: 0x0098n,  // 0x0098 (0x0004) [bool : 0x1]
+  bRanked: 0x0098n,  // 0x0098 (0x0004) [bool : 0x2]
+  bCheckRankedMatchReservationID: 0x0098n,  // 0x0098 (0x0004) [bool : 0x4]
+  bSolo: 0x0098n,  // 0x0098 (0x0004) [bool : 0x8]
+  bHidden: 0x0098n,  // 0x0098 (0x0004) [bool : 0x10]
+  bExtraMode: 0x0098n,  // 0x0098 (0x0004) [bool : 0x20]
+  bPrivate: 0x0098n,  // 0x0098 (0x0004) [bool : 0x40]
+  bTournament: 0x0098n,  // 0x0098 (0x0004) [bool : 0x80]
+  bApplyQuitPenalty: 0x0098n,  // 0x0098 (0x0004) [bool : 0x100]
+  bAllowForfeit: 0x0098n,  // 0x0098 (0x0004) [bool : 0x200]
+  bDisableRankedReconnect: 0x0098n,  // 0x0098 (0x0004) [bool : 0x400]
+  bIgnoreAssignTeams: 0x0098n,  // 0x0098 (0x0004) [bool : 0x800]
+  bKickOnMigrate: 0x0098n,  // 0x0098 (0x0004) [bool : 0x1000]
+  bAllowBotFills: 0x0098n,  // 0x0098 (0x0004) [bool : 0x2000]
+  bServerBroadcastCancellations: 0x0098n,  // 0x0098 (0x0004) [bool : 0x4000]
+  bSkipGameModeVerification: 0x0098n,  // 0x0098 (0x0004) [bool : 0x8000]
+  bNoBackFill: 0x0098n,  // 0x0098 (0x0004) [bool : 0x10000]
+  bIsMicroEventPlaylist: 0x0098n,  // 0x0098 (0x0004) [bool : 0x20000]
+  bHasVariablePlayerCount: 0x0098n,  // 0x0098 (0x0004) [bool : 0x40000]
+  bNew: 0x0098n,  // 0x0098 (0x0004) [bool : 0x80000]
+  bAllowClubs: 0x0098n,  // 0x0098 (0x0004) [bool : 0x100000]
+  bDisableSaveReplays: 0x0098n,  // 0x0098 (0x0004) [bool : 0x200000]
+  bOpenDetailsOnFirstTimeClicked: 0x0098n,  // 0x0098 (0x0004) [bool : 0x400000]
+  bAllowStayAsParty: 0x0098n,  // 0x0098 (0x0004) [bool : 0x800000]
+  bEnforceDDoSPrevention: 0x0098n,  // 0x0098 (0x0004) [bool : 0x1000000]
+  PlaylistImageURL: 0x00a0n,  // 0x00a0 (0x0010) [FString]
+  PlaylistImageTexture: 0x00b0n,  // 0x00b0 (0x0010) [FString]
+  PlaylistIconActiveURL: 0x00c0n,  // 0x00c0 (0x0010) [FString]
+  PlaylistIconInactiveURL: 0x00d0n,  // 0x00d0 (0x0010) [FString]
+  PlaylistNodeThumbnailURL: 0x00e0n,  // 0x00e0 (0x0010) [FString]
+  PlaylistNodeDefaultThumbnailPackage: 0x00f0n,  // 0x00f0 (0x0010) [FString]
+  SecondaryTitleOverride: 0x0100n,  // 0x0100 (0x0010) [FString]
+  PlaylistTimeWindow: 0x0110n,  // 0x0110 (0x0008) [UTimeWindow*]
+  PresetMutators: 0x0118n,  // 0x0118 (0x0010) [TArray<UPresetMutators_X*>]
+  MapName: 0x0128n,  // 0x0128 (0x0008) [FName]
+  ServerCommand: 0x0130n,  // 0x0130 (0x0010) [FString]
+  MapSetName: 0x0140n,  // 0x0140 (0x0008) [FName]
+  PopulationBuckets: 0x0148n,  // 0x0148 (0x0010) [TArray<int32>]
   ...Object_,
 } as const;
 
@@ -5290,30 +3891,10 @@ export const PlaylistSettings_X = {
  * Extends: Object
  */
 export const PlaylistSkillCache_X = {
-  Players: 0x0060,  // 0x0060 (0x0010) [TArray<FUpdatedPlayerSkillRating>]
-  RankedConfig: 0x0070,  // 0x0070 (0x0008) [URankedConfig_X*]
-  __EventPlaylistSkillChanged__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
+  Players: 0x0060n,  // 0x0060 (0x0010) [TArray<FUpdatedPlayerSkillRating>]
+  RankedConfig: 0x0070n,  // 0x0070 (0x0008) [URankedConfig_X*]
+  __EventPlaylistSkillChanged__Delegate: 0x0078n,  // 0x0078 (0x0018) [FScriptDelegate]
   ...Object_,
-} as const;
-
-/**
- * Engine.PointLightComponent Offsets
- * Size: 0x0264
- * Extends: LightComponent
- */
-export const PointLightComponent = {
-  ShadowRadiusMultiplier: 0x01C8,  // 0x01C8 (0x0004) [float]
-  Radius: 0x01CC,  // 0x01CC (0x0004) [float]
-  FalloffExponent: 0x01D0,  // 0x01D0 (0x0004) [float]
-  ShadowFalloffExponent: 0x01D4,  // 0x01D4 (0x0004) [float]
-  MinShadowFalloffRadius: 0x01D8,  // 0x01D8 (0x0004) [float]
-  CachedParentToWorld: 0x01E0,  // 0x01E0 (0x0040) [FMatrix]
-  Translation: 0x0220,  // 0x0220 (0x000C) [FVector]
-  ShadowPlane: 0x0230,  // 0x0230 (0x0010) [FPlane]
-  PreviewLightRadius: 0x0240,  // 0x0240 (0x0008) [unknown]
-  LightmassSettings: 0x0248,  // 0x0248 (0x0010) [FLightmassPointLightSettings]
-  PreviewLightSourceRadius: 0x0258,  // 0x0258 (0x0008) [unknown]
-  MaxShadowDistanceToCastInLightDirection: 0x0260,  // 0x0260 (0x0004) [float]
 } as const;
 
 /**
@@ -5322,25 +3903,25 @@ export const PointLightComponent = {
  * Extends: PointLightComponent
  */
 export const PointLightComponent_X = {
-  BrightnessOverTime: 0x0268,  // 0x0268 (0x0008) [unknown]
-  AttachTime: 0x0270,  // 0x0270 (0x0004) [float]
+  BrightnessOverTime: 0x0268n,  // 0x0268 (0x0008) [unknown]
+  AttachTime: 0x0270n,  // 0x0270 (0x0004) [float]
   ...PointLightComponent,
 } as const;
 
 /**
  * ProjectX.PostProcessManager_X Offsets
- * Size: 0x00D0
+ * Size: 0x00d0
  * Extends: Object
  */
 export const PostProcessManager_X = {
-  PlayerOwner: 0x0060,  // 0x0060 (0x0008) [ULocalPlayer*]
-  ActiveEffects: 0x0068,  // 0x0068 (0x0010) [TArray<UMaterialEffect_X*>]
-  bNeedsReset: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  EffectDefaults: 0x0080,  // 0x0080 (0x0010) [TArray<FPPEffectDefaults>]
-  PersistentEffectDefaults: 0x0090,  // 0x0090 (0x0010) [TArray<FPPPersistentEffectDefaults>]
-  ActiveChains: 0x00A0,  // 0x00A0 (0x0010) [TArray<FPPChainInfo>]
-  ChainDefaults: 0x00B0,  // 0x00B0 (0x0010) [TArray<FPPChainInfo>]
-  PostProcessOverrides: 0x00C0,  // 0x00C0 (0x0010) [TArray<FPostProcessOverride>]
+  PlayerOwner: 0x0060n,  // 0x0060 (0x0008) [ULocalPlayer*]
+  ActiveEffects: 0x0068n,  // 0x0068 (0x0010) [TArray<UMaterialEffect_X*>]
+  bNeedsReset: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
+  EffectDefaults: 0x0080n,  // 0x0080 (0x0010) [TArray<FPPEffectDefaults>]
+  PersistentEffectDefaults: 0x0090n,  // 0x0090 (0x0010) [TArray<FPPPersistentEffectDefaults>]
+  ActiveChains: 0x00a0n,  // 0x00a0 (0x0010) [TArray<FPPChainInfo>]
+  ChainDefaults: 0x00b0n,  // 0x00b0 (0x0010) [TArray<FPPChainInfo>]
+  PostProcessOverrides: 0x00c0n,  // 0x00c0 (0x0010) [TArray<FPostProcessOverride>]
   ...Object_,
 } as const;
 
@@ -5359,10 +3940,10 @@ export const PreExitEvent_X = {
  * Extends: Object
  */
 export const PresetMutators_X = {
-  PresetTags: 0x0060,  // 0x0060 (0x0010) [TArray<FCategorySettingPair>]
-  RequiresMaps: 0x0070,  // 0x0070 (0x0010) [TArray<FName>]
-  bHideSettings: 0x0080,  // 0x0080 (0x0004) [bool : 0x1]
-  OverrideName: 0x0088,  // 0x0088 (0x0010) [FString]
+  PresetTags: 0x0060n,  // 0x0060 (0x0010) [TArray<FCategorySettingPair>]
+  RequiresMaps: 0x0070n,  // 0x0070 (0x0010) [TArray<FName>]
+  bHideSettings: 0x0080n,  // 0x0080 (0x0004) [bool : 0x1]
+  OverrideName: 0x0088n,  // 0x0088 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -5372,58 +3953,58 @@ export const PresetMutators_X = {
  * Extends: Object
  */
 export const PrimaryAuthLoggedIn_TA = {
-  PrimaryAuthedConnection: 0x0060,  // 0x0060 (0x0008) [UPsyNetConnection_X*]
+  PrimaryAuthedConnection: 0x0060n,  // 0x0060 (0x0008) [UPsyNetConnection_X*]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.PrivilegeCheck_X Offsets
- * Size: 0x00E8
+ * Size: 0x00e8
  * Extends: Object
  */
 export const PrivilegeCheck_X = {
-  ControllerIDs: 0x0060,  // 0x0060 (0x0010) [TArray<int32>]
-  bHasRestriction: 0x0070,  // 0x0070 (0x0004) [bool : 0x1]
-  bFinished: 0x0070,  // 0x0070 (0x0004) [bool : 0x2]
-  FailReason: 0x0078,  // 0x0078 (0x0008) [UError*]
-  PendingPrivileges: 0x0080,  // 0x0080 (0x0010) [TArray<EFeaturePrivilege>]
-  FailedControllerID: 0x0090,  // 0x0090 (0x0004) [int32]
-  FailedPrivilege: 0x0094,  // 0x0094 (0x0001) [EFeaturePrivilege]
-  FailedPrivilegeLevel: 0x0095,  // 0x0095 (0x0001) [EFeaturePrivilegeLevel]
-  PendingControllerIDs: 0x0098,  // 0x0098 (0x0010) [TArray<int32>]
-  CheckDelegates: 0x00A8,  // 0x00A8 (0x0010) [TArray<FScriptDelegate>]
-  EventFinished: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
-  __CheckDelegate__Delegate: 0x00D0,  // 0x00D0 (0x0018) [FScriptDelegate]
+  ControllerIDs: 0x0060n,  // 0x0060 (0x0010) [TArray<int32>]
+  bHasRestriction: 0x0070n,  // 0x0070 (0x0004) [bool : 0x1]
+  bFinished: 0x0070n,  // 0x0070 (0x0004) [bool : 0x2]
+  FailReason: 0x0078n,  // 0x0078 (0x0008) [UError*]
+  PendingPrivileges: 0x0080n,  // 0x0080 (0x0010) [TArray<EFeaturePrivilege>]
+  FailedControllerID: 0x0090n,  // 0x0090 (0x0004) [int32]
+  FailedPrivilege: 0x0094n,  // 0x0094 (0x0001) [EFeaturePrivilege]
+  FailedPrivilegeLevel: 0x0095n,  // 0x0095 (0x0001) [EFeaturePrivilegeLevel]
+  PendingControllerIDs: 0x0098n,  // 0x0098 (0x0010) [TArray<int32>]
+  CheckDelegates: 0x00a8n,  // 0x00a8 (0x0010) [TArray<FScriptDelegate>]
+  EventFinished: 0x00b8n,  // 0x00b8 (0x0018) [FScriptDelegate]
+  __CheckDelegate__Delegate: 0x00d0n,  // 0x00d0 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.PsyNetBeaconConnection_X Offsets
- * Size: 0x008C
+ * Size: 0x008c
  * Extends: Object
  */
 export const PsyNetBeaconConnection_X = {
-  VfTable_IIReservationConnection_X: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  ReservationID: 0x0068,  // 0x0068 (0x0010) [FString]
-  ConnectionID: 0x0078,  // 0x0078 (0x0010) [FString]
-  TimeoutTime: 0x0088,  // 0x0088 (0x0004) [float]
+  VfTable_IIReservationConnection_X: 0x0060n,  // 0x0060 (0x0008) [FPointer]
+  ReservationID: 0x0068n,  // 0x0068 (0x0010) [FString]
+  ConnectionID: 0x0078n,  // 0x0078 (0x0010) [FString]
+  TimeoutTime: 0x0088n,  // 0x0088 (0x0004) [float]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.PsyNetBeacon_X Offsets
- * Size: 0x00F0
+ * Size: 0x00f0
  * Extends: Component
  */
 export const PsyNetBeacon_X = {
-  ConnectionTimeoutSeconds: 0x0070,  // 0x0070 (0x0004) [float]
-  PsyNetConnection: 0x0078,  // 0x0078 (0x0008) [UPsyNetConnection_X*]
-  Connections: 0x0080,  // 0x0080 (0x0010) [TArray<UPsyNetBeaconConnection_X*>]
-  PendingMessages: 0x0090,  // 0x0090 (0x0010) [TArray<UDSPendingMessage_X*>]
-  PsyNetConfig: 0x00A0,  // 0x00A0 (0x0008) [UPsyNetConfig_X*]
-  __EventConnected__Delegate: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
-  __EventDisconnected__Delegate: 0x00C0,  // 0x00C0 (0x0018) [FScriptDelegate]
-  __EventMessageReceived__Delegate: 0x00D8,  // 0x00D8 (0x0018) [FScriptDelegate]
+  ConnectionTimeoutSeconds: 0x0070n,  // 0x0070 (0x0004) [float]
+  PsyNetConnection: 0x0078n,  // 0x0078 (0x0008) [UPsyNetConnection_X*]
+  Connections: 0x0080n,  // 0x0080 (0x0010) [TArray<UPsyNetBeaconConnection_X*>]
+  PendingMessages: 0x0090n,  // 0x0090 (0x0010) [TArray<UDSPendingMessage_X*>]
+  PsyNetConfig: 0x00a0n,  // 0x00a0 (0x0008) [UPsyNetConfig_X*]
+  __EventConnected__Delegate: 0x00a8n,  // 0x00a8 (0x0018) [FScriptDelegate]
+  __EventDisconnected__Delegate: 0x00c0n,  // 0x00c0 (0x0018) [FScriptDelegate]
+  __EventMessageReceived__Delegate: 0x00d8n,  // 0x00d8 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
@@ -5438,20 +4019,20 @@ export const PsyNetBreadcrumbObserver_X = {
 
 /**
  * ProjectX.PsyNetChannel_X Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: Object
  */
 export const PsyNetChannel_X = {
-  ChannelName: 0x0060,  // 0x0060 (0x0010) [FString]
-  bOpen: 0x0070,  // 0x0070 (0x0004) [bool : 0x1]
-  bReceivedFirstMessage: 0x0070,  // 0x0070 (0x0004) [bool : 0x2]
-  bClosed: 0x0070,  // 0x0070 (0x0004) [bool : 0x4]
-  bTimedOut: 0x0070,  // 0x0070 (0x0004) [bool : 0x8]
-  NextMessageID: 0x0074,  // 0x0074 (0x0004) [int32]
-  WaitForMessageTime: 0x0078,  // 0x0078 (0x0004) [float]
-  ServiceQueue: 0x0080,  // 0x0080 (0x0010) [TArray<FPendingChannelService>]
-  Subscriptions: 0x0090,  // 0x0090 (0x0008) [unknown]
-  __EventClosed__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
+  ChannelName: 0x0060n,  // 0x0060 (0x0010) [FString]
+  bOpen: 0x0070n,  // 0x0070 (0x0004) [bool : 0x1]
+  bReceivedFirstMessage: 0x0070n,  // 0x0070 (0x0004) [bool : 0x2]
+  bClosed: 0x0070n,  // 0x0070 (0x0004) [bool : 0x4]
+  bTimedOut: 0x0070n,  // 0x0070 (0x0004) [bool : 0x8]
+  NextMessageID: 0x0074n,  // 0x0074 (0x0004) [int32]
+  WaitForMessageTime: 0x0078n,  // 0x0078 (0x0004) [float]
+  ServiceQueue: 0x0080n,  // 0x0080 (0x0010) [TArray<FPendingChannelService>]
+  Subscriptions: 0x0090n,  // 0x0090 (0x0008) [unknown]
+  __EventClosed__Delegate: 0x0098n,  // 0x0098 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -5461,7 +4042,7 @@ export const PsyNetChannel_X = {
  * Extends: Object
  */
 export const PsyNetClientServiceCollection_X = {
-  ServiceArchetypes: 0x0060,  // 0x0060 (0x0010) [TArray<UPsyNetClientService_X*>]
+  ServiceArchetypes: 0x0060n,  // 0x0060 (0x0010) [TArray<UPsyNetClientService_X*>]
   ...Object_,
 } as const;
 
@@ -5471,124 +4052,114 @@ export const PsyNetClientServiceCollection_X = {
  * Extends: Object
  */
 export const PsyNetClientService_X = {
-  Service: 0x0060,  // 0x0060 (0x0010) [FString]
-  Version: 0x0070,  // 0x0070 (0x0004) [int32]
-  Error: 0x0078,  // 0x0078 (0x0008) [UError*]
-  Connection: 0x0080,  // 0x0080 (0x0008) [UPsyNetConnection_X*]
-  Expiration: 0x0088,  // 0x0088 (0x0008) [uint64]
+  Service: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Version: 0x0070n,  // 0x0070 (0x0004) [int32]
+  Error: 0x0078n,  // 0x0078 (0x0008) [UError*]
+  Connection: 0x0080n,  // 0x0080 (0x0008) [UPsyNetConnection_X*]
+  Expiration: 0x0088n,  // 0x0088 (0x0008) [uint64]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.DSR_ClientMessage_X Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: PsyNetClientService_X
  */
 export const DSR_ClientMessage_X = {
-  ReservationID: 0x0090,  // 0x0090 (0x0010) [FString]
-  MessageType: 0x00A0,  // 0x00A0 (0x0010) [FString]
-  MessagePayload: 0x00B0,  // 0x00B0 (0x0010) [FString]
+  ReservationID: 0x0090n,  // 0x0090 (0x0010) [FString]
+  MessageType: 0x00a0n,  // 0x00a0 (0x0010) [FString]
+  MessagePayload: 0x00b0n,  // 0x00b0 (0x0010) [FString]
   ...PsyNetClientService_X,
 } as const;
 
 /**
  * ProjectX.DSR_DSMessage_X Offsets
- * Size: 0x00D0
+ * Size: 0x00d0
  * Extends: PsyNetClientService_X
  */
 export const DSR_DSMessage_X = {
-  PlayerID: 0x0090,  // 0x0090 (0x0010) [FString]
-  ReservationID: 0x00A0,  // 0x00A0 (0x0010) [FString]
-  MessageType: 0x00B0,  // 0x00B0 (0x0010) [FString]
-  MessagePayload: 0x00C0,  // 0x00C0 (0x0010) [FString]
+  PlayerID: 0x0090n,  // 0x0090 (0x0010) [FString]
+  ReservationID: 0x00a0n,  // 0x00a0 (0x0010) [FString]
+  MessageType: 0x00b0n,  // 0x00b0 (0x0010) [FString]
+  MessagePayload: 0x00c0n,  // 0x00c0 (0x0010) [FString]
   ...PsyNetClientService_X,
 } as const;
 
 /**
  * ProjectX.DSR_DSToDSMessage_X Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: PsyNetClientService_X
  */
 export const DSR_DSToDSMessage_X = {
-  MessageType: 0x0090,  // 0x0090 (0x0010) [FString]
-  MessagePayload: 0x00A0,  // 0x00A0 (0x0010) [FString]
+  MessageType: 0x0090n,  // 0x0090 (0x0010) [FString]
+  MessagePayload: 0x00a0n,  // 0x00a0 (0x0010) [FString]
   ...PsyNetClientService_X,
 } as const;
 
 /**
  * ProjectX.PsyNetConfig_X Offsets
- * Size: 0x00C1
+ * Size: 0x00c1
  * Extends: OnlineConfig_X
  */
 export const PsyNetConfig_X = {
-  bAllowPerCon: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  bRequiresPerCon: 0x0078,  // 0x0078 (0x0004) [bool : 0x2]
-  bAllowPsyNetParty: 0x0078,  // 0x0078 (0x0004) [bool : 0x4]
-  bSendPingMessage: 0x0078,  // 0x0078 (0x0004) [bool : 0x8]
-  bAllowBacktraceUploads: 0x0078,  // 0x0078 (0x0004) [bool : 0x10]
-  bAllowBacktraceLogUploads: 0x0078,  // 0x0078 (0x0004) [bool : 0x20]
-  bAllowPlayerCancelMatch: 0x0078,  // 0x0078 (0x0004) [bool : 0x40]
-  PerConTimeout: 0x007C,  // 0x007C (0x0004) [float]
-  PerConPingInterval: 0x0080,  // 0x0080 (0x0004) [float]
-  BacktraceURL: 0x0088,  // 0x0088 (0x0010) [FString]
-  BacktraceToken: 0x0098,  // 0x0098 (0x0010) [FString]
-  FreshConnectionWindow: 0x00A8,  // 0x00A8 (0x0004) [float]
-  MatchmakingHeartbeatTimeSeconds: 0x00AC,  // 0x00AC (0x0004) [float]
-  SuppressHeadersForDebug: 0x00B0,  // 0x00B0 (0x0010) [TArray<FString>]
-  PsyNetEnvironment: 0x00C0,  // 0x00C0 (0x0001) [EPsyNetEnvironment]
+  bAllowPerCon: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
+  bRequiresPerCon: 0x0078n,  // 0x0078 (0x0004) [bool : 0x2]
+  bAllowPsyNetParty: 0x0078n,  // 0x0078 (0x0004) [bool : 0x4]
+  bSendPingMessage: 0x0078n,  // 0x0078 (0x0004) [bool : 0x8]
+  bAllowBacktraceUploads: 0x0078n,  // 0x0078 (0x0004) [bool : 0x10]
+  bAllowBacktraceLogUploads: 0x0078n,  // 0x0078 (0x0004) [bool : 0x20]
+  bAllowPlayerCancelMatch: 0x0078n,  // 0x0078 (0x0004) [bool : 0x40]
+  PerConTimeout: 0x007cn,  // 0x007c (0x0004) [float]
+  PerConPingInterval: 0x0080n,  // 0x0080 (0x0004) [float]
+  BacktraceURL: 0x0088n,  // 0x0088 (0x0010) [FString]
+  BacktraceToken: 0x0098n,  // 0x0098 (0x0010) [FString]
+  FreshConnectionWindow: 0x00a8n,  // 0x00a8 (0x0004) [float]
+  MatchmakingHeartbeatTimeSeconds: 0x00acn,  // 0x00ac (0x0004) [float]
+  SuppressHeadersForDebug: 0x00b0n,  // 0x00b0 (0x0010) [TArray<FString>]
+  PsyNetEnvironment: 0x00c0n,  // 0x00c0 (0x0001) [EPsyNetEnvironment]
   ...OnlineConfig_X,
 } as const;
 
 /**
  * ProjectX.PsyNetConnection_X Offsets
- * Size: 0x01D0
+ * Size: 0x01d0
  * Extends: Object
  */
 export const PsyNetConnection_X = {
-  PsyNet: 0x0060,  // 0x0060 (0x0008) [UPsyNet_X*]
-  OnlineSub: 0x0068,  // 0x0068 (0x0008) [UOnlineSubsystem*]
-  Config: 0x0070,  // 0x0070 (0x0008) [UPsyNetConfig_X*]
-  RetryConfig: 0x0078,  // 0x0078 (0x0008) [UPsyNetRetryConfig_X*]
-  URL: 0x0080,  // 0x0080 (0x0008) [UPsyNetUrl_X*]
-  Headers: 0x0088,  // 0x0088 (0x0008) [unknown]
-  RequestQue: 0x0090,  // 0x0090 (0x0008) [UPsyNetRequestQue_X*]
-  RPCQueue: 0x0098,  // 0x0098 (0x0008) [unknown]
-  ServiceProvider: 0x00A0,  // 0x00A0 (0x0008) [UPsyNetServiceProvider_X*]
-  HttpMessenger: 0x00A8,  // 0x00A8 (0x0008) [UPsyNetMessengerHttp_X*]
-  PerConMessenger: 0x00B0,  // 0x00B0 (0x0008) [UPsyNetMessengerWebSocket_X*]
-  PerCon: 0x00B8,  // 0x00B8 (0x0008) [UPerCon_X*]
-  PerConMetrics: 0x00C0,  // 0x00C0 (0x0008) [unknown]
-  bAuthorized: 0x00C8,  // 0x00C8 (0x0004) [bool : 0x1]
-  bConnected: 0x00C8,  // 0x00C8 (0x0004) [bool : 0x2]
-  bFreshConnection: 0x00C8,  // 0x00C8 (0x0004) [bool : 0x4]
-  bPerConConnected: 0x00C8,  // 0x00C8 (0x0004) [bool : 0x8]
-  ConnectedChangeTime: 0x00CC,  // 0x00CC (0x0004) [float]
-  DisabledError: 0x00D0,  // 0x00D0 (0x0008) [UError*]
-  DisabledErrorStack: 0x00D8,  // 0x00D8 (0x0010) [TArray<UError*>]
-  MaintenanceError: 0x00E8,  // 0x00E8 (0x0008) [UError*]
-  DuplicateLoginError: 0x00F0,  // 0x00F0 (0x0008) [UError*]
-  NoInternetError: 0x00F8,  // 0x00F8 (0x0008) [UError*]
-  NoUrlError: 0x0100,  // 0x0100 (0x0008) [UError*]
-  AuthDisabledError: 0x0108,  // 0x0108 (0x0008) [UError*]
-  AuthRetryDelays: 0x0110,  // 0x0110 (0x0010) [TArray<float>]
-  ConsecutiveAuthFailures: 0x0120,  // 0x0120 (0x0004) [int32]
-  __EventConnected__Delegate: 0x0128,  // 0x0128 (0x0018) [FScriptDelegate]
-  __EventDisconnected__Delegate: 0x0140,  // 0x0140 (0x0018) [FScriptDelegate]
-  __EventConnectFailed__Delegate: 0x0158,  // 0x0158 (0x0018) [FScriptDelegate]
-  __EventPerConConnected__Delegate: 0x0170,  // 0x0170 (0x0018) [FScriptDelegate]
-  __EventPerConDisconnected__Delegate: 0x0188,  // 0x0188 (0x0018) [FScriptDelegate]
-  __EventEnabled__Delegate: 0x01A0,  // 0x01A0 (0x0018) [FScriptDelegate]
-  __EventDisabled__Delegate: 0x01B8,  // 0x01B8 (0x0018) [FScriptDelegate]
-  ...Object_,
-} as const;
-
-/**
- * Core.ErrorType Offsets
- * Size: 0x0070
- * Extends: Object
- */
-export const ErrorType = {
-  LocalizationKey: 0x0060,  // 0x0060 (0x0010) [FString]
+  PsyNet: 0x0060n,  // 0x0060 (0x0008) [UPsyNet_X*]
+  OnlineSub: 0x0068n,  // 0x0068 (0x0008) [UOnlineSubsystem*]
+  Config: 0x0070n,  // 0x0070 (0x0008) [UPsyNetConfig_X*]
+  RetryConfig: 0x0078n,  // 0x0078 (0x0008) [UPsyNetRetryConfig_X*]
+  URL: 0x0080n,  // 0x0080 (0x0008) [UPsyNetUrl_X*]
+  Headers: 0x0088n,  // 0x0088 (0x0008) [unknown]
+  RequestQue: 0x0090n,  // 0x0090 (0x0008) [UPsyNetRequestQue_X*]
+  RPCQueue: 0x0098n,  // 0x0098 (0x0008) [unknown]
+  ServiceProvider: 0x00a0n,  // 0x00a0 (0x0008) [UPsyNetServiceProvider_X*]
+  HttpMessenger: 0x00a8n,  // 0x00a8 (0x0008) [UPsyNetMessengerHttp_X*]
+  PerConMessenger: 0x00b0n,  // 0x00b0 (0x0008) [UPsyNetMessengerWebSocket_X*]
+  PerCon: 0x00b8n,  // 0x00b8 (0x0008) [UPerCon_X*]
+  PerConMetrics: 0x00c0n,  // 0x00c0 (0x0008) [unknown]
+  bAuthorized: 0x00c8n,  // 0x00c8 (0x0004) [bool : 0x1]
+  bConnected: 0x00c8n,  // 0x00c8 (0x0004) [bool : 0x2]
+  bFreshConnection: 0x00c8n,  // 0x00c8 (0x0004) [bool : 0x4]
+  bPerConConnected: 0x00c8n,  // 0x00c8 (0x0004) [bool : 0x8]
+  ConnectedChangeTime: 0x00ccn,  // 0x00cc (0x0004) [float]
+  DisabledError: 0x00d0n,  // 0x00d0 (0x0008) [UError*]
+  DisabledErrorStack: 0x00d8n,  // 0x00d8 (0x0010) [TArray<UError*>]
+  MaintenanceError: 0x00e8n,  // 0x00e8 (0x0008) [UError*]
+  DuplicateLoginError: 0x00f0n,  // 0x00f0 (0x0008) [UError*]
+  NoInternetError: 0x00f8n,  // 0x00f8 (0x0008) [UError*]
+  NoUrlError: 0x0100n,  // 0x0100 (0x0008) [UError*]
+  AuthDisabledError: 0x0108n,  // 0x0108 (0x0008) [UError*]
+  AuthRetryDelays: 0x0110n,  // 0x0110 (0x0010) [TArray<float>]
+  ConsecutiveAuthFailures: 0x0120n,  // 0x0120 (0x0004) [int32]
+  __EventConnected__Delegate: 0x0128n,  // 0x0128 (0x0018) [FScriptDelegate]
+  __EventDisconnected__Delegate: 0x0140n,  // 0x0140 (0x0018) [FScriptDelegate]
+  __EventConnectFailed__Delegate: 0x0158n,  // 0x0158 (0x0018) [FScriptDelegate]
+  __EventPerConConnected__Delegate: 0x0170n,  // 0x0170 (0x0018) [FScriptDelegate]
+  __EventPerConDisconnected__Delegate: 0x0188n,  // 0x0188 (0x0018) [FScriptDelegate]
+  __EventEnabled__Delegate: 0x01a0n,  // 0x01a0 (0x0018) [FScriptDelegate]
+  __EventDisabled__Delegate: 0x01b8n,  // 0x01b8 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -5607,8 +4178,8 @@ export const PsyNetErrorType_X = {
  * Extends: Object
  */
 export const PsyNetMessage_X = {
-  Headers: 0x0060,  // 0x0060 (0x0008) [unknown]
-  Body: 0x0068,  // 0x0068 (0x0010) [TArray<uint8>]
+  Headers: 0x0060n,  // 0x0060 (0x0008) [unknown]
+  Body: 0x0068n,  // 0x0068 (0x0010) [TArray<uint8>]
   ...Object_,
 } as const;
 
@@ -5618,7 +4189,7 @@ export const PsyNetMessage_X = {
  * Extends: Object
  */
 export const PsyNetMessenger_X = {
-  __EventMessageReceived__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  __EventMessageReceived__Delegate: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -5628,7 +4199,7 @@ export const PsyNetMessenger_X = {
  * Extends: PsyNetMessenger_X
  */
 export const PsyNetMessengerHttp_X = {
-  URL: 0x0078,  // 0x0078 (0x0010) [FString]
+  URL: 0x0078n,  // 0x0078 (0x0010) [FString]
   ...PsyNetMessenger_X,
 } as const;
 
@@ -5638,28 +4209,28 @@ export const PsyNetMessengerHttp_X = {
  * Extends: PsyNetMessenger_X
  */
 export const PsyNetMessengerWebSocket_X = {
-  MessageSendTimeout: 0x0078,  // 0x0078 (0x0004) [float]
-  HandshakeHeaders: 0x0080,  // 0x0080 (0x0008) [unknown]
-  URL: 0x0088,  // 0x0088 (0x0010) [FString]
-  Connection: 0x0098,  // 0x0098 (0x0008) [UWebSocketConnection_X*]
-  QueuedMessages: 0x00A0,  // 0x00A0 (0x0010) [TArray<FQueuedPsyNetMessage>]
-  PsyNetConfig: 0x00B0,  // 0x00B0 (0x0008) [UPsyNetConfig_X*]
-  __EventStartConnect__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
-  __EventStartConnectFail__Delegate: 0x00D0,  // 0x00D0 (0x0018) [FScriptDelegate]
-  __EventConnected__Delegate: 0x00E8,  // 0x00E8 (0x0018) [FScriptDelegate]
-  __EventDisconnected__Delegate: 0x0100,  // 0x0100 (0x0018) [FScriptDelegate]
-  __EventInvalidMessageReceived__Delegate: 0x0118,  // 0x0118 (0x0018) [FScriptDelegate]
+  MessageSendTimeout: 0x0078n,  // 0x0078 (0x0004) [float]
+  HandshakeHeaders: 0x0080n,  // 0x0080 (0x0008) [unknown]
+  URL: 0x0088n,  // 0x0088 (0x0010) [FString]
+  Connection: 0x0098n,  // 0x0098 (0x0008) [UWebSocketConnection_X*]
+  QueuedMessages: 0x00a0n,  // 0x00a0 (0x0010) [TArray<FQueuedPsyNetMessage>]
+  PsyNetConfig: 0x00b0n,  // 0x00b0 (0x0008) [UPsyNetConfig_X*]
+  __EventStartConnect__Delegate: 0x00b8n,  // 0x00b8 (0x0018) [FScriptDelegate]
+  __EventStartConnectFail__Delegate: 0x00d0n,  // 0x00d0 (0x0018) [FScriptDelegate]
+  __EventConnected__Delegate: 0x00e8n,  // 0x00e8 (0x0018) [FScriptDelegate]
+  __EventDisconnected__Delegate: 0x0100n,  // 0x0100 (0x0018) [FScriptDelegate]
+  __EventInvalidMessageReceived__Delegate: 0x0118n,  // 0x0118 (0x0018) [FScriptDelegate]
   ...PsyNetMessenger_X,
 } as const;
 
 /**
  * ProjectX.PsyNetMetrics_X Offsets
- * Size: 0x00A0
+ * Size: 0x00a0
  * Extends: MetricsGroup_X
  */
 export const PsyNetMetrics_X = {
-  ServiceData: 0x0080,  // 0x0080 (0x0010) [TArray<FServiceMetricsData>]
-  ErrorData: 0x0090,  // 0x0090 (0x0010) [TArray<FServiceErrorData>]
+  ServiceData: 0x0080n,  // 0x0080 (0x0010) [TArray<FServiceMetricsData>]
+  ErrorData: 0x0090n,  // 0x0090 (0x0010) [TArray<FServiceErrorData>]
   ...MetricsGroup_X,
 } as const;
 
@@ -5669,21 +4240,21 @@ export const PsyNetMetrics_X = {
  * Extends: Object
  */
 export const PsyNetRequestQue_X = {
-  RequestTimeout: 0x0060,  // 0x0060 (0x0004) [float]
-  Requests: 0x0068,  // 0x0068 (0x0010) [TArray<FPsyNetRequest>]
-  __SendMessageDelegate__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
+  RequestTimeout: 0x0060n,  // 0x0060 (0x0004) [float]
+  Requests: 0x0068n,  // 0x0068 (0x0010) [TArray<FPsyNetRequest>]
+  __SendMessageDelegate__Delegate: 0x0078n,  // 0x0078 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.PsyNetRetryConfig_X Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: OnlineConfig_X
  */
 export const PsyNetRetryConfig_X = {
-  RetryDelays: 0x0078,  // 0x0078 (0x0010) [TArray<URetryDelay_X*>]
-  RetryPolicies: 0x0088,  // 0x0088 (0x0010) [TArray<URetryPolicy_X*>]
-  ReAuthPolicies: 0x0098,  // 0x0098 (0x0010) [TArray<URetryPolicy_X*>]
+  RetryDelays: 0x0078n,  // 0x0078 (0x0010) [TArray<URetryDelay_X*>]
+  RetryPolicies: 0x0088n,  // 0x0088 (0x0010) [TArray<URetryPolicy_X*>]
+  ReAuthPolicies: 0x0098n,  // 0x0098 (0x0010) [TArray<URetryPolicy_X*>]
   ...OnlineConfig_X,
 } as const;
 
@@ -5693,10 +4264,10 @@ export const PsyNetRetryConfig_X = {
  * Extends: Object
  */
 export const PsyNetServiceProvider_X = {
-  ServiceCollection: 0x0060,  // 0x0060 (0x0008) [UPsyNetClientServiceCollection_X*]
-  Subscriptions: 0x0068,  // 0x0068 (0x0008) [unknown]
-  Channels: 0x0070,  // 0x0070 (0x0010) [TArray<UPsyNetChannel_X*>]
-  __EventServiceExecuted__Delegate: 0x0080,  // 0x0080 (0x0018) [FScriptDelegate]
+  ServiceCollection: 0x0060n,  // 0x0060 (0x0008) [UPsyNetClientServiceCollection_X*]
+  Subscriptions: 0x0068n,  // 0x0068 (0x0008) [unknown]
+  Channels: 0x0070n,  // 0x0070 (0x0010) [TArray<UPsyNetChannel_X*>]
+  __EventServiceExecuted__Delegate: 0x0080n,  // 0x0080 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -5715,7 +4286,7 @@ export const PsyNetServiceSerializer_X = {
  * Extends: Component
  */
 export const PsyNetServiceSubscriptions_X = {
-  Subscriptions: 0x0070,  // 0x0070 (0x0010) [TArray<FServiceSubscription>]
+  Subscriptions: 0x0070n,  // 0x0070 (0x0010) [TArray<FServiceSubscription>]
   ...Component,
 } as const;
 
@@ -5730,24 +4301,24 @@ export const PsyNetService_DuplicateLogin_X = {
 
 /**
  * ProjectX.PsyNetService_Echo_X Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: PsyNetClientService_X
  */
 export const PsyNetService_Echo_X = {
-  RequestString: 0x0090,  // 0x0090 (0x0010) [FString]
-  ResponseString: 0x00A0,  // 0x00A0 (0x0010) [FString]
+  RequestString: 0x0090n,  // 0x0090 (0x0010) [FString]
+  ResponseString: 0x00a0n,  // 0x00a0 (0x0010) [FString]
   ...PsyNetClientService_X,
 } as const;
 
 /**
  * ProjectX.PsyNetService_OnlineStatusUpdate_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: PsyNetClientService_X
  */
 export const PsyNetService_OnlineStatusUpdate_X = {
-  PlayerID: 0x0090,  // 0x0090 (0x0048) [FUniqueNetId]
-  OnlineStatus: 0x00D8,  // 0x00D8 (0x0010) [FString]
-  RichPresenceInfo: 0x00E8,  // 0x00E8 (0x0010) [FString]
+  PlayerID: 0x0090n,  // 0x0090 (0x0048) [FUniqueNetId]
+  OnlineStatus: 0x00d8n,  // 0x00d8 (0x0010) [FString]
+  RichPresenceInfo: 0x00e8n,  // 0x00e8 (0x0010) [FString]
   ...PsyNetClientService_X,
 } as const;
 
@@ -5757,12 +4328,12 @@ export const PsyNetService_OnlineStatusUpdate_X = {
  * Extends: PsyNetClientService_X
  */
 export const PsyNetService_PartyOwnerChanged_X = {
-  PartyID: 0x0090,  // 0x0090 (0x0010) [FString]
-  NotificationType: 0x00A0,  // 0x00A0 (0x0010) [FString]
-  Content: 0x00B0,  // 0x00B0 (0x0048) [FUniqueNetId]
-  FromUserId: 0x00F8,  // 0x00F8 (0x0048) [FUniqueNetId]
-  CreatedAt: 0x0140,  // 0x0140 (0x0004) [int32]
-  ForUserId: 0x0148,  // 0x0148 (0x0048) [FUniqueNetId]
+  PartyID: 0x0090n,  // 0x0090 (0x0010) [FString]
+  NotificationType: 0x00a0n,  // 0x00a0 (0x0010) [FString]
+  Content: 0x00b0n,  // 0x00b0 (0x0048) [FUniqueNetId]
+  FromUserId: 0x00f8n,  // 0x00f8 (0x0048) [FUniqueNetId]
+  CreatedAt: 0x0140n,  // 0x0140 (0x0004) [int32]
+  ForUserId: 0x0148n,  // 0x0148 (0x0048) [FUniqueNetId]
   ...PsyNetClientService_X,
 } as const;
 
@@ -5772,36 +4343,36 @@ export const PsyNetService_PartyOwnerChanged_X = {
  * Extends: PsyNetClientService_X
  */
 export const PsyNetService_PartyUserKicked_X = {
-  PartyID: 0x0090,  // 0x0090 (0x0010) [FString]
-  NotificationType: 0x00A0,  // 0x00A0 (0x0010) [FString]
-  Content: 0x00B0,  // 0x00B0 (0x0048) [FUniqueNetId]
-  FromUserId: 0x00F8,  // 0x00F8 (0x0048) [FUniqueNetId]
-  CreatedAt: 0x0140,  // 0x0140 (0x0004) [int32]
-  ForUserId: 0x0148,  // 0x0148 (0x0048) [FUniqueNetId]
-  KickReason: 0x0190,  // 0x0190 (0x0001) [ELobbyKickReason]
+  PartyID: 0x0090n,  // 0x0090 (0x0010) [FString]
+  NotificationType: 0x00a0n,  // 0x00a0 (0x0010) [FString]
+  Content: 0x00b0n,  // 0x00b0 (0x0048) [FUniqueNetId]
+  FromUserId: 0x00f8n,  // 0x00f8 (0x0048) [FUniqueNetId]
+  CreatedAt: 0x0140n,  // 0x0140 (0x0004) [int32]
+  ForUserId: 0x0148n,  // 0x0148 (0x0048) [FUniqueNetId]
+  KickReason: 0x0190n,  // 0x0190 (0x0001) [ELobbyKickReason]
   ...PsyNetClientService_X,
 } as const;
 
 /**
  * ProjectX.PsyNetService_Party_X Offsets
- * Size: 0x01B0
+ * Size: 0x01b0
  * Extends: PsyNetClientService_X
  */
 export const PsyNetService_Party_X = {
-  PartyID: 0x0090,  // 0x0090 (0x0010) [FString]
-  NotificationType: 0x00A0,  // 0x00A0 (0x0010) [FString]
-  Content: 0x00B0,  // 0x00B0 (0x0010) [FString]
-  FromUserId: 0x00C0,  // 0x00C0 (0x0048) [FUniqueNetId]
-  FromUserName: 0x0108,  // 0x0108 (0x0010) [FString]
-  CreatedAt: 0x0118,  // 0x0118 (0x0004) [int32]
-  ForUserId: 0x0120,  // 0x0120 (0x0048) [FUniqueNetId]
-  FromEpicUserID: 0x0168,  // 0x0168 (0x0048) [FUniqueNetId]
+  PartyID: 0x0090n,  // 0x0090 (0x0010) [FString]
+  NotificationType: 0x00a0n,  // 0x00a0 (0x0010) [FString]
+  Content: 0x00b0n,  // 0x00b0 (0x0010) [FString]
+  FromUserId: 0x00c0n,  // 0x00c0 (0x0048) [FUniqueNetId]
+  FromUserName: 0x0108n,  // 0x0108 (0x0010) [FString]
+  CreatedAt: 0x0118n,  // 0x0118 (0x0004) [int32]
+  ForUserId: 0x0120n,  // 0x0120 (0x0048) [FUniqueNetId]
+  FromEpicUserID: 0x0168n,  // 0x0168 (0x0048) [FUniqueNetId]
   ...PsyNetClientService_X,
 } as const;
 
 /**
  * ProjectX.PsyNetService_PartyChat_X Offsets
- * Size: 0x01B0
+ * Size: 0x01b0
  * Extends: PsyNetService_Party_X
  */
 export const PsyNetService_PartyChat_X = {
@@ -5814,13 +4385,13 @@ export const PsyNetService_PartyChat_X = {
  * Extends: PsyNetService_Party_X
  */
 export const PsyNetService_PartyJoinRequestAccepted_X = {
-  PartyComplete: 0x01B0,  // 0x01B0 (0x0080) [FPartyData]
+  PartyComplete: 0x01b0n,  // 0x01b0 (0x0080) [FPartyData]
   ...PsyNetService_Party_X,
 } as const;
 
 /**
  * ProjectX.PsyNetService_PartyJoinRequestDeleted_X Offsets
- * Size: 0x01B0
+ * Size: 0x01b0
  * Extends: PsyNetService_Party_X
  */
 export const PsyNetService_PartyJoinRequestDeleted_X = {
@@ -5829,7 +4400,7 @@ export const PsyNetService_PartyJoinRequestDeleted_X = {
 
 /**
  * ProjectX.PsyNetService_PartyJoinRequestReceived_X Offsets
- * Size: 0x01B0
+ * Size: 0x01b0
  * Extends: PsyNetService_Party_X
  */
 export const PsyNetService_PartyJoinRequestReceived_X = {
@@ -5838,7 +4409,7 @@ export const PsyNetService_PartyJoinRequestReceived_X = {
 
 /**
  * ProjectX.PsyNetService_PartySystem_X Offsets
- * Size: 0x01B0
+ * Size: 0x01b0
  * Extends: PsyNetService_Party_X
  */
 export const PsyNetService_PartySystem_X = {
@@ -5847,7 +4418,7 @@ export const PsyNetService_PartySystem_X = {
 
 /**
  * ProjectX.PsyNetService_PartyUserDisconnected_X Offsets
- * Size: 0x01B0
+ * Size: 0x01b0
  * Extends: PsyNetService_Party_X
  */
 export const PsyNetService_PartyUserDisconnected_X = {
@@ -5856,7 +4427,7 @@ export const PsyNetService_PartyUserDisconnected_X = {
 
 /**
  * ProjectX.PsyNetService_PartyUserInvited_X Offsets
- * Size: 0x01B0
+ * Size: 0x01b0
  * Extends: PsyNetService_Party_X
  */
 export const PsyNetService_PartyUserInvited_X = {
@@ -5865,7 +4436,7 @@ export const PsyNetService_PartyUserInvited_X = {
 
 /**
  * ProjectX.PsyNetService_PartyUserJoined_X Offsets
- * Size: 0x01B0
+ * Size: 0x01b0
  * Extends: PsyNetService_Party_X
  */
 export const PsyNetService_PartyUserJoined_X = {
@@ -5874,7 +4445,7 @@ export const PsyNetService_PartyUserJoined_X = {
 
 /**
  * ProjectX.PsyNetService_PartyUserLeft_X Offsets
- * Size: 0x01B0
+ * Size: 0x01b0
  * Extends: PsyNetService_Party_X
  */
 export const PsyNetService_PartyUserLeft_X = {
@@ -5887,7 +4458,7 @@ export const PsyNetService_PartyUserLeft_X = {
  * Extends: PsyNetClientService_X
  */
 export const PsyNetService_PersonaInfo_X = {
-  FromPlayer: 0x0090,  // 0x0090 (0x0078) [FOnlinePersonaData]
+  FromPlayer: 0x0090n,  // 0x0090 (0x0078) [FOnlinePersonaData]
   ...PsyNetClientService_X,
 } as const;
 
@@ -5911,35 +4482,35 @@ export const PsyNetService_IncomingFriendRequest_X = {
 
 /**
  * ProjectX.PsyNetService_PlayerUnfriended_X Offsets
- * Size: 0x00D8
+ * Size: 0x00d8
  * Extends: PsyNetClientService_X
  */
 export const PsyNetService_PlayerUnfriended_X = {
-  PlayerID: 0x0090,  // 0x0090 (0x0048) [FUniqueNetId]
+  PlayerID: 0x0090n,  // 0x0090 (0x0048) [FUniqueNetId]
   ...PsyNetClientService_X,
 } as const;
 
 /**
  * ProjectX.PsyNetService_ReservationBase_X Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: PsyNetClientService_X
  */
 export const PsyNetService_ReservationBase_X = {
-  ReservationID: 0x0090,  // 0x0090 (0x0010) [FString]
-  Players: 0x00A0,  // 0x00A0 (0x0010) [TArray<FPsyNetBeaconPlayerReservation>]
+  ReservationID: 0x0090n,  // 0x0090 (0x0010) [FString]
+  Players: 0x00a0n,  // 0x00a0 (0x0010) [TArray<FPsyNetBeaconPlayerReservation>]
   ...PsyNetClientService_X,
 } as const;
 
 /**
  * ProjectX.PsyNetService_Backfill_X Offsets
- * Size: 0x00E8
+ * Size: 0x00e8
  * Extends: PsyNetService_ReservationBase_X
  */
 export const PsyNetService_Backfill_X = {
-  Playlist: 0x00B0,  // 0x00B0 (0x0004) [int32]
-  Parties: 0x00B8,  // 0x00B8 (0x0010) [TArray<FPsyNetBeaconPartyReservation>]
-  Team1Players: 0x00C8,  // 0x00C8 (0x0010) [TArray<FUniqueNetId>]
-  Team2Players: 0x00D8,  // 0x00D8 (0x0010) [TArray<FUniqueNetId>]
+  Playlist: 0x00b0n,  // 0x00b0 (0x0004) [int32]
+  Parties: 0x00b8n,  // 0x00b8 (0x0010) [TArray<FPsyNetBeaconPartyReservation>]
+  Team1Players: 0x00c8n,  // 0x00c8 (0x0010) [TArray<FUniqueNetId>]
+  Team2Players: 0x00d8n,  // 0x00d8 (0x0010) [TArray<FUniqueNetId>]
   ...PsyNetService_ReservationBase_X,
 } as const;
 
@@ -5949,24 +4520,24 @@ export const PsyNetService_Backfill_X = {
  * Extends: PsyNetService_ReservationBase_X
  */
 export const PsyNetService_CreateHonorDuel_X = {
-  Playlist: 0x00B0,  // 0x00B0 (0x0004) [int32]
-  PlayerRoles: 0x00B8,  // 0x00B8 (0x0090) [FHonorDuelChallenge]
+  Playlist: 0x00b0n,  // 0x00b0 (0x0004) [int32]
+  PlayerRoles: 0x00b8n,  // 0x00b8 (0x0090) [FHonorDuelChallenge]
   ...PsyNetService_ReservationBase_X,
 } as const;
 
 /**
  * ProjectX.PsyNetService_CreatePrivate_X Offsets
- * Size: 0x00B4
+ * Size: 0x00b4
  * Extends: PsyNetService_ReservationBase_X
  */
 export const PsyNetService_CreatePrivate_X = {
-  PlaylistId: 0x00B0,  // 0x00B0 (0x0004) [int32]
+  PlaylistId: 0x00b0n,  // 0x00b0 (0x0004) [int32]
   ...PsyNetService_ReservationBase_X,
 } as const;
 
 /**
  * ProjectX.PsyNetService_FriendJoin_X Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: PsyNetService_ReservationBase_X
  */
 export const PsyNetService_FriendJoin_X = {
@@ -5975,7 +4546,7 @@ export const PsyNetService_FriendJoin_X = {
 
 /**
  * ProjectX.PsyNetService_JoinPrivate_X Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: PsyNetService_ReservationBase_X
  */
 export const PsyNetService_JoinPrivate_X = {
@@ -5984,22 +4555,22 @@ export const PsyNetService_JoinPrivate_X = {
 
 /**
  * ProjectX.PsyNetService_NewGame_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: PsyNetService_ReservationBase_X
  */
 export const PsyNetService_NewGame_X = {
-  Playlist: 0x00B0,  // 0x00B0 (0x0004) [int32]
-  IsBotMatch: 0x00B4,  // 0x00B4 (0x0004) [bool : 0x1]
-  BotNames: 0x00B8,  // 0x00B8 (0x0010) [TArray<FString>]
-  Parties: 0x00C8,  // 0x00C8 (0x0010) [TArray<FPsyNetBeaconPartyReservation>]
-  Team1Players: 0x00D8,  // 0x00D8 (0x0010) [TArray<FUniqueNetId>]
-  Team2Players: 0x00E8,  // 0x00E8 (0x0010) [TArray<FUniqueNetId>]
+  Playlist: 0x00b0n,  // 0x00b0 (0x0004) [int32]
+  IsBotMatch: 0x00b4n,  // 0x00b4 (0x0004) [bool : 0x1]
+  BotNames: 0x00b8n,  // 0x00b8 (0x0010) [TArray<FString>]
+  Parties: 0x00c8n,  // 0x00c8 (0x0010) [TArray<FPsyNetBeaconPartyReservation>]
+  Team1Players: 0x00d8n,  // 0x00d8 (0x0010) [TArray<FUniqueNetId>]
+  Team2Players: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FUniqueNetId>]
   ...PsyNetService_ReservationBase_X,
 } as const;
 
 /**
  * ProjectX.PsyNetService_Reconnect_X Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: PsyNetService_ReservationBase_X
  */
 export const PsyNetService_Reconnect_X = {
@@ -6008,11 +4579,11 @@ export const PsyNetService_Reconnect_X = {
 
 /**
  * ProjectX.PsyNetService_SignedPartyChat_X Offsets
- * Size: 0x01B8
+ * Size: 0x01b8
  * Extends: PsyNetService_Party_X
  */
 export const PsyNetService_SignedPartyChat_X = {
-  MessageData: 0x01B0,  // 0x01B0 (0x0008) [USignedMessageObject_X*]
+  MessageData: 0x01b0n,  // 0x01b0 (0x0008) [USignedMessageObject_X*]
   ...PsyNetService_Party_X,
 } as const;
 
@@ -6031,24 +4602,24 @@ export const PsyNetStaticDataMetrics_X = {
  * Extends: Component
  */
 export const PsyNetStaticData_X = {
-  PsyConfigTemplateURL: 0x0070,  // 0x0070 (0x0010) [FString]
-  LocalCacheTimeoutSeconds: 0x0080,  // 0x0080 (0x0004) [float]
-  SyncDataTimeoutSeconds: 0x0084,  // 0x0084 (0x0004) [float]
-  PsyNet: 0x0088,  // 0x0088 (0x0008) [UPsyNet_X*]
-  OnlineSub: 0x0090,  // 0x0090 (0x0008) [UOnlineSubsystem*]
-  WebConfig: 0x0098,  // 0x0098 (0x0008) [UWebConfig_X*]
-  bDebug: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x1]
-  bLoaded: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x2]
-  CacheTimer: 0x00A8,  // 0x00A8 (0x0008) [unknown]
-  WebData: 0x00B0,  // 0x00B0 (0x0008) [unknown]
-  DefaultObjects: 0x00B8,  // 0x00B8 (0x0010) [TArray<UObject*>]
-  DownloadedObjects: 0x00C8,  // 0x00C8 (0x0010) [TArray<UObject*>]
-  RegisteredObjects: 0x00D8,  // 0x00D8 (0x0010) [TArray<UObject*>]
-  PsyConfigQueryParams: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  PsyConfigSecret: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  PsyConfigAltEnv: 0x0108,  // 0x0108 (0x0010) [FString]
-  BlockingSyncStartTime: 0x0118,  // 0x0118 (0x0004) [float]
-  __EventLoaded__Delegate: 0x0120,  // 0x0120 (0x0018) [FScriptDelegate]
+  PsyConfigTemplateURL: 0x0070n,  // 0x0070 (0x0010) [FString]
+  LocalCacheTimeoutSeconds: 0x0080n,  // 0x0080 (0x0004) [float]
+  SyncDataTimeoutSeconds: 0x0084n,  // 0x0084 (0x0004) [float]
+  PsyNet: 0x0088n,  // 0x0088 (0x0008) [UPsyNet_X*]
+  OnlineSub: 0x0090n,  // 0x0090 (0x0008) [UOnlineSubsystem*]
+  WebConfig: 0x0098n,  // 0x0098 (0x0008) [UWebConfig_X*]
+  bDebug: 0x00a0n,  // 0x00a0 (0x0004) [bool : 0x1]
+  bLoaded: 0x00a0n,  // 0x00a0 (0x0004) [bool : 0x2]
+  CacheTimer: 0x00a8n,  // 0x00a8 (0x0008) [unknown]
+  WebData: 0x00b0n,  // 0x00b0 (0x0008) [unknown]
+  DefaultObjects: 0x00b8n,  // 0x00b8 (0x0010) [TArray<UObject*>]
+  DownloadedObjects: 0x00c8n,  // 0x00c8 (0x0010) [TArray<UObject*>]
+  RegisteredObjects: 0x00d8n,  // 0x00d8 (0x0010) [TArray<UObject*>]
+  PsyConfigQueryParams: 0x00e8n,  // 0x00e8 (0x0010) [FString]
+  PsyConfigSecret: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  PsyConfigAltEnv: 0x0108n,  // 0x0108 (0x0010) [FString]
+  BlockingSyncStartTime: 0x0118n,  // 0x0118 (0x0004) [float]
+  __EventLoaded__Delegate: 0x0120n,  // 0x0120 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
@@ -6058,21 +4629,21 @@ export const PsyNetStaticData_X = {
  * Extends: Object
  */
 export const PsyNetUrl_X = {
-  bUseSubsystemURL: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
-  URL: 0x0068,  // 0x0068 (0x0010) [FString]
-  URLv2: 0x0078,  // 0x0078 (0x0010) [FString]
+  bUseSubsystemURL: 0x0060n,  // 0x0060 (0x0004) [bool : 0x1]
+  URL: 0x0068n,  // 0x0068 (0x0010) [FString]
+  URLv2: 0x0078n,  // 0x0078 (0x0010) [FString]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.PsyNetWordFilter_X Offsets
- * Size: 0x00A0
+ * Size: 0x00a0
  * Extends: Component
  */
 export const PsyNetWordFilter_X = {
-  Config: 0x0070,  // 0x0070 (0x0008) [UWordFilterConfig_X*]
-  PendingFilterRPCs: 0x0078,  // 0x0078 (0x0010) [TArray<URPC_FilterContent_X*>]
-  __QueueRPC__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
+  Config: 0x0070n,  // 0x0070 (0x0008) [UWordFilterConfig_X*]
+  PendingFilterRPCs: 0x0078n,  // 0x0078 (0x0010) [TArray<URPC_FilterContent_X*>]
+  __QueueRPC__Delegate: 0x0088n,  // 0x0088 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
@@ -6082,21 +4653,21 @@ export const PsyNetWordFilter_X = {
  * Extends: Object
  */
 export const PsyNet_X = {
-  Environment: 0x0060,  // 0x0060 (0x0001) [EDatabaseEnvironment]
-  EnvironmentName: 0x0068,  // 0x0068 (0x0010) [FString]
-  Keys: 0x0078,  // 0x0078 (0x0040) [FPsyNetKeys]
-  Headers: 0x00B8,  // 0x00B8 (0x0008) [unknown]
-  Services: 0x00C0,  // 0x00C0 (0x0008) [unknown]
-  PrimaryEnabledConnection: 0x00C8,  // 0x00C8 (0x0008) [UPsyNetConnection_X*]
-  PrimaryAuthedConnection: 0x00D0,  // 0x00D0 (0x0008) [UPsyNetConnection_X*]
-  AnonymousConnection: 0x00D8,  // 0x00D8 (0x0008) [UPsyNetConnection_X*]
-  LastReportCheaterTime: 0x00E0,  // 0x00E0 (0x0004) [float]
-  bUsePsynetEnvironment: 0x00E4,  // 0x00E4 (0x0004) [bool : 0x1]
-  __EventPrimaryConnectionEnabled__Delegate: 0x00E8,  // 0x00E8 (0x0018) [FScriptDelegate]
-  __EventPrimaryConnectionDisabled__Delegate: 0x0100,  // 0x0100 (0x0018) [FScriptDelegate]
-  __EventPrimaryPlayerLoggedIn__Delegate: 0x0118,  // 0x0118 (0x0018) [FScriptDelegate]
-  __EventPrimaryPlayerLoggedOut__Delegate: 0x0130,  // 0x0130 (0x0018) [FScriptDelegate]
-  __EventCheaterReported__Delegate: 0x0148,  // 0x0148 (0x0018) [FScriptDelegate]
+  Environment: 0x0060n,  // 0x0060 (0x0001) [EDatabaseEnvironment]
+  EnvironmentName: 0x0068n,  // 0x0068 (0x0010) [FString]
+  Keys: 0x0078n,  // 0x0078 (0x0040) [FPsyNetKeys]
+  Headers: 0x00b8n,  // 0x00b8 (0x0008) [unknown]
+  Services: 0x00c0n,  // 0x00c0 (0x0008) [unknown]
+  PrimaryEnabledConnection: 0x00c8n,  // 0x00c8 (0x0008) [UPsyNetConnection_X*]
+  PrimaryAuthedConnection: 0x00d0n,  // 0x00d0 (0x0008) [UPsyNetConnection_X*]
+  AnonymousConnection: 0x00d8n,  // 0x00d8 (0x0008) [UPsyNetConnection_X*]
+  LastReportCheaterTime: 0x00e0n,  // 0x00e0 (0x0004) [float]
+  bUsePsynetEnvironment: 0x00e4n,  // 0x00e4 (0x0004) [bool : 0x1]
+  __EventPrimaryConnectionEnabled__Delegate: 0x00e8n,  // 0x00e8 (0x0018) [FScriptDelegate]
+  __EventPrimaryConnectionDisabled__Delegate: 0x0100n,  // 0x0100 (0x0018) [FScriptDelegate]
+  __EventPrimaryPlayerLoggedIn__Delegate: 0x0118n,  // 0x0118 (0x0018) [FScriptDelegate]
+  __EventPrimaryPlayerLoggedOut__Delegate: 0x0130n,  // 0x0130 (0x0018) [FScriptDelegate]
+  __EventCheaterReported__Delegate: 0x0148n,  // 0x0148 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -6111,31 +4682,31 @@ export const QueuedOfflineMessage_X = {
 
 /**
  * ProjectX.RPCBatch_X Offsets
- * Size: 0x00CC
+ * Size: 0x00cc
  * Extends: Object
  */
 export const RPCBatch_X = {
-  SendTime: 0x0060,  // 0x0060 (0x0004) [float]
-  Requests: 0x0068,  // 0x0068 (0x0010) [TArray<FPendingRPC>]
-  Responses: 0x0078,  // 0x0078 (0x0010) [TArray<FRPCResponse>]
-  Error: 0x0088,  // 0x0088 (0x0020) [FRPCError]
-  Result: 0x00A8,  // 0x00A8 (0x0008) [UObject*]
-  RequestMessage: 0x00B0,  // 0x00B0 (0x0008) [UPsyNetMessage_X*]
-  ResponseMessage: 0x00B8,  // 0x00B8 (0x0008) [UPsyNetMessage_X*]
-  ResponseError: 0x00C0,  // 0x00C0 (0x0008) [UError*]
-  bUseRpcV2: 0x00C8,  // 0x00C8 (0x0004) [bool : 0x1]
+  SendTime: 0x0060n,  // 0x0060 (0x0004) [float]
+  Requests: 0x0068n,  // 0x0068 (0x0010) [TArray<FPendingRPC>]
+  Responses: 0x0078n,  // 0x0078 (0x0010) [TArray<FRPCResponse>]
+  Error: 0x0088n,  // 0x0088 (0x0020) [FRPCError]
+  Result: 0x00a8n,  // 0x00a8 (0x0008) [UObject*]
+  RequestMessage: 0x00b0n,  // 0x00b0 (0x0008) [UPsyNetMessage_X*]
+  ResponseMessage: 0x00b8n,  // 0x00b8 (0x0008) [UPsyNetMessage_X*]
+  ResponseError: 0x00c0n,  // 0x00c0 (0x0008) [UError*]
+  bUseRpcV2: 0x00c8n,  // 0x00c8 (0x0004) [bool : 0x1]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.RPCConfig_X Offsets
- * Size: 0x009C
+ * Size: 0x009c
  * Extends: OnlineConfig_X
  */
 export const RPCConfig_X = {
-  DisabledClasses: 0x0078,  // 0x0078 (0x0010) [TArray<UClass*>]
-  DisabledServices: 0x0088,  // 0x0088 (0x0010) [TArray<FString>]
-  MaxRPCsPerBatch: 0x0098,  // 0x0098 (0x0004) [int32]
+  DisabledClasses: 0x0078n,  // 0x0078 (0x0010) [TArray<UClass*>]
+  DisabledServices: 0x0088n,  // 0x0088 (0x0010) [TArray<FString>]
+  MaxRPCsPerBatch: 0x0098n,  // 0x0098 (0x0004) [int32]
   ...OnlineConfig_X,
 } as const;
 
@@ -6145,51 +4716,51 @@ export const RPCConfig_X = {
  * Extends: Component
  */
 export const RPCQueue_X = {
-  VfTable_FTickableObject: 0x0070,  // 0x0070 (0x0008) [FPointer]
-  AuthTimeoutSeconds: 0x0078,  // 0x0078 (0x0004) [float]
-  RPCConfig: 0x0080,  // 0x0080 (0x0008) [URPCConfig_X*]
-  RetryConfig: 0x0088,  // 0x0088 (0x0008) [UPsyNetRetryConfig_X*]
-  PsyNetUrl: 0x0090,  // 0x0090 (0x0008) [UPsyNetUrl_X*]
-  PendingRPCs: 0x0098,  // 0x0098 (0x0010) [TArray<FPendingRPC>]
-  PendingBatches: 0x00A8,  // 0x00A8 (0x0010) [TArray<URPCBatch_X*>]
-  ServiceFailureDelayTimes: 0x00B8,  // 0x00B8 (0x0050) [FMap_Mirror]
-  bAuthorized: 0x0108,  // 0x0108 (0x0004) [bool : 0x1]
-  __EventRPCSuccess__Delegate: 0x0110,  // 0x0110 (0x0018) [FScriptDelegate]
-  __EventRPCError__Delegate: 0x0128,  // 0x0128 (0x0018) [FScriptDelegate]
-  __EventBatchError__Delegate: 0x0140,  // 0x0140 (0x0018) [FScriptDelegate]
-  __SendRequestDelegate__Delegate: 0x0158,  // 0x0158 (0x0018) [FScriptDelegate]
+  VfTable_FTickableObject: 0x0070n,  // 0x0070 (0x0008) [FPointer]
+  AuthTimeoutSeconds: 0x0078n,  // 0x0078 (0x0004) [float]
+  RPCConfig: 0x0080n,  // 0x0080 (0x0008) [URPCConfig_X*]
+  RetryConfig: 0x0088n,  // 0x0088 (0x0008) [UPsyNetRetryConfig_X*]
+  PsyNetUrl: 0x0090n,  // 0x0090 (0x0008) [UPsyNetUrl_X*]
+  PendingRPCs: 0x0098n,  // 0x0098 (0x0010) [TArray<FPendingRPC>]
+  PendingBatches: 0x00a8n,  // 0x00a8 (0x0010) [TArray<URPCBatch_X*>]
+  ServiceFailureDelayTimes: 0x00b8n,  // 0x00b8 (0x0050) [FMap_Mirror]
+  bAuthorized: 0x0108n,  // 0x0108 (0x0004) [bool : 0x1]
+  __EventRPCSuccess__Delegate: 0x0110n,  // 0x0110 (0x0018) [FScriptDelegate]
+  __EventRPCError__Delegate: 0x0128n,  // 0x0128 (0x0018) [FScriptDelegate]
+  __EventBatchError__Delegate: 0x0140n,  // 0x0140 (0x0018) [FScriptDelegate]
+  __SendRequestDelegate__Delegate: 0x0158n,  // 0x0158 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
 /**
  * ProjectX.RPC_X Offsets
- * Size: 0x00E8
+ * Size: 0x00e8
  * Extends: Object
  */
 export const RPC_X = {
-  Service: 0x0060,  // 0x0060 (0x0010) [FString]
-  Version: 0x0070,  // 0x0070 (0x0004) [int32]
-  ServiceFailRetryDelay: 0x0074,  // 0x0074 (0x0004) [float]
-  bAllowBatching: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  bRequiresAuth: 0x0078,  // 0x0078 (0x0004) [bool : 0x2]
-  bDisposed: 0x0078,  // 0x0078 (0x0004) [bool : 0x4]
-  Priority: 0x007C,  // 0x007C (0x0001) [ERPCPriority]
-  Headers: 0x0080,  // 0x0080 (0x0010) [TArray<FKeyValuePair>]
-  Error: 0x0090,  // 0x0090 (0x0008) [UError*]
-  Task: 0x0098,  // 0x0098 (0x0008) [UAsyncTask*]
-  __EventSuccess__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
-  __EventFail__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
-  __EventComplete__Delegate: 0x00D0,  // 0x00D0 (0x0018) [FScriptDelegate]
+  Service: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Version: 0x0070n,  // 0x0070 (0x0004) [int32]
+  ServiceFailRetryDelay: 0x0074n,  // 0x0074 (0x0004) [float]
+  bAllowBatching: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
+  bRequiresAuth: 0x0078n,  // 0x0078 (0x0004) [bool : 0x2]
+  bDisposed: 0x0078n,  // 0x0078 (0x0004) [bool : 0x4]
+  Priority: 0x007cn,  // 0x007c (0x0001) [ERPCPriority]
+  Headers: 0x0080n,  // 0x0080 (0x0010) [TArray<FKeyValuePair>]
+  Error: 0x0090n,  // 0x0090 (0x0008) [UError*]
+  Task: 0x0098n,  // 0x0098 (0x0008) [UAsyncTask*]
+  __EventSuccess__Delegate: 0x00a0n,  // 0x00a0 (0x0018) [FScriptDelegate]
+  __EventFail__Delegate: 0x00b8n,  // 0x00b8 (0x0018) [FScriptDelegate]
+  __EventComplete__Delegate: 0x00d0n,  // 0x00d0 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.RPC_AddPlayerToRole_X Offsets
- * Size: 0x00EC
+ * Size: 0x00ec
  * Extends: RPC_X
  */
 export const RPC_AddPlayerToRole_X = {
-  RoleID: 0x00E8,  // 0x00E8 (0x0004) [int32]
+  RoleID: 0x00e8n,  // 0x00e8 (0x0004) [int32]
   ...RPC_X,
 } as const;
 
@@ -6199,10 +4770,10 @@ export const RPC_AddPlayerToRole_X = {
  * Extends: RPC_X
  */
 export const RPC_AddQuitter_X = {
-  PlayerID: 0x00E8,  // 0x00E8 (0x0048) [FUniqueNetId]
-  Reason: 0x0130,  // 0x0130 (0x0010) [FString]
-  PlaylistId: 0x0140,  // 0x0140 (0x0004) [int32]
-  MatchGUID: 0x0148,  // 0x0148 (0x0010) [FString]
+  PlayerID: 0x00e8n,  // 0x00e8 (0x0048) [FUniqueNetId]
+  Reason: 0x0130n,  // 0x0130 (0x0010) [FString]
+  PlaylistId: 0x0140n,  // 0x0140 (0x0004) [int32]
+  MatchGUID: 0x0148n,  // 0x0148 (0x0010) [FString]
   ...RPC_X,
 } as const;
 
@@ -6212,9 +4783,9 @@ export const RPC_AddQuitter_X = {
  * Extends: RPC_X
  */
 export const RPC_CanShowAvatar_X = {
-  PlayerIds: 0x00E8,  // 0x00E8 (0x0010) [TArray<FUniqueNetId>]
-  AllowedPlayerIDs: 0x00F8,  // 0x00F8 (0x0010) [TArray<FUniqueNetId>]
-  HiddenPlayerIDs: 0x0108,  // 0x0108 (0x0010) [TArray<FUniqueNetId>]
+  PlayerIds: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FUniqueNetId>]
+  AllowedPlayerIDs: 0x00f8n,  // 0x00f8 (0x0010) [TArray<FUniqueNetId>]
+  HiddenPlayerIDs: 0x0108n,  // 0x0108 (0x0010) [TArray<FUniqueNetId>]
   ...RPC_X,
 } as const;
 
@@ -6224,15 +4795,15 @@ export const RPC_CanShowAvatar_X = {
  * Extends: RPC_X
  */
 export const RPC_CheckReplacementDedicatedServer_X = {
-  ServerId: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  bFoundReplacement: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x1]
-  Server: 0x0100,  // 0x0100 (0x0038) [FCheckReplacementDedicatedServerData]
+  ServerId: 0x00e8n,  // 0x00e8 (0x0010) [FString]
+  bFoundReplacement: 0x00f8n,  // 0x00f8 (0x0004) [bool : 0x1]
+  Server: 0x0100n,  // 0x0100 (0x0038) [FCheckReplacementDedicatedServerData]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_ClearClubInvites_X Offsets
- * Size: 0x00E8
+ * Size: 0x00e8
  * Extends: RPC_X
  */
 export const RPC_ClearClubInvites_X = {
@@ -6241,40 +4812,40 @@ export const RPC_ClearClubInvites_X = {
 
 /**
  * ProjectX.RPC_ClubDetailsBase_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: RPC_X
  */
 export const RPC_ClubDetailsBase_X = {
-  ClubDetails: 0x00E8,  // 0x00E8 (0x0008) [UClubDetails_X*]
-  ClubDetailsTask: 0x00F0,  // 0x00F0 (0x0008) [UTAsyncResult__ClubDetails_X*]
+  ClubDetails: 0x00e8n,  // 0x00e8 (0x0008) [UClubDetails_X*]
+  ClubDetailsTask: 0x00f0n,  // 0x00f0 (0x0008) [UTAsyncResult__ClubDetails_X*]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_AcceptClubInvite_X Offsets
- * Size: 0x00FC
+ * Size: 0x00fc
  * Extends: RPC_ClubDetailsBase_X
  */
 export const RPC_AcceptClubInvite_X = {
-  ClubID: 0x00F8,  // 0x00F8 (0x0004) [int32]
+  ClubID: 0x00f8n,  // 0x00f8 (0x0004) [int32]
   ...RPC_ClubDetailsBase_X,
 } as const;
 
 /**
  * ProjectX.RPC_ClubsRecordStats_X Offsets
- * Size: 0x010C
+ * Size: 0x010c
  * Extends: RPC_X
  */
 export const RPC_ClubsRecordStats_X = {
-  Clubs: 0x00E8,  // 0x00E8 (0x0010) [TArray<FClubStatRecord>]
-  MatchGUID: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  Playlist: 0x0108,  // 0x0108 (0x0004) [int32]
+  Clubs: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FClubStatRecord>]
+  MatchGUID: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  Playlist: 0x0108n,  // 0x0108 (0x0004) [int32]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_CrashReport_X Offsets
- * Size: 0x00E8
+ * Size: 0x00e8
  * Extends: RPC_X
  */
 export const RPC_CrashReport_X = {
@@ -6287,43 +4858,43 @@ export const RPC_CrashReport_X = {
  * Extends: RPC_ClubDetailsBase_X
  */
 export const RPC_CreateClub_X = {
-  ClubName: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  ClubTag: 0x0108,  // 0x0108 (0x0010) [FString]
-  PrimaryColor: 0x0118,  // 0x0118 (0x0004) [int32]
-  AccentColor: 0x011C,  // 0x011C (0x0004) [int32]
+  ClubName: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  ClubTag: 0x0108n,  // 0x0108 (0x0010) [FString]
+  PrimaryColor: 0x0118n,  // 0x0118 (0x0004) [int32]
+  AccentColor: 0x011cn,  // 0x011c (0x0004) [int32]
   ...RPC_ClubDetailsBase_X,
 } as const;
 
 /**
  * ProjectX.RPC_CreateGameServer_X Offsets
- * Size: 0x01A0
+ * Size: 0x01a0
  * Extends: RPC_X
  */
 export const RPC_CreateGameServer_X = {
-  ServerName: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  MachineId: 0x00F8,  // 0x00F8 (0x0004) [int32]
-  IP: 0x0100,  // 0x0100 (0x0010) [FString]
-  Region: 0x0110,  // 0x0110 (0x0010) [FString]
-  DataCenter: 0x0120,  // 0x0120 (0x0010) [FString]
-  BuildID: 0x0130,  // 0x0130 (0x0004) [int32]
-  ServerType: 0x0138,  // 0x0138 (0x0010) [FString]
-  ServerId: 0x0148,  // 0x0148 (0x0010) [FString]
-  Host: 0x0158,  // 0x0158 (0x0010) [FString]
-  Zone: 0x0168,  // 0x0168 (0x0004) [int32]
-  UseWebSocket: 0x016C,  // 0x016C (0x0004) [bool : 0x1]
-  PerConURL: 0x0170,  // 0x0170 (0x0010) [FString]
-  PerConURLv2: 0x0180,  // 0x0180 (0x0010) [FString]
-  PsyToken: 0x0190,  // 0x0190 (0x0010) [FString]
+  ServerName: 0x00e8n,  // 0x00e8 (0x0010) [FString]
+  MachineId: 0x00f8n,  // 0x00f8 (0x0004) [int32]
+  IP: 0x0100n,  // 0x0100 (0x0010) [FString]
+  Region: 0x0110n,  // 0x0110 (0x0010) [FString]
+  DataCenter: 0x0120n,  // 0x0120 (0x0010) [FString]
+  BuildID: 0x0130n,  // 0x0130 (0x0004) [int32]
+  ServerType: 0x0138n,  // 0x0138 (0x0010) [FString]
+  ServerId: 0x0148n,  // 0x0148 (0x0010) [FString]
+  Host: 0x0158n,  // 0x0158 (0x0010) [FString]
+  Zone: 0x0168n,  // 0x0168 (0x0004) [int32]
+  UseWebSocket: 0x016cn,  // 0x016c (0x0004) [bool : 0x1]
+  PerConURL: 0x0170n,  // 0x0170 (0x0010) [FString]
+  PerConURLv2: 0x0180n,  // 0x0180 (0x0010) [FString]
+  PsyToken: 0x0190n,  // 0x0190 (0x0010) [FString]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_DeactivateGameServer_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: RPC_X
  */
 export const RPC_DeactivateGameServer_X = {
-  ServerId: 0x00E8,  // 0x00E8 (0x0010) [FString]
+  ServerId: 0x00e8n,  // 0x00e8 (0x0010) [FString]
   ...RPC_X,
 } as const;
 
@@ -6333,8 +4904,8 @@ export const RPC_DeactivateGameServer_X = {
  * Extends: RPC_X
  */
 export const RPC_FileStorage_GetFileDownloadUrl_X = {
-  Path: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  URL: 0x00F8,  // 0x00F8 (0x0010) [FString]
+  Path: 0x00e8n,  // 0x00e8 (0x0010) [FString]
+  URL: 0x00f8n,  // 0x00f8 (0x0010) [FString]
   ...RPC_X,
 } as const;
 
@@ -6344,9 +4915,9 @@ export const RPC_FileStorage_GetFileDownloadUrl_X = {
  * Extends: RPC_X
  */
 export const RPC_FileStorage_GetFileUploadUrl_X = {
-  Path: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  ContentType: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  URL: 0x0108,  // 0x0108 (0x0010) [FString]
+  Path: 0x00e8n,  // 0x00e8 (0x0010) [FString]
+  ContentType: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  URL: 0x0108n,  // 0x0108 (0x0010) [FString]
   ...RPC_X,
 } as const;
 
@@ -6356,12 +4927,12 @@ export const RPC_FileStorage_GetFileUploadUrl_X = {
  * Extends: RPC_X
  */
 export const RPC_FilterContent_X = {
-  Content: 0x00E8,  // 0x00E8 (0x0010) [TArray<FString>]
-  Policy: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  FilteredContent: 0x0108,  // 0x0108 (0x0010) [TArray<FString>]
-  Callbacks: 0x0118,  // 0x0118 (0x0010) [TArray<FScriptDelegate>]
-  PlayerIds: 0x0128,  // 0x0128 (0x0010) [TArray<FUniqueNetId>]
-  Usage: 0x0138,  // 0x0138 (0x0001) [EWordFilterUsage]
+  Content: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FString>]
+  Policy: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  FilteredContent: 0x0108n,  // 0x0108 (0x0010) [TArray<FString>]
+  Callbacks: 0x0118n,  // 0x0118 (0x0010) [TArray<FScriptDelegate>]
+  PlayerIds: 0x0128n,  // 0x0128 (0x0010) [TArray<FUniqueNetId>]
+  Usage: 0x0138n,  // 0x0138 (0x0001) [EWordFilterUsage]
   ...RPC_X,
 } as const;
 
@@ -6371,10 +4942,10 @@ export const RPC_FilterContent_X = {
  * Extends: RPC_X
  */
 export const RPC_GetAntiAddictionData_X = {
-  PlayerID: 0x00E8,  // 0x00E8 (0x0048) [FUniqueNetId]
-  bUnderAge: 0x0130,  // 0x0130 (0x0004) [bool : 0x1]
-  bShowMessage: 0x0130,  // 0x0130 (0x0004) [bool : 0x2]
-  HoursPlayed: 0x0134,  // 0x0134 (0x0004) [int32]
+  PlayerID: 0x00e8n,  // 0x00e8 (0x0048) [FUniqueNetId]
+  bUnderAge: 0x0130n,  // 0x0130 (0x0004) [bool : 0x1]
+  bShowMessage: 0x0130n,  // 0x0130 (0x0004) [bool : 0x2]
+  HoursPlayed: 0x0134n,  // 0x0134 (0x0004) [int32]
   ...RPC_X,
 } as const;
 
@@ -6384,38 +4955,38 @@ export const RPC_GetAntiAddictionData_X = {
  * Extends: RPC_X
  */
 export const RPC_GetClubDetailsArray_X = {
-  ClubIDs: 0x00E8,  // 0x00E8 (0x0010) [TArray<int32>]
-  ClubDetails: 0x00F8,  // 0x00F8 (0x0010) [TArray<UClubDetails_X*>]
+  ClubIDs: 0x00e8n,  // 0x00e8 (0x0010) [TArray<int32>]
+  ClubDetails: 0x00f8n,  // 0x00f8 (0x0010) [TArray<UClubDetails_X*>]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_GetClubDetails_X Offsets
- * Size: 0x00FC
+ * Size: 0x00fc
  * Extends: RPC_ClubDetailsBase_X
  */
 export const RPC_GetClubDetails_X = {
-  ClubID: 0x00F8,  // 0x00F8 (0x0004) [int32]
+  ClubID: 0x00f8n,  // 0x00f8 (0x0004) [int32]
   ...RPC_ClubDetailsBase_X,
 } as const;
 
 /**
  * ProjectX.RPC_GetClubInvites_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: RPC_X
  */
 export const RPC_GetClubInvites_X = {
-  ClubInvites: 0x00E8,  // 0x00E8 (0x0010) [TArray<UClubInvite_X*>]
+  ClubInvites: 0x00e8n,  // 0x00e8 (0x0010) [TArray<UClubInvite_X*>]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_GetClubPrivateMatches_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: RPC_X
  */
 export const RPC_GetClubPrivateMatches_X = {
-  Servers: 0x00E8,  // 0x00E8 (0x0010) [TArray<UClubServerResult_X*>]
+  Servers: 0x00e8n,  // 0x00e8 (0x0010) [TArray<UClubServerResult_X*>]
   ...RPC_X,
 } as const;
 
@@ -6425,20 +4996,20 @@ export const RPC_GetClubPrivateMatches_X = {
  * Extends: RPC_X
  */
 export const RPC_GetClubStats_X = {
-  CareerStats: 0x00E8,  // 0x00E8 (0x0078) [FClubCareerStats]
-  SeasonalStats: 0x0160,  // 0x0160 (0x0010) [TArray<FStatMilestoneData>]
-  PreviousSeasonalBadges: 0x0170,  // 0x0170 (0x0010) [TArray<FSeasonalBadgeTierData>]
-  SeasonalTitles: 0x0180,  // 0x0180 (0x0010) [TArray<FMilestoneTitleData>]
+  CareerStats: 0x00e8n,  // 0x00e8 (0x0078) [FClubCareerStats]
+  SeasonalStats: 0x0160n,  // 0x0160 (0x0010) [TArray<FStatMilestoneData>]
+  PreviousSeasonalBadges: 0x0170n,  // 0x0170 (0x0010) [TArray<FSeasonalBadgeTierData>]
+  SeasonalTitles: 0x0180n,  // 0x0180 (0x0010) [TArray<FMilestoneTitleData>]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_GetClubTitles_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: RPC_X
  */
 export const RPC_GetClubTitles_X = {
-  ClubTitles: 0x00E8,  // 0x00E8 (0x0010) [TArray<FName>]
+  ClubTitles: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FName>]
   ...RPC_X,
 } as const;
 
@@ -6448,8 +5019,8 @@ export const RPC_GetClubTitles_X = {
  * Extends: RPC_X
  */
 export const RPC_GetGameServerPingList2_X = {
-  Regions: 0x00E8,  // 0x00E8 (0x0010) [TArray<FRegionSecret>]
-  Servers: 0x00F8,  // 0x00F8 (0x0010) [TArray<FGetGameServerPingListData>]
+  Regions: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FRegionSecret>]
+  Servers: 0x00f8n,  // 0x00f8 (0x0010) [TArray<FGetGameServerPingListData>]
   ...RPC_X,
 } as const;
 
@@ -6459,18 +5030,18 @@ export const RPC_GetGameServerPingList2_X = {
  * Extends: RPC_X
  */
 export const RPC_GetGameServerPingList_X = {
-  Regions: 0x00E8,  // 0x00E8 (0x0010) [TArray<FRegionSecret>]
-  Servers: 0x00F8,  // 0x00F8 (0x0010) [TArray<FGetGameServerPingListData_Deprecated>]
+  Regions: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FRegionSecret>]
+  Servers: 0x00f8n,  // 0x00f8 (0x0010) [TArray<FGetGameServerPingListData_Deprecated>]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_GetGenericDataAll_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: RPC_X
  */
 export const RPC_GetGenericDataAll_X = {
-  GenericData: 0x00E8,  // 0x00E8 (0x0010) [TArray<FGetGenericDataAllData>]
+  GenericData: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FGetGenericDataAllData>]
   ...RPC_X,
 } as const;
 
@@ -6480,9 +5051,9 @@ export const RPC_GetGenericDataAll_X = {
  * Extends: RPC_X
  */
 export const RPC_GetLeaderboardBase_X = {
-  bDisableCrossPlay: 0x00E8,  // 0x00E8 (0x0004) [bool : 0x1]
-  LeaderboardId: 0x00F0,  // 0x00F0 (0x0010) [FString]
-  Platforms: 0x0100,  // 0x0100 (0x0010) [TArray<FGetLeaderboardPlatformBaseData>]
+  bDisableCrossPlay: 0x00e8n,  // 0x00e8 (0x0004) [bool : 0x1]
+  LeaderboardId: 0x00f0n,  // 0x00f0 (0x0010) [FString]
+  Platforms: 0x0100n,  // 0x0100 (0x0010) [TArray<FGetLeaderboardPlatformBaseData>]
   ...RPC_X,
 } as const;
 
@@ -6492,9 +5063,9 @@ export const RPC_GetLeaderboardBase_X = {
  * Extends: RPC_X
  */
 export const RPC_GetLeaderboardRankForUsersBase_X = {
-  PlayerIds: 0x00E8,  // 0x00E8 (0x0010) [TArray<FUniqueNetId>]
-  LeaderboardId: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  Players: 0x0108,  // 0x0108 (0x0010) [TArray<FGetLeaderboardRankForUserData>]
+  PlayerIds: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FUniqueNetId>]
+  LeaderboardId: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  Players: 0x0108n,  // 0x0108 (0x0010) [TArray<FGetLeaderboardRankForUserData>]
   ...RPC_X,
 } as const;
 
@@ -6504,22 +5075,22 @@ export const RPC_GetLeaderboardRankForUsersBase_X = {
  * Extends: RPC_GetLeaderboardRankForUsersBase_X
  */
 export const RPC_GetLeaderboardRankForUsers_X = {
-  Stat: 0x0118,  // 0x0118 (0x0010) [FString]
+  Stat: 0x0118n,  // 0x0118 (0x0010) [FString]
   ...RPC_GetLeaderboardRankForUsersBase_X,
 } as const;
 
 /**
  * ProjectX.RPC_GetLeaderboardValueForUserBase_X Offsets
- * Size: 0x014C
+ * Size: 0x014c
  * Extends: RPC_X
  */
 export const RPC_GetLeaderboardValueForUserBase_X = {
-  PlayerID: 0x00E8,  // 0x00E8 (0x0048) [FUniqueNetId]
-  LeaderboardId: 0x0130,  // 0x0130 (0x0010) [FString]
-  bHasSkill: 0x0140,  // 0x0140 (0x0004) [bool : 0x1]
-  bHasValue: 0x0140,  // 0x0140 (0x0004) [bool : 0x2]
-  Value: 0x0144,  // 0x0144 (0x0004) [int32]
-  MMR: 0x0148,  // 0x0148 (0x0004) [float]
+  PlayerID: 0x00e8n,  // 0x00e8 (0x0048) [FUniqueNetId]
+  LeaderboardId: 0x0130n,  // 0x0130 (0x0010) [FString]
+  bHasSkill: 0x0140n,  // 0x0140 (0x0004) [bool : 0x1]
+  bHasValue: 0x0140n,  // 0x0140 (0x0004) [bool : 0x2]
+  Value: 0x0144n,  // 0x0144 (0x0004) [int32]
+  MMR: 0x0148n,  // 0x0148 (0x0004) [float]
   ...RPC_X,
 } as const;
 
@@ -6529,7 +5100,7 @@ export const RPC_GetLeaderboardValueForUserBase_X = {
  * Extends: RPC_GetLeaderboardValueForUserBase_X
  */
 export const RPC_GetLeaderboardValueForUser_X = {
-  Stat: 0x0150,  // 0x0150 (0x0010) [FString]
+  Stat: 0x0150n,  // 0x0150 (0x0010) [FString]
   ...RPC_GetLeaderboardValueForUserBase_X,
 } as const;
 
@@ -6539,7 +5110,7 @@ export const RPC_GetLeaderboardValueForUser_X = {
  * Extends: RPC_GetLeaderboardBase_X
  */
 export const RPC_GetLeaderboard_X = {
-  Stat: 0x0110,  // 0x0110 (0x0010) [FString]
+  Stat: 0x0110n,  // 0x0110 (0x0010) [FString]
   ...RPC_GetLeaderboardBase_X,
 } as const;
 
@@ -6549,8 +5120,8 @@ export const RPC_GetLeaderboard_X = {
  * Extends: RPC_X
  */
 export const RPC_GetPartyMemberSkill_X = {
-  PlayerIds: 0x00E8,  // 0x00E8 (0x0010) [TArray<FUniqueNetId>]
-  Players: 0x00F8,  // 0x00F8 (0x0010) [TArray<FPartyMemberSkill>]
+  PlayerIds: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FUniqueNetId>]
+  Players: 0x00f8n,  // 0x00f8 (0x0010) [TArray<FPartyMemberSkill>]
   ...RPC_X,
 } as const;
 
@@ -6560,7 +5131,7 @@ export const RPC_GetPartyMemberSkill_X = {
  * Extends: RPC_ClubDetailsBase_X
  */
 export const RPC_GetPlayerClubDetails_X = {
-  PlayerID: 0x00F8,  // 0x00F8 (0x0048) [FUniqueNetId]
+  PlayerID: 0x00f8n,  // 0x00f8 (0x0048) [FUniqueNetId]
   ...RPC_ClubDetailsBase_X,
 } as const;
 
@@ -6570,8 +5141,8 @@ export const RPC_GetPlayerClubDetails_X = {
  * Extends: RPC_X
  */
 export const RPC_GetPlayerPermissions_X = {
-  PlayerIds: 0x00E8,  // 0x00E8 (0x0010) [TArray<FUniqueNetId>]
-  PlayerPermissions: 0x00F8,  // 0x00F8 (0x0010) [TArray<FPlayerPermissionsReponse>]
+  PlayerIds: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FUniqueNetId>]
+  PlayerPermissions: 0x00f8n,  // 0x00f8 (0x0010) [TArray<FPlayerPermissionsReponse>]
   ...RPC_X,
 } as const;
 
@@ -6581,9 +5152,9 @@ export const RPC_GetPlayerPermissions_X = {
  * Extends: RPC_X
  */
 export const RPC_GetPlayerSkill_X = {
-  PlayerID: 0x00E8,  // 0x00E8 (0x0048) [FUniqueNetId]
-  Skills: 0x0130,  // 0x0130 (0x0010) [TArray<FPlayerSkillRating>]
-  RewardLevels: 0x0140,  // 0x0140 (0x0050) [FPlayerSeasonRewardProgress]
+  PlayerID: 0x00e8n,  // 0x00e8 (0x0048) [FUniqueNetId]
+  Skills: 0x0130n,  // 0x0130 (0x0010) [TArray<FPlayerSkillRating>]
+  RewardLevels: 0x0140n,  // 0x0140 (0x0050) [FPlayerSeasonRewardProgress]
   ...RPC_X,
 } as const;
 
@@ -6593,38 +5164,38 @@ export const RPC_GetPlayerSkill_X = {
  * Extends: RPC_X
  */
 export const RPC_GetPlayerTitles_X = {
-  PlayerID: 0x00E8,  // 0x00E8 (0x0048) [FUniqueNetId]
-  Titles: 0x0130,  // 0x0130 (0x0010) [TArray<FString>]
+  PlayerID: 0x00e8n,  // 0x00e8 (0x0048) [FUniqueNetId]
+  Titles: 0x0130n,  // 0x0130 (0x0010) [TArray<FString>]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_GetPopulation_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: RPC_X
  */
 export const RPC_GetPopulation_X = {
-  Playlists: 0x00E8,  // 0x00E8 (0x0010) [TArray<FGetPopulationData>]
+  Playlists: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FGetPopulationData>]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_GetPublicIP_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: RPC_X
  */
 export const RPC_GetPublicIP_X = {
-  IP: 0x00E8,  // 0x00E8 (0x0010) [FString]
+  IP: 0x00e8n,  // 0x00e8 (0x0010) [FString]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_GetSkillLeaderboardRankForUsers_X Offsets
- * Size: 0x011C
+ * Size: 0x011c
  * Extends: RPC_GetLeaderboardRankForUsersBase_X
  */
 export const RPC_GetSkillLeaderboardRankForUsers_X = {
-  Playlist: 0x0118,  // 0x0118 (0x0004) [int32]
+  Playlist: 0x0118n,  // 0x0118 (0x0004) [int32]
   ...RPC_GetLeaderboardRankForUsersBase_X,
 } as const;
 
@@ -6634,7 +5205,7 @@ export const RPC_GetSkillLeaderboardRankForUsers_X = {
  * Extends: RPC_GetLeaderboardValueForUserBase_X
  */
 export const RPC_GetSkillLeaderboardValueForUser_X = {
-  Playlist: 0x0150,  // 0x0150 (0x0004) [int32]
+  Playlist: 0x0150n,  // 0x0150 (0x0004) [int32]
   ...RPC_GetLeaderboardValueForUserBase_X,
 } as const;
 
@@ -6644,7 +5215,7 @@ export const RPC_GetSkillLeaderboardValueForUser_X = {
  * Extends: RPC_GetLeaderboardBase_X
  */
 export const RPC_GetSkillLeaderboard_X = {
-  Playlist: 0x0110,  // 0x0110 (0x0004) [int32]
+  Playlist: 0x0110n,  // 0x0110 (0x0004) [int32]
   ...RPC_GetLeaderboardBase_X,
 } as const;
 
@@ -6654,8 +5225,8 @@ export const RPC_GetSkillLeaderboard_X = {
  * Extends: RPC_X
  */
 export const RPC_GetSubRegions_X = {
-  RequestRegions: 0x00E8,  // 0x00E8 (0x0010) [TArray<FRegionSecret>]
-  Regions: 0x00F8,  // 0x00F8 (0x0010) [TArray<FSuperRegionData>]
+  RequestRegions: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FRegionSecret>]
+  Regions: 0x00f8n,  // 0x00f8 (0x0010) [TArray<FSuperRegionData>]
   ...RPC_X,
 } as const;
 
@@ -6665,7 +5236,7 @@ export const RPC_GetSubRegions_X = {
  * Extends: RPC_X
  */
 export const RPC_InviteToClub_X = {
-  PlayerID: 0x00E8,  // 0x00E8 (0x0048) [FUniqueNetId]
+  PlayerID: 0x00e8n,  // 0x00e8 (0x0048) [FUniqueNetId]
   ...RPC_X,
 } as const;
 
@@ -6675,15 +5246,15 @@ export const RPC_InviteToClub_X = {
  * Extends: RPC_X
  */
 export const RPC_JoinMatch_X = {
-  JoinType: 0x00E8,  // 0x00E8 (0x0008) [FName]
-  ServerName: 0x00F0,  // 0x00F0 (0x0010) [FString]
-  Password: 0x0100,  // 0x0100 (0x0010) [FString]
+  JoinType: 0x00e8n,  // 0x00e8 (0x0008) [FName]
+  ServerName: 0x00f0n,  // 0x00f0 (0x0010) [FString]
+  Password: 0x0100n,  // 0x0100 (0x0010) [FString]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_LeaveClub_X Offsets
- * Size: 0x00E8
+ * Size: 0x00e8
  * Extends: RPC_X
  */
 export const RPC_LeaveClub_X = {
@@ -6696,29 +5267,29 @@ export const RPC_LeaveClub_X = {
  * Extends: RPC_X
  */
 export const RPC_LoginAuthPlayer_X = {
-  Platform: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  PlayerName: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  PlayerID: 0x0108,  // 0x0108 (0x0010) [FString]
-  Language: 0x0118,  // 0x0118 (0x0010) [FString]
-  AuthTicket: 0x0128,  // 0x0128 (0x0010) [FString]
-  BuildRegion: 0x0138,  // 0x0138 (0x0010) [FString]
-  FeatureSet: 0x0148,  // 0x0148 (0x0008) [FName]
-  Device: 0x0150,  // 0x0150 (0x0010) [FString]
-  LocalFirstPlayerID: 0x0160,  // 0x0160 (0x0010) [FString]
-  bSkipAuth: 0x0170,  // 0x0170 (0x0004) [bool : 0x1]
-  bSetAsPrimaryAccount: 0x0170,  // 0x0170 (0x0004) [bool : 0x2]
-  UseWebSocket: 0x0170,  // 0x0170 (0x0004) [bool : 0x4]
-  IsLastChanceAuthBan: 0x0170,  // 0x0170 (0x0004) [bool : 0x8]
-  EpicAuthTicket: 0x0178,  // 0x0178 (0x0010) [FString]
-  EpicAccountId: 0x0188,  // 0x0188 (0x0010) [FString]
-  SessionId: 0x0198,  // 0x0198 (0x0010) [FString]
-  PsyToken: 0x01A8,  // 0x01A8 (0x0010) [FString]
-  BanMessage: 0x01B8,  // 0x01B8 (0x0008) [UBanMessage_X*]
-  VerifiedPlayerName: 0x01C0,  // 0x01C0 (0x0010) [FString]
-  PerConURL: 0x01D0,  // 0x01D0 (0x0010) [FString]
-  PerConURLv2: 0x01E0,  // 0x01E0 (0x0010) [FString]
-  CountryRestrictions: 0x01F0,  // 0x01F0 (0x0010) [TArray<FName>]
-  EulaResetCounter: 0x0200,  // 0x0200 (0x0004) [int32]
+  Platform: 0x00e8n,  // 0x00e8 (0x0010) [FString]
+  PlayerName: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  PlayerID: 0x0108n,  // 0x0108 (0x0010) [FString]
+  Language: 0x0118n,  // 0x0118 (0x0010) [FString]
+  AuthTicket: 0x0128n,  // 0x0128 (0x0010) [FString]
+  BuildRegion: 0x0138n,  // 0x0138 (0x0010) [FString]
+  FeatureSet: 0x0148n,  // 0x0148 (0x0008) [FName]
+  Device: 0x0150n,  // 0x0150 (0x0010) [FString]
+  LocalFirstPlayerID: 0x0160n,  // 0x0160 (0x0010) [FString]
+  bSkipAuth: 0x0170n,  // 0x0170 (0x0004) [bool : 0x1]
+  bSetAsPrimaryAccount: 0x0170n,  // 0x0170 (0x0004) [bool : 0x2]
+  UseWebSocket: 0x0170n,  // 0x0170 (0x0004) [bool : 0x4]
+  IsLastChanceAuthBan: 0x0170n,  // 0x0170 (0x0004) [bool : 0x8]
+  EpicAuthTicket: 0x0178n,  // 0x0178 (0x0010) [FString]
+  EpicAccountId: 0x0188n,  // 0x0188 (0x0010) [FString]
+  SessionId: 0x0198n,  // 0x0198 (0x0010) [FString]
+  PsyToken: 0x01a8n,  // 0x01a8 (0x0010) [FString]
+  BanMessage: 0x01b8n,  // 0x01b8 (0x0008) [UBanMessage_X*]
+  VerifiedPlayerName: 0x01c0n,  // 0x01c0 (0x0010) [FString]
+  PerConURL: 0x01d0n,  // 0x01d0 (0x0010) [FString]
+  PerConURLv2: 0x01e0n,  // 0x01e0 (0x0010) [FString]
+  CountryRestrictions: 0x01f0n,  // 0x01f0 (0x0010) [TArray<FName>]
+  EulaResetCounter: 0x0200n,  // 0x0200 (0x0004) [int32]
   ...RPC_X,
 } as const;
 
@@ -6728,29 +5299,29 @@ export const RPC_LoginAuthPlayer_X = {
  * Extends: RPC_X
  */
 export const RPC_PartyAcceptJoinRequest_X = {
-  PlayerID: 0x00E8,  // 0x00E8 (0x0048) [FUniqueNetId]
+  PlayerID: 0x00e8n,  // 0x00e8 (0x0048) [FUniqueNetId]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_PartyBase_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: RPC_X
  */
 export const RPC_PartyBase_X = {
-  PartyID: 0x00E8,  // 0x00E8 (0x0010) [FString]
+  PartyID: 0x00e8n,  // 0x00e8 (0x0010) [FString]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_PartyChangeOwner_X Offsets
- * Size: 0x01C0
+ * Size: 0x01c0
  * Extends: RPC_PartyBase_X
  */
 export const RPC_PartyChangeOwner_X = {
-  NewOwnerId: 0x00F8,  // 0x00F8 (0x0048) [FUniqueNetId]
-  Info: 0x0140,  // 0x0140 (0x0070) [FPsyNetPartyInfo]
-  Members: 0x01B0,  // 0x01B0 (0x0010) [TArray<FPsyNetPartyMember>]
+  NewOwnerId: 0x00f8n,  // 0x00f8 (0x0048) [FUniqueNetId]
+  Info: 0x0140n,  // 0x0140 (0x0070) [FPsyNetPartyInfo]
+  Members: 0x01b0n,  // 0x01b0 (0x0010) [TArray<FPsyNetPartyMember>]
   ...RPC_PartyBase_X,
 } as const;
 
@@ -6760,7 +5331,7 @@ export const RPC_PartyChangeOwner_X = {
  * Extends: RPC_PartyBase_X
  */
 export const RPC_PartyChat_X = {
-  Message: 0x00F8,  // 0x00F8 (0x0010) [FString]
+  Message: 0x00f8n,  // 0x00f8 (0x0010) [FString]
   ...RPC_PartyBase_X,
 } as const;
 
@@ -6770,9 +5341,9 @@ export const RPC_PartyChat_X = {
  * Extends: RPC_X
  */
 export const RPC_PartyCreate_X = {
-  bForcePartyonix: 0x00E8,  // 0x00E8 (0x0004) [bool : 0x1]
-  Info: 0x00F0,  // 0x00F0 (0x0070) [FPsyNetPartyInfo]
-  Members: 0x0160,  // 0x0160 (0x0010) [TArray<FPsyNetPartyMember>]
+  bForcePartyonix: 0x00e8n,  // 0x00e8 (0x0004) [bool : 0x1]
+  Info: 0x00f0n,  // 0x00f0 (0x0070) [FPsyNetPartyInfo]
+  Members: 0x0160n,  // 0x0160 (0x0010) [TArray<FPsyNetPartyMember>]
   ...RPC_X,
 } as const;
 
@@ -6782,8 +5353,8 @@ export const RPC_PartyCreate_X = {
  * Extends: RPC_X
  */
 export const RPC_PartyInfo_X = {
-  Invites: 0x00E8,  // 0x00E8 (0x0010) [TArray<FPartyInvite>]
-  Member: 0x00F8,  // 0x00F8 (0x0080) [FPsyNetPartyMember]
+  Invites: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FPartyInvite>]
+  Member: 0x00f8n,  // 0x00f8 (0x0080) [FPsyNetPartyMember]
   ...RPC_X,
 } as const;
 
@@ -6793,9 +5364,9 @@ export const RPC_PartyInfo_X = {
  * Extends: RPC_PartyBase_X
  */
 export const RPC_PartyJoin_X = {
-  JoinID: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  Info: 0x0108,  // 0x0108 (0x0070) [FPsyNetPartyInfo]
-  Members: 0x0178,  // 0x0178 (0x0010) [TArray<FPsyNetPartyMember>]
+  JoinID: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  Info: 0x0108n,  // 0x0108 (0x0070) [FPsyNetPartyInfo]
+  Members: 0x0178n,  // 0x0178 (0x0010) [TArray<FPsyNetPartyMember>]
   ...RPC_PartyBase_X,
 } as const;
 
@@ -6805,14 +5376,14 @@ export const RPC_PartyJoin_X = {
  * Extends: RPC_PartyBase_X
  */
 export const RPC_PartyKickMember_X = {
-  Members: 0x00F8,  // 0x00F8 (0x0010) [TArray<FString>]
-  KickReason: 0x0108,  // 0x0108 (0x0001) [ELobbyKickReason]
+  Members: 0x00f8n,  // 0x00f8 (0x0010) [TArray<FString>]
+  KickReason: 0x0108n,  // 0x0108 (0x0001) [ELobbyKickReason]
   ...RPC_PartyBase_X,
 } as const;
 
 /**
  * ProjectX.RPC_PartyLeave_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: RPC_PartyBase_X
  */
 export const RPC_PartyLeave_X = {
@@ -6825,7 +5396,7 @@ export const RPC_PartyLeave_X = {
  * Extends: RPC_PartyBase_X
  */
 export const RPC_PartyMessage_X = {
-  Message: 0x00F8,  // 0x00F8 (0x0010) [FString]
+  Message: 0x00f8n,  // 0x00f8 (0x0010) [FString]
   ...RPC_PartyBase_X,
 } as const;
 
@@ -6835,7 +5406,7 @@ export const RPC_PartyMessage_X = {
  * Extends: RPC_PartyBase_X
  */
 export const RPC_PartySendInvite_X = {
-  InviteeID: 0x00F8,  // 0x00F8 (0x0048) [FUniqueNetId]
+  InviteeID: 0x00f8n,  // 0x00f8 (0x0048) [FUniqueNetId]
   ...RPC_PartyBase_X,
 } as const;
 
@@ -6845,13 +5416,13 @@ export const RPC_PartySendInvite_X = {
  * Extends: RPC_X
  */
 export const RPC_PartySendJoinRequest_X = {
-  PlayerID: 0x00E8,  // 0x00E8 (0x0048) [FUniqueNetId]
+  PlayerID: 0x00e8n,  // 0x00e8 (0x0048) [FUniqueNetId]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_PlayerCancelMatchmaking_X Offsets
- * Size: 0x00E8
+ * Size: 0x00e8
  * Extends: RPC_X
  */
 export const RPC_PlayerCancelMatchmaking_X = {
@@ -6860,12 +5431,12 @@ export const RPC_PlayerCancelMatchmaking_X = {
 
 /**
  * ProjectX.RPC_PlayerSearchPrivateMatch_X Offsets
- * Size: 0x00FC
+ * Size: 0x00fc
  * Extends: RPC_X
  */
 export const RPC_PlayerSearchPrivateMatch_X = {
-  Region: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  PlaylistId: 0x00F8,  // 0x00F8 (0x0004) [int32]
+  Region: 0x00e8n,  // 0x00e8 (0x0010) [FString]
+  PlaylistId: 0x00f8n,  // 0x00f8 (0x0004) [int32]
   ...RPC_X,
 } as const;
 
@@ -6875,9 +5446,9 @@ export const RPC_PlayerSearchPrivateMatch_X = {
  * Extends: RPC_X
  */
 export const RPC_PlayerStorageGet_X = {
-  PlayerID: 0x00E8,  // 0x00E8 (0x0048) [FUniqueNetId]
-  Items: 0x0130,  // 0x0130 (0x0010) [TArray<FGetPlayerStorageRequestItem>]
-  Result: 0x0140,  // 0x0140 (0x0008) [UGetPlayerStorageResult_X*]
+  PlayerID: 0x00e8n,  // 0x00e8 (0x0048) [FUniqueNetId]
+  Items: 0x0130n,  // 0x0130 (0x0010) [TArray<FGetPlayerStorageRequestItem>]
+  Result: 0x0140n,  // 0x0140 (0x0008) [UGetPlayerStorageResult_X*]
   ...RPC_X,
 } as const;
 
@@ -6887,9 +5458,9 @@ export const RPC_PlayerStorageGet_X = {
  * Extends: RPC_X
  */
 export const RPC_PlayerStorageSet_X = {
-  PlayerID: 0x00E8,  // 0x00E8 (0x0048) [FUniqueNetId]
-  Items: 0x0130,  // 0x0130 (0x0010) [TArray<FSetPlayerStorageRequestItem>]
-  Result: 0x0140,  // 0x0140 (0x0008) [USetPlayerStorageResult_X*]
+  PlayerID: 0x00e8n,  // 0x00e8 (0x0048) [FUniqueNetId]
+  Items: 0x0130n,  // 0x0130 (0x0010) [TArray<FSetPlayerStorageRequestItem>]
+  Result: 0x0140n,  // 0x0140 (0x0008) [USetPlayerStorageResult_X*]
   ...RPC_X,
 } as const;
 
@@ -6899,8 +5470,8 @@ export const RPC_PlayerStorageSet_X = {
  * Extends: RPC_X
  */
 export const RPC_PsyNetSendIndividualChat_X = {
-  PlayerID: 0x00E8,  // 0x00E8 (0x0048) [FUniqueNetId]
-  Message: 0x0130,  // 0x0130 (0x0010) [FString]
+  PlayerID: 0x00e8n,  // 0x00e8 (0x0048) [FUniqueNetId]
+  Message: 0x0130n,  // 0x0130 (0x0010) [FString]
   ...RPC_X,
 } as const;
 
@@ -6910,24 +5481,24 @@ export const RPC_PsyNetSendIndividualChat_X = {
  * Extends: RPC_X
  */
 export const RPC_RecordMatchResults_X = {
-  MatchGUID: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  Match: 0x00F8,  // 0x00F8 (0x0028) [FSkillMatchData]
-  MatchName: 0x0120,  // 0x0120 (0x0010) [FString]
-  Winners: 0x0130,  // 0x0130 (0x0010) [TArray<FSkillMatchPlayer>]
-  Losers: 0x0140,  // 0x0140 (0x0010) [TArray<FSkillMatchPlayer>]
-  AppSessionID: 0x0150,  // 0x0150 (0x0010) [FGuid]
-  LevelSessionID: 0x0160,  // 0x0160 (0x0010) [FGuid]
-  bIsBotMatch: 0x0170,  // 0x0170 (0x0004) [bool : 0x1]
+  MatchGUID: 0x00e8n,  // 0x00e8 (0x0010) [FString]
+  Match: 0x00f8n,  // 0x00f8 (0x0028) [FSkillMatchData]
+  MatchName: 0x0120n,  // 0x0120 (0x0010) [FString]
+  Winners: 0x0130n,  // 0x0130 (0x0010) [TArray<FSkillMatchPlayer>]
+  Losers: 0x0140n,  // 0x0140 (0x0010) [TArray<FSkillMatchPlayer>]
+  AppSessionID: 0x0150n,  // 0x0150 (0x0010) [FGuid]
+  LevelSessionID: 0x0160n,  // 0x0160 (0x0010) [FGuid]
+  bIsBotMatch: 0x0170n,  // 0x0170 (0x0004) [bool : 0x1]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_RecordMatch_X Offsets
- * Size: 0x00F0
+ * Size: 0x00f0
  * Extends: RPC_X
  */
 export const RPC_RecordMatch_X = {
-  Match: 0x00E8,  // 0x00E8 (0x0008) [UObject*]
+  Match: 0x00e8n,  // 0x00e8 (0x0008) [UObject*]
   ...RPC_X,
 } as const;
 
@@ -6937,21 +5508,21 @@ export const RPC_RecordMatch_X = {
  * Extends: RPC_X
  */
 export const RPC_RecordMetrics_X = {
-  AppSessionID: 0x00E8,  // 0x00E8 (0x0010) [FGuid]
-  LevelSessionID: 0x00F8,  // 0x00F8 (0x0010) [FGuid]
-  CurrentTimeSeconds: 0x0108,  // 0x0108 (0x0004) [float]
-  FirstEventIndex: 0x010C,  // 0x010C (0x0004) [int32]
-  Events: 0x0110,  // 0x0110 (0x0010) [TArray<FMetricsEvent>]
+  AppSessionID: 0x00e8n,  // 0x00e8 (0x0010) [FGuid]
+  LevelSessionID: 0x00f8n,  // 0x00f8 (0x0010) [FGuid]
+  CurrentTimeSeconds: 0x0108n,  // 0x0108 (0x0004) [float]
+  FirstEventIndex: 0x010cn,  // 0x010c (0x0004) [int32]
+  Events: 0x0110n,  // 0x0110 (0x0010) [TArray<FMetricsEvent>]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_RejectClubInvite_X Offsets
- * Size: 0x00EC
+ * Size: 0x00ec
  * Extends: RPC_X
  */
 export const RPC_RejectClubInvite_X = {
-  ClubID: 0x00E8,  // 0x00E8 (0x0004) [int32]
+  ClubID: 0x00e8n,  // 0x00e8 (0x0004) [int32]
   ...RPC_X,
 } as const;
 
@@ -6961,13 +5532,13 @@ export const RPC_RejectClubInvite_X = {
  * Extends: RPC_X
  */
 export const RPC_RelayToClient_X = {
-  PlayerIds: 0x00E8,  // 0x00E8 (0x0010) [TArray<FString>]
-  ReservationID: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  MessageType: 0x0108,  // 0x0108 (0x0010) [FString]
-  MessagePayload: 0x0118,  // 0x0118 (0x0010) [FString]
-  AllowPartialSuccess: 0x0128,  // 0x0128 (0x0004) [bool : 0x1]
-  QueueOffline: 0x0128,  // 0x0128 (0x0004) [bool : 0x2]
-  OfflineTTLSeconds: 0x012C,  // 0x012C (0x0004) [int32]
+  PlayerIds: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FString>]
+  ReservationID: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  MessageType: 0x0108n,  // 0x0108 (0x0010) [FString]
+  MessagePayload: 0x0118n,  // 0x0118 (0x0010) [FString]
+  AllowPartialSuccess: 0x0128n,  // 0x0128 (0x0004) [bool : 0x1]
+  QueueOffline: 0x0128n,  // 0x0128 (0x0004) [bool : 0x2]
+  OfflineTTLSeconds: 0x012cn,  // 0x012c (0x0004) [int32]
   ...RPC_X,
 } as const;
 
@@ -6977,10 +5548,10 @@ export const RPC_RelayToClient_X = {
  * Extends: RPC_X
  */
 export const RPC_RelayToServer_X = {
-  DSConnectToken: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  ReservationID: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  MessageType: 0x0108,  // 0x0108 (0x0010) [FString]
-  MessagePayload: 0x0118,  // 0x0118 (0x0010) [FString]
+  DSConnectToken: 0x00e8n,  // 0x00e8 (0x0010) [FString]
+  ReservationID: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  MessageType: 0x0108n,  // 0x0108 (0x0010) [FString]
+  MessagePayload: 0x0118n,  // 0x0118 (0x0010) [FString]
   ...RPC_X,
 } as const;
 
@@ -6990,17 +5561,17 @@ export const RPC_RelayToServer_X = {
  * Extends: RPC_ClubDetailsBase_X
  */
 export const RPC_RemoveFromClub_X = {
-  PlayerID: 0x00F8,  // 0x00F8 (0x0048) [FUniqueNetId]
+  PlayerID: 0x00f8n,  // 0x00f8 (0x0048) [FUniqueNetId]
   ...RPC_ClubDetailsBase_X,
 } as const;
 
 /**
  * ProjectX.RPC_RemovePlayerFromRole_X Offsets
- * Size: 0x00EC
+ * Size: 0x00ec
  * Extends: RPC_X
  */
 export const RPC_RemovePlayerFromRole_X = {
-  RoleID: 0x00E8,  // 0x00E8 (0x0004) [int32]
+  RoleID: 0x00e8n,  // 0x00e8 (0x0004) [int32]
   ...RPC_X,
 } as const;
 
@@ -7010,9 +5581,9 @@ export const RPC_RemovePlayerFromRole_X = {
  * Extends: RPC_X
  */
 export const RPC_RemoveQuitter_X = {
-  PlayerID: 0x00E8,  // 0x00E8 (0x0048) [FUniqueNetId]
-  PlaylistId: 0x0130,  // 0x0130 (0x0004) [int32]
-  MatchGUID: 0x0138,  // 0x0138 (0x0010) [FString]
+  PlayerID: 0x00e8n,  // 0x00e8 (0x0048) [FUniqueNetId]
+  PlaylistId: 0x0130n,  // 0x0130 (0x0004) [int32]
+  MatchGUID: 0x0138n,  // 0x0138 (0x0010) [FString]
   ...RPC_X,
 } as const;
 
@@ -7022,10 +5593,10 @@ export const RPC_RemoveQuitter_X = {
  * Extends: RPC_X
  */
 export const RPC_ReportExploiter_X = {
-  PlayerID: 0x00E8,  // 0x00E8 (0x0048) [FUniqueNetId]
-  Reason: 0x0130,  // 0x0130 (0x0001) [EExploitType]
-  MatchGUID: 0x0138,  // 0x0138 (0x0010) [FString]
-  Data: 0x0148,  // 0x0148 (0x0010) [FString]
+  PlayerID: 0x00e8n,  // 0x00e8 (0x0048) [FUniqueNetId]
+  Reason: 0x0130n,  // 0x0130 (0x0001) [EExploitType]
+  MatchGUID: 0x0138n,  // 0x0138 (0x0010) [FString]
+  Data: 0x0148n,  // 0x0148 (0x0010) [FString]
   ...RPC_X,
 } as const;
 
@@ -7035,18 +5606,18 @@ export const RPC_ReportExploiter_X = {
  * Extends: RPC_X
  */
 export const RPC_ReportLowFPS_X = {
-  IP: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  MachineId: 0x00F8,  // 0x00F8 (0x0004) [int32]
-  ServerId: 0x0100,  // 0x0100 (0x0010) [FString]
-  ServerName: 0x0110,  // 0x0110 (0x0010) [FString]
-  NumHumans: 0x0120,  // 0x0120 (0x0004) [int32]
-  NumBots: 0x0124,  // 0x0124 (0x0004) [int32]
+  IP: 0x00e8n,  // 0x00e8 (0x0010) [FString]
+  MachineId: 0x00f8n,  // 0x00f8 (0x0004) [int32]
+  ServerId: 0x0100n,  // 0x0100 (0x0010) [FString]
+  ServerName: 0x0110n,  // 0x0110 (0x0010) [FString]
+  NumHumans: 0x0120n,  // 0x0120 (0x0004) [int32]
+  NumBots: 0x0124n,  // 0x0124 (0x0004) [int32]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_ReservationHeartbeat_X Offsets
- * Size: 0x00E8
+ * Size: 0x00e8
  * Extends: RPC_X
  */
 export const RPC_ReservationHeartbeat_X = {
@@ -7059,9 +5630,9 @@ export const RPC_ReservationHeartbeat_X = {
  * Extends: RPC_X
  */
 export const RPC_ServerToServer_X = {
-  ServerId: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  MessageType: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  MessagePayload: 0x0108,  // 0x0108 (0x0010) [FString]
+  ServerId: 0x00e8n,  // 0x00e8 (0x0010) [FString]
+  MessageType: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  MessagePayload: 0x0108n,  // 0x0108 (0x0010) [FString]
   ...RPC_X,
 } as const;
 
@@ -7071,7 +5642,7 @@ export const RPC_ServerToServer_X = {
  * Extends: RPC_CreateClub_X
  */
 export const RPC_SetClubMotD_X = {
-  Text: 0x0120,  // 0x0120 (0x0010) [FString]
+  Text: 0x0120n,  // 0x0120 (0x0010) [FString]
   ...RPC_CreateClub_X,
 } as const;
 
@@ -7081,7 +5652,7 @@ export const RPC_SetClubMotD_X = {
  * Extends: RPC_ClubDetailsBase_X
  */
 export const RPC_SetClubOwner_X = {
-  PlayerID: 0x00F8,  // 0x00F8 (0x0048) [FUniqueNetId]
+  PlayerID: 0x00f8n,  // 0x00f8 (0x0048) [FUniqueNetId]
   ...RPC_ClubDetailsBase_X,
 } as const;
 
@@ -7091,33 +5662,33 @@ export const RPC_SetClubOwner_X = {
  * Extends: RPC_ClubDetailsBase_X
  */
 export const RPC_SetClubRole_X = {
-  PlayerID: 0x00F8,  // 0x00F8 (0x0048) [FUniqueNetId]
-  RoleID: 0x0140,  // 0x0140 (0x0001) [EClubRole]
+  PlayerID: 0x00f8n,  // 0x00f8 (0x0048) [FUniqueNetId]
+  RoleID: 0x0140n,  // 0x0140 (0x0001) [EClubRole]
   ...RPC_ClubDetailsBase_X,
 } as const;
 
 /**
  * ProjectX.RPC_SetPlayerSkillTier_X Offsets
- * Size: 0x00F4
+ * Size: 0x00f4
  * Extends: RPC_X
  */
 export const RPC_SetPlayerSkillTier_X = {
-  Playlist: 0x00E8,  // 0x00E8 (0x0004) [int32]
-  Tier: 0x00EC,  // 0x00EC (0x0004) [int32]
-  MatchesPlayed: 0x00F0,  // 0x00F0 (0x0004) [int32]
+  Playlist: 0x00e8n,  // 0x00e8 (0x0004) [int32]
+  Tier: 0x00ecn,  // 0x00ec (0x0004) [int32]
+  MatchesPlayed: 0x00f0n,  // 0x00f0 (0x0004) [int32]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_SetPlayerSkill_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: RPC_X
  */
 export const RPC_SetPlayerSkill_X = {
-  Playlist: 0x00E8,  // 0x00E8 (0x0004) [int32]
-  Mu: 0x00EC,  // 0x00EC (0x0004) [float]
-  Sigma: 0x00F0,  // 0x00F0 (0x0004) [float]
-  MatchesPlayed: 0x00F4,  // 0x00F4 (0x0004) [int32]
+  Playlist: 0x00e8n,  // 0x00e8 (0x0004) [int32]
+  Mu: 0x00ecn,  // 0x00ec (0x0004) [float]
+  Sigma: 0x00f0n,  // 0x00f0 (0x0004) [float]
+  MatchesPlayed: 0x00f4n,  // 0x00f4 (0x0004) [int32]
   ...RPC_X,
 } as const;
 
@@ -7127,29 +5698,29 @@ export const RPC_SetPlayerSkill_X = {
  * Extends: RPC_X
  */
 export const RPC_SetRichPresence_X = {
-  PresenceInfo: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  PresenceState: 0x00F8,  // 0x00F8 (0x0010) [FString]
+  PresenceInfo: 0x00e8n,  // 0x00e8 (0x0010) [FString]
+  PresenceState: 0x00f8n,  // 0x00f8 (0x0010) [FString]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_SetSeasonReward_X Offsets
- * Size: 0x00F0
+ * Size: 0x00f0
  * Extends: RPC_X
  */
 export const RPC_SetSeasonReward_X = {
-  SeasonLevel: 0x00E8,  // 0x00E8 (0x0004) [int32]
-  SeasonLevelWins: 0x00EC,  // 0x00EC (0x0004) [int32]
+  SeasonLevel: 0x00e8n,  // 0x00e8 (0x0004) [int32]
+  SeasonLevelWins: 0x00ecn,  // 0x00ec (0x0004) [int32]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_SetServerNotJoinable_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: RPC_X
  */
 export const RPC_SetServerNotJoinable_X = {
-  ServerId: 0x00E8,  // 0x00E8 (0x0010) [FString]
+  ServerId: 0x00e8n,  // 0x00e8 (0x0010) [FString]
   ...RPC_X,
 } as const;
 
@@ -7159,7 +5730,7 @@ export const RPC_SetServerNotJoinable_X = {
  * Extends: RPC_PartyBase_X
  */
 export const RPC_SignedPartyChat_X = {
-  MessageData: 0x00F8,  // 0x00F8 (0x0008) [USignedMessageObject_X*]
+  MessageData: 0x00f8n,  // 0x00f8 (0x0008) [USignedMessageObject_X*]
   ...RPC_PartyBase_X,
 } as const;
 
@@ -7169,15 +5740,15 @@ export const RPC_SignedPartyChat_X = {
  * Extends: RPC_X
  */
 export const RPC_StartMatchmaking_X = {
-  Regions: 0x00E8,  // 0x00E8 (0x0010) [TArray<FDSRegionInfo>]
-  Playlists: 0x00F8,  // 0x00F8 (0x0010) [TArray<int32>]
-  SecondsSearching: 0x0108,  // 0x0108 (0x0004) [int32]
-  CurrentServerID: 0x0110,  // 0x0110 (0x0010) [FString]
-  bDisableCrossPlay: 0x0120,  // 0x0120 (0x0004) [bool : 0x1]
-  PartyID: 0x0128,  // 0x0128 (0x0010) [FString]
-  PartyMembers: 0x0138,  // 0x0138 (0x0010) [TArray<FUniqueNetId>]
-  BannedSecondsRemaining: 0x0148,  // 0x0148 (0x0004) [float]
-  EstimatedQueueTime: 0x014C,  // 0x014C (0x0004) [float]
+  Regions: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FDSRegionInfo>]
+  Playlists: 0x00f8n,  // 0x00f8 (0x0010) [TArray<int32>]
+  SecondsSearching: 0x0108n,  // 0x0108 (0x0004) [int32]
+  CurrentServerID: 0x0110n,  // 0x0110 (0x0010) [FString]
+  bDisableCrossPlay: 0x0120n,  // 0x0120 (0x0004) [bool : 0x1]
+  PartyID: 0x0128n,  // 0x0128 (0x0010) [FString]
+  PartyMembers: 0x0138n,  // 0x0138 (0x0010) [TArray<FUniqueNetId>]
+  BannedSecondsRemaining: 0x0148n,  // 0x0148 (0x0004) [float]
+  EstimatedQueueTime: 0x014cn,  // 0x014c (0x0004) [float]
   ...RPC_X,
 } as const;
 
@@ -7187,8 +5758,8 @@ export const RPC_StartMatchmaking_X = {
  * Extends: RPC_X
  */
 export const RPC_TestPlayerID_X = {
-  PlayerID: 0x00E8,  // 0x00E8 (0x0048) [FUniqueNetId]
-  ResponsePlayerID: 0x0130,  // 0x0130 (0x0048) [FUniqueNetId]
+  PlayerID: 0x00e8n,  // 0x00e8 (0x0048) [FUniqueNetId]
+  ResponsePlayerID: 0x0130n,  // 0x0130 (0x0048) [FUniqueNetId]
   ...RPC_X,
 } as const;
 
@@ -7198,14 +5769,14 @@ export const RPC_TestPlayerID_X = {
  * Extends: RPC_X
  */
 export const RPC_Test_X = {
-  TestParamLocalizedString: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  TestParamString: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  TestParamStruct: 0x0108,  // 0x0108 (0x0088) [FRPCTestParam]
-  TestParamStructs: 0x0190,  // 0x0190 (0x0010) [TArray<FRPCTestParam>]
-  TestResultLocalizedString: 0x01A0,  // 0x01A0 (0x0010) [FString]
-  TestResultString: 0x01B0,  // 0x01B0 (0x0010) [FString]
-  TestResultStruct: 0x01C0,  // 0x01C0 (0x0088) [FRPCTestParam]
-  TestResultStructs: 0x0248,  // 0x0248 (0x0010) [TArray<FRPCTestParam>]
+  TestParamLocalizedString: 0x00e8n,  // 0x00e8 (0x0010) [FString]
+  TestParamString: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  TestParamStruct: 0x0108n,  // 0x0108 (0x0088) [FRPCTestParam]
+  TestParamStructs: 0x0190n,  // 0x0190 (0x0010) [TArray<FRPCTestParam>]
+  TestResultLocalizedString: 0x01a0n,  // 0x01a0 (0x0010) [FString]
+  TestResultString: 0x01b0n,  // 0x01b0 (0x0010) [FString]
+  TestResultStruct: 0x01c0n,  // 0x01c0 (0x0088) [FRPCTestParam]
+  TestResultStructs: 0x0248n,  // 0x0248 (0x0010) [TArray<FRPCTestParam>]
   ...RPC_X,
 } as const;
 
@@ -7215,8 +5786,8 @@ export const RPC_Test_X = {
  * Extends: RPC_ClubDetailsBase_X
  */
 export const RPC_UpdateClubColors_X = {
-  PrimaryColor: 0x00F8,  // 0x00F8 (0x0004) [int32]
-  AccentColor: 0x00FC,  // 0x00FC (0x0004) [int32]
+  PrimaryColor: 0x00f8n,  // 0x00f8 (0x0004) [int32]
+  AccentColor: 0x00fcn,  // 0x00fc (0x0004) [int32]
   ...RPC_ClubDetailsBase_X,
 } as const;
 
@@ -7226,8 +5797,8 @@ export const RPC_UpdateClubColors_X = {
  * Extends: RPC_ClubDetailsBase_X
  */
 export const RPC_UpdateClubName_X = {
-  ClubName: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  ClubTag: 0x0108,  // 0x0108 (0x0010) [FString]
+  ClubName: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  ClubTag: 0x0108n,  // 0x0108 (0x0010) [FString]
   ...RPC_ClubDetailsBase_X,
 } as const;
 
@@ -7237,7 +5808,7 @@ export const RPC_UpdateClubName_X = {
  * Extends: RPC_ClubDetailsBase_X
  */
 export const RPC_UpdateClubTitle_X = {
-  EquippedTitle: 0x00F8,  // 0x00F8 (0x0008) [FName]
+  EquippedTitle: 0x00f8n,  // 0x00f8 (0x0008) [FName]
   ...RPC_ClubDetailsBase_X,
 } as const;
 
@@ -7252,87 +5823,68 @@ export const RPC_UpdateClub_X = {
 
 /**
  * ProjectX.RPC_UpdateGameServer_X Offsets
- * Size: 0x018C
+ * Size: 0x018c
  * Extends: RPC_X
  */
 export const RPC_UpdateGameServer_X = {
-  ServerId: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  Playlist: 0x00F8,  // 0x00F8 (0x0004) [int32]
-  MaxPlayers: 0x00FC,  // 0x00FC (0x0004) [int32]
-  NumPlayersTeam1: 0x0100,  // 0x0100 (0x0004) [int32]
-  NumPlayersTeam2: 0x0104,  // 0x0104 (0x0004) [int32]
-  ReservationsTeam1: 0x0108,  // 0x0108 (0x0004) [int32]
-  ReservationsTeam2: 0x010C,  // 0x010C (0x0004) [int32]
-  bIsPostGame: 0x0110,  // 0x0110 (0x0004) [bool : 0x1]
-  bIsBotMatch: 0x0110,  // 0x0110 (0x0004) [bool : 0x2]
-  TimeRemaining: 0x0114,  // 0x0114 (0x0004) [int32]
-  ExclusivePlatform: 0x0118,  // 0x0118 (0x0010) [FString]
-  PlayersPlatforms: 0x0128,  // 0x0128 (0x0010) [TArray<FString>]
-  PlayerIds: 0x0138,  // 0x0138 (0x0010) [TArray<FUniqueNetId>]
-  AbandonedPlayerIDs: 0x0148,  // 0x0148 (0x0010) [TArray<FUniqueNetId>]
-  CustomServerName: 0x0158,  // 0x0158 (0x0010) [FString]
-  CustomServerPassword: 0x0168,  // 0x0168 (0x0010) [FString]
-  ScoreTeam1: 0x0178,  // 0x0178 (0x0004) [int32]
-  ScoreTeam2: 0x017C,  // 0x017C (0x0004) [int32]
-  NumTeam1BackfillPlayers: 0x0180,  // 0x0180 (0x0004) [int32]
-  NumTeam2BackfillPlayers: 0x0184,  // 0x0184 (0x0004) [int32]
-  ClubID: 0x0188,  // 0x0188 (0x0004) [int32]
+  ServerId: 0x00e8n,  // 0x00e8 (0x0010) [FString]
+  Playlist: 0x00f8n,  // 0x00f8 (0x0004) [int32]
+  MaxPlayers: 0x00fcn,  // 0x00fc (0x0004) [int32]
+  NumPlayersTeam1: 0x0100n,  // 0x0100 (0x0004) [int32]
+  NumPlayersTeam2: 0x0104n,  // 0x0104 (0x0004) [int32]
+  ReservationsTeam1: 0x0108n,  // 0x0108 (0x0004) [int32]
+  ReservationsTeam2: 0x010cn,  // 0x010c (0x0004) [int32]
+  bIsPostGame: 0x0110n,  // 0x0110 (0x0004) [bool : 0x1]
+  bIsBotMatch: 0x0110n,  // 0x0110 (0x0004) [bool : 0x2]
+  TimeRemaining: 0x0114n,  // 0x0114 (0x0004) [int32]
+  ExclusivePlatform: 0x0118n,  // 0x0118 (0x0010) [FString]
+  PlayersPlatforms: 0x0128n,  // 0x0128 (0x0010) [TArray<FString>]
+  PlayerIds: 0x0138n,  // 0x0138 (0x0010) [TArray<FUniqueNetId>]
+  AbandonedPlayerIDs: 0x0148n,  // 0x0148 (0x0010) [TArray<FUniqueNetId>]
+  CustomServerName: 0x0158n,  // 0x0158 (0x0010) [FString]
+  CustomServerPassword: 0x0168n,  // 0x0168 (0x0010) [FString]
+  ScoreTeam1: 0x0178n,  // 0x0178 (0x0004) [int32]
+  ScoreTeam2: 0x017cn,  // 0x017c (0x0004) [int32]
+  NumTeam1BackfillPlayers: 0x0180n,  // 0x0180 (0x0004) [int32]
+  NumTeam2BackfillPlayers: 0x0184n,  // 0x0184 (0x0004) [int32]
+  ClubID: 0x0188n,  // 0x0188 (0x0004) [int32]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_UpdateLeaderboard_X Offsets
- * Size: 0x010C
+ * Size: 0x010c
  * Extends: RPC_X
  */
 export const RPC_UpdateLeaderboard_X = {
-  Updates: 0x00E8,  // 0x00E8 (0x0010) [TArray<FUploadStatDataSet>]
-  MatchGUID: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  PlaylistId: 0x0108,  // 0x0108 (0x0004) [int32]
+  Updates: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FUploadStatDataSet>]
+  MatchGUID: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  PlaylistId: 0x0108n,  // 0x0108 (0x0004) [int32]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_UpdatePlayerPlaylist_X Offsets
- * Size: 0x00F0
+ * Size: 0x00f0
  * Extends: RPC_X
  */
 export const RPC_UpdatePlayerPlaylist_X = {
-  Playlist: 0x00E8,  // 0x00E8 (0x0004) [int32]
-  NumLocalPlayers: 0x00EC,  // 0x00EC (0x0004) [int32]
+  Playlist: 0x00e8n,  // 0x00e8 (0x0004) [int32]
+  NumLocalPlayers: 0x00ecn,  // 0x00ec (0x0004) [int32]
   ...RPC_X,
 } as const;
 
 /**
  * ProjectX.RPC_UpdateSkills_X Offsets
- * Size: 0x01A8
+ * Size: 0x01a8
  * Extends: RPC_RecordMatchResults_X
  */
 export const RPC_UpdateSkills_X = {
-  Playlist: 0x0178,  // 0x0178 (0x0004) [int32]
-  NewSkills: 0x0180,  // 0x0180 (0x0010) [TArray<FUpdatedPlayerSkillRating>]
-  NewRewardLevels: 0x0190,  // 0x0190 (0x0010) [TArray<FPlayerSeasonRewardProgress>]
-  MatchData: 0x01A0,  // 0x01A0 (0x0008) [UMatchData_X*]
+  Playlist: 0x0178n,  // 0x0178 (0x0004) [int32]
+  NewSkills: 0x0180n,  // 0x0180 (0x0010) [TArray<FUpdatedPlayerSkillRating>]
+  NewRewardLevels: 0x0190n,  // 0x0190 (0x0010) [TArray<FPlayerSeasonRewardProgress>]
+  MatchData: 0x01a0n,  // 0x01a0 (0x0008) [UMatchData_X*]
   ...RPC_RecordMatchResults_X,
-} as const;
-
-/**
- * Engine.RadialBlurComponent Offsets
- * Size: 0x0110
- * Extends: ActorComponent
- */
-export const RadialBlurComponent = {
-  Material: 0x00A0,  // 0x00A0 (0x0008) [UMaterialInterface*]
-  DepthPriorityGroup: 0x00A8,  // 0x00A8 (0x0001) [ESceneDepthPriorityGroup]
-  BlurScale: 0x00AC,  // 0x00AC (0x0004) [float]
-  BlurFalloffExponent: 0x00B0,  // 0x00B0 (0x0004) [float]
-  BlurOpacity: 0x00B4,  // 0x00B4 (0x0004) [float]
-  MaxCullDistance: 0x00B8,  // 0x00B8 (0x0004) [float]
-  DistanceFalloffExponent: 0x00BC,  // 0x00BC (0x0004) [float]
-  bRenderAsVelocity: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x1]
-  bEnabled: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x2]
-  LocalToWorld: 0x00D0,  // 0x00D0 (0x0040) [FMatrix]
-  ...ActorComponent,
 } as const;
 
 /**
@@ -7341,8 +5893,8 @@ export const RadialBlurComponent = {
  * Extends: RadialBlurComponent
  */
 export const RadialBlurComponent_X = {
-  FadeTime: 0x0110,  // 0x0110 (0x0004) [float]
-  FadeFalloff: 0x0114,  // 0x0114 (0x0004) [float]
+  FadeTime: 0x0110n,  // 0x0110 (0x0004) [float]
+  FadeFalloff: 0x0114n,  // 0x0114 (0x0004) [float]
   ...RadialBlurComponent,
 } as const;
 
@@ -7352,26 +5904,26 @@ export const RadialBlurComponent_X = {
  * Extends: Object
  */
 export const RandomStream_X = {
-  Stream: 0x0060,  // 0x0060 (0x0004) [FRandomStream_Mirror]
-  CurrentSeed: 0x0064,  // 0x0064 (0x0004) [int32]
+  Stream: 0x0060n,  // 0x0060 (0x0004) [FRandomStream_Mirror]
+  CurrentSeed: 0x0064n,  // 0x0064 (0x0004) [int32]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.RankedConfig_X Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: OnlineConfig_X
  */
 export const RankedConfig_X = {
-  ReconnectTimeoutSeconds: 0x0078,  // 0x0078 (0x0004) [int32]
-  SkillTierToSeasonRewardLevel: 0x0080,  // 0x0080 (0x0010) [TArray<int32>]
-  SeasonRewardRequiredWinsPerLevel: 0x0090,  // 0x0090 (0x0010) [TArray<int32>]
-  bCheckReservationID: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x1]
-  SeasonEndTimeSeconds: 0x00A8,  // 0x00A8 (0x0008) [uint64]
-  MaximumRankDisparity: 0x00B0,  // 0x00B0 (0x0004) [int32]
-  PlacementMatchesNeededToReceiveRank: 0x00B4,  // 0x00B4 (0x0004) [int32]
-  HighestTierNewPlayersCanPlayWith: 0x00B8,  // 0x00B8 (0x0004) [int32]
-  HighestMuNewPlayersCanHave: 0x00BC,  // 0x00BC (0x0004) [int32]
+  ReconnectTimeoutSeconds: 0x0078n,  // 0x0078 (0x0004) [int32]
+  SkillTierToSeasonRewardLevel: 0x0080n,  // 0x0080 (0x0010) [TArray<int32>]
+  SeasonRewardRequiredWinsPerLevel: 0x0090n,  // 0x0090 (0x0010) [TArray<int32>]
+  bCheckReservationID: 0x00a0n,  // 0x00a0 (0x0004) [bool : 0x1]
+  SeasonEndTimeSeconds: 0x00a8n,  // 0x00a8 (0x0008) [uint64]
+  MaximumRankDisparity: 0x00b0n,  // 0x00b0 (0x0004) [int32]
+  PlacementMatchesNeededToReceiveRank: 0x00b4n,  // 0x00b4 (0x0004) [int32]
+  HighestTierNewPlayersCanPlayWith: 0x00b8n,  // 0x00b8 (0x0004) [int32]
+  HighestMuNewPlayersCanHave: 0x00bcn,  // 0x00bc (0x0004) [int32]
   ...OnlineConfig_X,
 } as const;
 
@@ -7381,8 +5933,8 @@ export const RankedConfig_X = {
  * Extends: OnlineConfig_X
  */
 export const RegionConfig_X = {
-  SuperRegions: 0x0078,  // 0x0078 (0x0010) [TArray<USuperRegion_X*>]
-  Regions: 0x0088,  // 0x0088 (0x0010) [TArray<URegion_X*>]
+  SuperRegions: 0x0078n,  // 0x0078 (0x0010) [TArray<USuperRegion_X*>]
+  Regions: 0x0088n,  // 0x0088 (0x0010) [TArray<URegion_X*>]
   ...OnlineConfig_X,
 } as const;
 
@@ -7392,11 +5944,11 @@ export const RegionConfig_X = {
  * Extends: Object
  */
 export const RegionPingData_X = {
-  Address: 0x0060,  // 0x0060 (0x0008) [FName]
-  PingsSent: 0x0068,  // 0x0068 (0x0004) [int32]
-  PingsReceived: 0x006C,  // 0x006C (0x0004) [int32]
-  LowestPing: 0x0070,  // 0x0070 (0x0004) [float]
-  LastSendTime: 0x0074,  // 0x0074 (0x0004) [float]
+  Address: 0x0060n,  // 0x0060 (0x0008) [FName]
+  PingsSent: 0x0068n,  // 0x0068 (0x0004) [int32]
+  PingsReceived: 0x006cn,  // 0x006c (0x0004) [int32]
+  LowestPing: 0x0070n,  // 0x0070 (0x0004) [float]
+  LastSendTime: 0x0074n,  // 0x0074 (0x0004) [float]
   ...Object_,
 } as const;
 
@@ -7406,7 +5958,7 @@ export const RegionPingData_X = {
  * Extends: Object
  */
 export const RegionPingMessage_X = {
-  bIsResponse: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
+  bIsResponse: 0x0060n,  // 0x0060 (0x0004) [bool : 0x1]
   ...Object_,
 } as const;
 
@@ -7416,115 +5968,115 @@ export const RegionPingMessage_X = {
  * Extends: Object
  */
 export const RegionPing_X = {
-  Region: 0x0060,  // 0x0060 (0x0008) [URegion_X*]
-  RegionID: 0x0068,  // 0x0068 (0x0010) [FString]
-  Address: 0x0078,  // 0x0078 (0x0008) [FName]
-  Connection: 0x0080,  // 0x0080 (0x0008) [UTcpConnection*]
-  PingSendTime: 0x0088,  // 0x0088 (0x0004) [float]
-  Ping: 0x008C,  // 0x008C (0x0004) [float]
-  AvgPing: 0x0090,  // 0x0090 (0x0004) [float]
-  PingCount: 0x0094,  // 0x0094 (0x0004) [int32]
-  PingResult: 0x0098,  // 0x0098 (0x0001) [RegionPingResult]
+  Region: 0x0060n,  // 0x0060 (0x0008) [URegion_X*]
+  RegionID: 0x0068n,  // 0x0068 (0x0010) [FString]
+  Address: 0x0078n,  // 0x0078 (0x0008) [FName]
+  Connection: 0x0080n,  // 0x0080 (0x0008) [UTcpConnection*]
+  PingSendTime: 0x0088n,  // 0x0088 (0x0004) [float]
+  Ping: 0x008cn,  // 0x008c (0x0004) [float]
+  AvgPing: 0x0090n,  // 0x0090 (0x0004) [float]
+  PingCount: 0x0094n,  // 0x0094 (0x0004) [int32]
+  PingResult: 0x0098n,  // 0x0098 (0x0001) [RegionPingResult]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.RegionPinger_X Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: Component
  */
 export const RegionPinger_X = {
-  MaxPing: 0x0070,  // 0x0070 (0x0004) [float]
-  PingsPerRegion: 0x0074,  // 0x0074 (0x0004) [int32]
-  DelayBetweenPings: 0x0078,  // 0x0078 (0x0004) [float]
-  ActivePings: 0x0080,  // 0x0080 (0x0010) [TArray<URegionPingData_X*>]
-  PingBeacon: 0x0090,  // 0x0090 (0x0008) [unknown]
-  TickIndex: 0x0098,  // 0x0098 (0x0004) [int32]
-  PingResults: 0x00A0,  // 0x00A0 (0x0010) [TArray<URegionPingData_X*>]
-  __EventRegionsPinged__Delegate: 0x00B0,  // 0x00B0 (0x0018) [FScriptDelegate]
+  MaxPing: 0x0070n,  // 0x0070 (0x0004) [float]
+  PingsPerRegion: 0x0074n,  // 0x0074 (0x0004) [int32]
+  DelayBetweenPings: 0x0078n,  // 0x0078 (0x0004) [float]
+  ActivePings: 0x0080n,  // 0x0080 (0x0010) [TArray<URegionPingData_X*>]
+  PingBeacon: 0x0090n,  // 0x0090 (0x0008) [unknown]
+  TickIndex: 0x0098n,  // 0x0098 (0x0004) [int32]
+  PingResults: 0x00a0n,  // 0x00a0 (0x0010) [TArray<URegionPingData_X*>]
+  __EventRegionsPinged__Delegate: 0x00b0n,  // 0x00b0 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
 /**
  * ProjectX.Region_X Offsets
- * Size: 0x00A0
+ * Size: 0x00a0
  * Extends: Object
  */
 export const Region_X = {
-  SuperRegionID: 0x0060,  // 0x0060 (0x0010) [FString]
-  Id: 0x0070,  // 0x0070 (0x0010) [FString]
-  Label: 0x0080,  // 0x0080 (0x0010) [FString]
-  Secret: 0x0090,  // 0x0090 (0x0010) [FString]
+  SuperRegionID: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Id: 0x0070n,  // 0x0070 (0x0010) [FString]
+  Label: 0x0080n,  // 0x0080 (0x0010) [FString]
+  Secret: 0x0090n,  // 0x0090 (0x0010) [FString]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.RemoteAvatarPermissionsRequestBatch_X Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: Object
  */
 export const RemoteAvatarPermissionsRequestBatch_X = {
-  Requested: 0x0060,  // 0x0060 (0x0010) [TArray<FUniqueNetId>]
-  Allowed: 0x0070,  // 0x0070 (0x0010) [TArray<FUniqueNetId>]
-  Disallowed: 0x0080,  // 0x0080 (0x0010) [TArray<FUniqueNetId>]
-  __EventAllowed__Delegate: 0x0090,  // 0x0090 (0x0018) [FScriptDelegate]
-  __EventDisallowed__Delegate: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
+  Requested: 0x0060n,  // 0x0060 (0x0010) [TArray<FUniqueNetId>]
+  Allowed: 0x0070n,  // 0x0070 (0x0010) [TArray<FUniqueNetId>]
+  Disallowed: 0x0080n,  // 0x0080 (0x0010) [TArray<FUniqueNetId>]
+  __EventAllowed__Delegate: 0x0090n,  // 0x0090 (0x0018) [FScriptDelegate]
+  __EventDisallowed__Delegate: 0x00a8n,  // 0x00a8 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.RemoteAvatarPermissionsRequest_X Offsets
- * Size: 0x00D8
+ * Size: 0x00d8
  * Extends: Object
  */
 export const RemoteAvatarPermissionsRequest_X = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  __EventAllowed__Delegate: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
-  __EventDisallowed__Delegate: 0x00C0,  // 0x00C0 (0x0018) [FScriptDelegate]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
+  __EventAllowed__Delegate: 0x00a8n,  // 0x00a8 (0x0018) [FScriptDelegate]
+  __EventDisallowed__Delegate: 0x00c0n,  // 0x00c0 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.RemoteAvatarPermissions_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: Object
  */
 export const RemoteAvatarPermissions_X = {
-  OnlineGame: 0x0060,  // 0x0060 (0x0008) [UOnlineGame_X*]
-  EpicConfig: 0x0068,  // 0x0068 (0x0008) [UEpicConfig_X*]
-  UnsentRequests: 0x0070,  // 0x0070 (0x0010) [TArray<URemoteAvatarPermissionsRequest_X*>]
-  AllRequests: 0x0080,  // 0x0080 (0x0010) [TArray<URemoteAvatarPermissionsRequest_X*>]
-  PermissionCache: 0x0090,  // 0x0090 (0x0050) [FMap_Mirror]
-  __SendRPC__Delegate: 0x00E0,  // 0x00E0 (0x0018) [FScriptDelegate]
+  OnlineGame: 0x0060n,  // 0x0060 (0x0008) [UOnlineGame_X*]
+  EpicConfig: 0x0068n,  // 0x0068 (0x0008) [UEpicConfig_X*]
+  UnsentRequests: 0x0070n,  // 0x0070 (0x0010) [TArray<URemoteAvatarPermissionsRequest_X*>]
+  AllRequests: 0x0080n,  // 0x0080 (0x0010) [TArray<URemoteAvatarPermissionsRequest_X*>]
+  PermissionCache: 0x0090n,  // 0x0090 (0x0050) [FMap_Mirror]
+  __SendRPC__Delegate: 0x00e0n,  // 0x00e0 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.RenderProfiler_X Offsets
- * Size: 0x02A8
+ * Size: 0x02a8
  * Extends: Actor
  */
 export const RenderProfiler_X = {
-  TimePerPrimitive: 0x0268,  // 0x0268 (0x0004) [float]
-  PrimitiveProfiles: 0x0270,  // 0x0270 (0x0010) [TArray<FPrimitiveComponentProfile>]
-  CurrentIndex: 0x0280,  // 0x0280 (0x0004) [int32]
-  bInclusive: 0x0284,  // 0x0284 (0x0004) [bool : 0x1]
-  PrimitiveTime: 0x0288,  // 0x0288 (0x0004) [float]
-  __EventFinished__Delegate: 0x0290,  // 0x0290 (0x0018) [FScriptDelegate]
+  TimePerPrimitive: 0x0268n,  // 0x0268 (0x0004) [float]
+  PrimitiveProfiles: 0x0270n,  // 0x0270 (0x0010) [TArray<FPrimitiveComponentProfile>]
+  CurrentIndex: 0x0280n,  // 0x0280 (0x0004) [int32]
+  bInclusive: 0x0284n,  // 0x0284 (0x0004) [bool : 0x1]
+  PrimitiveTime: 0x0288n,  // 0x0288 (0x0004) [float]
+  __EventFinished__Delegate: 0x0290n,  // 0x0290 (0x0018) [FScriptDelegate]
   ...Actor,
 } as const;
 
 /**
  * ProjectX.ReservationBeacon_X Offsets
- * Size: 0x00D0
+ * Size: 0x00d0
  * Extends: Component
  */
 export const ReservationBeacon_X = {
-  MessageHandlers: 0x0070,  // 0x0070 (0x0010) [TArray<FBeaconMessageHandler>]
-  PsyNetBeacon: 0x0080,  // 0x0080 (0x0008) [unknown]
-  __MessageReceivedDelegate__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
-  __EventConnected__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
-  __EventDisconnected__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
+  MessageHandlers: 0x0070n,  // 0x0070 (0x0010) [TArray<FBeaconMessageHandler>]
+  PsyNetBeacon: 0x0080n,  // 0x0080 (0x0008) [unknown]
+  __MessageReceivedDelegate__Delegate: 0x0088n,  // 0x0088 (0x0018) [FScriptDelegate]
+  __EventConnected__Delegate: 0x00a0n,  // 0x00a0 (0x0018) [FScriptDelegate]
+  __EventDisconnected__Delegate: 0x00b8n,  // 0x00b8 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
@@ -7561,7 +6113,7 @@ export const ReservationsKeysFailedMessage_X = {
  * Extends: BeaconMessage_X
  */
 export const ReservationsMaxPlayersMessage_X = {
-  MaxPlayerCount: 0x0060,  // 0x0060 (0x0004) [int32]
+  MaxPlayerCount: 0x0060n,  // 0x0060 (0x0004) [int32]
   ...BeaconMessage_X,
 } as const;
 
@@ -7580,7 +6132,7 @@ export const ReservationsMetrics_X = {
  * Extends: BeaconMessage_X
  */
 export const ReservationsPasswordMessage_X = {
-  Reason: 0x0060,  // 0x0060 (0x0001) [EPasswordFailureReason]
+  Reason: 0x0060n,  // 0x0060 (0x0001) [EPasswordFailureReason]
   ...BeaconMessage_X,
 } as const;
 
@@ -7599,10 +6151,10 @@ export const ReservationsPrivateMessage_X = {
  * Extends: BeaconMessage_X
  */
 export const ReservationsReadyMessage_X = {
-  ServerAddress: 0x0060,  // 0x0060 (0x0010) [FString]
-  PingAddress: 0x0070,  // 0x0070 (0x0010) [FString]
-  ProductIDs: 0x0080,  // 0x0080 (0x0010) [TArray<int32>]
-  Keys: 0x0090,  // 0x0090 (0x0008) [UNetworkEncryptionKey*]
+  ServerAddress: 0x0060n,  // 0x0060 (0x0010) [FString]
+  PingAddress: 0x0070n,  // 0x0070 (0x0010) [FString]
+  ProductIDs: 0x0080n,  // 0x0080 (0x0010) [TArray<int32>]
+  Keys: 0x0090n,  // 0x0090 (0x0008) [UNetworkEncryptionKey*]
   ...BeaconMessage_X,
 } as const;
 
@@ -7662,28 +6214,28 @@ export const ReservationsWrongRankedMatchMessage_X = {
 
 /**
  * ProjectX.RetryDelay_X Offsets
- * Size: 0x007C
+ * Size: 0x007c
  * Extends: Object
  */
 export const RetryDelay_X = {
-  Id: 0x0060,  // 0x0060 (0x0008) [FName]
-  DelaySeconds: 0x0068,  // 0x0068 (0x0010) [TArray<float>]
-  bUseRandomMultiplier: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
+  Id: 0x0060n,  // 0x0060 (0x0008) [FName]
+  DelaySeconds: 0x0068n,  // 0x0068 (0x0010) [TArray<float>]
+  bUseRandomMultiplier: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.RetryDelayer_X Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: Component
  */
 export const RetryDelayer_X = {
-  RetryDelays: 0x0070,  // 0x0070 (0x0010) [TArray<float>]
-  ReattemptsAtMaxBackoff: 0x0080,  // 0x0080 (0x0004) [int32]
-  bRepeatUntilSuccess: 0x0084,  // 0x0084 (0x0004) [bool : 0x1]
-  FailedAttempts: 0x0088,  // 0x0088 (0x0004) [int32]
-  __RepeatedDelegate__Delegate: 0x0090,  // 0x0090 (0x0018) [FScriptDelegate]
-  __NotifyAbandondedDelegate__Delegate: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
+  RetryDelays: 0x0070n,  // 0x0070 (0x0010) [TArray<float>]
+  ReattemptsAtMaxBackoff: 0x0080n,  // 0x0080 (0x0004) [int32]
+  bRepeatUntilSuccess: 0x0084n,  // 0x0084 (0x0004) [bool : 0x1]
+  FailedAttempts: 0x0088n,  // 0x0088 (0x0004) [int32]
+  __RepeatedDelegate__Delegate: 0x0090n,  // 0x0090 (0x0018) [FScriptDelegate]
+  __NotifyAbandondedDelegate__Delegate: 0x00a8n,  // 0x00a8 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
@@ -7693,9 +6245,9 @@ export const RetryDelayer_X = {
  * Extends: Object
  */
 export const RetryPolicy_X = {
-  Errors: 0x0060,  // 0x0060 (0x0010) [TArray<FName>]
-  RetryDelay: 0x0070,  // 0x0070 (0x0008) [FName]
-  Services: 0x0078,  // 0x0078 (0x0010) [TArray<FString>]
+  Errors: 0x0060n,  // 0x0060 (0x0010) [TArray<FName>]
+  RetryDelay: 0x0070n,  // 0x0070 (0x0008) [FName]
+  Services: 0x0078n,  // 0x0078 (0x0010) [TArray<FString>]
   ...Object_,
 } as const;
 
@@ -7705,7 +6257,7 @@ export const RetryPolicy_X = {
  * Extends: Object
  */
 export const RuntimeParameterBase_X = {
-  ParameterName: 0x0060,  // 0x0060 (0x0008) [FName]
+  ParameterName: 0x0060n,  // 0x0060 (0x0008) [FName]
   ...Object_,
 } as const;
 
@@ -7733,19 +6285,8 @@ export const RuntimeParameters_X = {
  * Extends: Object
  */
 export const SaveLock_X = {
-  GFxEngine: 0x0060,  // 0x0060 (0x0008) [UGFxEngine_X*]
+  GFxEngine: 0x0060n,  // 0x0060 (0x0008) [UGFxEngine_X*]
   ...Object_,
-} as const;
-
-/**
- * Engine.SequenceAction Offsets
- * Size: 0x0160
- * Extends: SequenceOp
- */
-export const SequenceAction = {
-  HandlerName: 0x0140,  // 0x0140 (0x0008) [FName]
-  bCallHandler: 0x0148,  // 0x0148 (0x0004) [bool : 0x1]
-  Targets: 0x0150,  // 0x0150 (0x0010) [TArray<UObject*>]
 } as const;
 
 /**
@@ -7759,16 +6300,16 @@ export const SeqAct_NonNativeUpdate_X = {
 
 /**
  * ProjectX.SeqAct_SpawnArchetype_X Offsets
- * Size: 0x01A0
+ * Size: 0x01a0
  * Extends: SequenceAction
  */
 export const SeqAct_SpawnArchetype_X = {
-  ActorArchetype: 0x0160,  // 0x0160 (0x0008) [UActor*]
-  Velocity: 0x0168,  // 0x0168 (0x000C) [FVector]
-  Speed: 0x0174,  // 0x0174 (0x0004) [float]
-  SpawnOwners: 0x0178,  // 0x0178 (0x0010) [TArray<UActor*>]
-  SpawnPoints: 0x0188,  // 0x0188 (0x0010) [TArray<UActor*>]
-  Spawned: 0x0198,  // 0x0198 (0x0008) [UActor*]
+  ActorArchetype: 0x0160n,  // 0x0160 (0x0008) [UActor*]
+  Velocity: 0x0168n,  // 0x0168 (0x000c) [FVector]
+  Speed: 0x0174n,  // 0x0174 (0x0004) [float]
+  SpawnOwners: 0x0178n,  // 0x0178 (0x0010) [TArray<UActor*>]
+  SpawnPoints: 0x0188n,  // 0x0188 (0x0010) [TArray<UActor*>]
+  Spawned: 0x0198n,  // 0x0198 (0x0008) [UActor*]
   ...SequenceAction,
 } as const;
 
@@ -7778,30 +6319,9 @@ export const SeqAct_SpawnArchetype_X = {
  * Extends: SequenceAction
  */
 export const SeqAct_TriggerFXActor_X = {
-  Event: 0x0160,  // 0x0160 (0x0008) [UFXActorEvent_X*]
-  AttachTo: 0x0168,  // 0x0168 (0x0008) [UActor*]
+  Event: 0x0160n,  // 0x0160 (0x0008) [UFXActorEvent_X*]
+  AttachTo: 0x0168n,  // 0x0168 (0x0008) [UActor*]
   ...SequenceAction,
-} as const;
-
-/**
- * Engine.SequenceEvent Offsets
- * Size: 0x017C
- * Extends: SequenceOp
- */
-export const SequenceEvent = {
-  DuplicateEvts: 0x0140,  // 0x0140 (0x0010) [TArray<USequenceEvent*>]
-  Originator: 0x0150,  // 0x0150 (0x0008) [UActor*]
-  Instigator: 0x0158,  // 0x0158 (0x0008) [UActor*]
-  ActivationTime: 0x0160,  // 0x0160 (0x0004) [float]
-  TriggerCount: 0x0164,  // 0x0164 (0x0004) [int32]
-  MaxTriggerCount: 0x0168,  // 0x0168 (0x0004) [int32]
-  ReTriggerDelay: 0x016C,  // 0x016C (0x0004) [float]
-  bEnabled: 0x0170,  // 0x0170 (0x0004) [bool : 0x1]
-  bPlayerOnly: 0x0170,  // 0x0170 (0x0004) [bool : 0x2]
-  bRegistered: 0x0170,  // 0x0170 (0x0004) [bool : 0x4]
-  bClientSideOnly: 0x0170,  // 0x0170 (0x0004) [bool : 0x8]
-  Priority: 0x0174,  // 0x0174 (0x0001) [uint8]
-  MaxWidth: 0x0178,  // 0x0178 (0x0004) [int32]
 } as const;
 
 /**
@@ -7810,16 +6330,8 @@ export const SequenceEvent = {
  * Extends: SequenceEvent
  */
 export const SeqEvent_Spawned_X = {
-  Spawned: 0x0180,  // 0x0180 (0x0008) [UActor*]
+  Spawned: 0x0180n,  // 0x0180 (0x0008) [UActor*]
   ...SequenceEvent,
-} as const;
-
-/**
- * Engine.SequenceCondition Offsets
- * Size: 0x0140
- * Extends: SequenceOp
- */
-export const SequenceCondition = {
 } as const;
 
 /**
@@ -7846,7 +6358,7 @@ export const Serializer_X = {
  * Extends: Serializer_X
  */
 export const JSONSerializer_X = {
-  bDebug: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
+  bDebug: 0x0060n,  // 0x0060 (0x0004) [bool : 0x1]
   ...Serializer_X,
 } as const;
 
@@ -7856,31 +6368,31 @@ export const JSONSerializer_X = {
  * Extends: Serializer_X
  */
 export const ObjectSerializer_X = {
-  bPersistent: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
-  bDebug: 0x0060,  // 0x0060 (0x0004) [bool : 0x2]
+  bPersistent: 0x0060n,  // 0x0060 (0x0004) [bool : 0x1]
+  bDebug: 0x0060n,  // 0x0060 (0x0004) [bool : 0x2]
   ...Serializer_X,
 } as const;
 
 /**
  * ProjectX.ServerConfig_X Offsets
- * Size: 0x00A4
+ * Size: 0x00a4
  * Extends: OnlineConfig_X
  */
 export const ServerConfig_X = {
-  HeartbeatSeconds: 0x0078,  // 0x0078 (0x0004) [float]
-  HeartbeatRetrySeconds: 0x007C,  // 0x007C (0x0004) [float]
-  bUploadLogFiles: 0x0080,  // 0x0080 (0x0004) [bool : 0x1]
-  bUploadReplays: 0x0080,  // 0x0080 (0x0004) [bool : 0x2]
-  bFlatbufferRecordInput: 0x0080,  // 0x0080 (0x0004) [bool : 0x4]
-  bPrivateMatchCreatorAdmin: 0x0080,  // 0x0080 (0x0004) [bool : 0x8]
-  MaxUploadLogFileSize: 0x0084,  // 0x0084 (0x0004) [int32]
-  NetServerMaxTickRate: 0x0088,  // 0x0088 (0x0004) [float]
-  IdleNetServerMaxTickRate: 0x008C,  // 0x008C (0x0004) [float]
-  FlatbufferChance: 0x0090,  // 0x0090 (0x0004) [float]
-  FlatbufferMaxRecordSizeMB: 0x0094,  // 0x0094 (0x0004) [int32]
-  FlatbufferPacketSendRate: 0x0098,  // 0x0098 (0x0004) [int32]
-  MinSecondsForUnstableConnection: 0x009C,  // 0x009C (0x0004) [float]
-  MinSecondsUntilConnectionCheck: 0x00A0,  // 0x00A0 (0x0004) [float]
+  HeartbeatSeconds: 0x0078n,  // 0x0078 (0x0004) [float]
+  HeartbeatRetrySeconds: 0x007cn,  // 0x007c (0x0004) [float]
+  bUploadLogFiles: 0x0080n,  // 0x0080 (0x0004) [bool : 0x1]
+  bUploadReplays: 0x0080n,  // 0x0080 (0x0004) [bool : 0x2]
+  bFlatbufferRecordInput: 0x0080n,  // 0x0080 (0x0004) [bool : 0x4]
+  bPrivateMatchCreatorAdmin: 0x0080n,  // 0x0080 (0x0004) [bool : 0x8]
+  MaxUploadLogFileSize: 0x0084n,  // 0x0084 (0x0004) [int32]
+  NetServerMaxTickRate: 0x0088n,  // 0x0088 (0x0004) [float]
+  IdleNetServerMaxTickRate: 0x008cn,  // 0x008c (0x0004) [float]
+  FlatbufferChance: 0x0090n,  // 0x0090 (0x0004) [float]
+  FlatbufferMaxRecordSizeMB: 0x0094n,  // 0x0094 (0x0004) [int32]
+  FlatbufferPacketSendRate: 0x0098n,  // 0x0098 (0x0004) [int32]
+  MinSecondsForUnstableConnection: 0x009cn,  // 0x009c (0x0004) [float]
+  MinSecondsUntilConnectionCheck: 0x00a0n,  // 0x00a0 (0x0004) [float]
   ...OnlineConfig_X,
 } as const;
 
@@ -7890,9 +6402,9 @@ export const ServerConfig_X = {
  * Extends: Object
  */
 export const ServerExploitManager_X = {
-  DedicatedServer: 0x0060,  // 0x0060 (0x0008) [UOnlineGameDedicatedServer_X*]
-  SubmittedReports: 0x0068,  // 0x0068 (0x0010) [TArray<FMatchExploitReportData>]
-  __SubmitReport__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
+  DedicatedServer: 0x0060n,  // 0x0060 (0x0008) [UOnlineGameDedicatedServer_X*]
+  SubmittedReports: 0x0068n,  // 0x0068 (0x0010) [TArray<FMatchExploitReportData>]
+  __SubmitReport__Delegate: 0x0078n,  // 0x0078 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -7907,15 +6419,15 @@ export const ServerMetrics_X = {
 
 /**
  * ProjectX.ServerPlayerTracker_X Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: Component
  */
 export const ServerPlayerTracker_X = {
-  Players: 0x0070,  // 0x0070 (0x0010) [TArray<FUniqueNetId>]
-  Messages: 0x0080,  // 0x0080 (0x0010) [TArray<UAddReservationMessage_X*>]
-  Reservations: 0x0090,  // 0x0090 (0x0008) [UOnlineGameReservations_X*]
-  __EventPlayerAdded__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
-  __EventPlayerRemoved__Delegate: 0x00B0,  // 0x00B0 (0x0018) [FScriptDelegate]
+  Players: 0x0070n,  // 0x0070 (0x0010) [TArray<FUniqueNetId>]
+  Messages: 0x0080n,  // 0x0080 (0x0010) [TArray<UAddReservationMessage_X*>]
+  Reservations: 0x0090n,  // 0x0090 (0x0008) [UOnlineGameReservations_X*]
+  __EventPlayerAdded__Delegate: 0x0098n,  // 0x0098 (0x0018) [FScriptDelegate]
+  __EventPlayerRemoved__Delegate: 0x00b0n,  // 0x00b0 (0x0018) [FScriptDelegate]
   ...Component,
 } as const;
 
@@ -7925,32 +6437,32 @@ export const ServerPlayerTracker_X = {
  * Extends: Object
  */
 export const ServerToServerMessage_X = {
-  ServerId: 0x0060,  // 0x0060 (0x0010) [FString]
+  ServerId: 0x0060n,  // 0x0060 (0x0010) [FString]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.ConnectionInfoMessage_X Offsets
- * Size: 0x00A0
+ * Size: 0x00a0
  * Extends: ServerToServerMessage_X
  */
 export const ConnectionInfoMessage_X = {
-  ConnectionInfo: 0x0070,  // 0x0070 (0x0030) [FServerConnectionInfo]
+  ConnectionInfo: 0x0070n,  // 0x0070 (0x0030) [FServerConnectionInfo]
   ...ServerToServerMessage_X,
 } as const;
 
 /**
  * ProjectX.MatchInfoMessage_X Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: ServerToServerMessage_X
  */
 export const MatchInfoMessage_X = {
-  Playlist: 0x0070,  // 0x0070 (0x0004) [int32]
-  bIsBotMatch: 0x0074,  // 0x0074 (0x0004) [bool : 0x1]
-  BotNames: 0x0078,  // 0x0078 (0x0010) [TArray<FString>]
-  ReservationID: 0x0088,  // 0x0088 (0x0010) [FString]
-  JoinName: 0x0098,  // 0x0098 (0x0010) [FString]
-  JoinPassword: 0x00A8,  // 0x00A8 (0x0010) [FString]
+  Playlist: 0x0070n,  // 0x0070 (0x0004) [int32]
+  bIsBotMatch: 0x0074n,  // 0x0074 (0x0004) [bool : 0x1]
+  BotNames: 0x0078n,  // 0x0078 (0x0010) [TArray<FString>]
+  ReservationID: 0x0088n,  // 0x0088 (0x0010) [FString]
+  JoinName: 0x0098n,  // 0x0098 (0x0010) [FString]
+  JoinPassword: 0x00a8n,  // 0x00a8 (0x0010) [FString]
   ...ServerToServerMessage_X,
 } as const;
 
@@ -7960,10 +6472,10 @@ export const MatchInfoMessage_X = {
  * Extends: ServerToServerMessage_X
  */
 export const MigrationStartedMessage_X = {
-  bRematch: 0x0070,  // 0x0070 (0x0004) [bool : 0x1]
-  PrivateMatchSettings: 0x0078,  // 0x0078 (0x0088) [FCustomMatchSettings]
-  PrivateMatchCreator: 0x0100,  // 0x0100 (0x0048) [FUniqueNetId]
-  MigratingPlayers: 0x0148,  // 0x0148 (0x0010) [TArray<FMigrationReservationData>]
+  bRematch: 0x0070n,  // 0x0070 (0x0004) [bool : 0x1]
+  PrivateMatchSettings: 0x0078n,  // 0x0078 (0x0088) [FCustomMatchSettings]
+  PrivateMatchCreator: 0x0100n,  // 0x0100 (0x0048) [FUniqueNetId]
+  MigratingPlayers: 0x0148n,  // 0x0148 (0x0010) [TArray<FMigrationReservationData>]
   ...ServerToServerMessage_X,
 } as const;
 
@@ -7973,74 +6485,74 @@ export const MigrationStartedMessage_X = {
  * Extends: Object
  */
 export const SetPlayerStorageResult_X = {
-  Items: 0x0060,  // 0x0060 (0x0010) [TArray<FSetPlayerStorageResultItem>]
+  Items: 0x0060n,  // 0x0060 (0x0010) [TArray<FSetPlayerStorageResultItem>]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.ShakeComponent_X Offsets
- * Size: 0x01B8
+ * Size: 0x01b8
  * Extends: ActorComponent_X
  */
 export const ShakeComponent_X = {
-  InnerRadius: 0x00A8,  // 0x00A8 (0x0004) [float]
-  OuterRadius: 0x00AC,  // 0x00AC (0x0004) [float]
-  Falloff: 0x00B0,  // 0x00B0 (0x0004) [float]
-  bAutoPlay: 0x00B4,  // 0x00B4 (0x0004) [bool : 0x1]
-  bAutoDetach: 0x00B4,  // 0x00B4 (0x0004) [bool : 0x2]
-  bOnlyAffectPlayersWithPawns: 0x00B4,  // 0x00B4 (0x0004) [bool : 0x4]
-  bAttenuate: 0x00B4,  // 0x00B4 (0x0004) [bool : 0x8]
-  bPlaying: 0x00B4,  // 0x00B4 (0x0004) [bool : 0x10]
-  bStopping: 0x00B4,  // 0x00B4 (0x0004) [bool : 0x20]
-  Receiver: 0x00B8,  // 0x00B8 (0x0001) [EShakeReceiver]
-  RadiusScale: 0x00BC,  // 0x00BC (0x0004) [float]
-  BlendInTime: 0x00C0,  // 0x00C0 (0x0004) [float]
-  BlendOutTime: 0x00C4,  // 0x00C4 (0x0004) [float]
-  ShakeParams: 0x00C8,  // 0x00C8 (0x0008) [UCameraShake*]
-  AmplitudeScale: 0x00D0,  // 0x00D0 (0x0028) [FRawDistributionFloat]
-  FrequencyScale: 0x00F8,  // 0x00F8 (0x0028) [FRawDistributionFloat]
-  DurationScale: 0x0120,  // 0x0120 (0x0028) [FRawDistributionFloat]
-  CurrentAmplitudeScale: 0x0148,  // 0x0148 (0x0004) [float]
-  CurrentFrequencyScale: 0x014C,  // 0x014C (0x0004) [float]
-  ForceFeedbackWaveform: 0x0150,  // 0x0150 (0x0008) [UForceFeedbackWaveform*]
-  ForceFeedbackScale: 0x0158,  // 0x0158 (0x0004) [float]
-  ForceFeedbackBalance: 0x015C,  // 0x015C (0x0004) [float]
-  InstanceParameters: 0x0160,  // 0x0160 (0x0010) [TArray<FParticleSysParam>]
-  PlayTime: 0x0170,  // 0x0170 (0x0004) [float]
-  StopTime: 0x0174,  // 0x0174 (0x0004) [float]
-  ShakeLocTimeOffset: 0x0178,  // 0x0178 (0x000C) [FVector]
-  ShakeRotTimeOffset: 0x0184,  // 0x0184 (0x000C) [FVector]
-  ShakeFOVTimeOffset: 0x0190,  // 0x0190 (0x0004) [float]
-  CameraShakeDuration: 0x0194,  // 0x0194 (0x0004) [float]
-  ForceFeedbackDuration: 0x0198,  // 0x0198 (0x0004) [float]
-  ForceFeedbackSamplesTime: 0x019C,  // 0x019C (0x0004) [float]
-  PrevOwner: 0x01A0,  // 0x01A0 (0x0008) [UActor*]
-  Receivers: 0x01A8,  // 0x01A8 (0x0010) [TArray<FShakeReceiver>]
+  InnerRadius: 0x00a8n,  // 0x00a8 (0x0004) [float]
+  OuterRadius: 0x00acn,  // 0x00ac (0x0004) [float]
+  Falloff: 0x00b0n,  // 0x00b0 (0x0004) [float]
+  bAutoPlay: 0x00b4n,  // 0x00b4 (0x0004) [bool : 0x1]
+  bAutoDetach: 0x00b4n,  // 0x00b4 (0x0004) [bool : 0x2]
+  bOnlyAffectPlayersWithPawns: 0x00b4n,  // 0x00b4 (0x0004) [bool : 0x4]
+  bAttenuate: 0x00b4n,  // 0x00b4 (0x0004) [bool : 0x8]
+  bPlaying: 0x00b4n,  // 0x00b4 (0x0004) [bool : 0x10]
+  bStopping: 0x00b4n,  // 0x00b4 (0x0004) [bool : 0x20]
+  Receiver: 0x00b8n,  // 0x00b8 (0x0001) [EShakeReceiver]
+  RadiusScale: 0x00bcn,  // 0x00bc (0x0004) [float]
+  BlendInTime: 0x00c0n,  // 0x00c0 (0x0004) [float]
+  BlendOutTime: 0x00c4n,  // 0x00c4 (0x0004) [float]
+  ShakeParams: 0x00c8n,  // 0x00c8 (0x0008) [UCameraShake*]
+  AmplitudeScale: 0x00d0n,  // 0x00d0 (0x0028) [FRawDistributionFloat]
+  FrequencyScale: 0x00f8n,  // 0x00f8 (0x0028) [FRawDistributionFloat]
+  DurationScale: 0x0120n,  // 0x0120 (0x0028) [FRawDistributionFloat]
+  CurrentAmplitudeScale: 0x0148n,  // 0x0148 (0x0004) [float]
+  CurrentFrequencyScale: 0x014cn,  // 0x014c (0x0004) [float]
+  ForceFeedbackWaveform: 0x0150n,  // 0x0150 (0x0008) [UForceFeedbackWaveform*]
+  ForceFeedbackScale: 0x0158n,  // 0x0158 (0x0004) [float]
+  ForceFeedbackBalance: 0x015cn,  // 0x015c (0x0004) [float]
+  InstanceParameters: 0x0160n,  // 0x0160 (0x0010) [TArray<FParticleSysParam>]
+  PlayTime: 0x0170n,  // 0x0170 (0x0004) [float]
+  StopTime: 0x0174n,  // 0x0174 (0x0004) [float]
+  ShakeLocTimeOffset: 0x0178n,  // 0x0178 (0x000c) [FVector]
+  ShakeRotTimeOffset: 0x0184n,  // 0x0184 (0x000c) [FVector]
+  ShakeFOVTimeOffset: 0x0190n,  // 0x0190 (0x0004) [float]
+  CameraShakeDuration: 0x0194n,  // 0x0194 (0x0004) [float]
+  ForceFeedbackDuration: 0x0198n,  // 0x0198 (0x0004) [float]
+  ForceFeedbackSamplesTime: 0x019cn,  // 0x019c (0x0004) [float]
+  PrevOwner: 0x01a0n,  // 0x01a0 (0x0008) [UActor*]
+  Receivers: 0x01a8n,  // 0x01a8 (0x0010) [TArray<FShakeReceiver>]
   ...ActorComponent_X,
 } as const;
 
 /**
  * ProjectX.SignedMessageObject_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: Object
  */
 export const SignedMessageObject_X = {
-  Payload: 0x0060,  // 0x0060 (0x0058) [FMessagePayload]
-  Signature: 0x00B8,  // 0x00B8 (0x0010) [FString]
-  ReceivingTimestamp: 0x00C8,  // 0x00C8 (0x0008) [uint64]
-  SanitizedReceivedTextMessage: 0x00D0,  // 0x00D0 (0x0010) [FString]
-  PublicKey: 0x00E0,  // 0x00E0 (0x0010) [FString]
-  SigningError: 0x00F0,  // 0x00F0 (0x0008) [UError*]
+  Payload: 0x0060n,  // 0x0060 (0x0058) [FMessagePayload]
+  Signature: 0x00b8n,  // 0x00b8 (0x0010) [FString]
+  ReceivingTimestamp: 0x00c8n,  // 0x00c8 (0x0008) [uint64]
+  SanitizedReceivedTextMessage: 0x00d0n,  // 0x00d0 (0x0010) [FString]
+  PublicKey: 0x00e0n,  // 0x00e0 (0x0010) [FString]
+  SigningError: 0x00f0n,  // 0x00f0 (0x0008) [UError*]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.SkelControlBlendTargetComponent_X Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: ActorComponent_X
  */
 export const SkelControlBlendTargetComponent_X = {
-  SkelControlName: 0x00A8,  // 0x00A8 (0x0008) [FName]
+  SkelControlName: 0x00a8n,  // 0x00a8 (0x0008) [FName]
   ...ActorComponent_X,
 } as const;
 
@@ -8050,9 +6562,9 @@ export const SkelControlBlendTargetComponent_X = {
  * Extends: DynamicValue_X
  */
 export const SmoothDynamicValue_X = {
-  LerpUpSpeed: 0x0088,  // 0x0088 (0x0004) [float]
-  LerpDownSpeed: 0x008C,  // 0x008C (0x0004) [float]
-  SmoothedCachedValue: 0x0090,  // 0x0090 (0x0004) [float]
+  LerpUpSpeed: 0x0088n,  // 0x0088 (0x0004) [float]
+  LerpDownSpeed: 0x008cn,  // 0x008c (0x0004) [float]
+  SmoothedCachedValue: 0x0090n,  // 0x0090 (0x0004) [float]
   ...DynamicValue_X,
 } as const;
 
@@ -8071,8 +6583,8 @@ export const SocialMetrics_X = {
  * Extends: ExplosionCollisionShapes_X
  */
 export const SphereCollisionShape_X = {
-  StartRadius: 0x0088,  // 0x0088 (0x0004) [float]
-  EndRadius: 0x008C,  // 0x008C (0x0004) [float]
+  StartRadius: 0x0088n,  // 0x0088 (0x0004) [float]
+  EndRadius: 0x008cn,  // 0x008c (0x0004) [float]
   ...ExplosionCollisionShapes_X,
 } as const;
 
@@ -8082,33 +6594,33 @@ export const SphereCollisionShape_X = {
  * Extends: Object
  */
 export const StateObject_X = {
-  bDebug: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
+  bDebug: 0x0060n,  // 0x0060 (0x0004) [bool : 0x1]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.CameraState_X Offsets
- * Size: 0x008C
+ * Size: 0x008c
  * Extends: StateObject_X
  */
 export const CameraState_X = {
-  DefaultBlendParams: 0x0068,  // 0x0068 (0x0010) [FViewTargetTransitionParams]
-  WorldInfo: 0x0078,  // 0x0078 (0x0008) [UWorldInfo*]
-  Camera: 0x0080,  // 0x0080 (0x0008) [UCamera_X*]
-  bCanSwivel: 0x0088,  // 0x0088 (0x0004) [bool : 0x1]
+  DefaultBlendParams: 0x0068n,  // 0x0068 (0x0010) [FViewTargetTransitionParams]
+  WorldInfo: 0x0078n,  // 0x0078 (0x0008) [UWorldInfo*]
+  Camera: 0x0080n,  // 0x0080 (0x0008) [UCamera_X*]
+  bCanSwivel: 0x0088n,  // 0x0088 (0x0004) [bool : 0x1]
   ...StateObject_X,
 } as const;
 
 /**
  * ProjectX.CameraState_CamActor_X Offsets
- * Size: 0x020C
+ * Size: 0x020c
  * Extends: CameraState_X
  */
 export const CameraState_CamActor_X = {
-  bUseOverridePostProcess: 0x0090,  // 0x0090 (0x0004) [bool : 0x1]
-  CamActor: 0x0098,  // 0x0098 (0x0008) [UCameraActor*]
-  PrevPost: 0x00A0,  // 0x00A0 (0x0168) [FPostProcessSettings]
-  PrevPostAlpha: 0x0208,  // 0x0208 (0x0004) [float]
+  bUseOverridePostProcess: 0x0090n,  // 0x0090 (0x0004) [bool : 0x1]
+  CamActor: 0x0098n,  // 0x0098 (0x0008) [UCameraActor*]
+  PrevPost: 0x00a0n,  // 0x00a0 (0x0168) [FPostProcessSettings]
+  PrevPostAlpha: 0x0208n,  // 0x0208 (0x0004) [float]
   ...CameraState_X,
 } as const;
 
@@ -8123,79 +6635,79 @@ export const CameraState_CamActorCinematic_X = {
 
 /**
  * ProjectX.Online_X Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: StateObject_X
  */
 export const Online_X = {
-  OnlineSub: 0x0068,  // 0x0068 (0x0008) [UOnlineSubsystem*]
-  PsyNet: 0x0070,  // 0x0070 (0x0008) [UPsyNet_X*]
-  EOS: 0x0078,  // 0x0078 (0x0008) [UOnlineSubsystem*]
-  __EventEOSInitialized__Delegate: 0x0080,  // 0x0080 (0x0018) [FScriptDelegate]
-  __EventEosInitTimeout__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
+  OnlineSub: 0x0068n,  // 0x0068 (0x0008) [UOnlineSubsystem*]
+  PsyNet: 0x0070n,  // 0x0070 (0x0008) [UPsyNet_X*]
+  EOS: 0x0078n,  // 0x0078 (0x0008) [UOnlineSubsystem*]
+  __EventEOSInitialized__Delegate: 0x0080n,  // 0x0080 (0x0018) [FScriptDelegate]
+  __EventEosInitTimeout__Delegate: 0x0098n,  // 0x0098 (0x0018) [FScriptDelegate]
   ...StateObject_X,
 } as const;
 
 /**
  * ProjectX.OnlineGameAccount_X Offsets
- * Size: 0x00F0
+ * Size: 0x00f0
  * Extends: Online_X
  */
 export const OnlineGameAccount_X = {
-  PrimaryPlayer: 0x00B0,  // 0x00B0 (0x0008) [UOnlinePlayer_X*]
-  UpdateCurrentGameTaskTimer: 0x00B8,  // 0x00B8 (0x0004) [float]
-  CurrentPlaylistId: 0x00BC,  // 0x00BC (0x0004) [int32]
-  __EventPrimaryPlayerIdChanged__Delegate: 0x00C0,  // 0x00C0 (0x0018) [FScriptDelegate]
-  __EventCurrentPlaylistSet__Delegate: 0x00D8,  // 0x00D8 (0x0018) [FScriptDelegate]
+  PrimaryPlayer: 0x00b0n,  // 0x00b0 (0x0008) [UOnlinePlayer_X*]
+  UpdateCurrentGameTaskTimer: 0x00b8n,  // 0x00b8 (0x0004) [float]
+  CurrentPlaylistId: 0x00bcn,  // 0x00bc (0x0004) [int32]
+  __EventPrimaryPlayerIdChanged__Delegate: 0x00c0n,  // 0x00c0 (0x0018) [FScriptDelegate]
+  __EventCurrentPlaylistSet__Delegate: 0x00d8n,  // 0x00d8 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
 /**
  * ProjectX.OnlineGameDLC_X Offsets
- * Size: 0x00F0
+ * Size: 0x00f0
  * Extends: Online_X
  */
 export const OnlineGameDLC_X = {
-  SyncInterval: 0x00B0,  // 0x00B0 (0x0004) [int32]
-  PlayerOwnershipSyncInterval: 0x00B4,  // 0x00B4 (0x0004) [float]
-  PlayerDLCInfos: 0x00B8,  // 0x00B8 (0x0010) [TArray<FPlayerDLCInfo>]
-  SteamWebRequests: 0x00C8,  // 0x00C8 (0x0010) [TArray<FSteamWebRequestData>]
-  __EventValidationReady__Delegate: 0x00D8,  // 0x00D8 (0x0018) [FScriptDelegate]
+  SyncInterval: 0x00b0n,  // 0x00b0 (0x0004) [int32]
+  PlayerOwnershipSyncInterval: 0x00b4n,  // 0x00b4 (0x0004) [float]
+  PlayerDLCInfos: 0x00b8n,  // 0x00b8 (0x0010) [TArray<FPlayerDLCInfo>]
+  SteamWebRequests: 0x00c8n,  // 0x00c8 (0x0010) [TArray<FSteamWebRequestData>]
+  __EventValidationReady__Delegate: 0x00d8n,  // 0x00d8 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
 /**
  * ProjectX.OnlineGameDedicatedServerRegistration_X Offsets
- * Size: 0x00DC
+ * Size: 0x00dc
  * Extends: Online_X
  */
 export const OnlineGameDedicatedServerRegistration_X = {
-  MyConfig: 0x00B0,  // 0x00B0 (0x0008) [UServerConfig_X*]
-  HeartbeatTimer: 0x00B8,  // 0x00B8 (0x0008) [unknown]
-  GameTimeTimer: 0x00C0,  // 0x00C0 (0x0004) [int32]
-  GameTimeSeconds: 0x00C4,  // 0x00C4 (0x0004) [int32]
-  CreateGameServerRPC: 0x00C8,  // 0x00C8 (0x0008) [URPC_CreateGameServer_X*]
-  UpdateGameServerRPC: 0x00D0,  // 0x00D0 (0x0008) [URPC_UpdateGameServer_X*]
-  PsyNetDisconnectShutdownTime: 0x00D8,  // 0x00D8 (0x0004) [float]
+  MyConfig: 0x00b0n,  // 0x00b0 (0x0008) [UServerConfig_X*]
+  HeartbeatTimer: 0x00b8n,  // 0x00b8 (0x0008) [unknown]
+  GameTimeTimer: 0x00c0n,  // 0x00c0 (0x0004) [int32]
+  GameTimeSeconds: 0x00c4n,  // 0x00c4 (0x0004) [int32]
+  CreateGameServerRPC: 0x00c8n,  // 0x00c8 (0x0008) [URPC_CreateGameServer_X*]
+  UpdateGameServerRPC: 0x00d0n,  // 0x00d0 (0x0008) [URPC_UpdateGameServer_X*]
+  PsyNetDisconnectShutdownTime: 0x00d8n,  // 0x00d8 (0x0004) [float]
   ...Online_X,
 } as const;
 
 /**
  * ProjectX.OnlineGameInvite_X Offsets
- * Size: 0x01B8
+ * Size: 0x01b8
  * Extends: Online_X
  */
 export const OnlineGameInvite_X = {
-  FriendJoinPlayerID: 0x00B0,  // 0x00B0 (0x0048) [FUniqueNetId]
-  UnableToFindFriendsGameString: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  AlreadyInSameServerString: 0x0108,  // 0x0108 (0x0010) [FString]
-  FriendNotJoinable: 0x0118,  // 0x0118 (0x0010) [FString]
-  GameInviteCredentials: 0x0128,  // 0x0128 (0x0010) [FString]
-  ActionRequired: 0x0138,  // 0x0138 (0x0008) [FName]
-  __EventGameInviteAccepted__Delegate: 0x0140,  // 0x0140 (0x0018) [FScriptDelegate]
-  __EventGameInviteComplete__Delegate: 0x0158,  // 0x0158 (0x0018) [FScriptDelegate]
-  __EventConfirmationRequired__Delegate: 0x0170,  // 0x0170 (0x0018) [FScriptDelegate]
-  __EventPasswordRequired__Delegate: 0x0188,  // 0x0188 (0x0018) [FScriptDelegate]
-  __EventPsyNetPartyInviteAccepted__Delegate: 0x01A0,  // 0x01A0 (0x0018) [FScriptDelegate]
+  FriendJoinPlayerID: 0x00b0n,  // 0x00b0 (0x0048) [FUniqueNetId]
+  UnableToFindFriendsGameString: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  AlreadyInSameServerString: 0x0108n,  // 0x0108 (0x0010) [FString]
+  FriendNotJoinable: 0x0118n,  // 0x0118 (0x0010) [FString]
+  GameInviteCredentials: 0x0128n,  // 0x0128 (0x0010) [FString]
+  ActionRequired: 0x0138n,  // 0x0138 (0x0008) [FName]
+  __EventGameInviteAccepted__Delegate: 0x0140n,  // 0x0140 (0x0018) [FScriptDelegate]
+  __EventGameInviteComplete__Delegate: 0x0158n,  // 0x0158 (0x0018) [FScriptDelegate]
+  __EventConfirmationRequired__Delegate: 0x0170n,  // 0x0170 (0x0018) [FScriptDelegate]
+  __EventPasswordRequired__Delegate: 0x0188n,  // 0x0188 (0x0018) [FScriptDelegate]
+  __EventPsyNetPartyInviteAccepted__Delegate: 0x01a0n,  // 0x01a0 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
@@ -8205,43 +6717,43 @@ export const OnlineGameInvite_X = {
  * Extends: Online_X
  */
 export const OnlineGameJoinGame_X = {
-  JoinCountdownTime: 0x00B0,  // 0x00B0 (0x0004) [int32]
-  FailCommand: 0x00B8,  // 0x00B8 (0x0010) [FString]
-  LoadingScreenCommand: 0x00C8,  // 0x00C8 (0x0010) [FString]
-  JoinGameShake: 0x00D8,  // 0x00D8 (0x0008) [unknown]
-  ReservationBeacon: 0x00E0,  // 0x00E0 (0x0008) [unknown]
-  WaitingForPlayersString: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  ReservationNotRespondingString: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  ReservationFullString: 0x0108,  // 0x0108 (0x0010) [FString]
-  PartyTeamReservationFullString: 0x0118,  // 0x0118 (0x0010) [FString]
-  NoFriendJoinPrivateMatchString: 0x0128,  // 0x0128 (0x0010) [FString]
-  BeaconTimedOutString: 0x0138,  // 0x0138 (0x0010) [FString]
-  NotAllPlayersJoinedString: 0x0148,  // 0x0148 (0x0010) [FString]
-  CanceledString: 0x0158,  // 0x0158 (0x0010) [FString]
-  SecurityKeyAcquisitionFailed: 0x0168,  // 0x0168 (0x0010) [FString]
-  SecurityKeyVerificationFailed: 0x0178,  // 0x0178 (0x0010) [FString]
-  SendingReservationMessage: 0x0188,  // 0x0188 (0x0010) [FString]
-  JoiningPartyLeadersGame: 0x0198,  // 0x0198 (0x0010) [FString]
-  InvalidPassword: 0x01A8,  // 0x01A8 (0x0010) [FString]
-  WrongPlaylistString: 0x01B8,  // 0x01B8 (0x0010) [FString]
-  WrongRankedMatchString: 0x01C8,  // 0x01C8 (0x0010) [FString]
-  MatchEndedString: 0x01D8,  // 0x01D8 (0x0010) [FString]
-  CrossplayDisabled: 0x01E8,  // 0x01E8 (0x0010) [FString]
-  AnotherPlayerCanceled: 0x01F8,  // 0x01F8 (0x0010) [FString]
-  ActiveServer: 0x0208,  // 0x0208 (0x00A0) [FActiveServerData]
-  Settings: 0x02A8,  // 0x02A8 (0x0020) [FJoinMatchSettings]
-  PendingFailMessage: 0x02C8,  // 0x02C8 (0x0010) [FString]
-  JoinedPlayers: 0x02D8,  // 0x02D8 (0x0010) [TArray<UPlayer*>]
-  CustomMatch: 0x02E8,  // 0x02E8 (0x0088) [FCustomMatchSettings]
-  __EventJoinGameComplete__Delegate: 0x0370,  // 0x0370 (0x0018) [FScriptDelegate]
-  __EventStatusUpdate__Delegate: 0x0388,  // 0x0388 (0x0018) [FScriptDelegate]
-  __EventCountdownStarted__Delegate: 0x03A0,  // 0x03A0 (0x0018) [FScriptDelegate]
-  __EventCountdownEnded__Delegate: 0x03B8,  // 0x03B8 (0x0018) [FScriptDelegate]
-  __EventActiveServerChanged__Delegate: 0x03D0,  // 0x03D0 (0x0018) [FScriptDelegate]
-  __EventServerReserved__Delegate: 0x03E8,  // 0x03E8 (0x0018) [FScriptDelegate]
-  __EventPasswordRequired__Delegate: 0x0400,  // 0x0400 (0x0018) [FScriptDelegate]
-  __EventJoiningGame__Delegate: 0x0418,  // 0x0418 (0x0018) [FScriptDelegate]
-  __EventMaxPlayersChanged__Delegate: 0x0430,  // 0x0430 (0x0018) [FScriptDelegate]
+  JoinCountdownTime: 0x00b0n,  // 0x00b0 (0x0004) [int32]
+  FailCommand: 0x00b8n,  // 0x00b8 (0x0010) [FString]
+  LoadingScreenCommand: 0x00c8n,  // 0x00c8 (0x0010) [FString]
+  JoinGameShake: 0x00d8n,  // 0x00d8 (0x0008) [unknown]
+  ReservationBeacon: 0x00e0n,  // 0x00e0 (0x0008) [unknown]
+  WaitingForPlayersString: 0x00e8n,  // 0x00e8 (0x0010) [FString]
+  ReservationNotRespondingString: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  ReservationFullString: 0x0108n,  // 0x0108 (0x0010) [FString]
+  PartyTeamReservationFullString: 0x0118n,  // 0x0118 (0x0010) [FString]
+  NoFriendJoinPrivateMatchString: 0x0128n,  // 0x0128 (0x0010) [FString]
+  BeaconTimedOutString: 0x0138n,  // 0x0138 (0x0010) [FString]
+  NotAllPlayersJoinedString: 0x0148n,  // 0x0148 (0x0010) [FString]
+  CanceledString: 0x0158n,  // 0x0158 (0x0010) [FString]
+  SecurityKeyAcquisitionFailed: 0x0168n,  // 0x0168 (0x0010) [FString]
+  SecurityKeyVerificationFailed: 0x0178n,  // 0x0178 (0x0010) [FString]
+  SendingReservationMessage: 0x0188n,  // 0x0188 (0x0010) [FString]
+  JoiningPartyLeadersGame: 0x0198n,  // 0x0198 (0x0010) [FString]
+  InvalidPassword: 0x01a8n,  // 0x01a8 (0x0010) [FString]
+  WrongPlaylistString: 0x01b8n,  // 0x01b8 (0x0010) [FString]
+  WrongRankedMatchString: 0x01c8n,  // 0x01c8 (0x0010) [FString]
+  MatchEndedString: 0x01d8n,  // 0x01d8 (0x0010) [FString]
+  CrossplayDisabled: 0x01e8n,  // 0x01e8 (0x0010) [FString]
+  AnotherPlayerCanceled: 0x01f8n,  // 0x01f8 (0x0010) [FString]
+  ActiveServer: 0x0208n,  // 0x0208 (0x00a0) [FActiveServerData]
+  Settings: 0x02a8n,  // 0x02a8 (0x0020) [FJoinMatchSettings]
+  PendingFailMessage: 0x02c8n,  // 0x02c8 (0x0010) [FString]
+  JoinedPlayers: 0x02d8n,  // 0x02d8 (0x0010) [TArray<UPlayer*>]
+  CustomMatch: 0x02e8n,  // 0x02e8 (0x0088) [FCustomMatchSettings]
+  __EventJoinGameComplete__Delegate: 0x0370n,  // 0x0370 (0x0018) [FScriptDelegate]
+  __EventStatusUpdate__Delegate: 0x0388n,  // 0x0388 (0x0018) [FScriptDelegate]
+  __EventCountdownStarted__Delegate: 0x03a0n,  // 0x03a0 (0x0018) [FScriptDelegate]
+  __EventCountdownEnded__Delegate: 0x03b8n,  // 0x03b8 (0x0018) [FScriptDelegate]
+  __EventActiveServerChanged__Delegate: 0x03d0n,  // 0x03d0 (0x0018) [FScriptDelegate]
+  __EventServerReserved__Delegate: 0x03e8n,  // 0x03e8 (0x0018) [FScriptDelegate]
+  __EventPasswordRequired__Delegate: 0x0400n,  // 0x0400 (0x0018) [FScriptDelegate]
+  __EventJoiningGame__Delegate: 0x0418n,  // 0x0418 (0x0018) [FScriptDelegate]
+  __EventMaxPlayersChanged__Delegate: 0x0430n,  // 0x0430 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
@@ -8251,17 +6763,17 @@ export const OnlineGameJoinGame_X = {
  * Extends: Online_X
  */
 export const OnlineGameLeaderboards_X = {
-  NumResults: 0x00B0,  // 0x00B0 (0x0004) [int32]
-  CachedLeaderboards: 0x00B8,  // 0x00B8 (0x0010) [TArray<FCachedLeaderboardData>]
-  NumFriendsLeaderboardRequests: 0x00C8,  // 0x00C8 (0x0004) [int32]
-  CurrentLeaderboardID: 0x00CC,  // 0x00CC (0x0008) [FName]
-  CurrentFriendIndex: 0x00D4,  // 0x00D4 (0x0004) [int32]
-  bGlobalLeaderboards: 0x00D8,  // 0x00D8 (0x0004) [bool : 0x1]
-  GetLoaderboardPlayerValueRPC: 0x00E0,  // 0x00E0 (0x0008) [URPC_X*]
-  LeaderboardRequests: 0x00E8,  // 0x00E8 (0x0010) [TArray<URPC_X*>]
-  __OnGetLeaderboardPlayerValue__Delegate: 0x00F8,  // 0x00F8 (0x0018) [FScriptDelegate]
-  __EventNewLeaderboard__Delegate: 0x0110,  // 0x0110 (0x0018) [FScriptDelegate]
-  __EventGetLeaderboardFailed__Delegate: 0x0128,  // 0x0128 (0x0018) [FScriptDelegate]
+  NumResults: 0x00b0n,  // 0x00b0 (0x0004) [int32]
+  CachedLeaderboards: 0x00b8n,  // 0x00b8 (0x0010) [TArray<FCachedLeaderboardData>]
+  NumFriendsLeaderboardRequests: 0x00c8n,  // 0x00c8 (0x0004) [int32]
+  CurrentLeaderboardID: 0x00ccn,  // 0x00cc (0x0008) [FName]
+  CurrentFriendIndex: 0x00d4n,  // 0x00d4 (0x0004) [int32]
+  bGlobalLeaderboards: 0x00d8n,  // 0x00d8 (0x0004) [bool : 0x1]
+  GetLoaderboardPlayerValueRPC: 0x00e0n,  // 0x00e0 (0x0008) [URPC_X*]
+  LeaderboardRequests: 0x00e8n,  // 0x00e8 (0x0010) [TArray<URPC_X*>]
+  __OnGetLeaderboardPlayerValue__Delegate: 0x00f8n,  // 0x00f8 (0x0018) [FScriptDelegate]
+  __EventNewLeaderboard__Delegate: 0x0110n,  // 0x0110 (0x0018) [FScriptDelegate]
+  __EventGetLeaderboardFailed__Delegate: 0x0128n,  // 0x0128 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
@@ -8271,13 +6783,13 @@ export const OnlineGameLeaderboards_X = {
  * Extends: Online_X
  */
 export const OnlineGameMatchmakingBase_X = {
-  CheckReservation: 0x00B0,  // 0x00B0 (0x0008) [UCheckReservation_X*]
-  StartMatchmakingTask: 0x00B8,  // 0x00B8 (0x0008) [UAsyncTask*]
-  PingingRegionsString: 0x00C0,  // 0x00C0 (0x0010) [FString]
-  __EventFindGameComplete__Delegate: 0x00D0,  // 0x00D0 (0x0018) [FScriptDelegate]
-  __EventFindGameStatus__Delegate: 0x00E8,  // 0x00E8 (0x0018) [FScriptDelegate]
-  __EventFindGameError__Delegate: 0x0100,  // 0x0100 (0x0018) [FScriptDelegate]
-  __EventFindGameStateChanged__Delegate: 0x0118,  // 0x0118 (0x0018) [FScriptDelegate]
+  CheckReservation: 0x00b0n,  // 0x00b0 (0x0008) [UCheckReservation_X*]
+  StartMatchmakingTask: 0x00b8n,  // 0x00b8 (0x0008) [UAsyncTask*]
+  PingingRegionsString: 0x00c0n,  // 0x00c0 (0x0010) [FString]
+  __EventFindGameComplete__Delegate: 0x00d0n,  // 0x00d0 (0x0018) [FScriptDelegate]
+  __EventFindGameStatus__Delegate: 0x00e8n,  // 0x00e8 (0x0018) [FScriptDelegate]
+  __EventFindGameError__Delegate: 0x0100n,  // 0x0100 (0x0018) [FScriptDelegate]
+  __EventFindGameStateChanged__Delegate: 0x0118n,  // 0x0118 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
@@ -8287,27 +6799,27 @@ export const OnlineGameMatchmakingBase_X = {
  * Extends: OnlineGameMatchmakingBase_X
  */
 export const OnlineGameMatchmaking_X = {
-  PreferredPlaylists: 0x0130,  // 0x0130 (0x0010) [TArray<int32>]
-  PreferredRegions: 0x0140,  // 0x0140 (0x0010) [TArray<FDSRegionInfo>]
-  SearchingString: 0x0150,  // 0x0150 (0x0010) [FString]
-  StartSearchFailString: 0x0160,  // 0x0160 (0x0010) [FString]
-  FoundServerString: 0x0170,  // 0x0170 (0x0010) [FString]
-  PlaylistsHaveChangedString: 0x0180,  // 0x0180 (0x0010) [FString]
-  RegionsHaveChangedString: 0x0190,  // 0x0190 (0x0010) [FString]
-  MatchmakingAttemptString: 0x01A0,  // 0x01A0 (0x0010) [FString]
-  MatchmakingStartTime: 0x01B0,  // 0x01B0 (0x0004) [float]
-  MatchmakingBanTime: 0x01B4,  // 0x01B4 (0x0004) [int32]
-  EstimatedQueueTime: 0x01B8,  // 0x01B8 (0x0004) [float]
-  bIgnoreSkill: 0x01BC,  // 0x01BC (0x0004) [bool : 0x1]
-  MatchmakingDisabledDuration: 0x01C0,  // 0x01C0 (0x0004) [float]
-  MatchmakingDisabledUntilTime: 0x01C4,  // 0x01C4 (0x0004) [float]
-  LastReservationID: 0x01C8,  // 0x01C8 (0x0010) [FString]
-  __EventStartSearch__Delegate: 0x01D8,  // 0x01D8 (0x0018) [FScriptDelegate]
-  __EventMatchmakingError__Delegate: 0x01F0,  // 0x01F0 (0x0018) [FScriptDelegate]
-  __EventMatchmakingCanceledOnPartySizeChanged__Delegate: 0x0208,  // 0x0208 (0x0018) [FScriptDelegate]
-  __EventMatchmakingRPCSuccess__Delegate: 0x0220,  // 0x0220 (0x0018) [FScriptDelegate]
-  __EventMatchmakingRPCError__Delegate: 0x0238,  // 0x0238 (0x0018) [FScriptDelegate]
-  __EventSendMatchmakingRPC__Delegate: 0x0250,  // 0x0250 (0x0018) [FScriptDelegate]
+  PreferredPlaylists: 0x0130n,  // 0x0130 (0x0010) [TArray<int32>]
+  PreferredRegions: 0x0140n,  // 0x0140 (0x0010) [TArray<FDSRegionInfo>]
+  SearchingString: 0x0150n,  // 0x0150 (0x0010) [FString]
+  StartSearchFailString: 0x0160n,  // 0x0160 (0x0010) [FString]
+  FoundServerString: 0x0170n,  // 0x0170 (0x0010) [FString]
+  PlaylistsHaveChangedString: 0x0180n,  // 0x0180 (0x0010) [FString]
+  RegionsHaveChangedString: 0x0190n,  // 0x0190 (0x0010) [FString]
+  MatchmakingAttemptString: 0x01a0n,  // 0x01a0 (0x0010) [FString]
+  MatchmakingStartTime: 0x01b0n,  // 0x01b0 (0x0004) [float]
+  MatchmakingBanTime: 0x01b4n,  // 0x01b4 (0x0004) [int32]
+  EstimatedQueueTime: 0x01b8n,  // 0x01b8 (0x0004) [float]
+  bIgnoreSkill: 0x01bcn,  // 0x01bc (0x0004) [bool : 0x1]
+  MatchmakingDisabledDuration: 0x01c0n,  // 0x01c0 (0x0004) [float]
+  MatchmakingDisabledUntilTime: 0x01c4n,  // 0x01c4 (0x0004) [float]
+  LastReservationID: 0x01c8n,  // 0x01c8 (0x0010) [FString]
+  __EventStartSearch__Delegate: 0x01d8n,  // 0x01d8 (0x0018) [FScriptDelegate]
+  __EventMatchmakingError__Delegate: 0x01f0n,  // 0x01f0 (0x0018) [FScriptDelegate]
+  __EventMatchmakingCanceledOnPartySizeChanged__Delegate: 0x0208n,  // 0x0208 (0x0018) [FScriptDelegate]
+  __EventMatchmakingRPCSuccess__Delegate: 0x0220n,  // 0x0220 (0x0018) [FScriptDelegate]
+  __EventMatchmakingRPCError__Delegate: 0x0238n,  // 0x0238 (0x0018) [FScriptDelegate]
+  __EventSendMatchmakingRPC__Delegate: 0x0250n,  // 0x0250 (0x0018) [FScriptDelegate]
   ...OnlineGameMatchmakingBase_X,
 } as const;
 
@@ -8317,59 +6829,59 @@ export const OnlineGameMatchmaking_X = {
  * Extends: Online_X
  */
 export const OnlineGameParty_X = {
-  PartyMembers: 0x00B0,  // 0x00B0 (0x0010) [TArray<FPartyMember>]
-  PartyID: 0x00C0,  // 0x00C0 (0x0010) [FUniqueLobbyId]
-  PartyLeader: 0x00D0,  // 0x00D0 (0x0048) [FUniqueNetId]
-  MaxPartySize: 0x0118,  // 0x0118 (0x0004) [int32]
-  MessageComponent: 0x0120,  // 0x0120 (0x0008) [unknown]
-  JoinMatchType: 0x0128,  // 0x0128 (0x0010) [FString]
-  PendingSearchStatus: 0x0138,  // 0x0138 (0x0008) [UPartyMessage_SearchStatus_X*]
-  NullSearchStatus: 0x0140,  // 0x0140 (0x0008) [UPartyMessage_SearchStatus_X*]
-  PartyTimeout: 0x0148,  // 0x0148 (0x0004) [int32]
-  CurrentPartySize: 0x014C,  // 0x014C (0x0004) [int32]
-  LastbSearchingStatus: 0x0150,  // 0x0150 (0x0004) [bool : 0x1]
-  LastLockStatus: 0x0150,  // 0x0150 (0x0004) [bool : 0x2]
-  bPendingIncomingTradeInvite: 0x0150,  // 0x0150 (0x0004) [bool : 0x4]
-  bTradeLocked: 0x0150,  // 0x0150 (0x0004) [bool : 0x8]
-  LastSearchState: 0x0154,  // 0x0154 (0x0008) [FName]
-  MatchSettings: 0x0160,  // 0x0160 (0x0058) [FPartyJoinMatchSettings]
-  ProcessingStatus: 0x01B8,  // 0x01B8 (0x0001) [PartyProcessingStatus]
-  NotInSameOnlineGameError: 0x01C0,  // 0x01C0 (0x0010) [FString]
-  MissingLicenseAgreementError: 0x01D0,  // 0x01D0 (0x0010) [FString]
-  SequenceInvitedToPlatformParty: 0x01E0,  // 0x01E0 (0x0008) [UPartySequence_InvitedToPlatformParty_X*]
-  SequencePsyNetPartyUpgrade: 0x01E8,  // 0x01E8 (0x0008) [UPartySequence_PsyNetPartyUpgrade_X*]
-  SequenceInvitedToPsyNetParty: 0x01F0,  // 0x01F0 (0x0008) [UPartySequence_InvitedToPsyNetParty_X*]
-  PartyConfig: 0x01F8,  // 0x01F8 (0x0008) [UPartyConfig_X*]
-  Config: 0x0200,  // 0x0200 (0x0008) [UPsyNetConfig_X*]
-  PlatformLobbyInterface: 0x0208,  // 0x0208 (0x0010) [TScriptInterface<UOnlineLobbyInterface>]
-  PsyNetLobbyInterface: 0x0218,  // 0x0218 (0x0008) [UParties_X*]
-  CreatePartyLocalPlayerNum: 0x0220,  // 0x0220 (0x0004) [int32]
-  CrossplayConfig: 0x0228,  // 0x0228 (0x0008) [UCrossplayConfig_X*]
-  FindServerTask: 0x0230,  // 0x0230 (0x0008) [UFindServerTask_X*]
-  JoinLobbyError: 0x0238,  // 0x0238 (0x0010) [FString]
-  LeaderPreferredPlaylists: 0x0248,  // 0x0248 (0x0010) [TArray<int32>]
-  __EventPartyCreated__Delegate: 0x0258,  // 0x0258 (0x0018) [FScriptDelegate]
-  __OnPartyInviteAccepted__Delegate: 0x0270,  // 0x0270 (0x0018) [FScriptDelegate]
-  __EventPlayerInvited__Delegate: 0x0288,  // 0x0288 (0x0018) [FScriptDelegate]
-  __EventPlayerInvitedSilent__Delegate: 0x02A0,  // 0x02A0 (0x0018) [FScriptDelegate]
-  __EventPartyChanged__Delegate: 0x02B8,  // 0x02B8 (0x0018) [FScriptDelegate]
-  __EventPartyMemberXPLevelChanged__Delegate: 0x02D0,  // 0x02D0 (0x0018) [FScriptDelegate]
-  __EventPartyMemberCompletedChallengesChanged__Delegate: 0x02E8,  // 0x02E8 (0x0018) [FScriptDelegate]
-  __EventPartySizeChanged__Delegate: 0x0300,  // 0x0300 (0x0018) [FScriptDelegate]
-  __EventPartyLeaderChanged__Delegate: 0x0318,  // 0x0318 (0x0018) [FScriptDelegate]
-  __EventSearchStatusChanged__Delegate: 0x0330,  // 0x0330 (0x0018) [FScriptDelegate]
-  __EventPartyError__Delegate: 0x0348,  // 0x0348 (0x0018) [FScriptDelegate]
-  __EventPartyJoinGameError__Delegate: 0x0360,  // 0x0360 (0x0018) [FScriptDelegate]
-  __EventPartyJoinGameSuccess__Delegate: 0x0378,  // 0x0378 (0x0018) [FScriptDelegate]
-  __EventPartyDestroyed__Delegate: 0x0390,  // 0x0390 (0x0018) [FScriptDelegate]
-  __EventConfirmJoinGameMessage__Delegate: 0x03A8,  // 0x03A8 (0x0018) [FScriptDelegate]
-  __EventLeaderLeftOnlineGame__Delegate: 0x03C0,  // 0x03C0 (0x0018) [FScriptDelegate]
-  __EventProcessingStatusChanged__Delegate: 0x03D8,  // 0x03D8 (0x0018) [FScriptDelegate]
-  __EventDisableCrossPlayChanged__Delegate: 0x03F0,  // 0x03F0 (0x0018) [FScriptDelegate]
-  __EventPlayerInMatchChanged__Delegate: 0x0408,  // 0x0408 (0x0018) [FScriptDelegate]
-  __EventStartedJoinFriend__Delegate: 0x0420,  // 0x0420 (0x0018) [FScriptDelegate]
-  __EventAddPartyMember__Delegate: 0x0438,  // 0x0438 (0x0018) [FScriptDelegate]
-  __EventRemovePartyMember__Delegate: 0x0450,  // 0x0450 (0x0018) [FScriptDelegate]
+  PartyMembers: 0x00b0n,  // 0x00b0 (0x0010) [TArray<FPartyMember>]
+  PartyID: 0x00c0n,  // 0x00c0 (0x0010) [FUniqueLobbyId]
+  PartyLeader: 0x00d0n,  // 0x00d0 (0x0048) [FUniqueNetId]
+  MaxPartySize: 0x0118n,  // 0x0118 (0x0004) [int32]
+  MessageComponent: 0x0120n,  // 0x0120 (0x0008) [unknown]
+  JoinMatchType: 0x0128n,  // 0x0128 (0x0010) [FString]
+  PendingSearchStatus: 0x0138n,  // 0x0138 (0x0008) [UPartyMessage_SearchStatus_X*]
+  NullSearchStatus: 0x0140n,  // 0x0140 (0x0008) [UPartyMessage_SearchStatus_X*]
+  PartyTimeout: 0x0148n,  // 0x0148 (0x0004) [int32]
+  CurrentPartySize: 0x014cn,  // 0x014c (0x0004) [int32]
+  LastbSearchingStatus: 0x0150n,  // 0x0150 (0x0004) [bool : 0x1]
+  LastLockStatus: 0x0150n,  // 0x0150 (0x0004) [bool : 0x2]
+  bPendingIncomingTradeInvite: 0x0150n,  // 0x0150 (0x0004) [bool : 0x4]
+  bTradeLocked: 0x0150n,  // 0x0150 (0x0004) [bool : 0x8]
+  LastSearchState: 0x0154n,  // 0x0154 (0x0008) [FName]
+  MatchSettings: 0x0160n,  // 0x0160 (0x0058) [FPartyJoinMatchSettings]
+  ProcessingStatus: 0x01b8n,  // 0x01b8 (0x0001) [PartyProcessingStatus]
+  NotInSameOnlineGameError: 0x01c0n,  // 0x01c0 (0x0010) [FString]
+  MissingLicenseAgreementError: 0x01d0n,  // 0x01d0 (0x0010) [FString]
+  SequenceInvitedToPlatformParty: 0x01e0n,  // 0x01e0 (0x0008) [UPartySequence_InvitedToPlatformParty_X*]
+  SequencePsyNetPartyUpgrade: 0x01e8n,  // 0x01e8 (0x0008) [UPartySequence_PsyNetPartyUpgrade_X*]
+  SequenceInvitedToPsyNetParty: 0x01f0n,  // 0x01f0 (0x0008) [UPartySequence_InvitedToPsyNetParty_X*]
+  PartyConfig: 0x01f8n,  // 0x01f8 (0x0008) [UPartyConfig_X*]
+  Config: 0x0200n,  // 0x0200 (0x0008) [UPsyNetConfig_X*]
+  PlatformLobbyInterface: 0x0208n,  // 0x0208 (0x0010) [TScriptInterface<UOnlineLobbyInterface>]
+  PsyNetLobbyInterface: 0x0218n,  // 0x0218 (0x0008) [UParties_X*]
+  CreatePartyLocalPlayerNum: 0x0220n,  // 0x0220 (0x0004) [int32]
+  CrossplayConfig: 0x0228n,  // 0x0228 (0x0008) [UCrossplayConfig_X*]
+  FindServerTask: 0x0230n,  // 0x0230 (0x0008) [UFindServerTask_X*]
+  JoinLobbyError: 0x0238n,  // 0x0238 (0x0010) [FString]
+  LeaderPreferredPlaylists: 0x0248n,  // 0x0248 (0x0010) [TArray<int32>]
+  __EventPartyCreated__Delegate: 0x0258n,  // 0x0258 (0x0018) [FScriptDelegate]
+  __OnPartyInviteAccepted__Delegate: 0x0270n,  // 0x0270 (0x0018) [FScriptDelegate]
+  __EventPlayerInvited__Delegate: 0x0288n,  // 0x0288 (0x0018) [FScriptDelegate]
+  __EventPlayerInvitedSilent__Delegate: 0x02a0n,  // 0x02a0 (0x0018) [FScriptDelegate]
+  __EventPartyChanged__Delegate: 0x02b8n,  // 0x02b8 (0x0018) [FScriptDelegate]
+  __EventPartyMemberXPLevelChanged__Delegate: 0x02d0n,  // 0x02d0 (0x0018) [FScriptDelegate]
+  __EventPartyMemberCompletedChallengesChanged__Delegate: 0x02e8n,  // 0x02e8 (0x0018) [FScriptDelegate]
+  __EventPartySizeChanged__Delegate: 0x0300n,  // 0x0300 (0x0018) [FScriptDelegate]
+  __EventPartyLeaderChanged__Delegate: 0x0318n,  // 0x0318 (0x0018) [FScriptDelegate]
+  __EventSearchStatusChanged__Delegate: 0x0330n,  // 0x0330 (0x0018) [FScriptDelegate]
+  __EventPartyError__Delegate: 0x0348n,  // 0x0348 (0x0018) [FScriptDelegate]
+  __EventPartyJoinGameError__Delegate: 0x0360n,  // 0x0360 (0x0018) [FScriptDelegate]
+  __EventPartyJoinGameSuccess__Delegate: 0x0378n,  // 0x0378 (0x0018) [FScriptDelegate]
+  __EventPartyDestroyed__Delegate: 0x0390n,  // 0x0390 (0x0018) [FScriptDelegate]
+  __EventConfirmJoinGameMessage__Delegate: 0x03a8n,  // 0x03a8 (0x0018) [FScriptDelegate]
+  __EventLeaderLeftOnlineGame__Delegate: 0x03c0n,  // 0x03c0 (0x0018) [FScriptDelegate]
+  __EventProcessingStatusChanged__Delegate: 0x03d8n,  // 0x03d8 (0x0018) [FScriptDelegate]
+  __EventDisableCrossPlayChanged__Delegate: 0x03f0n,  // 0x03f0 (0x0018) [FScriptDelegate]
+  __EventPlayerInMatchChanged__Delegate: 0x0408n,  // 0x0408 (0x0018) [FScriptDelegate]
+  __EventStartedJoinFriend__Delegate: 0x0420n,  // 0x0420 (0x0018) [FScriptDelegate]
+  __EventAddPartyMember__Delegate: 0x0438n,  // 0x0438 (0x0018) [FScriptDelegate]
+  __EventRemovePartyMember__Delegate: 0x0450n,  // 0x0450 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
@@ -8379,30 +6891,30 @@ export const OnlineGameParty_X = {
  * Extends: Online_X
  */
 export const OnlineGamePlaylists_X = {
-  PlaylistClass: 0x00B0,  // 0x00B0 (0x0008) [UClass*]
-  DownloadedPlaylists: 0x00B8,  // 0x00B8 (0x0010) [TArray<UGameSettingPlaylist_X*>]
-  RankedConfig: 0x00C8,  // 0x00C8 (0x0008) [URankedConfig_X*]
-  CompetitiveCategory: 0x00D0,  // 0x00D0 (0x0010) [FString]
-  CasualCategory: 0x00E0,  // 0x00E0 (0x0010) [FString]
-  ExtraModeCategory: 0x00F0,  // 0x00F0 (0x0010) [FString]
-  PrivateCategory: 0x0100,  // 0x0100 (0x0010) [FString]
-  TournamentCategory: 0x0110,  // 0x0110 (0x0010) [FString]
-  __EventPlaylistsChanged__Delegate: 0x0120,  // 0x0120 (0x0018) [FScriptDelegate]
+  PlaylistClass: 0x00b0n,  // 0x00b0 (0x0008) [UClass*]
+  DownloadedPlaylists: 0x00b8n,  // 0x00b8 (0x0010) [TArray<UGameSettingPlaylist_X*>]
+  RankedConfig: 0x00c8n,  // 0x00c8 (0x0008) [URankedConfig_X*]
+  CompetitiveCategory: 0x00d0n,  // 0x00d0 (0x0010) [FString]
+  CasualCategory: 0x00e0n,  // 0x00e0 (0x0010) [FString]
+  ExtraModeCategory: 0x00f0n,  // 0x00f0 (0x0010) [FString]
+  PrivateCategory: 0x0100n,  // 0x0100 (0x0010) [FString]
+  TournamentCategory: 0x0110n,  // 0x0110 (0x0010) [FString]
+  __EventPlaylistsChanged__Delegate: 0x0120n,  // 0x0120 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
 /**
  * ProjectX.OnlineGamePopulation_X Offsets
- * Size: 0x00F0
+ * Size: 0x00f0
  * Extends: Online_X
  */
 export const OnlineGamePopulation_X = {
-  UpdatePopulationDelay: 0x00B0,  // 0x00B0 (0x0004) [float]
-  LastUpdatePopulationTime: 0x00B4,  // 0x00B4 (0x0004) [float]
-  GetPopulationRPC: 0x00B8,  // 0x00B8 (0x0008) [URPC_X*]
-  TotalPlayers: 0x00C0,  // 0x00C0 (0x0004) [int32]
-  Populations: 0x00C8,  // 0x00C8 (0x0010) [TArray<FGetPopulationData>]
-  __EventGetPlaylistPopulations__Delegate: 0x00D8,  // 0x00D8 (0x0018) [FScriptDelegate]
+  UpdatePopulationDelay: 0x00b0n,  // 0x00b0 (0x0004) [float]
+  LastUpdatePopulationTime: 0x00b4n,  // 0x00b4 (0x0004) [float]
+  GetPopulationRPC: 0x00b8n,  // 0x00b8 (0x0008) [URPC_X*]
+  TotalPlayers: 0x00c0n,  // 0x00c0 (0x0004) [int32]
+  Populations: 0x00c8n,  // 0x00c8 (0x0010) [TArray<FGetPopulationData>]
+  __EventGetPlaylistPopulations__Delegate: 0x00d8n,  // 0x00d8 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
@@ -8412,33 +6924,33 @@ export const OnlineGamePopulation_X = {
  * Extends: OnlineGameMatchmakingBase_X
  */
 export const OnlineGamePrivateMatch_X = {
-  bCancelled: 0x0130,  // 0x0130 (0x0004) [bool : 0x1]
-  PreferredRegion: 0x0138,  // 0x0138 (0x0010) [FString]
-  PreferredPlaylistID: 0x0148,  // 0x0148 (0x0004) [int32]
-  SearchingString: 0x0150,  // 0x0150 (0x0010) [FString]
-  StartSearchFailString: 0x0160,  // 0x0160 (0x0010) [FString]
-  FoundServerString: 0x0170,  // 0x0170 (0x0010) [FString]
-  AlreadyJoiningGameString: 0x0180,  // 0x0180 (0x0010) [FString]
-  TimeoutString: 0x0190,  // 0x0190 (0x0010) [FString]
-  WrongRegionString: 0x01A0,  // 0x01A0 (0x0010) [FString]
-  Settings: 0x01B0,  // 0x01B0 (0x0088) [FCustomMatchSettings]
-  SearchTimeout: 0x0238,  // 0x0238 (0x0004) [float]
-  __EventPrivateMatchError__Delegate: 0x0240,  // 0x0240 (0x0018) [FScriptDelegate]
-  __EventCancelPrivateMatch__Delegate: 0x0258,  // 0x0258 (0x0018) [FScriptDelegate]
-  __EventSendMatchmakingRPC__Delegate: 0x0270,  // 0x0270 (0x0018) [FScriptDelegate]
+  bCancelled: 0x0130n,  // 0x0130 (0x0004) [bool : 0x1]
+  PreferredRegion: 0x0138n,  // 0x0138 (0x0010) [FString]
+  PreferredPlaylistID: 0x0148n,  // 0x0148 (0x0004) [int32]
+  SearchingString: 0x0150n,  // 0x0150 (0x0010) [FString]
+  StartSearchFailString: 0x0160n,  // 0x0160 (0x0010) [FString]
+  FoundServerString: 0x0170n,  // 0x0170 (0x0010) [FString]
+  AlreadyJoiningGameString: 0x0180n,  // 0x0180 (0x0010) [FString]
+  TimeoutString: 0x0190n,  // 0x0190 (0x0010) [FString]
+  WrongRegionString: 0x01a0n,  // 0x01a0 (0x0010) [FString]
+  Settings: 0x01b0n,  // 0x01b0 (0x0088) [FCustomMatchSettings]
+  SearchTimeout: 0x0238n,  // 0x0238 (0x0004) [float]
+  __EventPrivateMatchError__Delegate: 0x0240n,  // 0x0240 (0x0018) [FScriptDelegate]
+  __EventCancelPrivateMatch__Delegate: 0x0258n,  // 0x0258 (0x0018) [FScriptDelegate]
+  __EventSendMatchmakingRPC__Delegate: 0x0270n,  // 0x0270 (0x0018) [FScriptDelegate]
   ...OnlineGameMatchmakingBase_X,
 } as const;
 
 /**
  * ProjectX.OnlineGamePrivileges_X Offsets
- * Size: 0x00F8
+ * Size: 0x00f8
  * Extends: Online_X
  */
 export const OnlineGamePrivileges_X = {
-  PendingChecks: 0x00B0,  // 0x00B0 (0x0010) [TArray<UPrivilegeCheck_X*>]
-  bIsCheckingPrivileges: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x1]
-  __EventCheckingPrivilegesChanged__Delegate: 0x00C8,  // 0x00C8 (0x0018) [FScriptDelegate]
-  __EventPrivilegeCheckRestriction__Delegate: 0x00E0,  // 0x00E0 (0x0018) [FScriptDelegate]
+  PendingChecks: 0x00b0n,  // 0x00b0 (0x0010) [TArray<UPrivilegeCheck_X*>]
+  bIsCheckingPrivileges: 0x00c0n,  // 0x00c0 (0x0004) [bool : 0x1]
+  __EventCheckingPrivilegesChanged__Delegate: 0x00c8n,  // 0x00c8 (0x0018) [FScriptDelegate]
+  __EventPrivilegeCheckRestriction__Delegate: 0x00e0n,  // 0x00e0 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
@@ -8448,77 +6960,77 @@ export const OnlineGamePrivileges_X = {
  * Extends: Online_X
  */
 export const OnlineGameRegions_X = {
-  PingRegionsCacheTime: 0x00B0,  // 0x00B0 (0x0004) [float]
-  LastPingRegionsTime: 0x00B4,  // 0x00B4 (0x0004) [float]
-  Config: 0x00B8,  // 0x00B8 (0x0008) [URegionConfig_X*]
-  RegionPings: 0x00C0,  // 0x00C0 (0x0010) [TArray<URegionPing_X*>]
-  CachedRegionPings: 0x00D0,  // 0x00D0 (0x0010) [TArray<FCachedRegionPing>]
-  BeaconConfig: 0x00E0,  // 0x00E0 (0x0008) [UBeaconConfig_X*]
-  bPingingRegions: 0x00E8,  // 0x00E8 (0x0004) [bool : 0x1]
-  __EventRegionsSynced__Delegate: 0x00F0,  // 0x00F0 (0x0018) [FScriptDelegate]
-  __EventRegionsPinged__Delegate: 0x0108,  // 0x0108 (0x0018) [FScriptDelegate]
-  __EventRegionsError__Delegate: 0x0120,  // 0x0120 (0x0018) [FScriptDelegate]
+  PingRegionsCacheTime: 0x00b0n,  // 0x00b0 (0x0004) [float]
+  LastPingRegionsTime: 0x00b4n,  // 0x00b4 (0x0004) [float]
+  Config: 0x00b8n,  // 0x00b8 (0x0008) [URegionConfig_X*]
+  RegionPings: 0x00c0n,  // 0x00c0 (0x0010) [TArray<URegionPing_X*>]
+  CachedRegionPings: 0x00d0n,  // 0x00d0 (0x0010) [TArray<FCachedRegionPing>]
+  BeaconConfig: 0x00e0n,  // 0x00e0 (0x0008) [UBeaconConfig_X*]
+  bPingingRegions: 0x00e8n,  // 0x00e8 (0x0004) [bool : 0x1]
+  __EventRegionsSynced__Delegate: 0x00f0n,  // 0x00f0 (0x0018) [FScriptDelegate]
+  __EventRegionsPinged__Delegate: 0x0108n,  // 0x0108 (0x0018) [FScriptDelegate]
+  __EventRegionsError__Delegate: 0x0120n,  // 0x0120 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
 /**
  * ProjectX.OnlineGameReservations_X Offsets
- * Size: 0x01E8
+ * Size: 0x01e8
  * Extends: Online_X
  */
 export const OnlineGameReservations_X = {
-  ExtraMapLoadTime: 0x00B0,  // 0x00B0 (0x0004) [float]
-  WaitForReservationsTimeout: 0x00B4,  // 0x00B4 (0x0004) [float]
-  InitialReservationTimeoutSeconds: 0x00B8,  // 0x00B8 (0x0004) [float]
-  InitialMigrationTimeoutSeconds: 0x00BC,  // 0x00BC (0x0004) [float]
-  bAllowPrivateMatchCrossPlayDisable: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x1]
-  bSkipReservationCheck: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x2]
-  bSinglePlayerMatchmaking: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x4]
-  bServerTraveling: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x8]
-  bScrambleTeams: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x10]
-  bMatchStarted: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x20]
-  bLockTeams: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x40]
-  bIsBotMatch: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x80]
-  bMigrationInProgress: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x100]
-  bFirstClubDetailsRequestDone: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x200]
-  Beacon: 0x00C8,  // 0x00C8 (0x0008) [unknown]
-  PingBeacon: 0x00D0,  // 0x00D0 (0x0008) [unknown]
-  Players: 0x00D8,  // 0x00D8 (0x0010) [TArray<FReservationData>]
-  PsynetReservationsTeam0Players: 0x00E8,  // 0x00E8 (0x0010) [TArray<FUniqueNetId>]
-  PsynetReservationsTeam1Players: 0x00F8,  // 0x00F8 (0x0010) [TArray<FUniqueNetId>]
-  TeamPairHistories: 0x0108,  // 0x0108 (0x0010) [TArray<FTeamPairHistory>]
-  BotNames: 0x0118,  // 0x0118 (0x0010) [TArray<FString>]
-  Crossplay: 0x0128,  // 0x0128 (0x0008) [UCrossplayConfig_X*]
-  MapPrefsConfig: 0x0130,  // 0x0130 (0x0008) [UMapPrefsConfig_X*]
-  BeaconConfig: 0x0138,  // 0x0138 (0x0008) [UBeaconConfig_X*]
-  PendingReservations: 0x0140,  // 0x0140 (0x0010) [TArray<FPendingReservation>]
-  GetClubTask: 0x0150,  // 0x0150 (0x0008) [UTAsyncResult__ClubDetails_X*]
-  RankedMatchReservationID: 0x0158,  // 0x0158 (0x0010) [FString]
-  RankedMatchPushedPlayerIDs: 0x0168,  // 0x0168 (0x0010) [TArray<FUniqueNetId>]
-  Clubs: 0x0178,  // 0x0178 (0x0008) [UOnlineClubProvider_X*]
-  JoinName: 0x0180,  // 0x0180 (0x0010) [FString]
-  JoinPassword: 0x0190,  // 0x0190 (0x0010) [FString]
-  __EventReservationsUpdated__Delegate: 0x01A0,  // 0x01A0 (0x0018) [FScriptDelegate]
-  __EventMigrationJoinOccurred__Delegate: 0x01B8,  // 0x01B8 (0x0018) [FScriptDelegate]
-  __bMatchStarted__ChangeNotify: 0x01D0,  // 0x01D0 (0x0018) [FScriptDelegate]
+  ExtraMapLoadTime: 0x00b0n,  // 0x00b0 (0x0004) [float]
+  WaitForReservationsTimeout: 0x00b4n,  // 0x00b4 (0x0004) [float]
+  InitialReservationTimeoutSeconds: 0x00b8n,  // 0x00b8 (0x0004) [float]
+  InitialMigrationTimeoutSeconds: 0x00bcn,  // 0x00bc (0x0004) [float]
+  bAllowPrivateMatchCrossPlayDisable: 0x00c0n,  // 0x00c0 (0x0004) [bool : 0x1]
+  bSkipReservationCheck: 0x00c0n,  // 0x00c0 (0x0004) [bool : 0x2]
+  bSinglePlayerMatchmaking: 0x00c0n,  // 0x00c0 (0x0004) [bool : 0x4]
+  bServerTraveling: 0x00c0n,  // 0x00c0 (0x0004) [bool : 0x8]
+  bScrambleTeams: 0x00c0n,  // 0x00c0 (0x0004) [bool : 0x10]
+  bMatchStarted: 0x00c0n,  // 0x00c0 (0x0004) [bool : 0x20]
+  bLockTeams: 0x00c0n,  // 0x00c0 (0x0004) [bool : 0x40]
+  bIsBotMatch: 0x00c0n,  // 0x00c0 (0x0004) [bool : 0x80]
+  bMigrationInProgress: 0x00c0n,  // 0x00c0 (0x0004) [bool : 0x100]
+  bFirstClubDetailsRequestDone: 0x00c0n,  // 0x00c0 (0x0004) [bool : 0x200]
+  Beacon: 0x00c8n,  // 0x00c8 (0x0008) [unknown]
+  PingBeacon: 0x00d0n,  // 0x00d0 (0x0008) [unknown]
+  Players: 0x00d8n,  // 0x00d8 (0x0010) [TArray<FReservationData>]
+  PsynetReservationsTeam0Players: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FUniqueNetId>]
+  PsynetReservationsTeam1Players: 0x00f8n,  // 0x00f8 (0x0010) [TArray<FUniqueNetId>]
+  TeamPairHistories: 0x0108n,  // 0x0108 (0x0010) [TArray<FTeamPairHistory>]
+  BotNames: 0x0118n,  // 0x0118 (0x0010) [TArray<FString>]
+  Crossplay: 0x0128n,  // 0x0128 (0x0008) [UCrossplayConfig_X*]
+  MapPrefsConfig: 0x0130n,  // 0x0130 (0x0008) [UMapPrefsConfig_X*]
+  BeaconConfig: 0x0138n,  // 0x0138 (0x0008) [UBeaconConfig_X*]
+  PendingReservations: 0x0140n,  // 0x0140 (0x0010) [TArray<FPendingReservation>]
+  GetClubTask: 0x0150n,  // 0x0150 (0x0008) [UTAsyncResult__ClubDetails_X*]
+  RankedMatchReservationID: 0x0158n,  // 0x0158 (0x0010) [FString]
+  RankedMatchPushedPlayerIDs: 0x0168n,  // 0x0168 (0x0010) [TArray<FUniqueNetId>]
+  Clubs: 0x0178n,  // 0x0178 (0x0008) [UOnlineClubProvider_X*]
+  JoinName: 0x0180n,  // 0x0180 (0x0010) [FString]
+  JoinPassword: 0x0190n,  // 0x0190 (0x0010) [FString]
+  __EventReservationsUpdated__Delegate: 0x01a0n,  // 0x01a0 (0x0018) [FScriptDelegate]
+  __EventMigrationJoinOccurred__Delegate: 0x01b8n,  // 0x01b8 (0x0018) [FScriptDelegate]
+  __bMatchStarted__ChangeNotify: 0x01d0n,  // 0x01d0 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
 /**
  * ProjectX.OnlineGameServerBrowser_X Offsets
- * Size: 0x01D8
+ * Size: 0x01d8
  * Extends: Online_X
  */
 export const OnlineGameServerBrowser_X = {
-  PreferredRegion: 0x00B0,  // 0x00B0 (0x0010) [FString]
-  Filter: 0x00C0,  // 0x00C0 (0x0088) [FCustomMatchSettings]
-  StartSearchFailString: 0x0148,  // 0x0148 (0x0010) [FString]
-  NoResultsFound: 0x0158,  // 0x0158 (0x0010) [FString]
-  NotLoggedInToPsynet: 0x0168,  // 0x0168 (0x0010) [FString]
-  __EventSearchComplete__Delegate: 0x0178,  // 0x0178 (0x0018) [FScriptDelegate]
-  __EventSearchError__Delegate: 0x0190,  // 0x0190 (0x0018) [FScriptDelegate]
-  __EventBrowserError__Delegate: 0x01A8,  // 0x01A8 (0x0018) [FScriptDelegate]
-  __EventSearchCompleteReservation__Delegate: 0x01C0,  // 0x01C0 (0x0018) [FScriptDelegate]
+  PreferredRegion: 0x00b0n,  // 0x00b0 (0x0010) [FString]
+  Filter: 0x00c0n,  // 0x00c0 (0x0088) [FCustomMatchSettings]
+  StartSearchFailString: 0x0148n,  // 0x0148 (0x0010) [FString]
+  NoResultsFound: 0x0158n,  // 0x0158 (0x0010) [FString]
+  NotLoggedInToPsynet: 0x0168n,  // 0x0168 (0x0010) [FString]
+  __EventSearchComplete__Delegate: 0x0178n,  // 0x0178 (0x0018) [FScriptDelegate]
+  __EventSearchError__Delegate: 0x0190n,  // 0x0190 (0x0018) [FScriptDelegate]
+  __EventBrowserError__Delegate: 0x01a8n,  // 0x01a8 (0x0018) [FScriptDelegate]
+  __EventSearchCompleteReservation__Delegate: 0x01c0n,  // 0x01c0 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
@@ -8528,67 +7040,67 @@ export const OnlineGameServerBrowser_X = {
  * Extends: Online_X
  */
 export const OnlineGameSkill_X = {
-  Playlists: 0x00B0,  // 0x00B0 (0x0010) [TArray<UPlaylistSkillCache_X*>]
-  SeasonRewards: 0x00C0,  // 0x00C0 (0x0010) [TArray<FPlayerSeasonRewardProgress>]
-  SyncRequests: 0x00D0,  // 0x00D0 (0x0010) [TArray<FSkillSyncRequest>]
-  SkillsSyncedPlayers: 0x00E0,  // 0x00E0 (0x0010) [TArray<FUniqueNetId>]
-  __EventSkillSynced__Delegate: 0x00F0,  // 0x00F0 (0x0018) [FScriptDelegate]
+  Playlists: 0x00b0n,  // 0x00b0 (0x0010) [TArray<UPlaylistSkillCache_X*>]
+  SeasonRewards: 0x00c0n,  // 0x00c0 (0x0010) [TArray<FPlayerSeasonRewardProgress>]
+  SyncRequests: 0x00d0n,  // 0x00d0 (0x0010) [TArray<FSkillSyncRequest>]
+  SkillsSyncedPlayers: 0x00e0n,  // 0x00e0 (0x0010) [TArray<FUniqueNetId>]
+  __EventSkillSynced__Delegate: 0x00f0n,  // 0x00f0 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
 /**
  * ProjectX.OnlineGameStats_X Offsets
- * Size: 0x00C4
+ * Size: 0x00c4
  * Extends: Online_X
  */
 export const OnlineGameStats_X = {
-  MatchGUID: 0x00B0,  // 0x00B0 (0x0010) [FString]
-  PlaylistId: 0x00C0,  // 0x00C0 (0x0004) [int32]
+  MatchGUID: 0x00b0n,  // 0x00b0 (0x0010) [FString]
+  PlaylistId: 0x00c0n,  // 0x00c0 (0x0004) [int32]
   ...Online_X,
 } as const;
 
 /**
  * ProjectX.OnlineGameVersion_X Offsets
- * Size: 0x00B4
+ * Size: 0x00b4
  * Extends: Online_X
  */
 export const OnlineGameVersion_X = {
-  bUpdateRequired: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x1]
+  bUpdateRequired: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x1]
   ...Online_X,
 } as const;
 
 /**
  * ProjectX.OnlineGameVoice_X Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: Online_X
  */
 export const OnlineGameVoice_X = {
-  __EventPlayerTalking__Delegate: 0x00B0,  // 0x00B0 (0x0018) [FScriptDelegate]
+  __EventPlayerTalking__Delegate: 0x00b0n,  // 0x00b0 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
 /**
  * ProjectX.OnlineGameWordFilterProcessor_X Offsets
- * Size: 0x00E0
+ * Size: 0x00e0
  * Extends: Online_X
  */
 export const OnlineGameWordFilterProcessor_X = {
-  ResponseDelay: 0x00B0,  // 0x00B0 (0x0004) [float]
-  SanitizeCallbacks: 0x00B8,  // 0x00B8 (0x0010) [TArray<FWordFilterRequest>]
-  __OnSanitizeStringComplete__Delegate: 0x00C8,  // 0x00C8 (0x0018) [FScriptDelegate]
+  ResponseDelay: 0x00b0n,  // 0x00b0 (0x0004) [float]
+  SanitizeCallbacks: 0x00b8n,  // 0x00b8 (0x0010) [TArray<FWordFilterRequest>]
+  __OnSanitizeStringComplete__Delegate: 0x00c8n,  // 0x00c8 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
 /**
  * ProjectX.OnlineGameWordFilter_X Offsets
- * Size: 0x00D8
+ * Size: 0x00d8
  * Extends: Online_X
  */
 export const OnlineGameWordFilter_X = {
-  Filtered: 0x00B0,  // 0x00B0 (0x0010) [TArray<FWordFilterPair>]
-  Config: 0x00C0,  // 0x00C0 (0x0008) [UWordFilterConfig_X*]
-  OnlineGame: 0x00C8,  // 0x00C8 (0x0008) [UOnlineGame_X*]
-  PsyNetWordFilter: 0x00D0,  // 0x00D0 (0x0008) [unknown]
+  Filtered: 0x00b0n,  // 0x00b0 (0x0010) [TArray<FWordFilterPair>]
+  Config: 0x00c0n,  // 0x00c0 (0x0008) [UWordFilterConfig_X*]
+  OnlineGame: 0x00c8n,  // 0x00c8 (0x0008) [UOnlineGame_X*]
+  PsyNetWordFilter: 0x00d0n,  // 0x00d0 (0x0008) [unknown]
   ...Online_X,
 } as const;
 
@@ -8598,27 +7110,27 @@ export const OnlineGameWordFilter_X = {
  * Extends: Online_X
  */
 export const OnlineGame_Base_X = {
-  OnlineSubGameInterfaceName: 0x00B0,  // 0x00B0 (0x0010) [FString]
-  DefaultGameSettingsArchetype: 0x00C0,  // 0x00C0 (0x0008) [UOnlineGameSettings_X*]
-  DefaultGameSettings: 0x00C8,  // 0x00C8 (0x0008) [UOnlineGameSettings_X*]
-  GameSettings: 0x00D0,  // 0x00D0 (0x0008) [UOnlineGameSettings_X*]
-  Playlists: 0x00D8,  // 0x00D8 (0x0008) [UOnlineGamePlaylists_X*]
-  ImageDownloader: 0x00E0,  // 0x00E0 (0x0008) [UOnlineImageDownloaderWeb*]
-  DLC: 0x00E8,  // 0x00E8 (0x0008) [UOnlineGameDLC_X*]
-  Skill: 0x00F0,  // 0x00F0 (0x0008) [UOnlineGameSkill_X*]
-  StartServerCommand: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  WebCache: 0x0108,  // 0x0108 (0x0008) [UWebCache_X*]
-  WebImageCache: 0x0110,  // 0x0110 (0x0008) [UWebImageCache_X*]
-  PsyNetStaticData: 0x0118,  // 0x0118 (0x0008) [unknown]
-  bLockGameSettings: 0x0120,  // 0x0120 (0x0004) [bool : 0x1]
-  bUseEnvironmentZone: 0x0120,  // 0x0120 (0x0004) [bool : 0x2]
-  CurrentConnectionStatus: 0x0124,  // 0x0124 (0x0001) [EOnlineServerConnectionStatus]
-  ServerName: 0x0128,  // 0x0128 (0x0010) [FString]
-  CachedOptions: 0x0138,  // 0x0138 (0x0010) [FString]
-  OnlineConfigDispatcher: 0x0148,  // 0x0148 (0x0008) [UOnlineConfigDispatcher_X*]
-  WordFilter: 0x0150,  // 0x0150 (0x0008) [UOnlineGameWordFilter_X*]
-  OnlineComponents: 0x0158,  // 0x0158 (0x0010) [TArray<UOnline_X*>]
-  __EventInternetConnectionChanged__Delegate: 0x0168,  // 0x0168 (0x0018) [FScriptDelegate]
+  OnlineSubGameInterfaceName: 0x00b0n,  // 0x00b0 (0x0010) [FString]
+  DefaultGameSettingsArchetype: 0x00c0n,  // 0x00c0 (0x0008) [UOnlineGameSettings_X*]
+  DefaultGameSettings: 0x00c8n,  // 0x00c8 (0x0008) [UOnlineGameSettings_X*]
+  GameSettings: 0x00d0n,  // 0x00d0 (0x0008) [UOnlineGameSettings_X*]
+  Playlists: 0x00d8n,  // 0x00d8 (0x0008) [UOnlineGamePlaylists_X*]
+  ImageDownloader: 0x00e0n,  // 0x00e0 (0x0008) [UOnlineImageDownloaderWeb*]
+  DLC: 0x00e8n,  // 0x00e8 (0x0008) [UOnlineGameDLC_X*]
+  Skill: 0x00f0n,  // 0x00f0 (0x0008) [UOnlineGameSkill_X*]
+  StartServerCommand: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  WebCache: 0x0108n,  // 0x0108 (0x0008) [UWebCache_X*]
+  WebImageCache: 0x0110n,  // 0x0110 (0x0008) [UWebImageCache_X*]
+  PsyNetStaticData: 0x0118n,  // 0x0118 (0x0008) [unknown]
+  bLockGameSettings: 0x0120n,  // 0x0120 (0x0004) [bool : 0x1]
+  bUseEnvironmentZone: 0x0120n,  // 0x0120 (0x0004) [bool : 0x2]
+  CurrentConnectionStatus: 0x0124n,  // 0x0124 (0x0001) [EOnlineServerConnectionStatus]
+  ServerName: 0x0128n,  // 0x0128 (0x0010) [FString]
+  CachedOptions: 0x0138n,  // 0x0138 (0x0010) [FString]
+  OnlineConfigDispatcher: 0x0148n,  // 0x0148 (0x0008) [UOnlineConfigDispatcher_X*]
+  WordFilter: 0x0150n,  // 0x0150 (0x0008) [UOnlineGameWordFilter_X*]
+  OnlineComponents: 0x0158n,  // 0x0158 (0x0010) [TArray<UOnline_X*>]
+  __EventInternetConnectionChanged__Delegate: 0x0168n,  // 0x0168 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
@@ -8628,7 +7140,7 @@ export const OnlineGame_Base_X = {
  * Extends: OnlineGame_Base_X
  */
 export const OnlineGameServer_X = {
-  PsyNetConnection: 0x0180,  // 0x0180 (0x0008) [UPsyNetConnection_X*]
+  PsyNetConnection: 0x0180n,  // 0x0180 (0x0008) [UPsyNetConnection_X*]
   ...OnlineGame_Base_X,
 } as const;
 
@@ -8638,84 +7150,84 @@ export const OnlineGameServer_X = {
  * Extends: OnlineGameServer_X
  */
 export const OnlineGameDedicatedServer_X = {
-  GameServerID: 0x0188,  // 0x0188 (0x0010) [FString]
-  GameServerHost: 0x0198,  // 0x0198 (0x0010) [FString]
-  EnvironmentZone: 0x01A8,  // 0x01A8 (0x0004) [int32]
-  GameStats: 0x01B0,  // 0x01B0 (0x0008) [UOnlineGameStats_X*]
-  Registration: 0x01B8,  // 0x01B8 (0x0008) [UOnlineGameDedicatedServerRegistration_X*]
-  Reservations: 0x01C0,  // 0x01C0 (0x0008) [UOnlineGameReservations_X*]
-  Clanforge: 0x01C8,  // 0x01C8 (0x0008) [UClanforgeReservation_X*]
-  Region: 0x01D0,  // 0x01D0 (0x0010) [FString]
-  SubRegion: 0x01E0,  // 0x01E0 (0x0010) [FString]
-  DataCenter: 0x01F0,  // 0x01F0 (0x0010) [FString]
-  CurrentPlaylistId: 0x0200,  // 0x0200 (0x0004) [int32]
-  MutatorIndex: 0x0204,  // 0x0204 (0x0004) [int32]
-  AverageMMR: 0x0208,  // 0x0208 (0x0004) [float]
-  AverageConservativeMMR: 0x020C,  // 0x020C (0x0004) [float]
-  MachineId: 0x0210,  // 0x0210 (0x0004) [int32]
-  Port: 0x0218,  // 0x0218 (0x0010) [FString]
-  DDosServicePort: 0x0228,  // 0x0228 (0x0010) [FString]
-  DDoSService: 0x0238,  // 0x0238 (0x0008) [UDDoSService_X*]
-  CustomMatch: 0x0240,  // 0x0240 (0x0088) [FCustomMatchSettings]
-  CustomMatchOwner: 0x02C8,  // 0x02C8 (0x0048) [FUniqueNetId]
-  CustomMatchClubID: 0x0310,  // 0x0310 (0x0008) [uint64]
-  bQueuedShutdown: 0x0318,  // 0x0318 (0x0004) [bool : 0x1]
-  bFindingReplacementServer: 0x0318,  // 0x0318 (0x0004) [bool : 0x2]
-  bHasValidMigrationServer: 0x0318,  // 0x0318 (0x0004) [bool : 0x4]
-  bDisableMatchmakingBan: 0x0318,  // 0x0318 (0x0004) [bool : 0x8]
-  bBotTest: 0x0318,  // 0x0318 (0x0004) [bool : 0x10]
-  ReplacementServerID: 0x0320,  // 0x0320 (0x0010) [FString]
-  PlayerTracker: 0x0330,  // 0x0330 (0x0008) [unknown]
-  ExploitManager: 0x0338,  // 0x0338 (0x0008) [UServerExploitManager_X*]
-  MatchRecorderClass: 0x0340,  // 0x0340 (0x0008) [UClass*]
-  MatchRecorder: 0x0348,  // 0x0348 (0x0008) [UMatchRecorder_X*]
-  MatchLog: 0x0350,  // 0x0350 (0x0008) [UMatchLog_X*]
-  Config: 0x0358,  // 0x0358 (0x0008) [UServerConfig_X*]
-  PsyNetConfig: 0x0360,  // 0x0360 (0x0008) [UPsyNetConfig_X*]
-  __EventFoundNewDedicatedServerForPlayers__Delegate: 0x0368,  // 0x0368 (0x0018) [FScriptDelegate]
-  __EventAverageMMRChanged__Delegate: 0x0380,  // 0x0380 (0x0018) [FScriptDelegate]
-  __EventPlaylistSet__Delegate: 0x0398,  // 0x0398 (0x0018) [FScriptDelegate]
-  __EventPrivateMatchSettingsChanged__Delegate: 0x03B0,  // 0x03B0 (0x0018) [FScriptDelegate]
-  __EventInactive__Delegate: 0x03C8,  // 0x03C8 (0x0018) [FScriptDelegate]
-  __EventActive__Delegate: 0x03E0,  // 0x03E0 (0x0018) [FScriptDelegate]
-  __EventMatchGUIDChanged__Delegate: 0x03F8,  // 0x03F8 (0x0018) [FScriptDelegate]
+  GameServerID: 0x0188n,  // 0x0188 (0x0010) [FString]
+  GameServerHost: 0x0198n,  // 0x0198 (0x0010) [FString]
+  EnvironmentZone: 0x01a8n,  // 0x01a8 (0x0004) [int32]
+  GameStats: 0x01b0n,  // 0x01b0 (0x0008) [UOnlineGameStats_X*]
+  Registration: 0x01b8n,  // 0x01b8 (0x0008) [UOnlineGameDedicatedServerRegistration_X*]
+  Reservations: 0x01c0n,  // 0x01c0 (0x0008) [UOnlineGameReservations_X*]
+  Clanforge: 0x01c8n,  // 0x01c8 (0x0008) [UClanforgeReservation_X*]
+  Region: 0x01d0n,  // 0x01d0 (0x0010) [FString]
+  SubRegion: 0x01e0n,  // 0x01e0 (0x0010) [FString]
+  DataCenter: 0x01f0n,  // 0x01f0 (0x0010) [FString]
+  CurrentPlaylistId: 0x0200n,  // 0x0200 (0x0004) [int32]
+  MutatorIndex: 0x0204n,  // 0x0204 (0x0004) [int32]
+  AverageMMR: 0x0208n,  // 0x0208 (0x0004) [float]
+  AverageConservativeMMR: 0x020cn,  // 0x020c (0x0004) [float]
+  MachineId: 0x0210n,  // 0x0210 (0x0004) [int32]
+  Port: 0x0218n,  // 0x0218 (0x0010) [FString]
+  DDosServicePort: 0x0228n,  // 0x0228 (0x0010) [FString]
+  DDoSService: 0x0238n,  // 0x0238 (0x0008) [UDDoSService_X*]
+  CustomMatch: 0x0240n,  // 0x0240 (0x0088) [FCustomMatchSettings]
+  CustomMatchOwner: 0x02c8n,  // 0x02c8 (0x0048) [FUniqueNetId]
+  CustomMatchClubID: 0x0310n,  // 0x0310 (0x0008) [uint64]
+  bQueuedShutdown: 0x0318n,  // 0x0318 (0x0004) [bool : 0x1]
+  bFindingReplacementServer: 0x0318n,  // 0x0318 (0x0004) [bool : 0x2]
+  bHasValidMigrationServer: 0x0318n,  // 0x0318 (0x0004) [bool : 0x4]
+  bDisableMatchmakingBan: 0x0318n,  // 0x0318 (0x0004) [bool : 0x8]
+  bBotTest: 0x0318n,  // 0x0318 (0x0004) [bool : 0x10]
+  ReplacementServerID: 0x0320n,  // 0x0320 (0x0010) [FString]
+  PlayerTracker: 0x0330n,  // 0x0330 (0x0008) [unknown]
+  ExploitManager: 0x0338n,  // 0x0338 (0x0008) [UServerExploitManager_X*]
+  MatchRecorderClass: 0x0340n,  // 0x0340 (0x0008) [UClass*]
+  MatchRecorder: 0x0348n,  // 0x0348 (0x0008) [UMatchRecorder_X*]
+  MatchLog: 0x0350n,  // 0x0350 (0x0008) [UMatchLog_X*]
+  Config: 0x0358n,  // 0x0358 (0x0008) [UServerConfig_X*]
+  PsyNetConfig: 0x0360n,  // 0x0360 (0x0008) [UPsyNetConfig_X*]
+  __EventFoundNewDedicatedServerForPlayers__Delegate: 0x0368n,  // 0x0368 (0x0018) [FScriptDelegate]
+  __EventAverageMMRChanged__Delegate: 0x0380n,  // 0x0380 (0x0018) [FScriptDelegate]
+  __EventPlaylistSet__Delegate: 0x0398n,  // 0x0398 (0x0018) [FScriptDelegate]
+  __EventPrivateMatchSettingsChanged__Delegate: 0x03b0n,  // 0x03b0 (0x0018) [FScriptDelegate]
+  __EventInactive__Delegate: 0x03c8n,  // 0x03c8 (0x0018) [FScriptDelegate]
+  __EventActive__Delegate: 0x03e0n,  // 0x03e0 (0x0018) [FScriptDelegate]
+  __EventMatchGUIDChanged__Delegate: 0x03f8n,  // 0x03f8 (0x0018) [FScriptDelegate]
   ...OnlineGameServer_X,
 } as const;
 
 /**
  * ProjectX.OnlineGame_X Offsets
- * Size: 0x02A0
+ * Size: 0x02a0
  * Extends: OnlineGame_Base_X
  */
 export const OnlineGame_X = {
-  Account: 0x0180,  // 0x0180 (0x0008) [UOnlineGameAccount_X*]
-  Matchmaking: 0x0188,  // 0x0188 (0x0008) [UOnlineGameMatchmaking_X*]
-  PrivateMatch: 0x0190,  // 0x0190 (0x0008) [UOnlineGamePrivateMatch_X*]
-  ServerBrowser: 0x0198,  // 0x0198 (0x0008) [UOnlineGameServerBrowser_X*]
-  Leaderboards: 0x01A0,  // 0x01A0 (0x0008) [UOnlineGameLeaderboards_X*]
-  Population: 0x01A8,  // 0x01A8 (0x0008) [UOnlineGamePopulation_X*]
-  Voice: 0x01B0,  // 0x01B0 (0x0008) [UOnlineGameVoice_X*]
-  Party: 0x01B8,  // 0x01B8 (0x0008) [UOnlineGameParty_X*]
-  GameInvite: 0x01C0,  // 0x01C0 (0x0008) [UOnlineGameInvite_X*]
-  JoinGame: 0x01C8,  // 0x01C8 (0x0008) [UOnlineGameJoinGame_X*]
-  Regions: 0x01D0,  // 0x01D0 (0x0008) [UOnlineGameRegions_X*]
-  Privileges: 0x01D8,  // 0x01D8 (0x0008) [UOnlineGamePrivileges_X*]
-  WordFilterProcessor: 0x01E0,  // 0x01E0 (0x0008) [UOnlineGameWordFilterProcessor_X*]
-  GameVersion: 0x01E8,  // 0x01E8 (0x0008) [UOnlineGameVersion_X*]
-  PlayerArchetype: 0x01F0,  // 0x01F0 (0x0008) [UOnlinePlayer_X*]
-  OnlinePlayers: 0x01F8,  // 0x01F8 (0x0010) [TArray<UOnlinePlayer_X*>]
-  Eula: 0x0208,  // 0x0208 (0x0008) [unknown]
-  PrivacyPolicy: 0x0210,  // 0x0210 (0x0008) [unknown]
-  ToS: 0x0218,  // 0x0218 (0x0008) [unknown]
-  SCT: 0x0220,  // 0x0220 (0x0008) [unknown]
-  PaymentServices: 0x0228,  // 0x0228 (0x0008) [unknown]
-  bRequestPublicIP: 0x0230,  // 0x0230 (0x0004) [bool : 0x1]
-  PublicIP: 0x0238,  // 0x0238 (0x0010) [FString]
-  AvatarRequester: 0x0248,  // 0x0248 (0x0008) [UAvatarRequester_X*]
-  AvatarPermissions: 0x0250,  // 0x0250 (0x0008) [URemoteAvatarPermissions_X*]
-  __EventConnectionError__Delegate: 0x0258,  // 0x0258 (0x0018) [FScriptDelegate]
-  __EventPlayerPsyNetLogin__Delegate: 0x0270,  // 0x0270 (0x0018) [FScriptDelegate]
-  __EventPlayerPsyNetLogout__Delegate: 0x0288,  // 0x0288 (0x0018) [FScriptDelegate]
+  Account: 0x0180n,  // 0x0180 (0x0008) [UOnlineGameAccount_X*]
+  Matchmaking: 0x0188n,  // 0x0188 (0x0008) [UOnlineGameMatchmaking_X*]
+  PrivateMatch: 0x0190n,  // 0x0190 (0x0008) [UOnlineGamePrivateMatch_X*]
+  ServerBrowser: 0x0198n,  // 0x0198 (0x0008) [UOnlineGameServerBrowser_X*]
+  Leaderboards: 0x01a0n,  // 0x01a0 (0x0008) [UOnlineGameLeaderboards_X*]
+  Population: 0x01a8n,  // 0x01a8 (0x0008) [UOnlineGamePopulation_X*]
+  Voice: 0x01b0n,  // 0x01b0 (0x0008) [UOnlineGameVoice_X*]
+  Party: 0x01b8n,  // 0x01b8 (0x0008) [UOnlineGameParty_X*]
+  GameInvite: 0x01c0n,  // 0x01c0 (0x0008) [UOnlineGameInvite_X*]
+  JoinGame: 0x01c8n,  // 0x01c8 (0x0008) [UOnlineGameJoinGame_X*]
+  Regions: 0x01d0n,  // 0x01d0 (0x0008) [UOnlineGameRegions_X*]
+  Privileges: 0x01d8n,  // 0x01d8 (0x0008) [UOnlineGamePrivileges_X*]
+  WordFilterProcessor: 0x01e0n,  // 0x01e0 (0x0008) [UOnlineGameWordFilterProcessor_X*]
+  GameVersion: 0x01e8n,  // 0x01e8 (0x0008) [UOnlineGameVersion_X*]
+  PlayerArchetype: 0x01f0n,  // 0x01f0 (0x0008) [UOnlinePlayer_X*]
+  OnlinePlayers: 0x01f8n,  // 0x01f8 (0x0010) [TArray<UOnlinePlayer_X*>]
+  Eula: 0x0208n,  // 0x0208 (0x0008) [unknown]
+  PrivacyPolicy: 0x0210n,  // 0x0210 (0x0008) [unknown]
+  ToS: 0x0218n,  // 0x0218 (0x0008) [unknown]
+  SCT: 0x0220n,  // 0x0220 (0x0008) [unknown]
+  PaymentServices: 0x0228n,  // 0x0228 (0x0008) [unknown]
+  bRequestPublicIP: 0x0230n,  // 0x0230 (0x0004) [bool : 0x1]
+  PublicIP: 0x0238n,  // 0x0238 (0x0010) [FString]
+  AvatarRequester: 0x0248n,  // 0x0248 (0x0008) [UAvatarRequester_X*]
+  AvatarPermissions: 0x0250n,  // 0x0250 (0x0008) [URemoteAvatarPermissions_X*]
+  __EventConnectionError__Delegate: 0x0258n,  // 0x0258 (0x0018) [FScriptDelegate]
+  __EventPlayerPsyNetLogin__Delegate: 0x0270n,  // 0x0270 (0x0018) [FScriptDelegate]
+  __EventPlayerPsyNetLogout__Delegate: 0x0288n,  // 0x0288 (0x0018) [FScriptDelegate]
   ...OnlineGame_Base_X,
 } as const;
 
@@ -8725,109 +7237,109 @@ export const OnlineGame_X = {
  * Extends: Online_X
  */
 export const OnlinePlayerAuthentication_X = {
-  LoginRPC: 0x00B0,  // 0x00B0 (0x0008) [URPC_LoginAuthPlayer_X*]
-  LoginSuccessRPC: 0x00B8,  // 0x00B8 (0x0008) [URPC_LoginAuthPlayer_X*]
-  LoggedInPlayerId: 0x00C0,  // 0x00C0 (0x0048) [FUniqueNetId]
-  PlayerUID: 0x0108,  // 0x0108 (0x0010) [FString]
-  Platform: 0x0118,  // 0x0118 (0x0010) [FString]
-  bLoggedIn: 0x0128,  // 0x0128 (0x0004) [bool : 0x1]
-  bPlatformTokenAuthenticationFailed: 0x0128,  // 0x0128 (0x0004) [bool : 0x2]
-  bPlatformAuthTicketFailed_Switch: 0x0128,  // 0x0128 (0x0004) [bool : 0x4]
-  bSkipAuth: 0x0128,  // 0x0128 (0x0004) [bool : 0x8]
-  bLastChanceAuthBan: 0x0128,  // 0x0128 (0x0004) [bool : 0x10]
-  AuthLoginError: 0x0130,  // 0x0130 (0x0008) [UError*]
-  BanMessage: 0x0138,  // 0x0138 (0x0008) [UBanMessage_X*]
-  EncryptedAuthTicket: 0x0140,  // 0x0140 (0x0010) [FString]
-  EpicAuthTicket: 0x0150,  // 0x0150 (0x0010) [FString]
-  AuthRequestFailureMax: 0x0160,  // 0x0160 (0x0004) [int32]
-  AuthReloginTime: 0x0164,  // 0x0164 (0x0004) [int32]
-  AuthRequestRetryTime: 0x0168,  // 0x0168 (0x0004) [int32]
-  AuthRequestFailureCount: 0x016C,  // 0x016C (0x0004) [int32]
-  AuthenticatedName: 0x0170,  // 0x0170 (0x0010) [FString]
-  EpicLogin: 0x0180,  // 0x0180 (0x0008) [UEpicLogin_X*]
-  PrimaryAccountNotSetError: 0x0188,  // 0x0188 (0x0008) [UError*]
-  __EventLoginChanged__Delegate: 0x0190,  // 0x0190 (0x0018) [FScriptDelegate]
-  __EventBanned__Delegate: 0x01A8,  // 0x01A8 (0x0018) [FScriptDelegate]
-  __EventLoginResult__Delegate: 0x01C0,  // 0x01C0 (0x0018) [FScriptDelegate]
-  __EventPlatformAuthTicketFailedChanged_Switch__Delegate: 0x01D8,  // 0x01D8 (0x0018) [FScriptDelegate]
-  __EventConnectionStatusChanged__Delegate: 0x01F0,  // 0x01F0 (0x0018) [FScriptDelegate]
+  LoginRPC: 0x00b0n,  // 0x00b0 (0x0008) [URPC_LoginAuthPlayer_X*]
+  LoginSuccessRPC: 0x00b8n,  // 0x00b8 (0x0008) [URPC_LoginAuthPlayer_X*]
+  LoggedInPlayerId: 0x00c0n,  // 0x00c0 (0x0048) [FUniqueNetId]
+  PlayerUID: 0x0108n,  // 0x0108 (0x0010) [FString]
+  Platform: 0x0118n,  // 0x0118 (0x0010) [FString]
+  bLoggedIn: 0x0128n,  // 0x0128 (0x0004) [bool : 0x1]
+  bPlatformTokenAuthenticationFailed: 0x0128n,  // 0x0128 (0x0004) [bool : 0x2]
+  bPlatformAuthTicketFailed_Switch: 0x0128n,  // 0x0128 (0x0004) [bool : 0x4]
+  bSkipAuth: 0x0128n,  // 0x0128 (0x0004) [bool : 0x8]
+  bLastChanceAuthBan: 0x0128n,  // 0x0128 (0x0004) [bool : 0x10]
+  AuthLoginError: 0x0130n,  // 0x0130 (0x0008) [UError*]
+  BanMessage: 0x0138n,  // 0x0138 (0x0008) [UBanMessage_X*]
+  EncryptedAuthTicket: 0x0140n,  // 0x0140 (0x0010) [FString]
+  EpicAuthTicket: 0x0150n,  // 0x0150 (0x0010) [FString]
+  AuthRequestFailureMax: 0x0160n,  // 0x0160 (0x0004) [int32]
+  AuthReloginTime: 0x0164n,  // 0x0164 (0x0004) [int32]
+  AuthRequestRetryTime: 0x0168n,  // 0x0168 (0x0004) [int32]
+  AuthRequestFailureCount: 0x016cn,  // 0x016c (0x0004) [int32]
+  AuthenticatedName: 0x0170n,  // 0x0170 (0x0010) [FString]
+  EpicLogin: 0x0180n,  // 0x0180 (0x0008) [UEpicLogin_X*]
+  PrimaryAccountNotSetError: 0x0188n,  // 0x0188 (0x0008) [UError*]
+  __EventLoginChanged__Delegate: 0x0190n,  // 0x0190 (0x0018) [FScriptDelegate]
+  __EventBanned__Delegate: 0x01a8n,  // 0x01a8 (0x0018) [FScriptDelegate]
+  __EventLoginResult__Delegate: 0x01c0n,  // 0x01c0 (0x0018) [FScriptDelegate]
+  __EventPlatformAuthTicketFailedChanged_Switch__Delegate: 0x01d8n,  // 0x01d8 (0x0018) [FScriptDelegate]
+  __EventConnectionStatusChanged__Delegate: 0x01f0n,  // 0x01f0 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
 /**
  * ProjectX.OnlinePlayerFriends_X Offsets
- * Size: 0x03B0
+ * Size: 0x03b0
  * Extends: Online_X
  */
 export const OnlinePlayerFriends_X = {
-  bAllowSamePlatformPsyNetFriends: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x1]
-  bRepeatFriendsListDownloadsUntilSuccess: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x2]
-  bFetchingLinkedAccounts: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x4]
-  CachedFriends: 0x00B8,  // 0x00B8 (0x0008) [unknown]
-  PlatformFriends: 0x00C0,  // 0x00C0 (0x0008) [unknown]
-  EpicFriends: 0x00C8,  // 0x00C8 (0x0008) [unknown]
-  EpicInvites: 0x00D0,  // 0x00D0 (0x0010) [TArray<FOnlineFriend>]
-  BlockedPlayers: 0x00E0,  // 0x00E0 (0x0008) [unknown]
-  EpicBlockList: 0x00E8,  // 0x00E8 (0x0008) [unknown]
-  PlatformBlockList: 0x00F0,  // 0x00F0 (0x0008) [unknown]
-  PlatformToEpicAccountMap: 0x00F8,  // 0x00F8 (0x0008) [unknown]
-  EpicToPlatformAccountMap: 0x0100,  // 0x0100 (0x0008) [unknown]
-  PlatformFriendsDownloadDelayer: 0x0108,  // 0x0108 (0x0008) [unknown]
-  PsyNetFriendsDownloadDelayer: 0x0110,  // 0x0110 (0x0008) [unknown]
-  EpicFriendsDownloadDelayer: 0x0118,  // 0x0118 (0x0008) [unknown]
-  PendingFriendAccepts: 0x0120,  // 0x0120 (0x0010) [TArray<FUniqueNetId>]
-  BlockStatusReporter: 0x0130,  // 0x0130 (0x0008) [UBlockStatusReporter_X*]
-  OSSConfig: 0x0138,  // 0x0138 (0x0008) [UOSSConfig_X*]
-  EpicConfig: 0x0140,  // 0x0140 (0x0008) [UEpicConfig_X*]
-  EpicFriendsPlugin: 0x0148,  // 0x0148 (0x0008) [UEpicFriendsPlugin_X*]
-  BlockPlayerCallbacks: 0x0150,  // 0x0150 (0x0010) [TArray<FEpicSocialTaskData>]
-  UnblockPlayerCallbacks: 0x0160,  // 0x0160 (0x0010) [TArray<FEpicSocialTaskData>]
-  __EventSocialCallback__Delegate: 0x0170,  // 0x0170 (0x0018) [FScriptDelegate]
-  __EventFriendsListChanged__Delegate: 0x0188,  // 0x0188 (0x0018) [FScriptDelegate]
-  __EventBlockedListChanged__Delegate: 0x01A0,  // 0x01A0 (0x0018) [FScriptDelegate]
-  __EventAcceptEpicFriendInvite__Delegate: 0x01B8,  // 0x01B8 (0x0018) [FScriptDelegate]
-  __EventDeclineEpicFriendInvite__Delegate: 0x01D0,  // 0x01D0 (0x0018) [FScriptDelegate]
-  __EventChatMessage__Delegate: 0x01E8,  // 0x01E8 (0x0018) [FScriptDelegate]
-  __EventPsyNetStatusUpdate__Delegate: 0x0200,  // 0x0200 (0x0018) [FScriptDelegate]
-  __EventPlatformStatusUpdate__Delegate: 0x0218,  // 0x0218 (0x0018) [FScriptDelegate]
-  __EventEpicStatusUpdate__Delegate: 0x0230,  // 0x0230 (0x0018) [FScriptDelegate]
-  __EventEpicFriendInviteReceived__Delegate: 0x0248,  // 0x0248 (0x0018) [FScriptDelegate]
-  __EventEpicFriendInviteRemoved__Delegate: 0x0260,  // 0x0260 (0x0018) [FScriptDelegate]
-  __EventEpicFriendInviteSucceeded__Delegate: 0x0278,  // 0x0278 (0x0018) [FScriptDelegate]
-  __EventEpicFriendInviteFailed__Delegate: 0x0290,  // 0x0290 (0x0018) [FScriptDelegate]
-  __EventEpicFriendInviteAccepted__Delegate: 0x02A8,  // 0x02A8 (0x0018) [FScriptDelegate]
-  __EventEpicPlayerUnfriended__Delegate: 0x02C0,  // 0x02C0 (0x0018) [FScriptDelegate]
-  __EventQueriedUserByEpicDisplayName__Delegate: 0x02D8,  // 0x02D8 (0x0018) [FScriptDelegate]
-  __EventPlatformFriendsListDownloadCompleted__Delegate: 0x02F0,  // 0x02F0 (0x0018) [FScriptDelegate]
-  __EventPsyNetFriendsListDownloadCompleted__Delegate: 0x0308,  // 0x0308 (0x0018) [FScriptDelegate]
-  __EventEpicFriendsListDownloadCompleted__Delegate: 0x0320,  // 0x0320 (0x0018) [FScriptDelegate]
-  __EventBlockListDownloaded__Delegate: 0x0338,  // 0x0338 (0x0018) [FScriptDelegate]
-  __EventBlockStatusReceived__Delegate: 0x0350,  // 0x0350 (0x0018) [FScriptDelegate]
-  __EventEpicFriendsPluginAdded__Delegate: 0x0368,  // 0x0368 (0x0018) [FScriptDelegate]
-  __EventPlayerIdsAssociated__Delegate: 0x0380,  // 0x0380 (0x0018) [FScriptDelegate]
-  __EpicFriendsPlugin__ChangeNotify: 0x0398,  // 0x0398 (0x0018) [FScriptDelegate]
+  bAllowSamePlatformPsyNetFriends: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x1]
+  bRepeatFriendsListDownloadsUntilSuccess: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x2]
+  bFetchingLinkedAccounts: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x4]
+  CachedFriends: 0x00b8n,  // 0x00b8 (0x0008) [unknown]
+  PlatformFriends: 0x00c0n,  // 0x00c0 (0x0008) [unknown]
+  EpicFriends: 0x00c8n,  // 0x00c8 (0x0008) [unknown]
+  EpicInvites: 0x00d0n,  // 0x00d0 (0x0010) [TArray<FOnlineFriend>]
+  BlockedPlayers: 0x00e0n,  // 0x00e0 (0x0008) [unknown]
+  EpicBlockList: 0x00e8n,  // 0x00e8 (0x0008) [unknown]
+  PlatformBlockList: 0x00f0n,  // 0x00f0 (0x0008) [unknown]
+  PlatformToEpicAccountMap: 0x00f8n,  // 0x00f8 (0x0008) [unknown]
+  EpicToPlatformAccountMap: 0x0100n,  // 0x0100 (0x0008) [unknown]
+  PlatformFriendsDownloadDelayer: 0x0108n,  // 0x0108 (0x0008) [unknown]
+  PsyNetFriendsDownloadDelayer: 0x0110n,  // 0x0110 (0x0008) [unknown]
+  EpicFriendsDownloadDelayer: 0x0118n,  // 0x0118 (0x0008) [unknown]
+  PendingFriendAccepts: 0x0120n,  // 0x0120 (0x0010) [TArray<FUniqueNetId>]
+  BlockStatusReporter: 0x0130n,  // 0x0130 (0x0008) [UBlockStatusReporter_X*]
+  OSSConfig: 0x0138n,  // 0x0138 (0x0008) [UOSSConfig_X*]
+  EpicConfig: 0x0140n,  // 0x0140 (0x0008) [UEpicConfig_X*]
+  EpicFriendsPlugin: 0x0148n,  // 0x0148 (0x0008) [UEpicFriendsPlugin_X*]
+  BlockPlayerCallbacks: 0x0150n,  // 0x0150 (0x0010) [TArray<FEpicSocialTaskData>]
+  UnblockPlayerCallbacks: 0x0160n,  // 0x0160 (0x0010) [TArray<FEpicSocialTaskData>]
+  __EventSocialCallback__Delegate: 0x0170n,  // 0x0170 (0x0018) [FScriptDelegate]
+  __EventFriendsListChanged__Delegate: 0x0188n,  // 0x0188 (0x0018) [FScriptDelegate]
+  __EventBlockedListChanged__Delegate: 0x01a0n,  // 0x01a0 (0x0018) [FScriptDelegate]
+  __EventAcceptEpicFriendInvite__Delegate: 0x01b8n,  // 0x01b8 (0x0018) [FScriptDelegate]
+  __EventDeclineEpicFriendInvite__Delegate: 0x01d0n,  // 0x01d0 (0x0018) [FScriptDelegate]
+  __EventChatMessage__Delegate: 0x01e8n,  // 0x01e8 (0x0018) [FScriptDelegate]
+  __EventPsyNetStatusUpdate__Delegate: 0x0200n,  // 0x0200 (0x0018) [FScriptDelegate]
+  __EventPlatformStatusUpdate__Delegate: 0x0218n,  // 0x0218 (0x0018) [FScriptDelegate]
+  __EventEpicStatusUpdate__Delegate: 0x0230n,  // 0x0230 (0x0018) [FScriptDelegate]
+  __EventEpicFriendInviteReceived__Delegate: 0x0248n,  // 0x0248 (0x0018) [FScriptDelegate]
+  __EventEpicFriendInviteRemoved__Delegate: 0x0260n,  // 0x0260 (0x0018) [FScriptDelegate]
+  __EventEpicFriendInviteSucceeded__Delegate: 0x0278n,  // 0x0278 (0x0018) [FScriptDelegate]
+  __EventEpicFriendInviteFailed__Delegate: 0x0290n,  // 0x0290 (0x0018) [FScriptDelegate]
+  __EventEpicFriendInviteAccepted__Delegate: 0x02a8n,  // 0x02a8 (0x0018) [FScriptDelegate]
+  __EventEpicPlayerUnfriended__Delegate: 0x02c0n,  // 0x02c0 (0x0018) [FScriptDelegate]
+  __EventQueriedUserByEpicDisplayName__Delegate: 0x02d8n,  // 0x02d8 (0x0018) [FScriptDelegate]
+  __EventPlatformFriendsListDownloadCompleted__Delegate: 0x02f0n,  // 0x02f0 (0x0018) [FScriptDelegate]
+  __EventPsyNetFriendsListDownloadCompleted__Delegate: 0x0308n,  // 0x0308 (0x0018) [FScriptDelegate]
+  __EventEpicFriendsListDownloadCompleted__Delegate: 0x0320n,  // 0x0320 (0x0018) [FScriptDelegate]
+  __EventBlockListDownloaded__Delegate: 0x0338n,  // 0x0338 (0x0018) [FScriptDelegate]
+  __EventBlockStatusReceived__Delegate: 0x0350n,  // 0x0350 (0x0018) [FScriptDelegate]
+  __EventEpicFriendsPluginAdded__Delegate: 0x0368n,  // 0x0368 (0x0018) [FScriptDelegate]
+  __EventPlayerIdsAssociated__Delegate: 0x0380n,  // 0x0380 (0x0018) [FScriptDelegate]
+  __EpicFriendsPlugin__ChangeNotify: 0x0398n,  // 0x0398 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
 /**
  * ProjectX.OnlinePlayerRegionRestrictions_X Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: Online_X
  */
 export const OnlinePlayerRegionRestrictions_X = {
-  Restrictions: 0x00B0,  // 0x00B0 (0x0010) [TArray<ERegionRestriction>]
+  Restrictions: 0x00b0n,  // 0x00b0 (0x0010) [TArray<ERegionRestriction>]
   ...Online_X,
 } as const;
 
 /**
  * ProjectX.OnlinePlayerStorage_X Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: Online_X
  */
 export const OnlinePlayerStorage_X = {
-  Queue: 0x00B0,  // 0x00B0 (0x0008) [UOnlinePlayerStorageQueue_X*]
-  Sync: 0x00B8,  // 0x00B8 (0x0008) [UOnlinePlayerStorageSync_X*]
-  Manifest: 0x00C0,  // 0x00C0 (0x0008) [UOnlinePlayerStorageManifest_X*]
+  Queue: 0x00b0n,  // 0x00b0 (0x0008) [UOnlinePlayerStorageQueue_X*]
+  Sync: 0x00b8n,  // 0x00b8 (0x0008) [UOnlinePlayerStorageSync_X*]
+  Manifest: 0x00c0n,  // 0x00c0 (0x0008) [UOnlinePlayerStorageManifest_X*]
   ...Online_X,
 } as const;
 
@@ -8837,32 +7349,32 @@ export const OnlinePlayerStorage_X = {
  * Extends: Online_X
  */
 export const OnlinePlayer_X = {
-  Friends: 0x00B0,  // 0x00B0 (0x0008) [UOnlinePlayerFriends_X*]
-  Authentication: 0x00B8,  // 0x00B8 (0x0008) [UOnlinePlayerAuthentication_X*]
-  PsyNetConnection: 0x00C0,  // 0x00C0 (0x0008) [UPsyNetConnection_X*]
-  Storage: 0x00C8,  // 0x00C8 (0x0008) [UOnlinePlayerStorage_X*]
-  RegionRestrictions: 0x00D0,  // 0x00D0 (0x0008) [UOnlinePlayerRegionRestrictions_X*]
-  BugReporter: 0x00D8,  // 0x00D8 (0x0008) [UUserBugReportComponent_X*]
-  PlayerName: 0x00E0,  // 0x00E0 (0x0010) [FString]
-  PlayerID: 0x00F0,  // 0x00F0 (0x0048) [FUniqueNetId]
-  CleanPlayerID: 0x0138,  // 0x0138 (0x0048) [FUniqueNetId]
-  LoginStatus: 0x0180,  // 0x0180 (0x0001) [ELoginStatus]
-  LocalPlayerNum: 0x0184,  // 0x0184 (0x0004) [int32]
-  bLoggingIn: 0x0188,  // 0x0188 (0x0004) [bool : 0x1]
-  bLoggingOut: 0x0188,  // 0x0188 (0x0004) [bool : 0x2]
-  bCabinedModeStatusKnown: 0x0188,  // 0x0188 (0x0004) [bool : 0x4]
-  LoginError: 0x0190,  // 0x0190 (0x0008) [UError*]
-  CachedEpicID: 0x0198,  // 0x0198 (0x0010) [FString]
-  LoginStatusError: 0x01A8,  // 0x01A8 (0x0008) [UError*]
-  BannedError: 0x01B0,  // 0x01B0 (0x0008) [UError*]
-  __EventLoginComplete__Delegate: 0x01B8,  // 0x01B8 (0x0018) [FScriptDelegate]
-  __EventLogoutComplete__Delegate: 0x01D0,  // 0x01D0 (0x0018) [FScriptDelegate]
-  __EventLoginStatusChanged__Delegate: 0x01E8,  // 0x01E8 (0x0018) [FScriptDelegate]
-  __EventCanPlayOnlineChanged__Delegate: 0x0200,  // 0x0200 (0x0018) [FScriptDelegate]
-  __EventShowKeyboardComplete__Delegate: 0x0218,  // 0x0218 (0x0018) [FScriptDelegate]
-  __EventOnlineNameChanged__Delegate: 0x0230,  // 0x0230 (0x0018) [FScriptDelegate]
-  __EventRemoved__Delegate: 0x0248,  // 0x0248 (0x0018) [FScriptDelegate]
-  __EventCabinedModeStatusKnown__Delegate: 0x0260,  // 0x0260 (0x0018) [FScriptDelegate]
+  Friends: 0x00b0n,  // 0x00b0 (0x0008) [UOnlinePlayerFriends_X*]
+  Authentication: 0x00b8n,  // 0x00b8 (0x0008) [UOnlinePlayerAuthentication_X*]
+  PsyNetConnection: 0x00c0n,  // 0x00c0 (0x0008) [UPsyNetConnection_X*]
+  Storage: 0x00c8n,  // 0x00c8 (0x0008) [UOnlinePlayerStorage_X*]
+  RegionRestrictions: 0x00d0n,  // 0x00d0 (0x0008) [UOnlinePlayerRegionRestrictions_X*]
+  BugReporter: 0x00d8n,  // 0x00d8 (0x0008) [UUserBugReportComponent_X*]
+  PlayerName: 0x00e0n,  // 0x00e0 (0x0010) [FString]
+  PlayerID: 0x00f0n,  // 0x00f0 (0x0048) [FUniqueNetId]
+  CleanPlayerID: 0x0138n,  // 0x0138 (0x0048) [FUniqueNetId]
+  LoginStatus: 0x0180n,  // 0x0180 (0x0001) [ELoginStatus]
+  LocalPlayerNum: 0x0184n,  // 0x0184 (0x0004) [int32]
+  bLoggingIn: 0x0188n,  // 0x0188 (0x0004) [bool : 0x1]
+  bLoggingOut: 0x0188n,  // 0x0188 (0x0004) [bool : 0x2]
+  bCabinedModeStatusKnown: 0x0188n,  // 0x0188 (0x0004) [bool : 0x4]
+  LoginError: 0x0190n,  // 0x0190 (0x0008) [UError*]
+  CachedEpicID: 0x0198n,  // 0x0198 (0x0010) [FString]
+  LoginStatusError: 0x01a8n,  // 0x01a8 (0x0008) [UError*]
+  BannedError: 0x01b0n,  // 0x01b0 (0x0008) [UError*]
+  __EventLoginComplete__Delegate: 0x01b8n,  // 0x01b8 (0x0018) [FScriptDelegate]
+  __EventLogoutComplete__Delegate: 0x01d0n,  // 0x01d0 (0x0018) [FScriptDelegate]
+  __EventLoginStatusChanged__Delegate: 0x01e8n,  // 0x01e8 (0x0018) [FScriptDelegate]
+  __EventCanPlayOnlineChanged__Delegate: 0x0200n,  // 0x0200 (0x0018) [FScriptDelegate]
+  __EventShowKeyboardComplete__Delegate: 0x0218n,  // 0x0218 (0x0018) [FScriptDelegate]
+  __EventOnlineNameChanged__Delegate: 0x0230n,  // 0x0230 (0x0018) [FScriptDelegate]
+  __EventRemoved__Delegate: 0x0248n,  // 0x0248 (0x0018) [FScriptDelegate]
+  __EventCabinedModeStatusKnown__Delegate: 0x0260n,  // 0x0260 (0x0018) [FScriptDelegate]
   ...Online_X,
 } as const;
 
@@ -8872,20 +7384,20 @@ export const OnlinePlayer_X = {
  * Extends: Object
  */
 export const StaticDataError_X = {
-  Error: 0x0060,  // 0x0060 (0x0008) [UError*]
+  Error: 0x0060n,  // 0x0060 (0x0008) [UError*]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.StatusObserver_X Offsets
- * Size: 0x00A0
+ * Size: 0x00a0
  * Extends: Object
  */
 export const StatusObserver_X = {
-  TriggerTypes: 0x0060,  // 0x0060 (0x0010) [TArray<UTriggerInfo*>]
-  AcceptedTypes: 0x0070,  // 0x0070 (0x0010) [TArray<UClass*>]
-  bInitComplete: 0x0080,  // 0x0080 (0x0004) [bool : 0x1]
-  __bInitComplete__ChangeNotify: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
+  TriggerTypes: 0x0060n,  // 0x0060 (0x0010) [TArray<UTriggerInfo*>]
+  AcceptedTypes: 0x0070n,  // 0x0070 (0x0010) [TArray<UClass*>]
+  bInitComplete: 0x0080n,  // 0x0080 (0x0004) [bool : 0x1]
+  __bInitComplete__ChangeNotify: 0x0088n,  // 0x0088 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -8895,8 +7407,8 @@ export const StatusObserver_X = {
  * Extends: Object
  */
 export const StatusTrigger_X = {
-  bTriggered: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
-  EventPropertyChange: 0x0068,  // 0x0068 (0x0018) [FScriptDelegate]
+  bTriggered: 0x0060n,  // 0x0060 (0x0004) [bool : 0x1]
+  EventPropertyChange: 0x0068n,  // 0x0068 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -8915,8 +7427,8 @@ export const StringUtil_X = {
  * Extends: Object
  */
 export const SuperRegion_X = {
-  Id: 0x0060,  // 0x0060 (0x0010) [FString]
-  Label: 0x0070,  // 0x0070 (0x0010) [FString]
+  Id: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Label: 0x0070n,  // 0x0070 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -8926,7 +7438,7 @@ export const SuperRegion_X = {
  * Extends: Object
  */
 export const SyncedSkillData_X = {
-  OnlineGameSkill: 0x0060,  // 0x0060 (0x0008) [UOnlineGameSkill_X*]
+  OnlineGameSkill: 0x0060n,  // 0x0060 (0x0008) [UOnlineGameSkill_X*]
   ...Object_,
 } as const;
 
@@ -8954,10 +7466,10 @@ export const SystemMetrics_X = {
  * Extends: AsyncTask
  */
 export const TAsyncResult__ClubDetails_X = {
-  Result: 0x00D0,  // 0x00D0 (0x0008) [UClubDetails_X*]
-  __EventResult__Delegate: 0x00D8,  // 0x00D8 (0x0018) [FScriptDelegate]
-  __EventResultComplete__Delegate: 0x00F0,  // 0x00F0 (0x0018) [FScriptDelegate]
-  __ResultDelegate__Delegate: 0x0108,  // 0x0108 (0x0018) [FScriptDelegate]
+  Result: 0x00d0n,  // 0x00d0 (0x0008) [UClubDetails_X*]
+  __EventResult__Delegate: 0x00d8n,  // 0x00d8 (0x0018) [FScriptDelegate]
+  __EventResultComplete__Delegate: 0x00f0n,  // 0x00f0 (0x0018) [FScriptDelegate]
+  __ResultDelegate__Delegate: 0x0108n,  // 0x0108 (0x0018) [FScriptDelegate]
   ...AsyncTask,
 } as const;
 
@@ -8967,10 +7479,10 @@ export const TAsyncResult__ClubDetails_X = {
  * Extends: AsyncTask
  */
 export const TAsyncResult__PsyNetClientService_X = {
-  Result: 0x00D0,  // 0x00D0 (0x0008) [UPsyNetClientService_X*]
-  __EventResult__Delegate: 0x00D8,  // 0x00D8 (0x0018) [FScriptDelegate]
-  __EventResultComplete__Delegate: 0x00F0,  // 0x00F0 (0x0018) [FScriptDelegate]
-  __ResultDelegate__Delegate: 0x0108,  // 0x0108 (0x0018) [FScriptDelegate]
+  Result: 0x00d0n,  // 0x00d0 (0x0008) [UPsyNetClientService_X*]
+  __EventResult__Delegate: 0x00d8n,  // 0x00d8 (0x0018) [FScriptDelegate]
+  __EventResultComplete__Delegate: 0x00f0n,  // 0x00f0 (0x0018) [FScriptDelegate]
+  __ResultDelegate__Delegate: 0x0108n,  // 0x0108 (0x0018) [FScriptDelegate]
   ...AsyncTask,
 } as const;
 
@@ -8980,10 +7492,10 @@ export const TAsyncResult__PsyNetClientService_X = {
  * Extends: AsyncTask
  */
 export const TAsyncResult__PsyNetMessage_X = {
-  Result: 0x00D0,  // 0x00D0 (0x0008) [UPsyNetMessage_X*]
-  __EventResult__Delegate: 0x00D8,  // 0x00D8 (0x0018) [FScriptDelegate]
-  __EventResultComplete__Delegate: 0x00F0,  // 0x00F0 (0x0018) [FScriptDelegate]
-  __ResultDelegate__Delegate: 0x0108,  // 0x0108 (0x0018) [FScriptDelegate]
+  Result: 0x00d0n,  // 0x00d0 (0x0008) [UPsyNetMessage_X*]
+  __EventResult__Delegate: 0x00d8n,  // 0x00d8 (0x0018) [FScriptDelegate]
+  __EventResultComplete__Delegate: 0x00f0n,  // 0x00f0 (0x0018) [FScriptDelegate]
+  __ResultDelegate__Delegate: 0x0108n,  // 0x0108 (0x0018) [FScriptDelegate]
   ...AsyncTask,
 } as const;
 
@@ -8993,10 +7505,10 @@ export const TAsyncResult__PsyNetMessage_X = {
  * Extends: AsyncTask
  */
 export const TAsyncResult__Texture2DDynamic = {
-  Result: 0x00D0,  // 0x00D0 (0x0008) [UTexture2DDynamic*]
-  __EventResult__Delegate: 0x00D8,  // 0x00D8 (0x0018) [FScriptDelegate]
-  __EventResultComplete__Delegate: 0x00F0,  // 0x00F0 (0x0018) [FScriptDelegate]
-  __ResultDelegate__Delegate: 0x0108,  // 0x0108 (0x0018) [FScriptDelegate]
+  Result: 0x00d0n,  // 0x00d0 (0x0008) [UTexture2DDynamic*]
+  __EventResult__Delegate: 0x00d8n,  // 0x00d8 (0x0018) [FScriptDelegate]
+  __EventResultComplete__Delegate: 0x00f0n,  // 0x00f0 (0x0018) [FScriptDelegate]
+  __ResultDelegate__Delegate: 0x0108n,  // 0x0108 (0x0018) [FScriptDelegate]
   ...AsyncTask,
 } as const;
 
@@ -9006,10 +7518,10 @@ export const TAsyncResult__Texture2DDynamic = {
  * Extends: AsyncTask
  */
 export const TAsyncResult__array_ClubInvite_X = {
-  Result: 0x00D0,  // 0x00D0 (0x0010) [TArray<UClubInvite_X*>]
-  __EventResult__Delegate: 0x00E0,  // 0x00E0 (0x0018) [FScriptDelegate]
-  __EventResultComplete__Delegate: 0x00F8,  // 0x00F8 (0x0018) [FScriptDelegate]
-  __ResultDelegate__Delegate: 0x0110,  // 0x0110 (0x0018) [FScriptDelegate]
+  Result: 0x00d0n,  // 0x00d0 (0x0010) [TArray<UClubInvite_X*>]
+  __EventResult__Delegate: 0x00e0n,  // 0x00e0 (0x0018) [FScriptDelegate]
+  __EventResultComplete__Delegate: 0x00f8n,  // 0x00f8 (0x0018) [FScriptDelegate]
+  __ResultDelegate__Delegate: 0x0110n,  // 0x0110 (0x0018) [FScriptDelegate]
   ...AsyncTask,
 } as const;
 
@@ -9019,10 +7531,10 @@ export const TAsyncResult__array_ClubInvite_X = {
  * Extends: AsyncTask
  */
 export const TAsyncResult__array_LanServerRecord_X = {
-  Result: 0x00D0,  // 0x00D0 (0x0010) [TArray<ULanServerRecord_X*>]
-  __EventResult__Delegate: 0x00E0,  // 0x00E0 (0x0018) [FScriptDelegate]
-  __EventResultComplete__Delegate: 0x00F8,  // 0x00F8 (0x0018) [FScriptDelegate]
-  __ResultDelegate__Delegate: 0x0110,  // 0x0110 (0x0018) [FScriptDelegate]
+  Result: 0x00d0n,  // 0x00d0 (0x0010) [TArray<ULanServerRecord_X*>]
+  __EventResult__Delegate: 0x00e0n,  // 0x00e0 (0x0018) [FScriptDelegate]
+  __EventResultComplete__Delegate: 0x00f8n,  // 0x00f8 (0x0018) [FScriptDelegate]
+  __ResultDelegate__Delegate: 0x0110n,  // 0x0110 (0x0018) [FScriptDelegate]
   ...AsyncTask,
 } as const;
 
@@ -9032,24 +7544,24 @@ export const TAsyncResult__array_LanServerRecord_X = {
  * Extends: Object
  */
 export const TcpConnection = {
-  VfTable_FTickableObject: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  VfTable_IIReservationConnection_X: 0x0068,  // 0x0068 (0x0008) [FPointer]
-  InitialConnectionTimeout: 0x0070,  // 0x0070 (0x0004) [float]
-  ConnectionTimeout: 0x0074,  // 0x0074 (0x0004) [float]
-  Socket: 0x0078,  // 0x0078 (0x0008) [FPointer]
-  ConnectionState: 0x0080,  // 0x0080 (0x0001) [ETcpConnectionState]
-  WebSocketState: 0x0081,  // 0x0081 (0x0001) [EWebSocketState]
-  LastReceiveTime: 0x0084,  // 0x0084 (0x0004) [float]
-  InBytes: 0x0088,  // 0x0088 (0x0010) [TArray<uint8>]
-  OutBytes: 0x0098,  // 0x0098 (0x0010) [TArray<uint8>]
-  OutMessageLengths: 0x00A8,  // 0x00A8 (0x0010) [TArray<int32>]
-  QueuedWebSocketBytes: 0x00B8,  // 0x00B8 (0x0010) [TArray<uint8>]
-  QueuedWebSocketMessageLengths: 0x00C8,  // 0x00C8 (0x0010) [TArray<int32>]
-  InBytesDecoded: 0x00D8,  // 0x00D8 (0x0010) [TArray<uint8>]
-  BunchBytes: 0x00E8,  // 0x00E8 (0x0010) [TArray<uint8>]
-  __EventConnected__Delegate: 0x00F8,  // 0x00F8 (0x0018) [FScriptDelegate]
-  __EventDisconnected__Delegate: 0x0110,  // 0x0110 (0x0018) [FScriptDelegate]
-  __EventReceivedBunch__Delegate: 0x0128,  // 0x0128 (0x0018) [FScriptDelegate]
+  VfTable_FTickableObject: 0x0060n,  // 0x0060 (0x0008) [FPointer]
+  VfTable_IIReservationConnection_X: 0x0068n,  // 0x0068 (0x0008) [FPointer]
+  InitialConnectionTimeout: 0x0070n,  // 0x0070 (0x0004) [float]
+  ConnectionTimeout: 0x0074n,  // 0x0074 (0x0004) [float]
+  Socket: 0x0078n,  // 0x0078 (0x0008) [FPointer]
+  ConnectionState: 0x0080n,  // 0x0080 (0x0001) [ETcpConnectionState]
+  WebSocketState: 0x0081n,  // 0x0081 (0x0001) [EWebSocketState]
+  LastReceiveTime: 0x0084n,  // 0x0084 (0x0004) [float]
+  InBytes: 0x0088n,  // 0x0088 (0x0010) [TArray<uint8>]
+  OutBytes: 0x0098n,  // 0x0098 (0x0010) [TArray<uint8>]
+  OutMessageLengths: 0x00a8n,  // 0x00a8 (0x0010) [TArray<int32>]
+  QueuedWebSocketBytes: 0x00b8n,  // 0x00b8 (0x0010) [TArray<uint8>]
+  QueuedWebSocketMessageLengths: 0x00c8n,  // 0x00c8 (0x0010) [TArray<int32>]
+  InBytesDecoded: 0x00d8n,  // 0x00d8 (0x0010) [TArray<uint8>]
+  BunchBytes: 0x00e8n,  // 0x00e8 (0x0010) [TArray<uint8>]
+  __EventConnected__Delegate: 0x00f8n,  // 0x00f8 (0x0018) [FScriptDelegate]
+  __EventDisconnected__Delegate: 0x0110n,  // 0x0110 (0x0018) [FScriptDelegate]
+  __EventReceivedBunch__Delegate: 0x0128n,  // 0x0128 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -9064,41 +7576,41 @@ export const TestsHelper_X = {
 
 /**
  * ProjectX.TickActorComponent_X Offsets
- * Size: 0x00D0
+ * Size: 0x00d0
  * Extends: ActorComponent
  */
 export const TickActorComponent_X = {
-  Timers: 0x00A0,  // 0x00A0 (0x0010) [TArray<FTimerData>]
-  bTick: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x1]
-  __EventTick__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
+  Timers: 0x00a0n,  // 0x00a0 (0x0010) [TArray<FTimerData>]
+  bTick: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x1]
+  __EventTick__Delegate: 0x00b8n,  // 0x00b8 (0x0018) [FScriptDelegate]
   ...ActorComponent,
 } as const;
 
 /**
  * ProjectX.TickableStateObject_X Offsets
- * Size: 0x008C
+ * Size: 0x008c
  * Extends: StateObject_X
  */
 export const TickableStateObject_X = {
-  VfTable_FTickableObject: 0x0068,  // 0x0068 (0x0008) [FPointer]
-  bTickWhenGamePaused: 0x0070,  // 0x0070 (0x0004) [bool : 0x1]
-  bAutoTick: 0x0070,  // 0x0070 (0x0004) [bool : 0x2]
-  Timers: 0x0078,  // 0x0078 (0x0010) [TArray<FTimerData>]
-  LatentFloat: 0x0088,  // 0x0088 (0x0004) [float]
+  VfTable_FTickableObject: 0x0068n,  // 0x0068 (0x0008) [FPointer]
+  bTickWhenGamePaused: 0x0070n,  // 0x0070 (0x0004) [bool : 0x1]
+  bAutoTick: 0x0070n,  // 0x0070 (0x0004) [bool : 0x2]
+  Timers: 0x0078n,  // 0x0078 (0x0010) [TArray<FTimerData>]
+  LatentFloat: 0x0088n,  // 0x0088 (0x0004) [float]
   ...StateObject_X,
 } as const;
 
 /**
  * ProjectX.TimeWindowOptional_X Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: Object
  */
 export const TimeWindowOptional_X = {
-  StartTime: 0x0060,  // 0x0060 (0x0008) [uint64]
-  EndTime: 0x0068,  // 0x0068 (0x0008) [uint64]
-  Time: 0x0070,  // 0x0070 (0x0010) [TScriptInterface<UIEpochNow>]
-  __EventWindowStarted__Delegate: 0x0080,  // 0x0080 (0x0018) [FScriptDelegate]
-  __EventWindowEnded__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
+  StartTime: 0x0060n,  // 0x0060 (0x0008) [uint64]
+  EndTime: 0x0068n,  // 0x0068 (0x0008) [uint64]
+  Time: 0x0070n,  // 0x0070 (0x0010) [TScriptInterface<UIEpochNow>]
+  __EventWindowStarted__Delegate: 0x0080n,  // 0x0080 (0x0018) [FScriptDelegate]
+  __EventWindowEnded__Delegate: 0x0098n,  // 0x0098 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -9108,20 +7620,20 @@ export const TimeWindowOptional_X = {
  * Extends: Component
  */
 export const TimersComponent_X = {
-  Timers: 0x0070,  // 0x0070 (0x0010) [TArray<FTimerData>]
+  Timers: 0x0070n,  // 0x0070 (0x0010) [TArray<FTimerData>]
   ...Component,
 } as const;
 
 /**
  * ProjectX.TickComponent_X Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: TimersComponent_X
  */
 export const TickComponent_X = {
-  VfTable_FTickableObject: 0x0080,  // 0x0080 (0x0008) [FPointer]
-  bTickWhenGamePaused: 0x0088,  // 0x0088 (0x0004) [bool : 0x1]
-  bTick: 0x0088,  // 0x0088 (0x0004) [bool : 0x2]
-  __TickDelegate__Delegate: 0x0090,  // 0x0090 (0x0018) [FScriptDelegate]
+  VfTable_FTickableObject: 0x0080n,  // 0x0080 (0x0008) [FPointer]
+  bTickWhenGamePaused: 0x0088n,  // 0x0088 (0x0004) [bool : 0x1]
+  bTick: 0x0088n,  // 0x0088 (0x0004) [bool : 0x2]
+  __TickDelegate__Delegate: 0x0090n,  // 0x0090 (0x0018) [FScriptDelegate]
   ...TimersComponent_X,
 } as const;
 
@@ -9131,34 +7643,34 @@ export const TickComponent_X = {
  * Extends: Object
  */
 export const Timers_X = {
-  TickComponent: 0x0060,  // 0x0060 (0x0008) [unknown]
-  __TickDelegate__Delegate: 0x0068,  // 0x0068 (0x0018) [FScriptDelegate]
+  TickComponent: 0x0060n,  // 0x0060 (0x0008) [unknown]
+  __TickDelegate__Delegate: 0x0068n,  // 0x0068 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.TitleConfig_X Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: OnlineConfig_X
  */
 export const TitleConfig_X = {
-  Categories: 0x0078,  // 0x0078 (0x0010) [TArray<FPlayerTitleCategory>]
-  Titles: 0x0088,  // 0x0088 (0x0010) [TArray<FPlayerTitleData>]
-  ClubTitles: 0x0098,  // 0x0098 (0x0010) [TArray<FPlayerTitleData>]
-  DefaultColorHexCode: 0x00A8,  // 0x00A8 (0x0010) [FString]
+  Categories: 0x0078n,  // 0x0078 (0x0010) [TArray<FPlayerTitleCategory>]
+  Titles: 0x0088n,  // 0x0088 (0x0010) [TArray<FPlayerTitleData>]
+  ClubTitles: 0x0098n,  // 0x0098 (0x0010) [TArray<FPlayerTitleData>]
+  DefaultColorHexCode: 0x00a8n,  // 0x00a8 (0x0010) [FString]
   ...OnlineConfig_X,
 } as const;
 
 /**
  * ProjectX.TriggerInfo Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const TriggerInfo = {
-  AcceptedType: 0x0060,  // 0x0060 (0x0008) [UClass*]
-  Triggers: 0x0068,  // 0x0068 (0x0010) [TArray<UStatusTrigger_X*>]
-  Callback: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
-  __UpdateTrigger__Delegate: 0x0090,  // 0x0090 (0x0018) [FScriptDelegate]
+  AcceptedType: 0x0060n,  // 0x0060 (0x0008) [UClass*]
+  Triggers: 0x0068n,  // 0x0068 (0x0010) [TArray<UStatusTrigger_X*>]
+  Callback: 0x0078n,  // 0x0078 (0x0018) [FScriptDelegate]
+  __UpdateTrigger__Delegate: 0x0090n,  // 0x0090 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -9186,11 +7698,11 @@ export const URLValidator_X = {
  * Extends: LanBrowser_X
  */
 export const UdpLanBrowser_X = {
-  SearchTimeout: 0x0060,  // 0x0060 (0x0004) [float]
-  LanBeacon: 0x0068,  // 0x0068 (0x0008) [unknown]
-  SearchTask: 0x0070,  // 0x0070 (0x0008) [UTAsyncResult__array_LanServerRecord_X*]
-  SearchResults: 0x0078,  // 0x0078 (0x0010) [TArray<ULanServerRecord_X*>]
-  LocalServer: 0x0088,  // 0x0088 (0x0008) [UUdpLanServer_X*]
+  SearchTimeout: 0x0060n,  // 0x0060 (0x0004) [float]
+  LanBeacon: 0x0068n,  // 0x0068 (0x0008) [unknown]
+  SearchTask: 0x0070n,  // 0x0070 (0x0008) [UTAsyncResult__array_LanServerRecord_X*]
+  SearchResults: 0x0078n,  // 0x0078 (0x0010) [TArray<ULanServerRecord_X*>]
+  LocalServer: 0x0088n,  // 0x0088 (0x0008) [UUdpLanServer_X*]
   ...LanBrowser_X,
 } as const;
 
@@ -9200,8 +7712,8 @@ export const UdpLanBrowser_X = {
  * Extends: Object
  */
 export const UdpLanServer_X = {
-  Beacon: 0x0060,  // 0x0060 (0x0008) [unknown]
-  MetaData: 0x0068,  // 0x0068 (0x0010) [FString]
+  Beacon: 0x0060n,  // 0x0060 (0x0008) [unknown]
+  MetaData: 0x0068n,  // 0x0068 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -9211,23 +7723,23 @@ export const UdpLanServer_X = {
  * Extends: Component
  */
 export const UdpPingBeaconBase_X = {
-  Beacon: 0x0070,  // 0x0070 (0x0008) [FPointer]
-  Thread: 0x0078,  // 0x0078 (0x0008) [FPointer]
-  Runnable: 0x0080,  // 0x0080 (0x0008) [FPointer]
-  SocketErrorLogDelaySeconds: 0x0088,  // 0x0088 (0x0004) [int32]
-  bThreaded: 0x008C,  // 0x008C (0x0004) [bool : 0x1]
-  Config: 0x0090,  // 0x0090 (0x0008) [UBeaconConfig_X*]
+  Beacon: 0x0070n,  // 0x0070 (0x0008) [FPointer]
+  Thread: 0x0078n,  // 0x0078 (0x0008) [FPointer]
+  Runnable: 0x0080n,  // 0x0080 (0x0008) [FPointer]
+  SocketErrorLogDelaySeconds: 0x0088n,  // 0x0088 (0x0004) [int32]
+  bThreaded: 0x008cn,  // 0x008c (0x0004) [bool : 0x1]
+  Config: 0x0090n,  // 0x0090 (0x0008) [UBeaconConfig_X*]
   ...Component,
 } as const;
 
 /**
  * ProjectX.UdpPingBeaconClient_X Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: UdpPingBeaconBase_X
  */
 export const UdpPingBeaconClient_X = {
-  __EventPong__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
-  __EventLost__Delegate: 0x00B0,  // 0x00B0 (0x0018) [FScriptDelegate]
+  __EventPong__Delegate: 0x0098n,  // 0x0098 (0x0018) [FScriptDelegate]
+  __EventLost__Delegate: 0x00b0n,  // 0x00b0 (0x0018) [FScriptDelegate]
   ...UdpPingBeaconBase_X,
 } as const;
 
@@ -9242,15 +7754,15 @@ export const UdpPingBeaconServer_X = {
 
 /**
  * ProjectX.UrlConfig_X Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: Object
  */
 export const UrlConfig_X = {
-  CDN: 0x0060,  // 0x0060 (0x0010) [FString]
-  ESportsURL: 0x0070,  // 0x0070 (0x0010) [FString]
-  CrossPlatformSupportURL: 0x0080,  // 0x0080 (0x0010) [FString]
-  LegalTextWebFolder: 0x0090,  // 0x0090 (0x0010) [FString]
-  ValidUrls_Switch: 0x00A0,  // 0x00A0 (0x0010) [TArray<FString>]
+  CDN: 0x0060n,  // 0x0060 (0x0010) [FString]
+  ESportsURL: 0x0070n,  // 0x0070 (0x0010) [FString]
+  CrossPlatformSupportURL: 0x0080n,  // 0x0080 (0x0010) [FString]
+  LegalTextWebFolder: 0x0090n,  // 0x0090 (0x0010) [FString]
+  ValidUrls_Switch: 0x00a0n,  // 0x00a0 (0x0010) [TArray<FString>]
   ...Object_,
 } as const;
 
@@ -9269,8 +7781,8 @@ export const UserBugReportComponent_X = {
  * Extends: OnlineConfig_X
  */
 export const VanityConfig_X = {
-  AvatarRequestDelaySeconds: 0x0078,  // 0x0078 (0x0004) [float]
-  AvatarRequestMaxBatchSize: 0x007C,  // 0x007C (0x0004) [int32]
+  AvatarRequestDelaySeconds: 0x0078n,  // 0x0078 (0x0004) [float]
+  AvatarRequestMaxBatchSize: 0x007cn,  // 0x007c (0x0004) [int32]
   ...OnlineConfig_X,
 } as const;
 
@@ -9280,8 +7792,8 @@ export const VanityConfig_X = {
  * Extends: Object
  */
 export const WebCache_X = {
-  Requests: 0x0060,  // 0x0060 (0x0010) [TArray<FCachedDataRequest>]
-  __CachedDataCallback__Delegate: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
+  Requests: 0x0060n,  // 0x0060 (0x0010) [TArray<FCachedDataRequest>]
+  __CachedDataCallback__Delegate: 0x0070n,  // 0x0070 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -9291,9 +7803,9 @@ export const WebCache_X = {
  * Extends: OnlineConfig_X
  */
 export const WebConfig_X = {
-  bCacheWebImages: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  bZipPsyNetStaticData: 0x0078,  // 0x0078 (0x0004) [bool : 0x2]
-  PsyNetStaticDataCacheMinutes: 0x007C,  // 0x007C (0x0004) [float]
+  bCacheWebImages: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
+  bZipPsyNetStaticData: 0x0078n,  // 0x0078 (0x0004) [bool : 0x2]
+  PsyNetStaticDataCacheMinutes: 0x007cn,  // 0x007c (0x0004) [float]
   ...OnlineConfig_X,
 } as const;
 
@@ -9303,9 +7815,9 @@ export const WebConfig_X = {
  * Extends: Object
  */
 export const WebImageCache_X = {
-  Decoder: 0x0060,  // 0x0060 (0x0008) [UImageDecoder*]
-  Downloads: 0x0068,  // 0x0068 (0x0008) [unknown]
-  __ImageSyncCallback__Delegate: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
+  Decoder: 0x0060n,  // 0x0060 (0x0008) [UImageDecoder*]
+  Downloads: 0x0068n,  // 0x0068 (0x0008) [unknown]
+  __ImageSyncCallback__Delegate: 0x0070n,  // 0x0070 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -9315,65 +7827,65 @@ export const WebImageCache_X = {
  * Extends: Object
  */
 export const WebImageDownload_X = {
-  URL: 0x0060,  // 0x0060 (0x0010) [FString]
-  bSRGB: 0x0070,  // 0x0070 (0x0004) [bool : 0x1]
-  Texture: 0x0078,  // 0x0078 (0x0008) [UTexture2DDynamic*]
-  AsyncResult: 0x0080,  // 0x0080 (0x0008) [UTAsyncResult__Texture2DDynamic*]
+  URL: 0x0060n,  // 0x0060 (0x0010) [FString]
+  bSRGB: 0x0070n,  // 0x0070 (0x0004) [bool : 0x1]
+  Texture: 0x0078n,  // 0x0078 (0x0008) [UTexture2DDynamic*]
+  AsyncResult: 0x0080n,  // 0x0080 (0x0008) [UTAsyncResult__Texture2DDynamic*]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.WebRequest_X Offsets
- * Size: 0x00D8
+ * Size: 0x00d8
  * Extends: Object
  */
 export const WebRequest_X = {
-  bZipRequest: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
-  bZipResponse: 0x0060,  // 0x0060 (0x0004) [bool : 0x2]
-  bLogRequestContent: 0x0060,  // 0x0060 (0x0004) [bool : 0x4]
-  bLogResponseContent: 0x0060,  // 0x0060 (0x0004) [bool : 0x8]
-  bLogSendRecv: 0x0060,  // 0x0060 (0x0004) [bool : 0x10]
-  bConnectionReset: 0x0060,  // 0x0060 (0x0004) [bool : 0x20]
-  bCancelled: 0x0060,  // 0x0060 (0x0004) [bool : 0x40]
-  RequestState: 0x0064,  // 0x0064 (0x0001) [EWebRequestState]
-  URL: 0x0068,  // 0x0068 (0x0010) [FString]
-  HTTPRequest: 0x0078,  // 0x0078 (0x0008) [UHttpRequestInterface*]
-  HttpResponse: 0x0080,  // 0x0080 (0x0008) [UHttpResponseInterface*]
-  Content: 0x0088,  // 0x0088 (0x0010) [TArray<uint8>]
-  StringContent: 0x0098,  // 0x0098 (0x0010) [FString]
-  ResponseData: 0x00A8,  // 0x00A8 (0x0010) [TArray<uint8>]
-  Error: 0x00B8,  // 0x00B8 (0x0008) [UError*]
-  __EventCompleted__Delegate: 0x00C0,  // 0x00C0 (0x0018) [FScriptDelegate]
+  bZipRequest: 0x0060n,  // 0x0060 (0x0004) [bool : 0x1]
+  bZipResponse: 0x0060n,  // 0x0060 (0x0004) [bool : 0x2]
+  bLogRequestContent: 0x0060n,  // 0x0060 (0x0004) [bool : 0x4]
+  bLogResponseContent: 0x0060n,  // 0x0060 (0x0004) [bool : 0x8]
+  bLogSendRecv: 0x0060n,  // 0x0060 (0x0004) [bool : 0x10]
+  bConnectionReset: 0x0060n,  // 0x0060 (0x0004) [bool : 0x20]
+  bCancelled: 0x0060n,  // 0x0060 (0x0004) [bool : 0x40]
+  RequestState: 0x0064n,  // 0x0064 (0x0001) [EWebRequestState]
+  URL: 0x0068n,  // 0x0068 (0x0010) [FString]
+  HTTPRequest: 0x0078n,  // 0x0078 (0x0008) [UHttpRequestInterface*]
+  HttpResponse: 0x0080n,  // 0x0080 (0x0008) [UHttpResponseInterface*]
+  Content: 0x0088n,  // 0x0088 (0x0010) [TArray<uint8>]
+  StringContent: 0x0098n,  // 0x0098 (0x0010) [FString]
+  ResponseData: 0x00a8n,  // 0x00a8 (0x0010) [TArray<uint8>]
+  Error: 0x00b8n,  // 0x00b8 (0x0008) [UError*]
+  __EventCompleted__Delegate: 0x00c0n,  // 0x00c0 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.WebSocketConnection_X Offsets
- * Size: 0x015C
+ * Size: 0x015c
  * Extends: TcpConnection
  */
 export const WebSocketConnection_X = {
-  PingInterval: 0x0140,  // 0x0140 (0x0004) [float]
-  ClosedReason: 0x0148,  // 0x0148 (0x0010) [FString]
-  ClosedCode: 0x0158,  // 0x0158 (0x0004) [int32]
+  PingInterval: 0x0140n,  // 0x0140 (0x0004) [float]
+  ClosedReason: 0x0148n,  // 0x0148 (0x0010) [FString]
+  ClosedCode: 0x0158n,  // 0x0158 (0x0004) [int32]
   ...TcpConnection,
 } as const;
 
 /**
  * ProjectX.WordFilterConfig_X Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: OnlineConfig_X
  */
 export const WordFilterConfig_X = {
-  bSanitizeEntirePhrase: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  PsyNetFilterEnabled: 0x0078,  // 0x0078 (0x0004) [bool : 0x2]
-  bAllowMatureLanguage: 0x0078,  // 0x0078 (0x0004) [bool : 0x4]
-  NameHistoryCacheLength: 0x007C,  // 0x007C (0x0004) [int32]
-  IgnoreFilterList: 0x0080,  // 0x0080 (0x0010) [TArray<EWordFilterUsage>]
-  PlatformFilterList: 0x0090,  // 0x0090 (0x0010) [TArray<EWordFilterUsage>]
-  PsyNetWordFilterBatchDelay: 0x00A0,  // 0x00A0 (0x0004) [float]
-  PsyNetWordFilterBatchMaxSize: 0x00A4,  // 0x00A4 (0x0004) [int32]
-  IgnoreMatureLanguageFilterList: 0x00A8,  // 0x00A8 (0x0010) [TArray<EWordFilterUsage>]
+  bSanitizeEntirePhrase: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
+  PsyNetFilterEnabled: 0x0078n,  // 0x0078 (0x0004) [bool : 0x2]
+  bAllowMatureLanguage: 0x0078n,  // 0x0078 (0x0004) [bool : 0x4]
+  NameHistoryCacheLength: 0x007cn,  // 0x007c (0x0004) [int32]
+  IgnoreFilterList: 0x0080n,  // 0x0080 (0x0010) [TArray<EWordFilterUsage>]
+  PlatformFilterList: 0x0090n,  // 0x0090 (0x0010) [TArray<EWordFilterUsage>]
+  PsyNetWordFilterBatchDelay: 0x00a0n,  // 0x00a0 (0x0004) [float]
+  PsyNetWordFilterBatchMaxSize: 0x00a4n,  // 0x00a4 (0x0004) [int32]
+  IgnoreMatureLanguageFilterList: 0x00a8n,  // 0x00a8 (0x0010) [TArray<EWordFilterUsage>]
   ...OnlineConfig_X,
 } as const;
 
@@ -9383,8 +7895,8 @@ export const WordFilterConfig_X = {
  * Extends: Object
  */
 export const WordFilterTypes_X = {
-  __CommentSanitizedDelegate__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  __CommentErrorDelegate__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
+  __CommentSanitizedDelegate__Delegate: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
+  __CommentErrorDelegate__Delegate: 0x0078n,  // 0x0078 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -9408,13 +7920,13 @@ export const _SharedHelpers = {
 
 /**
  * ProjectX._Types_X Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const _Types_X = {
-  __OnPriviledgeChecked__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  __ServiceExecutionDelegate__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
-  __OnTimer__Delegate: 0x0090,  // 0x0090 (0x0018) [FScriptDelegate]
+  __OnPriviledgeChecked__Delegate: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
+  __ServiceExecutionDelegate__Delegate: 0x0078n,  // 0x0078 (0x0018) [FScriptDelegate]
+  __OnTimer__Delegate: 0x0090n,  // 0x0090 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -9424,8 +7936,8 @@ export const _Types_X = {
  * Extends: Object
  */
 export const __AdHocBrowser_X__CreateErrorDelegate_0x1 = {
-  Task: 0x0060,  // 0x0060 (0x0008) [UAsyncTask*]
-  ErrorDelegate: 0x0068,  // 0x0068 (0x0018) [FScriptDelegate]
+  Task: 0x0060n,  // 0x0060 (0x0008) [UAsyncTask*]
+  ErrorDelegate: 0x0068n,  // 0x0068 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -9435,9 +7947,9 @@ export const __AdHocBrowser_X__CreateErrorDelegate_0x1 = {
  * Extends: Object
  */
 export const __AdHocBrowser_X__CreateServer_0x1 = {
-  MetaData: 0x0060,  // 0x0060 (0x0010) [FString]
-  Task: 0x0070,  // 0x0070 (0x0008) [UAsyncTask*]
-  ApcDelegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
+  MetaData: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Task: 0x0070n,  // 0x0070 (0x0008) [UAsyncTask*]
+  ApcDelegate: 0x0078n,  // 0x0078 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -9447,9 +7959,9 @@ export const __AdHocBrowser_X__CreateServer_0x1 = {
  * Extends: Object
  */
 export const __AdHocBrowser_X__JoinServer_0x1 = {
-  Task: 0x0060,  // 0x0060 (0x0008) [UAsyncTask*]
-  ServerId: 0x0068,  // 0x0068 (0x0010) [FString]
-  Options: 0x0078,  // 0x0078 (0x0010) [FString]
+  Task: 0x0060n,  // 0x0060 (0x0008) [UAsyncTask*]
+  ServerId: 0x0068n,  // 0x0068 (0x0010) [FString]
+  Options: 0x0078n,  // 0x0078 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -9459,8 +7971,8 @@ export const __AdHocBrowser_X__JoinServer_0x1 = {
  * Extends: Object
  */
 export const __AdHocInterface_X__DisableAdHoc_0x1 = {
-  Task: 0x0060,  // 0x0060 (0x0008) [UAsyncTask*]
-  DestroyedDelegate: 0x0068,  // 0x0068 (0x0018) [FScriptDelegate]
+  Task: 0x0060n,  // 0x0060 (0x0008) [UAsyncTask*]
+  DestroyedDelegate: 0x0068n,  // 0x0068 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -9470,8 +7982,8 @@ export const __AdHocInterface_X__DisableAdHoc_0x1 = {
  * Extends: Object
  */
 export const __AdHocInterface_X__EnableAdHoc_0x1 = {
-  Task: 0x0060,  // 0x0060 (0x0008) [UAsyncTask*]
-  InitDelegate: 0x0068,  // 0x0068 (0x0018) [FScriptDelegate]
+  Task: 0x0060n,  // 0x0060 (0x0008) [UAsyncTask*]
+  InitDelegate: 0x0068n,  // 0x0068 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -9481,29 +7993,29 @@ export const __AdHocInterface_X__EnableAdHoc_0x1 = {
  * Extends: Object
  */
 export const __AvatarRequester_X__AddCallbackToRequest_0x1 = {
-  ReadOnlineAvatarCompleteDelegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  ReadOnlineAvatarCompleteDelegate: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__AvatarRequester_X__FindRequestFromArray_0x1 Offsets
- * Size: 0x00A9
+ * Size: 0x00a9
  * Extends: Object
  */
 export const __AvatarRequester_X__FindRequestFromArray_0x1 = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  Size: 0x00A8,  // 0x00A8 (0x0001) [AvatarSize]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
+  Size: 0x00a8n,  // 0x00a8 (0x0001) [AvatarSize]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__AvatarRequester_X__GetPlayerAvatar_0x1 Offsets
- * Size: 0x00A9
+ * Size: 0x00a9
  * Extends: Object
  */
 export const __AvatarRequester_X__GetPlayerAvatar_0x1 = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  Size: 0x00A8,  // 0x00A8 (0x0001) [AvatarSize]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
+  Size: 0x00a8n,  // 0x00a8 (0x0001) [AvatarSize]
   ...Object_,
 } as const;
 
@@ -9513,19 +8025,19 @@ export const __AvatarRequester_X__GetPlayerAvatar_0x1 = {
  * Extends: Object
  */
 export const __AvatarRequester_X__GetPlayerAvatars_0x1 = {
-  ReadOnlineAvatarCompleteDelegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  Size: 0x0078,  // 0x0078 (0x0001) [AvatarSize]
+  ReadOnlineAvatarCompleteDelegate: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
+  Size: 0x0078n,  // 0x0078 (0x0001) [AvatarSize]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__AvatarRequester_X__RemoveRequestFromArray_0x1 Offsets
- * Size: 0x00A9
+ * Size: 0x00a9
  * Extends: Object
  */
 export const __AvatarRequester_X__RemoveRequestFromArray_0x1 = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  Size: 0x00A8,  // 0x00A8 (0x0001) [AvatarSize]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
+  Size: 0x00a8n,  // 0x00a8 (0x0001) [AvatarSize]
   ...Object_,
 } as const;
 
@@ -9535,7 +8047,7 @@ export const __AvatarRequester_X__RemoveRequestFromArray_0x1 = {
  * Extends: Object
  */
 export const __AvatarRequester_X__TimerReadAvatars_0x1 = {
-  BatchAvatarSize: 0x0060,  // 0x0060 (0x0001) [AvatarSize]
+  BatchAvatarSize: 0x0060n,  // 0x0060 (0x0001) [AvatarSize]
   ...Object_,
 } as const;
 
@@ -9545,7 +8057,7 @@ export const __AvatarRequester_X__TimerReadAvatars_0x1 = {
  * Extends: Object
  */
 export const __BlockStatusReporter_X__OnBlockListDownloadComplete_0x1 = {
-  BlockedPlayersArray: 0x0060,  // 0x0060 (0x0010) [TArray<FOnlineFriend>]
+  BlockedPlayersArray: 0x0060n,  // 0x0060 (0x0010) [TArray<FOnlineFriend>]
   ...Object_,
 } as const;
 
@@ -9555,7 +8067,7 @@ export const __BlockStatusReporter_X__OnBlockListDownloadComplete_0x1 = {
  * Extends: Object
  */
 export const __BlockStatusReporter_X__TriggerPlayerCallback_0x1 = {
-  EpicId: 0x0060,  // 0x0060 (0x0010) [FString]
+  EpicId: 0x0060n,  // 0x0060 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -9565,10 +8077,10 @@ export const __BlockStatusReporter_X__TriggerPlayerCallback_0x1 = {
  * Extends: Object
  */
 export const __CheatManager_X__RandomSleep_0x1 = {
-  MinDelay: 0x0060,  // 0x0060 (0x0004) [float]
-  MaxDelay: 0x0064,  // 0x0064 (0x0004) [float]
-  MinSleep: 0x0068,  // 0x0068 (0x0004) [float]
-  MaxSleep: 0x006C,  // 0x006C (0x0004) [float]
+  MinDelay: 0x0060n,  // 0x0060 (0x0004) [float]
+  MaxDelay: 0x0064n,  // 0x0064 (0x0004) [float]
+  MinSleep: 0x0068n,  // 0x0068 (0x0004) [float]
+  MaxSleep: 0x006cn,  // 0x006c (0x0004) [float]
   ...Object_,
 } as const;
 
@@ -9578,7 +8090,7 @@ export const __CheatManager_X__RandomSleep_0x1 = {
  * Extends: Object
  */
 export const __ClubUtil_X__IsClubTeam_0x1 = {
-  TeamClubs: 0x0060,  // 0x0060 (0x0010) [TArray<uint64>]
+  TeamClubs: 0x0060n,  // 0x0060 (0x0010) [TArray<uint64>]
   ...Object_,
 } as const;
 
@@ -9588,7 +8100,7 @@ export const __ClubUtil_X__IsClubTeam_0x1 = {
  * Extends: Object
  */
 export const __CrossplayConfig_X__GetDisabledCrossplayGroup_0x1 = {
-  PlayerPlatform: 0x0060,  // 0x0060 (0x0001) [OnlinePlatform]
+  PlayerPlatform: 0x0060n,  // 0x0060 (0x0001) [OnlinePlatform]
   ...Object_,
 } as const;
 
@@ -9598,25 +8110,25 @@ export const __CrossplayConfig_X__GetDisabledCrossplayGroup_0x1 = {
  * Extends: Object
  */
 export const __EOSHelpers_X__RequestEOSToken_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__EOSHelpers_X__SendHTTPRequestEOSToken_0x2 Offsets
- * Size: 0x00E0
+ * Size: 0x00e0
  * Extends: Object
  */
 export const __EOSHelpers_X__SendHTTPRequestEOSToken_0x2 = {
-  URL: 0x0060,  // 0x0060 (0x0010) [FString]
-  Callback: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
-  Verb: 0x0088,  // 0x0088 (0x0010) [FString]
-  bAddContentTypeHeader: 0x0098,  // 0x0098 (0x0004) [bool : 0x1]
-  ResponseClass: 0x00A0,  // 0x00A0 (0x0008) [UClass*]
-  ConvertErrorNew: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
-  EOS: 0x00C0,  // 0x00C0 (0x0008) [UOnlineSubsystem*]
-  LocalPlayerNum: 0x00C8,  // 0x00C8 (0x0004) [int32]
-  BodyJson: 0x00D0,  // 0x00D0 (0x0010) [FString]
+  URL: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Callback: 0x0070n,  // 0x0070 (0x0018) [FScriptDelegate]
+  Verb: 0x0088n,  // 0x0088 (0x0010) [FString]
+  bAddContentTypeHeader: 0x0098n,  // 0x0098 (0x0004) [bool : 0x1]
+  ResponseClass: 0x00a0n,  // 0x00a0 (0x0008) [UClass*]
+  ConvertErrorNew: 0x00a8n,  // 0x00a8 (0x0018) [FScriptDelegate]
+  EOS: 0x00c0n,  // 0x00c0 (0x0008) [UOnlineSubsystem*]
+  LocalPlayerNum: 0x00c8n,  // 0x00c8 (0x0004) [int32]
+  BodyJson: 0x00d0n,  // 0x00d0 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -9626,48 +8138,48 @@ export const __EOSHelpers_X__SendHTTPRequestEOSToken_0x2 = {
  * Extends: Object
  */
 export const __EOSHelpers_X__SendHTTPRequestSelectAuth_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ConvertErrorNew: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
-  ResponseClass: 0x0090,  // 0x0090 (0x0008) [UClass*]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
+  ConvertErrorNew: 0x0078n,  // 0x0078 (0x0018) [FScriptDelegate]
+  ResponseClass: 0x0090n,  // 0x0090 (0x0008) [UClass*]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__EOSHelpers_X__SendHTTPRequest_0x1 Offsets
- * Size: 0x00E0
+ * Size: 0x00e0
  * Extends: Object
  */
 export const __EOSHelpers_X__SendHTTPRequest_0x1 = {
-  URL: 0x0060,  // 0x0060 (0x0010) [FString]
-  Callback: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
-  Verb: 0x0088,  // 0x0088 (0x0010) [FString]
-  bAddContentTypeHeader: 0x0098,  // 0x0098 (0x0004) [bool : 0x1]
-  ResponseClass: 0x00A0,  // 0x00A0 (0x0008) [UClass*]
-  ConvertErrorNew: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
-  EOS: 0x00C0,  // 0x00C0 (0x0008) [UOnlineSubsystem*]
-  LocalPlayerNum: 0x00C8,  // 0x00C8 (0x0004) [int32]
-  BodyJson: 0x00D0,  // 0x00D0 (0x0010) [FString]
+  URL: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Callback: 0x0070n,  // 0x0070 (0x0018) [FScriptDelegate]
+  Verb: 0x0088n,  // 0x0088 (0x0010) [FString]
+  bAddContentTypeHeader: 0x0098n,  // 0x0098 (0x0004) [bool : 0x1]
+  ResponseClass: 0x00a0n,  // 0x00a0 (0x0008) [UClass*]
+  ConvertErrorNew: 0x00a8n,  // 0x00a8 (0x0018) [FScriptDelegate]
+  EOS: 0x00c0n,  // 0x00c0 (0x0008) [UOnlineSubsystem*]
+  LocalPlayerNum: 0x00c8n,  // 0x00c8 (0x0004) [int32]
+  BodyJson: 0x00d0n,  // 0x00d0 (0x0010) [FString]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__EpicFriendsPlugin_X__AcceptFriendRequest_0x1 Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const __EpicFriendsPlugin_X__AcceptFriendRequest_0x1 = {
-  FriendId: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
+  FriendId: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__EpicFriendsPlugin_X__AddFriendWithCustomCallback_0x1 Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: Object
  */
 export const __EpicFriendsPlugin_X__AddFriendWithCustomCallback_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  FriendId: 0x0078,  // 0x0078 (0x0048) [FUniqueNetId]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
+  FriendId: 0x0078n,  // 0x0078 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
@@ -9677,27 +8189,27 @@ export const __EpicFriendsPlugin_X__AddFriendWithCustomCallback_0x1 = {
  * Extends: Object
  */
 export const __EpicFriendsPlugin_X__GetOutgoingFriendRequestsWithCustomCallback_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__EpicFriendsPlugin_X__RejectFriendRequest_0x1 Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const __EpicFriendsPlugin_X__RejectFriendRequest_0x1 = {
-  FriendId: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
+  FriendId: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__EpicFriendsPlugin_X__RemoveFriend_0x1 Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const __EpicFriendsPlugin_X__RemoveFriend_0x1 = {
-  FriendId: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
+  FriendId: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
@@ -9707,7 +8219,7 @@ export const __EpicFriendsPlugin_X__RemoveFriend_0x1 = {
  * Extends: Object
  */
 export const __EpicFriendsPlugin_X__bLock_0x1 = {
-  CapturedParams: 0x0060,  // 0x0060 (0x0010) [TArray<FHTTPRequestCapturedParam>]
+  CapturedParams: 0x0060n,  // 0x0060 (0x0010) [TArray<FHTTPRequestCapturedParam>]
   ...Object_,
 } as const;
 
@@ -9717,7 +8229,7 @@ export const __EpicFriendsPlugin_X__bLock_0x1 = {
  * Extends: Object
  */
 export const __EpicLogin_X__HandleLoginChanged_0x1 = {
-  InLocalPlayerNum: 0x0060,  // 0x0060 (0x0001) [uint8]
+  InLocalPlayerNum: 0x0060n,  // 0x0060 (0x0001) [uint8]
   ...Object_,
 } as const;
 
@@ -9727,18 +8239,18 @@ export const __EpicLogin_X__HandleLoginChanged_0x1 = {
  * Extends: Object
  */
 export const __EpicLogin_X__RequestNintendoAccountAuthorization_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__EpicLogin_X__TriggerAuthTicketDelegate_0x1 Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: Object
  */
 export const __EpicLogin_X__TriggerAuthTicketDelegate_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  NetId: 0x0078,  // 0x0078 (0x0048) [FUniqueNetId]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
+  NetId: 0x0078n,  // 0x0078 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
@@ -9748,7 +8260,7 @@ export const __EpicLogin_X__TriggerAuthTicketDelegate_0x1 = {
  * Extends: Object
  */
 export const __EpicLogin_X__UpdateTwoFactorAuthenticationStatus_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -9758,27 +8270,27 @@ export const __EpicLogin_X__UpdateTwoFactorAuthenticationStatus_0x1 = {
  * Extends: Object
  */
 export const __LocalClubData_X__GetClubByID_0x1 = {
-  Id: 0x0060,  // 0x0060 (0x0008) [uint64]
+  Id: 0x0060n,  // 0x0060 (0x0008) [uint64]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__LocalClubData_X__GetClubForPlayer_0x1 Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const __LocalClubData_X__GetClubForPlayer_0x1 = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__MatchRecorder_X__GetPlayerData_0x1 Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const __MatchRecorder_X__GetPlayerData_0x1 = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
@@ -9788,39 +8300,39 @@ export const __MatchRecorder_X__GetPlayerData_0x1 = {
  * Extends: Object
  */
 export const __OnlineClubCache_X__GetClubDetails_0x1 = {
-  ClubID: 0x0060,  // 0x0060 (0x0008) [uint64]
+  ClubID: 0x0060n,  // 0x0060 (0x0008) [uint64]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlineClubCache_X__GetPlayerClubDetails_0x1 Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const __OnlineClubCache_X__GetPlayerClubDetails_0x1 = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlineClubManager_X__AcceptClubInvite_0x1 Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: Object
  */
 export const __OnlineClubManager_X__AcceptClubInvite_0x1 = {
-  ClubID: 0x0060,  // 0x0060 (0x0008) [uint64]
-  SenderPlayerID: 0x0068,  // 0x0068 (0x0048) [FUniqueNetId]
+  ClubID: 0x0060n,  // 0x0060 (0x0008) [uint64]
+  SenderPlayerID: 0x0068n,  // 0x0068 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlineClubManager_X__InviteToClub_0x1 Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: Object
  */
 export const __OnlineClubManager_X__InviteToClub_0x1 = {
-  ClubID: 0x0060,  // 0x0060 (0x0008) [uint64]
-  InvitedPlayerID: 0x0068,  // 0x0068 (0x0048) [FUniqueNetId]
+  ClubID: 0x0060n,  // 0x0060 (0x0008) [uint64]
+  InvitedPlayerID: 0x0068n,  // 0x0068 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
@@ -9830,40 +8342,40 @@ export const __OnlineClubManager_X__InviteToClub_0x1 = {
  * Extends: Object
  */
 export const __OnlineClubManager_X__LeaveClub_0x1 = {
-  ClubID: 0x0060,  // 0x0060 (0x0008) [uint64]
+  ClubID: 0x0060n,  // 0x0060 (0x0008) [uint64]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlineClubManager_X__RejectClubInvite_0x1 Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: Object
  */
 export const __OnlineClubManager_X__RejectClubInvite_0x1 = {
-  ClubID: 0x0060,  // 0x0060 (0x0008) [uint64]
-  SenderPlayerID: 0x0068,  // 0x0068 (0x0048) [FUniqueNetId]
+  ClubID: 0x0060n,  // 0x0060 (0x0008) [uint64]
+  SenderPlayerID: 0x0068n,  // 0x0068 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlineClubManager_X__RemoveFromClub_0x1 Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const __OnlineClubManager_X__RemoveFromClub_0x1 = {
-  KickedPlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
+  KickedPlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlineClubManager_X__SetNewRole_0x1 Offsets
- * Size: 0x00AA
+ * Size: 0x00aa
  * Extends: Object
  */
 export const __OnlineClubManager_X__SetNewRole_0x1 = {
-  MemberPlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  OriginalRole: 0x00A8,  // 0x00A8 (0x0001) [EClubRole]
-  NewRole: 0x00A9,  // 0x00A9 (0x0001) [EClubRole]
+  MemberPlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
+  OriginalRole: 0x00a8n,  // 0x00a8 (0x0001) [EClubRole]
+  NewRole: 0x00a9n,  // 0x00a9 (0x0001) [EClubRole]
   ...Object_,
 } as const;
 
@@ -9873,7 +8385,7 @@ export const __OnlineClubManager_X__SetNewRole_0x1 = {
  * Extends: Object
  */
 export const __OnlineClubProvider_X__HandleClubSynced_0x1 = {
-  RPC: 0x0060,  // 0x0060 (0x0008) [URPC_GetClubDetails_X*]
+  RPC: 0x0060n,  // 0x0060 (0x0008) [URPC_GetClubDetails_X*]
   ...Object_,
 } as const;
 
@@ -9883,7 +8395,7 @@ export const __OnlineClubProvider_X__HandleClubSynced_0x1 = {
  * Extends: Object
  */
 export const __OnlineClubProvider_X__SyncClubDetailsArray_0x1 = {
-  RPC: 0x0060,  // 0x0060 (0x0008) [URPC_GetClubDetailsArray_X*]
+  RPC: 0x0060n,  // 0x0060 (0x0008) [URPC_GetClubDetailsArray_X*]
   ...Object_,
 } as const;
 
@@ -9893,19 +8405,19 @@ export const __OnlineClubProvider_X__SyncClubDetailsArray_0x1 = {
  * Extends: Object
  */
 export const __OnlineClubProvider_X__SyncClubDetails_0x1 = {
-  ClubID: 0x0060,  // 0x0060 (0x0008) [uint64]
-  RPC: 0x0068,  // 0x0068 (0x0008) [URPC_GetClubDetails_X*]
+  ClubID: 0x0060n,  // 0x0060 (0x0008) [uint64]
+  RPC: 0x0068n,  // 0x0068 (0x0008) [URPC_GetClubDetails_X*]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlineClubProvider_X__SyncPlayerClubDetails_0x1 Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: Object
  */
 export const __OnlineClubProvider_X__SyncPlayerClubDetails_0x1 = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  RPC: 0x00A8,  // 0x00A8 (0x0008) [URPC_GetPlayerClubDetails_X*]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
+  RPC: 0x00a8n,  // 0x00a8 (0x0008) [URPC_GetPlayerClubDetails_X*]
   ...Object_,
 } as const;
 
@@ -9915,7 +8427,7 @@ export const __OnlineClubProvider_X__SyncPlayerClubDetails_0x1 = {
  * Extends: Object
  */
 export const __OnlineGameMatchmaking_X__AddRecommendedServers_0x1 = {
-  AccPingThreshold: 0x0060,  // 0x0060 (0x0004) [float]
+  AccPingThreshold: 0x0060n,  // 0x0060 (0x0004) [float]
   ...Object_,
 } as const;
 
@@ -9925,17 +8437,17 @@ export const __OnlineGameMatchmaking_X__AddRecommendedServers_0x1 = {
  * Extends: Object
  */
 export const __OnlineGameMatchmaking_X__GetSubRegionPings_0x1 = {
-  SuperRegionID: 0x0060,  // 0x0060 (0x0010) [FString]
+  SuperRegionID: 0x0060n,  // 0x0060 (0x0010) [FString]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlineGameMatchmaking_X__OnReceiveGameServer_0x1 Offsets
- * Size: 0x00D0
+ * Size: 0x00d0
  * Extends: Object
  */
 export const __OnlineGameMatchmaking_X__OnReceiveGameServer_0x1 = {
-  Reservation: 0x0060,  // 0x0060 (0x0070) [FServerReservationData]
+  Reservation: 0x0060n,  // 0x0060 (0x0070) [FServerReservationData]
   ...Object_,
 } as const;
 
@@ -9945,17 +8457,17 @@ export const __OnlineGameMatchmaking_X__OnReceiveGameServer_0x1 = {
  * Extends: Object
  */
 export const __OnlineGameMatchmaking_X__RecordStart_0x2 = {
-  RegionIds: 0x0060,  // 0x0060 (0x0010) [TArray<FString>]
+  RegionIds: 0x0060n,  // 0x0060 (0x0010) [TArray<FString>]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlineGameParty_X__BroadcastAllLocalPlayers_0x2 Offsets
- * Size: 0x01E0
+ * Size: 0x01e0
  * Extends: Object
  */
 export const __OnlineGameParty_X__BroadcastAllLocalPlayers_0x2 = {
-  Primary: 0x0060,  // 0x0060 (0x0180) [FPartyMember]
+  Primary: 0x0060n,  // 0x0060 (0x0180) [FPartyMember]
   ...Object_,
 } as const;
 
@@ -9965,19 +8477,19 @@ export const __OnlineGameParty_X__BroadcastAllLocalPlayers_0x2 = {
  * Extends: Object
  */
 export const __OnlineGameParty_X__CreatePartyInternal_0x1 = {
-  LobbyInterface: 0x0060,  // 0x0060 (0x0010) [TScriptInterface<UOnlineLobbyInterface>]
-  LocalPlayerNum: 0x0070,  // 0x0070 (0x0004) [int32]
-  Handler: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
+  LobbyInterface: 0x0060n,  // 0x0060 (0x0010) [TScriptInterface<UOnlineLobbyInterface>]
+  LocalPlayerNum: 0x0070n,  // 0x0070 (0x0004) [int32]
+  Handler: 0x0078n,  // 0x0078 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlineGameParty_X__GetPlayersWithPrimaryMemberID_0x1 Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const __OnlineGameParty_X__GetPlayersWithPrimaryMemberID_0x1 = {
-  InPrimaryID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
+  InPrimaryID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
@@ -9987,18 +8499,18 @@ export const __OnlineGameParty_X__GetPlayersWithPrimaryMemberID_0x1 = {
  * Extends: Object
  */
 export const __OnlineGameParty_X__HandleClientReservationMessage_0x1 = {
-  Message: 0x0060,  // 0x0060 (0x0008) [UClientReservationMessage_X*]
-  Settings: 0x0068,  // 0x0068 (0x0020) [FJoinMatchSettings]
+  Message: 0x0060n,  // 0x0060 (0x0008) [UClientReservationMessage_X*]
+  Settings: 0x0068n,  // 0x0068 (0x0020) [FJoinMatchSettings]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlineGameParty_X__HandleConfirmJoinGame_0x1 Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: Object
  */
 export const __OnlineGameParty_X__HandleConfirmJoinGame_0x1 = {
-  InSettings: 0x0060,  // 0x0060 (0x0058) [FPartyJoinMatchSettings]
+  InSettings: 0x0060n,  // 0x0060 (0x0058) [FPartyJoinMatchSettings]
   ...Object_,
 } as const;
 
@@ -10008,7 +8520,7 @@ export const __OnlineGameParty_X__HandleConfirmJoinGame_0x1 = {
  * Extends: Object
  */
 export const __OnlineGameParty_X__HandleConfirmJoinGame_ConnectionValid_0x1 = {
-  Settings: 0x0060,  // 0x0060 (0x0020) [FJoinMatchSettings]
+  Settings: 0x0060n,  // 0x0060 (0x0020) [FJoinMatchSettings]
   ...Object_,
 } as const;
 
@@ -10018,7 +8530,7 @@ export const __OnlineGameParty_X__HandleConfirmJoinGame_ConnectionValid_0x1 = {
  * Extends: Object
  */
 export const __OnlineGameParty_X__HasMultiplePlatforms_0x1 = {
-  PartyLeaderCrossPlayGroup: 0x0060,  // 0x0060 (0x0010) [TArray<OnlinePlatform>]
+  PartyLeaderCrossPlayGroup: 0x0060n,  // 0x0060 (0x0010) [TArray<OnlinePlatform>]
   ...Object_,
 } as const;
 
@@ -10028,8 +8540,8 @@ export const __OnlineGameParty_X__HasMultiplePlatforms_0x1 = {
  * Extends: Object
  */
 export const __OnlineGameParty_X__JoinParty_0x1 = {
-  LocalPlayerNum: 0x0060,  // 0x0060 (0x0004) [int32]
-  InPartyId: 0x0068,  // 0x0068 (0x0010) [FUniqueLobbyId]
+  LocalPlayerNum: 0x0060n,  // 0x0060 (0x0004) [int32]
+  InPartyId: 0x0068n,  // 0x0068 (0x0010) [FUniqueLobbyId]
   ...Object_,
 } as const;
 
@@ -10039,7 +8551,7 @@ export const __OnlineGameParty_X__JoinParty_0x1 = {
  * Extends: Object
  */
 export const __OnlineGameParty_X__UpdatePartyInfo_0x1 = {
-  Lobby: 0x0060,  // 0x0060 (0x0030) [FActiveLobbyInfo]
+  Lobby: 0x0060n,  // 0x0060 (0x0030) [FActiveLobbyInfo]
   ...Object_,
 } as const;
 
@@ -10049,8 +8561,8 @@ export const __OnlineGameParty_X__UpdatePartyInfo_0x1 = {
  * Extends: Object
  */
 export const __OnlineGameReservations_X__GetMigrationReservationData_0x1 = {
-  CurrentPlayers: 0x0060,  // 0x0060 (0x0010) [TArray<FMigrationReservationData>]
-  GEngine: 0x0070,  // 0x0070 (0x0008) [UEngine*]
+  CurrentPlayers: 0x0060n,  // 0x0060 (0x0010) [TArray<FMigrationReservationData>]
+  GEngine: 0x0070n,  // 0x0070 (0x0008) [UEngine*]
   ...Object_,
 } as const;
 
@@ -10060,7 +8572,7 @@ export const __OnlineGameReservations_X__GetMigrationReservationData_0x1 = {
  * Extends: Object
  */
 export const __OnlineGameReservations_X__RecordReservation_0x1 = {
-  Message: 0x0060,  // 0x0060 (0x0008) [UAddReservationMessage_X*]
+  Message: 0x0060n,  // 0x0060 (0x0008) [UAddReservationMessage_X*]
   ...Object_,
 } as const;
 
@@ -10070,49 +8582,49 @@ export const __OnlineGameReservations_X__RecordReservation_0x1 = {
  * Extends: Object
  */
 export const __OnlineGameReservations_X__SetPlayersWithMigrationData_0x2 = {
-  GEngine: 0x0060,  // 0x0060 (0x0008) [UEngine*]
+  GEngine: 0x0060n,  // 0x0060 (0x0008) [UEngine*]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlineGameSkill_X__ClearPartyMembersSkill_0x1 Offsets
- * Size: 0x00B0
+ * Size: 0x00b0
  * Extends: Object
  */
 export const __OnlineGameSkill_X__ClearPartyMembersSkill_0x1 = {
-  PrimaryPlayerId: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  PartyObject: 0x00A8,  // 0x00A8 (0x0008) [UOnlineGameParty_X*]
+  PrimaryPlayerId: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
+  PartyObject: 0x00a8n,  // 0x00a8 (0x0008) [UOnlineGameParty_X*]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlineGameSkill_X__ClearSkill_0x1 Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const __OnlineGameSkill_X__ClearSkill_0x1 = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlineGameSkill_X__HandleSyncedPlayerSkill_0x1 Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: Object
  */
 export const __OnlineGameSkill_X__HandleSyncedPlayerSkill_0x1 = {
-  PlayerSkillRatings: 0x0060,  // 0x0060 (0x0010) [TArray<FPlayerSkillRating>]
-  PlayerID: 0x0070,  // 0x0070 (0x0048) [FUniqueNetId]
+  PlayerSkillRatings: 0x0060n,  // 0x0060 (0x0010) [TArray<FPlayerSkillRating>]
+  PlayerID: 0x0070n,  // 0x0070 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlineGameSkill_X__OnSkillSynced_0x1 Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const __OnlineGameSkill_X__OnSkillSynced_0x1 = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
@@ -10122,7 +8634,7 @@ export const __OnlineGameSkill_X__OnSkillSynced_0x1 = {
  * Extends: Object
  */
 export const __OnlineGameWordFilter_X__InternalSanitize_0x1 = {
-  Id: 0x0060,  // 0x0060 (0x0010) [FString]
+  Id: 0x0060n,  // 0x0060 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -10132,7 +8644,7 @@ export const __OnlineGameWordFilter_X__InternalSanitize_0x1 = {
  * Extends: Object
  */
 export const __OnlineGame_X__CheckPsyNetConnection_0x1 = {
-  Task: 0x0060,  // 0x0060 (0x0008) [UAsyncTask*]
+  Task: 0x0060n,  // 0x0060 (0x0008) [UAsyncTask*]
   ...Object_,
 } as const;
 
@@ -10142,17 +8654,17 @@ export const __OnlineGame_X__CheckPsyNetConnection_0x1 = {
  * Extends: Object
  */
 export const __OnlineGame_X__GetOnlinePlayerFromEpicId_0x1 = {
-  EpicAccountId: 0x0060,  // 0x0060 (0x0010) [FString]
+  EpicAccountId: 0x0060n,  // 0x0060 (0x0010) [FString]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlineGame_X__GetOnlinePlayerFromPlayerId_0x1 Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const __OnlineGame_X__GetOnlinePlayerFromPlayerId_0x1 = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
@@ -10162,7 +8674,7 @@ export const __OnlineGame_X__GetOnlinePlayerFromPlayerId_0x1 = {
  * Extends: Object
  */
 export const __OnlineLegalTextEOS_X__HandleEOSInitialized_0x1 = {
-  EOS: 0x0060,  // 0x0060 (0x0008) [UOnlineSubsystem*]
+  EOS: 0x0060n,  // 0x0060 (0x0008) [UOnlineSubsystem*]
   ...Object_,
 } as const;
 
@@ -10172,18 +8684,18 @@ export const __OnlineLegalTextEOS_X__HandleEOSInitialized_0x1 = {
  * Extends: Object
  */
 export const __OnlineLegalTextEOS_X__RequestKey_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlinePlayerFriends_X__AcceptEpicFriendInvite_0x1 Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: Object
  */
 export const __OnlinePlayerFriends_X__AcceptEpicFriendInvite_0x1 = {
-  FriendId: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  InPin: 0x00A8,  // 0x00A8 (0x0010) [FString]
+  FriendId: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
+  InPin: 0x00a8n,  // 0x00a8 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -10193,30 +8705,30 @@ export const __OnlinePlayerFriends_X__AcceptEpicFriendInvite_0x1 = {
  * Extends: Object
  */
 export const __OnlinePlayerFriends_X__BlockPlayer_0x1 = {
-  BlockedID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  EpicAccountId: 0x00A8,  // 0x00A8 (0x0048) [FUniqueNetId]
-  Callback: 0x00F0,  // 0x00F0 (0x0018) [FScriptDelegate]
+  BlockedID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
+  EpicAccountId: 0x00a8n,  // 0x00a8 (0x0048) [FUniqueNetId]
+  Callback: 0x00f0n,  // 0x00f0 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlinePlayerFriends_X__DeclineEpicFriendInvite_0x1 Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const __OnlinePlayerFriends_X__DeclineEpicFriendInvite_0x1 = {
-  FriendId: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
+  FriendId: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlinePlayerFriends_X__InviteEpicFriend_0x1 Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: Object
  */
 export const __OnlinePlayerFriends_X__InviteEpicFriend_0x1 = {
-  FriendPlayerId: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  InPin: 0x00A8,  // 0x00A8 (0x0010) [FString]
+  FriendPlayerId: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
+  InPin: 0x00a8n,  // 0x00a8 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -10226,17 +8738,17 @@ export const __OnlinePlayerFriends_X__InviteEpicFriend_0x1 = {
  * Extends: Object
  */
 export const __OnlinePlayerFriends_X__LinkPlatformToEpic_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlinePlayerFriends_X__RemoveEpicFriend_0x1 Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const __OnlinePlayerFriends_X__RemoveEpicFriend_0x1 = {
-  FriendId: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
+  FriendId: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
@@ -10246,17 +8758,17 @@ export const __OnlinePlayerFriends_X__RemoveEpicFriend_0x1 = {
  * Extends: Object
  */
 export const __OnlinePlayerFriends_X__SubscribeToEpicFriendsPlugin_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__OnlinePlayerFriends_X__TriggerSocialCallback_0x1 Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const __OnlinePlayerFriends_X__TriggerSocialCallback_0x1 = {
-  InPlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
+  InPlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
@@ -10266,9 +8778,9 @@ export const __OnlinePlayerFriends_X__TriggerSocialCallback_0x1 = {
  * Extends: Object
  */
 export const __OnlinePlayerFriends_X__UnblockPlayer_0x1 = {
-  UnblockID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  EpicAccountId: 0x00A8,  // 0x00A8 (0x0048) [FUniqueNetId]
-  Callback: 0x00F0,  // 0x00F0 (0x0018) [FScriptDelegate]
+  UnblockID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
+  EpicAccountId: 0x00a8n,  // 0x00a8 (0x0048) [FUniqueNetId]
+  Callback: 0x00f0n,  // 0x00f0 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10278,7 +8790,7 @@ export const __OnlinePlayerFriends_X__UnblockPlayer_0x1 = {
  * Extends: Object
  */
 export const __OnlinePlayerStorageQueue_X__GetStorageMaxSizeBytes_0x1 = {
-  Category: 0x0060,  // 0x0060 (0x0008) [FName]
+  Category: 0x0060n,  // 0x0060 (0x0008) [FName]
   ...Object_,
 } as const;
 
@@ -10288,8 +8800,8 @@ export const __OnlinePlayerStorageQueue_X__GetStorageMaxSizeBytes_0x1 = {
  * Extends: Object
  */
 export const __OnlinePlayerStorageQueue_X__HandleStorageSuccess_0x2 = {
-  OutOfSync: 0x0060,  // 0x0060 (0x0010) [TArray<FSetPlayerStorageResultItem>]
-  RPC: 0x0070,  // 0x0070 (0x0008) [URPC_PlayerStorageSet_X*]
+  OutOfSync: 0x0060n,  // 0x0060 (0x0010) [TArray<FSetPlayerStorageResultItem>]
+  RPC: 0x0070n,  // 0x0070 (0x0008) [URPC_PlayerStorageSet_X*]
   ...Object_,
 } as const;
 
@@ -10299,7 +8811,7 @@ export const __OnlinePlayerStorageQueue_X__HandleStorageSuccess_0x2 = {
  * Extends: Object
  */
 export const __OnlinePlayerStorageQueue_X__MapResultItem_0x1 = {
-  Item: 0x0060,  // 0x0060 (0x0010) [FSetPlayerStorageResultItem]
+  Item: 0x0060n,  // 0x0060 (0x0010) [FSetPlayerStorageResultItem]
   ...Object_,
 } as const;
 
@@ -10309,7 +8821,7 @@ export const __OnlinePlayerStorageQueue_X__MapResultItem_0x1 = {
  * Extends: Object
  */
 export const __OnlinePlayerStorageSync_X__SyncObjects_0x1 = {
-  ResponseTask: 0x0060,  // 0x0060 (0x0008) [UAsyncTask*]
+  ResponseTask: 0x0060n,  // 0x0060 (0x0008) [UAsyncTask*]
   ...Object_,
 } as const;
 
@@ -10319,7 +8831,7 @@ export const __OnlinePlayerStorageSync_X__SyncObjects_0x1 = {
  * Extends: Object
  */
 export const __PRI_X__RegisterPlayerWithSession_0x1 = {
-  OnlineSub: 0x0060,  // 0x0060 (0x0008) [UOnlineSubsystem*]
+  OnlineSub: 0x0060n,  // 0x0060 (0x0008) [UOnlineSubsystem*]
   ...Object_,
 } as const;
 
@@ -10329,8 +8841,8 @@ export const __PRI_X__RegisterPlayerWithSession_0x1 = {
  * Extends: Object
  */
 export const __Parties_X__HandleIncomingPartyNotification_0x1 = {
-  Notification: 0x0060,  // 0x0060 (0x0008) [UPsyNetService_Party_X*]
-  PrimaryPlayer: 0x0068,  // 0x0068 (0x0008) [UOnlinePlayer_X*]
+  Notification: 0x0060n,  // 0x0060 (0x0008) [UPsyNetService_Party_X*]
+  PrimaryPlayer: 0x0068n,  // 0x0068 (0x0008) [UOnlinePlayer_X*]
   ...Object_,
 } as const;
 
@@ -10340,7 +8852,7 @@ export const __Parties_X__HandleIncomingPartyNotification_0x1 = {
  * Extends: Object
  */
 export const __PartyMessageQueue_X__SendMessage_0x1 = {
-  Task: 0x0060,  // 0x0060 (0x0008) [UAsyncTask*]
+  Task: 0x0060n,  // 0x0060 (0x0008) [UAsyncTask*]
   ...Object_,
 } as const;
 
@@ -10350,43 +8862,43 @@ export const __PartyMessageQueue_X__SendMessage_0x1 = {
  * Extends: Object
  */
 export const __PartySequence_CreateParty_X__CreateParty_0x1 = {
-  InitialSettings: 0x0060,  // 0x0060 (0x0010) [TArray<FLobbyMetaData>]
-  LocalPlayerNum: 0x0070,  // 0x0070 (0x0004) [int32]
-  MaxPlayers: 0x0074,  // 0x0074 (0x0004) [int32]
-  Type: 0x0078,  // 0x0078 (0x0001) [ELobbyVisibility]
+  InitialSettings: 0x0060n,  // 0x0060 (0x0010) [TArray<FLobbyMetaData>]
+  LocalPlayerNum: 0x0070n,  // 0x0070 (0x0004) [int32]
+  MaxPlayers: 0x0074n,  // 0x0074 (0x0004) [int32]
+  Type: 0x0078n,  // 0x0078 (0x0001) [ELobbyVisibility]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__PartySequence_InvitedToPlatformParty_X__HandlePlayerInvited_0x1 Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: Object
  */
 export const __PartySequence_InvitedToPlatformParty_X__HandlePlayerInvited_0x1 = {
-  InLobbyId: 0x0060,  // 0x0060 (0x0010) [FUniqueLobbyId]
-  FriendId: 0x0070,  // 0x0070 (0x0048) [FUniqueNetId]
+  InLobbyId: 0x0060n,  // 0x0060 (0x0010) [FUniqueLobbyId]
+  FriendId: 0x0070n,  // 0x0070 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__PartySequence_InvitedToPsyNetParty_X__HandlePlayerInvitedPrompt_0x1 Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: Object
  */
 export const __PartySequence_InvitedToPsyNetParty_X__HandlePlayerInvitedPrompt_0x1 = {
-  InLobbyId: 0x0060,  // 0x0060 (0x0010) [FUniqueLobbyId]
-  InviterId: 0x0070,  // 0x0070 (0x0048) [FUniqueNetId]
+  InLobbyId: 0x0060n,  // 0x0060 (0x0010) [FUniqueLobbyId]
+  InviterId: 0x0070n,  // 0x0070 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__PartySequence_InvitedToPsyNetParty_X__HandlePlayerInvitedSilent_0x1 Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: Object
  */
 export const __PartySequence_InvitedToPsyNetParty_X__HandlePlayerInvitedSilent_0x1 = {
-  InLobbyId: 0x0060,  // 0x0060 (0x0010) [FUniqueLobbyId]
-  InviterId: 0x0070,  // 0x0070 (0x0048) [FUniqueNetId]
+  InLobbyId: 0x0060n,  // 0x0060 (0x0010) [FUniqueLobbyId]
+  InviterId: 0x0070n,  // 0x0070 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
@@ -10396,7 +8908,7 @@ export const __PartySequence_InvitedToPsyNetParty_X__HandlePlayerInvitedSilent_0
  * Extends: Object
  */
 export const __PartySequence_JoinParty_X__HandleGetPlatformPartyMessage_0x1 = {
-  Message: 0x0060,  // 0x0060 (0x0008) [UPartyMessage_GetPlatformParty_X*]
+  Message: 0x0060n,  // 0x0060 (0x0008) [UPartyMessage_GetPlatformParty_X*]
   ...Object_,
 } as const;
 
@@ -10406,7 +8918,7 @@ export const __PartySequence_JoinParty_X__HandleGetPlatformPartyMessage_0x1 = {
  * Extends: Object
  */
 export const __PsyNetBeacon_X__SendMessageToClients_0x1 = {
-  Connection: 0x0060,  // 0x0060 (0x0008) [UPsyNetBeaconConnection_X*]
+  Connection: 0x0060n,  // 0x0060 (0x0008) [UPsyNetBeaconConnection_X*]
   ...Object_,
 } as const;
 
@@ -10416,8 +8928,8 @@ export const __PsyNetBeacon_X__SendMessageToClients_0x1 = {
  * Extends: Object
  */
 export const __PsyNetBeacon_X__SendMessageToServer_0x1 = {
-  RPC: 0x0060,  // 0x0060 (0x0008) [URPC_RelayToServer_X*]
-  Connection: 0x0068,  // 0x0068 (0x0008) [UPsyNetBeaconConnection_X*]
+  RPC: 0x0060n,  // 0x0060 (0x0008) [URPC_RelayToServer_X*]
+  Connection: 0x0068n,  // 0x0068 (0x0008) [UPsyNetBeaconConnection_X*]
   ...Object_,
 } as const;
 
@@ -10427,7 +8939,7 @@ export const __PsyNetBeacon_X__SendMessageToServer_0x1 = {
  * Extends: Object
  */
 export const __PsyNetConnection_X__ProcessServiceCall_0x1 = {
-  Response: 0x0060,  // 0x0060 (0x0008) [UPsyNetMessage_X*]
+  Response: 0x0060n,  // 0x0060 (0x0008) [UPsyNetMessage_X*]
   ...Object_,
 } as const;
 
@@ -10437,8 +8949,8 @@ export const __PsyNetConnection_X__ProcessServiceCall_0x1 = {
  * Extends: Object
  */
 export const __PsyNetMessengerHttp_X__SendMessage_0x1 = {
-  PsyRequestID: 0x0060,  // 0x0060 (0x0010) [FString]
-  Task: 0x0070,  // 0x0070 (0x0008) [UAsyncTask*]
+  PsyRequestID: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Task: 0x0070n,  // 0x0070 (0x0008) [UAsyncTask*]
   ...Object_,
 } as const;
 
@@ -10448,7 +8960,7 @@ export const __PsyNetMessengerHttp_X__SendMessage_0x1 = {
  * Extends: Object
  */
 export const __PsyNetRequestQue_X__SendRequest_0x1 = {
-  RequestID: 0x0060,  // 0x0060 (0x0008) [FName]
+  RequestID: 0x0060n,  // 0x0060 (0x0008) [FName]
   ...Object_,
 } as const;
 
@@ -10458,7 +8970,7 @@ export const __PsyNetRequestQue_X__SendRequest_0x1 = {
  * Extends: Object
  */
 export const __PsyNetServiceProvider_X__CreateChannel_0x1 = {
-  ChannelName: 0x0060,  // 0x0060 (0x0010) [FString]
+  ChannelName: 0x0060n,  // 0x0060 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -10468,7 +8980,7 @@ export const __PsyNetServiceProvider_X__CreateChannel_0x1 = {
  * Extends: Object
  */
 export const __PsyNetServiceProvider_X__ExecuteRequest_0x1 = {
-  Response: 0x0060,  // 0x0060 (0x0008) [UPsyNetMessage_X*]
+  Response: 0x0060n,  // 0x0060 (0x0008) [UPsyNetMessage_X*]
   ...Object_,
 } as const;
 
@@ -10478,9 +8990,9 @@ export const __PsyNetServiceProvider_X__ExecuteRequest_0x1 = {
  * Extends: Object
  */
 export const __PsyNetServiceProvider_X__ExecuteServiceMessage_0x1 = {
-  ServiceName: 0x0060,  // 0x0060 (0x0010) [FString]
-  Service: 0x0070,  // 0x0070 (0x0008) [UPsyNetClientService_X*]
-  Task: 0x0078,  // 0x0078 (0x0008) [UTAsyncResult__PsyNetClientService_X*]
+  ServiceName: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Service: 0x0070n,  // 0x0070 (0x0008) [UPsyNetClientService_X*]
+  Task: 0x0078n,  // 0x0078 (0x0008) [UTAsyncResult__PsyNetClientService_X*]
   ...Object_,
 } as const;
 
@@ -10490,7 +9002,7 @@ export const __PsyNetServiceProvider_X__ExecuteServiceMessage_0x1 = {
  * Extends: Object
  */
 export const __PsyNetWordFilter_X__WordFilterSanitizeString_0x1 = {
-  Usage: 0x0060,  // 0x0060 (0x0001) [EWordFilterUsage]
+  Usage: 0x0060n,  // 0x0060 (0x0001) [EWordFilterUsage]
   ...Object_,
 } as const;
 
@@ -10500,7 +9012,7 @@ export const __PsyNetWordFilter_X__WordFilterSanitizeString_0x1 = {
  * Extends: Object
  */
 export const __RPCQueue_X__CreateBatchSingleRPC_0x1 = {
-  Batch: 0x0060,  // 0x0060 (0x0008) [URPCBatch_X*]
+  Batch: 0x0060n,  // 0x0060 (0x0008) [URPCBatch_X*]
   ...Object_,
 } as const;
 
@@ -10510,7 +9022,7 @@ export const __RPCQueue_X__CreateBatchSingleRPC_0x1 = {
  * Extends: Object
  */
 export const __RPCQueue_X__CreateBatch_0x2 = {
-  Batch: 0x0060,  // 0x0060 (0x0008) [URPCBatch_X*]
+  Batch: 0x0060n,  // 0x0060 (0x0008) [URPCBatch_X*]
   ...Object_,
 } as const;
 
@@ -10520,7 +9032,7 @@ export const __RPCQueue_X__CreateBatch_0x2 = {
  * Extends: Object
  */
 export const __RPC_X__CreateTask_0x1 = {
-  InCallback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  InCallback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10530,7 +9042,7 @@ export const __RPC_X__CreateTask_0x1 = {
  * Extends: Object
  */
 export const __RegionConfig_X__GetSubRegions_0x1 = {
-  SuperRegionID: 0x0060,  // 0x0060 (0x0010) [FString]
+  SuperRegionID: 0x0060n,  // 0x0060 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -10540,27 +9052,27 @@ export const __RegionConfig_X__GetSubRegions_0x1 = {
  * Extends: Object
  */
 export const __RemoteAvatarPermissions_X__GetPermissions_0x1 = {
-  Batch: 0x0060,  // 0x0060 (0x0008) [URemoteAvatarPermissionsRequestBatch_X*]
+  Batch: 0x0060n,  // 0x0060 (0x0008) [URemoteAvatarPermissionsRequestBatch_X*]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__RemoteAvatarPermissions_X__SetAvatarPermission_0x1 Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const __RemoteAvatarPermissions_X__SetAvatarPermission_0x1 = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.__ServerPlayerTracker_X__AddPlayer_0x1 Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const __ServerPlayerTracker_X__AddPlayer_0x1 = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
   ...Object_,
 } as const;
 
@@ -10570,7 +9082,7 @@ export const __ServerPlayerTracker_X__AddPlayer_0x1 = {
  * Extends: Object
  */
 export const __StatusObserver_X__FindByAcceptedType_0x1 = {
-  InType: 0x0060,  // 0x0060 (0x0008) [UClass*]
+  InType: 0x0060n,  // 0x0060 (0x0008) [UClass*]
   ...Object_,
 } as const;
 
@@ -10580,7 +9092,7 @@ export const __StatusObserver_X__FindByAcceptedType_0x1 = {
  * Extends: Object
  */
 export const __StatusObserver_X__ObservesTriggerType_0x1 = {
-  InTrigger: 0x0060,  // 0x0060 (0x0008) [UStatusTrigger_X*]
+  InTrigger: 0x0060n,  // 0x0060 (0x0008) [UStatusTrigger_X*]
   ...Object_,
 } as const;
 
@@ -10590,7 +9102,7 @@ export const __StatusObserver_X__ObservesTriggerType_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__ClubDetails_X__Copy_0x1 = {
-  Instance: 0x0060,  // 0x0060 (0x0008) [UTAsyncResult__ClubDetails_X*]
+  Instance: 0x0060n,  // 0x0060 (0x0008) [UTAsyncResult__ClubDetails_X*]
   ...Object_,
 } as const;
 
@@ -10600,7 +9112,7 @@ export const __TAsyncResult__ClubDetails_X__Copy_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__ClubDetails_X__NotifyOnResultComplete_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10610,7 +9122,7 @@ export const __TAsyncResult__ClubDetails_X__NotifyOnResultComplete_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__ClubDetails_X__NotifyOnResult_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10620,7 +9132,7 @@ export const __TAsyncResult__ClubDetails_X__NotifyOnResult_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__ClubDetails_X__SetResultWhen_0x1 = {
-  GetResultDelegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  GetResultDelegate: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10630,7 +9142,7 @@ export const __TAsyncResult__ClubDetails_X__SetResultWhen_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__PsyNetClientService_X__Copy_0x1 = {
-  Instance: 0x0060,  // 0x0060 (0x0008) [UTAsyncResult__PsyNetClientService_X*]
+  Instance: 0x0060n,  // 0x0060 (0x0008) [UTAsyncResult__PsyNetClientService_X*]
   ...Object_,
 } as const;
 
@@ -10640,7 +9152,7 @@ export const __TAsyncResult__PsyNetClientService_X__Copy_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__PsyNetClientService_X__NotifyOnResultComplete_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10650,7 +9162,7 @@ export const __TAsyncResult__PsyNetClientService_X__NotifyOnResultComplete_0x1 =
  * Extends: Object
  */
 export const __TAsyncResult__PsyNetClientService_X__NotifyOnResult_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10660,7 +9172,7 @@ export const __TAsyncResult__PsyNetClientService_X__NotifyOnResult_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__PsyNetClientService_X__SetResultWhen_0x1 = {
-  GetResultDelegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  GetResultDelegate: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10670,7 +9182,7 @@ export const __TAsyncResult__PsyNetClientService_X__SetResultWhen_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__PsyNetMessage_X__Copy_0x1 = {
-  Instance: 0x0060,  // 0x0060 (0x0008) [UTAsyncResult__PsyNetMessage_X*]
+  Instance: 0x0060n,  // 0x0060 (0x0008) [UTAsyncResult__PsyNetMessage_X*]
   ...Object_,
 } as const;
 
@@ -10680,7 +9192,7 @@ export const __TAsyncResult__PsyNetMessage_X__Copy_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__PsyNetMessage_X__NotifyOnResultComplete_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10690,7 +9202,7 @@ export const __TAsyncResult__PsyNetMessage_X__NotifyOnResultComplete_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__PsyNetMessage_X__NotifyOnResult_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10700,7 +9212,7 @@ export const __TAsyncResult__PsyNetMessage_X__NotifyOnResult_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__PsyNetMessage_X__SetResultWhen_0x1 = {
-  GetResultDelegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  GetResultDelegate: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10710,7 +9222,7 @@ export const __TAsyncResult__PsyNetMessage_X__SetResultWhen_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__Texture2DDynamic__Copy_0x1 = {
-  Instance: 0x0060,  // 0x0060 (0x0008) [UTAsyncResult__Texture2DDynamic*]
+  Instance: 0x0060n,  // 0x0060 (0x0008) [UTAsyncResult__Texture2DDynamic*]
   ...Object_,
 } as const;
 
@@ -10720,7 +9232,7 @@ export const __TAsyncResult__Texture2DDynamic__Copy_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__Texture2DDynamic__NotifyOnResultComplete_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10730,7 +9242,7 @@ export const __TAsyncResult__Texture2DDynamic__NotifyOnResultComplete_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__Texture2DDynamic__NotifyOnResult_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10740,7 +9252,7 @@ export const __TAsyncResult__Texture2DDynamic__NotifyOnResult_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__Texture2DDynamic__SetResultWhen_0x1 = {
-  GetResultDelegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  GetResultDelegate: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10750,7 +9262,7 @@ export const __TAsyncResult__Texture2DDynamic__SetResultWhen_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__array_ClubInvite_X__Copy_0x1 = {
-  Instance: 0x0060,  // 0x0060 (0x0008) [UTAsyncResult__array_ClubInvite_X*]
+  Instance: 0x0060n,  // 0x0060 (0x0008) [UTAsyncResult__array_ClubInvite_X*]
   ...Object_,
 } as const;
 
@@ -10760,7 +9272,7 @@ export const __TAsyncResult__array_ClubInvite_X__Copy_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__array_ClubInvite_X__NotifyOnResultComplete_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10770,7 +9282,7 @@ export const __TAsyncResult__array_ClubInvite_X__NotifyOnResultComplete_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__array_ClubInvite_X__NotifyOnResult_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10780,7 +9292,7 @@ export const __TAsyncResult__array_ClubInvite_X__NotifyOnResult_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__array_ClubInvite_X__SetResultWhen_0x1 = {
-  GetResultDelegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  GetResultDelegate: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10790,7 +9302,7 @@ export const __TAsyncResult__array_ClubInvite_X__SetResultWhen_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__array_LanServerRecord_X__Copy_0x1 = {
-  Instance: 0x0060,  // 0x0060 (0x0008) [UTAsyncResult__array_LanServerRecord_X*]
+  Instance: 0x0060n,  // 0x0060 (0x0008) [UTAsyncResult__array_LanServerRecord_X*]
   ...Object_,
 } as const;
 
@@ -10800,7 +9312,7 @@ export const __TAsyncResult__array_LanServerRecord_X__Copy_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__array_LanServerRecord_X__NotifyOnResultComplete_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10810,7 +9322,7 @@ export const __TAsyncResult__array_LanServerRecord_X__NotifyOnResultComplete_0x1
  * Extends: Object
  */
 export const __TAsyncResult__array_LanServerRecord_X__NotifyOnResult_0x1 = {
-  Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Callback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10820,7 +9332,7 @@ export const __TAsyncResult__array_LanServerRecord_X__NotifyOnResult_0x1 = {
  * Extends: Object
  */
 export const __TAsyncResult__array_LanServerRecord_X__SetResultWhen_0x1 = {
-  GetResultDelegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  GetResultDelegate: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -10830,7 +9342,7 @@ export const __TAsyncResult__array_LanServerRecord_X__SetResultWhen_0x1 = {
  * Extends: Object
  */
 export const __TitleConfig_X__GetClubTitleData_0x1 = {
-  TitleId: 0x0060,  // 0x0060 (0x0008) [FName]
+  TitleId: 0x0060n,  // 0x0060 (0x0008) [FName]
   ...Object_,
 } as const;
 
@@ -10840,7 +9352,7 @@ export const __TitleConfig_X__GetClubTitleData_0x1 = {
  * Extends: Object
  */
 export const __TitleConfig_X__GetTitleData_0x1 = {
-  TitleId: 0x0060,  // 0x0060 (0x0008) [FName]
+  TitleId: 0x0060n,  // 0x0060 (0x0008) [FName]
   ...Object_,
 } as const;
 
@@ -10850,7 +9362,7 @@ export const __TitleConfig_X__GetTitleData_0x1 = {
  * Extends: Object
  */
 export const __WebCache_X__DownloadData_0x1 = {
-  WebRequest: 0x0060,  // 0x0060 (0x0008) [UWebRequest_X*]
+  WebRequest: 0x0060n,  // 0x0060 (0x0008) [UWebRequest_X*]
   ...Object_,
 } as const;
 
@@ -10860,7 +9372,7 @@ export const __WebCache_X__DownloadData_0x1 = {
  * Extends: Object
  */
 export const __WebImageCache_X__HandleImageData_0x1 = {
-  Download: 0x0060,  // 0x0060 (0x0008) [UWebImageDownload_X*]
+  Download: 0x0060n,  // 0x0060 (0x0008) [UWebImageDownload_X*]
   ...Object_,
 } as const;
 
@@ -10870,7 +9382,7 @@ export const __WebImageCache_X__HandleImageData_0x1 = {
  * Extends: Object
  */
 export const __WebImageCache_X__StartSync_0x1 = {
-  Download: 0x0060,  // 0x0060 (0x0008) [UWebImageDownload_X*]
+  Download: 0x0060n,  // 0x0060 (0x0008) [UWebImageDownload_X*]
   ...Object_,
 } as const;
 
@@ -10880,17 +9392,17 @@ export const __WebImageCache_X__StartSync_0x1 = {
  * Extends: Object
  */
 export const __WebImageCache_X__SyncUncachedImage_0x1 = {
-  Task: 0x0060,  // 0x0060 (0x0008) [UTAsyncResult__Texture2DDynamic*]
+  Task: 0x0060n,  // 0x0060 (0x0008) [UTAsyncResult__Texture2DDynamic*]
   ...Object_,
 } as const;
 
 /**
  * ProjectX.____OnlineGameParty_X__UpdatePartyInfo_0x1____OnlineGameParty_X__UpdatePartyInfo_0x1_0x1 Offsets
- * Size: 0x01E0
+ * Size: 0x01e0
  * Extends: Object
  */
 export const ____OnlineGameParty_X__UpdatePartyInfo_0x1____OnlineGameParty_X__UpdatePartyInfo_0x1_0x1 = {
-  PM: 0x0060,  // 0x0060 (0x0180) [FPartyMember]
+  PM: 0x0060n,  // 0x0060 (0x0180) [FPartyMember]
   ...Object_,
 } as const;
 
@@ -10900,7 +9412,7 @@ export const ____OnlineGameParty_X__UpdatePartyInfo_0x1____OnlineGameParty_X__Up
  * Extends: Object
  */
 export const ____OnlinePlayerStorageQueue_X__HandleStorageSuccess_0x2____OnlinePlayerStorageQueue_X__HandleStorageSuccess_0x4_0x1 = {
-  R: 0x0060,  // 0x0060 (0x0010) [FSetPlayerStorageResultItem]
+  R: 0x0060n,  // 0x0060 (0x0010) [FSetPlayerStorageResultItem]
   ...Object_,
 } as const;
 
@@ -10909,18 +9421,18 @@ export const ____OnlinePlayerStorageQueue_X__HandleStorageSuccess_0x2____OnlineP
  * Size: 0x0010
  */
 export const AccountSettings = {
-  Privacy: 0x0000,  // 0x0000 (0x0010) [FPrivacySettings]
+  Privacy: 0x0000n,  // 0x0000 (0x0010) [FPrivacySettings]
 } as const;
 
 /**
  * ScriptStruct ProjectX._Types_X.ActiveServerData Offsets
- * Size: 0x00A0
+ * Size: 0x00a0
  */
 export const ActiveServerData = {
-  Reservation: 0x0000,  // 0x0000 (0x0070) [FServerReservationData]
-  PingURL: 0x0070,  // 0x0070 (0x0010) [FString]
-  GameURL: 0x0080,  // 0x0080 (0x0010) [FString]
-  JoinCredentials: 0x0090,  // 0x0090 (0x0010) [FString]
+  Reservation: 0x0000n,  // 0x0000 (0x0070) [FServerReservationData]
+  PingURL: 0x0070n,  // 0x0070 (0x0010) [FString]
+  GameURL: 0x0080n,  // 0x0080 (0x0010) [FString]
+  JoinCredentials: 0x0090n,  // 0x0090 (0x0010) [FString]
 } as const;
 
 /**
@@ -10928,8 +9440,8 @@ export const ActiveServerData = {
  * Size: 0x0010
  */
 export const ActorParamPair = {
-  Key: 0x0000,  // 0x0000 (0x0008) [FName]
-  Value: 0x0008,  // 0x0008 (0x0008) [UActor*]
+  Key: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Value: 0x0008n,  // 0x0008 (0x0008) [UActor*]
 } as const;
 
 /**
@@ -10937,7 +9449,7 @@ export const ActorParamPair = {
  * Size: 0x0008
  */
 export const AnimatedParam = {
-  ParamName: 0x0000,  // 0x0000 (0x0008) [FName]
+  ParamName: 0x0000n,  // 0x0000 (0x0008) [FName]
 } as const;
 
 /**
@@ -10946,7 +9458,7 @@ export const AnimatedParam = {
  * Extends: AnimatedParam
  */
 export const AnimatedFloatParam = {
-  ValueOverTime: 0x0008,  // 0x0008 (0x0018) [FInterpCurveFloat]
+  ValueOverTime: 0x0008n,  // 0x0008 (0x0018) [FInterpCurveFloat]
   ...AnimatedParam,
 } as const;
 
@@ -10956,7 +9468,7 @@ export const AnimatedFloatParam = {
  * Extends: AnimatedParam
  */
 export const AnimatedLinearColorParam = {
-  ValueOverTime: 0x0008,  // 0x0008 (0x0018) [FInterpCurveLinearColor]
+  ValueOverTime: 0x0008n,  // 0x0008 (0x0018) [FInterpCurveLinearColor]
   ...AnimatedParam,
 } as const;
 
@@ -10966,7 +9478,7 @@ export const AnimatedLinearColorParam = {
  * Extends: AnimatedParam
  */
 export const AnimatedVectorParam = {
-  ValueOverTime: 0x0008,  // 0x0008 (0x0018) [FInterpCurveVector]
+  ValueOverTime: 0x0008n,  // 0x0008 (0x0018) [FInterpCurveVector]
   ...AnimatedParam,
 } as const;
 
@@ -10975,8 +9487,8 @@ export const AnimatedVectorParam = {
  * Size: 0x0009
  */
 export const AttachToParameterWithUnlockAxes = {
-  Parameter: 0x0000,  // 0x0000 (0x0008) [FName]
-  IgnoredAxis: 0x0008,  // 0x0008 (0x0001) [EAttachActorLocationUnlockFlags]
+  Parameter: 0x0000n,  // 0x0000 (0x0008) [FName]
+  IgnoredAxis: 0x0008n,  // 0x0008 (0x0001) [EAttachActorLocationUnlockFlags]
 } as const;
 
 /**
@@ -10984,8 +9496,8 @@ export const AttachToParameterWithUnlockAxes = {
  * Size: 0x0018
  */
 export const BeaconMessageHandler = {
-  MessageClass: 0x0000,  // 0x0000 (0x0008) [UClass*]
-  Delegates: 0x0008,  // 0x0008 (0x0010) [TArray<FScriptDelegate>]
+  MessageClass: 0x0000n,  // 0x0000 (0x0008) [UClass*]
+  Delegates: 0x0008n,  // 0x0008 (0x0010) [TArray<FScriptDelegate>]
 } as const;
 
 /**
@@ -10993,13 +9505,13 @@ export const BeaconMessageHandler = {
  * Size: 0x0038
  */
 export const BindingAction = {
-  Action: 0x0000,  // 0x0000 (0x0008) [FName]
-  Category: 0x0008,  // 0x0008 (0x0008) [FName]
-  Axis: 0x0010,  // 0x0010 (0x0008) [FName]
-  AxisSign: 0x0018,  // 0x0018 (0x0001) [EAxisSign]
-  Command: 0x0020,  // 0x0020 (0x0010) [FString]
-  bDisableRemapping: 0x0030,  // 0x0030 (0x0004) [bool : 0x1]
-  Priority: 0x0034,  // 0x0034 (0x0004) [int32]
+  Action: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Category: 0x0008n,  // 0x0008 (0x0008) [FName]
+  Axis: 0x0010n,  // 0x0010 (0x0008) [FName]
+  AxisSign: 0x0018n,  // 0x0018 (0x0001) [EAxisSign]
+  Command: 0x0020n,  // 0x0020 (0x0010) [FString]
+  bDisableRemapping: 0x0030n,  // 0x0030 (0x0004) [bool : 0x1]
+  Priority: 0x0034n,  // 0x0034 (0x0004) [int32]
 } as const;
 
 /**
@@ -11007,11 +9519,11 @@ export const BindingAction = {
  * Size: 0x0014
  */
 export const BumpAngleCheckConfig = {
-  bEnabled: 0x0000,  // 0x0000 (0x0004) [bool : 0x1]
-  BumpAngleYaw: 0x0004,  // 0x0004 (0x0004) [float]
-  BumpAnglePitch: 0x0008,  // 0x0008 (0x0004) [float]
-  DemolishAngleYaw: 0x000C,  // 0x000C (0x0004) [float]
-  DemolishAnglePitch: 0x0010,  // 0x0010 (0x0004) [float]
+  bEnabled: 0x0000n,  // 0x0000 (0x0004) [bool : 0x1]
+  BumpAngleYaw: 0x0004n,  // 0x0004 (0x0004) [float]
+  BumpAnglePitch: 0x0008n,  // 0x0008 (0x0004) [float]
+  DemolishAngleYaw: 0x000cn,  // 0x000c (0x0004) [float]
+  DemolishAnglePitch: 0x0010n,  // 0x0010 (0x0004) [float]
 } as const;
 
 /**
@@ -11019,11 +9531,11 @@ export const BumpAngleCheckConfig = {
  * Size: 0x0068
  */
 export const BumpAngleCurveCheckConfig = {
-  bEnabled: 0x0000,  // 0x0000 (0x0004) [bool : 0x1]
-  BumpAngleCurveYaw: 0x0008,  // 0x0008 (0x0018) [FInterpCurveFloat]
-  BumpAngleCurvePitch: 0x0020,  // 0x0020 (0x0018) [FInterpCurveFloat]
-  DemolishAngleCurveYaw: 0x0038,  // 0x0038 (0x0018) [FInterpCurveFloat]
-  DemolishAngleCurvePitch: 0x0050,  // 0x0050 (0x0018) [FInterpCurveFloat]
+  bEnabled: 0x0000n,  // 0x0000 (0x0004) [bool : 0x1]
+  BumpAngleCurveYaw: 0x0008n,  // 0x0008 (0x0018) [FInterpCurveFloat]
+  BumpAngleCurvePitch: 0x0020n,  // 0x0020 (0x0018) [FInterpCurveFloat]
+  DemolishAngleCurveYaw: 0x0038n,  // 0x0038 (0x0018) [FInterpCurveFloat]
+  DemolishAngleCurvePitch: 0x0050n,  // 0x0050 (0x0018) [FInterpCurveFloat]
 } as const;
 
 /**
@@ -11031,9 +9543,9 @@ export const BumpAngleCurveCheckConfig = {
  * Size: 0x0028
  */
 export const CabinedModeData = {
-  cabinedMode: 0x0000,  // 0x0000 (0x0004) [bool : 0x1]
-  AccountId: 0x0008,  // 0x0008 (0x0010) [FString]
-  linkedAccounts: 0x0018,  // 0x0018 (0x0010) [TArray<FLinkedAccount>]
+  cabinedMode: 0x0000n,  // 0x0000 (0x0004) [bool : 0x1]
+  AccountId: 0x0008n,  // 0x0008 (0x0010) [FString]
+  linkedAccounts: 0x0018n,  // 0x0018 (0x0010) [TArray<FLinkedAccount>]
 } as const;
 
 /**
@@ -11041,8 +9553,8 @@ export const CabinedModeData = {
  * Size: 0x0020
  */
 export const CacheExportCallbackData = {
-  Task: 0x0000,  // 0x0000 (0x0008) [FPointer]
-  Callback: 0x0008,  // 0x0008 (0x0018) [FScriptDelegate]
+  Task: 0x0000n,  // 0x0000 (0x0008) [FPointer]
+  Callback: 0x0008n,  // 0x0008 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -11050,10 +9562,10 @@ export const CacheExportCallbackData = {
  * Size: 0x0030
  */
 export const CacheIOTaskBase = {
-  CacheObject: 0x0000,  // 0x0000 (0x0008) [UObject*]
-  Data: 0x0008,  // 0x0008 (0x0010) [TArray<uint8>]
-  Path: 0x0018,  // 0x0018 (0x0010) [FString]
-  Error: 0x0028,  // 0x0028 (0x0008) [UErrorType*]
+  CacheObject: 0x0000n,  // 0x0000 (0x0008) [UObject*]
+  Data: 0x0008n,  // 0x0008 (0x0010) [TArray<uint8>]
+  Path: 0x0018n,  // 0x0018 (0x0010) [FString]
+  Error: 0x0028n,  // 0x0028 (0x0008) [UErrorType*]
 } as const;
 
 /**
@@ -11070,8 +9582,8 @@ export const CacheExportTask = {
  * Size: 0x0020
  */
 export const CacheImportCallbackData = {
-  Task: 0x0000,  // 0x0000 (0x0008) [FPointer]
-  Callback: 0x0008,  // 0x0008 (0x0018) [FScriptDelegate]
+  Task: 0x0000n,  // 0x0000 (0x0008) [FPointer]
+  Callback: 0x0008n,  // 0x0008 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -11088,12 +9600,12 @@ export const CacheImportTask = {
  * Size: 0x0050
  */
 export const CachedDataRequest = {
-  URL: 0x0000,  // 0x0000 (0x0010) [FString]
-  Path: 0x0010,  // 0x0010 (0x0010) [FString]
-  Headers: 0x0020,  // 0x0020 (0x0008) [unknown]
-  CachedWebData: 0x0028,  // 0x0028 (0x0008) [UCachedWebData_X*]
-  bZipResponse: 0x0030,  // 0x0030 (0x0004) [bool : 0x1]
-  Callback: 0x0038,  // 0x0038 (0x0018) [FScriptDelegate]
+  URL: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Path: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Headers: 0x0020n,  // 0x0020 (0x0008) [unknown]
+  CachedWebData: 0x0028n,  // 0x0028 (0x0008) [UCachedWebData_X*]
+  bZipResponse: 0x0030n,  // 0x0030 (0x0004) [bool : 0x1]
+  Callback: 0x0038n,  // 0x0038 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -11101,18 +9613,18 @@ export const CachedDataRequest = {
  * Size: 0x0020
  */
 export const CachedLeaderboardData = {
-  LeaderboardId: 0x0000,  // 0x0000 (0x0008) [FName]
-  DataList: 0x0008,  // 0x0008 (0x0010) [TArray<FLeaderboardData>]
-  LastLeaderboardSyncTime: 0x0018,  // 0x0018 (0x0008) [uint64]
+  LeaderboardId: 0x0000n,  // 0x0000 (0x0008) [FName]
+  DataList: 0x0008n,  // 0x0008 (0x0010) [TArray<FLeaderboardData>]
+  LastLeaderboardSyncTime: 0x0018n,  // 0x0018 (0x0008) [uint64]
 } as const;
 
 /**
  * ScriptStruct ProjectX._Types_X.CachedRegionPing Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const CachedRegionPing = {
-  Name: 0x0000,  // 0x0000 (0x0008) [FName]
-  Ping: 0x0008,  // 0x0008 (0x0004) [float]
+  Name: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Ping: 0x0008n,  // 0x0008 (0x0004) [float]
 } as const;
 
 /**
@@ -11120,34 +9632,34 @@ export const CachedRegionPing = {
  * Size: 0x0010
  */
 export const CameraKnockBase = {
-  BlendInTime: 0x0000,  // 0x0000 (0x0004) [float]
-  BlendOutTime: 0x0004,  // 0x0004 (0x0004) [float]
-  Falloff: 0x0008,  // 0x0008 (0x0004) [float]
-  Time: 0x000C,  // 0x000C (0x0004) [float]
+  BlendInTime: 0x0000n,  // 0x0000 (0x0004) [float]
+  BlendOutTime: 0x0004n,  // 0x0004 (0x0004) [float]
+  Falloff: 0x0008n,  // 0x0008 (0x0004) [float]
+  Time: 0x000cn,  // 0x000c (0x0004) [float]
 } as const;
 
 /**
  * ScriptStruct ProjectX.Camera_X.CameraOrientation Offsets
- * Size: 0x002C
+ * Size: 0x002c
  */
 export const CameraOrientation = {
-  Focus: 0x0000,  // 0x0000 (0x000C) [FVector]
-  Rotation: 0x000C,  // 0x000C (0x000C) [FRotator]
-  Distance: 0x0018,  // 0x0018 (0x0004) [float]
-  FOV: 0x001C,  // 0x001C (0x0004) [float]
-  CalculatedLocation: 0x0020,  // 0x0020 (0x000C) [FVector]
+  Focus: 0x0000n,  // 0x0000 (0x000c) [FVector]
+  Rotation: 0x000cn,  // 0x000c (0x000c) [FRotator]
+  Distance: 0x0018n,  // 0x0018 (0x0004) [float]
+  FOV: 0x001cn,  // 0x001c (0x0004) [float]
+  CalculatedLocation: 0x0020n,  // 0x0020 (0x000c) [FVector]
 } as const;
 
 /**
  * ScriptStruct ProjectX.CameraStateBlender_X.CameraTransition Offsets
- * Size: 0x004C
+ * Size: 0x004c
  */
 export const CameraTransition = {
-  CameraState: 0x0000,  // 0x0000 (0x0008) [UCameraState_X*]
-  BlendParams: 0x0008,  // 0x0008 (0x0010) [FViewTargetTransitionParams]
-  RemainingTime: 0x0018,  // 0x0018 (0x0004) [float]
-  SnapshotPOV: 0x001C,  // 0x001C (0x002C) [FCameraOrientation]
-  bStarted: 0x0048,  // 0x0048 (0x0004) [bool : 0x1]
+  CameraState: 0x0000n,  // 0x0000 (0x0008) [UCameraState_X*]
+  BlendParams: 0x0008n,  // 0x0008 (0x0010) [FViewTargetTransitionParams]
+  RemainingTime: 0x0018n,  // 0x0018 (0x0004) [float]
+  SnapshotPOV: 0x001cn,  // 0x001c (0x002c) [FCameraOrientation]
+  bStarted: 0x0048n,  // 0x0048 (0x0004) [bool : 0x1]
 } as const;
 
 /**
@@ -11155,18 +9667,18 @@ export const CameraTransition = {
  * Size: 0x0104
  */
 export const CarInteractionConfig = {
-  PushFactor: 0x0000,  // 0x0000 (0x0004) [float]
-  BumperPushFactorCurveGround: 0x0008,  // 0x0008 (0x0018) [FInterpCurveFloat]
-  BumperPushFactorCurveAir: 0x0020,  // 0x0020 (0x0018) [FInterpCurveFloat]
-  ZPushFactorCurve: 0x0038,  // 0x0038 (0x0018) [FInterpCurveFloat]
-  BumpInterval: 0x0050,  // 0x0050 (0x0004) [float]
-  COMAngleCheck: 0x0054,  // 0x0054 (0x0014) [FBumpAngleCheckConfig]
-  VictimHitAngleCheck: 0x0068,  // 0x0068 (0x0014) [FBumpAngleCheckConfig]
-  AttackerHitAngleCheck: 0x007C,  // 0x007C (0x0014) [FBumpAngleCheckConfig]
-  VictimHitAngleCurveCheck: 0x0090,  // 0x0090 (0x0068) [FBumpAngleCurveCheckConfig]
-  bCheckImpactNormal: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x1]
-  ImpactNormalDotProductDemo: 0x00FC,  // 0x00FC (0x0004) [float]
-  ImpactNormalDotProductBump: 0x0100,  // 0x0100 (0x0004) [float]
+  PushFactor: 0x0000n,  // 0x0000 (0x0004) [float]
+  BumperPushFactorCurveGround: 0x0008n,  // 0x0008 (0x0018) [FInterpCurveFloat]
+  BumperPushFactorCurveAir: 0x0020n,  // 0x0020 (0x0018) [FInterpCurveFloat]
+  ZPushFactorCurve: 0x0038n,  // 0x0038 (0x0018) [FInterpCurveFloat]
+  BumpInterval: 0x0050n,  // 0x0050 (0x0004) [float]
+  COMAngleCheck: 0x0054n,  // 0x0054 (0x0014) [FBumpAngleCheckConfig]
+  VictimHitAngleCheck: 0x0068n,  // 0x0068 (0x0014) [FBumpAngleCheckConfig]
+  AttackerHitAngleCheck: 0x007cn,  // 0x007c (0x0014) [FBumpAngleCheckConfig]
+  VictimHitAngleCurveCheck: 0x0090n,  // 0x0090 (0x0068) [FBumpAngleCurveCheckConfig]
+  bCheckImpactNormal: 0x00f8n,  // 0x00f8 (0x0004) [bool : 0x1]
+  ImpactNormalDotProductDemo: 0x00fcn,  // 0x00fc (0x0004) [float]
+  ImpactNormalDotProductBump: 0x0100n,  // 0x0100 (0x0004) [float]
 } as const;
 
 /**
@@ -11174,9 +9686,9 @@ export const CarInteractionConfig = {
  * Size: 0x0014
  */
 export const CategorySettingPair = {
-  Category: 0x0000,  // 0x0000 (0x0008) [FName]
-  Setting: 0x0008,  // 0x0008 (0x0008) [FName]
-  bLockSetting: 0x0010,  // 0x0010 (0x0004) [bool : 0x1]
+  Category: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Setting: 0x0008n,  // 0x0008 (0x0008) [FName]
+  bLockSetting: 0x0010n,  // 0x0010 (0x0004) [bool : 0x1]
 } as const;
 
 /**
@@ -11184,8 +9696,8 @@ export const CategorySettingPair = {
  * Size: 0x0011
  */
 export const ChatPermissionPair = {
-  PermissionLabel: 0x0000,  // 0x0000 (0x0010) [FString]
-  Level: 0x0010,  // 0x0010 (0x0001) [EChatPermissionLevel]
+  PermissionLabel: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Level: 0x0010n,  // 0x0010 (0x0001) [EChatPermissionLevel]
 } as const;
 
 /**
@@ -11193,27 +9705,27 @@ export const ChatPermissionPair = {
  * Size: 0x0034
  */
 export const CheckReplacementDedicatedServerData = {
-  ServerId: 0x0000,  // 0x0000 (0x0010) [FString]
-  IP: 0x0010,  // 0x0010 (0x0010) [FString]
-  Host: 0x0020,  // 0x0020 (0x0010) [FString]
-  Port: 0x0030,  // 0x0030 (0x0004) [int32]
+  ServerId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  IP: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Host: 0x0020n,  // 0x0020 (0x0010) [FString]
+  Port: 0x0030n,  // 0x0030 (0x0004) [int32]
 } as const;
 
 /**
  * ScriptStruct ProjectX._Types_X.CheckReservationResponse Offsets
- * Size: 0x007C
+ * Size: 0x007c
  */
 export const CheckReservationResponse = {
-  IP: 0x0000,  // 0x0000 (0x0010) [FString]
-  ServerName: 0x0010,  // 0x0010 (0x0010) [FString]
-  Playlist: 0x0020,  // 0x0020 (0x0004) [int32]
-  Region: 0x0028,  // 0x0028 (0x0010) [FString]
-  Host: 0x0038,  // 0x0038 (0x0010) [FString]
-  Port: 0x0048,  // 0x0048 (0x0004) [int32]
-  ReservationID: 0x0050,  // 0x0050 (0x0010) [FString]
-  DSConnectToken: 0x0060,  // 0x0060 (0x0010) [FString]
-  Keys: 0x0070,  // 0x0070 (0x0008) [UNetworkEncryptionKey*]
-  IsServerKey: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
+  IP: 0x0000n,  // 0x0000 (0x0010) [FString]
+  ServerName: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Playlist: 0x0020n,  // 0x0020 (0x0004) [int32]
+  Region: 0x0028n,  // 0x0028 (0x0010) [FString]
+  Host: 0x0038n,  // 0x0038 (0x0010) [FString]
+  Port: 0x0048n,  // 0x0048 (0x0004) [int32]
+  ReservationID: 0x0050n,  // 0x0050 (0x0010) [FString]
+  DSConnectToken: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Keys: 0x0070n,  // 0x0070 (0x0008) [UNetworkEncryptionKey*]
+  IsServerKey: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
 } as const;
 
 /**
@@ -11221,35 +9733,35 @@ export const CheckReservationResponse = {
  * Size: 0x0078
  */
 export const ClubCareerStats = {
-  MatchPlayed: 0x0000,  // 0x0000 (0x0004) [int32]
-  Win: 0x0004,  // 0x0004 (0x0004) [int32]
-  TimePlayed: 0x0008,  // 0x0008 (0x0008) [uint64]
-  Goal: 0x0010,  // 0x0010 (0x0004) [int32]
-  AerialGoal: 0x0014,  // 0x0014 (0x0004) [int32]
-  LongGoal: 0x0018,  // 0x0018 (0x0004) [int32]
-  BackwardsGoal: 0x001C,  // 0x001C (0x0004) [int32]
-  OvertimeGoal: 0x0020,  // 0x0020 (0x0004) [int32]
-  TurtleGoal: 0x0024,  // 0x0024 (0x0004) [int32]
-  Assist: 0x0028,  // 0x0028 (0x0004) [int32]
-  Playmaker: 0x002C,  // 0x002C (0x0004) [int32]
-  Save: 0x0030,  // 0x0030 (0x0004) [int32]
-  EpicSave: 0x0034,  // 0x0034 (0x0004) [int32]
-  Savior: 0x0038,  // 0x0038 (0x0004) [int32]
-  Shot: 0x003C,  // 0x003C (0x0004) [int32]
-  Center: 0x0040,  // 0x0040 (0x0004) [int32]
-  Clear: 0x0044,  // 0x0044 (0x0004) [int32]
-  AerialHit: 0x0048,  // 0x0048 (0x0004) [int32]
-  BicycleHit: 0x004C,  // 0x004C (0x0004) [int32]
-  JuggleHit: 0x0050,  // 0x0050 (0x0004) [int32]
-  Demolish: 0x0054,  // 0x0054 (0x0004) [int32]
-  Demolition: 0x0058,  // 0x0058 (0x0004) [int32]
-  FirstTouch: 0x005C,  // 0x005C (0x0004) [int32]
-  PoolShot: 0x0060,  // 0x0060 (0x0004) [int32]
-  LowFive: 0x0064,  // 0x0064 (0x0004) [int32]
-  HighFive: 0x0068,  // 0x0068 (0x0004) [int32]
-  BreakoutDamage: 0x006C,  // 0x006C (0x0004) [int32]
-  BreakoutDamageLarge: 0x0070,  // 0x0070 (0x0004) [int32]
-  HoopsSwishGoal: 0x0074,  // 0x0074 (0x0004) [int32]
+  MatchPlayed: 0x0000n,  // 0x0000 (0x0004) [int32]
+  Win: 0x0004n,  // 0x0004 (0x0004) [int32]
+  TimePlayed: 0x0008n,  // 0x0008 (0x0008) [uint64]
+  Goal: 0x0010n,  // 0x0010 (0x0004) [int32]
+  AerialGoal: 0x0014n,  // 0x0014 (0x0004) [int32]
+  LongGoal: 0x0018n,  // 0x0018 (0x0004) [int32]
+  BackwardsGoal: 0x001cn,  // 0x001c (0x0004) [int32]
+  OvertimeGoal: 0x0020n,  // 0x0020 (0x0004) [int32]
+  TurtleGoal: 0x0024n,  // 0x0024 (0x0004) [int32]
+  Assist: 0x0028n,  // 0x0028 (0x0004) [int32]
+  Playmaker: 0x002cn,  // 0x002c (0x0004) [int32]
+  Save: 0x0030n,  // 0x0030 (0x0004) [int32]
+  EpicSave: 0x0034n,  // 0x0034 (0x0004) [int32]
+  Savior: 0x0038n,  // 0x0038 (0x0004) [int32]
+  Shot: 0x003cn,  // 0x003c (0x0004) [int32]
+  Center: 0x0040n,  // 0x0040 (0x0004) [int32]
+  Clear: 0x0044n,  // 0x0044 (0x0004) [int32]
+  AerialHit: 0x0048n,  // 0x0048 (0x0004) [int32]
+  BicycleHit: 0x004cn,  // 0x004c (0x0004) [int32]
+  JuggleHit: 0x0050n,  // 0x0050 (0x0004) [int32]
+  Demolish: 0x0054n,  // 0x0054 (0x0004) [int32]
+  Demolition: 0x0058n,  // 0x0058 (0x0004) [int32]
+  FirstTouch: 0x005cn,  // 0x005c (0x0004) [int32]
+  PoolShot: 0x0060n,  // 0x0060 (0x0004) [int32]
+  LowFive: 0x0064n,  // 0x0064 (0x0004) [int32]
+  HighFive: 0x0068n,  // 0x0068 (0x0004) [int32]
+  BreakoutDamage: 0x006cn,  // 0x006c (0x0004) [int32]
+  BreakoutDamageLarge: 0x0070n,  // 0x0070 (0x0004) [int32]
+  HoopsSwishGoal: 0x0074n,  // 0x0074 (0x0004) [int32]
 } as const;
 
 /**
@@ -11257,22 +9769,22 @@ export const ClubCareerStats = {
  * Size: 0x0008
  */
 export const ClubColorSet = {
-  TeamColorID: 0x0000,  // 0x0000 (0x0001) [uint8]
-  CustomColorID: 0x0001,  // 0x0001 (0x0001) [uint8]
-  bTeamColorSet: 0x0004,  // 0x0004 (0x0004) [bool : 0x1]
-  bCustomColorSet: 0x0004,  // 0x0004 (0x0004) [bool : 0x2]
+  TeamColorID: 0x0000n,  // 0x0000 (0x0001) [uint8]
+  CustomColorID: 0x0001n,  // 0x0001 (0x0001) [uint8]
+  bTeamColorSet: 0x0004n,  // 0x0004 (0x0004) [bool : 0x1]
+  bCustomColorSet: 0x0004n,  // 0x0004 (0x0004) [bool : 0x2]
 } as const;
 
 /**
  * ScriptStruct ProjectX._Types_X.ClubMember Offsets
- * Size: 0x00B1
+ * Size: 0x00b1
  */
 export const ClubMember = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  EpicPlayerID: 0x0048,  // 0x0048 (0x0048) [FUniqueNetId]
-  PlayerName: 0x0090,  // 0x0090 (0x0010) [FString]
-  EpicPlayerName: 0x00A0,  // 0x00A0 (0x0010) [FString]
-  RoleID: 0x00B0,  // 0x00B0 (0x0001) [EClubRole]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  EpicPlayerID: 0x0048n,  // 0x0048 (0x0048) [FUniqueNetId]
+  PlayerName: 0x0090n,  // 0x0090 (0x0010) [FString]
+  EpicPlayerName: 0x00a0n,  // 0x00a0 (0x0010) [FString]
+  RoleID: 0x00b0n,  // 0x00b0 (0x0001) [EClubRole]
 } as const;
 
 /**
@@ -11280,16 +9792,16 @@ export const ClubMember = {
  * Size: 0x0043
  */
 export const ClubReplicationInfo = {
-  ClubID: 0x0000,  // 0x0000 (0x0008) [uint64]
-  bVerified: 0x0008,  // 0x0008 (0x0004) [bool : 0x1]
-  EquippedTitle: 0x000C,  // 0x000C (0x0008) [FName]
-  ClubName: 0x0018,  // 0x0018 (0x0010) [FString]
-  ClubTag: 0x0028,  // 0x0028 (0x0010) [FString]
-  PrimaryColor: 0x0038,  // 0x0038 (0x0004) [int32]
-  AccentColor: 0x003C,  // 0x003C (0x0004) [int32]
-  FirstBadgeTier: 0x0040,  // 0x0040 (0x0001) [EClubBadge]
-  SecondBadgeTier: 0x0041,  // 0x0041 (0x0001) [EClubBadge]
-  ThirdBadgeTier: 0x0042,  // 0x0042 (0x0001) [EClubBadge]
+  ClubID: 0x0000n,  // 0x0000 (0x0008) [uint64]
+  bVerified: 0x0008n,  // 0x0008 (0x0004) [bool : 0x1]
+  EquippedTitle: 0x000cn,  // 0x000c (0x0008) [FName]
+  ClubName: 0x0018n,  // 0x0018 (0x0010) [FString]
+  ClubTag: 0x0028n,  // 0x0028 (0x0010) [FString]
+  PrimaryColor: 0x0038n,  // 0x0038 (0x0004) [int32]
+  AccentColor: 0x003cn,  // 0x003c (0x0004) [int32]
+  FirstBadgeTier: 0x0040n,  // 0x0040 (0x0001) [EClubBadge]
+  SecondBadgeTier: 0x0041n,  // 0x0041 (0x0001) [EClubBadge]
+  ThirdBadgeTier: 0x0042n,  // 0x0042 (0x0001) [EClubBadge]
 } as const;
 
 /**
@@ -11297,36 +9809,36 @@ export const ClubReplicationInfo = {
  * Size: 0x0088
  */
 export const ClubStatRecord = {
-  ClubID: 0x0000,  // 0x0000 (0x0004) [int32]
-  Win: 0x0004,  // 0x0004 (0x0004) [bool : 0x1]
-  TimePlayed: 0x0008,  // 0x0008 (0x0004) [int32]
-  Goal: 0x000C,  // 0x000C (0x0004) [int32]
-  AerialGoal: 0x0010,  // 0x0010 (0x0004) [int32]
-  LongGoal: 0x0014,  // 0x0014 (0x0004) [int32]
-  BackwardsGoal: 0x0018,  // 0x0018 (0x0004) [int32]
-  OvertimeGoal: 0x001C,  // 0x001C (0x0004) [int32]
-  TurtleGoal: 0x0020,  // 0x0020 (0x0004) [int32]
-  Assist: 0x0024,  // 0x0024 (0x0004) [int32]
-  Playmaker: 0x0028,  // 0x0028 (0x0004) [int32]
-  Save: 0x002C,  // 0x002C (0x0004) [int32]
-  EpicSave: 0x0030,  // 0x0030 (0x0004) [int32]
-  Savior: 0x0034,  // 0x0034 (0x0004) [int32]
-  Shot: 0x0038,  // 0x0038 (0x0004) [int32]
-  Center: 0x003C,  // 0x003C (0x0004) [int32]
-  Clear: 0x0040,  // 0x0040 (0x0004) [int32]
-  AerialHit: 0x0044,  // 0x0044 (0x0004) [int32]
-  BicycleHit: 0x0048,  // 0x0048 (0x0004) [int32]
-  JuggleHit: 0x004C,  // 0x004C (0x0004) [int32]
-  Demolish: 0x0050,  // 0x0050 (0x0004) [int32]
-  Demolition: 0x0054,  // 0x0054 (0x0004) [int32]
-  FirstTouch: 0x0058,  // 0x0058 (0x0004) [int32]
-  PoolShot: 0x005C,  // 0x005C (0x0004) [int32]
-  LowFive: 0x0060,  // 0x0060 (0x0004) [int32]
-  HighFive: 0x0064,  // 0x0064 (0x0004) [int32]
-  BreakoutDamage: 0x0068,  // 0x0068 (0x0004) [int32]
-  BreakoutDamageLarge: 0x006C,  // 0x006C (0x0004) [int32]
-  HoopsSwishGoal: 0x0070,  // 0x0070 (0x0004) [int32]
-  Players: 0x0078,  // 0x0078 (0x0010) [TArray<FUniqueNetId>]
+  ClubID: 0x0000n,  // 0x0000 (0x0004) [int32]
+  Win: 0x0004n,  // 0x0004 (0x0004) [bool : 0x1]
+  TimePlayed: 0x0008n,  // 0x0008 (0x0004) [int32]
+  Goal: 0x000cn,  // 0x000c (0x0004) [int32]
+  AerialGoal: 0x0010n,  // 0x0010 (0x0004) [int32]
+  LongGoal: 0x0014n,  // 0x0014 (0x0004) [int32]
+  BackwardsGoal: 0x0018n,  // 0x0018 (0x0004) [int32]
+  OvertimeGoal: 0x001cn,  // 0x001c (0x0004) [int32]
+  TurtleGoal: 0x0020n,  // 0x0020 (0x0004) [int32]
+  Assist: 0x0024n,  // 0x0024 (0x0004) [int32]
+  Playmaker: 0x0028n,  // 0x0028 (0x0004) [int32]
+  Save: 0x002cn,  // 0x002c (0x0004) [int32]
+  EpicSave: 0x0030n,  // 0x0030 (0x0004) [int32]
+  Savior: 0x0034n,  // 0x0034 (0x0004) [int32]
+  Shot: 0x0038n,  // 0x0038 (0x0004) [int32]
+  Center: 0x003cn,  // 0x003c (0x0004) [int32]
+  Clear: 0x0040n,  // 0x0040 (0x0004) [int32]
+  AerialHit: 0x0044n,  // 0x0044 (0x0004) [int32]
+  BicycleHit: 0x0048n,  // 0x0048 (0x0004) [int32]
+  JuggleHit: 0x004cn,  // 0x004c (0x0004) [int32]
+  Demolish: 0x0050n,  // 0x0050 (0x0004) [int32]
+  Demolition: 0x0054n,  // 0x0054 (0x0004) [int32]
+  FirstTouch: 0x0058n,  // 0x0058 (0x0004) [int32]
+  PoolShot: 0x005cn,  // 0x005c (0x0004) [int32]
+  LowFive: 0x0060n,  // 0x0060 (0x0004) [int32]
+  HighFive: 0x0064n,  // 0x0064 (0x0004) [int32]
+  BreakoutDamage: 0x0068n,  // 0x0068 (0x0004) [int32]
+  BreakoutDamageLarge: 0x006cn,  // 0x006c (0x0004) [int32]
+  HoopsSwishGoal: 0x0070n,  // 0x0070 (0x0004) [int32]
+  Players: 0x0078n,  // 0x0078 (0x0010) [TArray<FUniqueNetId>]
 } as const;
 
 /**
@@ -11334,8 +9846,8 @@ export const ClubStatRecord = {
  * Size: 0x0018
  */
 export const ColorParamPair = {
-  Key: 0x0000,  // 0x0000 (0x0008) [FName]
-  Value: 0x0008,  // 0x0008 (0x0010) [FLinearColor]
+  Key: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Value: 0x0008n,  // 0x0008 (0x0010) [FLinearColor]
 } as const;
 
 /**
@@ -11343,18 +9855,18 @@ export const ColorParamPair = {
  * Size: 0x0008
  */
 export const ColorPosition = {
-  Row: 0x0000,  // 0x0000 (0x0004) [int32]
-  Column: 0x0004,  // 0x0004 (0x0004) [int32]
+  Row: 0x0000n,  // 0x0000 (0x0004) [int32]
+  Column: 0x0004n,  // 0x0004 (0x0004) [int32]
 } as const;
 
 /**
  * ScriptStruct ProjectX.ExplosionHitHandler_X.ContactInformation Offsets
- * Size: 0x001C
+ * Size: 0x001c
  */
 export const ContactInformation = {
-  ContactLocation: 0x0000,  // 0x0000 (0x000C) [FVector]
-  ContactVelocity: 0x000C,  // 0x000C (0x000C) [FVector]
-  ContactTime: 0x0018,  // 0x0018 (0x0004) [float]
+  ContactLocation: 0x0000n,  // 0x0000 (0x000c) [FVector]
+  ContactVelocity: 0x000cn,  // 0x000c (0x000c) [FVector]
+  ContactTime: 0x0018n,  // 0x0018 (0x0004) [float]
 } as const;
 
 /**
@@ -11362,10 +9874,10 @@ export const ContactInformation = {
  * Size: 0x0020
  */
 export const ContentPair = {
-  KeyName: 0x0000,  // 0x0000 (0x0008) [FName]
-  Content: 0x0008,  // 0x0008 (0x0010) [FString]
-  Index: 0x0018,  // 0x0018 (0x0004) [FEncryptedKeyIndex]
-  bUnreleased: 0x001C,  // 0x001C (0x0004) [bool : 0x1]
+  KeyName: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Content: 0x0008n,  // 0x0008 (0x0010) [FString]
+  Index: 0x0018n,  // 0x0018 (0x0004) [FEncryptedKeyIndex]
+  bUnreleased: 0x001cn,  // 0x001c (0x0004) [bool : 0x1]
 } as const;
 
 /**
@@ -11373,10 +9885,10 @@ export const ContentPair = {
  * Size: 0x0040
  */
 export const CpuMetrics = {
-  Type: 0x0000,  // 0x0000 (0x0010) [FString]
-  Desc: 0x0010,  // 0x0010 (0x0010) [FString]
-  Cores: 0x0020,  // 0x0020 (0x0010) [FString]
-  Threads: 0x0030,  // 0x0030 (0x0010) [FString]
+  Type: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Desc: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Cores: 0x0020n,  // 0x0020 (0x0010) [FString]
+  Threads: 0x0030n,  // 0x0030 (0x0010) [FString]
 } as const;
 
 /**
@@ -11384,7 +9896,7 @@ export const CpuMetrics = {
  * Size: 0x0010
  */
 export const CrossplayGroup = {
-  Platforms: 0x0000,  // 0x0000 (0x0010) [TArray<OnlinePlatform>]
+  Platforms: 0x0000n,  // 0x0000 (0x0010) [TArray<OnlinePlatform>]
 } as const;
 
 /**
@@ -11392,25 +9904,25 @@ export const CrossplayGroup = {
  * Size: 0x0088
  */
 export const CustomMatchSettings = {
-  GameTags: 0x0000,  // 0x0000 (0x0010) [FString]
-  MapName: 0x0010,  // 0x0010 (0x0008) [FName]
-  GameMode: 0x0018,  // 0x0018 (0x0001) [uint8]
-  MaxPlayerCount: 0x001C,  // 0x001C (0x0004) [int32]
-  ServerName: 0x0020,  // 0x0020 (0x0010) [FString]
-  Password: 0x0030,  // 0x0030 (0x0010) [FString]
-  bPublic: 0x0040,  // 0x0040 (0x0004) [bool : 0x1]
-  bClubServer: 0x0040,  // 0x0040 (0x0004) [bool : 0x2]
-  TeamSettings: 0x0048,  // 0x0048 (0x0040) [FCustomMatchTeamSettings]
+  GameTags: 0x0000n,  // 0x0000 (0x0010) [FString]
+  MapName: 0x0010n,  // 0x0010 (0x0008) [FName]
+  GameMode: 0x0018n,  // 0x0018 (0x0001) [uint8]
+  MaxPlayerCount: 0x001cn,  // 0x001c (0x0004) [int32]
+  ServerName: 0x0020n,  // 0x0020 (0x0010) [FString]
+  Password: 0x0030n,  // 0x0030 (0x0010) [FString]
+  bPublic: 0x0040n,  // 0x0040 (0x0004) [bool : 0x1]
+  bClubServer: 0x0040n,  // 0x0040 (0x0004) [bool : 0x2]
+  TeamSettings: 0x0048n,  // 0x0048 (0x0040) [FCustomMatchTeamSettings]
 } as const;
 
 /**
  * ScriptStruct ProjectX._Types_X.CustomMatchTeamSettings Offsets
- * Size: 0x001C
+ * Size: 0x001c
  */
 export const CustomMatchTeamSettings = {
-  Name: 0x0000,  // 0x0000 (0x0010) [FString]
-  Colors: 0x0010,  // 0x0010 (0x0008) [FClubColorSet]
-  GameScore: 0x0018,  // 0x0018 (0x0004) [int32]
+  Name: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Colors: 0x0010n,  // 0x0010 (0x0008) [FClubColorSet]
+  GameScore: 0x0018n,  // 0x0018 (0x0004) [int32]
 } as const;
 
 /**
@@ -11418,10 +9930,10 @@ export const CustomMatchTeamSettings = {
  * Size: 0x0038
  */
 export const DDoSServicePayloadStruct = {
-  Enabled: 0x0000,  // 0x0000 (0x0004) [bool : 0x1]
-  Port: 0x0008,  // 0x0008 (0x0010) [FString]
-  iid: 0x0018,  // 0x0018 (0x0010) [FString]
-  ip_addresses: 0x0028,  // 0x0028 (0x0010) [TArray<FString>]
+  Enabled: 0x0000n,  // 0x0000 (0x0004) [bool : 0x1]
+  Port: 0x0008n,  // 0x0008 (0x0010) [FString]
+  iid: 0x0018n,  // 0x0018 (0x0010) [FString]
+  ip_addresses: 0x0028n,  // 0x0028 (0x0010) [TArray<FString>]
 } as const;
 
 /**
@@ -11429,8 +9941,8 @@ export const DDoSServicePayloadStruct = {
  * Size: 0x0014
  */
 export const DSRegionInfo = {
-  Name: 0x0000,  // 0x0000 (0x0010) [FString]
-  Ping: 0x0010,  // 0x0010 (0x0004) [int32]
+  Name: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Ping: 0x0010n,  // 0x0010 (0x0004) [int32]
 } as const;
 
 /**
@@ -11438,9 +9950,9 @@ export const DSRegionInfo = {
  * Size: 0x0014
  */
 export const DirtyObject = {
-  Object: 0x0000,  // 0x0000 (0x0008) [UObject*]
-  Property: 0x0008,  // 0x0008 (0x0008) [UProperty*]
-  Index: 0x0010,  // 0x0010 (0x0004) [int32]
+  Object: 0x0000n,  // 0x0000 (0x0008) [UObject*]
+  Property: 0x0008n,  // 0x0008 (0x0008) [UProperty*]
+  Index: 0x0010n,  // 0x0010 (0x0004) [int32]
 } as const;
 
 /**
@@ -11448,8 +9960,8 @@ export const DirtyObject = {
  * Size: 0x0018
  */
 export const DownloadedImage = {
-  URL: 0x0000,  // 0x0000 (0x0010) [FString]
-  Texture: 0x0010,  // 0x0010 (0x0008) [UTexture2DDynamic*]
+  URL: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Texture: 0x0010n,  // 0x0010 (0x0008) [UTexture2DDynamic*]
 } as const;
 
 /**
@@ -11457,8 +9969,8 @@ export const DownloadedImage = {
  * Size: 0x0020
  */
 export const DynamicallyLoadedPackage = {
-  Tag: 0x0000,  // 0x0000 (0x0010) [FString]
-  PackageName: 0x0010,  // 0x0010 (0x0010) [FString]
+  Tag: 0x0000n,  // 0x0000 (0x0010) [FString]
+  PackageName: 0x0010n,  // 0x0010 (0x0010) [FString]
 } as const;
 
 /**
@@ -11466,10 +9978,10 @@ export const DynamicallyLoadedPackage = {
  * Size: 0x0038
  */
 export const EOSAccountInfo = {
-  AccountId: 0x0000,  // 0x0000 (0x0010) [FString]
-  Created: 0x0010,  // 0x0010 (0x0010) [FString]
-  Favorite: 0x0020,  // 0x0020 (0x0004) [bool : 0x1]
-  NickName: 0x0028,  // 0x0028 (0x0010) [FString]
+  AccountId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Created: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Favorite: 0x0020n,  // 0x0020 (0x0004) [bool : 0x1]
+  NickName: 0x0028n,  // 0x0028 (0x0010) [FString]
 } as const;
 
 /**
@@ -11477,8 +9989,8 @@ export const EOSAccountInfo = {
  * Size: 0x0010
  */
 export const EffectsMapping = {
-  PhysicalMaterial: 0x0000,  // 0x0000 (0x0008) [UPhysicalMaterial*]
-  Particle: 0x0008,  // 0x0008 (0x0008) [UParticleSystem*]
+  PhysicalMaterial: 0x0000n,  // 0x0000 (0x0008) [UPhysicalMaterial*]
+  Particle: 0x0008n,  // 0x0008 (0x0008) [UParticleSystem*]
 } as const;
 
 /**
@@ -11486,8 +9998,8 @@ export const EffectsMapping = {
  * Size: 0x0060
  */
 export const EpicSocialTaskData = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  OnCompleteCallback: 0x0048,  // 0x0048 (0x0018) [FScriptDelegate]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  OnCompleteCallback: 0x0048n,  // 0x0048 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -11495,56 +10007,56 @@ export const EpicSocialTaskData = {
  * Size: 0x0020
  */
 export const EpochTimer = {
-  Callback: 0x0000,  // 0x0000 (0x0018) [FScriptDelegate]
-  EpochTime: 0x0018,  // 0x0018 (0x0008) [uint64]
+  Callback: 0x0000n,  // 0x0000 (0x0018) [FScriptDelegate]
+  EpochTime: 0x0018n,  // 0x0018 (0x0008) [uint64]
 } as const;
 
 /**
  * ScriptStruct ProjectX.FXActor_X.FXActorEventCheck Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const FXActorEventCheck = {
-  Event: 0x0000,  // 0x0000 (0x0008) [UFXActorEvent_X*]
-  bHasTicked: 0x0008,  // 0x0008 (0x0004) [bool : 0x1]
+  Event: 0x0000n,  // 0x0000 (0x0008) [UFXActorEvent_X*]
+  bHasTicked: 0x0008n,  // 0x0008 (0x0004) [bool : 0x1]
 } as const;
 
 /**
  * ScriptStruct ProjectX.FXActor_X.FXAttachment Offsets
- * Size: 0x012C
+ * Size: 0x012c
  */
 export const FXAttachment = {
-  Name: 0x0000,  // 0x0000 (0x0008) [FName]
-  SkeletalMeshAttachName: 0x0008,  // 0x0008 (0x0008) [FName]
-  SocketOrBoneName: 0x0010,  // 0x0010 (0x0008) [FName]
-  AttachToParameter: 0x0018,  // 0x0018 (0x0008) [FName]
-  AttachDelay: 0x0020,  // 0x0020 (0x0004) [float]
-  DetachDelay: 0x0024,  // 0x0024 (0x0004) [float]
-  LifeTime: 0x0028,  // 0x0028 (0x0004) [float]
-  Target: 0x002C,  // 0x002C (0x0001) [EFXComponentTarget]
-  Component: 0x0030,  // 0x0030 (0x0008) [unknown]
-  AttachAny: 0x0038,  // 0x0038 (0x0010) [TArray<UFXActorEvent_X*>]
-  DetachAny: 0x0048,  // 0x0048 (0x0010) [TArray<UFXActorEvent_X*>]
-  AttachAll: 0x0058,  // 0x0058 (0x0010) [TArray<UFXActorEvent_X*>]
-  RuntimeParameters: 0x0068,  // 0x0068 (0x0010) [TArray<URuntimeParameterBase_X*>]
-  Traits: 0x0078,  // 0x0078 (0x0010) [TArray<UFXAttachmentTraitBase_X*>]
-  AttachToParameterActor: 0x0088,  // 0x0088 (0x000C) [FAttachToParameterWithUnlockAxes]
-  OverrideAttachBehavior: 0x0094,  // 0x0094 (0x0001) [EFXOverrideAttachBehavior]
-  OverrideAttachLocationOffset: 0x0098,  // 0x0098 (0x000C) [FVector]
-  OverrideAttachRotationOffset: 0x00A4,  // 0x00A4 (0x000C) [FRotator]
-  bCreateDuplicates: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x1]
-  bWantsAttachment: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x2]
-  bInitializedTraits: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x4]
-  bWarnedMissingSocket: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x8]
-  bExistingComponent: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x10]
-  bExistingAttachment: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x20]
-  AttachedTime: 0x00B4,  // 0x00B4 (0x0004) [float]
-  State: 0x00B8,  // 0x00B8 (0x0001) [EFXComponentState]
-  WantsAttachmentChangeTime: 0x00BC,  // 0x00BC (0x0004) [float]
-  AttachedToMesh: 0x00C0,  // 0x00C0 (0x0008) [unknown]
-  RelativeTransform: 0x00D0,  // 0x00D0 (0x0040) [FMatrix]
-  BoneIndex: 0x0110,  // 0x0110 (0x0004) [int32]
-  AttachToActor: 0x0118,  // 0x0118 (0x0008) [UActor*]
-  OffsetToAttachActor: 0x0120,  // 0x0120 (0x000C) [FVector]
+  Name: 0x0000n,  // 0x0000 (0x0008) [FName]
+  SkeletalMeshAttachName: 0x0008n,  // 0x0008 (0x0008) [FName]
+  SocketOrBoneName: 0x0010n,  // 0x0010 (0x0008) [FName]
+  AttachToParameter: 0x0018n,  // 0x0018 (0x0008) [FName]
+  AttachDelay: 0x0020n,  // 0x0020 (0x0004) [float]
+  DetachDelay: 0x0024n,  // 0x0024 (0x0004) [float]
+  LifeTime: 0x0028n,  // 0x0028 (0x0004) [float]
+  Target: 0x002cn,  // 0x002c (0x0001) [EFXComponentTarget]
+  Component: 0x0030n,  // 0x0030 (0x0008) [unknown]
+  AttachAny: 0x0038n,  // 0x0038 (0x0010) [TArray<UFXActorEvent_X*>]
+  DetachAny: 0x0048n,  // 0x0048 (0x0010) [TArray<UFXActorEvent_X*>]
+  AttachAll: 0x0058n,  // 0x0058 (0x0010) [TArray<UFXActorEvent_X*>]
+  RuntimeParameters: 0x0068n,  // 0x0068 (0x0010) [TArray<URuntimeParameterBase_X*>]
+  Traits: 0x0078n,  // 0x0078 (0x0010) [TArray<UFXAttachmentTraitBase_X*>]
+  AttachToParameterActor: 0x0088n,  // 0x0088 (0x000c) [FAttachToParameterWithUnlockAxes]
+  OverrideAttachBehavior: 0x0094n,  // 0x0094 (0x0001) [EFXOverrideAttachBehavior]
+  OverrideAttachLocationOffset: 0x0098n,  // 0x0098 (0x000c) [FVector]
+  OverrideAttachRotationOffset: 0x00a4n,  // 0x00a4 (0x000c) [FRotator]
+  bCreateDuplicates: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x1]
+  bWantsAttachment: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x2]
+  bInitializedTraits: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x4]
+  bWarnedMissingSocket: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x8]
+  bExistingComponent: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x10]
+  bExistingAttachment: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x20]
+  AttachedTime: 0x00b4n,  // 0x00b4 (0x0004) [float]
+  State: 0x00b8n,  // 0x00b8 (0x0001) [EFXComponentState]
+  WantsAttachmentChangeTime: 0x00bcn,  // 0x00bc (0x0004) [float]
+  AttachedToMesh: 0x00c0n,  // 0x00c0 (0x0008) [unknown]
+  RelativeTransform: 0x00d0n,  // 0x00d0 (0x0040) [FMatrix]
+  BoneIndex: 0x0110n,  // 0x0110 (0x0004) [int32]
+  AttachToActor: 0x0118n,  // 0x0118 (0x0008) [UActor*]
+  OffsetToAttachActor: 0x0120n,  // 0x0120 (0x000c) [FVector]
 } as const;
 
 /**
@@ -11552,9 +10064,9 @@ export const FXAttachment = {
  * Size: 0x0038
  */
 export const FXEventSubscription = {
-  Event: 0x0000,  // 0x0000 (0x0008) [UFXActorEvent_X*]
-  OnPushed: 0x0008,  // 0x0008 (0x0018) [FScriptDelegate]
-  OnPopped: 0x0020,  // 0x0020 (0x0018) [FScriptDelegate]
+  Event: 0x0000n,  // 0x0000 (0x0008) [UFXActorEvent_X*]
+  OnPushed: 0x0008n,  // 0x0008 (0x0018) [FScriptDelegate]
+  OnPopped: 0x0020n,  // 0x0020 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -11562,14 +10074,14 @@ export const FXEventSubscription = {
  * Size: 0x0035
  */
 export const FakeData1 = {
-  string1: 0x0000,  // 0x0000 (0x0010) [FString]
-  name1: 0x0010,  // 0x0010 (0x0008) [FName]
-  bool1: 0x0018,  // 0x0018 (0x0004) [bool : 0x1]
-  qword1: 0x0020,  // 0x0020 (0x0008) [uint64]
-  float1: 0x0028,  // 0x0028 (0x0004) [float]
-  byte1: 0x002C,  // 0x002C (0x0001) [uint8]
-  int1: 0x0030,  // 0x0030 (0x0004) [int32]
-  enum1: 0x0034,  // 0x0034 (0x0001) [FakeDataEnum]
+  string1: 0x0000n,  // 0x0000 (0x0010) [FString]
+  name1: 0x0010n,  // 0x0010 (0x0008) [FName]
+  bool1: 0x0018n,  // 0x0018 (0x0004) [bool : 0x1]
+  qword1: 0x0020n,  // 0x0020 (0x0008) [uint64]
+  float1: 0x0028n,  // 0x0028 (0x0004) [float]
+  byte1: 0x002cn,  // 0x002c (0x0001) [uint8]
+  int1: 0x0030n,  // 0x0030 (0x0004) [int32]
+  enum1: 0x0034n,  // 0x0034 (0x0001) [FakeDataEnum]
 } as const;
 
 /**
@@ -11577,17 +10089,17 @@ export const FakeData1 = {
  * Size: 0x0090
  */
 export const FakeData2 = {
-  struct1: 0x0000,  // 0x0000 (0x0038) [FFakeData1]
-  string1: 0x0038,  // 0x0038 (0x0010) [FString]
-  name1: 0x0048,  // 0x0048 (0x0008) [FName]
-  bool1: 0x0050,  // 0x0050 (0x0004) [bool : 0x1]
-  qword1: 0x0058,  // 0x0058 (0x0008) [uint64]
-  float1: 0x0060,  // 0x0060 (0x0004) [float]
-  byte1: 0x0064,  // 0x0064 (0x0001) [uint8]
-  int1: 0x0068,  // 0x0068 (0x0004) [int32]
-  enum1: 0x006C,  // 0x006C (0x0001) [FakeDataEnum]
-  array1: 0x0070,  // 0x0070 (0x0010) [TArray<FFakeData1>]
-  array2: 0x0080,  // 0x0080 (0x0010) [TArray<FString>]
+  struct1: 0x0000n,  // 0x0000 (0x0038) [FFakeData1]
+  string1: 0x0038n,  // 0x0038 (0x0010) [FString]
+  name1: 0x0048n,  // 0x0048 (0x0008) [FName]
+  bool1: 0x0050n,  // 0x0050 (0x0004) [bool : 0x1]
+  qword1: 0x0058n,  // 0x0058 (0x0008) [uint64]
+  float1: 0x0060n,  // 0x0060 (0x0004) [float]
+  byte1: 0x0064n,  // 0x0064 (0x0001) [uint8]
+  int1: 0x0068n,  // 0x0068 (0x0004) [int32]
+  enum1: 0x006cn,  // 0x006c (0x0001) [FakeDataEnum]
+  array1: 0x0070n,  // 0x0070 (0x0010) [TArray<FFakeData1>]
+  array2: 0x0080n,  // 0x0080 (0x0010) [TArray<FString>]
 } as const;
 
 /**
@@ -11595,47 +10107,47 @@ export const FakeData2 = {
  * Size: 0x0130
  */
 export const FakeData3 = {
-  array1: 0x0000,  // 0x0000 (0x0010) [TArray<FFakeData2>]
-  string1: 0x0010,  // 0x0010 (0x0010) [FString]
-  struct1: 0x0020,  // 0x0020 (0x0038) [FFakeData1]
-  name1: 0x0058,  // 0x0058 (0x0008) [FName]
-  array2: 0x0060,  // 0x0060 (0x0010) [TArray<FFakeData2>]
-  array3: 0x0070,  // 0x0070 (0x0010) [TArray<FFakeData2>]
-  bool1: 0x0080,  // 0x0080 (0x0004) [bool : 0x1]
-  qword1: 0x0088,  // 0x0088 (0x0008) [uint64]
-  float1: 0x0090,  // 0x0090 (0x0004) [float]
-  byte1: 0x0094,  // 0x0094 (0x0001) [uint8]
-  int1: 0x0098,  // 0x0098 (0x0004) [int32]
-  enum1: 0x009C,  // 0x009C (0x0001) [FakeDataEnum]
-  struct2: 0x00A0,  // 0x00A0 (0x0090) [FFakeData2]
+  array1: 0x0000n,  // 0x0000 (0x0010) [TArray<FFakeData2>]
+  string1: 0x0010n,  // 0x0010 (0x0010) [FString]
+  struct1: 0x0020n,  // 0x0020 (0x0038) [FFakeData1]
+  name1: 0x0058n,  // 0x0058 (0x0008) [FName]
+  array2: 0x0060n,  // 0x0060 (0x0010) [TArray<FFakeData2>]
+  array3: 0x0070n,  // 0x0070 (0x0010) [TArray<FFakeData2>]
+  bool1: 0x0080n,  // 0x0080 (0x0004) [bool : 0x1]
+  qword1: 0x0088n,  // 0x0088 (0x0008) [uint64]
+  float1: 0x0090n,  // 0x0090 (0x0004) [float]
+  byte1: 0x0094n,  // 0x0094 (0x0001) [uint8]
+  int1: 0x0098n,  // 0x0098 (0x0004) [int32]
+  enum1: 0x009cn,  // 0x009c (0x0001) [FakeDataEnum]
+  struct2: 0x00a0n,  // 0x00a0 (0x0090) [FFakeData2]
 } as const;
 
 /**
  * ScriptStruct ProjectX.FakeData_X.FakeData4 Offsets
- * Size: 0x011D
+ * Size: 0x011d
  */
 export const FakeData4 = {
-  struct2: 0x0000,  // 0x0000 (0x0090) [FFakeData2]
-  array1: 0x0090,  // 0x0090 (0x0010) [TArray<FFakeData3>]
-  struct1: 0x00A0,  // 0x00A0 (0x0038) [FFakeData1]
-  array2: 0x00D8,  // 0x00D8 (0x0010) [TArray<FFakeData2>]
-  string1: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  name1: 0x00F8,  // 0x00F8 (0x0008) [FName]
-  bool1: 0x0100,  // 0x0100 (0x0004) [bool : 0x1]
-  qword1: 0x0108,  // 0x0108 (0x0008) [uint64]
-  float1: 0x0110,  // 0x0110 (0x0004) [float]
-  byte1: 0x0114,  // 0x0114 (0x0001) [uint8]
-  int1: 0x0118,  // 0x0118 (0x0004) [int32]
-  enum1: 0x011C,  // 0x011C (0x0001) [FakeDataEnum]
+  struct2: 0x0000n,  // 0x0000 (0x0090) [FFakeData2]
+  array1: 0x0090n,  // 0x0090 (0x0010) [TArray<FFakeData3>]
+  struct1: 0x00a0n,  // 0x00a0 (0x0038) [FFakeData1]
+  array2: 0x00d8n,  // 0x00d8 (0x0010) [TArray<FFakeData2>]
+  string1: 0x00e8n,  // 0x00e8 (0x0010) [FString]
+  name1: 0x00f8n,  // 0x00f8 (0x0008) [FName]
+  bool1: 0x0100n,  // 0x0100 (0x0004) [bool : 0x1]
+  qword1: 0x0108n,  // 0x0108 (0x0008) [uint64]
+  float1: 0x0110n,  // 0x0110 (0x0004) [float]
+  byte1: 0x0114n,  // 0x0114 (0x0001) [uint8]
+  int1: 0x0118n,  // 0x0118 (0x0004) [int32]
+  enum1: 0x011cn,  // 0x011c (0x0001) [FakeDataEnum]
 } as const;
 
 /**
  * ScriptStruct ProjectX.ParameterDispenser_X.FloatParamPair Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const FloatParamPair = {
-  Key: 0x0000,  // 0x0000 (0x0008) [FName]
-  Value: 0x0008,  // 0x0008 (0x0004) [float]
+  Key: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Value: 0x0008n,  // 0x0008 (0x0004) [float]
 } as const;
 
 /**
@@ -11643,20 +10155,20 @@ export const FloatParamPair = {
  * Size: 0x0020
  */
 export const GFxBlurRect = {
-  RectID: 0x0000,  // 0x0000 (0x0010) [FString]
-  TopLeftX: 0x0010,  // 0x0010 (0x0004) [float]
-  TopLeftY: 0x0014,  // 0x0014 (0x0004) [float]
-  BottomRightX: 0x0018,  // 0x0018 (0x0004) [float]
-  BottomRightY: 0x001C,  // 0x001C (0x0004) [float]
+  RectID: 0x0000n,  // 0x0000 (0x0010) [FString]
+  TopLeftX: 0x0010n,  // 0x0010 (0x0004) [float]
+  TopLeftY: 0x0014n,  // 0x0014 (0x0004) [float]
+  BottomRightX: 0x0018n,  // 0x0018 (0x0004) [float]
+  BottomRightY: 0x001cn,  // 0x001c (0x0004) [float]
 } as const;
 
 /**
  * ScriptStruct ProjectX.GFxDataStore_X.GFxDataStoreColumn Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const GFxDataStoreColumn = {
-  Type: 0x0000,  // 0x0000 (0x0001) [ASType]
-  Name: 0x0004,  // 0x0004 (0x0008) [FName]
+  Type: 0x0000n,  // 0x0000 (0x0001) [ASType]
+  Name: 0x0004n,  // 0x0004 (0x0008) [FName]
 } as const;
 
 /**
@@ -11664,8 +10176,8 @@ export const GFxDataStoreColumn = {
  * Size: 0x0018
  */
 export const GFxDataStoreRow = {
-  Values: 0x0000,  // 0x0000 (0x0010) [TArray<FASValue>]
-  BoundObject: 0x0010,  // 0x0010 (0x0008) [UGFxDataRow_X*]
+  Values: 0x0000n,  // 0x0000 (0x0010) [TArray<FASValue>]
+  BoundObject: 0x0010n,  // 0x0010 (0x0008) [UGFxDataRow_X*]
 } as const;
 
 /**
@@ -11673,11 +10185,11 @@ export const GFxDataStoreRow = {
  * Size: 0x0080
  */
 export const GFxDataStoreTable = {
-  Name: 0x0000,  // 0x0000 (0x0008) [FName]
-  Columns: 0x0008,  // 0x0008 (0x0010) [TArray<FGFxDataStoreColumn>]
-  Rows: 0x0018,  // 0x0018 (0x0010) [TArray<FGFxDataStoreRow>]
-  bLevelTransitionPersistent: 0x0028,  // 0x0028 (0x0004) [bool : 0x1]
-  PrimaryKeyMap: 0x0030,  // 0x0030 (0x0050) [FMap_Mirror]
+  Name: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Columns: 0x0008n,  // 0x0008 (0x0010) [TArray<FGFxDataStoreColumn>]
+  Rows: 0x0018n,  // 0x0018 (0x0010) [TArray<FGFxDataStoreRow>]
+  bLevelTransitionPersistent: 0x0028n,  // 0x0028 (0x0004) [bool : 0x1]
+  PrimaryKeyMap: 0x0030n,  // 0x0030 (0x0050) [FMap_Mirror]
 } as const;
 
 /**
@@ -11685,8 +10197,8 @@ export const GFxDataStoreTable = {
  * Size: 0x0018
  */
 export const GFxDirtyRow = {
-  RowNum: 0x0000,  // 0x0000 (0x0004) [int32]
-  DirtyValues: 0x0008,  // 0x0008 (0x0010) [TArray<FName>]
+  RowNum: 0x0000n,  // 0x0000 (0x0004) [int32]
+  DirtyValues: 0x0008n,  // 0x0008 (0x0010) [TArray<FName>]
 } as const;
 
 /**
@@ -11694,17 +10206,17 @@ export const GFxDirtyRow = {
  * Size: 0x0018
  */
 export const GFxDirtyTable = {
-  Name: 0x0000,  // 0x0000 (0x0008) [FName]
-  DirtyRows: 0x0008,  // 0x0008 (0x0010) [TArray<FGFxDirtyRow>]
+  Name: 0x0000n,  // 0x0000 (0x0008) [FName]
+  DirtyRows: 0x0008n,  // 0x0008 (0x0010) [TArray<FGFxDirtyRow>]
 } as const;
 
 /**
  * ScriptStruct ProjectX.GameSettingConfig_X.GameSettingHidingOverride Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const GameSettingHidingOverride = {
-  SettingName: 0x0000,  // 0x0000 (0x0008) [FName]
-  bHidden: 0x0008,  // 0x0008 (0x0004) [bool : 0x1]
+  SettingName: 0x0000n,  // 0x0000 (0x0008) [FName]
+  bHidden: 0x0008n,  // 0x0008 (0x0004) [bool : 0x1]
 } as const;
 
 /**
@@ -11712,9 +10224,9 @@ export const GameSettingHidingOverride = {
  * Size: 0x0010
  */
 export const GamepadDeadzoneSettings = {
-  Type: 0x0000,  // 0x0000 (0x0001) [EInputPlatformType]
-  Key: 0x0004,  // 0x0004 (0x0008) [FName]
-  Deadzone: 0x000C,  // 0x000C (0x0004) [float]
+  Type: 0x0000n,  // 0x0000 (0x0001) [EInputPlatformType]
+  Key: 0x0004n,  // 0x0004 (0x0008) [FName]
+  Deadzone: 0x000cn,  // 0x000c (0x0004) [float]
 } as const;
 
 /**
@@ -11722,12 +10234,12 @@ export const GamepadDeadzoneSettings = {
  * Size: 0x0058
  */
 export const GetGameServerPingListData = {
-  Region: 0x0000,  // 0x0000 (0x0010) [FString]
-  IP: 0x0010,  // 0x0010 (0x0010) [FString]
-  Host: 0x0020,  // 0x0020 (0x0010) [FString]
-  Port: 0x0030,  // 0x0030 (0x0004) [int32]
-  Address: 0x0038,  // 0x0038 (0x0010) [FString]
-  SubRegion: 0x0048,  // 0x0048 (0x0010) [FString]
+  Region: 0x0000n,  // 0x0000 (0x0010) [FString]
+  IP: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Host: 0x0020n,  // 0x0020 (0x0010) [FString]
+  Port: 0x0030n,  // 0x0030 (0x0004) [int32]
+  Address: 0x0038n,  // 0x0038 (0x0010) [FString]
+  SubRegion: 0x0048n,  // 0x0048 (0x0010) [FString]
 } as const;
 
 /**
@@ -11735,11 +10247,11 @@ export const GetGameServerPingListData = {
  * Size: 0x0048
  */
 export const GetGameServerPingListData_Deprecated = {
-  Region: 0x0000,  // 0x0000 (0x0010) [FString]
-  IP: 0x0010,  // 0x0010 (0x0010) [FString]
-  Host: 0x0020,  // 0x0020 (0x0010) [FString]
-  Port: 0x0030,  // 0x0030 (0x0004) [int32]
-  Address: 0x0038,  // 0x0038 (0x0010) [FString]
+  Region: 0x0000n,  // 0x0000 (0x0010) [FString]
+  IP: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Host: 0x0020n,  // 0x0020 (0x0010) [FString]
+  Port: 0x0030n,  // 0x0030 (0x0004) [int32]
+  Address: 0x0038n,  // 0x0038 (0x0010) [FString]
 } as const;
 
 /**
@@ -11747,8 +10259,8 @@ export const GetGameServerPingListData_Deprecated = {
  * Size: 0x0018
  */
 export const GetGenericDataAllData = {
-  DataKey: 0x0000,  // 0x0000 (0x0008) [FName]
-  DataValue: 0x0008,  // 0x0008 (0x0010) [FString]
+  DataKey: 0x0000n,  // 0x0000 (0x0008) [FName]
+  DataValue: 0x0008n,  // 0x0008 (0x0010) [FString]
 } as const;
 
 /**
@@ -11756,10 +10268,10 @@ export const GetGenericDataAllData = {
  * Size: 0x0060
  */
 export const GetLeaderboardBaseData = {
-  PlayerName: 0x0000,  // 0x0000 (0x0010) [FString]
-  PlayerID: 0x0010,  // 0x0010 (0x0048) [FUniqueNetId]
-  Value: 0x0058,  // 0x0058 (0x0004) [int32]
-  MMR: 0x005C,  // 0x005C (0x0004) [float]
+  PlayerName: 0x0000n,  // 0x0000 (0x0010) [FString]
+  PlayerID: 0x0010n,  // 0x0010 (0x0048) [FUniqueNetId]
+  Value: 0x0058n,  // 0x0058 (0x0004) [int32]
+  MMR: 0x005cn,  // 0x005c (0x0004) [float]
 } as const;
 
 /**
@@ -11767,8 +10279,8 @@ export const GetLeaderboardBaseData = {
  * Size: 0x0020
  */
 export const GetLeaderboardPlatformBaseData = {
-  Platform: 0x0000,  // 0x0000 (0x0010) [FString]
-  Players: 0x0010,  // 0x0010 (0x0010) [TArray<FGetLeaderboardBaseData>]
+  Platform: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Players: 0x0010n,  // 0x0010 (0x0010) [TArray<FGetLeaderboardBaseData>]
 } as const;
 
 /**
@@ -11776,10 +10288,10 @@ export const GetLeaderboardPlatformBaseData = {
  * Size: 0x0060
  */
 export const GetLeaderboardRankForUserData = {
-  PlayerName: 0x0000,  // 0x0000 (0x0010) [FString]
-  PlayerID: 0x0010,  // 0x0010 (0x0048) [FUniqueNetId]
-  Value: 0x0058,  // 0x0058 (0x0004) [int32]
-  MMR: 0x005C,  // 0x005C (0x0004) [float]
+  PlayerName: 0x0000n,  // 0x0000 (0x0010) [FString]
+  PlayerID: 0x0010n,  // 0x0010 (0x0048) [FUniqueNetId]
+  Value: 0x0058n,  // 0x0058 (0x0004) [int32]
+  MMR: 0x005cn,  // 0x005c (0x0004) [float]
 } as const;
 
 /**
@@ -11787,10 +10299,10 @@ export const GetLeaderboardRankForUserData = {
  * Size: 0x0018
  */
 export const GetPlayerStorageRequestItem = {
-  Category: 0x0000,  // 0x0000 (0x0008) [FName]
-  Tick: 0x0008,  // 0x0008 (0x0004) [int32]
-  Checksum: 0x000C,  // 0x000C (0x0004) [int32]
-  LocalRef: 0x0010,  // 0x0010 (0x0008) [UObject*]
+  Category: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Tick: 0x0008n,  // 0x0008 (0x0004) [int32]
+  Checksum: 0x000cn,  // 0x000c (0x0004) [int32]
+  LocalRef: 0x0010n,  // 0x0010 (0x0008) [UObject*]
 } as const;
 
 /**
@@ -11798,8 +10310,8 @@ export const GetPlayerStorageRequestItem = {
  * Size: 0x0008
  */
 export const GetPopulationData = {
-  Playlist: 0x0000,  // 0x0000 (0x0004) [int32]
-  PlayerCount: 0x0004,  // 0x0004 (0x0004) [int32]
+  Playlist: 0x0000n,  // 0x0000 (0x0004) [int32]
+  PlayerCount: 0x0004n,  // 0x0004 (0x0004) [int32]
 } as const;
 
 /**
@@ -11807,8 +10319,8 @@ export const GetPopulationData = {
  * Size: 0x0020
  */
 export const HTTPRequestCapturedParam = {
-  Name: 0x0000,  // 0x0000 (0x0010) [FString]
-  Value: 0x0010,  // 0x0010 (0x0010) [FString]
+  Name: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Value: 0x0010n,  // 0x0010 (0x0010) [FString]
 } as const;
 
 /**
@@ -11816,18 +10328,18 @@ export const HTTPRequestCapturedParam = {
  * Size: 0x0090
  */
 export const HonorDuelChallenge = {
-  Challenger: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  Defender: 0x0048,  // 0x0048 (0x0048) [FUniqueNetId]
+  Challenger: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  Defender: 0x0048n,  // 0x0048 (0x0048) [FUniqueNetId]
 } as const;
 
 /**
  * ScriptStruct ProjectX._Types_X.IntVector3 Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const IntVector3 = {
-  X: 0x0000,  // 0x0000 (0x0004) [int32]
-  Y: 0x0004,  // 0x0004 (0x0004) [int32]
-  Z: 0x0008,  // 0x0008 (0x0004) [int32]
+  X: 0x0000n,  // 0x0000 (0x0004) [int32]
+  Y: 0x0004n,  // 0x0004 (0x0004) [int32]
+  Z: 0x0008n,  // 0x0008 (0x0004) [int32]
 } as const;
 
 /**
@@ -11835,21 +10347,21 @@ export const IntVector3 = {
  * Size: 0x0020
  */
 export const JoinMatchSettings = {
-  MatchType: 0x0000,  // 0x0000 (0x0001) [EJoinMatchType]
-  PlaylistId: 0x0004,  // 0x0004 (0x0004) [int32]
-  bFriendJoin: 0x0008,  // 0x0008 (0x0004) [bool : 0x1]
-  bMigration: 0x0008,  // 0x0008 (0x0004) [bool : 0x2]
-  bRankedReconnect: 0x0008,  // 0x0008 (0x0004) [bool : 0x4]
-  Password: 0x0010,  // 0x0010 (0x0010) [FString]
+  MatchType: 0x0000n,  // 0x0000 (0x0001) [EJoinMatchType]
+  PlaylistId: 0x0004n,  // 0x0004 (0x0004) [int32]
+  bFriendJoin: 0x0008n,  // 0x0008 (0x0004) [bool : 0x1]
+  bMigration: 0x0008n,  // 0x0008 (0x0004) [bool : 0x2]
+  bRankedReconnect: 0x0008n,  // 0x0008 (0x0004) [bool : 0x4]
+  Password: 0x0010n,  // 0x0010 (0x0010) [FString]
 } as const;
 
 /**
  * ScriptStruct ProjectX.PlayerInput_X.KeyboardAxisBlendSettings Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const KeyboardAxisBlendSettings = {
-  Axis: 0x0000,  // 0x0000 (0x0008) [FName]
-  BlendTime: 0x0008,  // 0x0008 (0x0004) [float]
+  Axis: 0x0000n,  // 0x0000 (0x0008) [FName]
+  BlendTime: 0x0008n,  // 0x0008 (0x0004) [float]
 } as const;
 
 /**
@@ -11857,15 +10369,15 @@ export const KeyboardAxisBlendSettings = {
  * Size: 0x0080
  */
 export const LeaderboardData = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  UnSanitizedPlayerName: 0x0048,  // 0x0048 (0x0010) [FString]
-  PlayerName: 0x0058,  // 0x0058 (0x0010) [FString]
-  bPsyNetUser: 0x0068,  // 0x0068 (0x0004) [bool : 0x1]
-  Rank: 0x006C,  // 0x006C (0x0004) [int32]
-  Value: 0x0070,  // 0x0070 (0x0004) [int32]
-  MMR: 0x0074,  // 0x0074 (0x0004) [float]
-  Division: 0x0078,  // 0x0078 (0x0004) [int32]
-  bIsPrimaryPlayer: 0x007C,  // 0x007C (0x0004) [bool : 0x1]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  UnSanitizedPlayerName: 0x0048n,  // 0x0048 (0x0010) [FString]
+  PlayerName: 0x0058n,  // 0x0058 (0x0010) [FString]
+  bPsyNetUser: 0x0068n,  // 0x0068 (0x0004) [bool : 0x1]
+  Rank: 0x006cn,  // 0x006c (0x0004) [int32]
+  Value: 0x0070n,  // 0x0070 (0x0004) [int32]
+  MMR: 0x0074n,  // 0x0074 (0x0004) [float]
+  Division: 0x0078n,  // 0x0078 (0x0004) [int32]
+  bIsPrimaryPlayer: 0x007cn,  // 0x007c (0x0004) [bool : 0x1]
 } as const;
 
 /**
@@ -11873,9 +10385,9 @@ export const LeaderboardData = {
  * Size: 0x0038
  */
 export const LensFlareFloatParamCurve = {
-  MaterialParamName: 0x0000,  // 0x0000 (0x0008) [FName]
-  MaterialParamIndex: 0x0008,  // 0x0008 (0x0004) [int32]
-  ValueOverTime: 0x0010,  // 0x0010 (0x0028) [FRawDistributionFloat]
+  MaterialParamName: 0x0000n,  // 0x0000 (0x0008) [FName]
+  MaterialParamIndex: 0x0008n,  // 0x0008 (0x0004) [int32]
+  ValueOverTime: 0x0010n,  // 0x0010 (0x0028) [FRawDistributionFloat]
 } as const;
 
 /**
@@ -11883,8 +10395,8 @@ export const LensFlareFloatParamCurve = {
  * Size: 0x0020
  */
 export const LinkedAccount = {
-  identityProviderId: 0x0000,  // 0x0000 (0x0010) [FString]
-  AccountId: 0x0010,  // 0x0010 (0x0010) [FString]
+  identityProviderId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  AccountId: 0x0010n,  // 0x0010 (0x0010) [FString]
 } as const;
 
 /**
@@ -11892,19 +10404,19 @@ export const LinkedAccount = {
  * Size: 0x0040
  */
 export const LocOverride = {
-  Section: 0x0000,  // 0x0000 (0x0010) [FString]
-  Key: 0x0010,  // 0x0010 (0x0010) [FString]
-  Value: 0x0020,  // 0x0020 (0x0010) [FString]
-  Package: 0x0030,  // 0x0030 (0x0010) [FString]
+  Section: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Key: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Value: 0x0020n,  // 0x0020 (0x0010) [FString]
+  Package: 0x0030n,  // 0x0030 (0x0010) [FString]
 } as const;
 
 /**
  * ScriptStruct ProjectX.Camera_X.LocationCameraKnock Offsets
- * Size: 0x001C
+ * Size: 0x001c
  * Extends: CameraKnockBase
  */
 export const LocationCameraKnock = {
-  Amount: 0x0010,  // 0x0010 (0x000C) [FVector]
+  Amount: 0x0010n,  // 0x0010 (0x000c) [FVector]
   ...CameraKnockBase,
 } as const;
 
@@ -11913,8 +10425,8 @@ export const LocationCameraKnock = {
  * Size: 0x0020
  */
 export const MapPrefs = {
-  Likes: 0x0000,  // 0x0000 (0x0010) [TArray<FName>]
-  Dislikes: 0x0010,  // 0x0010 (0x0010) [TArray<FName>]
+  Likes: 0x0000n,  // 0x0000 (0x0010) [TArray<FName>]
+  Dislikes: 0x0010n,  // 0x0010 (0x0010) [TArray<FName>]
 } as const;
 
 /**
@@ -11922,8 +10434,8 @@ export const MapPrefs = {
  * Size: 0x0058
  */
 export const MatchExploitReportData = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  ReportedReasons: 0x0048,  // 0x0048 (0x0010) [TArray<EExploitType>]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  ReportedReasons: 0x0048n,  // 0x0048 (0x0010) [TArray<EExploitType>]
 } as const;
 
 /**
@@ -11931,9 +10443,9 @@ export const MatchExploitReportData = {
  * Size: 0x0024
  */
 export const MatchInfoJson = {
-  Guid: 0x0000,  // 0x0000 (0x0010) [FString]
-  ip_addresses: 0x0010,  // 0x0010 (0x0010) [TArray<FString>]
-  bIsPlaylistProtected: 0x0020,  // 0x0020 (0x0004) [bool : 0x1]
+  Guid: 0x0000n,  // 0x0000 (0x0010) [FString]
+  ip_addresses: 0x0010n,  // 0x0010 (0x0010) [TArray<FString>]
+  bIsPlaylistProtected: 0x0020n,  // 0x0020 (0x0004) [bool : 0x1]
 } as const;
 
 /**
@@ -11941,15 +10453,15 @@ export const MatchInfoJson = {
  * Size: 0x0024
  */
 export const MatchSkillUpdate = {
-  bValid: 0x0000,  // 0x0000 (0x0004) [bool : 0x1]
-  Mu: 0x0004,  // 0x0004 (0x0004) [float]
-  Sigma: 0x0008,  // 0x0008 (0x0004) [float]
-  Tier: 0x000C,  // 0x000C (0x0004) [int32]
-  Division: 0x0010,  // 0x0010 (0x0004) [int32]
-  PrevMu: 0x0014,  // 0x0014 (0x0004) [float]
-  PrevSigma: 0x0018,  // 0x0018 (0x0004) [float]
-  PrevTier: 0x001C,  // 0x001C (0x0004) [int32]
-  PrevDivision: 0x0020,  // 0x0020 (0x0004) [int32]
+  bValid: 0x0000n,  // 0x0000 (0x0004) [bool : 0x1]
+  Mu: 0x0004n,  // 0x0004 (0x0004) [float]
+  Sigma: 0x0008n,  // 0x0008 (0x0004) [float]
+  Tier: 0x000cn,  // 0x000c (0x0004) [int32]
+  Division: 0x0010n,  // 0x0010 (0x0004) [int32]
+  PrevMu: 0x0014n,  // 0x0014 (0x0004) [float]
+  PrevSigma: 0x0018n,  // 0x0018 (0x0004) [float]
+  PrevTier: 0x001cn,  // 0x001c (0x0004) [int32]
+  PrevDivision: 0x0020n,  // 0x0020 (0x0004) [int32]
 } as const;
 
 /**
@@ -11957,14 +10469,14 @@ export const MatchSkillUpdate = {
  * Size: 0x0060
  */
 export const MatchmakingRequestData = {
-  PartyID: 0x0000,  // 0x0000 (0x0010) [FString]
-  Regions: 0x0010,  // 0x0010 (0x0010) [TArray<FDSRegionInfo>]
-  Playlists: 0x0020,  // 0x0020 (0x0010) [TArray<int32>]
-  SecondsSearching: 0x0030,  // 0x0030 (0x0004) [int32]
-  CurrentServerID: 0x0038,  // 0x0038 (0x0010) [FString]
-  bDisableCrossPlay: 0x0048,  // 0x0048 (0x0004) [bool : 0x1]
-  bIgnoreSkill: 0x0048,  // 0x0048 (0x0004) [bool : 0x2]
-  PartyMembers: 0x0050,  // 0x0050 (0x0010) [TArray<FUniqueNetId>]
+  PartyID: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Regions: 0x0010n,  // 0x0010 (0x0010) [TArray<FDSRegionInfo>]
+  Playlists: 0x0020n,  // 0x0020 (0x0010) [TArray<int32>]
+  SecondsSearching: 0x0030n,  // 0x0030 (0x0004) [int32]
+  CurrentServerID: 0x0038n,  // 0x0038 (0x0010) [FString]
+  bDisableCrossPlay: 0x0048n,  // 0x0048 (0x0004) [bool : 0x1]
+  bIgnoreSkill: 0x0048n,  // 0x0048 (0x0004) [bool : 0x2]
+  PartyMembers: 0x0050n,  // 0x0050 (0x0010) [TArray<FUniqueNetId>]
 } as const;
 
 /**
@@ -11972,7 +10484,7 @@ export const MatchmakingRequestData = {
  * Size: 0x0004
  */
 export const MemoryMetrics = {
-  Physical: 0x0000,  // 0x0000 (0x0004) [float]
+  Physical: 0x0000n,  // 0x0000 (0x0004) [float]
 } as const;
 
 /**
@@ -11980,14 +10492,14 @@ export const MemoryMetrics = {
  * Size: 0x0058
  */
 export const MessagePayload = {
-  SenderId: 0x0000,  // 0x0000 (0x0010) [FString]
-  RoomId: 0x0010,  // 0x0010 (0x0010) [FString]
-  MessageText: 0x0020,  // 0x0020 (0x0010) [FString]
-  TimeStamp: 0x0030,  // 0x0030 (0x0008) [uint64]
-  SequenceNumber: 0x0038,  // 0x0038 (0x0004) [int32]
-  bWantsToRecord: 0x003C,  // 0x003C (0x0004) [bool : 0x1]
-  ChannelType: 0x0040,  // 0x0040 (0x0001) [EChatChannel]
-  MessageId: 0x0048,  // 0x0048 (0x0010) [FString]
+  SenderId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  RoomId: 0x0010n,  // 0x0010 (0x0010) [FString]
+  MessageText: 0x0020n,  // 0x0020 (0x0010) [FString]
+  TimeStamp: 0x0030n,  // 0x0030 (0x0008) [uint64]
+  SequenceNumber: 0x0038n,  // 0x0038 (0x0004) [int32]
+  bWantsToRecord: 0x003cn,  // 0x003c (0x0004) [bool : 0x1]
+  ChannelType: 0x0040n,  // 0x0040 (0x0001) [EChatChannel]
+  MessageId: 0x0048n,  // 0x0048 (0x0010) [FString]
 } as const;
 
 /**
@@ -11995,7 +10507,7 @@ export const MessagePayload = {
  * Size: 0x0010
  */
 export const MetricEventJsonStruct = {
-  Events: 0x0000,  // 0x0000 (0x0010) [TArray<UEOSMetricEvent_X*>]
+  Events: 0x0000n,  // 0x0000 (0x0010) [TArray<UEOSMetricEvent_X*>]
 } as const;
 
 /**
@@ -12003,38 +10515,38 @@ export const MetricEventJsonStruct = {
  * Size: 0x0070
  */
 export const MetricsEvent = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  TimeSeconds: 0x0048,  // 0x0048 (0x0004) [float]
-  Version: 0x004C,  // 0x004C (0x0004) [int32]
-  EventName: 0x0050,  // 0x0050 (0x0010) [FString]
-  EventData: 0x0060,  // 0x0060 (0x0010) [FString]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  TimeSeconds: 0x0048n,  // 0x0048 (0x0004) [float]
+  Version: 0x004cn,  // 0x004c (0x0004) [int32]
+  EventName: 0x0050n,  // 0x0050 (0x0010) [FString]
+  EventData: 0x0060n,  // 0x0060 (0x0010) [FString]
 } as const;
 
 /**
  * ScriptStruct ProjectX._Types_X.MigrationReservationData Offsets
- * Size: 0x00E8
+ * Size: 0x00e8
  */
 export const MigrationReservationData = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  PlayerName: 0x0048,  // 0x0048 (0x0010) [FString]
-  PartyID: 0x0058,  // 0x0058 (0x0048) [FUniqueNetId]
-  ClubID: 0x00A0,  // 0x00A0 (0x0008) [uint64]
-  Status: 0x00A8,  // 0x00A8 (0x0001) [EReservationStatus]
-  bDisableCrossPlay: 0x00AC,  // 0x00AC (0x0004) [bool : 0x1]
-  Team: 0x00B0,  // 0x00B0 (0x0001) [uint8]
-  Skill: 0x00B4,  // 0x00B4 (0x0008) [FSkillRating]
-  MapLikes: 0x00C0,  // 0x00C0 (0x0010) [TArray<FName>]
-  MapDislikes: 0x00D0,  // 0x00D0 (0x0010) [TArray<FName>]
-  SecurityKey: 0x00E0,  // 0x00E0 (0x0008) [UNetworkEncryptionKey*]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  PlayerName: 0x0048n,  // 0x0048 (0x0010) [FString]
+  PartyID: 0x0058n,  // 0x0058 (0x0048) [FUniqueNetId]
+  ClubID: 0x00a0n,  // 0x00a0 (0x0008) [uint64]
+  Status: 0x00a8n,  // 0x00a8 (0x0001) [EReservationStatus]
+  bDisableCrossPlay: 0x00acn,  // 0x00ac (0x0004) [bool : 0x1]
+  Team: 0x00b0n,  // 0x00b0 (0x0001) [uint8]
+  Skill: 0x00b4n,  // 0x00b4 (0x0008) [FSkillRating]
+  MapLikes: 0x00c0n,  // 0x00c0 (0x0010) [TArray<FName>]
+  MapDislikes: 0x00d0n,  // 0x00d0 (0x0010) [TArray<FName>]
+  SecurityKey: 0x00e0n,  // 0x00e0 (0x0008) [UNetworkEncryptionKey*]
 } as const;
 
 /**
  * ScriptStruct ProjectX.RPC_GetClubStats_X.MilestoneTitleData Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const MilestoneTitleData = {
-  Badge: 0x0000,  // 0x0000 (0x0001) [EClubBadge]
-  Title: 0x0004,  // 0x0004 (0x0008) [FName]
+  Badge: 0x0000n,  // 0x0000 (0x0001) [EClubBadge]
+  Title: 0x0004n,  // 0x0004 (0x0008) [FName]
 } as const;
 
 /**
@@ -12042,9 +10554,9 @@ export const MilestoneTitleData = {
  * Size: 0x0038
  */
 export const ModifierSubscription = {
-  ObjClass: 0x0000,  // 0x0000 (0x0008) [UClass*]
-  OnAdd: 0x0008,  // 0x0008 (0x0018) [FScriptDelegate]
-  OnRemove: 0x0020,  // 0x0020 (0x0018) [FScriptDelegate]
+  ObjClass: 0x0000n,  // 0x0000 (0x0008) [UClass*]
+  OnAdd: 0x0008n,  // 0x0008 (0x0018) [FScriptDelegate]
+  OnRemove: 0x0020n,  // 0x0020 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -12052,18 +10564,18 @@ export const ModifierSubscription = {
  * Size: 0x0010
  */
 export const NameParamPair = {
-  Key: 0x0000,  // 0x0000 (0x0008) [FName]
-  Value: 0x0008,  // 0x0008 (0x0008) [FName]
+  Key: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Value: 0x0008n,  // 0x0008 (0x0008) [FName]
 } as const;
 
 /**
  * ScriptStruct ProjectX._Types_X.NetStats Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const NetStats = {
-  PingMin: 0x0000,  // 0x0000 (0x0004) [float]
-  Jitter: 0x0004,  // 0x0004 (0x0004) [float]
-  LossPct: 0x0008,  // 0x0008 (0x0004) [float]
+  PingMin: 0x0000n,  // 0x0000 (0x0004) [float]
+  Jitter: 0x0004n,  // 0x0004 (0x0004) [float]
+  LossPct: 0x0008n,  // 0x0008 (0x0004) [float]
 } as const;
 
 /**
@@ -12071,7 +10583,7 @@ export const NetStats = {
  * Size: 0x0010
  */
 export const NetworkAdapterMetrics = {
-  Types: 0x0000,  // 0x0000 (0x0010) [TArray<FString>]
+  Types: 0x0000n,  // 0x0000 (0x0010) [TArray<FString>]
 } as const;
 
 /**
@@ -12079,8 +10591,8 @@ export const NetworkAdapterMetrics = {
  * Size: 0x0020
  */
 export const OSMetrics = {
-  Type: 0x0000,  // 0x0000 (0x0010) [FString]
-  Bits: 0x0010,  // 0x0010 (0x0010) [FString]
+  Type: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Bits: 0x0010n,  // 0x0010 (0x0010) [FString]
 } as const;
 
 /**
@@ -12088,8 +10600,8 @@ export const OSMetrics = {
  * Size: 0x0018
  */
 export const OnlineMessageHandler = {
-  MessageClass: 0x0000,  // 0x0000 (0x0008) [UClass*]
-  Delegates: 0x0008,  // 0x0008 (0x0010) [TArray<FScriptDelegate>]
+  MessageClass: 0x0000n,  // 0x0000 (0x0008) [UClass*]
+  Delegates: 0x0008n,  // 0x0008 (0x0010) [TArray<FScriptDelegate>]
 } as const;
 
 /**
@@ -12097,10 +10609,10 @@ export const OnlineMessageHandler = {
  * Size: 0x0078
  */
 export const OnlinePersonaData = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  PlayerName: 0x0048,  // 0x0048 (0x0010) [FString]
-  PresenceInfo: 0x0058,  // 0x0058 (0x0010) [FString]
-  PresenceState: 0x0068,  // 0x0068 (0x0010) [FString]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  PlayerName: 0x0048n,  // 0x0048 (0x0010) [FString]
+  PresenceInfo: 0x0058n,  // 0x0058 (0x0010) [FString]
+  PresenceState: 0x0068n,  // 0x0068 (0x0010) [FString]
 } as const;
 
 /**
@@ -12108,32 +10620,32 @@ export const OnlinePersonaData = {
  * Size: 0x0068
  */
 export const OnlinePlayerMapPrefs = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  MapLikes: 0x0048,  // 0x0048 (0x0010) [TArray<FName>]
-  MapDislikes: 0x0058,  // 0x0058 (0x0010) [TArray<FName>]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  MapLikes: 0x0048n,  // 0x0048 (0x0010) [TArray<FName>]
+  MapDislikes: 0x0058n,  // 0x0058 (0x0010) [TArray<FName>]
 } as const;
 
 /**
  * ScriptStruct ProjectX.OnlinePlayerStorageSync_X.OnlinePlayerStorageSyncRequest Offsets
- * Size: 0x000D
+ * Size: 0x000d
  */
 export const OnlinePlayerStorageSyncRequest = {
-  DataObj: 0x0000,  // 0x0000 (0x0008) [UObject*]
-  ClientTick: 0x0008,  // 0x0008 (0x0004) [int32]
-  Encoding: 0x000C,  // 0x000C (0x0001) [EObjectEncoding]
+  DataObj: 0x0000n,  // 0x0000 (0x0008) [UObject*]
+  ClientTick: 0x0008n,  // 0x0008 (0x0004) [int32]
+  Encoding: 0x000cn,  // 0x000c (0x0001) [EObjectEncoding]
 } as const;
 
 /**
  * ScriptStruct ProjectX.OnlinePlayerStorageSync_X.OnlinePlayerStorageSyncResult Offsets
- * Size: 0x001D
+ * Size: 0x001d
  */
 export const OnlinePlayerStorageSyncResult = {
-  DataClass: 0x0000,  // 0x0000 (0x0008) [UClass*]
-  RemoteData: 0x0008,  // 0x0008 (0x0008) [UObject*]
-  ServerTick: 0x0010,  // 0x0010 (0x0004) [int32]
-  Checksum: 0x0014,  // 0x0014 (0x0004) [int32]
-  bChecksumMatch: 0x0018,  // 0x0018 (0x0004) [bool : 0x1]
-  Encoding: 0x001C,  // 0x001C (0x0001) [EObjectEncoding]
+  DataClass: 0x0000n,  // 0x0000 (0x0008) [UClass*]
+  RemoteData: 0x0008n,  // 0x0008 (0x0008) [UObject*]
+  ServerTick: 0x0010n,  // 0x0010 (0x0004) [int32]
+  Checksum: 0x0014n,  // 0x0014 (0x0004) [int32]
+  bChecksumMatch: 0x0018n,  // 0x0018 (0x0004) [bool : 0x1]
+  Encoding: 0x001cn,  // 0x001c (0x0001) [EObjectEncoding]
 } as const;
 
 /**
@@ -12141,9 +10653,9 @@ export const OnlinePlayerStorageSyncResult = {
  * Size: 0x0059
  */
 export const OnlineStatus = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  PresenceInfo: 0x0048,  // 0x0048 (0x0010) [FString]
-  PresenceState: 0x0058,  // 0x0058 (0x0001) [EOnlineFriendState]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  PresenceInfo: 0x0048n,  // 0x0048 (0x0010) [FString]
+  PresenceState: 0x0058n,  // 0x0058 (0x0001) [EOnlineFriendState]
 } as const;
 
 /**
@@ -12151,8 +10663,8 @@ export const OnlineStatus = {
  * Size: 0x0018
  */
 export const Orientation = {
-  Location: 0x0000,  // 0x0000 (0x000C) [FVector]
-  Rotation: 0x000C,  // 0x000C (0x000C) [FRotator]
+  Location: 0x0000n,  // 0x0000 (0x000c) [FVector]
+  Rotation: 0x000cn,  // 0x000c (0x000c) [FRotator]
 } as const;
 
 /**
@@ -12160,28 +10672,28 @@ export const Orientation = {
  * Size: 0x0010
  */
 export const PPChainInfo = {
-  ChainName: 0x0000,  // 0x0000 (0x0008) [FName]
-  ChainReference: 0x0008,  // 0x0008 (0x0008) [UPostProcessChain*]
+  ChainName: 0x0000n,  // 0x0000 (0x0008) [FName]
+  ChainReference: 0x0008n,  // 0x0008 (0x0008) [UPostProcessChain*]
 } as const;
 
 /**
  * ScriptStruct ProjectX.PostProcessManager_X.PPEffectDefaults Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const PPEffectDefaults = {
-  EffectName: 0x0000,  // 0x0000 (0x0008) [FName]
-  bEnabled: 0x0008,  // 0x0008 (0x0004) [bool : 0x1]
+  EffectName: 0x0000n,  // 0x0000 (0x0008) [FName]
+  bEnabled: 0x0008n,  // 0x0008 (0x0004) [bool : 0x1]
 } as const;
 
 /**
  * ScriptStruct ProjectX.PostProcessManager_X.PPPersistentEffectDefaults Offsets
- * Size: 0x001C
+ * Size: 0x001c
  */
 export const PPPersistentEffectDefaults = {
-  EffectName: 0x0000,  // 0x0000 (0x0008) [FName]
-  MaterialEffectName: 0x0008,  // 0x0008 (0x0008) [FName]
-  MaterialParamName: 0x0010,  // 0x0010 (0x0008) [FName]
-  DefaultValue: 0x0018,  // 0x0018 (0x0004) [float]
+  EffectName: 0x0000n,  // 0x0000 (0x0008) [FName]
+  MaterialEffectName: 0x0008n,  // 0x0008 (0x0008) [FName]
+  MaterialParamName: 0x0010n,  // 0x0010 (0x0008) [FName]
+  DefaultValue: 0x0018n,  // 0x0018 (0x0004) [float]
 } as const;
 
 /**
@@ -12189,9 +10701,9 @@ export const PPPersistentEffectDefaults = {
  * Size: 0x0050
  */
 export const PartyByTeam = {
-  PartyID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  Team: 0x0048,  // 0x0048 (0x0001) [uint8]
-  Size: 0x004C,  // 0x004C (0x0004) [int32]
+  PartyID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  Team: 0x0048n,  // 0x0048 (0x0001) [uint8]
+  Size: 0x004cn,  // 0x004c (0x0004) [int32]
 } as const;
 
 /**
@@ -12199,8 +10711,8 @@ export const PartyByTeam = {
  * Size: 0x0080
  */
 export const PartyData = {
-  Info: 0x0000,  // 0x0000 (0x0070) [FPsyNetPartyInfo]
-  Members: 0x0070,  // 0x0070 (0x0010) [TArray<FPsyNetPartyMember>]
+  Info: 0x0000n,  // 0x0000 (0x0070) [FPsyNetPartyInfo]
+  Members: 0x0070n,  // 0x0070 (0x0010) [TArray<FPsyNetPartyMember>]
 } as const;
 
 /**
@@ -12208,11 +10720,11 @@ export const PartyData = {
  * Size: 0x0078
  */
 export const PartyInvite = {
-  UserId: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  Username: 0x0048,  // 0x0048 (0x0010) [FString]
-  PartyID: 0x0058,  // 0x0058 (0x0010) [FString]
-  InvitedAt: 0x0068,  // 0x0068 (0x0008) [uint64]
-  AcceptedAt: 0x0070,  // 0x0070 (0x0008) [uint64]
+  UserId: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  Username: 0x0048n,  // 0x0048 (0x0010) [FString]
+  PartyID: 0x0058n,  // 0x0058 (0x0010) [FString]
+  InvitedAt: 0x0068n,  // 0x0068 (0x0008) [uint64]
+  AcceptedAt: 0x0070n,  // 0x0070 (0x0008) [uint64]
 } as const;
 
 /**
@@ -12220,41 +10732,41 @@ export const PartyInvite = {
  * Size: 0x0058
  */
 export const PartyJoinMatchSettings = {
-  ServerName: 0x0000,  // 0x0000 (0x0010) [FString]
-  PlaylistId: 0x0010,  // 0x0010 (0x0004) [int32]
-  bFriendJoin: 0x0014,  // 0x0014 (0x0004) [bool : 0x1]
-  CustomPassword: 0x0018,  // 0x0018 (0x0010) [FString]
-  ReservationID: 0x0028,  // 0x0028 (0x0010) [FString]
-  JoinName: 0x0038,  // 0x0038 (0x0010) [FString]
-  JoinPassword: 0x0048,  // 0x0048 (0x0010) [FString]
+  ServerName: 0x0000n,  // 0x0000 (0x0010) [FString]
+  PlaylistId: 0x0010n,  // 0x0010 (0x0004) [int32]
+  bFriendJoin: 0x0014n,  // 0x0014 (0x0004) [bool : 0x1]
+  CustomPassword: 0x0018n,  // 0x0018 (0x0010) [FString]
+  ReservationID: 0x0028n,  // 0x0028 (0x0010) [FString]
+  JoinName: 0x0038n,  // 0x0038 (0x0010) [FString]
+  JoinPassword: 0x0048n,  // 0x0048 (0x0010) [FString]
 } as const;
 
 /**
  * ScriptStruct ProjectX._Types_X.PartyMember Offsets
- * Size: 0x017A
+ * Size: 0x017a
  */
 export const PartyMember = {
-  PrimaryMemberId: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  MemberId: 0x0048,  // 0x0048 (0x0048) [FUniqueNetId]
-  MemberName: 0x0090,  // 0x0090 (0x0010) [FString]
-  MatchmakeRestrictions: 0x00A0,  // 0x00A0 (0x0004) [int32]
-  LocalControllerId: 0x00A4,  // 0x00A4 (0x0004) [int32]
-  bDataLoaded: 0x00A8,  // 0x00A8 (0x0004) [bool : 0x1]
-  XpLevel: 0x00AC,  // 0x00AC (0x0004) [int32]
-  bCompletedChallenges: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x1]
-  bLegacyPlayer: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x2]
-  bGuestAccount: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x4]
-  CrossChatState: 0x00B4,  // 0x00B4 (0x0001) [ECrossPlatformChatState]
-  bDisableCrossPlay: 0x00B8,  // 0x00B8 (0x0004) [bool : 0x1]
-  bTradingEnabled: 0x00B8,  // 0x00B8 (0x0004) [bool : 0x2]
-  TradingMemberId: 0x00C0,  // 0x00C0 (0x0048) [FUniqueNetId]
-  TradeId: 0x0108,  // 0x0108 (0x0010) [FGuid]
-  bReadyToLockTrade: 0x0118,  // 0x0118 (0x0004) [bool : 0x1]
-  bReadyToConfirmTrade: 0x0118,  // 0x0118 (0x0004) [bool : 0x2]
-  Server: 0x0120,  // 0x0120 (0x0048) [FPartyMemberServer]
-  PlatformParty: 0x0168,  // 0x0168 (0x0010) [FUniqueLobbyId]
-  VoiceReportingLevel: 0x0178,  // 0x0178 (0x0001) [EChatReportingLevel]
-  TextReportingLevel: 0x0179,  // 0x0179 (0x0001) [EChatReportingLevel]
+  PrimaryMemberId: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  MemberId: 0x0048n,  // 0x0048 (0x0048) [FUniqueNetId]
+  MemberName: 0x0090n,  // 0x0090 (0x0010) [FString]
+  MatchmakeRestrictions: 0x00a0n,  // 0x00a0 (0x0004) [int32]
+  LocalControllerId: 0x00a4n,  // 0x00a4 (0x0004) [int32]
+  bDataLoaded: 0x00a8n,  // 0x00a8 (0x0004) [bool : 0x1]
+  XpLevel: 0x00acn,  // 0x00ac (0x0004) [int32]
+  bCompletedChallenges: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x1]
+  bLegacyPlayer: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x2]
+  bGuestAccount: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x4]
+  CrossChatState: 0x00b4n,  // 0x00b4 (0x0001) [ECrossPlatformChatState]
+  bDisableCrossPlay: 0x00b8n,  // 0x00b8 (0x0004) [bool : 0x1]
+  bTradingEnabled: 0x00b8n,  // 0x00b8 (0x0004) [bool : 0x2]
+  TradingMemberId: 0x00c0n,  // 0x00c0 (0x0048) [FUniqueNetId]
+  TradeId: 0x0108n,  // 0x0108 (0x0010) [FGuid]
+  bReadyToLockTrade: 0x0118n,  // 0x0118 (0x0004) [bool : 0x1]
+  bReadyToConfirmTrade: 0x0118n,  // 0x0118 (0x0004) [bool : 0x2]
+  Server: 0x0120n,  // 0x0120 (0x0048) [FPartyMemberServer]
+  PlatformParty: 0x0168n,  // 0x0168 (0x0010) [FUniqueLobbyId]
+  VoiceReportingLevel: 0x0178n,  // 0x0178 (0x0001) [EChatReportingLevel]
+  TextReportingLevel: 0x0179n,  // 0x0179 (0x0001) [EChatReportingLevel]
 } as const;
 
 /**
@@ -12262,11 +10774,11 @@ export const PartyMember = {
  * Size: 0x0044
  */
 export const PartyMemberServer = {
-  ServerName: 0x0000,  // 0x0000 (0x0010) [FString]
-  CustomPassword: 0x0010,  // 0x0010 (0x0010) [FString]
-  JoinName: 0x0020,  // 0x0020 (0x0010) [FString]
-  JoinPassword: 0x0030,  // 0x0030 (0x0010) [FString]
-  PlaylistId: 0x0040,  // 0x0040 (0x0004) [int32]
+  ServerName: 0x0000n,  // 0x0000 (0x0010) [FString]
+  CustomPassword: 0x0010n,  // 0x0010 (0x0010) [FString]
+  JoinName: 0x0020n,  // 0x0020 (0x0010) [FString]
+  JoinPassword: 0x0030n,  // 0x0030 (0x0010) [FString]
+  PlaylistId: 0x0040n,  // 0x0040 (0x0004) [int32]
 } as const;
 
 /**
@@ -12274,38 +10786,38 @@ export const PartyMemberServer = {
  * Size: 0x0058
  */
 export const PartyMemberSkill = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  Skills: 0x0048,  // 0x0048 (0x0010) [TArray<FPlayerSkillRating>]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  Skills: 0x0048n,  // 0x0048 (0x0010) [TArray<FPlayerSkillRating>]
 } as const;
 
 /**
  * ScriptStruct ProjectX.PartyMetrics_X.PartyMetricsData Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const PartyMetricsData = {
-  LocalPlayers: 0x0000,  // 0x0000 (0x0004) [int32]
-  RemotePlayers: 0x0004,  // 0x0004 (0x0004) [int32]
-  bPartyLeader: 0x0008,  // 0x0008 (0x0004) [bool : 0x1]
+  LocalPlayers: 0x0000n,  // 0x0000 (0x0004) [int32]
+  RemotePlayers: 0x0004n,  // 0x0004 (0x0004) [int32]
+  bPartyLeader: 0x0008n,  // 0x0008 (0x0004) [bool : 0x1]
 } as const;
 
 /**
  * ScriptStruct ProjectX.GameInfo_X.PauserData Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const PauserData = {
-  PC: 0x0000,  // 0x0000 (0x0008) [UPlayerController*]
-  PauseNum: 0x0008,  // 0x0008 (0x0004) [int32]
+  PC: 0x0000n,  // 0x0000 (0x0008) [UPlayerController*]
+  PauseNum: 0x0008n,  // 0x0008 (0x0004) [int32]
 } as const;
 
 /**
  * ScriptStruct ProjectX.PsyNetChannel_X.PendingChannelService Offsets
- * Size: 0x001C
+ * Size: 0x001c
  */
 export const PendingChannelService = {
-  Service: 0x0000,  // 0x0000 (0x0008) [UPsyNetClientService_X*]
-  MessageId: 0x0008,  // 0x0008 (0x0004) [int32]
-  Task: 0x0010,  // 0x0010 (0x0008) [UAsyncTask*]
-  ReceiveTime: 0x0018,  // 0x0018 (0x0004) [float]
+  Service: 0x0000n,  // 0x0000 (0x0008) [UPsyNetClientService_X*]
+  MessageId: 0x0008n,  // 0x0008 (0x0004) [int32]
+  Task: 0x0010n,  // 0x0010 (0x0008) [UAsyncTask*]
+  ReceiveTime: 0x0018n,  // 0x0018 (0x0004) [float]
 } as const;
 
 /**
@@ -12313,8 +10825,8 @@ export const PendingChannelService = {
  * Size: 0x0020
  */
 export const PendingMessage = {
-  LobbyId: 0x0000,  // 0x0000 (0x0010) [FUniqueLobbyId]
-  Messages: 0x0010,  // 0x0010 (0x0010) [TArray<FString>]
+  LobbyId: 0x0000n,  // 0x0000 (0x0010) [FUniqueLobbyId]
+  Messages: 0x0010n,  // 0x0010 (0x0010) [TArray<FString>]
 } as const;
 
 /**
@@ -12322,12 +10834,12 @@ export const PendingMessage = {
  * Size: 0x0020
  */
 export const PendingRPC = {
-  RPC: 0x0000,  // 0x0000 (0x0008) [URPC_X*]
-  UniqueId: 0x0008,  // 0x0008 (0x0004) [int32]
-  CreationTime: 0x000C,  // 0x000C (0x0004) [float]
-  Failures: 0x0010,  // 0x0010 (0x0004) [int32]
-  NextSendTime: 0x0014,  // 0x0014 (0x0004) [float]
-  PendingError: 0x0018,  // 0x0018 (0x0008) [UError*]
+  RPC: 0x0000n,  // 0x0000 (0x0008) [URPC_X*]
+  UniqueId: 0x0008n,  // 0x0008 (0x0004) [int32]
+  CreationTime: 0x000cn,  // 0x000c (0x0004) [float]
+  Failures: 0x0010n,  // 0x0010 (0x0004) [int32]
+  NextSendTime: 0x0014n,  // 0x0014 (0x0004) [float]
+  PendingError: 0x0018n,  // 0x0018 (0x0008) [UError*]
 } as const;
 
 /**
@@ -12335,8 +10847,8 @@ export const PendingRPC = {
  * Size: 0x0018
  */
 export const PendingReservation = {
-  Connection: 0x0000,  // 0x0000 (0x0010) [TScriptInterface<UIReservationConnection_X>]
-  Message: 0x0010,  // 0x0010 (0x0008) [UAddReservationMessage_X*]
+  Connection: 0x0000n,  // 0x0000 (0x0010) [TScriptInterface<UIReservationConnection_X>]
+  Message: 0x0010n,  // 0x0010 (0x0008) [UAddReservationMessage_X*]
 } as const;
 
 /**
@@ -12344,9 +10856,9 @@ export const PendingReservation = {
  * Size: 0x0014
  */
 export const PendingStorage = {
-  Data: 0x0000,  // 0x0000 (0x0008) [UObject*]
-  DataClass: 0x0008,  // 0x0008 (0x0008) [UClass*]
-  Tick: 0x0010,  // 0x0010 (0x0004) [int32]
+  Data: 0x0000n,  // 0x0000 (0x0008) [UObject*]
+  DataClass: 0x0008n,  // 0x0008 (0x0008) [UClass*]
+  Tick: 0x0010n,  // 0x0010 (0x0004) [int32]
 } as const;
 
 /**
@@ -12354,28 +10866,28 @@ export const PendingStorage = {
  * Size: 0x0010
  */
 export const PingStats = {
-  Min: 0x0000,  // 0x0000 (0x0004) [float]
-  Max: 0x0004,  // 0x0004 (0x0004) [float]
-  Average: 0x0008,  // 0x0008 (0x0004) [float]
-  Median: 0x000C,  // 0x000C (0x0004) [float]
+  Min: 0x0000n,  // 0x0000 (0x0004) [float]
+  Max: 0x0004n,  // 0x0004 (0x0004) [float]
+  Average: 0x0008n,  // 0x0008 (0x0004) [float]
+  Median: 0x000cn,  // 0x000c (0x0004) [float]
 } as const;
 
 /**
  * ScriptStruct ProjectX._Types_X.PlayerBinding Offsets
- * Size: 0x002C
+ * Size: 0x002c
  */
 export const PlayerBinding = {
-  Action: 0x0000,  // 0x0000 (0x0008) [FName]
-  Key: 0x0008,  // 0x0008 (0x0008) [FName]
-  AxisSign: 0x0010,  // 0x0010 (0x0001) [EAxisSign]
-  PressType: 0x0011,  // 0x0011 (0x0001) [EButtonPressType]
-  Speed: 0x0014,  // 0x0014 (0x0004) [float]
-  bRequired: 0x0018,  // 0x0018 (0x0004) [bool : 0x1]
-  Remappable: 0x001C,  // 0x001C (0x0001) [ERemappable]
-  PressedTime: 0x0020,  // 0x0020 (0x0004) [float]
-  ReleasedTime: 0x0024,  // 0x0024 (0x0004) [float]
-  bTapped: 0x0028,  // 0x0028 (0x0004) [bool : 0x1]
-  bToggled: 0x0028,  // 0x0028 (0x0004) [bool : 0x2]
+  Action: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Key: 0x0008n,  // 0x0008 (0x0008) [FName]
+  AxisSign: 0x0010n,  // 0x0010 (0x0001) [EAxisSign]
+  PressType: 0x0011n,  // 0x0011 (0x0001) [EButtonPressType]
+  Speed: 0x0014n,  // 0x0014 (0x0004) [float]
+  bRequired: 0x0018n,  // 0x0018 (0x0004) [bool : 0x1]
+  Remappable: 0x001cn,  // 0x001c (0x0001) [ERemappable]
+  PressedTime: 0x0020n,  // 0x0020 (0x0004) [float]
+  ReleasedTime: 0x0024n,  // 0x0024 (0x0004) [float]
+  bTapped: 0x0028n,  // 0x0028 (0x0004) [bool : 0x1]
+  bToggled: 0x0028n,  // 0x0028 (0x0004) [bool : 0x2]
 } as const;
 
 /**
@@ -12383,8 +10895,8 @@ export const PlayerBinding = {
  * Size: 0x0028
  */
 export const PlayerBlockListenData = {
-  EpicId: 0x0000,  // 0x0000 (0x0010) [FString]
-  Callback: 0x0010,  // 0x0010 (0x0018) [FScriptDelegate]
+  EpicId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Callback: 0x0010n,  // 0x0010 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -12392,8 +10904,8 @@ export const PlayerBlockListenData = {
  * Size: 0x0050
  */
 export const PlayerClubPair = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  ClubID: 0x0048,  // 0x0048 (0x0008) [uint64]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  ClubID: 0x0048n,  // 0x0048 (0x0008) [uint64]
 } as const;
 
 /**
@@ -12401,8 +10913,8 @@ export const PlayerClubPair = {
  * Size: 0x0050
  */
 export const PlayerClubSyncResult = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  Error: 0x0048,  // 0x0048 (0x0008) [UError*]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  Error: 0x0048n,  // 0x0048 (0x0008) [UError*]
 } as const;
 
 /**
@@ -12410,10 +10922,10 @@ export const PlayerClubSyncResult = {
  * Size: 0x0074
  */
 export const PlayerDLCInfo = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  DLCs: 0x0048,  // 0x0048 (0x0010) [TArray<FSteamPlayerDLCOwnershipState>]
-  ValidationReadyDelegate: 0x0058,  // 0x0058 (0x0018) [FScriptDelegate]
-  TimeLastOwnershipRequest: 0x0070,  // 0x0070 (0x0004) [float]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  DLCs: 0x0048n,  // 0x0048 (0x0010) [TArray<FSteamPlayerDLCOwnershipState>]
+  ValidationReadyDelegate: 0x0058n,  // 0x0058 (0x0018) [FScriptDelegate]
+  TimeLastOwnershipRequest: 0x0070n,  // 0x0070 (0x0004) [float]
 } as const;
 
 /**
@@ -12421,16 +10933,16 @@ export const PlayerDLCInfo = {
  * Size: 0x0010
  */
 export const PlayerPermissions = {
-  TextChat: 0x0000,  // 0x0000 (0x0001) [EChatPermissionLevel]
-  VoiceChat: 0x0001,  // 0x0001 (0x0001) [EChatPermissionLevel]
-  Trade: 0x0002,  // 0x0002 (0x0001) [ETradePermissionLevel]
-  bRequirePinForFriends: 0x0004,  // 0x0004 (0x0004) [bool : 0x1]
-  bItemShopNotificationsAllowed: 0x0004,  // 0x0004 (0x0004) [bool : 0x2]
-  VoiceReporting: 0x0008,  // 0x0008 (0x0001) [EChatReportingLevel]
-  TextReporting: 0x0009,  // 0x0009 (0x0001) [EChatReportingLevel]
-  bFilterMatureLanguage: 0x000C,  // 0x000C (0x0004) [bool : 0x1]
-  bEnableCPCCShowRoWModal: 0x000C,  // 0x000C (0x0004) [bool : 0x2]
-  bEnableCPCCShowRealPrice: 0x000C,  // 0x000C (0x0004) [bool : 0x4]
+  TextChat: 0x0000n,  // 0x0000 (0x0001) [EChatPermissionLevel]
+  VoiceChat: 0x0001n,  // 0x0001 (0x0001) [EChatPermissionLevel]
+  Trade: 0x0002n,  // 0x0002 (0x0001) [ETradePermissionLevel]
+  bRequirePinForFriends: 0x0004n,  // 0x0004 (0x0004) [bool : 0x1]
+  bItemShopNotificationsAllowed: 0x0004n,  // 0x0004 (0x0004) [bool : 0x2]
+  VoiceReporting: 0x0008n,  // 0x0008 (0x0001) [EChatReportingLevel]
+  TextReporting: 0x0009n,  // 0x0009 (0x0001) [EChatReportingLevel]
+  bFilterMatureLanguage: 0x000cn,  // 0x000c (0x0004) [bool : 0x1]
+  bEnableCPCCShowRoWModal: 0x000cn,  // 0x000c (0x0004) [bool : 0x2]
+  bEnableCPCCShowRealPrice: 0x000cn,  // 0x000c (0x0004) [bool : 0x4]
 } as const;
 
 /**
@@ -12438,8 +10950,8 @@ export const PlayerPermissions = {
  * Size: 0x0058
  */
 export const PlayerPermissionsList = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  Permissions: 0x0048,  // 0x0048 (0x0010) [TArray<EOnlinePlayerPermission>]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  Permissions: 0x0048n,  // 0x0048 (0x0010) [TArray<EOnlinePlayerPermission>]
 } as const;
 
 /**
@@ -12447,8 +10959,8 @@ export const PlayerPermissionsList = {
  * Size: 0x0058
  */
 export const PlayerPermissionsReponse = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  Permissions: 0x0048,  // 0x0048 (0x0010) [TArray<FName>]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  Permissions: 0x0048n,  // 0x0048 (0x0010) [TArray<FName>]
 } as const;
 
 /**
@@ -12456,9 +10968,9 @@ export const PlayerPermissionsReponse = {
  * Size: 0x0050
  */
 export const PlayerSeasonRewardProgress = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  SeasonLevel: 0x0048,  // 0x0048 (0x0004) [int32]
-  SeasonLevelWins: 0x004C,  // 0x004C (0x0004) [int32]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  SeasonLevel: 0x0048n,  // 0x0048 (0x0004) [int32]
+  SeasonLevelWins: 0x004cn,  // 0x004c (0x0004) [int32]
 } as const;
 
 /**
@@ -12466,31 +10978,31 @@ export const PlayerSeasonRewardProgress = {
  * Size: 0x0028
  */
 export const PlayerTitleCategory = {
-  Id: 0x0000,  // 0x0000 (0x0008) [FName]
-  Color: 0x0008,  // 0x0008 (0x0010) [FString]
-  GlowColor: 0x0018,  // 0x0018 (0x0010) [FString]
+  Id: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Color: 0x0008n,  // 0x0008 (0x0010) [FString]
+  GlowColor: 0x0018n,  // 0x0018 (0x0010) [FString]
 } as const;
 
 /**
  * ScriptStruct ProjectX._Types_X.PlayerTitleData Offsets
- * Size: 0x002C
+ * Size: 0x002c
  */
 export const PlayerTitleData = {
-  Id: 0x0000,  // 0x0000 (0x0008) [FName]
-  Text: 0x0008,  // 0x0008 (0x0010) [FString]
-  Category: 0x0018,  // 0x0018 (0x0008) [FName]
-  SortPriority: 0x0020,  // 0x0020 (0x0004) [int32]
-  Color: 0x0024,  // 0x0024 (0x0004) [FColor]
-  GlowColor: 0x0028,  // 0x0028 (0x0004) [FColor]
+  Id: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Text: 0x0008n,  // 0x0008 (0x0010) [FString]
+  Category: 0x0018n,  // 0x0018 (0x0008) [FName]
+  SortPriority: 0x0020n,  // 0x0020 (0x0004) [int32]
+  Color: 0x0024n,  // 0x0024 (0x0004) [FColor]
+  GlowColor: 0x0028n,  // 0x0028 (0x0004) [FColor]
 } as const;
 
 /**
  * ScriptStruct ProjectX.OnlineGameParty_X.PlaylistRestrictionPlayer Offsets
- * Size: 0x004C
+ * Size: 0x004c
  */
 export const PlaylistRestrictionPlayer = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  Tier: 0x0048,  // 0x0048 (0x0004) [int32]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  Tier: 0x0048n,  // 0x0048 (0x0004) [int32]
 } as const;
 
 /**
@@ -12498,13 +11010,13 @@ export const PlaylistRestrictionPlayer = {
  * Size: 0x0184
  */
 export const PostProcessOverride = {
-  Settings: 0x0000,  // 0x0000 (0x0168) [FPostProcessSettings]
-  Volume: 0x0168,  // 0x0168 (0x0008) [UPostProcessVolume*]
-  Id: 0x0170,  // 0x0170 (0x0008) [FName]
-  BlendInTime: 0x0178,  // 0x0178 (0x0004) [float]
-  BlendOutTime: 0x017C,  // 0x017C (0x0004) [float]
-  bEnabled: 0x0180,  // 0x0180 (0x0004) [bool : 0x1]
-  bDefaultEnabled: 0x0180,  // 0x0180 (0x0004) [bool : 0x2]
+  Settings: 0x0000n,  // 0x0000 (0x0168) [FPostProcessSettings]
+  Volume: 0x0168n,  // 0x0168 (0x0008) [UPostProcessVolume*]
+  Id: 0x0170n,  // 0x0170 (0x0008) [FName]
+  BlendInTime: 0x0178n,  // 0x0178 (0x0004) [float]
+  BlendOutTime: 0x017cn,  // 0x017c (0x0004) [float]
+  bEnabled: 0x0180n,  // 0x0180 (0x0004) [bool : 0x1]
+  bDefaultEnabled: 0x0180n,  // 0x0180 (0x0004) [bool : 0x2]
 } as const;
 
 /**
@@ -12512,10 +11024,10 @@ export const PostProcessOverride = {
  * Size: 0x0070
  */
 export const PrimitiveComponentProfile = {
-  ContentName: 0x0000,  // 0x0000 (0x0010) [FString]
-  Components: 0x0010,  // 0x0010 (0x0010) [TArray<unknown>]
-  InclusiveProfile: 0x0020,  // 0x0020 (0x0028) [FRenderProfile]
-  ExclusiveProfile: 0x0048,  // 0x0048 (0x0028) [FRenderProfile]
+  ContentName: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Components: 0x0010n,  // 0x0010 (0x0010) [TArray<unknown>]
+  InclusiveProfile: 0x0020n,  // 0x0020 (0x0028) [FRenderProfile]
+  ExclusiveProfile: 0x0048n,  // 0x0048 (0x0028) [FRenderProfile]
 } as const;
 
 /**
@@ -12523,7 +11035,7 @@ export const PrimitiveComponentProfile = {
  * Size: 0x0010
  */
 export const PrivacySettings = {
-  ReceiveInvites: 0x0000,  // 0x0000 (0x0010) [FString]
+  ReceiveInvites: 0x0000n,  // 0x0000 (0x0010) [FString]
 } as const;
 
 /**
@@ -12531,8 +11043,8 @@ export const PrivacySettings = {
  * Size: 0x0014
  */
 export const PrivateMatchmakingRequestData = {
-  SubRegionToMatchmake: 0x0000,  // 0x0000 (0x0010) [FString]
-  PlaylistId: 0x0010,  // 0x0010 (0x0004) [int32]
+  SubRegionToMatchmake: 0x0000n,  // 0x0000 (0x0010) [FString]
+  PlaylistId: 0x0010n,  // 0x0010 (0x0004) [int32]
 } as const;
 
 /**
@@ -12540,9 +11052,9 @@ export const PrivateMatchmakingRequestData = {
  * Size: 0x0030
  */
 export const PropertyOverride = {
-  Class: 0x0000,  // 0x0000 (0x0010) [FString]
-  Property: 0x0010,  // 0x0010 (0x0010) [FString]
-  Value: 0x0020,  // 0x0020 (0x0010) [FString]
+  Class: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Property: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Value: 0x0020n,  // 0x0020 (0x0010) [FString]
 } as const;
 
 /**
@@ -12550,7 +11062,7 @@ export const PropertyOverride = {
  * Size: 0x0010
  */
 export const PsyNetBeaconPartyReservation = {
-  Members: 0x0000,  // 0x0000 (0x0010) [TArray<FUniqueNetId>]
+  Members: 0x0000n,  // 0x0000 (0x0010) [TArray<FUniqueNetId>]
 } as const;
 
 /**
@@ -12558,9 +11070,9 @@ export const PsyNetBeaconPartyReservation = {
  * Size: 0x0060
  */
 export const PsyNetBeaconPlayerReservation = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  Keys: 0x0048,  // 0x0048 (0x0008) [UNetworkEncryptionKey*]
-  DSConnectToken: 0x0050,  // 0x0050 (0x0010) [FString]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  Keys: 0x0048n,  // 0x0048 (0x0008) [UNetworkEncryptionKey*]
+  DSConnectToken: 0x0050n,  // 0x0050 (0x0010) [FString]
 } as const;
 
 /**
@@ -12568,13 +11080,13 @@ export const PsyNetBeaconPlayerReservation = {
  * Size: 0x0048
  */
 export const PsyNetBeaconReservation = {
-  ReservationID: 0x0000,  // 0x0000 (0x0010) [FString]
-  Playlist: 0x0010,  // 0x0010 (0x0004) [int32]
-  IsBackfill: 0x0014,  // 0x0014 (0x0004) [bool : 0x1]
-  IsBotMatch: 0x0014,  // 0x0014 (0x0004) [bool : 0x2]
-  BotNames: 0x0018,  // 0x0018 (0x0010) [TArray<FString>]
-  Players: 0x0028,  // 0x0028 (0x0010) [TArray<FPsyNetBeaconPlayerReservation>]
-  Parties: 0x0038,  // 0x0038 (0x0010) [TArray<FPsyNetBeaconPartyReservation>]
+  ReservationID: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Playlist: 0x0010n,  // 0x0010 (0x0004) [int32]
+  IsBackfill: 0x0014n,  // 0x0014 (0x0004) [bool : 0x1]
+  IsBotMatch: 0x0014n,  // 0x0014 (0x0004) [bool : 0x2]
+  BotNames: 0x0018n,  // 0x0018 (0x0010) [TArray<FString>]
+  Players: 0x0028n,  // 0x0028 (0x0010) [TArray<FPsyNetBeaconPlayerReservation>]
+  Parties: 0x0038n,  // 0x0038 (0x0010) [TArray<FPsyNetBeaconPartyReservation>]
 } as const;
 
 /**
@@ -12582,10 +11094,10 @@ export const PsyNetBeaconReservation = {
  * Size: 0x0040
  */
 export const PsyNetKeys = {
-  Environment: 0x0000,  // 0x0000 (0x0010) [FString]
-  PsyNetAuth: 0x0010,  // 0x0010 (0x0010) [FString]
-  PsyConfigAuth: 0x0020,  // 0x0020 (0x0010) [FString]
-  SteamPublisher: 0x0030,  // 0x0030 (0x0010) [FString]
+  Environment: 0x0000n,  // 0x0000 (0x0010) [FString]
+  PsyNetAuth: 0x0010n,  // 0x0010 (0x0010) [FString]
+  PsyConfigAuth: 0x0020n,  // 0x0020 (0x0010) [FString]
+  SteamPublisher: 0x0030n,  // 0x0030 (0x0010) [FString]
 } as const;
 
 /**
@@ -12593,10 +11105,10 @@ export const PsyNetKeys = {
  * Size: 0x0070
  */
 export const PsyNetPartyInfo = {
-  PartyID: 0x0000,  // 0x0000 (0x0010) [FString]
-  CreatedAt: 0x0010,  // 0x0010 (0x0008) [uint64]
-  CreatedByUserId: 0x0018,  // 0x0018 (0x0048) [FUniqueNetId]
-  JoinID: 0x0060,  // 0x0060 (0x0010) [FString]
+  PartyID: 0x0000n,  // 0x0000 (0x0010) [FString]
+  CreatedAt: 0x0010n,  // 0x0010 (0x0008) [uint64]
+  CreatedByUserId: 0x0018n,  // 0x0018 (0x0048) [FUniqueNetId]
+  JoinID: 0x0060n,  // 0x0060 (0x0010) [FString]
 } as const;
 
 /**
@@ -12604,11 +11116,11 @@ export const PsyNetPartyInfo = {
  * Size: 0x0080
  */
 export const PsyNetPartyMember = {
-  PartyID: 0x0000,  // 0x0000 (0x0010) [FString]
-  UserId: 0x0010,  // 0x0010 (0x0048) [FUniqueNetId]
-  Username: 0x0058,  // 0x0058 (0x0010) [FString]
-  JoinedAt: 0x0068,  // 0x0068 (0x0008) [uint64]
-  Role: 0x0070,  // 0x0070 (0x0010) [FString]
+  PartyID: 0x0000n,  // 0x0000 (0x0010) [FString]
+  UserId: 0x0010n,  // 0x0010 (0x0048) [FUniqueNetId]
+  Username: 0x0058n,  // 0x0058 (0x0010) [FString]
+  JoinedAt: 0x0068n,  // 0x0068 (0x0008) [uint64]
+  Role: 0x0070n,  // 0x0070 (0x0010) [FString]
 } as const;
 
 /**
@@ -12616,10 +11128,10 @@ export const PsyNetPartyMember = {
  * Size: 0x0078
  */
 export const PsyNetPersonaData = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  PlayerName: 0x0048,  // 0x0048 (0x0010) [FString]
-  PresenceInfo: 0x0058,  // 0x0058 (0x0010) [FString]
-  PresenceState: 0x0068,  // 0x0068 (0x0010) [FString]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  PlayerName: 0x0048n,  // 0x0048 (0x0010) [FString]
+  PresenceInfo: 0x0058n,  // 0x0058 (0x0010) [FString]
+  PresenceState: 0x0068n,  // 0x0068 (0x0010) [FString]
 } as const;
 
 /**
@@ -12627,10 +11139,10 @@ export const PsyNetPersonaData = {
  * Size: 0x0018
  */
 export const PsyNetRequest = {
-  Id: 0x0000,  // 0x0000 (0x0008) [FName]
-  Task: 0x0008,  // 0x0008 (0x0008) [UTAsyncResult__PsyNetMessage_X*]
-  TimeoutTime: 0x0010,  // 0x0010 (0x0004) [float]
-  SendTime: 0x0014,  // 0x0014 (0x0004) [float]
+  Id: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Task: 0x0008n,  // 0x0008 (0x0008) [UTAsyncResult__PsyNetMessage_X*]
+  TimeoutTime: 0x0010n,  // 0x0010 (0x0004) [float]
+  SendTime: 0x0014n,  // 0x0014 (0x0004) [float]
 } as const;
 
 /**
@@ -12638,9 +11150,9 @@ export const PsyNetRequest = {
  * Size: 0x0014
  */
 export const QueuedPsyNetMessage = {
-  Message: 0x0000,  // 0x0000 (0x0008) [UPsyNetMessage_X*]
-  Task: 0x0008,  // 0x0008 (0x0008) [UAsyncTask*]
-  TimeoutTime: 0x0010,  // 0x0010 (0x0004) [float]
+  Message: 0x0000n,  // 0x0000 (0x0008) [UPsyNetMessage_X*]
+  Task: 0x0008n,  // 0x0008 (0x0008) [UAsyncTask*]
+  TimeoutTime: 0x0010n,  // 0x0010 (0x0004) [float]
 } as const;
 
 /**
@@ -12648,8 +11160,8 @@ export const QueuedPsyNetMessage = {
  * Size: 0x0020
  */
 export const QuickChatOverridePair = {
-  Id: 0x0000,  // 0x0000 (0x0010) [FString]
-  Override: 0x0010,  // 0x0010 (0x0010) [FString]
+  Id: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Override: 0x0010n,  // 0x0010 (0x0010) [FString]
 } as const;
 
 /**
@@ -12657,8 +11169,8 @@ export const QuickChatOverridePair = {
  * Size: 0x0020
  */
 export const RPCError = {
-  Type: 0x0000,  // 0x0000 (0x0010) [FString]
-  Message: 0x0010,  // 0x0010 (0x0010) [FString]
+  Type: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Message: 0x0010n,  // 0x0010 (0x0010) [FString]
 } as const;
 
 /**
@@ -12666,9 +11178,9 @@ export const RPCError = {
  * Size: 0x0030
  */
 export const RPCResponse = {
-  Id: 0x0000,  // 0x0000 (0x0004) [int32]
-  Error: 0x0008,  // 0x0008 (0x0020) [FRPCError]
-  Result: 0x0028,  // 0x0028 (0x0008) [URPC_X*]
+  Id: 0x0000n,  // 0x0000 (0x0004) [int32]
+  Error: 0x0008n,  // 0x0008 (0x0020) [FRPCError]
+  Result: 0x0028n,  // 0x0028 (0x0008) [URPC_X*]
 } as const;
 
 /**
@@ -12676,12 +11188,12 @@ export const RPCResponse = {
  * Size: 0x0078
  */
 export const RPCTestItem = {
-  BoolItem: 0x0000,  // 0x0000 (0x0004) [bool : 0x1]
-  IntItem: 0x0004,  // 0x0004 (0x0004) [int32]
-  FloatItem: 0x0008,  // 0x0008 (0x0004) [float]
-  StringItem: 0x0010,  // 0x0010 (0x0010) [FString]
-  PlayerItem: 0x0020,  // 0x0020 (0x0048) [FUniqueNetId]
-  StringItems: 0x0068,  // 0x0068 (0x0010) [TArray<FString>]
+  BoolItem: 0x0000n,  // 0x0000 (0x0004) [bool : 0x1]
+  IntItem: 0x0004n,  // 0x0004 (0x0004) [int32]
+  FloatItem: 0x0008n,  // 0x0008 (0x0004) [float]
+  StringItem: 0x0010n,  // 0x0010 (0x0010) [FString]
+  PlayerItem: 0x0020n,  // 0x0020 (0x0048) [FUniqueNetId]
+  StringItems: 0x0068n,  // 0x0068 (0x0010) [TArray<FString>]
 } as const;
 
 /**
@@ -12689,8 +11201,8 @@ export const RPCTestItem = {
  * Size: 0x0088
  */
 export const RPCTestParam = {
-  TestItem: 0x0000,  // 0x0000 (0x0078) [FRPCTestItem]
-  TestItems: 0x0078,  // 0x0078 (0x0010) [TArray<FRPCTestItem>]
+  TestItem: 0x0000n,  // 0x0000 (0x0078) [FRPCTestItem]
+  TestItems: 0x0078n,  // 0x0078 (0x0010) [TArray<FRPCTestItem>]
 } as const;
 
 /**
@@ -12698,7 +11210,7 @@ export const RPCTestParam = {
  * Size: 0x0004
  */
 export const RandomStream_Mirror = {
-  Seed: 0x0000,  // 0x0000 (0x0004) [int32]
+  Seed: 0x0000n,  // 0x0000 (0x0004) [int32]
 } as const;
 
 /**
@@ -12706,8 +11218,8 @@ export const RandomStream_Mirror = {
  * Size: 0x0010
  */
 export const RawAxisValue = {
-  Value: 0x0000,  // 0x0000 (0x0004) [float]
-  LastFrameChanged: 0x0008,  // 0x0008 (0x0008) [uint64]
+  Value: 0x0000n,  // 0x0000 (0x0004) [float]
+  LastFrameChanged: 0x0008n,  // 0x0008 (0x0008) [uint64]
 } as const;
 
 /**
@@ -12715,8 +11227,8 @@ export const RawAxisValue = {
  * Size: 0x0020
  */
 export const RegionSecret = {
-  Region: 0x0000,  // 0x0000 (0x0010) [FString]
-  Secret: 0x0010,  // 0x0010 (0x0010) [FString]
+  Region: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Secret: 0x0010n,  // 0x0010 (0x0010) [FString]
 } as const;
 
 /**
@@ -12724,30 +11236,30 @@ export const RegionSecret = {
  * Size: 0x0028
  */
 export const RenderProfile = {
-  GameThreadTime: 0x0000,  // 0x0000 (0x0004) [float]
-  RenderThreadTime: 0x0004,  // 0x0004 (0x0004) [float]
-  GPUTime: 0x0008,  // 0x0008 (0x0004) [float]
-  FrameTime: 0x000C,  // 0x000C (0x0004) [float]
-  FPS: 0x0010,  // 0x0010 (0x0004) [float]
-  AccumGameThreadTime: 0x0014,  // 0x0014 (0x0004) [float]
-  AccumRenderThreadTime: 0x0018,  // 0x0018 (0x0004) [float]
-  AccumGPUTime: 0x001C,  // 0x001C (0x0004) [float]
-  AccumFrameTime: 0x0020,  // 0x0020 (0x0004) [float]
-  NumSamples: 0x0024,  // 0x0024 (0x0004) [int32]
+  GameThreadTime: 0x0000n,  // 0x0000 (0x0004) [float]
+  RenderThreadTime: 0x0004n,  // 0x0004 (0x0004) [float]
+  GPUTime: 0x0008n,  // 0x0008 (0x0004) [float]
+  FrameTime: 0x000cn,  // 0x000c (0x0004) [float]
+  FPS: 0x0010n,  // 0x0010 (0x0004) [float]
+  AccumGameThreadTime: 0x0014n,  // 0x0014 (0x0004) [float]
+  AccumRenderThreadTime: 0x0018n,  // 0x0018 (0x0004) [float]
+  AccumGPUTime: 0x001cn,  // 0x001c (0x0004) [float]
+  AccumFrameTime: 0x0020n,  // 0x0020 (0x0004) [float]
+  NumSamples: 0x0024n,  // 0x0024 (0x0004) [int32]
 } as const;
 
 /**
  * ScriptStruct ProjectX._Types_X.ReplicatedRBState Offsets
- * Size: 0x003C
+ * Size: 0x003c
  */
 export const ReplicatedRBState = {
-  Quaternion: 0x0000,  // 0x0000 (0x0010) [FQuat]
-  Location: 0x0010,  // 0x0010 (0x000C) [FVector]
-  LinearVelocity: 0x001C,  // 0x001C (0x000C) [FVector]
-  AngularVelocity: 0x0028,  // 0x0028 (0x000C) [FVector]
-  Time: 0x0034,  // 0x0034 (0x0004) [float]
-  bSleeping: 0x0038,  // 0x0038 (0x0004) [bool : 0x1]
-  bNewData: 0x0038,  // 0x0038 (0x0004) [bool : 0x2]
+  Quaternion: 0x0000n,  // 0x0000 (0x0010) [FQuat]
+  Location: 0x0010n,  // 0x0010 (0x000c) [FVector]
+  LinearVelocity: 0x001cn,  // 0x001c (0x000c) [FVector]
+  AngularVelocity: 0x0028n,  // 0x0028 (0x000c) [FVector]
+  Time: 0x0034n,  // 0x0034 (0x0004) [float]
+  bSleeping: 0x0038n,  // 0x0038 (0x0004) [bool : 0x1]
+  bNewData: 0x0038n,  // 0x0038 (0x0004) [bool : 0x2]
 } as const;
 
 /**
@@ -12755,14 +11267,14 @@ export const ReplicatedRBState = {
  * Size: 0x0038
  */
 export const ReplicatedRBStateNoQuat = {
-  QuatX: 0x0000,  // 0x0000 (0x0004) [float]
-  QuatY: 0x0004,  // 0x0004 (0x0004) [float]
-  QuatZ: 0x0008,  // 0x0008 (0x0004) [float]
-  QuatW: 0x000C,  // 0x000C (0x0004) [float]
-  Location: 0x0010,  // 0x0010 (0x000C) [FVector]
-  LinearVelocity: 0x001C,  // 0x001C (0x000C) [FVector]
-  AngularVelocity: 0x0028,  // 0x0028 (0x000C) [FVector]
-  bSleeping: 0x0034,  // 0x0034 (0x0004) [bool : 0x1]
+  QuatX: 0x0000n,  // 0x0000 (0x0004) [float]
+  QuatY: 0x0004n,  // 0x0004 (0x0004) [float]
+  QuatZ: 0x0008n,  // 0x0008 (0x0004) [float]
+  QuatW: 0x000cn,  // 0x000c (0x0004) [float]
+  Location: 0x0010n,  // 0x0010 (0x000c) [FVector]
+  LinearVelocity: 0x001cn,  // 0x001c (0x000c) [FVector]
+  AngularVelocity: 0x0028n,  // 0x0028 (0x000c) [FVector]
+  bSleeping: 0x0034n,  // 0x0034 (0x0004) [bool : 0x1]
 } as const;
 
 /**
@@ -12770,9 +11282,9 @@ export const ReplicatedRBStateNoQuat = {
  * Size: 0x0059
  */
 export const ReplicatedReservationData = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  PlayerName: 0x0048,  // 0x0048 (0x0010) [FString]
-  Status: 0x0058,  // 0x0058 (0x0001) [EReservationStatus]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  PlayerName: 0x0048n,  // 0x0048 (0x0010) [FString]
+  Status: 0x0058n,  // 0x0058 (0x0001) [EReservationStatus]
 } as const;
 
 /**
@@ -12780,47 +11292,47 @@ export const ReplicatedReservationData = {
  * Size: 0x0110
  */
 export const ReservationData = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  PlayerName: 0x0048,  // 0x0048 (0x0010) [FString]
-  PartyID: 0x0058,  // 0x0058 (0x0048) [FUniqueNetId]
-  Status: 0x00A0,  // 0x00A0 (0x0001) [EReservationStatus]
-  TimeoutTime: 0x00A4,  // 0x00A4 (0x0004) [float]
-  bDisableCrossPlay: 0x00A8,  // 0x00A8 (0x0004) [bool : 0x1]
-  PRI: 0x00B0,  // 0x00B0 (0x0008) [UPlayerReplicationInfo*]
-  Team: 0x00B8,  // 0x00B8 (0x0001) [uint8]
-  ClubID: 0x00C0,  // 0x00C0 (0x0008) [uint64]
-  ReservationMessage: 0x00C8,  // 0x00C8 (0x0008) [UAddReservationMessage_X*]
-  Connection: 0x00D0,  // 0x00D0 (0x0010) [TScriptInterface<UIReservationConnection_X>]
-  bIgnoreBeaconDisconnect: 0x00E0,  // 0x00E0 (0x0004) [bool : 0x1]
-  Skill: 0x00E4,  // 0x00E4 (0x0008) [FSkillRating]
-  MapLikes: 0x00F0,  // 0x00F0 (0x0010) [TArray<FName>]
-  MapDislikes: 0x0100,  // 0x0100 (0x0010) [TArray<FName>]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  PlayerName: 0x0048n,  // 0x0048 (0x0010) [FString]
+  PartyID: 0x0058n,  // 0x0058 (0x0048) [FUniqueNetId]
+  Status: 0x00a0n,  // 0x00a0 (0x0001) [EReservationStatus]
+  TimeoutTime: 0x00a4n,  // 0x00a4 (0x0004) [float]
+  bDisableCrossPlay: 0x00a8n,  // 0x00a8 (0x0004) [bool : 0x1]
+  PRI: 0x00b0n,  // 0x00b0 (0x0008) [UPlayerReplicationInfo*]
+  Team: 0x00b8n,  // 0x00b8 (0x0001) [uint8]
+  ClubID: 0x00c0n,  // 0x00c0 (0x0008) [uint64]
+  ReservationMessage: 0x00c8n,  // 0x00c8 (0x0008) [UAddReservationMessage_X*]
+  Connection: 0x00d0n,  // 0x00d0 (0x0010) [TScriptInterface<UIReservationConnection_X>]
+  bIgnoreBeaconDisconnect: 0x00e0n,  // 0x00e0 (0x0004) [bool : 0x1]
+  Skill: 0x00e4n,  // 0x00e4 (0x0008) [FSkillRating]
+  MapLikes: 0x00f0n,  // 0x00f0 (0x0010) [TArray<FName>]
+  MapDislikes: 0x0100n,  // 0x0100 (0x0010) [TArray<FName>]
 } as const;
 
 /**
  * ScriptStruct ProjectX._Types_X.ReservationPlayerData Offsets
- * Size: 0x00A0
+ * Size: 0x00a0
  */
 export const ReservationPlayerData = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  PlayerName: 0x0048,  // 0x0048 (0x0010) [FString]
-  SkillMu: 0x0058,  // 0x0058 (0x0004) [float]
-  SkillSigma: 0x005C,  // 0x005C (0x0004) [float]
-  Tier: 0x0060,  // 0x0060 (0x0004) [int32]
-  bRemotePlayer: 0x0064,  // 0x0064 (0x0004) [bool : 0x1]
-  Loadout: 0x0068,  // 0x0068 (0x0010) [TArray<int32>]
-  MapLikes: 0x0078,  // 0x0078 (0x0010) [TArray<FName>]
-  MapDislikes: 0x0088,  // 0x0088 (0x0010) [TArray<FName>]
-  ClubID: 0x0098,  // 0x0098 (0x0008) [uint64]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  PlayerName: 0x0048n,  // 0x0048 (0x0010) [FString]
+  SkillMu: 0x0058n,  // 0x0058 (0x0004) [float]
+  SkillSigma: 0x005cn,  // 0x005c (0x0004) [float]
+  Tier: 0x0060n,  // 0x0060 (0x0004) [int32]
+  bRemotePlayer: 0x0064n,  // 0x0064 (0x0004) [bool : 0x1]
+  Loadout: 0x0068n,  // 0x0068 (0x0010) [TArray<int32>]
+  MapLikes: 0x0078n,  // 0x0078 (0x0010) [TArray<FName>]
+  MapDislikes: 0x0088n,  // 0x0088 (0x0010) [TArray<FName>]
+  ClubID: 0x0098n,  // 0x0098 (0x0008) [uint64]
 } as const;
 
 /**
  * ScriptStruct ProjectX.Camera_X.RotationCameraKnock Offsets
- * Size: 0x001C
+ * Size: 0x001c
  * Extends: CameraKnockBase
  */
 export const RotationCameraKnock = {
-  Amount: 0x0010,  // 0x0010 (0x000C) [FRotator]
+  Amount: 0x0010n,  // 0x0010 (0x000c) [FRotator]
   ...CameraKnockBase,
 } as const;
 
@@ -12829,8 +11341,8 @@ export const RotationCameraKnock = {
  * Size: 0x0018
  */
 export const SeasonalBadgeTierData = {
-  Season: 0x0000,  // 0x0000 (0x0004) [int32]
-  Badges: 0x0008,  // 0x0008 (0x0010) [TArray<FStatBadge>]
+  Season: 0x0000n,  // 0x0000 (0x0004) [int32]
+  Badges: 0x0008n,  // 0x0008 (0x0010) [TArray<FStatBadge>]
 } as const;
 
 /**
@@ -12838,9 +11350,9 @@ export const SeasonalBadgeTierData = {
  * Size: 0x0030
  */
 export const ServerConnectionInfo = {
-  ServerAddress: 0x0000,  // 0x0000 (0x0010) [FString]
-  PingAddress: 0x0010,  // 0x0010 (0x0010) [FString]
-  ServerName: 0x0020,  // 0x0020 (0x0010) [FString]
+  ServerAddress: 0x0000n,  // 0x0000 (0x0010) [FString]
+  PingAddress: 0x0010n,  // 0x0010 (0x0010) [FString]
+  ServerName: 0x0020n,  // 0x0020 (0x0010) [FString]
 } as const;
 
 /**
@@ -12848,33 +11360,33 @@ export const ServerConnectionInfo = {
  * Size: 0x0070
  */
 export const ServerReservationData = {
-  ServerName: 0x0000,  // 0x0000 (0x0010) [FString]
-  Playlist: 0x0010,  // 0x0010 (0x0004) [int32]
-  Region: 0x0018,  // 0x0018 (0x0010) [FString]
-  ReservationID: 0x0028,  // 0x0028 (0x0010) [FString]
-  DSRToken: 0x0038,  // 0x0038 (0x0010) [FString]
-  Keys: 0x0048,  // 0x0048 (0x0008) [UNetworkEncryptionKey*]
-  JoinName: 0x0050,  // 0x0050 (0x0010) [FString]
-  JoinPassword: 0x0060,  // 0x0060 (0x0010) [FString]
+  ServerName: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Playlist: 0x0010n,  // 0x0010 (0x0004) [int32]
+  Region: 0x0018n,  // 0x0018 (0x0010) [FString]
+  ReservationID: 0x0028n,  // 0x0028 (0x0010) [FString]
+  DSRToken: 0x0038n,  // 0x0038 (0x0010) [FString]
+  Keys: 0x0048n,  // 0x0048 (0x0008) [UNetworkEncryptionKey*]
+  JoinName: 0x0050n,  // 0x0050 (0x0010) [FString]
+  JoinPassword: 0x0060n,  // 0x0060 (0x0010) [FString]
 } as const;
 
 /**
  * ScriptStruct ProjectX._Types_X.ServerResult Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  */
 export const ServerResult = {
-  Address: 0x0000,  // 0x0000 (0x0010) [FString]
-  ServerName: 0x0010,  // 0x0010 (0x0010) [FString]
-  Settings: 0x0020,  // 0x0020 (0x0088) [FCustomMatchSettings]
+  Address: 0x0000n,  // 0x0000 (0x0010) [FString]
+  ServerName: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Settings: 0x0020n,  // 0x0020 (0x0088) [FCustomMatchSettings]
 } as const;
 
 /**
  * ScriptStruct ProjectX.PsyNetMetrics_X.ServiceErrorData Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const ServiceErrorData = {
-  Type: 0x0000,  // 0x0000 (0x0008) [FName]
-  Count: 0x0008,  // 0x0008 (0x0004) [int32]
+  Type: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Count: 0x0008n,  // 0x0008 (0x0004) [int32]
 } as const;
 
 /**
@@ -12882,12 +11394,12 @@ export const ServiceErrorData = {
  * Size: 0x0024
  */
 export const ServiceMetricsData = {
-  Service: 0x0000,  // 0x0000 (0x0010) [FString]
-  Attempts: 0x0010,  // 0x0010 (0x0004) [int32]
-  Failures: 0x0014,  // 0x0014 (0x0004) [int32]
-  MinLatency: 0x0018,  // 0x0018 (0x0004) [float]
-  MaxLatency: 0x001C,  // 0x001C (0x0004) [float]
-  AvgLatency: 0x0020,  // 0x0020 (0x0004) [float]
+  Service: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Attempts: 0x0010n,  // 0x0010 (0x0004) [int32]
+  Failures: 0x0014n,  // 0x0014 (0x0004) [int32]
+  MinLatency: 0x0018n,  // 0x0018 (0x0004) [float]
+  MaxLatency: 0x001cn,  // 0x001c (0x0004) [float]
+  AvgLatency: 0x0020n,  // 0x0020 (0x0004) [float]
 } as const;
 
 /**
@@ -12895,8 +11407,8 @@ export const ServiceMetricsData = {
  * Size: 0x0020
  */
 export const ServiceSubscription = {
-  Class: 0x0000,  // 0x0000 (0x0008) [UClass*]
-  Callback: 0x0008,  // 0x0008 (0x0018) [FScriptDelegate]
+  Class: 0x0000n,  // 0x0000 (0x0008) [UClass*]
+  Callback: 0x0008n,  // 0x0008 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -12904,11 +11416,11 @@ export const ServiceSubscription = {
  * Size: 0x0021
  */
 export const SetPlayerStorageRequestItem = {
-  Category: 0x0000,  // 0x0000 (0x0008) [FName]
-  Tick: 0x0008,  // 0x0008 (0x0004) [int32]
-  Checksum: 0x000C,  // 0x000C (0x0004) [int32]
-  Data: 0x0010,  // 0x0010 (0x0010) [FString]
-  Encoding: 0x0020,  // 0x0020 (0x0001) [EObjectEncoding]
+  Category: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Tick: 0x0008n,  // 0x0008 (0x0004) [int32]
+  Checksum: 0x000cn,  // 0x000c (0x0004) [int32]
+  Data: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Encoding: 0x0020n,  // 0x0020 (0x0001) [EObjectEncoding]
 } as const;
 
 /**
@@ -12916,18 +11428,18 @@ export const SetPlayerStorageRequestItem = {
  * Size: 0x0010
  */
 export const SetPlayerStorageResultItem = {
-  Category: 0x0000,  // 0x0000 (0x0008) [FName]
-  Tick: 0x0008,  // 0x0008 (0x0004) [int32]
-  bOutOfSync: 0x000C,  // 0x000C (0x0004) [bool : 0x1]
+  Category: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Tick: 0x0008n,  // 0x0008 (0x0004) [int32]
+  bOutOfSync: 0x000cn,  // 0x000c (0x0004) [bool : 0x1]
 } as const;
 
 /**
  * ScriptStruct ProjectX.ShakeComponent_X.ShakeReceiver Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const ShakeReceiver = {
-  Player: 0x0000,  // 0x0000 (0x0008) [UPlayerController*]
-  Scale: 0x0008,  // 0x0008 (0x0004) [float]
+  Player: 0x0000n,  // 0x0000 (0x0008) [UPlayerController*]
+  Scale: 0x0008n,  // 0x0008 (0x0004) [float]
 } as const;
 
 /**
@@ -12935,11 +11447,11 @@ export const ShakeReceiver = {
  * Size: 0x0048
  */
 export const SignedMessagePacket = {
-  MessagePayload: 0x0000,  // 0x0000 (0x0010) [FString]
-  Signature: 0x0010,  // 0x0010 (0x0010) [FString]
-  ReceivingTimestamp: 0x0020,  // 0x0020 (0x0008) [uint64]
-  SanitizedReceivedTextMessage: 0x0028,  // 0x0028 (0x0010) [FString]
-  PublicKey: 0x0038,  // 0x0038 (0x0010) [FString]
+  MessagePayload: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Signature: 0x0010n,  // 0x0010 (0x0010) [FString]
+  ReceivingTimestamp: 0x0020n,  // 0x0020 (0x0008) [uint64]
+  SanitizedReceivedTextMessage: 0x0028n,  // 0x0028 (0x0010) [FString]
+  PublicKey: 0x0038n,  // 0x0038 (0x0010) [FString]
 } as const;
 
 /**
@@ -12947,8 +11459,8 @@ export const SignedMessagePacket = {
  * Size: 0x0058
  */
 export const SimplePartyMember = {
-  MemberId: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  MemberName: 0x0048,  // 0x0048 (0x0010) [FString]
+  MemberId: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  MemberName: 0x0048n,  // 0x0048 (0x0010) [FString]
 } as const;
 
 /**
@@ -12956,12 +11468,12 @@ export const SimplePartyMember = {
  * Size: 0x0024
  */
 export const SkillMatchData = {
-  ServerId: 0x0000,  // 0x0000 (0x0010) [FString]
-  Playlist: 0x0010,  // 0x0010 (0x0004) [int32]
-  WinningTeam: 0x0014,  // 0x0014 (0x0004) [int32]
-  Team0Score: 0x0018,  // 0x0018 (0x0004) [int32]
-  Team1Score: 0x001C,  // 0x001C (0x0004) [int32]
-  bOverTime: 0x0020,  // 0x0020 (0x0004) [bool : 0x1]
+  ServerId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Playlist: 0x0010n,  // 0x0010 (0x0004) [int32]
+  WinningTeam: 0x0014n,  // 0x0014 (0x0004) [int32]
+  Team0Score: 0x0018n,  // 0x0018 (0x0004) [int32]
+  Team1Score: 0x001cn,  // 0x001c (0x0004) [int32]
+  bOverTime: 0x0020n,  // 0x0020 (0x0004) [bool : 0x1]
 } as const;
 
 /**
@@ -12969,10 +11481,10 @@ export const SkillMatchData = {
  * Size: 0x0020
  */
 export const SkillMatchParty = {
-  PartyID: 0x0000,  // 0x0000 (0x0004) [int32]
-  PctTimePlayed: 0x0004,  // 0x0004 (0x0004) [float]
-  bQuitter: 0x0008,  // 0x0008 (0x0004) [bool : 0x1]
-  Players: 0x0010,  // 0x0010 (0x0010) [TArray<FUniqueNetId>]
+  PartyID: 0x0000n,  // 0x0000 (0x0004) [int32]
+  PctTimePlayed: 0x0004n,  // 0x0004 (0x0004) [float]
+  bQuitter: 0x0008n,  // 0x0008 (0x0004) [bool : 0x1]
+  Players: 0x0010n,  // 0x0010 (0x0010) [TArray<FUniqueNetId>]
 } as const;
 
 /**
@@ -12980,13 +11492,13 @@ export const SkillMatchParty = {
  * Size: 0x0060
  */
 export const SkillMatchPlayer = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  PctTimePlayed: 0x0048,  // 0x0048 (0x0004) [float]
-  TimePlayed: 0x004C,  // 0x004C (0x0004) [float]
-  bQuitter: 0x0050,  // 0x0050 (0x0004) [bool : 0x1]
-  PartyID: 0x0054,  // 0x0054 (0x0004) [int32]
-  Score: 0x0058,  // 0x0058 (0x0004) [int32]
-  Team: 0x005C,  // 0x005C (0x0004) [int32]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  PctTimePlayed: 0x0048n,  // 0x0048 (0x0004) [float]
+  TimePlayed: 0x004cn,  // 0x004c (0x0004) [float]
+  bQuitter: 0x0050n,  // 0x0050 (0x0004) [bool : 0x1]
+  PartyID: 0x0054n,  // 0x0054 (0x0004) [int32]
+  Score: 0x0058n,  // 0x0058 (0x0004) [int32]
+  Team: 0x005cn,  // 0x005c (0x0004) [int32]
 } as const;
 
 /**
@@ -12994,8 +11506,8 @@ export const SkillMatchPlayer = {
  * Size: 0x0008
  */
 export const SkillRating = {
-  Mu: 0x0000,  // 0x0000 (0x0004) [float]
-  Sigma: 0x0004,  // 0x0004 (0x0004) [float]
+  Mu: 0x0000n,  // 0x0000 (0x0004) [float]
+  Sigma: 0x0004n,  // 0x0004 (0x0004) [float]
 } as const;
 
 /**
@@ -13003,9 +11515,9 @@ export const SkillRating = {
  * Size: 0x0068
  */
 export const SkillSyncRequest = {
-  RPC: 0x0000,  // 0x0000 (0x0008) [URPC_X*]
-  PlayerID: 0x0008,  // 0x0008 (0x0048) [FUniqueNetId]
-  Callback: 0x0050,  // 0x0050 (0x0018) [FScriptDelegate]
+  RPC: 0x0000n,  // 0x0000 (0x0008) [URPC_X*]
+  PlayerID: 0x0008n,  // 0x0008 (0x0048) [FUniqueNetId]
+  Callback: 0x0050n,  // 0x0050 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -13013,8 +11525,8 @@ export const SkillSyncRequest = {
  * Size: 0x0010
  */
 export const SoundPackSoundRef = {
-  Sound: 0x0000,  // 0x0000 (0x0008) [UAkSoundCue*]
-  Name: 0x0008,  // 0x0008 (0x0008) [FName]
+  Sound: 0x0000n,  // 0x0000 (0x0008) [UAkSoundCue*]
+  Name: 0x0008n,  // 0x0008 (0x0008) [FName]
 } as const;
 
 /**
@@ -13022,19 +11534,19 @@ export const SoundPackSoundRef = {
  * Size: 0x0009
  */
 export const StatBadge = {
-  Stat: 0x0000,  // 0x0000 (0x0008) [FName]
-  Badge: 0x0008,  // 0x0008 (0x0001) [EClubBadge]
+  Stat: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Badge: 0x0008n,  // 0x0008 (0x0001) [EClubBadge]
 } as const;
 
 /**
  * ScriptStruct ProjectX.RPC_GetClubStats_X.StatMilestoneData Offsets
- * Size: 0x001D
+ * Size: 0x001d
  */
 export const StatMilestoneData = {
-  Stat: 0x0000,  // 0x0000 (0x0008) [FName]
-  Milestones: 0x0008,  // 0x0008 (0x0010) [TArray<int32>]
-  Value: 0x0018,  // 0x0018 (0x0004) [int32]
-  Badge: 0x001C,  // 0x001C (0x0001) [EClubBadge]
+  Stat: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Milestones: 0x0008n,  // 0x0008 (0x0010) [TArray<int32>]
+  Value: 0x0018n,  // 0x0018 (0x0004) [int32]
+  Badge: 0x001cn,  // 0x001c (0x0001) [EClubBadge]
 } as const;
 
 /**
@@ -13042,7 +11554,7 @@ export const StatMilestoneData = {
  * Size: 0x0010
  */
 export const SteamJsonResponseGetPublisherAppOwnership = {
-  AppOwnership: 0x0000,  // 0x0000 (0x0010) [FSteamJsonResponseGetPublisherAppOwnership2]
+  AppOwnership: 0x0000n,  // 0x0000 (0x0010) [FSteamJsonResponseGetPublisherAppOwnership2]
 } as const;
 
 /**
@@ -13050,7 +11562,7 @@ export const SteamJsonResponseGetPublisherAppOwnership = {
  * Size: 0x0010
  */
 export const SteamJsonResponseGetPublisherAppOwnership2 = {
-  Apps: 0x0000,  // 0x0000 (0x0010) [TArray<FSteamJsonResponseGetPublisherAppOwnership3>]
+  Apps: 0x0000n,  // 0x0000 (0x0010) [TArray<FSteamJsonResponseGetPublisherAppOwnership3>]
 } as const;
 
 /**
@@ -13058,11 +11570,11 @@ export const SteamJsonResponseGetPublisherAppOwnership2 = {
  * Size: 0x0028
  */
 export const SteamJsonResponseGetPublisherAppOwnership3 = {
-  AppID: 0x0000,  // 0x0000 (0x0008) [uint64]
-  OwnerSteamID: 0x0008,  // 0x0008 (0x0008) [uint64]
-  OwnsApp: 0x0010,  // 0x0010 (0x0004) [bool : 0x1]
-  Permanent: 0x0010,  // 0x0010 (0x0004) [bool : 0x2]
-  TimeStamp: 0x0018,  // 0x0018 (0x0010) [FString]
+  AppID: 0x0000n,  // 0x0000 (0x0008) [uint64]
+  OwnerSteamID: 0x0008n,  // 0x0008 (0x0008) [uint64]
+  OwnsApp: 0x0010n,  // 0x0010 (0x0004) [bool : 0x1]
+  Permanent: 0x0010n,  // 0x0010 (0x0004) [bool : 0x2]
+  TimeStamp: 0x0018n,  // 0x0018 (0x0010) [FString]
 } as const;
 
 /**
@@ -13070,9 +11582,9 @@ export const SteamJsonResponseGetPublisherAppOwnership3 = {
  * Size: 0x0011
  */
 export const SteamPlayerDLCOwnershipState = {
-  Name: 0x0000,  // 0x0000 (0x0008) [FName]
-  AppID: 0x0008,  // 0x0008 (0x0008) [uint64]
-  State: 0x0010,  // 0x0010 (0x0001) [DLCOwnershipState]
+  Name: 0x0000n,  // 0x0000 (0x0008) [FName]
+  AppID: 0x0008n,  // 0x0008 (0x0008) [uint64]
+  State: 0x0010n,  // 0x0010 (0x0001) [DLCOwnershipState]
 } as const;
 
 /**
@@ -13080,27 +11592,27 @@ export const SteamPlayerDLCOwnershipState = {
  * Size: 0x0050
  */
 export const SteamWebRequestData = {
-  Request: 0x0000,  // 0x0000 (0x0008) [UWebRequest_X*]
-  PlayerID: 0x0008,  // 0x0008 (0x0048) [FUniqueNetId]
+  Request: 0x0000n,  // 0x0000 (0x0008) [UWebRequest_X*]
+  PlayerID: 0x0008n,  // 0x0008 (0x0048) [FUniqueNetId]
 } as const;
 
 /**
  * ScriptStruct ProjectX.OnlinePlayerStorageQueue_X.StorageMaxSize Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const StorageMaxSize = {
-  Category: 0x0000,  // 0x0000 (0x0008) [FName]
-  MaxSizeBytes: 0x0008,  // 0x0008 (0x0004) [int32]
+  Category: 0x0000n,  // 0x0000 (0x0008) [FName]
+  MaxSizeBytes: 0x0008n,  // 0x0008 (0x0004) [int32]
 } as const;
 
 /**
  * ScriptStruct ProjectX.OnlinePlayerStorageManifest_X.StorageMetadata Offsets
- * Size: 0x000D
+ * Size: 0x000d
  */
 export const StorageMetadata = {
-  Category: 0x0000,  // 0x0000 (0x0008) [FName]
-  Checksum: 0x0008,  // 0x0008 (0x0004) [int32]
-  Encoding: 0x000C,  // 0x000C (0x0001) [EObjectEncoding]
+  Category: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Checksum: 0x0008n,  // 0x0008 (0x0004) [int32]
+  Encoding: 0x000cn,  // 0x000c (0x0001) [EObjectEncoding]
 } as const;
 
 /**
@@ -13108,19 +11620,19 @@ export const StorageMetadata = {
  * Size: 0x0030
  */
 export const SuperRegionData = {
-  Region: 0x0000,  // 0x0000 (0x0010) [FString]
-  Label: 0x0010,  // 0x0010 (0x0010) [FString]
-  SubRegions: 0x0020,  // 0x0020 (0x0010) [TArray<FString>]
+  Region: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Label: 0x0010n,  // 0x0010 (0x0010) [FString]
+  SubRegions: 0x0020n,  // 0x0020 (0x0010) [TArray<FString>]
 } as const;
 
 /**
  * ScriptStruct ProjectX._Types_X.SuperSonicConfig Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const SuperSonicConfig = {
-  Speed: 0x0000,  // 0x0000 (0x0004) [float]
-  TurnoffSpeedBuffer: 0x0004,  // 0x0004 (0x0004) [float]
-  TurnoffTime: 0x0008,  // 0x0008 (0x0004) [float]
+  Speed: 0x0000n,  // 0x0000 (0x0004) [float]
+  TurnoffSpeedBuffer: 0x0004n,  // 0x0004 (0x0004) [float]
+  TurnoffTime: 0x0008n,  // 0x0008 (0x0004) [float]
 } as const;
 
 /**
@@ -13128,9 +11640,9 @@ export const SuperSonicConfig = {
  * Size: 0x0094
  */
 export const TeamPairHistory = {
-  PartyA: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  PartyB: 0x0048,  // 0x0048 (0x0048) [FUniqueNetId]
-  Count: 0x0090,  // 0x0090 (0x0004) [int32]
+  PartyA: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  PartyB: 0x0048n,  // 0x0048 (0x0048) [FUniqueNetId]
+  Count: 0x0090n,  // 0x0090 (0x0004) [int32]
 } as const;
 
 /**
@@ -13138,7 +11650,7 @@ export const TeamPairHistory = {
  * Size: 0x0018
  */
 export const TestStructEvent = {
-  Callback: 0x0000,  // 0x0000 (0x0018) [FScriptDelegate]
+  Callback: 0x0000n,  // 0x0000 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -13147,12 +11659,12 @@ export const TestStructEvent = {
  * Extends: SkillRating
  */
 export const TierSkillRating = {
-  Tier: 0x0008,  // 0x0008 (0x0004) [int32]
-  Division: 0x000C,  // 0x000C (0x0004) [int32]
-  MatchesPlayed: 0x0010,  // 0x0010 (0x0004) [int32]
-  PlacementMatchesPlayed: 0x0014,  // 0x0014 (0x0004) [int32]
-  WinStreak: 0x0018,  // 0x0018 (0x0004) [int32]
-  MMR: 0x001C,  // 0x001C (0x0004) [float]
+  Tier: 0x0008n,  // 0x0008 (0x0004) [int32]
+  Division: 0x000cn,  // 0x000c (0x0004) [int32]
+  MatchesPlayed: 0x0010n,  // 0x0010 (0x0004) [int32]
+  PlacementMatchesPlayed: 0x0014n,  // 0x0014 (0x0004) [int32]
+  WinStreak: 0x0018n,  // 0x0018 (0x0004) [int32]
+  MMR: 0x001cn,  // 0x001c (0x0004) [float]
   ...SkillRating,
 } as const;
 
@@ -13162,7 +11674,7 @@ export const TierSkillRating = {
  * Extends: TierSkillRating
  */
 export const PlaylistSkillRating = {
-  Playlist: 0x0020,  // 0x0020 (0x0004) [int32]
+  Playlist: 0x0020n,  // 0x0020 (0x0004) [int32]
   ...TierSkillRating,
 } as const;
 
@@ -13172,7 +11684,7 @@ export const PlaylistSkillRating = {
  * Extends: PlaylistSkillRating
  */
 export const PlayerSkillRating = {
-  PlayerID: 0x0028,  // 0x0028 (0x0048) [FUniqueNetId]
+  PlayerID: 0x0028n,  // 0x0028 (0x0048) [FUniqueNetId]
   ...PlaylistSkillRating,
 } as const;
 
@@ -13182,7 +11694,7 @@ export const PlayerSkillRating = {
  * Extends: TierSkillRating
  */
 export const PlaylistTierSkillRating = {
-  Playlist: 0x0020,  // 0x0020 (0x0004) [int32]
+  Playlist: 0x0020n,  // 0x0020 (0x0004) [int32]
   ...TierSkillRating,
 } as const;
 
@@ -13192,7 +11704,7 @@ export const PlaylistTierSkillRating = {
  * Extends: TierSkillRating
  */
 export const SkillMatchPartyRating = {
-  PartyID: 0x0020,  // 0x0020 (0x0004) [int32]
+  PartyID: 0x0020n,  // 0x0020 (0x0004) [int32]
   ...TierSkillRating,
 } as const;
 
@@ -13201,8 +11713,8 @@ export const SkillMatchPartyRating = {
  * Size: 0x0008
  */
 export const TradePermissionEnabledPair = {
-  Level: 0x0000,  // 0x0000 (0x0001) [ETradePermissionLevel]
-  bEnabled: 0x0004,  // 0x0004 (0x0004) [bool : 0x1]
+  Level: 0x0000n,  // 0x0000 (0x0001) [ETradePermissionLevel]
+  bEnabled: 0x0004n,  // 0x0004 (0x0004) [bool : 0x1]
 } as const;
 
 /**
@@ -13210,8 +11722,8 @@ export const TradePermissionEnabledPair = {
  * Size: 0x0011
  */
 export const TradePermissionPair = {
-  PermissionLabel: 0x0000,  // 0x0000 (0x0010) [FString]
-  Level: 0x0010,  // 0x0010 (0x0001) [ETradePermissionLevel]
+  PermissionLabel: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Level: 0x0010n,  // 0x0010 (0x0001) [ETradePermissionLevel]
 } as const;
 
 /**
@@ -13220,20 +11732,20 @@ export const TradePermissionPair = {
  * Extends: PlayerSkillRating
  */
 export const UpdatedPlayerSkillRating = {
-  PrevMu: 0x0070,  // 0x0070 (0x0004) [float]
-  PrevSigma: 0x0074,  // 0x0074 (0x0004) [float]
-  PrevTier: 0x0078,  // 0x0078 (0x0004) [int32]
-  PrevDivision: 0x007C,  // 0x007C (0x0004) [int32]
+  PrevMu: 0x0070n,  // 0x0070 (0x0004) [float]
+  PrevSigma: 0x0074n,  // 0x0074 (0x0004) [float]
+  PrevTier: 0x0078n,  // 0x0078 (0x0004) [int32]
+  PrevDivision: 0x007cn,  // 0x007c (0x0004) [int32]
   ...PlayerSkillRating,
 } as const;
 
 /**
  * ScriptStruct ProjectX.OnlineGameStats_X.UploadStatData Offsets
- * Size: 0x004C
+ * Size: 0x004c
  */
 export const UploadStatData = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  Value: 0x0048,  // 0x0048 (0x0004) [int32]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  Value: 0x0048n,  // 0x0048 (0x0004) [int32]
 } as const;
 
 /**
@@ -13241,8 +11753,8 @@ export const UploadStatData = {
  * Size: 0x0018
  */
 export const UploadStatDataSet = {
-  StatId: 0x0000,  // 0x0000 (0x0008) [FName]
-  Data: 0x0008,  // 0x0008 (0x0010) [TArray<FUploadStatData>]
+  StatId: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Data: 0x0008n,  // 0x0008 (0x0010) [TArray<FUploadStatData>]
 } as const;
 
 /**
@@ -13250,12 +11762,12 @@ export const UploadStatDataSet = {
  * Size: 0x0018
  */
 export const VectorInterpRate = {
-  MaxDistance: 0x0000,  // 0x0000 (0x0004) [float]
-  InterpRate: 0x0004,  // 0x0004 (0x0004) [float]
-  ForwardScale: 0x0008,  // 0x0008 (0x0004) [float]
-  BackwardScale: 0x000C,  // 0x000C (0x0004) [float]
-  SideScale: 0x0010,  // 0x0010 (0x0004) [float]
-  UpDownScale: 0x0014,  // 0x0014 (0x0004) [float]
+  MaxDistance: 0x0000n,  // 0x0000 (0x0004) [float]
+  InterpRate: 0x0004n,  // 0x0004 (0x0004) [float]
+  ForwardScale: 0x0008n,  // 0x0008 (0x0004) [float]
+  BackwardScale: 0x000cn,  // 0x000c (0x0004) [float]
+  SideScale: 0x0010n,  // 0x0010 (0x0004) [float]
+  UpDownScale: 0x0014n,  // 0x0014 (0x0004) [float]
 } as const;
 
 /**
@@ -13263,8 +11775,8 @@ export const VectorInterpRate = {
  * Size: 0x0014
  */
 export const VectorParamPair = {
-  Key: 0x0000,  // 0x0000 (0x0008) [FName]
-  Value: 0x0008,  // 0x0008 (0x000C) [FVector]
+  Key: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Value: 0x0008n,  // 0x0008 (0x000c) [FVector]
 } as const;
 
 /**
@@ -13272,8 +11784,8 @@ export const VectorParamPair = {
  * Size: 0x0014
  */
 export const VideoCardMetrics = {
-  Type: 0x0000,  // 0x0000 (0x0010) [FString]
-  RAM: 0x0010,  // 0x0010 (0x0004) [int32]
+  Type: 0x0000n,  // 0x0000 (0x0010) [FString]
+  RAM: 0x0010n,  // 0x0010 (0x0004) [int32]
 } as const;
 
 /**
@@ -13281,15 +11793,15 @@ export const VideoCardMetrics = {
  * Size: 0x0078
  */
 export const WordFilterPair = {
-  Id: 0x0000,  // 0x0000 (0x0010) [FString]
-  Key: 0x0010,  // 0x0010 (0x0010) [FString]
-  Value: 0x0020,  // 0x0020 (0x0010) [FString]
-  Usage: 0x0030,  // 0x0030 (0x0001) [EWordFilterUsage]
-  bPending: 0x0034,  // 0x0034 (0x0004) [bool : 0x1]
-  LastRequestTime: 0x0038,  // 0x0038 (0x0004) [float]
-  Error: 0x0040,  // 0x0040 (0x0008) [UError*]
-  Callback: 0x0048,  // 0x0048 (0x0018) [FScriptDelegate]
-  ErrorCallback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+  Id: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Key: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Value: 0x0020n,  // 0x0020 (0x0010) [FString]
+  Usage: 0x0030n,  // 0x0030 (0x0001) [EWordFilterUsage]
+  bPending: 0x0034n,  // 0x0034 (0x0004) [bool : 0x1]
+  LastRequestTime: 0x0038n,  // 0x0038 (0x0004) [float]
+  Error: 0x0040n,  // 0x0040 (0x0008) [UError*]
+  Callback: 0x0048n,  // 0x0048 (0x0018) [FScriptDelegate]
+  ErrorCallback: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -13297,8 +11809,8 @@ export const WordFilterPair = {
  * Size: 0x0040
  */
 export const WordFilterRequest = {
-  Request: 0x0000,  // 0x0000 (0x0008) [UWebRequest_X*]
-  Comment: 0x0008,  // 0x0008 (0x0010) [FString]
-  Sanitized: 0x0018,  // 0x0018 (0x0010) [FString]
-  Callback: 0x0028,  // 0x0028 (0x0018) [FScriptDelegate]
+  Request: 0x0000n,  // 0x0000 (0x0008) [UWebRequest_X*]
+  Comment: 0x0008n,  // 0x0008 (0x0010) [FString]
+  Sanitized: 0x0018n,  // 0x0018 (0x0010) [FString]
+  Callback: 0x0028n,  // 0x0028 (0x0018) [FScriptDelegate]
 } as const;

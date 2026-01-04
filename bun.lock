@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "rocketleaguesdk",
+      "name": "rlsdk",
       "devDependencies": {
         "@types/bun": "latest",
       },

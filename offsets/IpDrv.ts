@@ -6,25 +6,8 @@
  * Import these to read/write memory at the correct locations.
  */
 
-/**
- * Core.Object Offsets
- * Size: 0x0060
- */
-export const Object_ = {
-  VfTableObject: 0x0000,  // 0x0000 (0x0008) [FPointer]
-  HashNext: 0x0008,  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: 0x0010,  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: 0x0018,  // 0x0018 (0x0008) [FPointer]
-  StateFrame: 0x0020,  // 0x0020 (0x0008) [FPointer]
-  Linker: 0x0028,  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: 0x0030,  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: 0x0038,  // 0x0038 (0x0004) [int32]
-  NetIndex: 0x003C,  // 0x003C (0x0004) [int32]
-  Outer: 0x0040,  // 0x0040 (0x0008) [UObject*]
-  Name: 0x0048,  // 0x0048 (0x0008) [FName]
-  Class: 0x0050,  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: 0x0058,  // 0x0058 (0x0008) [UObject*]
-} as const;
+import { Component, ErrorList, Object_ } from './Core';
+import { Download, HttpRequestInterface, HttpResponseInterface, Info, NetConnection, NetDriver, OnlineSubsystem, UIDataStore, UIResourceDataProvider } from './Engine';
 
 /**
  * IpDrv.AdHocDelegates Offsets
@@ -32,26 +15,15 @@ export const Object_ = {
  * Extends: Object
  */
 export const AdHocDelegates = {
-  __EventAdHocOnNetworkChanged__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  __EventAdHocError__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
-  __EventAdHocInitialized__Delegate: 0x0090,  // 0x0090 (0x0018) [FScriptDelegate]
-  __EventAccessPointCreated__Delegate: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
-  __EventBecomeStation__Delegate: 0x00C0,  // 0x00C0 (0x0018) [FScriptDelegate]
-  __EventStationConnected__Delegate: 0x00D8,  // 0x00D8 (0x0018) [FScriptDelegate]
-  __EventStationDisconnected__Delegate: 0x00F0,  // 0x00F0 (0x0018) [FScriptDelegate]
-  __EventAdHocFinalized__Delegate: 0x0108,  // 0x0108 (0x0018) [FScriptDelegate]
-  __EventAdHocDestroyed__Delegate: 0x0120,  // 0x0120 (0x0018) [FScriptDelegate]
-  ...Object_,
-} as const;
-
-/**
- * Core.ErrorList Offsets
- * Size: 0x0080
- * Extends: Object
- */
-export const ErrorList = {
-  LocalizationPackage: 0x0060,  // 0x0060 (0x0010) [FString]
-  LocalizationSection: 0x0070,  // 0x0070 (0x0010) [FString]
+  __EventAdHocOnNetworkChanged__Delegate: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
+  __EventAdHocError__Delegate: 0x0078n,  // 0x0078 (0x0018) [FScriptDelegate]
+  __EventAdHocInitialized__Delegate: 0x0090n,  // 0x0090 (0x0018) [FScriptDelegate]
+  __EventAccessPointCreated__Delegate: 0x00a8n,  // 0x00a8 (0x0018) [FScriptDelegate]
+  __EventBecomeStation__Delegate: 0x00c0n,  // 0x00c0 (0x0018) [FScriptDelegate]
+  __EventStationConnected__Delegate: 0x00d8n,  // 0x00d8 (0x0018) [FScriptDelegate]
+  __EventStationDisconnected__Delegate: 0x00f0n,  // 0x00f0 (0x0018) [FScriptDelegate]
+  __EventAdHocFinalized__Delegate: 0x0108n,  // 0x0108 (0x0018) [FScriptDelegate]
+  __EventAdHocDestroyed__Delegate: 0x0120n,  // 0x0120 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -61,32 +33,21 @@ export const ErrorList = {
  * Extends: ErrorList
  */
 export const AdHocErrors = {
-  AdHocError: 0x0080,  // 0x0080 (0x0008) [UErrorType*]
+  AdHocError: 0x0080n,  // 0x0080 (0x0008) [UErrorType*]
   ...ErrorList,
 } as const;
 
 /**
  * IpDrv.AvatarDownload Offsets
- * Size: 0x00E0
+ * Size: 0x00e0
  * Extends: Object
  */
 export const AvatarDownload = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  URL: 0x00A8,  // 0x00A8 (0x0010) [FString]
-  AvatarSize: 0x00B8,  // 0x00B8 (0x0001) [AvatarSize]
-  Texture: 0x00C0,  // 0x00C0 (0x0008) [UTexture*]
-  Callbacks: 0x00C8,  // 0x00C8 (0x0018) [FScriptDelegate]
-  ...Object_,
-} as const;
-
-/**
- * Core.Component Offsets
- * Size: 0x0070
- * Extends: Object
- */
-export const Component = {
-  TemplateOwnerClass: 0x0060,  // 0x0060 (0x0008) [UClass*]
-  TemplateName: 0x0068,  // 0x0068 (0x0008) [FName]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
+  URL: 0x00a8n,  // 0x00a8 (0x0010) [FString]
+  AvatarSize: 0x00b8n,  // 0x00b8 (0x0001) [AvatarSize]
+  Texture: 0x00c0n,  // 0x00c0 (0x0008) [UTexture*]
+  Callbacks: 0x00c8n,  // 0x00c8 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -96,8 +57,8 @@ export const Component = {
  * Extends: Component
  */
 export const AvatarDownloadComponent = {
-  AvatarDownloadCache: 0x0070,  // 0x0070 (0x0008) [unknown]
-  ImageDownloader: 0x0078,  // 0x0078 (0x0008) [UOnlineImageDownloaderWeb*]
+  AvatarDownloadCache: 0x0070n,  // 0x0070 (0x0008) [unknown]
+  ImageDownloader: 0x0078n,  // 0x0078 (0x0008) [UOnlineImageDownloaderWeb*]
   ...Component,
 } as const;
 
@@ -107,76 +68,50 @@ export const AvatarDownloadComponent = {
  * Extends: Component
  */
 export const AvatarDownloadMap = {
-  AvatarMap: 0x0070,  // 0x0070 (0x0050) [FMap_Mirror]
-  ImageMap: 0x00C0,  // 0x00C0 (0x0050) [FMap_Mirror]
-  AvatarsPendingImages: 0x0110,  // 0x0110 (0x0050) [FMap_Mirror]
+  AvatarMap: 0x0070n,  // 0x0070 (0x0050) [FMap_Mirror]
+  ImageMap: 0x00c0n,  // 0x00c0 (0x0050) [FMap_Mirror]
+  AvatarsPendingImages: 0x0110n,  // 0x0110 (0x0050) [FMap_Mirror]
   ...Component,
 } as const;
 
 /**
  * IpDrv.ClientBeaconAddressResolver Offsets
- * Size: 0x006C
+ * Size: 0x006c
  * Extends: Object
  */
 export const ClientBeaconAddressResolver = {
-  BeaconPort: 0x0060,  // 0x0060 (0x0004) [int32]
-  BeaconName: 0x0064,  // 0x0064 (0x0008) [FName]
-  ...Object_,
-} as const;
-
-/**
- * Engine.Download Offsets
- * Size: 0x0AB0
- * Extends: Object
- */
-export const Download = {
+  BeaconPort: 0x0060n,  // 0x0060 (0x0004) [int32]
+  BeaconName: 0x0064n,  // 0x0064 (0x0008) [FName]
   ...Object_,
 } as const;
 
 /**
  * IpDrv.HTTPDownload Offsets
- * Size: 0x0BF0
+ * Size: 0x0bf0
  * Extends: Download
  */
 export const HTTPDownload = {
-  RedirectToURL: 0x0078,  // 0x0078 (0x0010) [FString]
-  UseCompression: 0x0088,  // 0x0088 (0x0004) [bool : 0x1]
-  ProxyServerHost: 0x0AB0,  // 0x0AB0 (0x0010) [FString]
-  ProxyServerPort: 0x0AC0,  // 0x0AC0 (0x0004) [int32]
-  MaxRedirection: 0x0AC4,  // 0x0AC4 (0x0004) [bool : 0x1]
-  ConnectionTimeout: 0x0AC8,  // 0x0AC8 (0x0004) [float]
+  RedirectToURL: 0x0078n,  // 0x0078 (0x0010) [FString]
+  UseCompression: 0x0088n,  // 0x0088 (0x0004) [bool : 0x1]
+  ProxyServerHost: 0x0ab0n,  // 0x0ab0 (0x0010) [FString]
+  ProxyServerPort: 0x0ac0n,  // 0x0ac0 (0x0004) [int32]
+  MaxRedirection: 0x0ac4n,  // 0x0ac4 (0x0004) [bool : 0x1]
+  ConnectionTimeout: 0x0ac8n,  // 0x0ac8 (0x0004) [float]
   ...Download,
 } as const;
 
 /**
- * Engine.HttpRequestInterface Offsets
- * Size: 0x0078
- * Extends: HttpBaseInterface
- */
-export const HttpRequestInterface = {
-  __OnProcessRequestComplete__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-} as const;
-
-/**
  * IpDrv.HttpRequestCurl Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: HttpRequestInterface
  */
 export const HttpRequestCurl = {
-  Request: 0x0078,  // 0x0078 (0x0008) [FPointer]
-  RequestVerb: 0x0080,  // 0x0080 (0x0010) [FString]
-  RequestURL: 0x0090,  // 0x0090 (0x0010) [FString]
-  Payload: 0x00A0,  // 0x00A0 (0x0010) [TArray<uint8>]
-  AllowedRedirectURLs: 0x00B0,  // 0x00B0 (0x0010) [TArray<FString>]
+  Request: 0x0078n,  // 0x0078 (0x0008) [FPointer]
+  RequestVerb: 0x0080n,  // 0x0080 (0x0010) [FString]
+  RequestURL: 0x0090n,  // 0x0090 (0x0010) [FString]
+  Payload: 0x00a0n,  // 0x00a0 (0x0010) [TArray<uint8>]
+  AllowedRedirectURLs: 0x00b0n,  // 0x00b0 (0x0010) [TArray<FString>]
   ...HttpRequestInterface,
-} as const;
-
-/**
- * Engine.HttpResponseInterface Offsets
- * Size: 0x0060
- * Extends: HttpBaseInterface
- */
-export const HttpResponseInterface = {
 } as const;
 
 /**
@@ -185,8 +120,8 @@ export const HttpResponseInterface = {
  * Extends: HttpResponseInterface
  */
 export const HttpResponseCurl = {
-  Response: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  Payload: 0x0068,  // 0x0068 (0x0010) [TArray<uint8>]
+  Response: 0x0060n,  // 0x0060 (0x0008) [FPointer]
+  Payload: 0x0068n,  // 0x0068 (0x0010) [TArray<uint8>]
   ...HttpResponseInterface,
 } as const;
 
@@ -196,18 +131,10 @@ export const HttpResponseCurl = {
  * Extends: Object
  */
 export const ImageDecoder = {
-  VfTable_FTickableObject: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  ActiveDecodeRequests: 0x0068,  // 0x0068 (0x0010) [TArray<FDecodeImageRequest>]
-  __ImageDecodedDelegate__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
+  VfTable_FTickableObject: 0x0060n,  // 0x0060 (0x0008) [FPointer]
+  ActiveDecodeRequests: 0x0068n,  // 0x0068 (0x0010) [TArray<FDecodeImageRequest>]
+  __ImageDecodedDelegate__Delegate: 0x0078n,  // 0x0078 (0x0018) [FScriptDelegate]
   ...Object_,
-} as const;
-
-/**
- * Engine.Info Offsets
- * Size: 0x0268
- * Extends: Actor
- */
-export const Info = {
 } as const;
 
 /**
@@ -216,15 +143,15 @@ export const Info = {
  * Extends: Info
  */
 export const InternetLink = {
-  LinkMode: 0x0268,  // 0x0268 (0x0001) [ELinkMode]
-  InLineMode: 0x0269,  // 0x0269 (0x0001) [ELineMode]
-  OutLineMode: 0x026A,  // 0x026A (0x0001) [ELineMode]
-  ReceiveMode: 0x026B,  // 0x026B (0x0001) [EReceiveMode]
-  Socket: 0x0270,  // 0x0270 (0x0008) [FPointer]
-  Port: 0x0278,  // 0x0278 (0x0004) [int32]
-  RemoteSocket: 0x0280,  // 0x0280 (0x0008) [FPointer]
-  PrivateResolveInfo: 0x0288,  // 0x0288 (0x0008) [FPointer]
-  DataPending: 0x0290,  // 0x0290 (0x0004) [int32]
+  LinkMode: 0x0268n,  // 0x0268 (0x0001) [ELinkMode]
+  InLineMode: 0x0269n,  // 0x0269 (0x0001) [ELineMode]
+  OutLineMode: 0x026an,  // 0x026a (0x0001) [ELineMode]
+  ReceiveMode: 0x026bn,  // 0x026b (0x0001) [EReceiveMode]
+  Socket: 0x0270n,  // 0x0270 (0x0008) [FPointer]
+  Port: 0x0278n,  // 0x0278 (0x0004) [int32]
+  RemoteSocket: 0x0280n,  // 0x0280 (0x0008) [FPointer]
+  PrivateResolveInfo: 0x0288n,  // 0x0288 (0x0008) [FPointer]
+  DataPending: 0x0290n,  // 0x0290 (0x0004) [int32]
   ...Info,
 } as const;
 
@@ -234,8 +161,8 @@ export const InternetLink = {
  * Extends: Object
  */
 export const McpServiceBase = {
-  McpConfigClassName: 0x0060,  // 0x0060 (0x0010) [FString]
-  McpConfig: 0x0070,  // 0x0070 (0x0008) [UMcpServiceConfig*]
+  McpConfigClassName: 0x0060n,  // 0x0060 (0x0010) [FString]
+  McpConfig: 0x0070n,  // 0x0070 (0x0008) [UMcpServiceConfig*]
   ...Object_,
 } as const;
 
@@ -245,7 +172,7 @@ export const McpServiceBase = {
  * Extends: McpServiceBase
  */
 export const MCPBase = {
-  VfTable_FTickableObject: 0x0078,  // 0x0078 (0x0008) [FPointer]
+  VfTable_FTickableObject: 0x0078n,  // 0x0078 (0x0008) [FPointer]
   ...McpServiceBase,
 } as const;
 
@@ -255,13 +182,13 @@ export const MCPBase = {
  * Extends: McpServiceBase
  */
 export const McpClashMobBase = {
-  McpClashMobClassName: 0x0078,  // 0x0078 (0x0010) [FString]
-  __OnQueryChallengeListComplete__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
-  __OnDownloadChallengeFileComplete__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
-  __OnAcceptChallengeComplete__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
-  __OnQueryChallengeUserStatusComplete__Delegate: 0x00D0,  // 0x00D0 (0x0018) [FScriptDelegate]
-  __OnUpdateChallengeUserProgressComplete__Delegate: 0x00E8,  // 0x00E8 (0x0018) [FScriptDelegate]
-  __OnUpdateChallengeUserRewardComplete__Delegate: 0x0100,  // 0x0100 (0x0018) [FScriptDelegate]
+  McpClashMobClassName: 0x0078n,  // 0x0078 (0x0010) [FString]
+  __OnQueryChallengeListComplete__Delegate: 0x0088n,  // 0x0088 (0x0018) [FScriptDelegate]
+  __OnDownloadChallengeFileComplete__Delegate: 0x00a0n,  // 0x00a0 (0x0018) [FScriptDelegate]
+  __OnAcceptChallengeComplete__Delegate: 0x00b8n,  // 0x00b8 (0x0018) [FScriptDelegate]
+  __OnQueryChallengeUserStatusComplete__Delegate: 0x00d0n,  // 0x00d0 (0x0018) [FScriptDelegate]
+  __OnUpdateChallengeUserProgressComplete__Delegate: 0x00e8n,  // 0x00e8 (0x0018) [FScriptDelegate]
+  __OnUpdateChallengeUserRewardComplete__Delegate: 0x0100n,  // 0x0100 (0x0018) [FScriptDelegate]
   ...McpServiceBase,
 } as const;
 
@@ -271,20 +198,20 @@ export const McpClashMobBase = {
  * Extends: McpClashMobBase
  */
 export const McpClashMobManager = {
-  ChallengeListUrl: 0x0118,  // 0x0118 (0x0010) [FString]
-  ChallengeStatusUrl: 0x0128,  // 0x0128 (0x0010) [FString]
-  ChallengeMultiStatusUrl: 0x0138,  // 0x0138 (0x0010) [FString]
-  AcceptChallengeUrl: 0x0148,  // 0x0148 (0x0010) [FString]
-  UpdateChallengeProgressUrl: 0x0158,  // 0x0158 (0x0010) [FString]
-  UpdateRewardProgressUrl: 0x0168,  // 0x0168 (0x0010) [FString]
-  HTTPRequestChallengeList: 0x0178,  // 0x0178 (0x0008) [UHttpRequestInterface*]
-  ChallengeUserRequests: 0x0180,  // 0x0180 (0x0010) [TArray<FMcpChallengeUserRequest>]
-  ChallengeEvents: 0x0190,  // 0x0190 (0x0010) [TArray<FMcpClashMobChallengeEvent>]
-  ChallengeUserStatus: 0x01A0,  // 0x01A0 (0x0010) [TArray<FMcpClashMobChallengeUserStatus>]
-  TempChallengeUserStatus: 0x01B0,  // 0x01B0 (0x0090) [FMcpClashMobChallengeUserStatus]
-  TempChallengeUserStatusArray: 0x0240,  // 0x0240 (0x0010) [TArray<FMcpClashMobChallengeUserStatus>]
-  FileCache: 0x0250,  // 0x0250 (0x0010) [TScriptInterface<UOnlineTitleFileCacheInterface>]
-  FileDownloader: 0x0260,  // 0x0260 (0x0008) [UMcpClashMobFileDownload*]
+  ChallengeListUrl: 0x0118n,  // 0x0118 (0x0010) [FString]
+  ChallengeStatusUrl: 0x0128n,  // 0x0128 (0x0010) [FString]
+  ChallengeMultiStatusUrl: 0x0138n,  // 0x0138 (0x0010) [FString]
+  AcceptChallengeUrl: 0x0148n,  // 0x0148 (0x0010) [FString]
+  UpdateChallengeProgressUrl: 0x0158n,  // 0x0158 (0x0010) [FString]
+  UpdateRewardProgressUrl: 0x0168n,  // 0x0168 (0x0010) [FString]
+  HTTPRequestChallengeList: 0x0178n,  // 0x0178 (0x0008) [UHttpRequestInterface*]
+  ChallengeUserRequests: 0x0180n,  // 0x0180 (0x0010) [TArray<FMcpChallengeUserRequest>]
+  ChallengeEvents: 0x0190n,  // 0x0190 (0x0010) [TArray<FMcpClashMobChallengeEvent>]
+  ChallengeUserStatus: 0x01a0n,  // 0x01a0 (0x0010) [TArray<FMcpClashMobChallengeUserStatus>]
+  TempChallengeUserStatus: 0x01b0n,  // 0x01b0 (0x0090) [FMcpClashMobChallengeUserStatus]
+  TempChallengeUserStatusArray: 0x0240n,  // 0x0240 (0x0010) [TArray<FMcpClashMobChallengeUserStatus>]
+  FileCache: 0x0250n,  // 0x0250 (0x0010) [TScriptInterface<UOnlineTitleFileCacheInterface>]
+  FileDownloader: 0x0260n,  // 0x0260 (0x0008) [UMcpClashMobFileDownload*]
   ...McpClashMobBase,
 } as const;
 
@@ -294,17 +221,17 @@ export const McpClashMobManager = {
  * Extends: McpServiceBase
  */
 export const McpGroupsBase = {
-  McpGroupsManagerClassName: 0x0078,  // 0x0078 (0x0010) [FString]
-  GroupLists: 0x0088,  // 0x0088 (0x0010) [TArray<FMcpGroupList>]
-  __OnCreateGroupComplete__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
-  __OnDeleteGroupComplete__Delegate: 0x00B0,  // 0x00B0 (0x0018) [FScriptDelegate]
-  __OnQueryGroupsComplete__Delegate: 0x00C8,  // 0x00C8 (0x0018) [FScriptDelegate]
-  __OnQueryGroupMembersComplete__Delegate: 0x00E0,  // 0x00E0 (0x0018) [FScriptDelegate]
-  __OnAddGroupMembersComplete__Delegate: 0x00F8,  // 0x00F8 (0x0018) [FScriptDelegate]
-  __OnRemoveGroupMembersComplete__Delegate: 0x0110,  // 0x0110 (0x0018) [FScriptDelegate]
-  __OnDeleteAllGroupsComplete__Delegate: 0x0128,  // 0x0128 (0x0018) [FScriptDelegate]
-  __OnQueryGroupInvitesComplete__Delegate: 0x0140,  // 0x0140 (0x0018) [FScriptDelegate]
-  __OnAcceptGroupInviteComplete__Delegate: 0x0158,  // 0x0158 (0x0018) [FScriptDelegate]
+  McpGroupsManagerClassName: 0x0078n,  // 0x0078 (0x0010) [FString]
+  GroupLists: 0x0088n,  // 0x0088 (0x0010) [TArray<FMcpGroupList>]
+  __OnCreateGroupComplete__Delegate: 0x0098n,  // 0x0098 (0x0018) [FScriptDelegate]
+  __OnDeleteGroupComplete__Delegate: 0x00b0n,  // 0x00b0 (0x0018) [FScriptDelegate]
+  __OnQueryGroupsComplete__Delegate: 0x00c8n,  // 0x00c8 (0x0018) [FScriptDelegate]
+  __OnQueryGroupMembersComplete__Delegate: 0x00e0n,  // 0x00e0 (0x0018) [FScriptDelegate]
+  __OnAddGroupMembersComplete__Delegate: 0x00f8n,  // 0x00f8 (0x0018) [FScriptDelegate]
+  __OnRemoveGroupMembersComplete__Delegate: 0x0110n,  // 0x0110 (0x0018) [FScriptDelegate]
+  __OnDeleteAllGroupsComplete__Delegate: 0x0128n,  // 0x0128 (0x0018) [FScriptDelegate]
+  __OnQueryGroupInvitesComplete__Delegate: 0x0140n,  // 0x0140 (0x0018) [FScriptDelegate]
+  __OnAcceptGroupInviteComplete__Delegate: 0x0158n,  // 0x0158 (0x0018) [FScriptDelegate]
   ...McpServiceBase,
 } as const;
 
@@ -314,31 +241,31 @@ export const McpGroupsBase = {
  * Extends: McpGroupsBase
  */
 export const McpGroupsManager = {
-  CreateGroupUrl: 0x0170,  // 0x0170 (0x0010) [FString]
-  DeleteGroupUrl: 0x0180,  // 0x0180 (0x0010) [FString]
-  QueryGroupsUrl: 0x0190,  // 0x0190 (0x0010) [FString]
-  QueryGroupMembersUrl: 0x01A0,  // 0x01A0 (0x0010) [FString]
-  AddGroupMembersUrl: 0x01B0,  // 0x01B0 (0x0010) [FString]
-  RemoveGroupMembersUrl: 0x01C0,  // 0x01C0 (0x0010) [FString]
-  DeleteAllGroupsUrl: 0x01D0,  // 0x01D0 (0x0010) [FString]
-  AcceptGroupInviteUrl: 0x01E0,  // 0x01E0 (0x0010) [FString]
-  RejectGroupInviteUrl: 0x01F0,  // 0x01F0 (0x0010) [FString]
-  __OnQueryGroupsRequestComplete__Delegate: 0x0200,  // 0x0200 (0x0018) [FScriptDelegate]
-  __OnQueryGroupMembersRequestComplete__Delegate: 0x0218,  // 0x0218 (0x0018) [FScriptDelegate]
-  __OnAddGroupMembersRequestComplete__Delegate: 0x0230,  // 0x0230 (0x0018) [FScriptDelegate]
-  __OnAcceptGroupInviteRequestComplete__Delegate: 0x0248,  // 0x0248 (0x0018) [FScriptDelegate]
+  CreateGroupUrl: 0x0170n,  // 0x0170 (0x0010) [FString]
+  DeleteGroupUrl: 0x0180n,  // 0x0180 (0x0010) [FString]
+  QueryGroupsUrl: 0x0190n,  // 0x0190 (0x0010) [FString]
+  QueryGroupMembersUrl: 0x01a0n,  // 0x01a0 (0x0010) [FString]
+  AddGroupMembersUrl: 0x01b0n,  // 0x01b0 (0x0010) [FString]
+  RemoveGroupMembersUrl: 0x01c0n,  // 0x01c0 (0x0010) [FString]
+  DeleteAllGroupsUrl: 0x01d0n,  // 0x01d0 (0x0010) [FString]
+  AcceptGroupInviteUrl: 0x01e0n,  // 0x01e0 (0x0010) [FString]
+  RejectGroupInviteUrl: 0x01f0n,  // 0x01f0 (0x0010) [FString]
+  __OnQueryGroupsRequestComplete__Delegate: 0x0200n,  // 0x0200 (0x0018) [FScriptDelegate]
+  __OnQueryGroupMembersRequestComplete__Delegate: 0x0218n,  // 0x0218 (0x0018) [FScriptDelegate]
+  __OnAddGroupMembersRequestComplete__Delegate: 0x0230n,  // 0x0230 (0x0018) [FScriptDelegate]
+  __OnAcceptGroupInviteRequestComplete__Delegate: 0x0248n,  // 0x0248 (0x0018) [FScriptDelegate]
   ...McpGroupsBase,
 } as const;
 
 /**
  * IpDrv.McpIdMappingBase Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: McpServiceBase
  */
 export const McpIdMappingBase = {
-  McpIdMappingClassName: 0x0078,  // 0x0078 (0x0010) [FString]
-  __OnAddMappingComplete__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
-  __OnQueryMappingsComplete__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
+  McpIdMappingClassName: 0x0078n,  // 0x0078 (0x0010) [FString]
+  __OnAddMappingComplete__Delegate: 0x0088n,  // 0x0088 (0x0018) [FScriptDelegate]
+  __OnQueryMappingsComplete__Delegate: 0x00a0n,  // 0x00a0 (0x0018) [FScriptDelegate]
   ...McpServiceBase,
 } as const;
 
@@ -348,25 +275,25 @@ export const McpIdMappingBase = {
  * Extends: McpIdMappingBase
  */
 export const McpIdMappingManager = {
-  AccountMappings: 0x00B8,  // 0x00B8 (0x0010) [TArray<FMcpIdMapping>]
-  AddMappingUrl: 0x00C8,  // 0x00C8 (0x0010) [FString]
-  QueryMappingUrl: 0x00D8,  // 0x00D8 (0x0010) [FString]
-  AddMappingRequests: 0x00E8,  // 0x00E8 (0x0010) [TArray<FAddMappingRequest>]
-  QueryMappingRequests: 0x00F8,  // 0x00F8 (0x0010) [TArray<FQueryMappingRequest>]
+  AccountMappings: 0x00b8n,  // 0x00b8 (0x0010) [TArray<FMcpIdMapping>]
+  AddMappingUrl: 0x00c8n,  // 0x00c8 (0x0010) [FString]
+  QueryMappingUrl: 0x00d8n,  // 0x00d8 (0x0010) [FString]
+  AddMappingRequests: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FAddMappingRequest>]
+  QueryMappingRequests: 0x00f8n,  // 0x00f8 (0x0010) [TArray<FQueryMappingRequest>]
   ...McpIdMappingBase,
 } as const;
 
 /**
  * IpDrv.McpManagedValueManagerBase Offsets
- * Size: 0x00E8
+ * Size: 0x00e8
  * Extends: McpServiceBase
  */
 export const McpManagedValueManagerBase = {
-  McpManagedValueManagerClassName: 0x0078,  // 0x0078 (0x0010) [FString]
-  __OnCreateSaveSlotComplete__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
-  __OnReadSaveSlotComplete__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
-  __OnUpdateValueComplete__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
-  __OnDeleteValueComplete__Delegate: 0x00D0,  // 0x00D0 (0x0018) [FScriptDelegate]
+  McpManagedValueManagerClassName: 0x0078n,  // 0x0078 (0x0010) [FString]
+  __OnCreateSaveSlotComplete__Delegate: 0x0088n,  // 0x0088 (0x0018) [FScriptDelegate]
+  __OnReadSaveSlotComplete__Delegate: 0x00a0n,  // 0x00a0 (0x0018) [FScriptDelegate]
+  __OnUpdateValueComplete__Delegate: 0x00b8n,  // 0x00b8 (0x0018) [FScriptDelegate]
+  __OnDeleteValueComplete__Delegate: 0x00d0n,  // 0x00d0 (0x0018) [FScriptDelegate]
   ...McpServiceBase,
 } as const;
 
@@ -376,15 +303,15 @@ export const McpManagedValueManagerBase = {
  * Extends: McpManagedValueManagerBase
  */
 export const McpManagedValueManager = {
-  CreateSaveSlotUrl: 0x00E8,  // 0x00E8 (0x0010) [FString]
-  ReadSaveSlotUrl: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  UpdateValueUrl: 0x0108,  // 0x0108 (0x0010) [FString]
-  DeleteValueUrl: 0x0118,  // 0x0118 (0x0010) [FString]
-  SaveSlots: 0x0128,  // 0x0128 (0x0010) [TArray<FManagedValueSaveSlot>]
-  CreateSaveSlotRequests: 0x0138,  // 0x0138 (0x0010) [TArray<FSaveSlotRequestState>]
-  ReadSaveSlotRequests: 0x0148,  // 0x0148 (0x0010) [TArray<FSaveSlotRequestState>]
-  UpdateValueRequests: 0x0158,  // 0x0158 (0x0010) [TArray<FValueRequestState>]
-  DeleteValueRequests: 0x0168,  // 0x0168 (0x0010) [TArray<FValueRequestState>]
+  CreateSaveSlotUrl: 0x00e8n,  // 0x00e8 (0x0010) [FString]
+  ReadSaveSlotUrl: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  UpdateValueUrl: 0x0108n,  // 0x0108 (0x0010) [FString]
+  DeleteValueUrl: 0x0118n,  // 0x0118 (0x0010) [FString]
+  SaveSlots: 0x0128n,  // 0x0128 (0x0010) [TArray<FManagedValueSaveSlot>]
+  CreateSaveSlotRequests: 0x0138n,  // 0x0138 (0x0010) [TArray<FSaveSlotRequestState>]
+  ReadSaveSlotRequests: 0x0148n,  // 0x0148 (0x0010) [TArray<FSaveSlotRequestState>]
+  UpdateValueRequests: 0x0158n,  // 0x0158 (0x0010) [TArray<FValueRequestState>]
+  DeleteValueRequests: 0x0168n,  // 0x0168 (0x0010) [TArray<FValueRequestState>]
   ...McpManagedValueManagerBase,
 } as const;
 
@@ -394,14 +321,14 @@ export const McpManagedValueManager = {
  * Extends: McpServiceBase
  */
 export const McpMessageBase = {
-  McpMessageManagerClassName: 0x0078,  // 0x0078 (0x0010) [FString]
-  CompressionType: 0x0088,  // 0x0088 (0x0001) [EMcpMessageCompressionType]
-  MessageContentsList: 0x0090,  // 0x0090 (0x0010) [TArray<FMcpMessageContents>]
-  MessageLists: 0x00A0,  // 0x00A0 (0x0010) [TArray<FMcpMessageList>]
-  __OnCreateMessageComplete__Delegate: 0x00B0,  // 0x00B0 (0x0018) [FScriptDelegate]
-  __OnDeleteMessageComplete__Delegate: 0x00C8,  // 0x00C8 (0x0018) [FScriptDelegate]
-  __OnQueryMessagesComplete__Delegate: 0x00E0,  // 0x00E0 (0x0018) [FScriptDelegate]
-  __OnQueryMessageContentsComplete__Delegate: 0x00F8,  // 0x00F8 (0x0018) [FScriptDelegate]
+  McpMessageManagerClassName: 0x0078n,  // 0x0078 (0x0010) [FString]
+  CompressionType: 0x0088n,  // 0x0088 (0x0001) [EMcpMessageCompressionType]
+  MessageContentsList: 0x0090n,  // 0x0090 (0x0010) [TArray<FMcpMessageContents>]
+  MessageLists: 0x00a0n,  // 0x00a0 (0x0010) [TArray<FMcpMessageList>]
+  __OnCreateMessageComplete__Delegate: 0x00b0n,  // 0x00b0 (0x0018) [FScriptDelegate]
+  __OnDeleteMessageComplete__Delegate: 0x00c8n,  // 0x00c8 (0x0018) [FScriptDelegate]
+  __OnQueryMessagesComplete__Delegate: 0x00e0n,  // 0x00e0 (0x0018) [FScriptDelegate]
+  __OnQueryMessageContentsComplete__Delegate: 0x00f8n,  // 0x00f8 (0x0018) [FScriptDelegate]
   ...McpServiceBase,
 } as const;
 
@@ -411,50 +338,50 @@ export const McpMessageBase = {
  * Extends: McpMessageBase
  */
 export const McpMessageManager = {
-  VfTable_FTickableObject: 0x0110,  // 0x0110 (0x0008) [FPointer]
-  CreateMessageUrl: 0x0118,  // 0x0118 (0x0010) [FString]
-  DeleteMessageUrl: 0x0128,  // 0x0128 (0x0010) [FString]
-  QueryMessagesUrl: 0x0138,  // 0x0138 (0x0010) [FString]
-  QueryMessageContentsUrl: 0x0148,  // 0x0148 (0x0010) [FString]
-  DeleteAllMessagesUrl: 0x0158,  // 0x0158 (0x0010) [FString]
-  CompressMessageRequests: 0x0168,  // 0x0168 (0x0010) [TArray<FMcpCompressMessageRequest>]
-  UncompressMessageRequests: 0x0178,  // 0x0178 (0x0010) [TArray<FMcpUncompressMessageRequest>]
+  VfTable_FTickableObject: 0x0110n,  // 0x0110 (0x0008) [FPointer]
+  CreateMessageUrl: 0x0118n,  // 0x0118 (0x0010) [FString]
+  DeleteMessageUrl: 0x0128n,  // 0x0128 (0x0010) [FString]
+  QueryMessagesUrl: 0x0138n,  // 0x0138 (0x0010) [FString]
+  QueryMessageContentsUrl: 0x0148n,  // 0x0148 (0x0010) [FString]
+  DeleteAllMessagesUrl: 0x0158n,  // 0x0158 (0x0010) [FString]
+  CompressMessageRequests: 0x0168n,  // 0x0168 (0x0010) [TArray<FMcpCompressMessageRequest>]
+  UncompressMessageRequests: 0x0178n,  // 0x0178 (0x0010) [TArray<FMcpUncompressMessageRequest>]
   ...McpMessageBase,
 } as const;
 
 /**
  * IpDrv.McpServerTimeBase Offsets
- * Size: 0x00A0
+ * Size: 0x00a0
  * Extends: McpServiceBase
  */
 export const McpServerTimeBase = {
-  McpServerTimeClassName: 0x0078,  // 0x0078 (0x0010) [FString]
-  __OnQueryServerTimeComplete__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
+  McpServerTimeClassName: 0x0078n,  // 0x0078 (0x0010) [FString]
+  __OnQueryServerTimeComplete__Delegate: 0x0088n,  // 0x0088 (0x0018) [FScriptDelegate]
   ...McpServiceBase,
 } as const;
 
 /**
  * IpDrv.McpServerTimeManager Offsets
- * Size: 0x00C8
+ * Size: 0x00c8
  * Extends: McpServerTimeBase
  */
 export const McpServerTimeManager = {
-  TimeStampUrl: 0x00A0,  // 0x00A0 (0x0010) [FString]
-  LastTimeStamp: 0x00B0,  // 0x00B0 (0x0010) [FString]
-  HTTPRequestServerTime: 0x00C0,  // 0x00C0 (0x0008) [UHttpRequestInterface*]
+  TimeStampUrl: 0x00a0n,  // 0x00a0 (0x0010) [FString]
+  LastTimeStamp: 0x00b0n,  // 0x00b0 (0x0010) [FString]
+  HTTPRequestServerTime: 0x00c0n,  // 0x00c0 (0x0008) [UHttpRequestInterface*]
   ...McpServerTimeBase,
 } as const;
 
 /**
  * IpDrv.McpServiceConfig Offsets
- * Size: 0x00A0
+ * Size: 0x00a0
  * Extends: Object
  */
 export const McpServiceConfig = {
-  Protocol: 0x0060,  // 0x0060 (0x0010) [FString]
-  Domain: 0x0070,  // 0x0070 (0x0010) [FString]
-  AppKey: 0x0080,  // 0x0080 (0x0010) [FString]
-  AppSecret: 0x0090,  // 0x0090 (0x0010) [FString]
+  Protocol: 0x0060n,  // 0x0060 (0x0010) [FString]
+  Domain: 0x0070n,  // 0x0070 (0x0010) [FString]
+  AppKey: 0x0080n,  // 0x0080 (0x0010) [FString]
+  AppSecret: 0x0090n,  // 0x0090 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -464,19 +391,19 @@ export const McpServiceConfig = {
  * Extends: McpServiceBase
  */
 export const McpUserCloudFileDownload = {
-  EnumerateCloudFilesUrl: 0x0078,  // 0x0078 (0x0010) [FString]
-  ReadCloudFileUrl: 0x0088,  // 0x0088 (0x0010) [FString]
-  WriteCloudFileUrl: 0x0098,  // 0x0098 (0x0010) [FString]
-  DeleteCloudFileUrl: 0x00A8,  // 0x00A8 (0x0010) [FString]
-  UserCloudFileRequests: 0x00B8,  // 0x00B8 (0x0010) [TArray<FMcpUserCloudFilesEntry>]
-  EnumerateUserFilesCompleteDelegates: 0x00C8,  // 0x00C8 (0x0010) [TArray<FScriptDelegate>]
-  ReadUserFileCompleteDelegates: 0x00D8,  // 0x00D8 (0x0010) [TArray<FScriptDelegate>]
-  WriteUserFileCompleteDelegates: 0x00E8,  // 0x00E8 (0x0010) [TArray<FScriptDelegate>]
-  DeleteUserFileCompleteDelegates: 0x00F8,  // 0x00F8 (0x0010) [TArray<FScriptDelegate>]
-  __OnEnumerateUserFilesComplete__Delegate: 0x0108,  // 0x0108 (0x0018) [FScriptDelegate]
-  __OnReadUserFileComplete__Delegate: 0x0120,  // 0x0120 (0x0018) [FScriptDelegate]
-  __OnWriteUserFileComplete__Delegate: 0x0138,  // 0x0138 (0x0018) [FScriptDelegate]
-  __OnDeleteUserFileComplete__Delegate: 0x0150,  // 0x0150 (0x0018) [FScriptDelegate]
+  EnumerateCloudFilesUrl: 0x0078n,  // 0x0078 (0x0010) [FString]
+  ReadCloudFileUrl: 0x0088n,  // 0x0088 (0x0010) [FString]
+  WriteCloudFileUrl: 0x0098n,  // 0x0098 (0x0010) [FString]
+  DeleteCloudFileUrl: 0x00a8n,  // 0x00a8 (0x0010) [FString]
+  UserCloudFileRequests: 0x00b8n,  // 0x00b8 (0x0010) [TArray<FMcpUserCloudFilesEntry>]
+  EnumerateUserFilesCompleteDelegates: 0x00c8n,  // 0x00c8 (0x0010) [TArray<FScriptDelegate>]
+  ReadUserFileCompleteDelegates: 0x00d8n,  // 0x00d8 (0x0010) [TArray<FScriptDelegate>]
+  WriteUserFileCompleteDelegates: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FScriptDelegate>]
+  DeleteUserFileCompleteDelegates: 0x00f8n,  // 0x00f8 (0x0010) [TArray<FScriptDelegate>]
+  __OnEnumerateUserFilesComplete__Delegate: 0x0108n,  // 0x0108 (0x0018) [FScriptDelegate]
+  __OnReadUserFileComplete__Delegate: 0x0120n,  // 0x0120 (0x0018) [FScriptDelegate]
+  __OnWriteUserFileComplete__Delegate: 0x0138n,  // 0x0138 (0x0018) [FScriptDelegate]
+  __OnDeleteUserFileComplete__Delegate: 0x0150n,  // 0x0150 (0x0018) [FScriptDelegate]
   ...McpServiceBase,
 } as const;
 
@@ -486,17 +413,17 @@ export const McpUserCloudFileDownload = {
  * Extends: McpServiceBase
  */
 export const McpUserInventoryBase = {
-  McpUserInventoryClassName: 0x0078,  // 0x0078 (0x0010) [FString]
-  __OnCreateSaveSlotComplete__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
-  __OnDeleteSaveSlotComplete__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
-  __OnQuerySaveSlotListComplete__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
-  __OnQueryInventoryItemsComplete__Delegate: 0x00D0,  // 0x00D0 (0x0018) [FScriptDelegate]
-  __OnPurchaseItemComplete__Delegate: 0x00E8,  // 0x00E8 (0x0018) [FScriptDelegate]
-  __OnSellItemComplete__Delegate: 0x0100,  // 0x0100 (0x0018) [FScriptDelegate]
-  __OnEarnItemComplete__Delegate: 0x0118,  // 0x0118 (0x0018) [FScriptDelegate]
-  __OnConsumeItemComplete__Delegate: 0x0130,  // 0x0130 (0x0018) [FScriptDelegate]
-  __OnDeleteItemComplete__Delegate: 0x0148,  // 0x0148 (0x0018) [FScriptDelegate]
-  __OnRecordIapComplete__Delegate: 0x0160,  // 0x0160 (0x0018) [FScriptDelegate]
+  McpUserInventoryClassName: 0x0078n,  // 0x0078 (0x0010) [FString]
+  __OnCreateSaveSlotComplete__Delegate: 0x0088n,  // 0x0088 (0x0018) [FScriptDelegate]
+  __OnDeleteSaveSlotComplete__Delegate: 0x00a0n,  // 0x00a0 (0x0018) [FScriptDelegate]
+  __OnQuerySaveSlotListComplete__Delegate: 0x00b8n,  // 0x00b8 (0x0018) [FScriptDelegate]
+  __OnQueryInventoryItemsComplete__Delegate: 0x00d0n,  // 0x00d0 (0x0018) [FScriptDelegate]
+  __OnPurchaseItemComplete__Delegate: 0x00e8n,  // 0x00e8 (0x0018) [FScriptDelegate]
+  __OnSellItemComplete__Delegate: 0x0100n,  // 0x0100 (0x0018) [FScriptDelegate]
+  __OnEarnItemComplete__Delegate: 0x0118n,  // 0x0118 (0x0018) [FScriptDelegate]
+  __OnConsumeItemComplete__Delegate: 0x0130n,  // 0x0130 (0x0018) [FScriptDelegate]
+  __OnDeleteItemComplete__Delegate: 0x0148n,  // 0x0148 (0x0018) [FScriptDelegate]
+  __OnRecordIapComplete__Delegate: 0x0160n,  // 0x0160 (0x0018) [FScriptDelegate]
   ...McpServiceBase,
 } as const;
 
@@ -506,106 +433,106 @@ export const McpUserInventoryBase = {
  * Extends: McpUserInventoryBase
  */
 export const McpUserInventoryManager = {
-  CreateSaveSlotUrl: 0x0178,  // 0x0178 (0x0010) [FString]
-  DeleteSaveSlotUrl: 0x0188,  // 0x0188 (0x0010) [FString]
-  ListSaveSlotUrl: 0x0198,  // 0x0198 (0x0010) [FString]
-  ListItemsUrl: 0x01A8,  // 0x01A8 (0x0010) [FString]
-  PurchaseItemUrl: 0x01B8,  // 0x01B8 (0x0010) [FString]
-  SellItemUrl: 0x01C8,  // 0x01C8 (0x0010) [FString]
-  EarnItemUrl: 0x01D8,  // 0x01D8 (0x0010) [FString]
-  ConsumeItemUrl: 0x01E8,  // 0x01E8 (0x0010) [FString]
-  DeleteItemUrl: 0x01F8,  // 0x01F8 (0x0010) [FString]
-  IapRecordUrl: 0x0208,  // 0x0208 (0x0010) [FString]
-  SaveSlots: 0x0218,  // 0x0218 (0x0010) [TArray<FMcpInventorySaveSlot>]
-  SaveSlotRequests: 0x0228,  // 0x0228 (0x0010) [TArray<FSaveSlotRequestState>]
-  ListSaveSlotRequests: 0x0238,  // 0x0238 (0x0010) [TArray<FSaveSlotRequestState>]
-  ListItemsRequests: 0x0248,  // 0x0248 (0x0010) [TArray<FSaveSlotRequestState>]
-  ItemRequests: 0x0258,  // 0x0258 (0x0010) [TArray<FInventoryItemRequestState>]
+  CreateSaveSlotUrl: 0x0178n,  // 0x0178 (0x0010) [FString]
+  DeleteSaveSlotUrl: 0x0188n,  // 0x0188 (0x0010) [FString]
+  ListSaveSlotUrl: 0x0198n,  // 0x0198 (0x0010) [FString]
+  ListItemsUrl: 0x01a8n,  // 0x01a8 (0x0010) [FString]
+  PurchaseItemUrl: 0x01b8n,  // 0x01b8 (0x0010) [FString]
+  SellItemUrl: 0x01c8n,  // 0x01c8 (0x0010) [FString]
+  EarnItemUrl: 0x01d8n,  // 0x01d8 (0x0010) [FString]
+  ConsumeItemUrl: 0x01e8n,  // 0x01e8 (0x0010) [FString]
+  DeleteItemUrl: 0x01f8n,  // 0x01f8 (0x0010) [FString]
+  IapRecordUrl: 0x0208n,  // 0x0208 (0x0010) [FString]
+  SaveSlots: 0x0218n,  // 0x0218 (0x0010) [TArray<FMcpInventorySaveSlot>]
+  SaveSlotRequests: 0x0228n,  // 0x0228 (0x0010) [TArray<FSaveSlotRequestState>]
+  ListSaveSlotRequests: 0x0238n,  // 0x0238 (0x0010) [TArray<FSaveSlotRequestState>]
+  ListItemsRequests: 0x0248n,  // 0x0248 (0x0010) [TArray<FSaveSlotRequestState>]
+  ItemRequests: 0x0258n,  // 0x0258 (0x0010) [TArray<FInventoryItemRequestState>]
   ...McpUserInventoryBase,
 } as const;
 
 /**
  * IpDrv.McpUserManagerBase Offsets
- * Size: 0x00E8
+ * Size: 0x00e8
  * Extends: McpServiceBase
  */
 export const McpUserManagerBase = {
-  McpUserManagerClassName: 0x0078,  // 0x0078 (0x0010) [FString]
-  __OnRegisterUserComplete__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
-  __OnAuthenticateUserComplete__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
-  __OnQueryUsersComplete__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
-  __OnDeleteUserComplete__Delegate: 0x00D0,  // 0x00D0 (0x0018) [FScriptDelegate]
+  McpUserManagerClassName: 0x0078n,  // 0x0078 (0x0010) [FString]
+  __OnRegisterUserComplete__Delegate: 0x0088n,  // 0x0088 (0x0018) [FScriptDelegate]
+  __OnAuthenticateUserComplete__Delegate: 0x00a0n,  // 0x00a0 (0x0018) [FScriptDelegate]
+  __OnQueryUsersComplete__Delegate: 0x00b8n,  // 0x00b8 (0x0018) [FScriptDelegate]
+  __OnDeleteUserComplete__Delegate: 0x00d0n,  // 0x00d0 (0x0018) [FScriptDelegate]
   ...McpServiceBase,
 } as const;
 
 /**
  * IpDrv.McpUserManager Offsets
- * Size: 0x01A8
+ * Size: 0x01a8
  * Extends: McpUserManagerBase
  */
 export const McpUserManager = {
-  UserStatuses: 0x00E8,  // 0x00E8 (0x0010) [TArray<FMcpUserStatus>]
-  RegisterUserMcpUrl: 0x00F8,  // 0x00F8 (0x0010) [FString]
-  RegisterUserFacebookUrl: 0x0108,  // 0x0108 (0x0010) [FString]
-  QueryUserUrl: 0x0118,  // 0x0118 (0x0010) [FString]
-  QueryUsersUrl: 0x0128,  // 0x0128 (0x0010) [FString]
-  DeleteUserUrl: 0x0138,  // 0x0138 (0x0010) [FString]
-  FacebookAuthUrl: 0x0148,  // 0x0148 (0x0010) [FString]
-  McpAuthUrl: 0x0158,  // 0x0158 (0x0010) [FString]
-  RegisterUserRequests: 0x0168,  // 0x0168 (0x0010) [TArray<UHttpRequestInterface*>]
-  QueryUsersRequests: 0x0178,  // 0x0178 (0x0010) [TArray<UHttpRequestInterface*>]
-  DeleteUserRequests: 0x0188,  // 0x0188 (0x0010) [TArray<FUserRequest>]
-  AuthUserRequests: 0x0198,  // 0x0198 (0x0010) [TArray<UHttpRequestInterface*>]
+  UserStatuses: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FMcpUserStatus>]
+  RegisterUserMcpUrl: 0x00f8n,  // 0x00f8 (0x0010) [FString]
+  RegisterUserFacebookUrl: 0x0108n,  // 0x0108 (0x0010) [FString]
+  QueryUserUrl: 0x0118n,  // 0x0118 (0x0010) [FString]
+  QueryUsersUrl: 0x0128n,  // 0x0128 (0x0010) [FString]
+  DeleteUserUrl: 0x0138n,  // 0x0138 (0x0010) [FString]
+  FacebookAuthUrl: 0x0148n,  // 0x0148 (0x0010) [FString]
+  McpAuthUrl: 0x0158n,  // 0x0158 (0x0010) [FString]
+  RegisterUserRequests: 0x0168n,  // 0x0168 (0x0010) [TArray<UHttpRequestInterface*>]
+  QueryUsersRequests: 0x0178n,  // 0x0178 (0x0010) [TArray<UHttpRequestInterface*>]
+  DeleteUserRequests: 0x0188n,  // 0x0188 (0x0010) [TArray<FUserRequest>]
+  AuthUserRequests: 0x0198n,  // 0x0198 (0x0010) [TArray<UHttpRequestInterface*>]
   ...McpUserManagerBase,
 } as const;
 
 /**
  * IpDrv.MeshBeacon Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const MeshBeacon = {
-  VfTable_FTickableObject: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  MeshBeaconPort: 0x0068,  // 0x0068 (0x0004) [int32]
-  Socket: 0x0070,  // 0x0070 (0x0008) [FPointer]
-  bIsInTick: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  bWantsDeferredDestroy: 0x0078,  // 0x0078 (0x0004) [bool : 0x2]
-  bShouldTick: 0x0078,  // 0x0078 (0x0004) [bool : 0x4]
-  HeartbeatTimeout: 0x007C,  // 0x007C (0x0004) [float]
-  ElapsedHeartbeatTime: 0x0080,  // 0x0080 (0x0004) [float]
-  BeaconName: 0x0084,  // 0x0084 (0x0008) [FName]
-  SocketSendBufferSize: 0x008C,  // 0x008C (0x0004) [int32]
-  SocketReceiveBufferSize: 0x0090,  // 0x0090 (0x0004) [int32]
-  MaxBandwidthTestBufferSize: 0x0094,  // 0x0094 (0x0004) [int32]
-  MinBandwidthTestBufferSize: 0x0098,  // 0x0098 (0x0004) [int32]
-  MaxBandwidthTestSendTime: 0x009C,  // 0x009C (0x0004) [float]
-  MaxBandwidthTestReceiveTime: 0x00A0,  // 0x00A0 (0x0004) [float]
-  MaxBandwidthHistoryEntries: 0x00A4,  // 0x00A4 (0x0004) [int32]
+  VfTable_FTickableObject: 0x0060n,  // 0x0060 (0x0008) [FPointer]
+  MeshBeaconPort: 0x0068n,  // 0x0068 (0x0004) [int32]
+  Socket: 0x0070n,  // 0x0070 (0x0008) [FPointer]
+  bIsInTick: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
+  bWantsDeferredDestroy: 0x0078n,  // 0x0078 (0x0004) [bool : 0x2]
+  bShouldTick: 0x0078n,  // 0x0078 (0x0004) [bool : 0x4]
+  HeartbeatTimeout: 0x007cn,  // 0x007c (0x0004) [float]
+  ElapsedHeartbeatTime: 0x0080n,  // 0x0080 (0x0004) [float]
+  BeaconName: 0x0084n,  // 0x0084 (0x0008) [FName]
+  SocketSendBufferSize: 0x008cn,  // 0x008c (0x0004) [int32]
+  SocketReceiveBufferSize: 0x0090n,  // 0x0090 (0x0004) [int32]
+  MaxBandwidthTestBufferSize: 0x0094n,  // 0x0094 (0x0004) [int32]
+  MinBandwidthTestBufferSize: 0x0098n,  // 0x0098 (0x0004) [int32]
+  MaxBandwidthTestSendTime: 0x009cn,  // 0x009c (0x0004) [float]
+  MaxBandwidthTestReceiveTime: 0x00a0n,  // 0x00a0 (0x0004) [float]
+  MaxBandwidthHistoryEntries: 0x00a4n,  // 0x00a4 (0x0004) [int32]
   ...Object_,
 } as const;
 
 /**
  * IpDrv.MeshBeaconClient Offsets
- * Size: 0x01E8
+ * Size: 0x01e8
  * Extends: MeshBeacon
  */
 export const MeshBeaconClient = {
-  HostPendingRequest: 0x00A8,  // 0x00A8 (0x0010) [FOnlineGameSearchResult]
-  ClientPendingRequest: 0x00B8,  // 0x00B8 (0x0070) [FClientConnectionRequest]
-  CurrentBandwidthTest: 0x0128,  // 0x0128 (0x0014) [FClientBandwidthTestData]
-  ClientBeaconState: 0x013C,  // 0x013C (0x0001) [EMeshBeaconClientState]
-  ClientBeaconRequestType: 0x013D,  // 0x013D (0x0001) [EMeshBeaconPacketType]
-  ConnectionRequestTimeout: 0x0140,  // 0x0140 (0x0004) [float]
-  ConnectionRequestElapsedTime: 0x0144,  // 0x0144 (0x0004) [float]
-  ResolverClassName: 0x0148,  // 0x0148 (0x0010) [FString]
-  ResolverClass: 0x0158,  // 0x0158 (0x0008) [UClass*]
-  Resolver: 0x0160,  // 0x0160 (0x0008) [UClientBeaconAddressResolver*]
-  bUsingRegisteredAddr: 0x0168,  // 0x0168 (0x0004) [bool : 0x1]
-  __OnConnectionRequestResult__Delegate: 0x0170,  // 0x0170 (0x0018) [FScriptDelegate]
-  __OnReceivedBandwidthTestRequest__Delegate: 0x0188,  // 0x0188 (0x0018) [FScriptDelegate]
-  __OnReceivedBandwidthTestResults__Delegate: 0x01A0,  // 0x01A0 (0x0018) [FScriptDelegate]
-  __OnTravelRequestReceived__Delegate: 0x01B8,  // 0x01B8 (0x0018) [FScriptDelegate]
-  __OnCreateNewSessionRequestReceived__Delegate: 0x01D0,  // 0x01D0 (0x0018) [FScriptDelegate]
+  HostPendingRequest: 0x00a8n,  // 0x00a8 (0x0010) [FOnlineGameSearchResult]
+  ClientPendingRequest: 0x00b8n,  // 0x00b8 (0x0070) [FClientConnectionRequest]
+  CurrentBandwidthTest: 0x0128n,  // 0x0128 (0x0014) [FClientBandwidthTestData]
+  ClientBeaconState: 0x013cn,  // 0x013c (0x0001) [EMeshBeaconClientState]
+  ClientBeaconRequestType: 0x013dn,  // 0x013d (0x0001) [EMeshBeaconPacketType]
+  ConnectionRequestTimeout: 0x0140n,  // 0x0140 (0x0004) [float]
+  ConnectionRequestElapsedTime: 0x0144n,  // 0x0144 (0x0004) [float]
+  ResolverClassName: 0x0148n,  // 0x0148 (0x0010) [FString]
+  ResolverClass: 0x0158n,  // 0x0158 (0x0008) [UClass*]
+  Resolver: 0x0160n,  // 0x0160 (0x0008) [UClientBeaconAddressResolver*]
+  bUsingRegisteredAddr: 0x0168n,  // 0x0168 (0x0004) [bool : 0x1]
+  __OnConnectionRequestResult__Delegate: 0x0170n,  // 0x0170 (0x0018) [FScriptDelegate]
+  __OnReceivedBandwidthTestRequest__Delegate: 0x0188n,  // 0x0188 (0x0018) [FScriptDelegate]
+  __OnReceivedBandwidthTestResults__Delegate: 0x01a0n,  // 0x01a0 (0x0018) [FScriptDelegate]
+  __OnTravelRequestReceived__Delegate: 0x01b8n,  // 0x01b8 (0x0018) [FScriptDelegate]
+  __OnCreateNewSessionRequestReceived__Delegate: 0x01d0n,  // 0x01d0 (0x0018) [FScriptDelegate]
   ...MeshBeacon,
 } as const;
 
@@ -615,73 +542,73 @@ export const MeshBeaconClient = {
  * Extends: MeshBeacon
  */
 export const MeshBeaconHost = {
-  ClientConnections: 0x00A8,  // 0x00A8 (0x0010) [TArray<FClientMeshBeaconConnection>]
-  PendingPlayerConnections: 0x00B8,  // 0x00B8 (0x0010) [TArray<FUniqueNetId>]
-  OwningPlayerId: 0x00C8,  // 0x00C8 (0x0048) [FUniqueNetId]
-  bAllowBandwidthTesting: 0x0110,  // 0x0110 (0x0004) [bool : 0x1]
-  ConnectionBacklog: 0x0114,  // 0x0114 (0x0004) [int32]
-  __OnReceivedClientConnectionRequest__Delegate: 0x0118,  // 0x0118 (0x0018) [FScriptDelegate]
-  __OnStartedBandwidthTest__Delegate: 0x0130,  // 0x0130 (0x0018) [FScriptDelegate]
-  __OnFinishedBandwidthTest__Delegate: 0x0148,  // 0x0148 (0x0018) [FScriptDelegate]
-  __OnAllPendingPlayersConnected__Delegate: 0x0160,  // 0x0160 (0x0018) [FScriptDelegate]
-  __OnReceivedClientCreateNewSessionResult__Delegate: 0x0178,  // 0x0178 (0x0018) [FScriptDelegate]
+  ClientConnections: 0x00a8n,  // 0x00a8 (0x0010) [TArray<FClientMeshBeaconConnection>]
+  PendingPlayerConnections: 0x00b8n,  // 0x00b8 (0x0010) [TArray<FUniqueNetId>]
+  OwningPlayerId: 0x00c8n,  // 0x00c8 (0x0048) [FUniqueNetId]
+  bAllowBandwidthTesting: 0x0110n,  // 0x0110 (0x0004) [bool : 0x1]
+  ConnectionBacklog: 0x0114n,  // 0x0114 (0x0004) [int32]
+  __OnReceivedClientConnectionRequest__Delegate: 0x0118n,  // 0x0118 (0x0018) [FScriptDelegate]
+  __OnStartedBandwidthTest__Delegate: 0x0130n,  // 0x0130 (0x0018) [FScriptDelegate]
+  __OnFinishedBandwidthTest__Delegate: 0x0148n,  // 0x0148 (0x0018) [FScriptDelegate]
+  __OnAllPendingPlayersConnected__Delegate: 0x0160n,  // 0x0160 (0x0018) [FScriptDelegate]
+  __OnReceivedClientCreateNewSessionResult__Delegate: 0x0178n,  // 0x0178 (0x0018) [FScriptDelegate]
   ...MeshBeacon,
 } as const;
 
 /**
  * IpDrv.OnlineAuthInterfaceImpl Offsets
- * Size: 0x03C8
+ * Size: 0x03c8
  * Extends: Object
  */
 export const OnlineAuthInterfaceImpl = {
-  VfTable_IOnlineAuthInterface: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  AuthCodeRequests: 0x0068,  // 0x0068 (0x0010) [TArray<FAuthCodeRequest>]
-  NextAuthCodeID: 0x0078,  // 0x0078 (0x0004) [int32]
-  OwningSubsystem: 0x0080,  // 0x0080 (0x0008) [UOnlineSubsystemCommonImpl*]
-  bAuthReady: 0x0088,  // 0x0088 (0x0004) [bool : 0x1]
-  ClientAuthSessions: 0x0090,  // 0x0090 (0x0038) [FSparseArray_Mirror]
-  ServerAuthSessions: 0x00C8,  // 0x00C8 (0x0038) [FSparseArray_Mirror]
-  PeerAuthSessions: 0x0100,  // 0x0100 (0x0038) [FSparseArray_Mirror]
-  LocalClientAuthSessions: 0x0138,  // 0x0138 (0x0038) [FSparseArray_Mirror]
-  LocalServerAuthSessions: 0x0170,  // 0x0170 (0x0038) [FSparseArray_Mirror]
-  LocalPeerAuthSessions: 0x01A8,  // 0x01A8 (0x0038) [FSparseArray_Mirror]
-  AuthReadyDelegates: 0x01E0,  // 0x01E0 (0x0010) [TArray<FScriptDelegate>]
-  ClientAuthRequestDelegates: 0x01F0,  // 0x01F0 (0x0010) [TArray<FScriptDelegate>]
-  ServerAuthRequestDelegates: 0x0200,  // 0x0200 (0x0010) [TArray<FScriptDelegate>]
-  ClientAuthResponseDelegates: 0x0210,  // 0x0210 (0x0010) [TArray<FScriptDelegate>]
-  ServerAuthResponseDelegates: 0x0220,  // 0x0220 (0x0010) [TArray<FScriptDelegate>]
-  ClientAuthCompleteDelegates: 0x0230,  // 0x0230 (0x0010) [TArray<FScriptDelegate>]
-  ServerAuthCompleteDelegates: 0x0240,  // 0x0240 (0x0010) [TArray<FScriptDelegate>]
-  ClientAuthEndSessionRequestDelegates: 0x0250,  // 0x0250 (0x0010) [TArray<FScriptDelegate>]
-  ServerAuthRetryRequestDelegates: 0x0260,  // 0x0260 (0x0010) [TArray<FScriptDelegate>]
-  ClientConnectionCloseDelegates: 0x0270,  // 0x0270 (0x0010) [TArray<FScriptDelegate>]
-  ServerConnectionCloseDelegates: 0x0280,  // 0x0280 (0x0010) [TArray<FScriptDelegate>]
-  __OnAuthReady__Delegate: 0x0290,  // 0x0290 (0x0018) [FScriptDelegate]
-  __OnClientAuthRequest__Delegate: 0x02A8,  // 0x02A8 (0x0018) [FScriptDelegate]
-  __OnServerAuthRequest__Delegate: 0x02C0,  // 0x02C0 (0x0018) [FScriptDelegate]
-  __OnClientAuthResponse__Delegate: 0x02D8,  // 0x02D8 (0x0018) [FScriptDelegate]
-  __OnServerAuthResponse__Delegate: 0x02F0,  // 0x02F0 (0x0018) [FScriptDelegate]
-  __OnClientAuthComplete__Delegate: 0x0308,  // 0x0308 (0x0018) [FScriptDelegate]
-  __OnServerAuthComplete__Delegate: 0x0320,  // 0x0320 (0x0018) [FScriptDelegate]
-  __OnClientAuthEndSessionRequest__Delegate: 0x0338,  // 0x0338 (0x0018) [FScriptDelegate]
-  __OnServerAuthRetryRequest__Delegate: 0x0350,  // 0x0350 (0x0018) [FScriptDelegate]
-  __OnClientConnectionClose__Delegate: 0x0368,  // 0x0368 (0x0018) [FScriptDelegate]
-  __OnServerConnectionClose__Delegate: 0x0380,  // 0x0380 (0x0018) [FScriptDelegate]
-  __OnReceivedAuthCode__Delegate: 0x0398,  // 0x0398 (0x0018) [FScriptDelegate]
-  __OnAccountAuthorization__Delegate: 0x03B0,  // 0x03B0 (0x0018) [FScriptDelegate]
+  VfTable_IOnlineAuthInterface: 0x0060n,  // 0x0060 (0x0008) [FPointer]
+  AuthCodeRequests: 0x0068n,  // 0x0068 (0x0010) [TArray<FAuthCodeRequest>]
+  NextAuthCodeID: 0x0078n,  // 0x0078 (0x0004) [int32]
+  OwningSubsystem: 0x0080n,  // 0x0080 (0x0008) [UOnlineSubsystemCommonImpl*]
+  bAuthReady: 0x0088n,  // 0x0088 (0x0004) [bool : 0x1]
+  ClientAuthSessions: 0x0090n,  // 0x0090 (0x0038) [FSparseArray_Mirror]
+  ServerAuthSessions: 0x00c8n,  // 0x00c8 (0x0038) [FSparseArray_Mirror]
+  PeerAuthSessions: 0x0100n,  // 0x0100 (0x0038) [FSparseArray_Mirror]
+  LocalClientAuthSessions: 0x0138n,  // 0x0138 (0x0038) [FSparseArray_Mirror]
+  LocalServerAuthSessions: 0x0170n,  // 0x0170 (0x0038) [FSparseArray_Mirror]
+  LocalPeerAuthSessions: 0x01a8n,  // 0x01a8 (0x0038) [FSparseArray_Mirror]
+  AuthReadyDelegates: 0x01e0n,  // 0x01e0 (0x0010) [TArray<FScriptDelegate>]
+  ClientAuthRequestDelegates: 0x01f0n,  // 0x01f0 (0x0010) [TArray<FScriptDelegate>]
+  ServerAuthRequestDelegates: 0x0200n,  // 0x0200 (0x0010) [TArray<FScriptDelegate>]
+  ClientAuthResponseDelegates: 0x0210n,  // 0x0210 (0x0010) [TArray<FScriptDelegate>]
+  ServerAuthResponseDelegates: 0x0220n,  // 0x0220 (0x0010) [TArray<FScriptDelegate>]
+  ClientAuthCompleteDelegates: 0x0230n,  // 0x0230 (0x0010) [TArray<FScriptDelegate>]
+  ServerAuthCompleteDelegates: 0x0240n,  // 0x0240 (0x0010) [TArray<FScriptDelegate>]
+  ClientAuthEndSessionRequestDelegates: 0x0250n,  // 0x0250 (0x0010) [TArray<FScriptDelegate>]
+  ServerAuthRetryRequestDelegates: 0x0260n,  // 0x0260 (0x0010) [TArray<FScriptDelegate>]
+  ClientConnectionCloseDelegates: 0x0270n,  // 0x0270 (0x0010) [TArray<FScriptDelegate>]
+  ServerConnectionCloseDelegates: 0x0280n,  // 0x0280 (0x0010) [TArray<FScriptDelegate>]
+  __OnAuthReady__Delegate: 0x0290n,  // 0x0290 (0x0018) [FScriptDelegate]
+  __OnClientAuthRequest__Delegate: 0x02a8n,  // 0x02a8 (0x0018) [FScriptDelegate]
+  __OnServerAuthRequest__Delegate: 0x02c0n,  // 0x02c0 (0x0018) [FScriptDelegate]
+  __OnClientAuthResponse__Delegate: 0x02d8n,  // 0x02d8 (0x0018) [FScriptDelegate]
+  __OnServerAuthResponse__Delegate: 0x02f0n,  // 0x02f0 (0x0018) [FScriptDelegate]
+  __OnClientAuthComplete__Delegate: 0x0308n,  // 0x0308 (0x0018) [FScriptDelegate]
+  __OnServerAuthComplete__Delegate: 0x0320n,  // 0x0320 (0x0018) [FScriptDelegate]
+  __OnClientAuthEndSessionRequest__Delegate: 0x0338n,  // 0x0338 (0x0018) [FScriptDelegate]
+  __OnServerAuthRetryRequest__Delegate: 0x0350n,  // 0x0350 (0x0018) [FScriptDelegate]
+  __OnClientConnectionClose__Delegate: 0x0368n,  // 0x0368 (0x0018) [FScriptDelegate]
+  __OnServerConnectionClose__Delegate: 0x0380n,  // 0x0380 (0x0018) [FScriptDelegate]
+  __OnReceivedAuthCode__Delegate: 0x0398n,  // 0x0398 (0x0018) [FScriptDelegate]
+  __OnAccountAuthorization__Delegate: 0x03b0n,  // 0x03b0 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * IpDrv.OnlineEventsInterfaceMcp Offsets
- * Size: 0x00B4
+ * Size: 0x00b4
  * Extends: MCPBase
  */
 export const OnlineEventsInterfaceMcp = {
-  EventUploadConfigs: 0x0080,  // 0x0080 (0x0010) [TArray<FEventUploadConfig>]
-  MCPEventPostObjects: 0x0090,  // 0x0090 (0x0010) [TArray<FPointer>]
-  DisabledUploadTypes: 0x00A0,  // 0x00A0 (0x0010) [TArray<EEventUploadType>]
-  bBinaryStats: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x1]
+  EventUploadConfigs: 0x0080n,  // 0x0080 (0x0010) [TArray<FEventUploadConfig>]
+  MCPEventPostObjects: 0x0090n,  // 0x0090 (0x0010) [TArray<FPointer>]
+  DisabledUploadTypes: 0x00a0n,  // 0x00a0 (0x0010) [TArray<EEventUploadType>]
+  bBinaryStats: 0x00b0n,  // 0x00b0 (0x0004) [bool : 0x1]
   ...MCPBase,
 } as const;
 
@@ -691,8 +618,8 @@ export const OnlineEventsInterfaceMcp = {
  * Extends: Object
  */
 export const OnlineFriendsInterfaceImpl = {
-  VfTable_IOnlineFriendsInterface: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  __OnReceivedLinkedAccount__Delegate: 0x0068,  // 0x0068 (0x0018) [FScriptDelegate]
+  VfTable_IOnlineFriendsInterface: 0x0060n,  // 0x0060 (0x0008) [FPointer]
+  __OnReceivedLinkedAccount__Delegate: 0x0068n,  // 0x0068 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -702,48 +629,48 @@ export const OnlineFriendsInterfaceImpl = {
  * Extends: Object
  */
 export const OnlineGameInterfaceImpl = {
-  OwningSubsystem: 0x0060,  // 0x0060 (0x0008) [UOnlineSubsystemCommonImpl*]
-  GameSettings: 0x0068,  // 0x0068 (0x0008) [UOnlineGameSettings*]
-  GameSearch: 0x0070,  // 0x0070 (0x0008) [UOnlineGameSearch*]
-  CreateOnlineGameCompleteDelegates: 0x0078,  // 0x0078 (0x0010) [TArray<FScriptDelegate>]
-  UpdateOnlineGameCompleteDelegates: 0x0088,  // 0x0088 (0x0010) [TArray<FScriptDelegate>]
-  DestroyOnlineGameCompleteDelegates: 0x0098,  // 0x0098 (0x0010) [TArray<FScriptDelegate>]
-  JoinOnlineGameCompleteDelegates: 0x00A8,  // 0x00A8 (0x0010) [TArray<FScriptDelegate>]
-  MigrateOnlineGameCompleteDelegates: 0x00B8,  // 0x00B8 (0x0010) [TArray<FScriptDelegate>]
-  JoinMigratedOnlineGameCompleteDelegates: 0x00C8,  // 0x00C8 (0x0010) [TArray<FScriptDelegate>]
-  RecalculateSkillRatingCompleteDelegates: 0x00D8,  // 0x00D8 (0x0010) [TArray<FScriptDelegate>]
-  StartOnlineGameCompleteDelegates: 0x00E8,  // 0x00E8 (0x0010) [TArray<FScriptDelegate>]
-  EndOnlineGameCompleteDelegates: 0x00F8,  // 0x00F8 (0x0010) [TArray<FScriptDelegate>]
-  FindOnlineGamesCompleteDelegates: 0x0108,  // 0x0108 (0x0010) [TArray<FScriptDelegate>]
-  CancelFindOnlineGamesCompleteDelegates: 0x0118,  // 0x0118 (0x0010) [TArray<FScriptDelegate>]
-  LanBeaconState: 0x0128,  // 0x0128 (0x0001) [ELanBeaconState]
-  LanNonce: 0x0129,  // 0x0129 (0x0008) [uint8]
-  LanAnnouncePort: 0x0134,  // 0x0134 (0x0004) [int32]
-  LanGameUniqueId: 0x0138,  // 0x0138 (0x0004) [int32]
-  LanPacketPlatformMask: 0x013C,  // 0x013C (0x0004) [int32]
-  LanQueryTimeLeft: 0x0140,  // 0x0140 (0x0004) [float]
-  LanQueryTimeout: 0x0144,  // 0x0144 (0x0004) [float]
-  LanBeacon: 0x0148,  // 0x0148 (0x0008) [FPointer]
-  SessionInfo: 0x0150,  // 0x0150 (0x0008) [FPointer]
-  GameInviteAcceptedDelegates: 0x0158,  // 0x0158 (0x0010) [TArray<FScriptDelegate>]
-  __OnFindOnlineGamesComplete__Delegate: 0x0168,  // 0x0168 (0x0018) [FScriptDelegate]
-  __OnCreateOnlineGameComplete__Delegate: 0x0180,  // 0x0180 (0x0018) [FScriptDelegate]
-  __OnUpdateOnlineGameComplete__Delegate: 0x0198,  // 0x0198 (0x0018) [FScriptDelegate]
-  __OnDestroyOnlineGameComplete__Delegate: 0x01B0,  // 0x01B0 (0x0018) [FScriptDelegate]
-  __OnCancelFindOnlineGamesComplete__Delegate: 0x01C8,  // 0x01C8 (0x0018) [FScriptDelegate]
-  __OnJoinOnlineGameComplete__Delegate: 0x01E0,  // 0x01E0 (0x0018) [FScriptDelegate]
-  __OnRegisterPlayerComplete__Delegate: 0x01F8,  // 0x01F8 (0x0018) [FScriptDelegate]
-  __OnUnregisterPlayerComplete__Delegate: 0x0210,  // 0x0210 (0x0018) [FScriptDelegate]
-  __OnStartOnlineGameComplete__Delegate: 0x0228,  // 0x0228 (0x0018) [FScriptDelegate]
-  __OnEndOnlineGameComplete__Delegate: 0x0240,  // 0x0240 (0x0018) [FScriptDelegate]
-  __OnArbitrationRegistrationComplete__Delegate: 0x0258,  // 0x0258 (0x0018) [FScriptDelegate]
-  __OnGameInviteAccepted__Delegate: 0x0270,  // 0x0270 (0x0018) [FScriptDelegate]
-  __OnRecalculateSkillRatingComplete__Delegate: 0x0288,  // 0x0288 (0x0018) [FScriptDelegate]
-  __OnMigrateOnlineGameComplete__Delegate: 0x02A0,  // 0x02A0 (0x0018) [FScriptDelegate]
-  __OnJoinMigratedOnlineGameComplete__Delegate: 0x02B8,  // 0x02B8 (0x0018) [FScriptDelegate]
-  __OnQosStatusChanged__Delegate: 0x02D0,  // 0x02D0 (0x0018) [FScriptDelegate]
-  __EventReportMatchmakingInfo__Delegate: 0x02E8,  // 0x02E8 (0x0018) [FScriptDelegate]
-  __OnGamePlayersChanged__Delegate: 0x0300,  // 0x0300 (0x0018) [FScriptDelegate]
+  OwningSubsystem: 0x0060n,  // 0x0060 (0x0008) [UOnlineSubsystemCommonImpl*]
+  GameSettings: 0x0068n,  // 0x0068 (0x0008) [UOnlineGameSettings*]
+  GameSearch: 0x0070n,  // 0x0070 (0x0008) [UOnlineGameSearch*]
+  CreateOnlineGameCompleteDelegates: 0x0078n,  // 0x0078 (0x0010) [TArray<FScriptDelegate>]
+  UpdateOnlineGameCompleteDelegates: 0x0088n,  // 0x0088 (0x0010) [TArray<FScriptDelegate>]
+  DestroyOnlineGameCompleteDelegates: 0x0098n,  // 0x0098 (0x0010) [TArray<FScriptDelegate>]
+  JoinOnlineGameCompleteDelegates: 0x00a8n,  // 0x00a8 (0x0010) [TArray<FScriptDelegate>]
+  MigrateOnlineGameCompleteDelegates: 0x00b8n,  // 0x00b8 (0x0010) [TArray<FScriptDelegate>]
+  JoinMigratedOnlineGameCompleteDelegates: 0x00c8n,  // 0x00c8 (0x0010) [TArray<FScriptDelegate>]
+  RecalculateSkillRatingCompleteDelegates: 0x00d8n,  // 0x00d8 (0x0010) [TArray<FScriptDelegate>]
+  StartOnlineGameCompleteDelegates: 0x00e8n,  // 0x00e8 (0x0010) [TArray<FScriptDelegate>]
+  EndOnlineGameCompleteDelegates: 0x00f8n,  // 0x00f8 (0x0010) [TArray<FScriptDelegate>]
+  FindOnlineGamesCompleteDelegates: 0x0108n,  // 0x0108 (0x0010) [TArray<FScriptDelegate>]
+  CancelFindOnlineGamesCompleteDelegates: 0x0118n,  // 0x0118 (0x0010) [TArray<FScriptDelegate>]
+  LanBeaconState: 0x0128n,  // 0x0128 (0x0001) [ELanBeaconState]
+  LanNonce: 0x0129n,  // 0x0129 (0x0008) [uint8]
+  LanAnnouncePort: 0x0134n,  // 0x0134 (0x0004) [int32]
+  LanGameUniqueId: 0x0138n,  // 0x0138 (0x0004) [int32]
+  LanPacketPlatformMask: 0x013cn,  // 0x013c (0x0004) [int32]
+  LanQueryTimeLeft: 0x0140n,  // 0x0140 (0x0004) [float]
+  LanQueryTimeout: 0x0144n,  // 0x0144 (0x0004) [float]
+  LanBeacon: 0x0148n,  // 0x0148 (0x0008) [FPointer]
+  SessionInfo: 0x0150n,  // 0x0150 (0x0008) [FPointer]
+  GameInviteAcceptedDelegates: 0x0158n,  // 0x0158 (0x0010) [TArray<FScriptDelegate>]
+  __OnFindOnlineGamesComplete__Delegate: 0x0168n,  // 0x0168 (0x0018) [FScriptDelegate]
+  __OnCreateOnlineGameComplete__Delegate: 0x0180n,  // 0x0180 (0x0018) [FScriptDelegate]
+  __OnUpdateOnlineGameComplete__Delegate: 0x0198n,  // 0x0198 (0x0018) [FScriptDelegate]
+  __OnDestroyOnlineGameComplete__Delegate: 0x01b0n,  // 0x01b0 (0x0018) [FScriptDelegate]
+  __OnCancelFindOnlineGamesComplete__Delegate: 0x01c8n,  // 0x01c8 (0x0018) [FScriptDelegate]
+  __OnJoinOnlineGameComplete__Delegate: 0x01e0n,  // 0x01e0 (0x0018) [FScriptDelegate]
+  __OnRegisterPlayerComplete__Delegate: 0x01f8n,  // 0x01f8 (0x0018) [FScriptDelegate]
+  __OnUnregisterPlayerComplete__Delegate: 0x0210n,  // 0x0210 (0x0018) [FScriptDelegate]
+  __OnStartOnlineGameComplete__Delegate: 0x0228n,  // 0x0228 (0x0018) [FScriptDelegate]
+  __OnEndOnlineGameComplete__Delegate: 0x0240n,  // 0x0240 (0x0018) [FScriptDelegate]
+  __OnArbitrationRegistrationComplete__Delegate: 0x0258n,  // 0x0258 (0x0018) [FScriptDelegate]
+  __OnGameInviteAccepted__Delegate: 0x0270n,  // 0x0270 (0x0018) [FScriptDelegate]
+  __OnRecalculateSkillRatingComplete__Delegate: 0x0288n,  // 0x0288 (0x0018) [FScriptDelegate]
+  __OnMigrateOnlineGameComplete__Delegate: 0x02a0n,  // 0x02a0 (0x0018) [FScriptDelegate]
+  __OnJoinMigratedOnlineGameComplete__Delegate: 0x02b8n,  // 0x02b8 (0x0018) [FScriptDelegate]
+  __OnQosStatusChanged__Delegate: 0x02d0n,  // 0x02d0 (0x0018) [FScriptDelegate]
+  __EventReportMatchmakingInfo__Delegate: 0x02e8n,  // 0x02e8 (0x0018) [FScriptDelegate]
+  __OnGamePlayersChanged__Delegate: 0x0300n,  // 0x0300 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -753,83 +680,83 @@ export const OnlineGameInterfaceImpl = {
  * Extends: Object
  */
 export const OnlineImageDownloaderWeb = {
-  MaxSimultaneousDownloads: 0x0060,  // 0x0060 (0x0004) [int32]
-  Downloads: 0x0068,  // 0x0068 (0x0050) [FMap_Mirror]
-  URLQueue: 0x00B8,  // 0x00B8 (0x0010) [TArray<FString>]
-  Decoder: 0x00C8,  // 0x00C8 (0x0008) [UImageDecoder*]
-  PendingDownloadCount: 0x00D0,  // 0x00D0 (0x0004) [int32]
-  ActiveDownloadCount: 0x00D4,  // 0x00D4 (0x0004) [int32]
-  SucceededDownloadCount: 0x00D8,  // 0x00D8 (0x0004) [int32]
-  FailedDownloadCount: 0x00DC,  // 0x00DC (0x0004) [int32]
-  __OnOnlineImageFinished__Delegate: 0x00E0,  // 0x00E0 (0x0018) [FScriptDelegate]
-  __EventImageDecoded__Delegate: 0x00F8,  // 0x00F8 (0x0018) [FScriptDelegate]
+  MaxSimultaneousDownloads: 0x0060n,  // 0x0060 (0x0004) [int32]
+  Downloads: 0x0068n,  // 0x0068 (0x0050) [FMap_Mirror]
+  URLQueue: 0x00b8n,  // 0x00b8 (0x0010) [TArray<FString>]
+  Decoder: 0x00c8n,  // 0x00c8 (0x0008) [UImageDecoder*]
+  PendingDownloadCount: 0x00d0n,  // 0x00d0 (0x0004) [int32]
+  ActiveDownloadCount: 0x00d4n,  // 0x00d4 (0x0004) [int32]
+  SucceededDownloadCount: 0x00d8n,  // 0x00d8 (0x0004) [int32]
+  FailedDownloadCount: 0x00dcn,  // 0x00dc (0x0004) [int32]
+  __OnOnlineImageFinished__Delegate: 0x00e0n,  // 0x00e0 (0x0018) [FScriptDelegate]
+  __EventImageDecoded__Delegate: 0x00f8n,  // 0x00f8 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * IpDrv.OnlineLobbyInterfaceImpl Offsets
- * Size: 0x02C0
+ * Size: 0x02c0
  * Extends: Object
  */
 export const OnlineLobbyInterfaceImpl = {
-  CreateLobbyCompleteDelegates: 0x0060,  // 0x0060 (0x0010) [TArray<FScriptDelegate>]
-  FindLobbiesCompleteDelegates: 0x0070,  // 0x0070 (0x0010) [TArray<FScriptDelegate>]
-  JoinLobbyCompleteDelegates: 0x0080,  // 0x0080 (0x0010) [TArray<FScriptDelegate>]
-  LobbySettingsUpdateDelegates: 0x0090,  // 0x0090 (0x0010) [TArray<FScriptDelegate>]
-  LobbyMemberSettingsUpdateDelegates: 0x00A0,  // 0x00A0 (0x0010) [TArray<FScriptDelegate>]
-  LobbyMemberStatusUpdateDelegates: 0x00B0,  // 0x00B0 (0x0010) [TArray<FScriptDelegate>]
-  LobbyReceiveMessageDelegates: 0x00C0,  // 0x00C0 (0x0010) [TArray<FScriptDelegate>]
-  LobbyReceiveBinaryDataDelegates: 0x00D0,  // 0x00D0 (0x0010) [TArray<FScriptDelegate>]
-  LobbyJoinGameDelegates: 0x00E0,  // 0x00E0 (0x0010) [TArray<FScriptDelegate>]
-  LobbyInviteDelegates: 0x00F0,  // 0x00F0 (0x0010) [TArray<FScriptDelegate>]
-  LobbyErrorDelegates: 0x0100,  // 0x0100 (0x0010) [TArray<FScriptDelegate>]
-  LobbyDestroyedDelegates: 0x0110,  // 0x0110 (0x0010) [TArray<FScriptDelegate>]
-  LobbySessionCreatedDelegates: 0x0120,  // 0x0120 (0x0010) [TArray<FScriptDelegate>]
-  HostStartPlayTogetherDelegates: 0x0130,  // 0x0130 (0x0010) [TArray<FScriptDelegate>]
-  ActiveLobbies: 0x0140,  // 0x0140 (0x0010) [TArray<FActiveLobbyInfo>]
-  CachedFindLobbyResults: 0x0150,  // 0x0150 (0x0010) [TArray<FBasicLobbyInfo>]
-  CachedBinaryData: 0x0160,  // 0x0160 (0x0010) [TArray<uint8>]
-  __OnCreateLobbyComplete__Delegate: 0x0170,  // 0x0170 (0x0018) [FScriptDelegate]
-  __OnFindLobbiesComplete__Delegate: 0x0188,  // 0x0188 (0x0018) [FScriptDelegate]
-  __OnJoinLobbyComplete__Delegate: 0x01A0,  // 0x01A0 (0x0018) [FScriptDelegate]
-  __OnLobbySettingsUpdate__Delegate: 0x01B8,  // 0x01B8 (0x0018) [FScriptDelegate]
-  __OnLobbyMemberSettingsUpdate__Delegate: 0x01D0,  // 0x01D0 (0x0018) [FScriptDelegate]
-  __OnLobbyMemberStatusUpdate__Delegate: 0x01E8,  // 0x01E8 (0x0018) [FScriptDelegate]
-  __OnLobbyReceiveMessage__Delegate: 0x0200,  // 0x0200 (0x0018) [FScriptDelegate]
-  __OnLobbyReceiveBinaryData__Delegate: 0x0218,  // 0x0218 (0x0018) [FScriptDelegate]
-  __OnLobbyJoinGame__Delegate: 0x0230,  // 0x0230 (0x0018) [FScriptDelegate]
-  __OnLobbyInvite__Delegate: 0x0248,  // 0x0248 (0x0018) [FScriptDelegate]
-  __OnLobbyDestroyed__Delegate: 0x0260,  // 0x0260 (0x0018) [FScriptDelegate]
-  __OnLobbySessionCreated__Delegate: 0x0278,  // 0x0278 (0x0018) [FScriptDelegate]
-  __OnLobbyError__Delegate: 0x0290,  // 0x0290 (0x0018) [FScriptDelegate]
-  __OnHostStartPlayTogether__Delegate: 0x02A8,  // 0x02A8 (0x0018) [FScriptDelegate]
+  CreateLobbyCompleteDelegates: 0x0060n,  // 0x0060 (0x0010) [TArray<FScriptDelegate>]
+  FindLobbiesCompleteDelegates: 0x0070n,  // 0x0070 (0x0010) [TArray<FScriptDelegate>]
+  JoinLobbyCompleteDelegates: 0x0080n,  // 0x0080 (0x0010) [TArray<FScriptDelegate>]
+  LobbySettingsUpdateDelegates: 0x0090n,  // 0x0090 (0x0010) [TArray<FScriptDelegate>]
+  LobbyMemberSettingsUpdateDelegates: 0x00a0n,  // 0x00a0 (0x0010) [TArray<FScriptDelegate>]
+  LobbyMemberStatusUpdateDelegates: 0x00b0n,  // 0x00b0 (0x0010) [TArray<FScriptDelegate>]
+  LobbyReceiveMessageDelegates: 0x00c0n,  // 0x00c0 (0x0010) [TArray<FScriptDelegate>]
+  LobbyReceiveBinaryDataDelegates: 0x00d0n,  // 0x00d0 (0x0010) [TArray<FScriptDelegate>]
+  LobbyJoinGameDelegates: 0x00e0n,  // 0x00e0 (0x0010) [TArray<FScriptDelegate>]
+  LobbyInviteDelegates: 0x00f0n,  // 0x00f0 (0x0010) [TArray<FScriptDelegate>]
+  LobbyErrorDelegates: 0x0100n,  // 0x0100 (0x0010) [TArray<FScriptDelegate>]
+  LobbyDestroyedDelegates: 0x0110n,  // 0x0110 (0x0010) [TArray<FScriptDelegate>]
+  LobbySessionCreatedDelegates: 0x0120n,  // 0x0120 (0x0010) [TArray<FScriptDelegate>]
+  HostStartPlayTogetherDelegates: 0x0130n,  // 0x0130 (0x0010) [TArray<FScriptDelegate>]
+  ActiveLobbies: 0x0140n,  // 0x0140 (0x0010) [TArray<FActiveLobbyInfo>]
+  CachedFindLobbyResults: 0x0150n,  // 0x0150 (0x0010) [TArray<FBasicLobbyInfo>]
+  CachedBinaryData: 0x0160n,  // 0x0160 (0x0010) [TArray<uint8>]
+  __OnCreateLobbyComplete__Delegate: 0x0170n,  // 0x0170 (0x0018) [FScriptDelegate]
+  __OnFindLobbiesComplete__Delegate: 0x0188n,  // 0x0188 (0x0018) [FScriptDelegate]
+  __OnJoinLobbyComplete__Delegate: 0x01a0n,  // 0x01a0 (0x0018) [FScriptDelegate]
+  __OnLobbySettingsUpdate__Delegate: 0x01b8n,  // 0x01b8 (0x0018) [FScriptDelegate]
+  __OnLobbyMemberSettingsUpdate__Delegate: 0x01d0n,  // 0x01d0 (0x0018) [FScriptDelegate]
+  __OnLobbyMemberStatusUpdate__Delegate: 0x01e8n,  // 0x01e8 (0x0018) [FScriptDelegate]
+  __OnLobbyReceiveMessage__Delegate: 0x0200n,  // 0x0200 (0x0018) [FScriptDelegate]
+  __OnLobbyReceiveBinaryData__Delegate: 0x0218n,  // 0x0218 (0x0018) [FScriptDelegate]
+  __OnLobbyJoinGame__Delegate: 0x0230n,  // 0x0230 (0x0018) [FScriptDelegate]
+  __OnLobbyInvite__Delegate: 0x0248n,  // 0x0248 (0x0018) [FScriptDelegate]
+  __OnLobbyDestroyed__Delegate: 0x0260n,  // 0x0260 (0x0018) [FScriptDelegate]
+  __OnLobbySessionCreated__Delegate: 0x0278n,  // 0x0278 (0x0018) [FScriptDelegate]
+  __OnLobbyError__Delegate: 0x0290n,  // 0x0290 (0x0018) [FScriptDelegate]
+  __OnHostStartPlayTogether__Delegate: 0x02a8n,  // 0x02a8 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * IpDrv.OnlineNewsInterfaceMcp Offsets
- * Size: 0x00C0
+ * Size: 0x00c0
  * Extends: MCPBase
  */
 export const OnlineNewsInterfaceMcp = {
-  NewsItems: 0x0080,  // 0x0080 (0x0010) [TArray<FNewsCacheEntry>]
-  ReadNewsDelegates: 0x0090,  // 0x0090 (0x0010) [TArray<FScriptDelegate>]
-  bNeedsTicking: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x1]
-  __OnReadNewsCompleted__Delegate: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
+  NewsItems: 0x0080n,  // 0x0080 (0x0010) [TArray<FNewsCacheEntry>]
+  ReadNewsDelegates: 0x0090n,  // 0x0090 (0x0010) [TArray<FScriptDelegate>]
+  bNeedsTicking: 0x00a0n,  // 0x00a0 (0x0004) [bool : 0x1]
+  __OnReadNewsCompleted__Delegate: 0x00a8n,  // 0x00a8 (0x0018) [FScriptDelegate]
   ...MCPBase,
 } as const;
 
 /**
  * IpDrv.OnlinePersistentAuthInterfaceImpl Offsets
- * Size: 0x00B8
+ * Size: 0x00b8
  * Extends: Object
  */
 export const OnlinePersistentAuthInterfaceImpl = {
-  VfTable_IOnlinePersistentAuthInterface: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  RequestPinGrantCodeDelegates: 0x0068,  // 0x0068 (0x0010) [TArray<FScriptDelegate>]
-  UnderageUserDetectedDelegates: 0x0078,  // 0x0078 (0x0010) [TArray<FScriptDelegate>]
-  __OnReceievedPinGrantCode__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
-  __OnUnderageUserDetected__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
+  VfTable_IOnlinePersistentAuthInterface: 0x0060n,  // 0x0060 (0x0008) [FPointer]
+  RequestPinGrantCodeDelegates: 0x0068n,  // 0x0068 (0x0010) [TArray<FScriptDelegate>]
+  UnderageUserDetectedDelegates: 0x0078n,  // 0x0078 (0x0010) [TArray<FScriptDelegate>]
+  __OnReceievedPinGrantCode__Delegate: 0x0088n,  // 0x0088 (0x0018) [FScriptDelegate]
+  __OnUnderageUserDetected__Delegate: 0x00a0n,  // 0x00a0 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
@@ -839,51 +766,42 @@ export const OnlinePersistentAuthInterfaceImpl = {
  * Extends: Object
  */
 export const OnlinePlaylistManager = {
-  VfTable_FTickableObject: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  Playlists: 0x0068,  // 0x0068 (0x0010) [TArray<FPlaylist>]
-  PlaylistFileNames: 0x0078,  // 0x0078 (0x0010) [TArray<FString>]
-  DatastoresToRefresh: 0x0088,  // 0x0088 (0x0010) [TArray<FName>]
-  DownloadCount: 0x0098,  // 0x0098 (0x0004) [int32]
-  SuccessfulCount: 0x009C,  // 0x009C (0x0004) [int32]
-  VersionNumber: 0x00A0,  // 0x00A0 (0x0004) [int32]
-  PopulationData: 0x00A8,  // 0x00A8 (0x0010) [TArray<FPlaylistPopulation>]
-  WorldwideTotalPlayers: 0x00B8,  // 0x00B8 (0x0004) [int32]
-  RegionTotalPlayers: 0x00BC,  // 0x00BC (0x0004) [int32]
-  TitleFileInterface: 0x00C0,  // 0x00C0 (0x0010) [TScriptInterface<UOnlineTitleFileInterface>]
-  PopulationFileName: 0x00D0,  // 0x00D0 (0x0010) [FString]
-  NextPlaylistPopulationUpdateTime: 0x00E0,  // 0x00E0 (0x0004) [float]
-  PlaylistPopulationUpdateInterval: 0x00E4,  // 0x00E4 (0x0004) [float]
-  MinPlaylistIdToReport: 0x00E8,  // 0x00E8 (0x0004) [int32]
-  CurrentPlaylistId: 0x00EC,  // 0x00EC (0x0004) [int32]
-  EventsInterfaceName: 0x00F0,  // 0x00F0 (0x0008) [FName]
-  DataCenterId: 0x00F8,  // 0x00F8 (0x0004) [int32]
-  DataCenterFileName: 0x0100,  // 0x0100 (0x0010) [FString]
-  LastPlaylistDownloadTime: 0x0110,  // 0x0110 (0x0004) [float]
-  PlaylistRefreshInterval: 0x0114,  // 0x0114 (0x0004) [float]
-  __OnReadPlaylistComplete__Delegate: 0x0118,  // 0x0118 (0x0018) [FScriptDelegate]
-  __OnPlaylistPopulationDataUpdated__Delegate: 0x0130,  // 0x0130 (0x0018) [FScriptDelegate]
+  VfTable_FTickableObject: 0x0060n,  // 0x0060 (0x0008) [FPointer]
+  Playlists: 0x0068n,  // 0x0068 (0x0010) [TArray<FPlaylist>]
+  PlaylistFileNames: 0x0078n,  // 0x0078 (0x0010) [TArray<FString>]
+  DatastoresToRefresh: 0x0088n,  // 0x0088 (0x0010) [TArray<FName>]
+  DownloadCount: 0x0098n,  // 0x0098 (0x0004) [int32]
+  SuccessfulCount: 0x009cn,  // 0x009c (0x0004) [int32]
+  VersionNumber: 0x00a0n,  // 0x00a0 (0x0004) [int32]
+  PopulationData: 0x00a8n,  // 0x00a8 (0x0010) [TArray<FPlaylistPopulation>]
+  WorldwideTotalPlayers: 0x00b8n,  // 0x00b8 (0x0004) [int32]
+  RegionTotalPlayers: 0x00bcn,  // 0x00bc (0x0004) [int32]
+  TitleFileInterface: 0x00c0n,  // 0x00c0 (0x0010) [TScriptInterface<UOnlineTitleFileInterface>]
+  PopulationFileName: 0x00d0n,  // 0x00d0 (0x0010) [FString]
+  NextPlaylistPopulationUpdateTime: 0x00e0n,  // 0x00e0 (0x0004) [float]
+  PlaylistPopulationUpdateInterval: 0x00e4n,  // 0x00e4 (0x0004) [float]
+  MinPlaylistIdToReport: 0x00e8n,  // 0x00e8 (0x0004) [int32]
+  CurrentPlaylistId: 0x00ecn,  // 0x00ec (0x0004) [int32]
+  EventsInterfaceName: 0x00f0n,  // 0x00f0 (0x0008) [FName]
+  DataCenterId: 0x00f8n,  // 0x00f8 (0x0004) [int32]
+  DataCenterFileName: 0x0100n,  // 0x0100 (0x0010) [FString]
+  LastPlaylistDownloadTime: 0x0110n,  // 0x0110 (0x0004) [float]
+  PlaylistRefreshInterval: 0x0114n,  // 0x0114 (0x0004) [float]
+  __OnReadPlaylistComplete__Delegate: 0x0118n,  // 0x0118 (0x0018) [FScriptDelegate]
+  __OnPlaylistPopulationDataUpdated__Delegate: 0x0130n,  // 0x0130 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
- * Engine.UIResourceDataProvider Offsets
- * Size: 0x009C
- * Extends: UIPropertyDataProvider
- */
-export const UIResourceDataProvider = {
-  bSkipDuringEnumeration: 0x0098,  // 0x0098 (0x0004) [bool : 0x1]
-} as const;
-
-/**
  * IpDrv.OnlinePlaylistProvider Offsets
- * Size: 0x00CC
+ * Size: 0x00cc
  * Extends: UIResourceDataProvider
  */
 export const OnlinePlaylistProvider = {
-  PlaylistId: 0x00A0,  // 0x00A0 (0x0004) [int32]
-  PlaylistGameTypeNames: 0x00A8,  // 0x00A8 (0x0010) [TArray<FName>]
-  DisplayName: 0x00B8,  // 0x00B8 (0x0010) [FString]
-  Priority: 0x00C8,  // 0x00C8 (0x0004) [int32]
+  PlaylistId: 0x00a0n,  // 0x00a0 (0x0004) [int32]
+  PlaylistGameTypeNames: 0x00a8n,  // 0x00a8 (0x0010) [TArray<FName>]
+  DisplayName: 0x00b8n,  // 0x00b8 (0x0010) [FString]
+  Priority: 0x00c8n,  // 0x00c8 (0x0004) [int32]
   ...UIResourceDataProvider,
 } as const;
 
@@ -893,87 +811,25 @@ export const OnlinePlaylistProvider = {
  * Extends: Object
  */
 export const OnlinePurchaseInterfaceImpl = {
-  __EventGetAppPriceInfoComplete__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  __OnMicroTxnResponse__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
-  ...Object_,
-} as const;
-
-/**
- * Engine.OnlineSubsystem Offsets
- * Size: 0x0378
- * Extends: Object
- */
-export const OnlineSubsystem = {
-  VfTable_FTickableObject: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  AccountInterface: 0x0068,  // 0x0068 (0x0010) [TScriptInterface<UOnlineAccountInterface>]
-  PlayerInterface: 0x0078,  // 0x0078 (0x0010) [TScriptInterface<UOnlinePlayerInterface>]
-  PlayerInterfaceEx: 0x0088,  // 0x0088 (0x0010) [TScriptInterface<UOnlinePlayerInterfaceEx>]
-  MarketplaceInterface: 0x0098,  // 0x0098 (0x0010) [TScriptInterface<UOnlineMarketplaceInterface>]
-  SystemInterface: 0x00A8,  // 0x00A8 (0x0010) [TScriptInterface<UOnlineSystemInterface>]
-  GameInterface: 0x00B8,  // 0x00B8 (0x0010) [TScriptInterface<UOnlineGameInterface>]
-  ContentInterface: 0x00C8,  // 0x00C8 (0x0010) [TScriptInterface<UOnlineContentInterface>]
-  VoiceInterface: 0x00D8,  // 0x00D8 (0x0010) [TScriptInterface<UOnlineVoiceInterface>]
-  StatsInterface: 0x00E8,  // 0x00E8 (0x0010) [TScriptInterface<UOnlineStatsInterface>]
-  NewsInterface: 0x00F8,  // 0x00F8 (0x0010) [TScriptInterface<UOnlineNewsInterface>]
-  PartyChatInterface: 0x0108,  // 0x0108 (0x0010) [TScriptInterface<UOnlinePartyChatInterface>]
-  TitleFileInterface: 0x0118,  // 0x0118 (0x0010) [TScriptInterface<UOnlineTitleFileInterface>]
-  TitleFileCacheInterface: 0x0128,  // 0x0128 (0x0010) [TScriptInterface<UOnlineTitleFileCacheInterface>]
-  UserCloudInterface: 0x0138,  // 0x0138 (0x0010) [TScriptInterface<UUserCloudFileInterface>]
-  SharedCloudInterface: 0x0148,  // 0x0148 (0x0010) [TScriptInterface<USharedCloudFileInterface>]
-  SocialInterface: 0x0158,  // 0x0158 (0x0010) [TScriptInterface<UOnlineSocialInterface>]
-  AuthInterface: 0x0168,  // 0x0168 (0x0010) [TScriptInterface<UOnlineAuthInterface>]
-  PersistentAuthInterface: 0x0178,  // 0x0178 (0x0010) [TScriptInterface<UOnlinePersistentAuthInterface>]
-  GameDVRInterface: 0x0188,  // 0x0188 (0x0010) [TScriptInterface<UOnlineGameDVRInterface>]
-  CommunityContentInterface: 0x0198,  // 0x0198 (0x0010) [TScriptInterface<UOnlineCommunityContentInterface>]
-  PurchaseInterface: 0x01A8,  // 0x01A8 (0x0010) [TScriptInterface<UOnlinePurchaseInterface>]
-  LobbyInterface: 0x01B8,  // 0x01B8 (0x0010) [TScriptInterface<UOnlineLobbyInterface>]
-  FriendsInterface: 0x01C8,  // 0x01C8 (0x0010) [TScriptInterface<UOnlineFriendsInterface>]
-  GameClipsInterface: 0x01D8,  // 0x01D8 (0x0010) [TScriptInterface<UOnlineGameClipsInterface>]
-  SearchClass: 0x01E8,  // 0x01E8 (0x0008) [UClass*]
-  bSupportsMultiSignin: 0x01F0,  // 0x01F0 (0x0004) [bool : 0x1]
-  bSupportsMultiVoice: 0x01F0,  // 0x01F0 (0x0004) [bool : 0x2]
-  bShowPrivilegeCheckErrors: 0x01F0,  // 0x01F0 (0x0004) [bool : 0x4]
-  AccountSettings: 0x01F8,  // 0x01F8 (0x0010) [TArray<unknown>]
-  BlockListStatuses: 0x0208,  // 0x0208 (0x0010) [TArray<unknown>]
-  UnsupportedCorrectiveActionURLs: 0x0218,  // 0x0218 (0x0010) [TArray<unknown>]
-  SessionManager: 0x0228,  // 0x0228 (0x0008) [UOnlineSessionManager*]
-  SteamDLC: 0x0230,  // 0x0230 (0x0010) [TArray<FSteamDLCInfo>]
-  PS4DLC: 0x0240,  // 0x0240 (0x0010) [TArray<FPS4DLCInfo>]
-  XboxOneDLC: 0x0250,  // 0x0250 (0x0010) [TArray<FXboxOneDLCInfo>]
-  SwitchDLC: 0x0260,  // 0x0260 (0x0010) [TArray<FSwitchDLCInfo>]
-  EpicDLC: 0x0270,  // 0x0270 (0x0010) [TArray<FEpicDLCInfo>]
-  OnlinePlatformType: 0x0280,  // 0x0280 (0x0001) [OnlinePlatform]
-  CurrentConnectionStatus: 0x0281,  // 0x0281 (0x0001) [EOnlineServerConnectionStatus]
-  OnlineSubsystemNames: 0x0288,  // 0x0288 (0x0010) [TArray<FString>]
-  NamedInterfaces: 0x0298,  // 0x0298 (0x0010) [TArray<FNamedInterface>]
-  NamedInterfaceDefs: 0x02A8,  // 0x02A8 (0x0010) [TArray<FNamedInterfaceDef>]
-  Sessions: 0x02B8,  // 0x02B8 (0x0010) [TArray<FNamedSession>]
-  IniLocPatcherClassName: 0x02C8,  // 0x02C8 (0x0010) [FString]
-  Patcher: 0x02D8,  // 0x02D8 (0x0008) [UIniLocPatcher*]
-  AsyncMinCompletionTime: 0x02E0,  // 0x02E0 (0x0004) [float]
-  __FeaturePrivilegeLevelUpdated__Delegate: 0x02E8,  // 0x02E8 (0x0018) [FScriptDelegate]
-  __EventPlatformAccountSettingsCreated__Delegate: 0x0300,  // 0x0300 (0x0018) [FScriptDelegate]
-  __EventPlatformBlockListStatusCreated__Delegate: 0x0318,  // 0x0318 (0x0018) [FScriptDelegate]
-  __OnDeviceSuspend__Delegate: 0x0330,  // 0x0330 (0x0018) [FScriptDelegate]
-  __OnReadOnlineAvatarComplete__Delegate: 0x0348,  // 0x0348 (0x0018) [FScriptDelegate]
-  __OnSystemUserControllerPairingChanged__Delegate: 0x0360,  // 0x0360 (0x0018) [FScriptDelegate]
+  __EventGetAppPriceInfoComplete__Delegate: 0x0060n,  // 0x0060 (0x0018) [FScriptDelegate]
+  __OnMicroTxnResponse__Delegate: 0x0078n,  // 0x0078 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * IpDrv.OnlineSubsystemCommonImpl Offsets
- * Size: 0x03C0
+ * Size: 0x03c0
  * Extends: OnlineSubsystem
  */
 export const OnlineSubsystemCommonImpl = {
-  VoiceEngine: 0x0378,  // 0x0378 (0x0008) [FPointer]
-  MaxLocalTalkers: 0x0380,  // 0x0380 (0x0004) [int32]
-  MaxRemoteTalkers: 0x0384,  // 0x0384 (0x0004) [int32]
-  bIsUsingSpeechRecognition: 0x0388,  // 0x0388 (0x0004) [bool : 0x1]
-  GameInterfaceImpl: 0x0390,  // 0x0390 (0x0008) [UOnlineGameInterfaceImpl*]
-  AuthInterfaceImpl: 0x0398,  // 0x0398 (0x0008) [UOnlineAuthInterfaceImpl*]
-  PurchaseInterfaceImpl: 0x03A0,  // 0x03A0 (0x0008) [UOnlinePurchaseInterfaceImpl*]
-  __OnSanitizeStringComplete__Delegate: 0x03A8,  // 0x03A8 (0x0018) [FScriptDelegate]
+  VoiceEngine: 0x0378n,  // 0x0378 (0x0008) [FPointer]
+  MaxLocalTalkers: 0x0380n,  // 0x0380 (0x0004) [int32]
+  MaxRemoteTalkers: 0x0384n,  // 0x0384 (0x0004) [int32]
+  bIsUsingSpeechRecognition: 0x0388n,  // 0x0388 (0x0004) [bool : 0x1]
+  GameInterfaceImpl: 0x0390n,  // 0x0390 (0x0008) [UOnlineGameInterfaceImpl*]
+  AuthInterfaceImpl: 0x0398n,  // 0x0398 (0x0008) [UOnlineAuthInterfaceImpl*]
+  PurchaseInterfaceImpl: 0x03a0n,  // 0x03a0 (0x0008) [UOnlinePurchaseInterfaceImpl*]
+  __OnSanitizeStringComplete__Delegate: 0x03a8n,  // 0x03a8 (0x0018) [FScriptDelegate]
   ...OnlineSubsystem,
 } as const;
 
@@ -983,26 +839,26 @@ export const OnlineSubsystemCommonImpl = {
  * Extends: MCPBase
  */
 export const OnlineTitleFileDownloadBase = {
-  ReadTitleFileCompleteDelegates: 0x0080,  // 0x0080 (0x0010) [TArray<FScriptDelegate>]
-  RequestTitleFileListCompleteDelegates: 0x0090,  // 0x0090 (0x0010) [TArray<FScriptDelegate>]
-  BaseUrl: 0x00A0,  // 0x00A0 (0x0010) [FString]
-  RequestFileListURL: 0x00B0,  // 0x00B0 (0x0010) [FString]
-  RequestFileURL: 0x00C0,  // 0x00C0 (0x0010) [FString]
-  Timeout: 0x00D0,  // 0x00D0 (0x0004) [float]
-  FilesToUrls: 0x00D8,  // 0x00D8 (0x0010) [TArray<FFileNameToURLMapping>]
-  __OnReadTitleFileComplete__Delegate: 0x00E8,  // 0x00E8 (0x0018) [FScriptDelegate]
-  __OnRequestTitleFileListComplete__Delegate: 0x0100,  // 0x0100 (0x0018) [FScriptDelegate]
+  ReadTitleFileCompleteDelegates: 0x0080n,  // 0x0080 (0x0010) [TArray<FScriptDelegate>]
+  RequestTitleFileListCompleteDelegates: 0x0090n,  // 0x0090 (0x0010) [TArray<FScriptDelegate>]
+  BaseUrl: 0x00a0n,  // 0x00a0 (0x0010) [FString]
+  RequestFileListURL: 0x00b0n,  // 0x00b0 (0x0010) [FString]
+  RequestFileURL: 0x00c0n,  // 0x00c0 (0x0010) [FString]
+  Timeout: 0x00d0n,  // 0x00d0 (0x0004) [float]
+  FilesToUrls: 0x00d8n,  // 0x00d8 (0x0010) [TArray<FFileNameToURLMapping>]
+  __OnReadTitleFileComplete__Delegate: 0x00e8n,  // 0x00e8 (0x0018) [FScriptDelegate]
+  __OnRequestTitleFileListComplete__Delegate: 0x0100n,  // 0x0100 (0x0018) [FScriptDelegate]
   ...MCPBase,
 } as const;
 
 /**
  * IpDrv.OnlineTitleFileDownloadMcp Offsets
- * Size: 0x012C
+ * Size: 0x012c
  * Extends: OnlineTitleFileDownloadBase
  */
 export const OnlineTitleFileDownloadMcp = {
-  TitleFiles: 0x0118,  // 0x0118 (0x0010) [TArray<FTitleFileMcp>]
-  DownloadCount: 0x0128,  // 0x0128 (0x0004) [int32]
+  TitleFiles: 0x0118n,  // 0x0118 (0x0010) [TArray<FTitleFileMcp>]
+  DownloadCount: 0x0128n,  // 0x0128 (0x0004) [int32]
   ...OnlineTitleFileDownloadBase,
 } as const;
 
@@ -1012,7 +868,7 @@ export const OnlineTitleFileDownloadMcp = {
  * Extends: OnlineTitleFileDownloadBase
  */
 export const OnlineTitleFileDownloadWeb = {
-  TitleFiles: 0x0118,  // 0x0118 (0x0010) [TArray<FTitleFileWeb>]
+  TitleFiles: 0x0118n,  // 0x0118 (0x0010) [TArray<FTitleFileWeb>]
   ...OnlineTitleFileDownloadBase,
 } as const;
 
@@ -1027,43 +883,43 @@ export const McpClashMobFileDownload = {
 
 /**
  * IpDrv.PartyBeacon Offsets
- * Size: 0x00A8
+ * Size: 0x00a8
  * Extends: Object
  */
 export const PartyBeacon = {
-  VfTable_FTickableObject: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  PartyBeaconPort: 0x0068,  // 0x0068 (0x0004) [int32]
-  Socket: 0x0070,  // 0x0070 (0x0008) [FPointer]
-  bIsInTick: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  bWantsDeferredDestroy: 0x0078,  // 0x0078 (0x0004) [bool : 0x2]
-  bShouldTick: 0x0078,  // 0x0078 (0x0004) [bool : 0x4]
-  HeartbeatTimeout: 0x007C,  // 0x007C (0x0004) [float]
-  ElapsedHeartbeatTime: 0x0080,  // 0x0080 (0x0004) [float]
-  BeaconName: 0x0084,  // 0x0084 (0x0008) [FName]
-  __OnDestroyComplete__Delegate: 0x0090,  // 0x0090 (0x0018) [FScriptDelegate]
+  VfTable_FTickableObject: 0x0060n,  // 0x0060 (0x0008) [FPointer]
+  PartyBeaconPort: 0x0068n,  // 0x0068 (0x0004) [int32]
+  Socket: 0x0070n,  // 0x0070 (0x0008) [FPointer]
+  bIsInTick: 0x0078n,  // 0x0078 (0x0004) [bool : 0x1]
+  bWantsDeferredDestroy: 0x0078n,  // 0x0078 (0x0004) [bool : 0x2]
+  bShouldTick: 0x0078n,  // 0x0078 (0x0004) [bool : 0x4]
+  HeartbeatTimeout: 0x007cn,  // 0x007c (0x0004) [float]
+  ElapsedHeartbeatTime: 0x0080n,  // 0x0080 (0x0004) [float]
+  BeaconName: 0x0084n,  // 0x0084 (0x0008) [FName]
+  __OnDestroyComplete__Delegate: 0x0090n,  // 0x0090 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * IpDrv.PartyBeaconClient Offsets
- * Size: 0x01C0
+ * Size: 0x01c0
  * Extends: PartyBeacon
  */
 export const PartyBeaconClient = {
-  HostPendingRequest: 0x00A8,  // 0x00A8 (0x0010) [FOnlineGameSearchResult]
-  PendingRequest: 0x00B8,  // 0x00B8 (0x0060) [FPartyReservation]
-  ClientBeaconState: 0x0118,  // 0x0118 (0x0001) [EPartyBeaconClientState]
-  ClientBeaconRequestType: 0x0119,  // 0x0119 (0x0001) [EPartyBeaconClientRequest]
-  ReservationRequestTimeout: 0x011C,  // 0x011C (0x0004) [float]
-  ReservationRequestElapsedTime: 0x0120,  // 0x0120 (0x0004) [float]
-  ResolverClassName: 0x0128,  // 0x0128 (0x0010) [FString]
-  ResolverClass: 0x0138,  // 0x0138 (0x0008) [UClass*]
-  Resolver: 0x0140,  // 0x0140 (0x0008) [UClientBeaconAddressResolver*]
-  __OnReservationRequestComplete__Delegate: 0x0148,  // 0x0148 (0x0018) [FScriptDelegate]
-  __OnReservationCountUpdated__Delegate: 0x0160,  // 0x0160 (0x0018) [FScriptDelegate]
-  __OnTravelRequestReceived__Delegate: 0x0178,  // 0x0178 (0x0018) [FScriptDelegate]
-  __OnHostIsReady__Delegate: 0x0190,  // 0x0190 (0x0018) [FScriptDelegate]
-  __OnHostHasCancelled__Delegate: 0x01A8,  // 0x01A8 (0x0018) [FScriptDelegate]
+  HostPendingRequest: 0x00a8n,  // 0x00a8 (0x0010) [FOnlineGameSearchResult]
+  PendingRequest: 0x00b8n,  // 0x00b8 (0x0060) [FPartyReservation]
+  ClientBeaconState: 0x0118n,  // 0x0118 (0x0001) [EPartyBeaconClientState]
+  ClientBeaconRequestType: 0x0119n,  // 0x0119 (0x0001) [EPartyBeaconClientRequest]
+  ReservationRequestTimeout: 0x011cn,  // 0x011c (0x0004) [float]
+  ReservationRequestElapsedTime: 0x0120n,  // 0x0120 (0x0004) [float]
+  ResolverClassName: 0x0128n,  // 0x0128 (0x0010) [FString]
+  ResolverClass: 0x0138n,  // 0x0138 (0x0008) [UClass*]
+  Resolver: 0x0140n,  // 0x0140 (0x0008) [UClientBeaconAddressResolver*]
+  __OnReservationRequestComplete__Delegate: 0x0148n,  // 0x0148 (0x0018) [FScriptDelegate]
+  __OnReservationCountUpdated__Delegate: 0x0160n,  // 0x0160 (0x0018) [FScriptDelegate]
+  __OnTravelRequestReceived__Delegate: 0x0178n,  // 0x0178 (0x0018) [FScriptDelegate]
+  __OnHostIsReady__Delegate: 0x0190n,  // 0x0190 (0x0018) [FScriptDelegate]
+  __OnHostHasCancelled__Delegate: 0x01a8n,  // 0x01a8 (0x0018) [FScriptDelegate]
   ...PartyBeacon,
 } as const;
 
@@ -1073,76 +929,48 @@ export const PartyBeaconClient = {
  * Extends: PartyBeacon
  */
 export const PartyBeaconHost = {
-  Clients: 0x00A8,  // 0x00A8 (0x0010) [TArray<FClientBeaconConnection>]
-  NumTeams: 0x00B8,  // 0x00B8 (0x0004) [int32]
-  NumPlayersPerTeam: 0x00BC,  // 0x00BC (0x0004) [int32]
-  NumReservations: 0x00C0,  // 0x00C0 (0x0004) [int32]
-  NumConsumedReservations: 0x00C4,  // 0x00C4 (0x0004) [int32]
-  Reservations: 0x00C8,  // 0x00C8 (0x0010) [TArray<FPartyReservation>]
-  OnlineSessionName: 0x00D8,  // 0x00D8 (0x0008) [FName]
-  ConnectionBacklog: 0x00E0,  // 0x00E0 (0x0004) [int32]
-  ForceTeamNum: 0x00E4,  // 0x00E4 (0x0004) [int32]
-  ReservedHostTeamNum: 0x00E8,  // 0x00E8 (0x0004) [int32]
-  bBestFitTeamAssignment: 0x00EC,  // 0x00EC (0x0004) [bool : 0x1]
-  BeaconState: 0x00F0,  // 0x00F0 (0x0001) [EPartyBeaconHostState]
-  __OnReservationChange__Delegate: 0x00F8,  // 0x00F8 (0x0018) [FScriptDelegate]
-  __OnReservationsFull__Delegate: 0x0110,  // 0x0110 (0x0018) [FScriptDelegate]
-  __OnClientCancellationReceived__Delegate: 0x0128,  // 0x0128 (0x0018) [FScriptDelegate]
+  Clients: 0x00a8n,  // 0x00a8 (0x0010) [TArray<FClientBeaconConnection>]
+  NumTeams: 0x00b8n,  // 0x00b8 (0x0004) [int32]
+  NumPlayersPerTeam: 0x00bcn,  // 0x00bc (0x0004) [int32]
+  NumReservations: 0x00c0n,  // 0x00c0 (0x0004) [int32]
+  NumConsumedReservations: 0x00c4n,  // 0x00c4 (0x0004) [int32]
+  Reservations: 0x00c8n,  // 0x00c8 (0x0010) [TArray<FPartyReservation>]
+  OnlineSessionName: 0x00d8n,  // 0x00d8 (0x0008) [FName]
+  ConnectionBacklog: 0x00e0n,  // 0x00e0 (0x0004) [int32]
+  ForceTeamNum: 0x00e4n,  // 0x00e4 (0x0004) [int32]
+  ReservedHostTeamNum: 0x00e8n,  // 0x00e8 (0x0004) [int32]
+  bBestFitTeamAssignment: 0x00ecn,  // 0x00ec (0x0004) [bool : 0x1]
+  BeaconState: 0x00f0n,  // 0x00f0 (0x0001) [EPartyBeaconHostState]
+  __OnReservationChange__Delegate: 0x00f8n,  // 0x00f8 (0x0018) [FScriptDelegate]
+  __OnReservationsFull__Delegate: 0x0110n,  // 0x0110 (0x0018) [FScriptDelegate]
+  __OnClientCancellationReceived__Delegate: 0x0128n,  // 0x0128 (0x0018) [FScriptDelegate]
   ...PartyBeacon,
 } as const;
 
 /**
  * IpDrv.TargetUserChatPermChangedEvent Offsets
- * Size: 0x00F4
+ * Size: 0x00f4
  * Extends: Object
  */
 export const TargetUserChatPermChangedEvent = {
-  PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  TargetId: 0x00A8,  // 0x00A8 (0x0048) [FUniqueNetId]
-  bAllowed: 0x00F0,  // 0x00F0 (0x0004) [bool : 0x1]
+  PlayerID: 0x0060n,  // 0x0060 (0x0048) [FUniqueNetId]
+  TargetId: 0x00a8n,  // 0x00a8 (0x0048) [FUniqueNetId]
+  bAllowed: 0x00f0n,  // 0x00f0 (0x0004) [bool : 0x1]
   ...Object_,
 } as const;
 
 /**
  * IpDrv.TcpLink Offsets
- * Size: 0x02D8
+ * Size: 0x02d8
  * Extends: InternetLink
  */
 export const TcpLink = {
-  LinkState: 0x0298,  // 0x0298 (0x0001) [ELinkState]
-  RemoteAddr: 0x029C,  // 0x029C (0x0014) [FIpAddr]
-  AcceptClass: 0x02B0,  // 0x02B0 (0x0008) [UClass*]
-  SendFIFO: 0x02B8,  // 0x02B8 (0x0010) [TArray<uint8>]
-  RecvBuf: 0x02C8,  // 0x02C8 (0x0010) [FString]
+  LinkState: 0x0298n,  // 0x0298 (0x0001) [ELinkState]
+  RemoteAddr: 0x029cn,  // 0x029c (0x0014) [FIpAddr]
+  AcceptClass: 0x02b0n,  // 0x02b0 (0x0008) [UClass*]
+  SendFIFO: 0x02b8n,  // 0x02b8 (0x0010) [TArray<uint8>]
+  RecvBuf: 0x02c8n,  // 0x02c8 (0x0010) [FString]
   ...InternetLink,
-} as const;
-
-/**
- * Engine.NetDriver Offsets
- * Size: 0x0298
- * Extends: Subsystem
- */
-export const NetDriver = {
-  MatchFailureSeconds: 0x0070,  // 0x0070 (0x0004) [float]
-  ConnectionTimeout: 0x00EC,  // 0x00EC (0x0004) [float]
-  KeepAliveTime: 0x00F0,  // 0x00F0 (0x0004) [float]
-  RelevantTimeout: 0x00F4,  // 0x00F4 (0x0004) [float]
-  SpawnPrioritySeconds: 0x00F8,  // 0x00F8 (0x0004) [float]
-  ServerTravelPause: 0x00FC,  // 0x00FC (0x0004) [float]
-  MinClientRate: 0x0100,  // 0x0100 (0x0004) [int32]
-  MaxClientRate: 0x0104,  // 0x0104 (0x0004) [int32]
-  MedianClientRate: 0x0108,  // 0x0108 (0x0004) [int32]
-  MinReplicationRate: 0x010C,  // 0x010C (0x0004) [int32]
-  MaxReplicationRate: 0x0110,  // 0x0110 (0x0004) [int32]
-  MedianReplicationRate: 0x0114,  // 0x0114 (0x0004) [int32]
-  NetServerMaxTickRate: 0x0118,  // 0x0118 (0x0004) [int32]
-  bClampListenServerTickRate: 0x011C,  // 0x011C (0x0004) [bool : 0x1]
-  AllowDownloads: 0x0120,  // 0x0120 (0x0004) [bool : 0x1]
-  AllowPeerConnections: 0x0124,  // 0x0124 (0x0004) [bool : 0x1]
-  AllowPeerVoice: 0x0128,  // 0x0128 (0x0004) [bool : 0x1]
-  MaxDownloadSize: 0x0150,  // 0x0150 (0x0004) [int32]
-  DownloadManagers: 0x0158,  // 0x0158 (0x0010) [TArray<FString>]
-  NetConnectionClassName: 0x0210,  // 0x0210 (0x0010) [FString]
 } as const;
 
 /**
@@ -1151,26 +979,14 @@ export const NetDriver = {
  * Extends: NetDriver
  */
 export const TcpNetDriver = {
-  AllowPlayerPortUnreach: 0x02F0,  // 0x02F0 (0x0004) [bool : 0x1]
-  LogPortUnreach: 0x02F4,  // 0x02F4 (0x0004) [bool : 0x1]
+  AllowPlayerPortUnreach: 0x02f0n,  // 0x02f0 (0x0004) [bool : 0x1]
+  LogPortUnreach: 0x02f4n,  // 0x02f4 (0x0004) [bool : 0x1]
   ...NetDriver,
 } as const;
 
 /**
- * Engine.NetConnection Offsets
- * Size: 0xB1F0
- * Extends: Player
- */
-export const NetConnection = {
-  Children: 0xB1B0,  // 0xB1B0 (0x0010) [TArray<UChildConnection*>]
-  bUseSessionUID: 0xB1DC,  // 0xB1DC (0x0004) [bool : 0x1]
-  BadConnectionPingThreshold: 0xB1E8,  // 0xB1E8 (0x0004) [float]
-  BadConnectionReceiveTimeThreshold: 0xB1EC,  // 0xB1EC (0x0004) [float]
-} as const;
-
-/**
  * IpDrv.TcpipConnection Offsets
- * Size: 0xB218
+ * Size: 0xb218
  * Extends: NetConnection
  */
 export const TcpipConnection = {
@@ -1179,27 +995,16 @@ export const TcpipConnection = {
 
 /**
  * IpDrv.TitleFileDownloadCache Offsets
- * Size: 0x00E0
+ * Size: 0x00e0
  * Extends: MCPBase
  */
 export const TitleFileDownloadCache = {
-  TitleFiles: 0x0080,  // 0x0080 (0x0010) [TArray<FTitleFileCacheEntry>]
-  LoadCompleteDelegates: 0x0090,  // 0x0090 (0x0010) [TArray<FScriptDelegate>]
-  SaveCompleteDelegates: 0x00A0,  // 0x00A0 (0x0010) [TArray<FScriptDelegate>]
-  __OnLoadTitleFileComplete__Delegate: 0x00B0,  // 0x00B0 (0x0018) [FScriptDelegate]
-  __OnSaveTitleFileComplete__Delegate: 0x00C8,  // 0x00C8 (0x0018) [FScriptDelegate]
+  TitleFiles: 0x0080n,  // 0x0080 (0x0010) [TArray<FTitleFileCacheEntry>]
+  LoadCompleteDelegates: 0x0090n,  // 0x0090 (0x0010) [TArray<FScriptDelegate>]
+  SaveCompleteDelegates: 0x00a0n,  // 0x00a0 (0x0010) [TArray<FScriptDelegate>]
+  __OnLoadTitleFileComplete__Delegate: 0x00b0n,  // 0x00b0 (0x0018) [FScriptDelegate]
+  __OnSaveTitleFileComplete__Delegate: 0x00c8n,  // 0x00c8 (0x0018) [FScriptDelegate]
   ...MCPBase,
-} as const;
-
-/**
- * Engine.UIDataStore Offsets
- * Size: 0x00A0
- * Extends: UIDataProvider
- */
-export const UIDataStore = {
-  Tag: 0x0070,  // 0x0070 (0x0008) [FName]
-  RefreshSubscriberNotifies: 0x0078,  // 0x0078 (0x0010) [TArray<FScriptDelegate>]
-  __OnDataStoreValueUpdated__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -1208,13 +1013,13 @@ export const UIDataStore = {
  * Extends: UIDataStore
  */
 export const UIDataStore_OnlinePlaylists = {
-  ProviderClassName: 0x00A0,  // 0x00A0 (0x0010) [FString]
-  ProviderClass: 0x00B0,  // 0x00B0 (0x0008) [UClass*]
-  RankedDataProviders: 0x00B8,  // 0x00B8 (0x0010) [TArray<UUIResourceDataProvider*>]
-  UnrankedDataProviders: 0x00C8,  // 0x00C8 (0x0010) [TArray<UUIResourceDataProvider*>]
-  RecModeDataProviders: 0x00D8,  // 0x00D8 (0x0010) [TArray<UUIResourceDataProvider*>]
-  PrivateDataProviders: 0x00E8,  // 0x00E8 (0x0010) [TArray<UUIResourceDataProvider*>]
-  PlaylistMan: 0x00F8,  // 0x00F8 (0x0008) [UOnlinePlaylistManager*]
+  ProviderClassName: 0x00a0n,  // 0x00a0 (0x0010) [FString]
+  ProviderClass: 0x00b0n,  // 0x00b0 (0x0008) [UClass*]
+  RankedDataProviders: 0x00b8n,  // 0x00b8 (0x0010) [TArray<UUIResourceDataProvider*>]
+  UnrankedDataProviders: 0x00c8n,  // 0x00c8 (0x0010) [TArray<UUIResourceDataProvider*>]
+  RecModeDataProviders: 0x00d8n,  // 0x00d8 (0x0010) [TArray<UUIResourceDataProvider*>]
+  PrivateDataProviders: 0x00e8n,  // 0x00e8 (0x0010) [TArray<UUIResourceDataProvider*>]
+  PlaylistMan: 0x00f8n,  // 0x00f8 (0x0008) [UOnlinePlaylistManager*]
   ...UIDataStore,
 } as const;
 
@@ -1224,9 +1029,9 @@ export const UIDataStore_OnlinePlaylists = {
  * Extends: Object
  */
 export const WebApplication = {
-  WorldInfo: 0x0060,  // 0x0060 (0x0008) [UWorldInfo*]
-  WebServer: 0x0068,  // 0x0068 (0x0008) [UWebServer*]
-  Path: 0x0070,  // 0x0070 (0x0010) [FString]
+  WorldInfo: 0x0060n,  // 0x0060 (0x0008) [UWorldInfo*]
+  WebServer: 0x0068n,  // 0x0068 (0x0008) [UWebServer*]
+  Path: 0x0070n,  // 0x0070 (0x0010) [FString]
   ...Object_,
 } as const;
 
@@ -1250,20 +1055,20 @@ export const ImageServer = {
 
 /**
  * IpDrv.WebConnection Offsets
- * Size: 0x031C
+ * Size: 0x031c
  * Extends: TcpLink
  */
 export const WebConnection = {
-  WebServer: 0x02D8,  // 0x02D8 (0x0008) [UWebServer*]
-  ReceivedData: 0x02E0,  // 0x02E0 (0x0010) [FString]
-  Request: 0x02F0,  // 0x02F0 (0x0008) [UWebRequest*]
-  Response: 0x02F8,  // 0x02F8 (0x0008) [UWebResponse*]
-  Application: 0x0300,  // 0x0300 (0x0008) [UWebApplication*]
-  bDelayCleanup: 0x0308,  // 0x0308 (0x0004) [bool : 0x1]
-  RawBytesExpecting: 0x030C,  // 0x030C (0x0004) [int32]
-  MaxValueLength: 0x0310,  // 0x0310 (0x0004) [int32]
-  MaxLineLength: 0x0314,  // 0x0314 (0x0004) [int32]
-  ConnID: 0x0318,  // 0x0318 (0x0004) [int32]
+  WebServer: 0x02d8n,  // 0x02d8 (0x0008) [UWebServer*]
+  ReceivedData: 0x02e0n,  // 0x02e0 (0x0010) [FString]
+  Request: 0x02f0n,  // 0x02f0 (0x0008) [UWebRequest*]
+  Response: 0x02f8n,  // 0x02f8 (0x0008) [UWebResponse*]
+  Application: 0x0300n,  // 0x0300 (0x0008) [UWebApplication*]
+  bDelayCleanup: 0x0308n,  // 0x0308 (0x0004) [bool : 0x1]
+  RawBytesExpecting: 0x030cn,  // 0x030c (0x0004) [int32]
+  MaxValueLength: 0x0310n,  // 0x0310 (0x0004) [int32]
+  MaxLineLength: 0x0314n,  // 0x0314 (0x0004) [int32]
+  ConnID: 0x0318n,  // 0x0318 (0x0004) [int32]
   ...TcpLink,
 } as const;
 
@@ -1273,52 +1078,52 @@ export const WebConnection = {
  * Extends: Object
  */
 export const WebRequest = {
-  RemoteAddr: 0x0060,  // 0x0060 (0x0010) [FString]
-  URI: 0x0070,  // 0x0070 (0x0010) [FString]
-  Username: 0x0080,  // 0x0080 (0x0010) [FString]
-  Password: 0x0090,  // 0x0090 (0x0010) [FString]
-  ContentLength: 0x00A0,  // 0x00A0 (0x0004) [int32]
-  ContentType: 0x00A8,  // 0x00A8 (0x0010) [FString]
-  RequestType: 0x00B8,  // 0x00B8 (0x0001) [ERequestType]
-  HeaderMap: 0x00C0,  // 0x00C0 (0x0050) [FMap_Mirror]
-  VariableMap: 0x0110,  // 0x0110 (0x0050) [FMap_Mirror]
+  RemoteAddr: 0x0060n,  // 0x0060 (0x0010) [FString]
+  URI: 0x0070n,  // 0x0070 (0x0010) [FString]
+  Username: 0x0080n,  // 0x0080 (0x0010) [FString]
+  Password: 0x0090n,  // 0x0090 (0x0010) [FString]
+  ContentLength: 0x00a0n,  // 0x00a0 (0x0004) [int32]
+  ContentType: 0x00a8n,  // 0x00a8 (0x0010) [FString]
+  RequestType: 0x00b8n,  // 0x00b8 (0x0001) [ERequestType]
+  HeaderMap: 0x00c0n,  // 0x00c0 (0x0050) [FMap_Mirror]
+  VariableMap: 0x0110n,  // 0x0110 (0x0050) [FMap_Mirror]
   ...Object_,
 } as const;
 
 /**
  * IpDrv.WebResponse Offsets
- * Size: 0x00EC
+ * Size: 0x00ec
  * Extends: Object
  */
 export const WebResponse = {
-  Headers: 0x0060,  // 0x0060 (0x0010) [TArray<FString>]
-  ReplacementMap: 0x0070,  // 0x0070 (0x0050) [FMap_Mirror]
-  IncludePath: 0x00C0,  // 0x00C0 (0x0010) [FString]
-  CharSet: 0x00D0,  // 0x00D0 (0x0010) [FString]
-  Connection: 0x00E0,  // 0x00E0 (0x0008) [UWebConnection*]
-  bSentText: 0x00E8,  // 0x00E8 (0x0004) [bool : 0x1]
-  bSentResponse: 0x00E8,  // 0x00E8 (0x0004) [bool : 0x2]
+  Headers: 0x0060n,  // 0x0060 (0x0010) [TArray<FString>]
+  ReplacementMap: 0x0070n,  // 0x0070 (0x0050) [FMap_Mirror]
+  IncludePath: 0x00c0n,  // 0x00c0 (0x0010) [FString]
+  CharSet: 0x00d0n,  // 0x00d0 (0x0010) [FString]
+  Connection: 0x00e0n,  // 0x00e0 (0x0008) [UWebConnection*]
+  bSentText: 0x00e8n,  // 0x00e8 (0x0004) [bool : 0x1]
+  bSentResponse: 0x00e8n,  // 0x00e8 (0x0004) [bool : 0x2]
   ...Object_,
 } as const;
 
 /**
  * IpDrv.WebServer Offsets
- * Size: 0x04A8
+ * Size: 0x04a8
  * Extends: TcpLink
  */
 export const WebServer = {
-  ServerName: 0x02D8,  // 0x02D8 (0x0010) [FString]
-  Applications: 0x02E8,  // 0x02E8 (0x00A0) [FString]
-  ApplicationPaths: 0x0388,  // 0x0388 (0x00A0) [FString]
-  bEnabled: 0x0428,  // 0x0428 (0x0004) [bool : 0x1]
-  ListenPort: 0x042C,  // 0x042C (0x0004) [int32]
-  MaxConnections: 0x0430,  // 0x0430 (0x0004) [int32]
-  DefaultApplication: 0x0434,  // 0x0434 (0x0004) [int32]
-  ExpirationSeconds: 0x0438,  // 0x0438 (0x0004) [int32]
-  ServerURL: 0x0440,  // 0x0440 (0x0010) [FString]
-  ApplicationObjects: 0x0450,  // 0x0450 (0x0050) [UWebApplication*]
-  ConnectionCount: 0x04A0,  // 0x04A0 (0x0004) [int32]
-  ConnID: 0x04A4,  // 0x04A4 (0x0004) [int32]
+  ServerName: 0x02d8n,  // 0x02d8 (0x0010) [FString]
+  Applications: 0x02e8n,  // 0x02e8 (0x00a0) [FString]
+  ApplicationPaths: 0x0388n,  // 0x0388 (0x00a0) [FString]
+  bEnabled: 0x0428n,  // 0x0428 (0x0004) [bool : 0x1]
+  ListenPort: 0x042cn,  // 0x042c (0x0004) [int32]
+  MaxConnections: 0x0430n,  // 0x0430 (0x0004) [int32]
+  DefaultApplication: 0x0434n,  // 0x0434 (0x0004) [int32]
+  ExpirationSeconds: 0x0438n,  // 0x0438 (0x0004) [int32]
+  ServerURL: 0x0440n,  // 0x0440 (0x0010) [FString]
+  ApplicationObjects: 0x0450n,  // 0x0450 (0x0050) [UWebApplication*]
+  ConnectionCount: 0x04a0n,  // 0x04a0 (0x0004) [int32]
+  ConnID: 0x04a4n,  // 0x04a4 (0x0004) [int32]
   ...TcpLink,
 } as const;
 
@@ -1327,11 +1132,11 @@ export const WebServer = {
  * Size: 0x0038
  */
 export const AdHocAccessPointInfo = {
-  Ipv4Addr: 0x0000,  // 0x0000 (0x0010) [FString]
-  Username: 0x0010,  // 0x0010 (0x0010) [FString]
-  AdvertiseData: 0x0020,  // 0x0020 (0x0010) [FString]
-  ScanResultIndex: 0x0030,  // 0x0030 (0x0004) [int32]
-  NetworkNodeIndex: 0x0034,  // 0x0034 (0x0004) [int32]
+  Ipv4Addr: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Username: 0x0010n,  // 0x0010 (0x0010) [FString]
+  AdvertiseData: 0x0020n,  // 0x0020 (0x0010) [FString]
+  ScanResultIndex: 0x0030n,  // 0x0030 (0x0004) [int32]
+  NetworkNodeIndex: 0x0034n,  // 0x0034 (0x0004) [int32]
 } as const;
 
 /**
@@ -1339,7 +1144,7 @@ export const AdHocAccessPointInfo = {
  * Size: 0x0010
  */
 export const AdHocStationInfo = {
-  Username: 0x0000,  // 0x0000 (0x0010) [FString]
+  Username: 0x0000n,  // 0x0000 (0x0010) [FString]
 } as const;
 
 /**
@@ -1347,10 +1152,10 @@ export const AdHocStationInfo = {
  * Size: 0x0038
  */
 export const AddMappingRequest = {
-  McpId: 0x0000,  // 0x0000 (0x0010) [FString]
-  ExternalId: 0x0010,  // 0x0010 (0x0010) [FString]
-  ExternalType: 0x0020,  // 0x0020 (0x0010) [FString]
-  Request: 0x0030,  // 0x0030 (0x0008) [UHttpRequestInterface*]
+  McpId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  ExternalId: 0x0010n,  // 0x0010 (0x0010) [FString]
+  ExternalType: 0x0020n,  // 0x0020 (0x0010) [FString]
+  Request: 0x0030n,  // 0x0030 (0x0008) [UHttpRequestInterface*]
 } as const;
 
 /**
@@ -1358,9 +1163,9 @@ export const AddMappingRequest = {
  * Size: 0x0064
  */
 export const AuthCodeRequest = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  Callback: 0x0048,  // 0x0048 (0x0018) [FScriptDelegate]
-  RequestID: 0x0060,  // 0x0060 (0x0004) [int32]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  Callback: 0x0048n,  // 0x0048 (0x0018) [FScriptDelegate]
+  RequestID: 0x0060n,  // 0x0060 (0x0004) [int32]
 } as const;
 
 /**
@@ -1368,8 +1173,8 @@ export const AuthCodeRequest = {
  * Size: 0x0049
  */
 export const AvatarKey = {
-  PlayerID: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  Size: 0x0048,  // 0x0048 (0x0001) [AvatarSize]
+  PlayerID: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  Size: 0x0048n,  // 0x0048 (0x0001) [AvatarSize]
 } as const;
 
 /**
@@ -1377,12 +1182,12 @@ export const AvatarKey = {
  * Size: 0x0014
  */
 export const ClientBandwidthTestData = {
-  TestType: 0x0000,  // 0x0000 (0x0001) [EMeshBeaconBandwidthTestType]
-  CurrentState: 0x0001,  // 0x0001 (0x0001) [EMeshBeaconBandwidthTestState]
-  NumBytesToSendTotal: 0x0004,  // 0x0004 (0x0004) [int32]
-  NumBytesSentTotal: 0x0008,  // 0x0008 (0x0004) [int32]
-  NumBytesSentLast: 0x000C,  // 0x000C (0x0004) [int32]
-  ElapsedTestTime: 0x0010,  // 0x0010 (0x0004) [float]
+  TestType: 0x0000n,  // 0x0000 (0x0001) [EMeshBeaconBandwidthTestType]
+  CurrentState: 0x0001n,  // 0x0001 (0x0001) [EMeshBeaconBandwidthTestState]
+  NumBytesToSendTotal: 0x0004n,  // 0x0004 (0x0004) [int32]
+  NumBytesSentTotal: 0x0008n,  // 0x0008 (0x0004) [int32]
+  NumBytesSentLast: 0x000cn,  // 0x000c (0x0004) [int32]
+  ElapsedTestTime: 0x0010n,  // 0x0010 (0x0004) [float]
 } as const;
 
 /**
@@ -1390,53 +1195,53 @@ export const ClientBandwidthTestData = {
  * Size: 0x0058
  */
 export const ClientBeaconConnection = {
-  PartyLeader: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  ElapsedHeartbeatTime: 0x0048,  // 0x0048 (0x0004) [float]
-  Socket: 0x0050,  // 0x0050 (0x0008) [FPointer]
+  PartyLeader: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  ElapsedHeartbeatTime: 0x0048n,  // 0x0048 (0x0004) [float]
+  Socket: 0x0050n,  // 0x0050 (0x0008) [FPointer]
 } as const;
 
 /**
  * ScriptStruct IpDrv.MeshBeaconHost.ClientConnectionBandwidthTestData Offsets
- * Size: 0x002C
+ * Size: 0x002c
  */
 export const ClientConnectionBandwidthTestData = {
-  CurrentState: 0x0000,  // 0x0000 (0x0001) [EMeshBeaconBandwidthTestState]
-  TestType: 0x0001,  // 0x0001 (0x0001) [EMeshBeaconBandwidthTestType]
-  BytesTotalNeeded: 0x0004,  // 0x0004 (0x0004) [int32]
-  BytesReceived: 0x0008,  // 0x0008 (0x0004) [int32]
-  RequestTestStartTime: 0x0010,  // 0x0010 (0x0008) [FDouble]
-  TestStartTime: 0x0018,  // 0x0018 (0x0008) [FDouble]
-  BandwidthStats: 0x0020,  // 0x0020 (0x000C) [FConnectionBandwidthStats]
+  CurrentState: 0x0000n,  // 0x0000 (0x0001) [EMeshBeaconBandwidthTestState]
+  TestType: 0x0001n,  // 0x0001 (0x0001) [EMeshBeaconBandwidthTestType]
+  BytesTotalNeeded: 0x0004n,  // 0x0004 (0x0004) [int32]
+  BytesReceived: 0x0008n,  // 0x0008 (0x0004) [int32]
+  RequestTestStartTime: 0x0010n,  // 0x0010 (0x0008) [FDouble]
+  TestStartTime: 0x0018n,  // 0x0018 (0x0008) [FDouble]
+  BandwidthStats: 0x0020n,  // 0x0020 (0x000c) [FConnectionBandwidthStats]
 } as const;
 
 /**
  * ScriptStruct IpDrv.MeshBeaconClient.ClientConnectionRequest Offsets
- * Size: 0x006C
+ * Size: 0x006c
  */
 export const ClientConnectionRequest = {
-  PlayerNetId: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  NatType: 0x0048,  // 0x0048 (0x0001) [ENATType]
-  bCanHostVs: 0x004C,  // 0x004C (0x0004) [bool : 0x1]
-  GoodHostRatio: 0x0050,  // 0x0050 (0x0004) [float]
-  BandwidthHistory: 0x0058,  // 0x0058 (0x0010) [TArray<FConnectionBandwidthStats>]
-  MinutesSinceLastTest: 0x0068,  // 0x0068 (0x0004) [int32]
+  PlayerNetId: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  NatType: 0x0048n,  // 0x0048 (0x0001) [ENATType]
+  bCanHostVs: 0x004cn,  // 0x004c (0x0004) [bool : 0x1]
+  GoodHostRatio: 0x0050n,  // 0x0050 (0x0004) [float]
+  BandwidthHistory: 0x0058n,  // 0x0058 (0x0010) [TArray<FConnectionBandwidthStats>]
+  MinutesSinceLastTest: 0x0068n,  // 0x0068 (0x0004) [int32]
 } as const;
 
 /**
  * ScriptStruct IpDrv.MeshBeaconHost.ClientMeshBeaconConnection Offsets
- * Size: 0x00B4
+ * Size: 0x00b4
  */
 export const ClientMeshBeaconConnection = {
-  PlayerNetId: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  ElapsedHeartbeatTime: 0x0048,  // 0x0048 (0x0004) [float]
-  Socket: 0x0050,  // 0x0050 (0x0008) [FPointer]
-  bConnectionAccepted: 0x0058,  // 0x0058 (0x0004) [bool : 0x1]
-  BandwidthTest: 0x0060,  // 0x0060 (0x0030) [FClientConnectionBandwidthTestData]
-  NatType: 0x0090,  // 0x0090 (0x0001) [ENATType]
-  bCanHostVs: 0x0094,  // 0x0094 (0x0004) [bool : 0x1]
-  GoodHostRatio: 0x0098,  // 0x0098 (0x0004) [float]
-  BandwidthHistory: 0x00A0,  // 0x00A0 (0x0010) [TArray<FConnectionBandwidthStats>]
-  MinutesSinceLastTest: 0x00B0,  // 0x00B0 (0x0004) [int32]
+  PlayerNetId: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  ElapsedHeartbeatTime: 0x0048n,  // 0x0048 (0x0004) [float]
+  Socket: 0x0050n,  // 0x0050 (0x0008) [FPointer]
+  bConnectionAccepted: 0x0058n,  // 0x0058 (0x0004) [bool : 0x1]
+  BandwidthTest: 0x0060n,  // 0x0060 (0x0030) [FClientConnectionBandwidthTestData]
+  NatType: 0x0090n,  // 0x0090 (0x0001) [ENATType]
+  bCanHostVs: 0x0094n,  // 0x0094 (0x0004) [bool : 0x1]
+  GoodHostRatio: 0x0098n,  // 0x0098 (0x0004) [float]
+  BandwidthHistory: 0x00a0n,  // 0x00a0 (0x0010) [TArray<FConnectionBandwidthStats>]
+  MinutesSinceLastTest: 0x00b0n,  // 0x00b0 (0x0004) [int32]
 } as const;
 
 /**
@@ -1444,20 +1249,20 @@ export const ClientMeshBeaconConnection = {
  * Size: 0x0030
  */
 export const ConfiguredGameSetting = {
-  GameSettingId: 0x0000,  // 0x0000 (0x0004) [int32]
-  GameSettingsClassName: 0x0008,  // 0x0008 (0x0010) [FString]
-  URL: 0x0018,  // 0x0018 (0x0010) [FString]
-  GameSettings: 0x0028,  // 0x0028 (0x0008) [UOnlineGameSettings*]
+  GameSettingId: 0x0000n,  // 0x0000 (0x0004) [int32]
+  GameSettingsClassName: 0x0008n,  // 0x0008 (0x0010) [FString]
+  URL: 0x0018n,  // 0x0018 (0x0010) [FString]
+  GameSettings: 0x0028n,  // 0x0028 (0x0008) [UOnlineGameSettings*]
 } as const;
 
 /**
  * ScriptStruct IpDrv.MeshBeacon.ConnectionBandwidthStats Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const ConnectionBandwidthStats = {
-  UpstreamRate: 0x0000,  // 0x0000 (0x0004) [int32]
-  DownstreamRate: 0x0004,  // 0x0004 (0x0004) [int32]
-  RoundtripLatency: 0x0008,  // 0x0008 (0x0004) [int32]
+  UpstreamRate: 0x0000n,  // 0x0000 (0x0004) [int32]
+  DownstreamRate: 0x0004n,  // 0x0004 (0x0004) [int32]
+  RoundtripLatency: 0x0008n,  // 0x0008 (0x0004) [int32]
 } as const;
 
 /**
@@ -1465,9 +1270,9 @@ export const ConnectionBandwidthStats = {
  * Size: 0x0030
  */
 export const DecodeImageRequest = {
-  RequestURL: 0x0000,  // 0x0000 (0x0010) [FString]
-  OnFinishedCallback: 0x0010,  // 0x0010 (0x0018) [FScriptDelegate]
-  Task: 0x0028,  // 0x0028 (0x0008) [FPointer]
+  RequestURL: 0x0000n,  // 0x0000 (0x0010) [FString]
+  OnFinishedCallback: 0x0010n,  // 0x0010 (0x0018) [FScriptDelegate]
+  Task: 0x0028n,  // 0x0028 (0x0008) [FPointer]
 } as const;
 
 /**
@@ -1475,10 +1280,10 @@ export const DecodeImageRequest = {
  * Size: 0x0040
  */
 export const DecodeImageTask = {
-  RequestURL: 0x0000,  // 0x0000 (0x0010) [FString]
-  ImageType: 0x0010,  // 0x0010 (0x0001) [EImageType]
-  ImageData: 0x0018,  // 0x0018 (0x0010) [TArray<uint8>]
-  Result: 0x0028,  // 0x0028 (0x0018) [FImageLayout]
+  RequestURL: 0x0000n,  // 0x0000 (0x0010) [FString]
+  ImageType: 0x0010n,  // 0x0010 (0x0001) [EImageType]
+  ImageData: 0x0018n,  // 0x0018 (0x0010) [TArray<uint8>]
+  Result: 0x0028n,  // 0x0028 (0x0018) [FImageLayout]
 } as const;
 
 /**
@@ -1486,10 +1291,10 @@ export const DecodeImageTask = {
  * Size: 0x0020
  */
 export const EventUploadConfig = {
-  UploadType: 0x0000,  // 0x0000 (0x0001) [EEventUploadType]
-  UploadUrl: 0x0008,  // 0x0008 (0x0010) [FString]
-  Timeout: 0x0018,  // 0x0018 (0x0004) [float]
-  bUseCompression: 0x001C,  // 0x001C (0x0004) [bool : 0x1]
+  UploadType: 0x0000n,  // 0x0000 (0x0001) [EEventUploadType]
+  UploadUrl: 0x0008n,  // 0x0008 (0x0010) [FString]
+  Timeout: 0x0018n,  // 0x0018 (0x0004) [float]
+  bUseCompression: 0x001cn,  // 0x001c (0x0004) [bool : 0x1]
 } as const;
 
 /**
@@ -1497,17 +1302,17 @@ export const EventUploadConfig = {
  * Size: 0x0010
  */
 export const FileNameToURLMapping = {
-  Filename: 0x0000,  // 0x0000 (0x0008) [FName]
-  UrlMapping: 0x0008,  // 0x0008 (0x0008) [FName]
+  Filename: 0x0000n,  // 0x0000 (0x0008) [FName]
+  UrlMapping: 0x0008n,  // 0x0008 (0x0008) [FName]
 } as const;
 
 /**
  * ScriptStruct IpDrv.McpManagedValueManagerBase.ManagedValue Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const ManagedValue = {
-  ValueId: 0x0000,  // 0x0000 (0x0008) [FName]
-  Value: 0x0008,  // 0x0008 (0x0004) [int32]
+  ValueId: 0x0000n,  // 0x0000 (0x0008) [FName]
+  Value: 0x0008n,  // 0x0008 (0x0004) [int32]
 } as const;
 
 /**
@@ -1515,9 +1320,9 @@ export const ManagedValue = {
  * Size: 0x0030
  */
 export const ManagedValueSaveSlot = {
-  OwningMcpId: 0x0000,  // 0x0000 (0x0010) [FString]
-  SaveSlot: 0x0010,  // 0x0010 (0x0010) [FString]
-  Values: 0x0020,  // 0x0020 (0x0010) [TArray<FManagedValue>]
+  OwningMcpId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  SaveSlot: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Values: 0x0020n,  // 0x0020 (0x0010) [TArray<FManagedValue>]
 } as const;
 
 /**
@@ -1525,8 +1330,8 @@ export const ManagedValueSaveSlot = {
  * Size: 0x0018
  */
 export const McpChallengeRequest = {
-  UniqueChallengeId: 0x0000,  // 0x0000 (0x0010) [FString]
-  HTTPRequest: 0x0010,  // 0x0010 (0x0008) [UHttpRequestInterface*]
+  UniqueChallengeId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  HTTPRequest: 0x0010n,  // 0x0010 (0x0008) [UHttpRequestInterface*]
 } as const;
 
 /**
@@ -1534,46 +1339,46 @@ export const McpChallengeRequest = {
  * Size: 0x0050
  */
 export const McpChallengeUserRequest = {
-  UniqueUserId: 0x0000,  // 0x0000 (0x0010) [FString]
-  ChallengeStatusRequests: 0x0010,  // 0x0010 (0x0010) [TArray<FMcpChallengeRequest>]
-  ChallengeAcceptRequests: 0x0020,  // 0x0020 (0x0010) [TArray<FMcpChallengeRequest>]
-  ChallengeUpdateProgressRequests: 0x0030,  // 0x0030 (0x0010) [TArray<FMcpChallengeRequest>]
-  ChallengeUpdateRewardRequests: 0x0040,  // 0x0040 (0x0010) [TArray<FMcpChallengeRequest>]
+  UniqueUserId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  ChallengeStatusRequests: 0x0010n,  // 0x0010 (0x0010) [TArray<FMcpChallengeRequest>]
+  ChallengeAcceptRequests: 0x0020n,  // 0x0020 (0x0010) [TArray<FMcpChallengeRequest>]
+  ChallengeUpdateProgressRequests: 0x0030n,  // 0x0030 (0x0010) [TArray<FMcpChallengeRequest>]
+  ChallengeUpdateRewardRequests: 0x0040n,  // 0x0040 (0x0010) [TArray<FMcpChallengeRequest>]
 } as const;
 
 /**
  * ScriptStruct IpDrv.McpClashMobBase.McpClashMobChallengeEvent Offsets
- * Size: 0x00E0
+ * Size: 0x00e0
  */
 export const McpClashMobChallengeEvent = {
-  unique_challenge_id: 0x0000,  // 0x0000 (0x0010) [FString]
-  visible_date: 0x0010,  // 0x0010 (0x0010) [FString]
-  start_date: 0x0020,  // 0x0020 (0x0010) [FString]
-  end_date: 0x0030,  // 0x0030 (0x0010) [FString]
-  completed_date: 0x0040,  // 0x0040 (0x0010) [FString]
-  purge_date: 0x0050,  // 0x0050 (0x0010) [FString]
-  challenge_type: 0x0060,  // 0x0060 (0x0010) [FString]
-  num_attempts: 0x0070,  // 0x0070 (0x0004) [int32]
-  num_successful_attempts: 0x0074,  // 0x0074 (0x0004) [int32]
-  goal_value: 0x0078,  // 0x0078 (0x0004) [int32]
-  goal_start_value: 0x007C,  // 0x007C (0x0004) [int32]
-  goal_current_value: 0x0080,  // 0x0080 (0x0004) [int32]
-  has_started: 0x0084,  // 0x0084 (0x0004) [bool : 0x1]
-  is_visible: 0x0084,  // 0x0084 (0x0004) [bool : 0x2]
-  has_completed: 0x0084,  // 0x0084 (0x0004) [bool : 0x4]
-  was_successful: 0x0084,  // 0x0084 (0x0004) [bool : 0x8]
-  file_list: 0x0088,  // 0x0088 (0x0010) [TArray<FMcpClashMobChallengeFile>]
-  facebook_likes: 0x0098,  // 0x0098 (0x0004) [int32]
-  facebook_comments: 0x009C,  // 0x009C (0x0004) [int32]
-  facebook_like_scaler: 0x00A0,  // 0x00A0 (0x0004) [float]
-  facebook_comment_scaler: 0x00A4,  // 0x00A4 (0x0004) [float]
-  facebook_like_goal_progress: 0x00A8,  // 0x00A8 (0x0004) [int32]
-  facebook_comment_goal_progress: 0x00AC,  // 0x00AC (0x0004) [int32]
-  facebook_id: 0x00B0,  // 0x00B0 (0x0010) [FString]
-  twitter_retweets: 0x00C0,  // 0x00C0 (0x0004) [int32]
-  twitter_retweets_scaler: 0x00C4,  // 0x00C4 (0x0004) [float]
-  twitter_goal_progress: 0x00C8,  // 0x00C8 (0x0004) [int32]
-  twitter_id: 0x00D0,  // 0x00D0 (0x0010) [FString]
+  unique_challenge_id: 0x0000n,  // 0x0000 (0x0010) [FString]
+  visible_date: 0x0010n,  // 0x0010 (0x0010) [FString]
+  start_date: 0x0020n,  // 0x0020 (0x0010) [FString]
+  end_date: 0x0030n,  // 0x0030 (0x0010) [FString]
+  completed_date: 0x0040n,  // 0x0040 (0x0010) [FString]
+  purge_date: 0x0050n,  // 0x0050 (0x0010) [FString]
+  challenge_type: 0x0060n,  // 0x0060 (0x0010) [FString]
+  num_attempts: 0x0070n,  // 0x0070 (0x0004) [int32]
+  num_successful_attempts: 0x0074n,  // 0x0074 (0x0004) [int32]
+  goal_value: 0x0078n,  // 0x0078 (0x0004) [int32]
+  goal_start_value: 0x007cn,  // 0x007c (0x0004) [int32]
+  goal_current_value: 0x0080n,  // 0x0080 (0x0004) [int32]
+  has_started: 0x0084n,  // 0x0084 (0x0004) [bool : 0x1]
+  is_visible: 0x0084n,  // 0x0084 (0x0004) [bool : 0x2]
+  has_completed: 0x0084n,  // 0x0084 (0x0004) [bool : 0x4]
+  was_successful: 0x0084n,  // 0x0084 (0x0004) [bool : 0x8]
+  file_list: 0x0088n,  // 0x0088 (0x0010) [TArray<FMcpClashMobChallengeFile>]
+  facebook_likes: 0x0098n,  // 0x0098 (0x0004) [int32]
+  facebook_comments: 0x009cn,  // 0x009c (0x0004) [int32]
+  facebook_like_scaler: 0x00a0n,  // 0x00a0 (0x0004) [float]
+  facebook_comment_scaler: 0x00a4n,  // 0x00a4 (0x0004) [float]
+  facebook_like_goal_progress: 0x00a8n,  // 0x00a8 (0x0004) [int32]
+  facebook_comment_goal_progress: 0x00acn,  // 0x00ac (0x0004) [int32]
+  facebook_id: 0x00b0n,  // 0x00b0 (0x0010) [FString]
+  twitter_retweets: 0x00c0n,  // 0x00c0 (0x0004) [int32]
+  twitter_retweets_scaler: 0x00c4n,  // 0x00c4 (0x0004) [float]
+  twitter_goal_progress: 0x00c8n,  // 0x00c8 (0x0004) [int32]
+  twitter_id: 0x00d0n,  // 0x00d0 (0x0010) [FString]
 } as const;
 
 /**
@@ -1581,37 +1386,37 @@ export const McpClashMobChallengeEvent = {
  * Size: 0x0059
  */
 export const McpClashMobChallengeFile = {
-  should_keep_post_challenge: 0x0000,  // 0x0000 (0x0004) [bool : 0x1]
-  title_id: 0x0008,  // 0x0008 (0x0010) [FString]
-  file_name: 0x0018,  // 0x0018 (0x0010) [FString]
-  dl_name: 0x0028,  // 0x0028 (0x0010) [FString]
-  hash_code: 0x0038,  // 0x0038 (0x0010) [FString]
-  Type: 0x0048,  // 0x0048 (0x0010) [FString]
-  Status: 0x0058,  // 0x0058 (0x0001) [McpChallengeFileStatus]
+  should_keep_post_challenge: 0x0000n,  // 0x0000 (0x0004) [bool : 0x1]
+  title_id: 0x0008n,  // 0x0008 (0x0010) [FString]
+  file_name: 0x0018n,  // 0x0018 (0x0010) [FString]
+  dl_name: 0x0028n,  // 0x0028 (0x0010) [FString]
+  hash_code: 0x0038n,  // 0x0038 (0x0010) [FString]
+  Type: 0x0048n,  // 0x0048 (0x0010) [FString]
+  Status: 0x0058n,  // 0x0058 (0x0001) [McpChallengeFileStatus]
 } as const;
 
 /**
  * ScriptStruct IpDrv.McpClashMobBase.McpClashMobChallengeUserStatus Offsets
- * Size: 0x008C
+ * Size: 0x008c
  */
 export const McpClashMobChallengeUserStatus = {
-  unique_challenge_id: 0x0000,  // 0x0000 (0x0010) [FString]
-  unique_user_id: 0x0010,  // 0x0010 (0x0010) [FString]
-  num_attempts: 0x0020,  // 0x0020 (0x0004) [int32]
-  num_successful_attempts: 0x0024,  // 0x0024 (0x0004) [int32]
-  goal_progress: 0x0028,  // 0x0028 (0x0004) [int32]
-  did_complete: 0x002C,  // 0x002C (0x0004) [bool : 0x1]
-  last_update_time: 0x0030,  // 0x0030 (0x0010) [FString]
-  user_award_given: 0x0040,  // 0x0040 (0x0004) [int32]
-  accept_time: 0x0048,  // 0x0048 (0x0010) [FString]
-  did_preregister: 0x0058,  // 0x0058 (0x0004) [bool : 0x1]
-  facebook_like_time: 0x0060,  // 0x0060 (0x0010) [FString]
-  enrolled_via_facebook: 0x0070,  // 0x0070 (0x0004) [bool : 0x1]
-  liked_via_facebook: 0x0070,  // 0x0070 (0x0004) [bool : 0x2]
-  commented_via_facebook: 0x0070,  // 0x0070 (0x0004) [bool : 0x4]
-  twitter_retweet_time: 0x0078,  // 0x0078 (0x0010) [FString]
-  enrolled_via_twitter: 0x0088,  // 0x0088 (0x0004) [bool : 0x1]
-  retweeted: 0x0088,  // 0x0088 (0x0004) [bool : 0x2]
+  unique_challenge_id: 0x0000n,  // 0x0000 (0x0010) [FString]
+  unique_user_id: 0x0010n,  // 0x0010 (0x0010) [FString]
+  num_attempts: 0x0020n,  // 0x0020 (0x0004) [int32]
+  num_successful_attempts: 0x0024n,  // 0x0024 (0x0004) [int32]
+  goal_progress: 0x0028n,  // 0x0028 (0x0004) [int32]
+  did_complete: 0x002cn,  // 0x002c (0x0004) [bool : 0x1]
+  last_update_time: 0x0030n,  // 0x0030 (0x0010) [FString]
+  user_award_given: 0x0040n,  // 0x0040 (0x0004) [int32]
+  accept_time: 0x0048n,  // 0x0048 (0x0010) [FString]
+  did_preregister: 0x0058n,  // 0x0058 (0x0004) [bool : 0x1]
+  facebook_like_time: 0x0060n,  // 0x0060 (0x0010) [FString]
+  enrolled_via_facebook: 0x0070n,  // 0x0070 (0x0004) [bool : 0x1]
+  liked_via_facebook: 0x0070n,  // 0x0070 (0x0004) [bool : 0x2]
+  commented_via_facebook: 0x0070n,  // 0x0070 (0x0004) [bool : 0x4]
+  twitter_retweet_time: 0x0078n,  // 0x0078 (0x0010) [FString]
+  enrolled_via_twitter: 0x0088n,  // 0x0088 (0x0004) [bool : 0x1]
+  retweeted: 0x0088n,  // 0x0088 (0x0004) [bool : 0x2]
 } as const;
 
 /**
@@ -1619,11 +1424,11 @@ export const McpClashMobChallengeUserStatus = {
  * Size: 0x0044
  */
 export const McpClashMobPushNotification = {
-  device_tokens: 0x0000,  // 0x0000 (0x0010) [TArray<FString>]
-  badge_type: 0x0010,  // 0x0010 (0x0010) [FString]
-  Sound: 0x0020,  // 0x0020 (0x0010) [FString]
-  Message: 0x0030,  // 0x0030 (0x0010) [FString]
-  Params: 0x0040,  // 0x0040 (0x0004) [FMcpClashMobPushNotificationParams]
+  device_tokens: 0x0000n,  // 0x0000 (0x0010) [TArray<FString>]
+  badge_type: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Sound: 0x0020n,  // 0x0020 (0x0010) [FString]
+  Message: 0x0030n,  // 0x0030 (0x0010) [FString]
+  Params: 0x0040n,  // 0x0040 (0x0004) [FMcpClashMobPushNotificationParams]
 } as const;
 
 /**
@@ -1631,7 +1436,7 @@ export const McpClashMobPushNotification = {
  * Size: 0x0004
  */
 export const McpClashMobPushNotificationParams = {
-  bah: 0x0000,  // 0x0000 (0x0004) [int32]
+  bah: 0x0000n,  // 0x0000 (0x0004) [int32]
 } as const;
 
 /**
@@ -1639,11 +1444,11 @@ export const McpClashMobPushNotificationParams = {
  * Size: 0x0038
  */
 export const McpCompressMessageRequest = {
-  SourceBuffer: 0x0000,  // 0x0000 (0x0010) [TArray<uint8>]
-  DestBuffer: 0x0010,  // 0x0010 (0x0010) [TArray<uint8>]
-  OutCompressedSize: 0x0020,  // 0x0020 (0x0004) [int32]
-  Request: 0x0028,  // 0x0028 (0x0008) [UHttpRequestInterface*]
-  CompressionWorker: 0x0030,  // 0x0030 (0x0008) [FPointer]
+  SourceBuffer: 0x0000n,  // 0x0000 (0x0010) [TArray<uint8>]
+  DestBuffer: 0x0010n,  // 0x0010 (0x0010) [TArray<uint8>]
+  OutCompressedSize: 0x0020n,  // 0x0020 (0x0004) [int32]
+  Request: 0x0028n,  // 0x0028 (0x0008) [UHttpRequestInterface*]
+  CompressionWorker: 0x0030n,  // 0x0030 (0x0008) [FPointer]
 } as const;
 
 /**
@@ -1651,11 +1456,11 @@ export const McpCompressMessageRequest = {
  * Size: 0x0048
  */
 export const McpGroup = {
-  OwnerId: 0x0000,  // 0x0000 (0x0010) [FString]
-  GroupId: 0x0010,  // 0x0010 (0x0010) [FString]
-  GroupName: 0x0020,  // 0x0020 (0x0010) [FString]
-  AccessLevel: 0x0030,  // 0x0030 (0x0001) [EMcpGroupAccessLevel]
-  Members: 0x0038,  // 0x0038 (0x0010) [TArray<FMcpGroupMember>]
+  OwnerId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  GroupId: 0x0010n,  // 0x0010 (0x0010) [FString]
+  GroupName: 0x0020n,  // 0x0020 (0x0010) [FString]
+  AccessLevel: 0x0030n,  // 0x0030 (0x0001) [EMcpGroupAccessLevel]
+  Members: 0x0038n,  // 0x0038 (0x0010) [TArray<FMcpGroupMember>]
 } as const;
 
 /**
@@ -1663,8 +1468,8 @@ export const McpGroup = {
  * Size: 0x0020
  */
 export const McpGroupList = {
-  RequesterId: 0x0000,  // 0x0000 (0x0010) [FString]
-  Groups: 0x0010,  // 0x0010 (0x0010) [TArray<FMcpGroup>]
+  RequesterId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Groups: 0x0010n,  // 0x0010 (0x0010) [TArray<FMcpGroup>]
 } as const;
 
 /**
@@ -1672,8 +1477,8 @@ export const McpGroupList = {
  * Size: 0x0011
  */
 export const McpGroupMember = {
-  MemberId: 0x0000,  // 0x0000 (0x0010) [FString]
-  AcceptState: 0x0010,  // 0x0010 (0x0001) [EMcpGroupAcceptState]
+  MemberId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  AcceptState: 0x0010n,  // 0x0010 (0x0001) [EMcpGroupAcceptState]
 } as const;
 
 /**
@@ -1681,9 +1486,9 @@ export const McpGroupMember = {
  * Size: 0x0030
  */
 export const McpIdMapping = {
-  McpId: 0x0000,  // 0x0000 (0x0010) [FString]
-  ExternalId: 0x0010,  // 0x0010 (0x0010) [FString]
-  ExternalType: 0x0020,  // 0x0020 (0x0010) [FString]
+  McpId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  ExternalId: 0x0010n,  // 0x0010 (0x0010) [FString]
+  ExternalType: 0x0020n,  // 0x0020 (0x0010) [FString]
 } as const;
 
 /**
@@ -1691,13 +1496,13 @@ export const McpIdMapping = {
  * Size: 0x0050
  */
 export const McpInventoryItem = {
-  InstanceItemId: 0x0000,  // 0x0000 (0x0010) [FString]
-  GlobalItemId: 0x0010,  // 0x0010 (0x0010) [FString]
-  Quantity: 0x0020,  // 0x0020 (0x0004) [int32]
-  QuantityIAP: 0x0024,  // 0x0024 (0x0004) [int32]
-  Scalar: 0x0028,  // 0x0028 (0x0004) [float]
-  LastUpdateTime: 0x0030,  // 0x0030 (0x0010) [FString]
-  Attributes: 0x0040,  // 0x0040 (0x0010) [TArray<FMcpInventoryItemAttribute>]
+  InstanceItemId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  GlobalItemId: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Quantity: 0x0020n,  // 0x0020 (0x0004) [int32]
+  QuantityIAP: 0x0024n,  // 0x0024 (0x0004) [int32]
+  Scalar: 0x0028n,  // 0x0028 (0x0004) [float]
+  LastUpdateTime: 0x0030n,  // 0x0030 (0x0010) [FString]
+  Attributes: 0x0040n,  // 0x0040 (0x0010) [TArray<FMcpInventoryItemAttribute>]
 } as const;
 
 /**
@@ -1705,8 +1510,8 @@ export const McpInventoryItem = {
  * Size: 0x0014
  */
 export const McpInventoryItemAttribute = {
-  AttributeId: 0x0000,  // 0x0000 (0x0010) [FString]
-  Value: 0x0010,  // 0x0010 (0x0004) [int32]
+  AttributeId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Value: 0x0010n,  // 0x0010 (0x0004) [int32]
 } as const;
 
 /**
@@ -1714,8 +1519,8 @@ export const McpInventoryItemAttribute = {
  * Size: 0x0014
  */
 export const McpInventoryItemContainer = {
-  GlobalItemId: 0x0000,  // 0x0000 (0x0010) [FString]
-  Quantity: 0x0010,  // 0x0010 (0x0004) [int32]
+  GlobalItemId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Quantity: 0x0010n,  // 0x0010 (0x0004) [int32]
 } as const;
 
 /**
@@ -1723,9 +1528,9 @@ export const McpInventoryItemContainer = {
  * Size: 0x0030
  */
 export const McpInventorySaveSlot = {
-  OwningMcpId: 0x0000,  // 0x0000 (0x0010) [FString]
-  SaveSlotId: 0x0010,  // 0x0010 (0x0010) [FString]
-  Items: 0x0020,  // 0x0020 (0x0010) [TArray<FMcpInventoryItem>]
+  OwningMcpId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  SaveSlotId: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Items: 0x0020n,  // 0x0020 (0x0010) [TArray<FMcpInventoryItem>]
 } as const;
 
 /**
@@ -1733,13 +1538,13 @@ export const McpInventorySaveSlot = {
  * Size: 0x0061
  */
 export const McpMessage = {
-  MessageId: 0x0000,  // 0x0000 (0x0010) [FString]
-  ToUniqueUserId: 0x0010,  // 0x0010 (0x0010) [FString]
-  FromUniqueUserId: 0x0020,  // 0x0020 (0x0010) [FString]
-  FromFriendlyName: 0x0030,  // 0x0030 (0x0010) [FString]
-  MessageType: 0x0040,  // 0x0040 (0x0010) [FString]
-  ValidUntil: 0x0050,  // 0x0050 (0x0010) [FString]
-  MessageCompressionType: 0x0060,  // 0x0060 (0x0001) [EMcpMessageCompressionType]
+  MessageId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  ToUniqueUserId: 0x0010n,  // 0x0010 (0x0010) [FString]
+  FromUniqueUserId: 0x0020n,  // 0x0020 (0x0010) [FString]
+  FromFriendlyName: 0x0030n,  // 0x0030 (0x0010) [FString]
+  MessageType: 0x0040n,  // 0x0040 (0x0010) [FString]
+  ValidUntil: 0x0050n,  // 0x0050 (0x0010) [FString]
+  MessageCompressionType: 0x0060n,  // 0x0060 (0x0001) [EMcpMessageCompressionType]
 } as const;
 
 /**
@@ -1747,8 +1552,8 @@ export const McpMessage = {
  * Size: 0x0020
  */
 export const McpMessageContents = {
-  MessageId: 0x0000,  // 0x0000 (0x0010) [FString]
-  MessageContents: 0x0010,  // 0x0010 (0x0010) [TArray<uint8>]
+  MessageId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  MessageContents: 0x0010n,  // 0x0010 (0x0010) [TArray<uint8>]
 } as const;
 
 /**
@@ -1756,8 +1561,8 @@ export const McpMessageContents = {
  * Size: 0x0020
  */
 export const McpMessageList = {
-  ToUniqueUserId: 0x0000,  // 0x0000 (0x0010) [FString]
-  Messages: 0x0010,  // 0x0010 (0x0010) [TArray<FMcpMessage>]
+  ToUniqueUserId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Messages: 0x0010n,  // 0x0010 (0x0010) [TArray<FMcpMessage>]
 } as const;
 
 /**
@@ -1765,11 +1570,11 @@ export const McpMessageList = {
  * Size: 0x0040
  */
 export const McpUncompressMessageRequest = {
-  MessageId: 0x0000,  // 0x0000 (0x0010) [FString]
-  SourceBuffer: 0x0010,  // 0x0010 (0x0010) [TArray<uint8>]
-  DestBuffer: 0x0020,  // 0x0020 (0x0010) [TArray<uint8>]
-  OutUncompressedSize: 0x0030,  // 0x0030 (0x0004) [int32]
-  UncompressionWorker: 0x0038,  // 0x0038 (0x0008) [FPointer]
+  MessageId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  SourceBuffer: 0x0010n,  // 0x0010 (0x0010) [TArray<uint8>]
+  DestBuffer: 0x0020n,  // 0x0020 (0x0010) [TArray<uint8>]
+  OutUncompressedSize: 0x0030n,  // 0x0030 (0x0004) [int32]
+  UncompressionWorker: 0x0038n,  // 0x0038 (0x0008) [FPointer]
 } as const;
 
 /**
@@ -1777,10 +1582,10 @@ export const McpUncompressMessageRequest = {
  * Size: 0x0034
  */
 export const EmsFile = {
-  Hash: 0x0000,  // 0x0000 (0x0010) [FString]
-  DLName: 0x0010,  // 0x0010 (0x0010) [FString]
-  Filename: 0x0020,  // 0x0020 (0x0010) [FString]
-  FileSize: 0x0030,  // 0x0030 (0x0004) [int32]
+  Hash: 0x0000n,  // 0x0000 (0x0010) [FString]
+  DLName: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Filename: 0x0020n,  // 0x0020 (0x0010) [FString]
+  FileSize: 0x0030n,  // 0x0030 (0x0004) [int32]
 } as const;
 
 /**
@@ -1789,9 +1594,9 @@ export const EmsFile = {
  * Extends: EmsFile
  */
 export const McpUserCloudFileInfo = {
-  CreationDate: 0x0038,  // 0x0038 (0x0010) [FString]
-  LastUpdateDate: 0x0048,  // 0x0048 (0x0010) [FString]
-  CompressionType: 0x0058,  // 0x0058 (0x0010) [FString]
+  CreationDate: 0x0038n,  // 0x0038 (0x0010) [FString]
+  LastUpdateDate: 0x0048n,  // 0x0048 (0x0010) [FString]
+  CompressionType: 0x0058n,  // 0x0058 (0x0010) [FString]
   ...EmsFile,
 } as const;
 
@@ -1800,10 +1605,10 @@ export const McpUserCloudFileInfo = {
  * Size: 0x0038
  */
 export const McpUserCloudFilesEntry = {
-  UserId: 0x0000,  // 0x0000 (0x0010) [FString]
-  DownloadedFiles: 0x0010,  // 0x0010 (0x0010) [TArray<FTitleFileWeb>]
-  EnumeratedFiles: 0x0020,  // 0x0020 (0x0010) [TArray<FMcpUserCloudFileInfo>]
-  HTTPRequestEnumerateFiles: 0x0030,  // 0x0030 (0x0008) [UHttpRequestInterface*]
+  UserId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  DownloadedFiles: 0x0010n,  // 0x0010 (0x0010) [TArray<FTitleFileWeb>]
+  EnumeratedFiles: 0x0020n,  // 0x0020 (0x0010) [TArray<FMcpUserCloudFileInfo>]
+  HTTPRequestEnumerateFiles: 0x0030n,  // 0x0030 (0x0008) [UHttpRequestInterface*]
 } as const;
 
 /**
@@ -1811,14 +1616,14 @@ export const McpUserCloudFilesEntry = {
  * Size: 0x0068
  */
 export const McpUserStatus = {
-  McpId: 0x0000,  // 0x0000 (0x0010) [FString]
-  SecretKey: 0x0010,  // 0x0010 (0x0010) [FString]
-  Ticket: 0x0020,  // 0x0020 (0x0010) [FString]
-  UDID: 0x0030,  // 0x0030 (0x0010) [FString]
-  RegisteredDate: 0x0040,  // 0x0040 (0x0010) [FString]
-  LastActiveDate: 0x0050,  // 0x0050 (0x0010) [FString]
-  DaysInactive: 0x0060,  // 0x0060 (0x0004) [int32]
-  bIsBanned: 0x0064,  // 0x0064 (0x0004) [bool : 0x1]
+  McpId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  SecretKey: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Ticket: 0x0020n,  // 0x0020 (0x0010) [FString]
+  UDID: 0x0030n,  // 0x0030 (0x0010) [FString]
+  RegisteredDate: 0x0040n,  // 0x0040 (0x0010) [FString]
+  LastActiveDate: 0x0050n,  // 0x0050 (0x0010) [FString]
+  DaysInactive: 0x0060n,  // 0x0060 (0x0004) [int32]
+  bIsBanned: 0x0064n,  // 0x0064 (0x0004) [bool : 0x1]
 } as const;
 
 /**
@@ -1826,13 +1631,13 @@ export const McpUserStatus = {
  * Size: 0x0038
  */
 export const NewsCacheEntry = {
-  NewsUrl: 0x0000,  // 0x0000 (0x0010) [FString]
-  ReadState: 0x0010,  // 0x0010 (0x0001) [EOnlineEnumerationReadState]
-  NewsType: 0x0011,  // 0x0011 (0x0001) [EOnlineNewsType]
-  NewsItem: 0x0018,  // 0x0018 (0x0010) [FString]
-  Timeout: 0x0028,  // 0x0028 (0x0004) [float]
-  bIsUnicode: 0x002C,  // 0x002C (0x0004) [bool : 0x1]
-  HttpDownloader: 0x0030,  // 0x0030 (0x0008) [FPointer]
+  NewsUrl: 0x0000n,  // 0x0000 (0x0010) [FString]
+  ReadState: 0x0010n,  // 0x0010 (0x0001) [EOnlineEnumerationReadState]
+  NewsType: 0x0011n,  // 0x0011 (0x0001) [EOnlineNewsType]
+  NewsItem: 0x0018n,  // 0x0018 (0x0010) [FString]
+  Timeout: 0x0028n,  // 0x0028 (0x0004) [float]
+  bIsUnicode: 0x002cn,  // 0x002c (0x0004) [bool : 0x1]
+  HttpDownloader: 0x0030n,  // 0x0030 (0x0008) [FPointer]
 } as const;
 
 /**
@@ -1840,11 +1645,11 @@ export const NewsCacheEntry = {
  * Size: 0x0040
  */
 export const OnlineImageDownload = {
-  URL: 0x0000,  // 0x0000 (0x0010) [FString]
-  HTTPRequest: 0x0010,  // 0x0010 (0x0008) [UHttpRequestInterface*]
-  Status: 0x0018,  // 0x0018 (0x0001) [EOnlineImageDownloadState]
-  Texture: 0x0020,  // 0x0020 (0x0008) [UTexture2DDynamic*]
-  DecodedCallbacks: 0x0028,  // 0x0028 (0x0018) [FScriptDelegate]
+  URL: 0x0000n,  // 0x0000 (0x0010) [FString]
+  HTTPRequest: 0x0010n,  // 0x0010 (0x0008) [UHttpRequestInterface*]
+  Status: 0x0018n,  // 0x0018 (0x0001) [EOnlineImageDownloadState]
+  Texture: 0x0020n,  // 0x0020 (0x0008) [UTexture2DDynamic*]
+  DecodedCallbacks: 0x0028n,  // 0x0028 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -1852,9 +1657,9 @@ export const OnlineImageDownload = {
  * Size: 0x0060
  */
 export const PartyReservation = {
-  TeamNum: 0x0000,  // 0x0000 (0x0004) [int32]
-  PartyLeader: 0x0008,  // 0x0008 (0x0048) [FUniqueNetId]
-  PartyMembers: 0x0050,  // 0x0050 (0x0010) [TArray<FPlayerReservation>]
+  TeamNum: 0x0000n,  // 0x0000 (0x0004) [int32]
+  PartyLeader: 0x0008n,  // 0x0008 (0x0048) [FUniqueNetId]
+  PartyMembers: 0x0050n,  // 0x0050 (0x0010) [TArray<FPlayerReservation>]
 } as const;
 
 /**
@@ -1862,9 +1667,9 @@ export const PartyReservation = {
  * Size: 0x0050
  */
 export const PlayerMember = {
-  TeamNum: 0x0000,  // 0x0000 (0x0004) [int32]
-  Skill: 0x0004,  // 0x0004 (0x0004) [int32]
-  NetId: 0x0008,  // 0x0008 (0x0048) [FUniqueNetId]
+  TeamNum: 0x0000n,  // 0x0000 (0x0004) [int32]
+  Skill: 0x0004n,  // 0x0004 (0x0004) [int32]
+  NetId: 0x0008n,  // 0x0008 (0x0048) [FUniqueNetId]
 } as const;
 
 /**
@@ -1872,12 +1677,12 @@ export const PlayerMember = {
  * Size: 0x0064
  */
 export const PlayerReservation = {
-  NetId: 0x0000,  // 0x0000 (0x0048) [FUniqueNetId]
-  Skill: 0x0048,  // 0x0048 (0x0004) [int32]
-  XpLevel: 0x004C,  // 0x004C (0x0004) [int32]
-  Mu: 0x0050,  // 0x0050 (0x0008) [FDouble]
-  Sigma: 0x0058,  // 0x0058 (0x0008) [FDouble]
-  ElapsedSessionTime: 0x0060,  // 0x0060 (0x0004) [float]
+  NetId: 0x0000n,  // 0x0000 (0x0048) [FUniqueNetId]
+  Skill: 0x0048n,  // 0x0048 (0x0004) [int32]
+  XpLevel: 0x004cn,  // 0x004c (0x0004) [int32]
+  Mu: 0x0050n,  // 0x0050 (0x0008) [FDouble]
+  Sigma: 0x0058n,  // 0x0058 (0x0008) [FDouble]
+  ElapsedSessionTime: 0x0060n,  // 0x0060 (0x0004) [float]
 } as const;
 
 /**
@@ -1885,29 +1690,29 @@ export const PlayerReservation = {
  * Size: 0x0080
  */
 export const Playlist = {
-  ConfiguredGames: 0x0000,  // 0x0000 (0x0010) [TArray<FConfiguredGameSetting>]
-  PlaylistId: 0x0010,  // 0x0010 (0x0004) [int32]
-  LoadBalanceId: 0x0014,  // 0x0014 (0x0004) [int32]
-  LocalizationString: 0x0018,  // 0x0018 (0x0010) [FString]
-  ContentIds: 0x0028,  // 0x0028 (0x0010) [TArray<int32>]
-  TeamSize: 0x0038,  // 0x0038 (0x0004) [int32]
-  TeamCount: 0x003C,  // 0x003C (0x0004) [int32]
-  MaxPartySize: 0x0040,  // 0x0040 (0x0004) [int32]
-  Name: 0x0048,  // 0x0048 (0x0010) [FString]
-  URL: 0x0058,  // 0x0058 (0x0010) [FString]
-  MatchType: 0x0068,  // 0x0068 (0x0004) [int32]
-  bDisableDedicatedServerSearches: 0x006C,  // 0x006C (0x0004) [bool : 0x1]
-  MapCycle: 0x0070,  // 0x0070 (0x0010) [TArray<FName>]
+  ConfiguredGames: 0x0000n,  // 0x0000 (0x0010) [TArray<FConfiguredGameSetting>]
+  PlaylistId: 0x0010n,  // 0x0010 (0x0004) [int32]
+  LoadBalanceId: 0x0014n,  // 0x0014 (0x0004) [int32]
+  LocalizationString: 0x0018n,  // 0x0018 (0x0010) [FString]
+  ContentIds: 0x0028n,  // 0x0028 (0x0010) [TArray<int32>]
+  TeamSize: 0x0038n,  // 0x0038 (0x0004) [int32]
+  TeamCount: 0x003cn,  // 0x003c (0x0004) [int32]
+  MaxPartySize: 0x0040n,  // 0x0040 (0x0004) [int32]
+  Name: 0x0048n,  // 0x0048 (0x0010) [FString]
+  URL: 0x0058n,  // 0x0058 (0x0010) [FString]
+  MatchType: 0x0068n,  // 0x0068 (0x0004) [int32]
+  bDisableDedicatedServerSearches: 0x006cn,  // 0x006c (0x0004) [bool : 0x1]
+  MapCycle: 0x0070n,  // 0x0070 (0x0010) [TArray<FName>]
 } as const;
 
 /**
  * ScriptStruct IpDrv.OnlinePlaylistManager.PlaylistPopulation Offsets
- * Size: 0x000C
+ * Size: 0x000c
  */
 export const PlaylistPopulation = {
-  PlaylistId: 0x0000,  // 0x0000 (0x0004) [int32]
-  WorldwideTotal: 0x0004,  // 0x0004 (0x0004) [int32]
-  RegionTotal: 0x0008,  // 0x0008 (0x0004) [int32]
+  PlaylistId: 0x0000n,  // 0x0000 (0x0004) [int32]
+  WorldwideTotal: 0x0004n,  // 0x0004 (0x0004) [int32]
+  RegionTotal: 0x0008n,  // 0x0008 (0x0004) [int32]
 } as const;
 
 /**
@@ -1915,8 +1720,8 @@ export const PlaylistPopulation = {
  * Size: 0x0018
  */
 export const QueryMappingRequest = {
-  ExternalType: 0x0000,  // 0x0000 (0x0010) [FString]
-  Request: 0x0010,  // 0x0010 (0x0008) [UHttpRequestInterface*]
+  ExternalType: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Request: 0x0010n,  // 0x0010 (0x0008) [UHttpRequestInterface*]
 } as const;
 
 /**
@@ -1924,9 +1729,9 @@ export const QueryMappingRequest = {
  * Size: 0x0030
  */
 export const SanitizeCallbackData = {
-  Id: 0x0000,  // 0x0000 (0x0004) [int32]
-  Callback: 0x0008,  // 0x0008 (0x0018) [FScriptDelegate]
-  Comment: 0x0020,  // 0x0020 (0x0010) [FString]
+  Id: 0x0000n,  // 0x0000 (0x0004) [int32]
+  Callback: 0x0008n,  // 0x0008 (0x0018) [FScriptDelegate]
+  Comment: 0x0020n,  // 0x0020 (0x0010) [FString]
 } as const;
 
 /**
@@ -1934,9 +1739,9 @@ export const SanitizeCallbackData = {
  * Size: 0x0028
  */
 export const SaveSlotRequestState = {
-  McpId: 0x0000,  // 0x0000 (0x0010) [FString]
-  SaveSlot: 0x0010,  // 0x0010 (0x0010) [FString]
-  Request: 0x0020,  // 0x0020 (0x0008) [UHttpRequestInterface*]
+  McpId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  SaveSlot: 0x0010n,  // 0x0010 (0x0010) [FString]
+  Request: 0x0020n,  // 0x0020 (0x0008) [UHttpRequestInterface*]
 } as const;
 
 /**
@@ -1945,7 +1750,7 @@ export const SaveSlotRequestState = {
  * Extends: SaveSlotRequestState
  */
 export const InventoryItemRequestState = {
-  ItemID: 0x0028,  // 0x0028 (0x0010) [FString]
+  ItemID: 0x0028n,  // 0x0028 (0x0010) [FString]
   ...SaveSlotRequestState,
 } as const;
 
@@ -1954,9 +1759,9 @@ export const InventoryItemRequestState = {
  * Size: 0x0028
  */
 export const TitleFile = {
-  Filename: 0x0000,  // 0x0000 (0x0010) [FString]
-  AsyncState: 0x0010,  // 0x0010 (0x0001) [EOnlineEnumerationReadState]
-  Data: 0x0018,  // 0x0018 (0x0010) [TArray<uint8>]
+  Filename: 0x0000n,  // 0x0000 (0x0010) [FString]
+  AsyncState: 0x0010n,  // 0x0010 (0x0001) [EOnlineEnumerationReadState]
+  Data: 0x0018n,  // 0x0018 (0x0010) [TArray<uint8>]
 } as const;
 
 /**
@@ -1965,10 +1770,10 @@ export const TitleFile = {
  * Extends: TitleFile
  */
 export const TitleFileCacheEntry = {
-  LogicalName: 0x0028,  // 0x0028 (0x0010) [FString]
-  Hash: 0x0038,  // 0x0038 (0x0010) [FString]
-  FileOp: 0x0048,  // 0x0048 (0x0001) [ETitleFileFileOp]
-  Ar: 0x0050,  // 0x0050 (0x0008) [FPointer]
+  LogicalName: 0x0028n,  // 0x0028 (0x0010) [FString]
+  Hash: 0x0038n,  // 0x0038 (0x0010) [FString]
+  FileOp: 0x0048n,  // 0x0048 (0x0001) [ETitleFileFileOp]
+  Ar: 0x0050n,  // 0x0050 (0x0008) [FPointer]
   ...TitleFile,
 } as const;
 
@@ -1978,7 +1783,7 @@ export const TitleFileCacheEntry = {
  * Extends: TitleFile
  */
 export const TitleFileMcp = {
-  HttpDownloader: 0x0028,  // 0x0028 (0x0008) [FPointer]
+  HttpDownloader: 0x0028n,  // 0x0028 (0x0008) [FPointer]
   ...TitleFile,
 } as const;
 
@@ -1988,9 +1793,9 @@ export const TitleFileMcp = {
  * Extends: TitleFile
  */
 export const TitleFileWeb = {
-  StringData: 0x0028,  // 0x0028 (0x0010) [FString]
-  HTTPRequest: 0x0038,  // 0x0038 (0x0008) [UHttpRequestInterface*]
-  FileCompressionType: 0x0040,  // 0x0040 (0x0001) [EMcpFileCompressionType]
+  StringData: 0x0028n,  // 0x0028 (0x0010) [FString]
+  HTTPRequest: 0x0038n,  // 0x0038 (0x0008) [UHttpRequestInterface*]
+  FileCompressionType: 0x0040n,  // 0x0040 (0x0001) [EMcpFileCompressionType]
   ...TitleFile,
 } as const;
 
@@ -1999,8 +1804,8 @@ export const TitleFileWeb = {
  * Size: 0x0018
  */
 export const UserRequest = {
-  McpId: 0x0000,  // 0x0000 (0x0010) [FString]
-  Request: 0x0010,  // 0x0010 (0x0008) [UHttpRequestInterface*]
+  McpId: 0x0000n,  // 0x0000 (0x0010) [FString]
+  Request: 0x0010n,  // 0x0010 (0x0008) [UHttpRequestInterface*]
 } as const;
 
 /**
@@ -2009,6 +1814,6 @@ export const UserRequest = {
  * Extends: SaveSlotRequestState
  */
 export const ValueRequestState = {
-  ValueId: 0x0028,  // 0x0028 (0x0008) [FName]
+  ValueId: 0x0028n,  // 0x0028 (0x0008) [FName]
   ...SaveSlotRequestState,
 } as const;

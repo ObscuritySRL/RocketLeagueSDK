@@ -5,24 +5,32 @@ Auto-generated TypeScript type definitions for Rocket League's Unreal Engine 3 c
 ## Installation
 
 ```bash
-bun add rocketleaguesdk bun-memory
+bun add rlsdk bun-memory
 ```
 
 ## Usage
 
-This SDK provides type definitions for use with memory reading libraries like `bun-memory`. The types help you understand the structure of game objects in memory.
+This SDK provides type definitions and offset constants for use with memory reading libraries like `bun-memory`.
 
 ```typescript
 import Memory from 'bun-memory';
-import type { Classes, Structs } from 'rocketleaguesdk';
+import { GNames, GObjects } from 'rlsdk/types/offsets';
+import { Object_ as UObject, FNameEntry } from 'rlsdk/offsets/Core';
+import { CarComponent_Boost_TA } from 'rlsdk/offsets/TAGame';
 
 // Connect to Rocket League
 const rl = new Memory('RocketLeague.exe');
+const module = rl.modules['RocketLeague.exe'];
 
-// Use the SDK types to understand memory layouts
-// Example: Reading boost amount from a CarComponent_Boost_TA
-// See: classes/TAGame.ts for the full type definition
+// Read GNames and GObjects arrays
+const gNamePtrs = rl.tArrayUPtr(module.base + GNames);
+const gObjectPtrs = rl.tArrayUPtr(module.base + GObjects);
+
+// Read boost amount using exported offsets
+const boostAmount = rl.f32(boostComponentPtr + CarComponent_Boost_TA.CurrentBoostAmount);
 ```
+
+See the `examples/` directory for a complete working example.
 
 ## Understanding the Type Comments
 
@@ -90,7 +98,7 @@ When a bool has `[bool : 0x1]` and is at a unique offset, it's a standalone `uin
 ## SDK Structure
 
 ```
-rocketleaguesdk/
+rlsdk/
 ├── classes/          # UClass definitions (game objects)
 │   ├── Core.ts
 │   ├── Engine.ts
