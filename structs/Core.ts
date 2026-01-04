@@ -381,14 +381,6 @@ export type FMap_Mirror = {
  * Extends: FRawDistributionFloat
  */
 export type FMatineeRawDistributionFloat = FRawDistributionFloat & {
-  Type: number;  // 0x0000 (0x0001) [uint8]
-  Op: number;  // 0x0001 (0x0001) [uint8]
-  LookupTableNumElements: number;  // 0x0002 (0x0001) [uint8]
-  LookupTableChunkSize: number;  // 0x0003 (0x0001) [uint8]
-  LookupTable: number[];  // 0x0008 (0x0010) [TArray<float>]
-  LookupTableTimeScale: number;  // 0x0018 (0x0004) [float]
-  LookupTableStartTime: number;  // 0x001c (0x0004) [float]
-  Distribution: unknown;  // 0x0020 (0x0008) [unknown]
   MatineeValue: number;  // 0x0028 (0x0004) [float]
   bInMatinee: boolean;  // 0x002c (0x0004) [bool : 0x1]
 };
@@ -466,9 +458,6 @@ export type FPackedNormal = {
  * Extends: FVector
  */
 export type FPlane = FVector & {
-  X: number;  // 0x0000 (0x0004) [float]
-  Y: number;  // 0x0004 (0x0004) [float]
-  Z: number;  // 0x0008 (0x0004) [float]
   W: number;  // 0x000c (0x0004) [float]
 };
 
@@ -528,13 +517,6 @@ export type FRawDistribution = {
  * Extends: FRawDistribution
  */
 export type FRawDistributionFloat = FRawDistribution & {
-  Type: number;  // 0x0000 (0x0001) [uint8]
-  Op: number;  // 0x0001 (0x0001) [uint8]
-  LookupTableNumElements: number;  // 0x0002 (0x0001) [uint8]
-  LookupTableChunkSize: number;  // 0x0003 (0x0001) [uint8]
-  LookupTable: number[];  // 0x0008 (0x0010) [TArray<float>]
-  LookupTableTimeScale: number;  // 0x0018 (0x0004) [float]
-  LookupTableStartTime: number;  // 0x001c (0x0004) [float]
   Distribution: unknown;  // 0x0020 (0x0008) [unknown]
 };
 
@@ -544,13 +526,6 @@ export type FRawDistributionFloat = FRawDistribution & {
  * Extends: FRawDistribution
  */
 export type FRawDistributionVector = FRawDistribution & {
-  Type: number;  // 0x0000 (0x0001) [uint8]
-  Op: number;  // 0x0001 (0x0001) [uint8]
-  LookupTableNumElements: number;  // 0x0002 (0x0001) [uint8]
-  LookupTableChunkSize: number;  // 0x0003 (0x0001) [uint8]
-  LookupTable: number[];  // 0x0008 (0x0010) [TArray<float>]
-  LookupTableTimeScale: number;  // 0x0018 (0x0004) [float]
-  LookupTableStartTime: number;  // 0x001c (0x0004) [float]
   Distribution: unknown;  // 0x0020 (0x0008) [unknown]
 };
 

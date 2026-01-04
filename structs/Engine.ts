@@ -100,8 +100,6 @@ export type FActiveDecalInfo = {
  * Extends: FBasicLobbyInfo
  */
 export type FActiveLobbyInfo = FBasicLobbyInfo & {
-  LobbyUID: FUniqueLobbyId;  // 0x0000 (0x0010) [FUniqueLobbyId]
-  LobbySettings: FLobbyMetaData[];  // 0x0010 (0x0010) [TArray<FLobbyMetaData>]
   Members: FLobbyMember[];  // 0x0020 (0x0010) [TArray<FLobbyMember>]
 };
 
@@ -410,9 +408,6 @@ export type FAudioEQEffect = {
  * Extends: FBaseAuthSession
  */
 export type FAuthSession = FBaseAuthSession & {
-  EndPointIP: FIpAddr;  // 0x0000 (0x0014) [FIpAddr]
-  EndPointPort: number;  // 0x0014 (0x0004) [int32]
-  EndPointUID: FUniqueNetId;  // 0x0018 (0x0048) [FUniqueNetId]
   AuthStatus: EAuthStatus;  // 0x0060 (0x0001) [EAuthStatus]
   AuthTicketUID: number;  // 0x0064 (0x0004) [int32]
 };
@@ -778,15 +773,6 @@ export type FCollisionImpactData = {
  * Extends: FMaterialInput
  */
 export type FColorMaterialInput = FMaterialInput & {
-  Expression: UMaterialExpression;  // 0x0000 (0x0008) [UMaterialExpression*]
-  OutputIndex: number;  // 0x0008 (0x0004) [int32]
-  InputName: string;  // 0x0010 (0x0010) [FString]
-  Mask: number;  // 0x0020 (0x0004) [int32]
-  MaskR: number;  // 0x0024 (0x0004) [int32]
-  MaskG: number;  // 0x0028 (0x0004) [int32]
-  MaskB: number;  // 0x002c (0x0004) [int32]
-  MaskA: number;  // 0x0030 (0x0004) [int32]
-  GCC64_Padding: number;  // 0x0034 (0x0004) [int32]
   UseConstant: boolean;  // 0x0038 (0x0004) [bool : 0x1]
   Constant: FColor;  // 0x003c (0x0004) [FColor]
 };
@@ -926,8 +912,6 @@ export type FCoverMeshes = {
  * Extends: FActorReference
  */
 export type FCoverReference = FActorReference & {
-  Actor: UActor;  // 0x0000 (0x0008) [UActor*]
-  Guid: FGuid;  // 0x0008 (0x0010) [FGuid]
   SlotIdx: number;  // 0x0018 (0x0004) [int32]
 };
 
@@ -1383,8 +1367,6 @@ export type FEventTrackKey = {
  * Extends: FShowFlags_Mirror
  */
 export type FExportShowFlags_Mirror = FShowFlags_Mirror & {
-  flags0: bigint;  // 0x0000 (0x0008) [uint64]
-  flags1: bigint;  // 0x0008 (0x0008) [uint64]
 };
 
 /**
@@ -1561,15 +1543,6 @@ export type FFontParameterValue = {
  * Extends: FParameterValueOverTime
  */
 export type FFontParameterValueOverTime = FParameterValueOverTime & {
-  ExpressionGUID: FGuid;  // 0x0000 (0x0010) [FGuid]
-  StartTime: number;  // 0x0010 (0x0004) [float]
-  ParameterName: FName;  // 0x0014 (0x0008) [FName]
-  bLoop: boolean;  // 0x001c (0x0004) [bool : 0x1]
-  bAutoActivate: boolean;  // 0x001c (0x0004) [bool : 0x2]
-  CycleTime: number;  // 0x0020 (0x0004) [float]
-  bNormalizeTime: boolean;  // 0x0024 (0x0004) [bool : 0x1]
-  OffsetTime: number;  // 0x0028 (0x0004) [float]
-  bOffsetFromEnd: boolean;  // 0x002c (0x0004) [bool : 0x1]
   FontValue: UFont;  // 0x0030 (0x0008) [UFont*]
   FontPage: number;  // 0x0038 (0x0004) [int32]
 };
@@ -2364,9 +2337,6 @@ export type FLightmassDebugOptions = {
  * Extends: FLightmassLightSettings
  */
 export type FLightmassDirectionalLightSettings = FLightmassLightSettings & {
-  IndirectLightingScale: number;  // 0x0000 (0x0004) [float]
-  IndirectLightingSaturation: number;  // 0x0004 (0x0004) [float]
-  ShadowExponent: number;  // 0x0008 (0x0004) [float]
   LightSourceAngle: number;  // 0x000c (0x0004) [float]
 };
 
@@ -2405,9 +2375,6 @@ export type FLightmassMaterialInterfaceSettings = {
  * Extends: FLightmassLightSettings
  */
 export type FLightmassPointLightSettings = FLightmassLightSettings & {
-  IndirectLightingScale: number;  // 0x0000 (0x0004) [float]
-  IndirectLightingSaturation: number;  // 0x0004 (0x0004) [float]
-  ShadowExponent: number;  // 0x0008 (0x0004) [float]
   LightSourceRadius: number;  // 0x000c (0x0004) [float]
 };
 
@@ -2463,15 +2430,6 @@ export type FLightmassWorldInfoSettings = {
  * Extends: FParameterValueOverTime
  */
 export type FLinearColorParameterValueOverTime = FParameterValueOverTime & {
-  ExpressionGUID: FGuid;  // 0x0000 (0x0010) [FGuid]
-  StartTime: number;  // 0x0010 (0x0004) [float]
-  ParameterName: FName;  // 0x0014 (0x0008) [FName]
-  bLoop: boolean;  // 0x001c (0x0004) [bool : 0x1]
-  bAutoActivate: boolean;  // 0x001c (0x0004) [bool : 0x2]
-  CycleTime: number;  // 0x0020 (0x0004) [float]
-  bNormalizeTime: boolean;  // 0x0024 (0x0004) [bool : 0x1]
-  OffsetTime: number;  // 0x0028 (0x0004) [float]
-  bOffsetFromEnd: boolean;  // 0x002c (0x0004) [bool : 0x1]
   ParameterValue: FLinearColor;  // 0x0030 (0x0010) [FLinearColor]
   ParameterValueCurve: FInterpCurveLinearColor;  // 0x0040 (0x0018) [FInterpCurveLinearColor]
 };
@@ -2554,9 +2512,6 @@ export type FLobbySortFilter = {
  * Extends: FBaseAuthSession
  */
 export type FLocalAuthSession = FBaseAuthSession & {
-  EndPointIP: FIpAddr;  // 0x0000 (0x0014) [FIpAddr]
-  EndPointPort: number;  // 0x0014 (0x0004) [int32]
-  EndPointUID: FUniqueNetId;  // 0x0018 (0x0048) [FUniqueNetId]
   SessionUID: number;  // 0x0060 (0x0004) [int32]
 };
 
@@ -3137,7 +3092,6 @@ export type FNxDestructibleParametersFlag = {
  * Extends: FOnlineRegistrant
  */
 export type FOnlineArbitrationRegistrant = FOnlineRegistrant & {
-  PlayerNetId: FUniqueNetId;  // 0x0000 (0x0048) [FUniqueNetId]
   MachineId: bigint;  // 0x0048 (0x0008) [uint64]
   Trustworthiness: number;  // 0x0050 (0x0004) [int32]
 };
@@ -3165,16 +3119,6 @@ export type FOnlineContent = {
  * Extends: FOnlineContent
  */
 export type FOnlineCrossTitleContent = FOnlineContent & {
-  ContentType: EOnlineContentType;  // 0x0000 (0x0001) [EOnlineContentType]
-  UserIndex: number;  // 0x0001 (0x0001) [uint8]
-  bIsCorrupt: boolean;  // 0x0004 (0x0004) [bool : 0x1]
-  DeviceID: number;  // 0x0008 (0x0004) [int32]
-  LicenseMask: number;  // 0x000c (0x0004) [int32]
-  FriendlyName: string;  // 0x0010 (0x0010) [FString]
-  Filename: string;  // 0x0020 (0x0010) [FString]
-  ContentPath: string;  // 0x0030 (0x0010) [FString]
-  ContentPackages: string[];  // 0x0040 (0x0010) [TArray<FString>]
-  ContentFiles: string[];  // 0x0050 (0x0010) [TArray<FString>]
   TitleId: number;  // 0x0060 (0x0004) [int32]
 };
 
@@ -3184,10 +3128,6 @@ export type FOnlineCrossTitleContent = FOnlineContent & {
  * Extends: FOnlineUser
  */
 export type FOnlineFriend = FOnlineUser & {
-  UniqueId: FUniqueNetId;  // 0x0000 (0x0048) [FUniqueNetId]
-  NickName: string;  // 0x0048 (0x0010) [FString]
-  AttrName: string[];  // 0x0058 (0x0010) [TArray<FString>]
-  AttrValue: string[];  // 0x0068 (0x0010) [TArray<FString>]
   PlayerID: FUniqueNetId;  // 0x0078 (0x0048) [FUniqueNetId]
   SessionId: bigint;  // 0x00c0 (0x0008) [uint64]
   PlatformOverride: OnlinePlatform;  // 0x00c8 (0x0001) [OnlinePlatform]
@@ -3487,17 +3427,6 @@ export type FParticleEvent_GenerateInfo = {
  * Extends: FParticleEventCollideData
  */
 export type FParticleEventAttractorCollideData = FParticleEventCollideData & {
-  Type: number;  // 0x0000 (0x0004) [int32]
-  EventName: FName;  // 0x0004 (0x0008) [FName]
-  EmitterTime: number;  // 0x000c (0x0004) [float]
-  Location: FVector;  // 0x0010 (0x000c) [FVector]
-  Direction: FVector;  // 0x001c (0x000c) [FVector]
-  Velocity: FVector;  // 0x0028 (0x000c) [FVector]
-  ParticleTime: number;  // 0x0034 (0x0004) [float]
-  Normal: FVector;  // 0x0038 (0x000c) [FVector]
-  Time: number;  // 0x0044 (0x0004) [float]
-  Item: number;  // 0x0048 (0x0004) [int32]
-  BoneName: FName;  // 0x004c (0x0008) [FName]
 };
 
 /**
@@ -3506,12 +3435,6 @@ export type FParticleEventAttractorCollideData = FParticleEventCollideData & {
  * Extends: FParticleEventData
  */
 export type FParticleEventCollideData = FParticleEventData & {
-  Type: number;  // 0x0000 (0x0004) [int32]
-  EventName: FName;  // 0x0004 (0x0008) [FName]
-  EmitterTime: number;  // 0x000c (0x0004) [float]
-  Location: FVector;  // 0x0010 (0x000c) [FVector]
-  Direction: FVector;  // 0x001c (0x000c) [FVector]
-  Velocity: FVector;  // 0x0028 (0x000c) [FVector]
   ParticleTime: number;  // 0x0034 (0x0004) [float]
   Normal: FVector;  // 0x0038 (0x000c) [FVector]
   Time: number;  // 0x0044 (0x0004) [float]
@@ -3538,12 +3461,6 @@ export type FParticleEventData = {
  * Extends: FParticleEventData
  */
 export type FParticleEventDeathData = FParticleEventData & {
-  Type: number;  // 0x0000 (0x0004) [int32]
-  EventName: FName;  // 0x0004 (0x0008) [FName]
-  EmitterTime: number;  // 0x000c (0x0004) [float]
-  Location: FVector;  // 0x0010 (0x000c) [FVector]
-  Direction: FVector;  // 0x001c (0x000c) [FVector]
-  Velocity: FVector;  // 0x0028 (0x000c) [FVector]
   ParticleTime: number;  // 0x0034 (0x0004) [float]
 };
 
@@ -3553,12 +3470,6 @@ export type FParticleEventDeathData = FParticleEventData & {
  * Extends: FParticleEventData
  */
 export type FParticleEventKismetData = FParticleEventData & {
-  Type: number;  // 0x0000 (0x0004) [int32]
-  EventName: FName;  // 0x0004 (0x0008) [FName]
-  EmitterTime: number;  // 0x000c (0x0004) [float]
-  Location: FVector;  // 0x0010 (0x000c) [FVector]
-  Direction: FVector;  // 0x001c (0x000c) [FVector]
-  Velocity: FVector;  // 0x0028 (0x000c) [FVector]
   UsePSysCompLocation: boolean;  // 0x0034 (0x0004) [bool : 0x1]
   Normal: FVector;  // 0x0038 (0x000c) [FVector]
 };
@@ -3569,12 +3480,6 @@ export type FParticleEventKismetData = FParticleEventData & {
  * Extends: FParticleEventData
  */
 export type FParticleEventSpawnData = FParticleEventData & {
-  Type: number;  // 0x0000 (0x0004) [int32]
-  EventName: FName;  // 0x0004 (0x0008) [FName]
-  EmitterTime: number;  // 0x000c (0x0004) [float]
-  Location: FVector;  // 0x0010 (0x000c) [FVector]
-  Direction: FVector;  // 0x001c (0x000c) [FVector]
-  Velocity: FVector;  // 0x0028 (0x000c) [FVector]
 };
 
 /**
@@ -4477,15 +4382,6 @@ export type FSaveSlotOperation = {
  * Extends: FMaterialInput
  */
 export type FScalarMaterialInput = FMaterialInput & {
-  Expression: UMaterialExpression;  // 0x0000 (0x0008) [UMaterialExpression*]
-  OutputIndex: number;  // 0x0008 (0x0004) [int32]
-  InputName: string;  // 0x0010 (0x0010) [FString]
-  Mask: number;  // 0x0020 (0x0004) [int32]
-  MaskR: number;  // 0x0024 (0x0004) [int32]
-  MaskG: number;  // 0x0028 (0x0004) [int32]
-  MaskB: number;  // 0x002c (0x0004) [int32]
-  MaskA: number;  // 0x0030 (0x0004) [int32]
-  GCC64_Padding: number;  // 0x0034 (0x0004) [int32]
   UseConstant: boolean;  // 0x0038 (0x0004) [bool : 0x1]
   Constant: number;  // 0x003c (0x0004) [float]
 };
@@ -4517,15 +4413,6 @@ export type FScalarParameterValue = {
  * Extends: FParameterValueOverTime
  */
 export type FScalarParameterValueOverTime = FParameterValueOverTime & {
-  ExpressionGUID: FGuid;  // 0x0000 (0x0010) [FGuid]
-  StartTime: number;  // 0x0010 (0x0004) [float]
-  ParameterName: FName;  // 0x0014 (0x0008) [FName]
-  bLoop: boolean;  // 0x001c (0x0004) [bool : 0x1]
-  bAutoActivate: boolean;  // 0x001c (0x0004) [bool : 0x2]
-  CycleTime: number;  // 0x0020 (0x0004) [float]
-  bNormalizeTime: boolean;  // 0x0024 (0x0004) [bool : 0x1]
-  OffsetTime: number;  // 0x0028 (0x0004) [float]
-  bOffsetFromEnd: boolean;  // 0x002c (0x0004) [bool : 0x1]
   ParameterValue: number;  // 0x0030 (0x0004) [float]
   ParameterValueCurve: FInterpCurveFloat;  // 0x0038 (0x0018) [FInterpCurveFloat]
 };
@@ -4867,11 +4754,6 @@ export type FSocialPostImageInfo = {
  * Extends: FSocialPostImageInfo
  */
 export type FSocialPostLinkInfo = FSocialPostImageInfo & {
-  Flags: FSocialPostImageFlags;  // 0x0000 (0x0004) [FSocialPostImageFlags]
-  MessageText: string;  // 0x0008 (0x0010) [FString]
-  TitleText: string;  // 0x0018 (0x0010) [FString]
-  PictureCaption: string;  // 0x0028 (0x0010) [FString]
-  PictureDescription: string;  // 0x0038 (0x0010) [FString]
   TitleURL: string;  // 0x0048 (0x0010) [FString]
   PictureURL: string;  // 0x0058 (0x0010) [FString]
 };
@@ -5139,15 +5021,6 @@ export type FStringIdToStringMapping = {
  * Extends: FInputEventParameters
  */
 export type FSubscribedInputEventParameters = FInputEventParameters & {
-  PlayerIndex: number;  // 0x0000 (0x0004) [int32]
-  ControllerId: number;  // 0x0004 (0x0004) [int32]
-  InputKeyName: FName;  // 0x0008 (0x0008) [FName]
-  EventType: EInputEvent;  // 0x0010 (0x0001) [EInputEvent]
-  InputDelta: number;  // 0x0014 (0x0004) [float]
-  DeltaTime: number;  // 0x0018 (0x0004) [float]
-  bAltPressed: boolean;  // 0x001c (0x0004) [bool : 0x1]
-  bCtrlPressed: boolean;  // 0x001c (0x0004) [bool : 0x2]
-  bShiftPressed: boolean;  // 0x001c (0x0004) [bool : 0x4]
   InputAliasName: FName;  // 0x0020 (0x0008) [FName]
 };
 
@@ -5493,15 +5366,6 @@ export type FTextureParameterValue = {
  * Extends: FParameterValueOverTime
  */
 export type FTextureParameterValueOverTime = FParameterValueOverTime & {
-  ExpressionGUID: FGuid;  // 0x0000 (0x0010) [FGuid]
-  StartTime: number;  // 0x0010 (0x0004) [float]
-  ParameterName: FName;  // 0x0014 (0x0008) [FName]
-  bLoop: boolean;  // 0x001c (0x0004) [bool : 0x1]
-  bAutoActivate: boolean;  // 0x001c (0x0004) [bool : 0x2]
-  CycleTime: number;  // 0x0020 (0x0004) [float]
-  bNormalizeTime: boolean;  // 0x0024 (0x0004) [bool : 0x1]
-  OffsetTime: number;  // 0x0028 (0x0004) [float]
-  bOffsetFromEnd: boolean;  // 0x002c (0x0004) [bool : 0x1]
   ParameterValue: UTexture;  // 0x0030 (0x0008) [UTexture*]
 };
 
@@ -5661,8 +5525,6 @@ export type FTViewTarget = {
  * Extends: FUIKeyRepeatData
  */
 export type FUIAxisEmulationData = FUIKeyRepeatData & {
-  CurrentRepeatKey: FName;  // 0x0000 (0x0008) [FName]
-  NextRepeatTime: FDouble;  // 0x0008 (0x0008) [FDouble]
   bEnabled: boolean;  // 0x0010 (0x0004) [bool : 0x1]
 };
 
@@ -5755,15 +5617,6 @@ export type FURL = {
  * Extends: FMaterialInput
  */
 export type FVector2MaterialInput = FMaterialInput & {
-  Expression: UMaterialExpression;  // 0x0000 (0x0008) [UMaterialExpression*]
-  OutputIndex: number;  // 0x0008 (0x0004) [int32]
-  InputName: string;  // 0x0010 (0x0010) [FString]
-  Mask: number;  // 0x0020 (0x0004) [int32]
-  MaskR: number;  // 0x0024 (0x0004) [int32]
-  MaskG: number;  // 0x0028 (0x0004) [int32]
-  MaskB: number;  // 0x002c (0x0004) [int32]
-  MaskA: number;  // 0x0030 (0x0004) [int32]
-  GCC64_Padding: number;  // 0x0034 (0x0004) [int32]
   UseConstant: boolean;  // 0x0038 (0x0004) [bool : 0x1]
   ConstantX: number;  // 0x003c (0x0004) [float]
   ConstantY: number;  // 0x0040 (0x0004) [float]
@@ -5775,15 +5628,6 @@ export type FVector2MaterialInput = FMaterialInput & {
  * Extends: FMaterialInput
  */
 export type FVectorMaterialInput = FMaterialInput & {
-  Expression: UMaterialExpression;  // 0x0000 (0x0008) [UMaterialExpression*]
-  OutputIndex: number;  // 0x0008 (0x0004) [int32]
-  InputName: string;  // 0x0010 (0x0010) [FString]
-  Mask: number;  // 0x0020 (0x0004) [int32]
-  MaskR: number;  // 0x0024 (0x0004) [int32]
-  MaskG: number;  // 0x0028 (0x0004) [int32]
-  MaskB: number;  // 0x002c (0x0004) [int32]
-  MaskA: number;  // 0x0030 (0x0004) [int32]
-  GCC64_Padding: number;  // 0x0034 (0x0004) [int32]
   UseConstant: boolean;  // 0x0038 (0x0004) [bool : 0x1]
   Constant: FVector;  // 0x003c (0x000c) [FVector]
 };
@@ -5813,15 +5657,6 @@ export type FVectorParameterValue = {
  * Extends: FParameterValueOverTime
  */
 export type FVectorParameterValueOverTime = FParameterValueOverTime & {
-  ExpressionGUID: FGuid;  // 0x0000 (0x0010) [FGuid]
-  StartTime: number;  // 0x0010 (0x0004) [float]
-  ParameterName: FName;  // 0x0014 (0x0008) [FName]
-  bLoop: boolean;  // 0x001c (0x0004) [bool : 0x1]
-  bAutoActivate: boolean;  // 0x001c (0x0004) [bool : 0x2]
-  CycleTime: number;  // 0x0020 (0x0004) [float]
-  bNormalizeTime: boolean;  // 0x0024 (0x0004) [bool : 0x1]
-  OffsetTime: number;  // 0x0028 (0x0004) [float]
-  bOffsetFromEnd: boolean;  // 0x002c (0x0004) [bool : 0x1]
   ParameterValue: FLinearColor;  // 0x0030 (0x0010) [FLinearColor]
   ParameterValueCurve: FInterpCurveVector;  // 0x0040 (0x0018) [FInterpCurveVector]
 };

@@ -195,9 +195,6 @@ export type FFileNameToURLMapping = {
  * Extends: FSaveSlotRequestState
  */
 export type FInventoryItemRequestState = FSaveSlotRequestState & {
-  McpId: string;  // 0x0000 (0x0010) [FString]
-  SaveSlotId: string;  // 0x0010 (0x0010) [FString]
-  Request: UHttpRequestInterface;  // 0x0020 (0x0008) [UHttpRequestInterface*]
   ItemID: string;  // 0x0028 (0x0010) [FString]
 };
 
@@ -478,10 +475,6 @@ export type FMcpUncompressMessageRequest = {
  * Extends: FEmsFile
  */
 export type FMcpUserCloudFileInfo = FEmsFile & {
-  Hash: string;  // 0x0000 (0x0010) [FString]
-  DLName: string;  // 0x0010 (0x0010) [FString]
-  Filename: string;  // 0x0020 (0x0010) [FString]
-  FileSize: number;  // 0x0030 (0x0004) [int32]
   CreationDate: string;  // 0x0038 (0x0010) [FString]
   LastUpdateDate: string;  // 0x0048 (0x0010) [FString]
   CompressionType: string;  // 0x0058 (0x0010) [FString]
@@ -637,9 +630,6 @@ export type FSaveSlotRequestState = {
  * Extends: FTitleFile
  */
 export type FTitleFileCacheEntry = FTitleFile & {
-  Filename: string;  // 0x0000 (0x0010) [FString]
-  AsyncState: EOnlineEnumerationReadState;  // 0x0010 (0x0001) [EOnlineEnumerationReadState]
-  Data: number[];  // 0x0018 (0x0010) [TArray<uint8>]
   LogicalName: string;  // 0x0028 (0x0010) [FString]
   Hash: string;  // 0x0038 (0x0010) [FString]
   FileOp: ETitleFileFileOp;  // 0x0048 (0x0001) [ETitleFileFileOp]
@@ -652,9 +642,6 @@ export type FTitleFileCacheEntry = FTitleFile & {
  * Extends: FTitleFile
  */
 export type FTitleFileMcp = FTitleFile & {
-  Filename: string;  // 0x0000 (0x0010) [FString]
-  AsyncState: EOnlineEnumerationReadState;  // 0x0010 (0x0001) [EOnlineEnumerationReadState]
-  Data: number[];  // 0x0018 (0x0010) [TArray<uint8>]
   HttpDownloader: FPointer;  // 0x0028 (0x0008) [FPointer]
 };
 
@@ -664,9 +651,6 @@ export type FTitleFileMcp = FTitleFile & {
  * Extends: FTitleFile
  */
 export type FTitleFileWeb = FTitleFile & {
-  Filename: string;  // 0x0000 (0x0010) [FString]
-  AsyncState: EOnlineEnumerationReadState;  // 0x0010 (0x0001) [EOnlineEnumerationReadState]
-  Data: number[];  // 0x0018 (0x0010) [TArray<uint8>]
   StringData: string;  // 0x0028 (0x0010) [FString]
   HTTPRequest: UHttpRequestInterface;  // 0x0038 (0x0008) [UHttpRequestInterface*]
   FileCompressionType: EMcpFileCompressionType;  // 0x0040 (0x0001) [EMcpFileCompressionType]
@@ -687,8 +671,5 @@ export type FUserRequest = {
  * Extends: FSaveSlotRequestState
  */
 export type FValueRequestState = FSaveSlotRequestState & {
-  McpId: string;  // 0x0000 (0x0010) [FString]
-  SaveSlot: string;  // 0x0010 (0x0010) [FString]
-  Request: UHttpRequestInterface;  // 0x0020 (0x0008) [UHttpRequestInterface*]
   ValueId: FName;  // 0x0028 (0x0008) [FName]
 };

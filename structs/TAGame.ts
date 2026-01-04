@@ -9,7 +9,7 @@ import type { FBindingAction, FCustomMatchTeamSettings, FEffectsMapping, FMapPre
 import type { EPinnedAxisType } from '../enums/AkAudio';
 import type { OnlinePlatform } from '../enums/Core';
 import type { EBasicLoadResult, EConsoleType, EPhysics } from '../enums/Engine';
-import type { EAxisSign, EButtonPressType, EChatChannel, EClubBadge, EClubMemberAction, ERemappable } from '../enums/ProjectX';
+import type { EAxisSign, EChatChannel, EClubBadge, EClubMemberAction } from '../enums/ProjectX';
 import type { CrumbAction, CrumbRedefinitionType, EActivePlaylistType, EActiveVoiceLocation, EArchiveProductFilter, EAssetLoadState, EBTStatus, EBallHitType, EBlueprintType, EBoostFillType, EChatFilter, EChatMessageType, ECopyAxis, ECrowdValueType, ECurrency, EDemolishSource, EDifficulty, EEngagementEventType, EFavoritedProductFilter, EFreeplayCommand, EGoalResetType, EGraphSummaryType, EHistory, EInfectedType, EInitSaveProviderResult, EItemDisplayType, EMTXCatalogCategory, EMapPrefType, EMatchHistoryNavigableButton, EMatchHistoryUI, EMatchTieBreaker, EOnlineXPModifierType, EPaintColorVariant, EPersonaInfoOrigin, EProductAttachmentSocket, EProductFilterSortType, EProductQuality, EProductTradeRestriction, EQuickChatState, ERocketPassNotificationRewardType, ERocketPassTierLockState, ERocketPassTierType, ERotationType, ESaveGameResult, EShopTabType, ESoundStatePriority, EStatePriority, ETourStatus, ETrainingManipulationCommand, ETrainingNavigationCommand, ETrainingRoundAttempt, ETrainingTag, ETrainingType, EUnlockMethod, EUserBugReportCategoryType, EVanityType, EVoiceInputMode, EVoiceRoomType, EVoteStatus, FTELegacyGroupType, FTERedefinitionAction, FTERedefinitionType, RocketPassNotificationType, SearchMessageType } from '../enums/TAGame';
 import type { UAkSoundCue } from '../classes/AkAudio';
 import type { UAsyncTask, UError, UErrorType, UObject } from '../classes/Core';
@@ -220,8 +220,6 @@ export type FAnimatedMaterialParam = {
  * Extends: FAnimatedMaterialParamVector
  */
 export type FAnimatedMaterialParamColor = FAnimatedMaterialParamVector & {
-  ParamName: FName;  // 0x0000 (0x0008) [FName]
-  Value: unknown;  // 0x0008 (0x0008) [unknown]
   AlphaValue: unknown;  // 0x0010 (0x0008) [unknown]
 };
 
@@ -231,7 +229,6 @@ export type FAnimatedMaterialParamColor = FAnimatedMaterialParamVector & {
  * Extends: FAnimatedMaterialParam
  */
 export type FAnimatedMaterialParamFloat = FAnimatedMaterialParam & {
-  ParamName: FName;  // 0x0000 (0x0008) [FName]
   Value: unknown;  // 0x0008 (0x0008) [unknown]
 };
 
@@ -241,7 +238,6 @@ export type FAnimatedMaterialParamFloat = FAnimatedMaterialParam & {
  * Extends: FAnimatedMaterialParam
  */
 export type FAnimatedMaterialParamVector = FAnimatedMaterialParam & {
-  ParamName: FName;  // 0x0000 (0x0008) [FName]
   Value: unknown;  // 0x0008 (0x0008) [unknown]
 };
 
@@ -1546,10 +1542,6 @@ export type FDemolishData = {
  * Extends: FDemolishData
  */
 export type FDemolishData2 = FDemolishData & {
-  Attacker: URBActor_TA;  // 0x0000 (0x0008) [URBActor_TA*]
-  Victim: UCar_TA;  // 0x0008 (0x0008) [UCar_TA*]
-  AttackerVelocity: FVector;  // 0x0010 (0x000c) [FVector]
-  VictimVelocity: FVector;  // 0x001c (0x000c) [FVector]
   CustomDemoFX: UFXActor_X;  // 0x0028 (0x0008) [UFXActor_X*]
 };
 
@@ -1559,11 +1551,6 @@ export type FDemolishData2 = FDemolishData & {
  * Extends: FDemolishDataGoalExplosion
  */
 export type FDemolishDataExtended = FDemolishDataGoalExplosion & {
-  Attacker: URBActor_TA;  // 0x0000 (0x0008) [URBActor_TA*]
-  Victim: UCar_TA;  // 0x0008 (0x0008) [UCar_TA*]
-  AttackerVelocity: FVector;  // 0x0010 (0x000c) [FVector]
-  VictimVelocity: FVector;  // 0x001c (0x000c) [FVector]
-  GoalExplosionOwner: UPRI_TA;  // 0x0028 (0x0008) [UPRI_TA*]
   AttackerPRI: UPRI_TA;  // 0x0030 (0x0008) [UPRI_TA*]
   SelfDemoFX: UFXActor_X;  // 0x0038 (0x0008) [UFXActor_X*]
   bSelfDemolish: boolean;  // 0x0040 (0x0004) [bool : 0x1]
@@ -1575,10 +1562,6 @@ export type FDemolishDataExtended = FDemolishDataGoalExplosion & {
  * Extends: FDemolishData
  */
 export type FDemolishDataGoalExplosion = FDemolishData & {
-  Attacker: URBActor_TA;  // 0x0000 (0x0008) [URBActor_TA*]
-  Victim: UCar_TA;  // 0x0008 (0x0008) [UCar_TA*]
-  AttackerVelocity: FVector;  // 0x0010 (0x000c) [FVector]
-  VictimVelocity: FVector;  // 0x001c (0x000c) [FVector]
   GoalExplosionOwner: UPRI_TA;  // 0x0028 (0x0008) [UPRI_TA*]
 };
 
@@ -1717,11 +1700,6 @@ export type FEngineAudioNativeState = {
  * Extends: FEngineAudioNativeState
  */
 export type FEngineAudioNativeState_Clutched = FEngineAudioNativeState & {
-  Component: unknown;  // 0x0000 (0x0008) [unknown]
-  Profile: UEngineAudioProfile_TA;  // 0x0008 (0x0008) [UEngineAudioProfile_TA*]
-  Car: UVehicle_TA;  // 0x0010 (0x0008) [UVehicle_TA*]
-  OldCarState: FCarStateData;  // 0x0018 (0x0010) [FCarStateData]
-  CarState: FCarStateData;  // 0x0028 (0x0010) [FCarStateData]
   bUsingRevLimiter: boolean;  // 0x0038 (0x0004) [bool : 0x1]
 };
 
@@ -1731,12 +1709,6 @@ export type FEngineAudioNativeState_Clutched = FEngineAudioNativeState & {
  * Extends: FEngineAudioNativeState_Clutched
  */
 export type FEngineAudioNativeState_InAir = FEngineAudioNativeState_Clutched & {
-  Component: unknown;  // 0x0000 (0x0008) [unknown]
-  Profile: UEngineAudioProfile_TA;  // 0x0008 (0x0008) [UEngineAudioProfile_TA*]
-  Car: UVehicle_TA;  // 0x0010 (0x0008) [UVehicle_TA*]
-  OldCarState: FCarStateData;  // 0x0018 (0x0010) [FCarStateData]
-  CarState: FCarStateData;  // 0x0028 (0x0010) [FCarStateData]
-  bUsingRevLimiter: boolean;  // 0x0038 (0x0004) [bool : 0x1]
   TimeInAir: number;  // 0x0040 (0x0004) [float]
 };
 
@@ -1746,11 +1718,6 @@ export type FEngineAudioNativeState_InAir = FEngineAudioNativeState_Clutched & {
  * Extends: FEngineAudioNativeState
  */
 export type FEngineAudioNativeState_OnGround = FEngineAudioNativeState & {
-  Component: unknown;  // 0x0000 (0x0008) [unknown]
-  Profile: UEngineAudioProfile_TA;  // 0x0008 (0x0008) [UEngineAudioProfile_TA*]
-  Car: UVehicle_TA;  // 0x0010 (0x0008) [UVehicle_TA*]
-  OldCarState: FCarStateData;  // 0x0018 (0x0010) [FCarStateData]
-  CarState: FCarStateData;  // 0x0028 (0x0010) [FCarStateData]
   GearSwitchTimeRemaining: number;  // 0x0038 (0x0004) [float]
   RPMShiftUp: number;  // 0x003c (0x0004) [float]
   RPMShiftDown: number;  // 0x0040 (0x0004) [float]
@@ -2756,8 +2723,6 @@ export type FInheritedParameter = {
  * Extends: FSaveDataTask
  */
 export type FInitSaveProviderTask = FSaveDataTask & {
-  ControllerIndex: number;  // 0x0000 (0x0004) [int32]
-  Path: string;  // 0x0008 (0x0010) [FString]
   Result: EInitSaveProviderResult;  // 0x0018 (0x0001) [EInitSaveProviderResult]
 };
 
@@ -3089,7 +3054,6 @@ export type FLoadoutAttributesArray = {
  * Extends: FClientLoadoutData
  */
 export type FLoadoutData = FClientLoadoutData & {
-  Products: number[];  // 0x0000 (0x0010) [TArray<int32>]
   TeamPaint: FLoadoutTeamPaint;  // 0x0010 (0x0010) [FLoadoutTeamPaint]
   Title: FName;  // 0x0020 (0x0008) [FName]
   TeamIndex: number;  // 0x0028 (0x0004) [int32]
@@ -3124,10 +3088,6 @@ export type FLoadoutTeamColor = {
  * Extends: FLoadoutTeamColor
  */
 export type FLoadoutTeamPaint = FLoadoutTeamColor & {
-  Team: number;  // 0x0000 (0x0001) [uint8]
-  TeamColorID: number;  // 0x0001 (0x0001) [uint8]
-  CustomColorID: number;  // 0x0002 (0x0001) [uint8]
-  bSet: boolean;  // 0x0004 (0x0004) [bool : 0x1]
   TeamFinishID: number;  // 0x0008 (0x0004) [int32]
   CustomFinishID: number;  // 0x000c (0x0004) [int32]
 };
@@ -3138,13 +3098,6 @@ export type FLoadoutTeamPaint = FLoadoutTeamColor & {
  * Extends: FBindingAction
  */
 export type FLocalizedAction = FBindingAction & {
-  Action: FName;  // 0x0000 (0x0008) [FName]
-  Category: FName;  // 0x0008 (0x0008) [FName]
-  Axis: FName;  // 0x0010 (0x0008) [FName]
-  AxisSign: EAxisSign;  // 0x0018 (0x0001) [EAxisSign]
-  Command: string;  // 0x0020 (0x0010) [FString]
-  bDisableRemapping: boolean;  // 0x0030 (0x0004) [bool : 0x1]
-  Priority: number;  // 0x0034 (0x0004) [int32]
   Label: string;  // 0x0038 (0x0010) [FString]
   Description: string;  // 0x0048 (0x0010) [FString]
   bRebindable: boolean;  // 0x0058 (0x0004) [bool : 0x1]
@@ -3843,12 +3796,6 @@ export type FOnlineProductStat = {
  * Extends: FOnlineProductData
  */
 export type FOnlineProductTimestampedData = FOnlineProductData & {
-  ProductID: number;  // 0x0000 (0x0004) [int32]
-  InstanceID: FProductInstanceID;  // 0x0008 (0x0010) [FProductInstanceID]
-  SeriesID: number;  // 0x0018 (0x0004) [int32]
-  Attributes: FOnlineProductAttribute[];  // 0x0020 (0x0010) [TArray<FOnlineProductAttribute>]
-  TradeHold: number;  // 0x0030 (0x0004) [int32]
-  AddedTimestamp: bigint;  // 0x0038 (0x0008) [uint64]
   UpdatedTimestamp: bigint;  // 0x0040 (0x0008) [uint64]
   DeletedTimestamp: bigint;  // 0x0048 (0x0008) [uint64]
 };
@@ -4370,9 +4317,6 @@ export type FPlayerStats = {
  * Extends: FVoiceRoomCredentials
  */
 export type FPlayerVoiceRoomCredentials = FVoiceRoomCredentials & {
-  RoomId: string;  // 0x0000 (0x0010) [FString]
-  BaseUrl: string;  // 0x0010 (0x0010) [FString]
-  Token: string;  // 0x0020 (0x0010) [FString]
   PlayerID: FUniqueNetId;  // 0x0030 (0x0048) [FUniqueNetId]
 };
 
@@ -4382,8 +4326,6 @@ export type FPlayerVoiceRoomCredentials = FVoiceRoomCredentials & {
  * Extends: FMapPrefs
  */
 export type FPlaylistMapPrefs = FMapPrefs & {
-  Likes: FName[];  // 0x0000 (0x0010) [TArray<FName>]
-  Dislikes: FName[];  // 0x0010 (0x0010) [TArray<FName>]
   Playlist: FName;  // 0x0020 (0x0008) [FName]
   bOverrideGlobal: boolean;  // 0x0028 (0x0004) [bool : 0x1]
 };
@@ -4413,8 +4355,6 @@ export type FPlaylistState = {
  * Extends: FPlaylistTrack
  */
 export type FPlaylistTitleTrack = FPlaylistTrack & {
-  Track: UAkSoundCue;  // 0x0000 (0x0008) [UAkSoundCue*]
-  Icon: UTexture;  // 0x0008 (0x0008) [UTexture*]
   StartupLogoDisplayDurationMS: number;  // 0x0010 (0x0004) [float]
 };
 
@@ -4937,10 +4877,6 @@ export type FReplayActorChannel = {
  * Extends: FReplayIOTaskBase
  */
 export type FReplayClassTask = FReplayIOTaskBase & {
-  Replay: UReplay_TA;  // 0x0000 (0x0008) [UReplay_TA*]
-  Path: string;  // 0x0008 (0x0010) [FString]
-  Error: UErrorType;  // 0x0018 (0x0008) [UErrorType*]
-  Ar: FPointer;  // 0x0020 (0x0008) [FPointer]
   ClassPath: string;  // 0x0028 (0x0010) [FString]
 };
 
@@ -4959,10 +4895,6 @@ export type FReplayExportCallbackData = {
  * Extends: FReplayIOTaskBase
  */
 export type FReplayExportTask = FReplayIOTaskBase & {
-  Replay: UReplay_TA;  // 0x0000 (0x0008) [UReplay_TA*]
-  Path: string;  // 0x0008 (0x0010) [FString]
-  Error: UErrorType;  // 0x0018 (0x0008) [UErrorType*]
-  Ar: FPointer;  // 0x0020 (0x0008) [FPointer]
   Data: number[];  // 0x0028 (0x0010) [TArray<uint8>]
   bDebug: boolean;  // 0x0038 (0x0004) [bool : 0x1]
 };
@@ -4984,10 +4916,6 @@ export type FReplayFocusCar = {
  * Extends: FReplayIOTaskBase
  */
 export type FReplayHeaderImportTask = FReplayIOTaskBase & {
-  Replay: UReplay_TA;  // 0x0000 (0x0008) [UReplay_TA*]
-  Path: string;  // 0x0008 (0x0010) [FString]
-  Error: UErrorType;  // 0x0018 (0x0008) [UErrorType*]
-  Ar: FPointer;  // 0x0020 (0x0008) [FPointer]
 };
 
 /**
@@ -5025,10 +4953,6 @@ export type FReplayImportCallbackData = {
  * Extends: FReplayIOTaskBase
  */
 export type FReplayImportTask = FReplayIOTaskBase & {
-  Replay: UReplay_TA;  // 0x0000 (0x0008) [UReplay_TA*]
-  Path: string;  // 0x0008 (0x0010) [FString]
-  Error: UErrorType;  // 0x0018 (0x0008) [UErrorType*]
-  Ar: FPointer;  // 0x0020 (0x0008) [FPointer]
   Data: number[];  // 0x0028 (0x0010) [TArray<uint8>]
 };
 
@@ -5226,10 +5150,6 @@ export type FRocketPassClaimData = {
  * Extends: FRocketPassReward
  */
 export type FRocketPassCurrencyReward = FRocketPassReward & {
-  CurrencyID: number;  // 0x0000 (0x0004) [int32]
-  Name: FName;  // 0x0004 (0x0008) [FName]
-  Amount: number;  // 0x000c (0x0004) [float]
-  Tier: number;  // 0x0010 (0x0004) [int32]
 };
 
 /**
@@ -5238,13 +5158,6 @@ export type FRocketPassCurrencyReward = FRocketPassReward & {
  * Extends: FRocketPassRewardData
  */
 export type FRocketPassExtendedRewardData = FRocketPassRewardData & {
-  Tier: number;  // 0x0000 (0x0004) [int32]
-  Claimable: boolean;  // 0x0004 (0x0004) [bool : 0x1]
-  UnlockType: ERocketPassTierType;  // 0x0008 (0x0001) [ERocketPassTierType]
-  ProductData: FOnlineProductData[];  // 0x0010 (0x0010) [TArray<FOnlineProductData>]
-  ItemSets: FItemSetsData[];  // 0x0020 (0x0010) [TArray<FItemSetsData>]
-  XPRewards: FXPRewardData[];  // 0x0030 (0x0010) [TArray<FXPRewardData>]
-  CurrencyDrops: FCurrency[];  // 0x0040 (0x0010) [TArray<FCurrency>]
   bPremiumTier: boolean;  // 0x0050 (0x0004) [bool : 0x1]
   LockState: ERocketPassTierLockState;  // 0x0054 (0x0001) [ERocketPassTierLockState]
   LevelRequirement: number;  // 0x0058 (0x0004) [int32]
@@ -5401,10 +5314,6 @@ export type FRocketPassUnlock = {
  * Extends: FRocketPassReward
  */
 export type FRocketPassXPReward = FRocketPassReward & {
-  CurrencyID: number;  // 0x0000 (0x0004) [int32]
-  Name: FName;  // 0x0004 (0x0008) [FName]
-  Amount: number;  // 0x000c (0x0004) [float]
-  Tier: number;  // 0x0010 (0x0004) [int32]
 };
 
 /**
@@ -5475,8 +5384,6 @@ export type FSample = {
  * Extends: FSaveDataTask
  */
 export type FSaveDataDeleteTask = FSaveDataTask & {
-  ControllerIndex: number;  // 0x0000 (0x0004) [int32]
-  Path: string;  // 0x0008 (0x0010) [FString]
   KeepNewestFileCount: number;  // 0x0018 (0x0004) [int32]
 };
 
@@ -5486,8 +5393,6 @@ export type FSaveDataDeleteTask = FSaveDataTask & {
  * Extends: FSaveDataTask
  */
 export type FSaveDataExportTask = FSaveDataTask & {
-  ControllerIndex: number;  // 0x0000 (0x0004) [int32]
-  Path: string;  // 0x0008 (0x0010) [FString]
   Data: number[];  // 0x0018 (0x0010) [TArray<uint8>]
   bExactFileMatch: boolean;  // 0x0028 (0x0004) [bool : 0x1]
   bPlayerSaveData: boolean;  // 0x0028 (0x0004) [bool : 0x2]
@@ -5502,8 +5407,6 @@ export type FSaveDataExportTask = FSaveDataTask & {
  * Extends: FSaveDataTask
  */
 export type FSaveDataImportTask = FSaveDataTask & {
-  ControllerIndex: number;  // 0x0000 (0x0004) [int32]
-  Path: string;  // 0x0008 (0x0010) [FString]
   SaveDataObject: UObject;  // 0x0018 (0x0008) [UObject*]
   Result: EBasicLoadResult;  // 0x0020 (0x0001) [EBasicLoadResult]
   Data: number[];  // 0x0028 (0x0010) [TArray<uint8>]
@@ -5517,8 +5420,6 @@ export type FSaveDataImportTask = FSaveDataTask & {
  * Extends: FSaveDataTask
  */
 export type FSaveDataListFilesTask = FSaveDataTask & {
-  ControllerIndex: number;  // 0x0000 (0x0004) [int32]
-  Path: string;  // 0x0008 (0x0010) [FString]
   Pattern: string;  // 0x0018 (0x0010) [FString]
   Files: string[];  // 0x0028 (0x0010) [TArray<FString>]
   Result: EBasicLoadResult;  // 0x0038 (0x0001) [EBasicLoadResult]
@@ -6964,17 +6865,6 @@ export type FTurningCircle = {
  * Extends: FPlayerBinding
  */
 export type FUIPlayerBinding = FPlayerBinding & {
-  Action: FName;  // 0x0000 (0x0008) [FName]
-  Key: FName;  // 0x0008 (0x0008) [FName]
-  AxisSign: EAxisSign;  // 0x0010 (0x0001) [EAxisSign]
-  PressType: EButtonPressType;  // 0x0011 (0x0001) [EButtonPressType]
-  Speed: number;  // 0x0014 (0x0004) [float]
-  bRequired: boolean;  // 0x0018 (0x0004) [bool : 0x1]
-  Remappable: ERemappable;  // 0x001c (0x0001) [ERemappable]
-  PressedTime: number;  // 0x0020 (0x0004) [float]
-  ReleasedTime: number;  // 0x0024 (0x0004) [float]
-  bTapped: boolean;  // 0x0028 (0x0004) [bool : 0x1]
-  bToggled: boolean;  // 0x0028 (0x0004) [bool : 0x2]
   UIKey: string;  // 0x0030 (0x0010) [FString]
 };
 

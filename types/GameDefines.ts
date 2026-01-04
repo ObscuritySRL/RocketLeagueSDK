@@ -43,7 +43,7 @@ export enum EFunctionFlags {
   FUNC_EditorOnly = 0x20000000,
   FUNC_Lambda = 0x40000000,
   FUNC_NetValidate = 0x80000000,
-  FUNC_AllFlags = 0xffffffff,
+  FUNC_AllFlags = 0xFFFFFFFF,
 }
 
 export enum EPropertyFlags {
@@ -149,7 +149,7 @@ export enum EObjectFlags {
   RF_PendingKill = 0x2000000000000000,
   RF_MarkedByCookerTemp = 0x4000000000000000,
   RF_CookedStartupObject = 0x8000000000000000,
-  RF_AllFlags = 0xffffffffffffffff,
+  RF_AllFlags = 0xFFFFFFFFFFFFFFFF,
 }
 
 export enum EPackageFlags {
@@ -204,7 +204,7 @@ export enum EClassFlags {
   CLASS_NativeOnly = 0x20000000,
   CLASS_PerObjectLocalized = 0x40000000,
   CLASS_HasCrossLevelRefs = 0x80000000,
-  CLASS_AllFlags = 0xffffffff,
+  CLASS_AllFlags = 0xFFFFFFFF,
 }
 
 export enum EClassCastFlags {
@@ -233,31 +233,12 @@ export enum EClassCastFlags {
   CASTCLASS_UMapProperty = 0x00400000,
   CASTCLASS_UDelegateProperty = 0x00800000,
   CASTCLASS_UComponent = 0x01000000,
-  CASTCLASS_AllFlags = 0xffffffff,
+  CASTCLASS_AllFlags = 0xFFFFFFFF,
 }
 
-export const UObject = {
-  VTable: 0x00,
-  ObjectFlags: 0x08,
-  HashNext: 0x10,
-  HashOuterNext: 0x18,
-  StateFrame: 0x20,
-  Linker: 0x28,
-  LinkerIndex: 0x30,
-  InternalIndex: 0x38,
-  NetIndex: 0x3c,
-  Outer: 0x40,
-  Name: 0x48,
-  Class: 0x50,
-  ObjectArchetype: 0x58,
-} as const;
-
-export const FNameEntry = {
-  HashNext: 0x00,
-  Index: 0x08,
-  Flags: 0x10,
-  Name: 0x18,
-} as const;
+// Note: UObject offsets are in offsets/Core.ts as "Object"
+// Note: FNameEntry offsets are in offsets/Core.ts
+// Note: TArray offsets are in offsets/Core.ts
 
 export type FName = {
   Index: number;
@@ -283,11 +264,3 @@ export type FQWord = {
   A: number;
   B: number;
 };
-
-export const TArray = {
-  Data: 0x00,
-  Count: 0x08,
-  Max: 0x0c,
-} as const;
-
-export const TArraySize = 0x10;

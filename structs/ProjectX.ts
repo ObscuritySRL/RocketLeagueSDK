@@ -49,7 +49,6 @@ export type FActorParamPair = {
  * Extends: FAnimatedParam
  */
 export type FAnimatedFloatParam = FAnimatedParam & {
-  ParamName: FName;  // 0x0000 (0x0008) [FName]
   ValueOverTime: FInterpCurveFloat;  // 0x0008 (0x0018) [FInterpCurveFloat]
 };
 
@@ -59,7 +58,6 @@ export type FAnimatedFloatParam = FAnimatedParam & {
  * Extends: FAnimatedParam
  */
 export type FAnimatedLinearColorParam = FAnimatedParam & {
-  ParamName: FName;  // 0x0000 (0x0008) [FName]
   ValueOverTime: FInterpCurveLinearColor;  // 0x0008 (0x0018) [FInterpCurveLinearColor]
 };
 
@@ -77,7 +75,6 @@ export type FAnimatedParam = {
  * Extends: FAnimatedParam
  */
 export type FAnimatedVectorParam = FAnimatedParam & {
-  ParamName: FName;  // 0x0000 (0x0008) [FName]
   ValueOverTime: FInterpCurveVector;  // 0x0008 (0x0018) [FInterpCurveVector]
 };
 
@@ -194,10 +191,6 @@ export type FCacheExportCallbackData = {
  * Extends: FCacheIOTaskBase
  */
 export type FCacheExportTask = FCacheIOTaskBase & {
-  CacheObject: UObject;  // 0x0000 (0x0008) [UObject*]
-  Data: number[];  // 0x0008 (0x0010) [TArray<uint8>]
-  Path: string;  // 0x0018 (0x0010) [FString]
-  Error: UErrorType;  // 0x0028 (0x0008) [UErrorType*]
 };
 
 /**
@@ -215,10 +208,6 @@ export type FCacheImportCallbackData = {
  * Extends: FCacheIOTaskBase
  */
 export type FCacheImportTask = FCacheIOTaskBase & {
-  CacheObject: UObject;  // 0x0000 (0x0008) [UObject*]
-  Data: number[];  // 0x0008 (0x0010) [TArray<uint8>]
-  Path: string;  // 0x0018 (0x0010) [FString]
-  Error: UErrorType;  // 0x0028 (0x0008) [UErrorType*]
 };
 
 /**
@@ -1010,10 +999,6 @@ export type FLinkedAccount = {
  * Extends: FCameraKnockBase
  */
 export type FLocationCameraKnock = FCameraKnockBase & {
-  BlendInTime: number;  // 0x0000 (0x0004) [float]
-  BlendOutTime: number;  // 0x0004 (0x0004) [float]
-  Falloff: number;  // 0x0008 (0x0004) [float]
-  Time: number;  // 0x000c (0x0004) [float]
   Amount: FVector;  // 0x0010 (0x000c) [FVector]
 };
 
@@ -1558,15 +1543,6 @@ export type FPlayerSeasonRewardProgress = {
  * Extends: FPlaylistSkillRating
  */
 export type FPlayerSkillRating = FPlaylistSkillRating & {
-  Mu: number;  // 0x0000 (0x0004) [float]
-  Sigma: number;  // 0x0004 (0x0004) [float]
-  Tier: number;  // 0x0008 (0x0004) [int32]
-  Division: number;  // 0x000c (0x0004) [int32]
-  MatchesPlayed: number;  // 0x0010 (0x0004) [int32]
-  PlacementMatchesPlayed: number;  // 0x0014 (0x0004) [int32]
-  WinStreak: number;  // 0x0018 (0x0004) [int32]
-  MMR: number;  // 0x001c (0x0004) [float]
-  Playlist: number;  // 0x0020 (0x0004) [int32]
   PlayerID: FUniqueNetId;  // 0x0028 (0x0048) [FUniqueNetId]
 };
 
@@ -1608,14 +1584,6 @@ export type FPlaylistRestrictionPlayer = {
  * Extends: FTierSkillRating
  */
 export type FPlaylistSkillRating = FTierSkillRating & {
-  Mu: number;  // 0x0000 (0x0004) [float]
-  Sigma: number;  // 0x0004 (0x0004) [float]
-  Tier: number;  // 0x0008 (0x0004) [int32]
-  Division: number;  // 0x000c (0x0004) [int32]
-  MatchesPlayed: number;  // 0x0010 (0x0004) [int32]
-  PlacementMatchesPlayed: number;  // 0x0014 (0x0004) [int32]
-  WinStreak: number;  // 0x0018 (0x0004) [int32]
-  MMR: number;  // 0x001c (0x0004) [float]
   Playlist: number;  // 0x0020 (0x0004) [int32]
 };
 
@@ -1625,14 +1593,6 @@ export type FPlaylistSkillRating = FTierSkillRating & {
  * Extends: FTierSkillRating
  */
 export type FPlaylistTierSkillRating = FTierSkillRating & {
-  Mu: number;  // 0x0000 (0x0004) [float]
-  Sigma: number;  // 0x0004 (0x0004) [float]
-  Tier: number;  // 0x0008 (0x0004) [int32]
-  Division: number;  // 0x000c (0x0004) [int32]
-  MatchesPlayed: number;  // 0x0010 (0x0004) [int32]
-  PlacementMatchesPlayed: number;  // 0x0014 (0x0004) [int32]
-  WinStreak: number;  // 0x0018 (0x0004) [int32]
-  MMR: number;  // 0x001c (0x0004) [float]
   Playlist: number;  // 0x0020 (0x0004) [int32]
 };
 
@@ -1951,10 +1911,6 @@ export type FReservationPlayerData = {
  * Extends: FCameraKnockBase
  */
 export type FRotationCameraKnock = FCameraKnockBase & {
-  BlendInTime: number;  // 0x0000 (0x0004) [float]
-  BlendOutTime: number;  // 0x0004 (0x0004) [float]
-  Falloff: number;  // 0x0008 (0x0004) [float]
-  Time: number;  // 0x000c (0x0004) [float]
   Amount: FRotator;  // 0x0010 (0x000c) [FRotator]
 };
 
@@ -2156,14 +2112,6 @@ export type FSkillMatchParty = {
  * Extends: FTierSkillRating
  */
 export type FSkillMatchPartyRating = FTierSkillRating & {
-  Mu: number;  // 0x0000 (0x0004) [float]
-  Sigma: number;  // 0x0004 (0x0004) [float]
-  Tier: number;  // 0x0008 (0x0004) [int32]
-  Division: number;  // 0x000c (0x0004) [int32]
-  MatchesPlayed: number;  // 0x0010 (0x0004) [int32]
-  PlacementMatchesPlayed: number;  // 0x0014 (0x0004) [int32]
-  WinStreak: number;  // 0x0018 (0x0004) [int32]
-  MMR: number;  // 0x001c (0x0004) [float]
   PartyID: number;  // 0x0020 (0x0004) [int32]
 };
 
@@ -2339,8 +2287,6 @@ export type FTestStructEvent = {
  * Extends: FSkillRating
  */
 export type FTierSkillRating = FSkillRating & {
-  Mu: number;  // 0x0000 (0x0004) [float]
-  Sigma: number;  // 0x0004 (0x0004) [float]
   Tier: number;  // 0x0008 (0x0004) [int32]
   Division: number;  // 0x000c (0x0004) [int32]
   MatchesPlayed: number;  // 0x0010 (0x0004) [int32]
@@ -2373,16 +2319,6 @@ export type FTradePermissionPair = {
  * Extends: FPlayerSkillRating
  */
 export type FUpdatedPlayerSkillRating = FPlayerSkillRating & {
-  Mu: number;  // 0x0000 (0x0004) [float]
-  Sigma: number;  // 0x0004 (0x0004) [float]
-  Tier: number;  // 0x0008 (0x0004) [int32]
-  Division: number;  // 0x000c (0x0004) [int32]
-  MatchesPlayed: number;  // 0x0010 (0x0004) [int32]
-  PlacementMatchesPlayed: number;  // 0x0014 (0x0004) [int32]
-  WinStreak: number;  // 0x0018 (0x0004) [int32]
-  MMR: number;  // 0x001c (0x0004) [float]
-  Playlist: number;  // 0x0020 (0x0004) [int32]
-  PlayerID: FUniqueNetId;  // 0x0028 (0x0048) [FUniqueNetId]
   PrevMu: number;  // 0x0070 (0x0004) [float]
   PrevSigma: number;  // 0x0074 (0x0004) [float]
   PrevTier: number;  // 0x0078 (0x0004) [int32]

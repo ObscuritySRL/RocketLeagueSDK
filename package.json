@@ -1,6 +1,6 @@
 {
   "name": "rocketleaguesdk",
-  "version": "1.0.7",
+  "version": "2.0.0",
   "description": "TypeScript SDK for Rocket League - Auto-generated type definitions",
   "type": "module",
   "main": "index.ts",
@@ -51,6 +51,16 @@
       "bun": "./enums/*.ts",
       "import": "./enums/*.ts",
       "types": "./enums/*.ts"
+    },
+    "./offsets": {
+      "bun": "./offsets/index.ts",
+      "import": "./offsets/index.ts",
+      "types": "./offsets/index.ts"
+    },
+    "./offsets/*": {
+      "bun": "./offsets/*.ts",
+      "import": "./offsets/*.ts",
+      "types": "./offsets/*.ts"
     },
     "./parameters": {
       "bun": "./parameters/index.ts",

@@ -13,19 +13,6 @@ import type { UScriptGroup_ORS } from './Engine';
  * Flags: CLASS_Compiled | CLASS_Parsed | CLASS_Hidden | CLASS_HideDropDown
  */
 export type U__AsyncTask__All_0x1 = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
   DependentsCount: number;  // 0x0060 (0x0004) [int32]
   Parent: UAsyncTask;  // 0x0068 (0x0008) [UAsyncTask*]
 };
@@ -40,19 +27,6 @@ export type U__AsyncTask__All_0x1 = UObject & {
  * Flags: CLASS_Compiled | CLASS_Parsed
  */
 export type U_LoggingDoc = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 // _LoggingDoc Functions
@@ -65,19 +39,6 @@ export type U_LoggingDoc = UObject & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type U_Types_Core = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -87,19 +48,6 @@ export type U_Types_Core = UObject & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Parsed
  */
 export type U_Types_Generated = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -109,21 +57,6 @@ export type U_Types_Generated = UObject & {
  * Flags: CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UArrayErrors = UErrorList & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
-  LocalizationPackage: string;  // 0x0060 (0x0010) [FString]
-  LocalizationSection: string;  // 0x0070 (0x0010) [FString]
   Remove_NegativeNumberOfElements: UErrorType;  // 0x0080 (0x0008) [UErrorType*]
   Remove_OutOfBounds: UErrorType;  // 0x0088 (0x0008) [UErrorType*]
 };
@@ -135,19 +68,6 @@ export type UArrayErrors = UErrorList & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Parsed
  */
 export type UArrayFuncs = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 // ArrayFuncs Functions
@@ -161,19 +81,6 @@ export type UArrayFuncs = UObject & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UArrayProperty = UProperty & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -183,26 +90,6 @@ export type UArrayProperty = UProperty & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UAsyncResult = UAsyncTask & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
-  bComplete: boolean;  // 0x0060 (0x0004) [bool : 0x1]
-  bDisposed: boolean;  // 0x0060 (0x0004) [bool : 0x2]
-  Error: UError;  // 0x0068 (0x0008) [UError*]
-  __EventAsyncTaskSuccess__Delegate: FScriptDelegate;  // 0x0070 (0x0018) [FScriptDelegate]
-  __EventAsyncTaskFail__Delegate: FScriptDelegate;  // 0x0088 (0x0018) [FScriptDelegate]
-  __EventAsyncTaskComplete__Delegate: FScriptDelegate;  // 0x00a0 (0x0018) [FScriptDelegate]
-  __EventDisposed__Delegate: FScriptDelegate;  // 0x00b8 (0x0018) [FScriptDelegate]
 };
 
 /**
@@ -212,19 +99,6 @@ export type UAsyncResult = UAsyncTask & {
  * Flags: CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UAsyncTask = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
   bComplete: boolean;  // 0x0060 (0x0004) [bool : 0x1]
   bDisposed: boolean;  // 0x0060 (0x0004) [bool : 0x2]
   Error: UError;  // 0x0068 (0x0008) [UError*]
@@ -262,19 +136,6 @@ export type UAsyncTask = UObject & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UAutomationTest = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
   MaterialsCompiled: string[];  // 0x0060 (0x0010) [TArray<FString>]
   MaterialsFailedCompile: string[];  // 0x0070 (0x0010) [TArray<FString>]
   AsyncPreloadPackagesMissing: string[];  // 0x0080 (0x0010) [TArray<FString>]
@@ -288,19 +149,6 @@ export type UAutomationTest = UObject & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UBase64 = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 // Base64 Functions
@@ -321,19 +169,6 @@ export type UBase64 = UObject & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UBoolProperty = UProperty & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -343,19 +178,6 @@ export type UBoolProperty = UProperty & {
  * Flags: CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UBreadcrumbs = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
   BreadcrumbInstance: FPointer;  // 0x0060 (0x0008) [FPointer]
 };
 
@@ -370,19 +192,6 @@ export type UBreadcrumbs = UObject & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UByteProperty = UProperty & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -392,19 +201,6 @@ export type UByteProperty = UProperty & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UClass = UState & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -414,19 +210,6 @@ export type UClass = UState & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UClassProperty = UObjectProperty & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -436,19 +219,6 @@ export type UClassProperty = UObjectProperty & {
  * Flags: CLASS_Transient | CLASS_Native | CLASS_Intrinsic
  */
 export type UClassTuple_ORS = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -458,19 +228,6 @@ export type UClassTuple_ORS = UObject & {
  * Flags: CLASS_Transient | CLASS_Native | CLASS_Intrinsic
  */
 export type UClassTupleCollection_ORS = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -480,19 +237,6 @@ export type UClassTupleCollection_ORS = UObject & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Transient | CLASS_Parsed | CLASS_Localized | CLASS_Native | CLASS_Exported
  */
 export type UCommandlet = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
   HelpDescription: string;  // 0x0060 (0x0010) [FString]
   HelpUsage: string;  // 0x0070 (0x0010) [FString]
   HelpWebLink: string;  // 0x0080 (0x0010) [FString]
@@ -515,19 +259,6 @@ export type UCommandlet = UObject & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UComponent = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
   TemplateOwnerClass: bigint;  // 0x0060 (0x0008) [UClass*]
   TemplateName: FName;  // 0x0068 (0x0008) [FName]
 };
@@ -539,19 +270,6 @@ export type UComponent = UObject & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UComponentProperty = UObjectProperty & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -561,19 +279,6 @@ export type UComponentProperty = UObjectProperty & {
  * Flags: CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UCompression = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 // Compression Functions
@@ -586,19 +291,6 @@ export type UCompression = UObject & {
  * Flags: CLASS_Config | CLASS_Transient | CLASS_Native | CLASS_Intrinsic
  */
 export type UConfig_ORS = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -608,19 +300,6 @@ export type UConfig_ORS = UObject & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UConst = UField & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -630,19 +309,6 @@ export type UConst = UField & {
  * Flags: CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UDebugDrawer = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
   DefaultTextColor: FColor;  // 0x0060 (0x0004) [FColor]
   bSilent: boolean;  // 0x0064 (0x0004) [bool : 0x1]
   bPrintActorsInline: boolean;  // 0x0064 (0x0004) [bool : 0x2]
@@ -683,19 +349,6 @@ export type UDefault__Class = {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UDelegateProperty = UProperty & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -705,19 +358,6 @@ export type UDelegateProperty = UProperty & {
  * Flags: CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UDelegateTracker = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
   AsyncDelegates: FAsyncDelegateInfo[];  // 0x0060 (0x0010) [TArray<FAsyncDelegateInfo>]
   __PlaceholderDelegate__Delegate: FScriptDelegate;  // 0x0070 (0x0018) [FScriptDelegate]
 };
@@ -734,21 +374,6 @@ export type UDelegateTracker = UObject & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_EditInlineNew | CLASS_CollapseCategories | CLASS_Exported
  */
 export type UDistributionFloat = UComponent & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
-  TemplateOwnerClass: bigint;  // 0x0060 (0x0008) [UClass*]
-  TemplateName: FName;  // 0x0068 (0x0008) [FName]
   VfTable_FCurveEdInterface: FPointer;  // 0x0070 (0x0008) [FPointer]
   bCanBeBaked: boolean;  // 0x0078 (0x0004) [bool : 0x1]
   bIsDirty: boolean;  // 0x0078 (0x0004) [bool : 0x2]
@@ -764,21 +389,6 @@ export type UDistributionFloat = UComponent & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_EditInlineNew | CLASS_CollapseCategories | CLASS_Exported
  */
 export type UDistributionVector = UComponent & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
-  TemplateOwnerClass: bigint;  // 0x0060 (0x0008) [UClass*]
-  TemplateName: FName;  // 0x0068 (0x0008) [FName]
   VfTable_FCurveEdInterface: FPointer;  // 0x0070 (0x0008) [FPointer]
   bCanBeBaked: boolean;  // 0x0078 (0x0004) [bool : 0x1]
   bIsDirty: boolean;  // 0x0078 (0x0004) [bool : 0x2]
@@ -794,19 +404,6 @@ export type UDistributionVector = UComponent & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UEnum = UField & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -816,19 +413,6 @@ export type UEnum = UField & {
  * Flags: CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UError = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
   Type: UErrorType;  // 0x0060 (0x0008) [UErrorType*]
   Message: string;  // 0x0068 (0x0010) [FString]
   Code: number;  // 0x0078 (0x0004) [int32]
@@ -846,19 +430,6 @@ export type UError = UObject & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UErrorList = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
   LocalizationPackage: string;  // 0x0060 (0x0010) [FString]
   LocalizationSection: string;  // 0x0070 (0x0010) [FString]
 };
@@ -873,19 +444,6 @@ export type UErrorList = UObject & {
  * Flags: CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UErrorType = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
   LocalizationKey: string;  // 0x0060 (0x0010) [FString]
 };
 
@@ -900,19 +458,6 @@ export type UErrorType = UObject & {
  * Flags: CLASS_Abstract | CLASS_Transient | CLASS_Native | CLASS_Intrinsic
  */
 export type UExporter = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
   FormatExtension: string[];  // 0x0068 (0x0010) [TArray<FString>]
   FormatDescription: string[];  // 0x0078 (0x0010) [TArray<FString>]
 };
@@ -924,19 +469,6 @@ export type UExporter = UObject & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_NoExport
  */
 export type UFactory = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
   Category: string;  // 0x0060 (0x0010) [FString]
   SupportedClass: bigint;  // 0x0070 (0x0008) [UClass*]
   ContextClass: bigint;  // 0x0078 (0x0008) [UClass*]
@@ -958,19 +490,6 @@ export type UFactory = UObject & {
  * Flags: CLASS_Transient | CLASS_Native | CLASS_Intrinsic
  */
 export type UFeatureSystem = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
   Prime: boolean;  // 0x0068 (0x0004) [bool : 0x2]
   Matchmaking: boolean;  // 0x0068 (0x0004) [bool : 0x8]
   PrivateMatch: boolean;  // 0x0068 (0x0004) [bool : 0x10]
@@ -1104,19 +623,6 @@ export type UFeatureSystem = UObject & {
  * Flags: CLASS_Abstract | CLASS_Native | CLASS_Intrinsic
  */
 export type UField = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -1126,19 +632,6 @@ export type UField = UObject & {
  * Flags: CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UFileSystem = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 // FileSystem Functions
@@ -1167,19 +660,6 @@ export type UFileSystem = UObject & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UFloatProperty = UProperty & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -1189,19 +669,6 @@ export type UFloatProperty = UProperty & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UFunction = UStruct & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -1211,19 +678,6 @@ export type UFunction = UStruct & {
  * Flags: CLASS_Transient | CLASS_Native | CLASS_Intrinsic
  */
 export type UGlobal_ORS = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -1233,20 +687,6 @@ export type UGlobal_ORS = UObject & {
  * Flags: CLASS_Transient | CLASS_Native | CLASS_Intrinsic
  */
 export type UGroup_ORS = UScriptGroup_ORS & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
-  GroupOwner: UObject;  // 0x0060 (0x0008) [UObject*]
 };
 
 /**
@@ -1256,29 +696,6 @@ export type UGroup_ORS = UScriptGroup_ORS & {
  * Flags: CLASS_Compiled | CLASS_Transient | CLASS_Parsed | CLASS_Localized | CLASS_Native | CLASS_Exported
  */
 export type UHelpCommandlet = UCommandlet & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
-  HelpDescription: string;  // 0x0060 (0x0010) [FString]
-  HelpUsage: string;  // 0x0070 (0x0010) [FString]
-  HelpWebLink: string;  // 0x0080 (0x0010) [FString]
-  HelpParamNames: string[];  // 0x0090 (0x0010) [TArray<FString>]
-  HelpParamDescriptions: string[];  // 0x00a0 (0x0010) [TArray<FString>]
-  IsServer: boolean;  // 0x00b0 (0x0004) [bool : 0x1]
-  IsClient: boolean;  // 0x00b0 (0x0004) [bool : 0x2]
-  IsEditor: boolean;  // 0x00b0 (0x0004) [bool : 0x4]
-  LogToConsole: boolean;  // 0x00b0 (0x0004) [bool : 0x8]
-  ShowErrorCount: boolean;  // 0x00b0 (0x0004) [bool : 0x10]
 };
 
 // HelpCommandlet Functions
@@ -1291,19 +708,6 @@ export type UHelpCommandlet = UCommandlet & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Parsed | CLASS_Interface
  */
 export type UIDisposable = UInterface & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 // IDisposable Functions
@@ -1316,19 +720,6 @@ export type UIDisposable = UInterface & {
  * Flags: CLASS_Transient | CLASS_Native | CLASS_Intrinsic
  */
 export type UInstance_ORS = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -1338,19 +729,6 @@ export type UInstance_ORS = UObject & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Interface | CLASS_Exported
  */
 export type UInterface = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -1360,19 +738,6 @@ export type UInterface = UObject & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UInterfaceProperty = UProperty & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -1382,19 +747,6 @@ export type UInterfaceProperty = UProperty & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UIntProperty = UProperty & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -1404,19 +756,6 @@ export type UIntProperty = UProperty & {
  * Flags: CLASS_Transient | CLASS_Native | CLASS_Intrinsic
  */
 export type ULinker = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -1426,19 +765,6 @@ export type ULinker = UObject & {
  * Flags: CLASS_Transient | CLASS_Native | CLASS_Intrinsic
  */
 export type ULinkerLoad = ULinker & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -1448,19 +774,6 @@ export type ULinkerLoad = ULinker & {
  * Flags: CLASS_Transient | CLASS_Native | CLASS_Intrinsic
  */
 export type ULinkerSave = ULinker & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -1470,19 +783,6 @@ export type ULinkerSave = ULinker & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UMapProperty = UProperty & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -1492,19 +792,6 @@ export type UMapProperty = UProperty & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UMetaData = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -1514,19 +801,6 @@ export type UMetaData = UObject & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UNameProperty = UProperty & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -1981,19 +1255,6 @@ export type UObject = {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UObjectProperty = UProperty & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -2003,21 +1264,6 @@ export type UObjectProperty = UProperty & {
  * Flags: CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_HasComponents | CLASS_Exported
  */
 export type UObjectProvider = UComponent & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
-  TemplateOwnerClass: bigint;  // 0x0060 (0x0008) [UClass*]
-  TemplateName: FName;  // 0x0068 (0x0008) [FName]
   VfTable_FObjectDestructionSubscriber: FPointer;  // 0x0070 (0x0008) [FPointer]
   MyObjects: UObject[];  // 0x0078 (0x0010) [TArray<UObject*>]
   ObjectRefs: FMap_Mirror;  // 0x0088 (0x0050) [FMap_Mirror]
@@ -2077,19 +1323,6 @@ export type UObjectProvider = UComponent & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UObjectRedirector = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -2099,19 +1332,6 @@ export type UObjectRedirector = UObject & {
  * Flags: CLASS_Transient | CLASS_Native | CLASS_Intrinsic
  */
 export type UObjectSerializer = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -2121,19 +1341,6 @@ export type UObjectSerializer = UObject & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UObjectUtil = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 // ObjectUtil Functions
@@ -2152,19 +1359,6 @@ export type UObjectUtil = UObject & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UPackage = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -2174,19 +1368,6 @@ export type UPackage = UObject & {
  * Flags: CLASS_Transient | CLASS_Native | CLASS_Intrinsic
  */
 export type UPackageMap = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -2196,19 +1377,6 @@ export type UPackageMap = UObject & {
  * Flags: CLASS_Abstract | CLASS_Native | CLASS_Intrinsic
  */
 export type UProperty = UField & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -2218,19 +1386,6 @@ export type UProperty = UField & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UPropertyChangeDispatcher = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -2240,19 +1395,6 @@ export type UPropertyChangeDispatcher = UObject & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UQWordProperty = UProperty & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -2262,19 +1404,6 @@ export type UQWordProperty = UProperty & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Parsed
  */
 export type URotatorConversions = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 // RotatorConversions Functions
@@ -2288,19 +1417,6 @@ export type URotatorConversions = UObject & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UScriptStruct = UStruct & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -2310,19 +1426,6 @@ export type UScriptStruct = UStruct & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UState = UStruct & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -2332,21 +1435,6 @@ export type UState = UStruct & {
  * Flags: CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UStringMap = UComponent & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
-  TemplateOwnerClass: bigint;  // 0x0060 (0x0008) [UClass*]
-  TemplateName: FName;  // 0x0068 (0x0008) [FName]
   Map: FMap_Mirror;  // 0x0070 (0x0050) [FMap_Mirror]
   __PairCallback__Delegate: FScriptDelegate;  // 0x00c0 (0x0018) [FScriptDelegate]
 };
@@ -2368,21 +1456,6 @@ export type UStringMap = UComponent & {
  * Flags: CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UStringObjectMap = UComponent & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
-  TemplateOwnerClass: bigint;  // 0x0060 (0x0008) [UClass*]
-  TemplateName: FName;  // 0x0068 (0x0008) [FName]
   Map: FMap_Mirror;  // 0x0070 (0x0050) [FMap_Mirror]
 };
 
@@ -2402,19 +1475,6 @@ export type UStringObjectMap = UComponent & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UStrProperty = UProperty & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -2424,19 +1484,6 @@ export type UStrProperty = UProperty & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UStruct = UField & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -2446,19 +1493,6 @@ export type UStruct = UField & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UStructProperty = UProperty & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -2468,19 +1502,6 @@ export type UStructProperty = UProperty & {
  * Flags: CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type USubscription = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
   __SubscriberCallback__Delegate: FScriptDelegate;  // 0x0060 (0x0018) [FScriptDelegate]
 };
 
@@ -2501,19 +1522,6 @@ export type USubscription = UObject & {
  * Flags: CLASS_Transient | CLASS_Native | CLASS_Intrinsic
  */
 export type USubscriptionCollection_ORS = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -2523,19 +1531,6 @@ export type USubscriptionCollection_ORS = UObject & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Transient | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type USubsystem = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
   VfTable_FExec: FPointer;  // 0x0060 (0x0008) [FPointer]
 };
 
@@ -2546,20 +1541,6 @@ export type USubsystem = UObject & {
  * Flags: CLASS_Config | CLASS_Transient | CLASS_Native | CLASS_Intrinsic
  */
 export type USystem = USubsystem & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
-  VfTable_FExec: FPointer;  // 0x0060 (0x0008) [FPointer]
   StaleCacheDays: number;  // 0x0068 (0x0004) [int32]
   MaxStaleCacheSize: number;  // 0x006c (0x0004) [int32]
   MaxOverallCacheSize: number;  // 0x0070 (0x0004) [int32]
@@ -2588,26 +1569,6 @@ export type USystem = USubsystem & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Parsed | CLASS_NoExport
  */
 export type UTAsyncResult = UAsyncTask & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
-  bComplete: boolean;  // 0x0060 (0x0004) [bool : 0x1]
-  bDisposed: boolean;  // 0x0060 (0x0004) [bool : 0x2]
-  Error: UError;  // 0x0068 (0x0008) [UError*]
-  __EventAsyncTaskSuccess__Delegate: FScriptDelegate;  // 0x0070 (0x0018) [FScriptDelegate]
-  __EventAsyncTaskFail__Delegate: FScriptDelegate;  // 0x0088 (0x0018) [FScriptDelegate]
-  __EventAsyncTaskComplete__Delegate: FScriptDelegate;  // 0x00a0 (0x0018) [FScriptDelegate]
-  __EventDisposed__Delegate: FScriptDelegate;  // 0x00b8 (0x0018) [FScriptDelegate]
 };
 
 /**
@@ -2617,19 +1578,6 @@ export type UTAsyncResult = UAsyncTask & {
  * Flags: CLASS_Native | CLASS_Intrinsic
  */
 export type UTextBuffer = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 /**
@@ -2639,31 +1587,6 @@ export type UTextBuffer = UObject & {
  * Flags: CLASS_Transient | CLASS_Native | CLASS_Intrinsic
  */
 export type UTextBufferFactory = UFactory & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
-  Category: string;  // 0x0060 (0x0010) [FString]
-  SupportedClass: bigint;  // 0x0070 (0x0008) [UClass*]
-  ContextClass: bigint;  // 0x0078 (0x0008) [UClass*]
-  Description: string;  // 0x0080 (0x0010) [FString]
-  Formats: string[];  // 0x0090 (0x0010) [TArray<FString>]
-  bCreateNew: boolean;  // 0x00a0 (0x0004) [bool : 0x1]
-  bEditAfterNew: boolean;  // 0x00a0 (0x0004) [bool : 0x2]
-  bEditorImport: boolean;  // 0x00a0 (0x0004) [bool : 0x4]
-  bText: boolean;  // 0x00a0 (0x0004) [bool : 0x8]
-  bAssetNameMatchesPackageName: boolean;  // 0x00a0 (0x0004) [bool : 0x10]
-  AutoPriority: number;  // 0x00a4 (0x0004) [int32]
-  ValidGameNames: string[];  // 0x00a8 (0x0010) [TArray<FString>]
 };
 
 /**
@@ -2673,19 +1596,6 @@ export type UTextBufferFactory = UFactory & {
  * Flags: CLASS_Abstract | CLASS_Compiled | CLASS_Parsed | CLASS_Native | CLASS_Exported
  */
 export type UUTF8 = UObject & {
-  VfTableObject: FPointer;  // 0x0000 (0x0008) [FPointer]
-  HashNext: FPointer;  // 0x0008 (0x0008) [FPointer]
-  ObjectFlags: bigint;  // 0x0010 (0x0008) [uint64]
-  HashOuterNext: FPointer;  // 0x0018 (0x0008) [FPointer]
-  StateFrame: FPointer;  // 0x0020 (0x0008) [FPointer]
-  Linker: UObject;  // 0x0028 (0x0008) [UObject*]
-  LinkerIndex: FPointer;  // 0x0030 (0x0008) [FPointer]
-  ObjectInternalInteger: number;  // 0x0038 (0x0004) [int32]
-  NetIndex: number;  // 0x003c (0x0004) [int32]
-  Outer: UObject;  // 0x0040 (0x0008) [UObject*]
-  Name: FName;  // 0x0048 (0x0008) [FName]
-  Class: bigint;  // 0x0050 (0x0008) [UClass*]
-  ObjectArchetype: UObject;  // 0x0058 (0x0008) [UObject*]
 };
 
 // UTF8 Functions
