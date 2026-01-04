@@ -6,8 +6,21 @@
  * Import these to read/write memory at the correct locations.
  */
 
-import { Actor, ActorComponent, ActorFactory, InterpTrack, InterpTrackFloatBase, InterpTrackInst, Keypoint, SeqAct_Latent, SequenceAction, SequenceEvent, Volume } from './Engine';
-import { Object, Subsystem } from './Core';
+/**
+ * Engine.ActorFactory Offsets
+ * Size: 0x009C
+ * Extends: Object
+ */
+export const ActorFactory = {
+  GameplayActorClass: 0x0060,  // 0x0060 (0x0008) [UClass*]
+  MenuName: 0x0068,  // 0x0068 (0x0010) [FString]
+  MenuPriority: 0x0078,  // 0x0078 (0x0004) [int32]
+  AlternateMenuPriority: 0x007C,  // 0x007C (0x0004) [int32]
+  NewActorClassName: 0x0080,  // 0x0080 (0x0010) [FString]
+  NewActorClass: 0x0090,  // 0x0090 (0x0008) [UClass*]
+  bPlaceable: 0x0098,  // 0x0098 (0x0004) [bool : 0x1]
+  bShowInEditorQuickMenu: 0x0098,  // 0x0098 (0x0004) [bool : 0x2]
+} as const;
 
 /**
  * AkAudio.ActorFactoryAkAmbientSound Offsets
@@ -17,6 +30,15 @@ import { Object, Subsystem } from './Core';
 export const ActorFactoryAkAmbientSound = {
   AmbientEvent: 0x00A0,  // 0x00A0 (0x0008) [UAkEvent*]
   ...ActorFactory,
+} as const;
+
+/**
+ * Engine.Keypoint Offsets
+ * Size: 0x0270
+ * Extends: Actor
+ */
+export const Keypoint = {
+  SpriteComp: 0x0268,  // 0x0268 (0x0008) [unknown]
 } as const;
 
 /**
@@ -43,6 +65,15 @@ export const AkAmbientSoundActor = {
 } as const;
 
 /**
+ * Core.Subsystem Offsets
+ * Size: 0x0068
+ * Extends: Object
+ */
+export const Subsystem = {
+  VfTable_FExec: 0x0060,  // 0x0060 (0x0008) [FPointer]
+} as const;
+
+/**
  * AkAudio.AkAudioDevice Offsets
  * Size: 0x01B0
  * Extends: Subsystem
@@ -58,6 +89,172 @@ export const AkAudioDevice = {
 } as const;
 
 /**
+ * Engine.Actor Offsets
+ * Size: 0x0268
+ * Extends: Object
+ */
+export const Actor = {
+  ActorDependantPSCs: 0x0060,  // 0x0060 (0x0010) [TArray<unknown>]
+  Components: 0x0070,  // 0x0070 (0x0010) [TArray<unknown>]
+  AllComponents: 0x0080,  // 0x0080 (0x0010) [TArray<unknown>]
+  Location: 0x0090,  // 0x0090 (0x000C) [FVector]
+  Rotation: 0x009C,  // 0x009C (0x000C) [FRotator]
+  DrawScale: 0x00A8,  // 0x00A8 (0x0004) [float]
+  DrawScale3D: 0x00AC,  // 0x00AC (0x000C) [FVector]
+  PrePivot: 0x00B8,  // 0x00B8 (0x000C) [FVector]
+  EditorIconColor: 0x00C4,  // 0x00C4 (0x0004) [FColor]
+  DetachFence: 0x00C8,  // 0x00C8 (0x0004) [FRenderCommandFence]
+  CustomTimeDilation: 0x00CC,  // 0x00CC (0x0004) [float]
+  Physics: 0x00D0,  // 0x00D0 (0x0001) [EPhysics]
+  RemoteRole: 0x00D1,  // 0x00D1 (0x0001) [ENetRole]
+  Role: 0x00D2,  // 0x00D2 (0x0001) [ENetRole]
+  CollisionType: 0x00D3,  // 0x00D3 (0x0001) [ECollisionType]
+  ReplicatedCollisionType: 0x00D4,  // 0x00D4 (0x0001) [ECollisionType]
+  TickGroup: 0x00D5,  // 0x00D5 (0x0001) [ETickingGroup]
+  Owner: 0x00D8,  // 0x00D8 (0x0008) [UActor*]
+  Base: 0x00E0,  // 0x00E0 (0x0008) [UActor*]
+  Timers: 0x00E8,  // 0x00E8 (0x0010) [TArray<FTimerData>]
+  bStatic: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x1]
+  bHidden: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x2]
+  bHiddenSelf: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x4]
+  bNoDelete: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x8]
+  bDeleteMe: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x10]
+  bTicked: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x20]
+  bOnlyOwnerSee: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x40]
+  bTickIsDisabled: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x80]
+  bWorldGeometry: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x100]
+  bIgnoreRigidBodyPawns: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x200]
+  bOrientOnSlope: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x400]
+  bIgnoreEncroachers: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x800]
+  bPushedByEncroachers: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x1000]
+  bDestroyedByInterpActor: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x2000]
+  bRouteBeginPlayEvenIfStatic: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x4000]
+  bIsMoving: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x8000]
+  bAlwaysEncroachCheck: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x10000]
+  bHasAlternateTargetLocation: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x20000]
+  bCanStepUpOn: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x40000]
+  bNetTemporary: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x80000]
+  bOnlyRelevantToOwner: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x100000]
+  bNetDirty: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x200000]
+  bAlwaysRelevant: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x400000]
+  bReplicateInstigator: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x800000]
+  bReplicateMovement: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x1000000]
+  bSkipActorPropertyReplication: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x2000000]
+  bUpdateSimulatedPosition: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x4000000]
+  bTearOff: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x8000000]
+  bOnlyDirtyReplication: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x10000000]
+  bAllowFluidSurfaceInteraction: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x20000000]
+  bDemoRecording: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x40000000]
+  bDemoOwner: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x-80000000]
+  bForceDemoRelevant: 0x00FC,  // 0x00FC (0x0004) [bool : 0x1]
+  bNetInitialRotation: 0x00FC,  // 0x00FC (0x0004) [bool : 0x2]
+  bReplicateRigidBodyLocation: 0x00FC,  // 0x00FC (0x0004) [bool : 0x4]
+  bKillDuringLevelTransition: 0x00FC,  // 0x00FC (0x0004) [bool : 0x8]
+  bExchangedRoles: 0x00FC,  // 0x00FC (0x0004) [bool : 0x10]
+  bConsiderAllStaticMeshComponentsForStreaming: 0x00FC,  // 0x00FC (0x0004) [bool : 0x20]
+  bDebug: 0x00FC,  // 0x00FC (0x0004) [bool : 0x40]
+  bPostRenderIfNotVisible: 0x00FC,  // 0x00FC (0x0004) [bool : 0x80]
+  bForceNetUpdate: 0x00FC,  // 0x00FC (0x0004) [bool : 0x100]
+  bForcePacketUpdate: 0x00FC,  // 0x00FC (0x0004) [bool : 0x200]
+  bPendingNetUpdate: 0x00FC,  // 0x00FC (0x0004) [bool : 0x400]
+  bHardAttach: 0x00FC,  // 0x00FC (0x0004) [bool : 0x800]
+  bIgnoreBaseRotation: 0x00FC,  // 0x00FC (0x0004) [bool : 0x1000]
+  bShadowParented: 0x00FC,  // 0x00FC (0x0004) [bool : 0x2000]
+  bSkipAttachedMoves: 0x00FC,  // 0x00FC (0x0004) [bool : 0x4000]
+  bCanBeAdheredTo: 0x00FC,  // 0x00FC (0x0004) [bool : 0x8000]
+  bCanBeFrictionedTo: 0x00FC,  // 0x00FC (0x0004) [bool : 0x10000]
+  bGameRelevant: 0x00FC,  // 0x00FC (0x0004) [bool : 0x20000]
+  bMovable: 0x00FC,  // 0x00FC (0x0004) [bool : 0x40000]
+  bShouldBaseAtStartup: 0x00FC,  // 0x00FC (0x0004) [bool : 0x80000]
+  bPendingDelete: 0x00FC,  // 0x00FC (0x0004) [bool : 0x100000]
+  bCanTeleport: 0x00FC,  // 0x00FC (0x0004) [bool : 0x200000]
+  bAlwaysTick: 0x00FC,  // 0x00FC (0x0004) [bool : 0x400000]
+  bBlocksNavigation: 0x00FC,  // 0x00FC (0x0004) [bool : 0x800000]
+  BlockRigidBody: 0x00FC,  // 0x00FC (0x0004) [bool : 0x1000000]
+  bCollideWhenPlacing: 0x00FC,  // 0x00FC (0x0004) [bool : 0x2000000]
+  bCollideActors: 0x00FC,  // 0x00FC (0x0004) [bool : 0x4000000]
+  bCollideWorld: 0x00FC,  // 0x00FC (0x0004) [bool : 0x8000000]
+  bCollideComplex: 0x00FC,  // 0x00FC (0x0004) [bool : 0x10000000]
+  bBlockActors: 0x00FC,  // 0x00FC (0x0004) [bool : 0x20000000]
+  bBlocksTeleport: 0x00FC,  // 0x00FC (0x0004) [bool : 0x40000000]
+  bMoveIgnoresDestruction: 0x00FC,  // 0x00FC (0x0004) [bool : 0x-80000000]
+  bProjectileMoveSingleBlocking: 0x0100,  // 0x0100 (0x0004) [bool : 0x1]
+  bNoEncroachCheck: 0x0100,  // 0x0100 (0x0004) [bool : 0x2]
+  bCollideAsEncroacher: 0x0100,  // 0x0100 (0x0004) [bool : 0x4]
+  bPhysRigidBodyOutOfWorldCheck: 0x0100,  // 0x0100 (0x0004) [bool : 0x8]
+  bComponentOutsideWorld: 0x0100,  // 0x0100 (0x0004) [bool : 0x10]
+  bForceOctreeSNFilter: 0x0100,  // 0x0100 (0x0004) [bool : 0x20]
+  bForceOctreeMNFilter: 0x0100,  // 0x0100 (0x0004) [bool : 0x40]
+  bRigidBodyWasAwake: 0x0100,  // 0x0100 (0x0004) [bool : 0x80]
+  bCallRigidBodyWakeEvents: 0x0100,  // 0x0100 (0x0004) [bool : 0x100]
+  bBounce: 0x0100,  // 0x0100 (0x0004) [bool : 0x200]
+  bJustTeleported: 0x0100,  // 0x0100 (0x0004) [bool : 0x400]
+  bEnableMobileTouch: 0x0100,  // 0x0100 (0x0004) [bool : 0x800]
+  bNetInitial: 0x0100,  // 0x0100 (0x0004) [bool : 0x1000]
+  bNetOwner: 0x0100,  // 0x0100 (0x0004) [bool : 0x2000]
+  bHiddenEd: 0x0100,  // 0x0100 (0x0004) [bool : 0x4000]
+  bEditable: 0x0100,  // 0x0100 (0x0004) [bool : 0x8000]
+  bHiddenEdGroup: 0x0100,  // 0x0100 (0x0004) [bool : 0x10000]
+  bHiddenEdLayer: 0x0100,  // 0x0100 (0x0004) [bool : 0x20000]
+  bHiddenEdCustom: 0x0100,  // 0x0100 (0x0004) [bool : 0x40000]
+  bHiddenEdTemporary: 0x0100,  // 0x0100 (0x0004) [bool : 0x80000]
+  bHiddenEdLevel: 0x0100,  // 0x0100 (0x0004) [bool : 0x100000]
+  bHiddenEdScene: 0x0100,  // 0x0100 (0x0004) [bool : 0x200000]
+  bHiddenEdNoPhysics: 0x0100,  // 0x0100 (0x0004) [bool : 0x400000]
+  bEdShouldSnap: 0x0100,  // 0x0100 (0x0004) [bool : 0x800000]
+  bTempEditor: 0x0100,  // 0x0100 (0x0004) [bool : 0x1000000]
+  bPathColliding: 0x0100,  // 0x0100 (0x0004) [bool : 0x2000000]
+  bPathTemp: 0x0100,  // 0x0100 (0x0004) [bool : 0x4000000]
+  bScriptInitialized: 0x0100,  // 0x0100 (0x0004) [bool : 0x8000000]
+  bLockLocation: 0x0100,  // 0x0100 (0x0004) [bool : 0x10000000]
+  bForceAllowKismetModification: 0x0100,  // 0x0100 (0x0004) [bool : 0x20000000]
+  bDedicatedServerRelevant: 0x0100,  // 0x0100 (0x0004) [bool : 0x40000000]
+  bLockedFromEditorDeletion: 0x0100,  // 0x0100 (0x0004) [bool : 0x-80000000]
+  bComponentsDirty: 0x0104,  // 0x0104 (0x0004) [bool : 0x1]
+  bUpdateComponentsIfEmpty: 0x0104,  // 0x0104 (0x0004) [bool : 0x2]
+  bDebugEffectIsRelevant: 0x0104,  // 0x0104 (0x0004) [bool : 0x4]
+  SkelMeshCompTickTag: 0x0108,  // 0x0108 (0x0004) [int32]
+  NetTag: 0x010C,  // 0x010C (0x0004) [int32]
+  NetUpdateTime: 0x0110,  // 0x0110 (0x0004) [float]
+  NetUpdateFrequency: 0x0114,  // 0x0114 (0x0004) [float]
+  NetPriority: 0x0118,  // 0x0118 (0x0004) [float]
+  LastNetUpdateTime: 0x011C,  // 0x011C (0x0004) [float]
+  LastForcePacketUpdateTime: 0x0120,  // 0x0120 (0x0004) [float]
+  TimeSinceLastTick: 0x0124,  // 0x0124 (0x0004) [float]
+  Instigator: 0x0128,  // 0x0128 (0x0008) [UPawn*]
+  WorldInfo: 0x0130,  // 0x0130 (0x0008) [UWorldInfo*]
+  LifeSpan: 0x0138,  // 0x0138 (0x0004) [float]
+  CreationTime: 0x013C,  // 0x013C (0x0004) [float]
+  LastRenderTime: 0x0140,  // 0x0140 (0x0004) [float]
+  Tag: 0x0144,  // 0x0144 (0x0008) [FName]
+  InitialState: 0x014C,  // 0x014C (0x0008) [FName]
+  Layer: 0x0154,  // 0x0154 (0x0008) [FName]
+  Group: 0x015C,  // 0x015C (0x0008) [FName]
+  HiddenEditorViews: 0x0168,  // 0x0168 (0x0008) [uint64]
+  Touching: 0x0170,  // 0x0170 (0x0010) [TArray<UActor*>]
+  Children: 0x0180,  // 0x0180 (0x0010) [TArray<UActor*>]
+  LatentFloat: 0x0190,  // 0x0190 (0x0004) [float]
+  LatentSeqNode: 0x0198,  // 0x0198 (0x0008) [UAnimNodeSequence*]
+  PhysicsVolume: 0x01A0,  // 0x01A0 (0x0008) [UPhysicsVolume*]
+  Velocity: 0x01A8,  // 0x01A8 (0x000C) [FVector]
+  Acceleration: 0x01B4,  // 0x01B4 (0x000C) [FVector]
+  AngularVelocity: 0x01C0,  // 0x01C0 (0x000C) [FVector]
+  BaseSkelComponent: 0x01D0,  // 0x01D0 (0x0008) [unknown]
+  BaseBoneName: 0x01D8,  // 0x01D8 (0x0008) [FName]
+  Attached: 0x01E0,  // 0x01E0 (0x0010) [TArray<UActor*>]
+  RelativeLocation: 0x01F0,  // 0x01F0 (0x000C) [FVector]
+  RelativeRotation: 0x01FC,  // 0x01FC (0x000C) [FRotator]
+  CollisionComponent: 0x0208,  // 0x0208 (0x0008) [unknown]
+  OverlapTag: 0x0210,  // 0x0210 (0x0004) [int32]
+  RotationRate: 0x0214,  // 0x0214 (0x000C) [FRotator]
+  PendingTouch: 0x0220,  // 0x0220 (0x0008) [UActor*]
+  SupportedEvents: 0x0228,  // 0x0228 (0x0010) [TArray<UClass*>]
+  GeneratedEvents: 0x0238,  // 0x0238 (0x0010) [TArray<USequenceEvent*>]
+  LatentActions: 0x0248,  // 0x0248 (0x0010) [TArray<USeqAct_Latent*>]
+  IgnoredTouchClasses: 0x0258,  // 0x0258 (0x0010) [TArray<UClass*>]
+} as const;
+
+/**
  * AkAudio.AkBusActor Offsets
  * Size: 0x0279
  * Extends: Actor
@@ -70,6 +267,23 @@ export const AkBusActor = {
 } as const;
 
 /**
+ * Engine.ActorComponent Offsets
+ * Size: 0x009D
+ * Extends: Component
+ */
+export const ActorComponent = {
+  LocalViewers: 0x0070,  // 0x0070 (0x0010) [TArray<UPlayerController*>]
+  BulletSceneGroup: 0x0080,  // 0x0080 (0x0001) [uint8]
+  Scene: 0x0088,  // 0x0088 (0x0008) [FPointer]
+  Owner: 0x0090,  // 0x0090 (0x0008) [UActor*]
+  bAttached: 0x0098,  // 0x0098 (0x0004) [bool : 0x1]
+  bTickInEditor: 0x0098,  // 0x0098 (0x0004) [bool : 0x2]
+  bNeedsReattach: 0x0098,  // 0x0098 (0x0004) [bool : 0x4]
+  bNeedsUpdateTransform: 0x0098,  // 0x0098 (0x0004) [bool : 0x8]
+  TickGroup: 0x009C,  // 0x009C (0x0001) [ETickingGroup]
+} as const;
+
+/**
  * AkAudio.AkComponent Offsets
  * Size: 0x00B4
  * Extends: ActorComponent
@@ -79,6 +293,26 @@ export const AkComponent = {
   AutoPlayEvent: 0x00A8,  // 0x00A8 (0x0008) [UAkEvent*]
   bStopWhenOwnerDestroyed: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x1]
   ...ActorComponent,
+} as const;
+
+/**
+ * Core.Object Offsets
+ * Size: 0x0060
+ */
+export const Object_ = {
+  VfTableObject: 0x0000,  // 0x0000 (0x0008) [FPointer]
+  HashNext: 0x0008,  // 0x0008 (0x0008) [FPointer]
+  ObjectFlags: 0x0010,  // 0x0010 (0x0008) [uint64]
+  HashOuterNext: 0x0018,  // 0x0018 (0x0008) [FPointer]
+  StateFrame: 0x0020,  // 0x0020 (0x0008) [FPointer]
+  Linker: 0x0028,  // 0x0028 (0x0008) [UObject*]
+  LinkerIndex: 0x0030,  // 0x0030 (0x0008) [FPointer]
+  ObjectInternalInteger: 0x0038,  // 0x0038 (0x0004) [int32]
+  NetIndex: 0x003C,  // 0x003C (0x0004) [int32]
+  Outer: 0x0040,  // 0x0040 (0x0008) [UObject*]
+  Name: 0x0048,  // 0x0048 (0x0008) [FName]
+  Class: 0x0050,  // 0x0050 (0x0008) [UClass*]
+  ObjectArchetype: 0x0058,  // 0x0058 (0x0008) [UObject*]
 } as const;
 
 /**
@@ -96,7 +330,7 @@ export const AkDevice = {
   MasterAudioBusName: 0x0090,  // 0x0090 (0x0008) [FName]
   GameplayAudioBusName: 0x0098,  // 0x0098 (0x0008) [FName]
   __EventInitialized__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -106,7 +340,19 @@ export const AkDevice = {
  */
 export const AkDialogueEvent = {
   Arguments: 0x0060,  // 0x0060 (0x0010) [TArray<UAkSwitch*>]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.Volume Offsets
+ * Size: 0x02A4
+ * Extends: Brush
+ */
+export const Volume = {
+  AssociatedActor: 0x0298,  // 0x0298 (0x0008) [UActor*]
+  bForcePawnWalk: 0x02A0,  // 0x02A0 (0x0004) [bool : 0x1]
+  bProcessAllActors: 0x02A0,  // 0x02A0 (0x0004) [bool : 0x2]
+  bPawnsOnly: 0x02A0,  // 0x02A0 (0x0004) [bool : 0x4]
 } as const;
 
 /**
@@ -130,7 +376,7 @@ export const AkEnvironments = {
   ActorEnvironments: 0x0078,  // 0x0078 (0x0010) [TArray<FAkActorEnvironment>]
   bLevelDirty: 0x0088,  // 0x0088 (0x0004) [bool : 0x1]
   bActorEnvironmentDirty: 0x0088,  // 0x0088 (0x0004) [bool : 0x2]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -150,7 +396,7 @@ export const AkMusicAnalysis = {
   __EventNewMusicTrack__Delegate: 0x00C8,  // 0x00C8 (0x0018) [FScriptDelegate]
   __EventMusicBeat__Delegate: 0x00E0,  // 0x00E0 (0x0018) [FScriptDelegate]
   __EventMusicBar__Delegate: 0x00F8,  // 0x00F8 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -161,7 +407,7 @@ export const AkMusicAnalysis = {
 export const AkMusicDevice = {
   __EventTrackStart__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
   __EventTrackEnd__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -239,7 +485,7 @@ export const AkRevPhysicsSimulation = {
   EngineResistance: 0x0090,  // 0x0090 (0x0004) [float]
   NetForce: 0x0094,  // 0x0094 (0x0004) [float]
   __EventGearChange__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -251,7 +497,7 @@ export const AkSoundBanksInfo = {
   StreamedFileNames: 0x0060,  // 0x0060 (0x0010) [TArray<FString>]
   SoundBanks: 0x0070,  // 0x0070 (0x0010) [TArray<FSoundBankInfo>]
   EventToBankMap: 0x0080,  // 0x0080 (0x0008) [unknown]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -263,7 +509,7 @@ export const AkSoundCue = {
   RequiredBank: 0x0060,  // 0x0060 (0x0008) [UAkBank*]
   StartEvent: 0x0068,  // 0x0068 (0x0010) [FString]
   StopEvent: 0x0078,  // 0x0078 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -297,7 +543,33 @@ export const AkSoundSource = {
  * Extends: Object
  */
 export const AkSwitch = {
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.InterpTrack Offsets
+ * Size: 0x00C4
+ * Extends: Object
+ */
+export const InterpTrack = {
+  VfTable_FInterpEdInputInterface: 0x0060,  // 0x0060 (0x0008) [FPointer]
+  CurveEdVTable: 0x0068,  // 0x0068 (0x0008) [FPointer]
+  SubTracks: 0x0070,  // 0x0070 (0x0010) [TArray<UInterpTrack*>]
+  SubTrackGroups: 0x0080,  // 0x0080 (0x0010) [TArray<FSubTrackGroup>]
+  SupportedSubTracks: 0x0090,  // 0x0090 (0x0010) [TArray<FSupportedSubTrackInfo>]
+  TrackInstClass: 0x00A0,  // 0x00A0 (0x0008) [UClass*]
+  ActiveCondition: 0x00A8,  // 0x00A8 (0x0001) [ETrackActiveCondition]
+  TrackTitle: 0x00B0,  // 0x00B0 (0x0010) [FString]
+  bOnePerGroup: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x1]
+  bDirGroupOnly: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x2]
+  bDisableTrack: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x4]
+  bIsAnimControlTrack: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x8]
+  bSubTrackOnly: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x10]
+  bVisible: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x20]
+  bIsSelected: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x40]
+  bIsRecording: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x80]
+  bIsCollapsed: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x100]
+  ...Object_,
 } as const;
 
 /**
@@ -312,6 +584,17 @@ export const InterpTrackAkEvent = {
 } as const;
 
 /**
+ * Engine.InterpTrackFloatBase Offsets
+ * Size: 0x00E4
+ * Extends: InterpTrack
+ */
+export const InterpTrackFloatBase = {
+  FloatTrack: 0x00C8,  // 0x00C8 (0x0018) [FInterpCurveFloat]
+  CurveTension: 0x00E0,  // 0x00E0 (0x0004) [float]
+  ...InterpTrack,
+} as const;
+
+/**
  * AkAudio.InterpTrackAkRTPC Offsets
  * Size: 0x00F8
  * Extends: InterpTrackFloatBase
@@ -319,6 +602,15 @@ export const InterpTrackAkEvent = {
 export const InterpTrackAkRTPC = {
   Param: 0x00E8,  // 0x00E8 (0x0010) [FString]
   ...InterpTrackFloatBase,
+} as const;
+
+/**
+ * Engine.InterpTrackInst Offsets
+ * Size: 0x0060
+ * Extends: Object
+ */
+export const InterpTrackInst = {
+  ...Object_,
 } as const;
 
 /**
@@ -341,6 +633,17 @@ export const InterpTrackInstAkRTPC = {
 } as const;
 
 /**
+ * Engine.SequenceAction Offsets
+ * Size: 0x0160
+ * Extends: SequenceOp
+ */
+export const SequenceAction = {
+  HandlerName: 0x0140,  // 0x0140 (0x0008) [FName]
+  bCallHandler: 0x0148,  // 0x0148 (0x0004) [bool : 0x1]
+  Targets: 0x0150,  // 0x0150 (0x0010) [TArray<UObject*>]
+} as const;
+
+/**
  * AkAudio.SeqAct_AkClearBanks Offsets
  * Size: 0x0160
  * Extends: SequenceAction
@@ -357,6 +660,18 @@ export const SeqAct_AkClearBanks = {
 export const SeqAct_AkEnvironment = {
   Environment: 0x0160,  // 0x0160 (0x0020) [FAkEnvironment]
   Target: 0x0180,  // 0x0180 (0x0001) [EAkEnvironmentTarget]
+  ...SequenceAction,
+} as const;
+
+/**
+ * Engine.SeqAct_Latent Offsets
+ * Size: 0x0178
+ * Extends: SequenceAction
+ */
+export const SeqAct_Latent = {
+  LatentActors: 0x0160,  // 0x0160 (0x0010) [TArray<UActor*>]
+  bAborted: 0x0170,  // 0x0170 (0x0004) [bool : 0x1]
+  LatentActivationTime: 0x0174,  // 0x0174 (0x0004) [float]
   ...SequenceAction,
 } as const;
 
@@ -482,6 +797,27 @@ export const SeqAct_AkStopAll = {
 } as const;
 
 /**
+ * Engine.SequenceEvent Offsets
+ * Size: 0x017C
+ * Extends: SequenceOp
+ */
+export const SequenceEvent = {
+  DuplicateEvts: 0x0140,  // 0x0140 (0x0010) [TArray<USequenceEvent*>]
+  Originator: 0x0150,  // 0x0150 (0x0008) [UActor*]
+  Instigator: 0x0158,  // 0x0158 (0x0008) [UActor*]
+  ActivationTime: 0x0160,  // 0x0160 (0x0004) [float]
+  TriggerCount: 0x0164,  // 0x0164 (0x0004) [int32]
+  MaxTriggerCount: 0x0168,  // 0x0168 (0x0004) [int32]
+  ReTriggerDelay: 0x016C,  // 0x016C (0x0004) [float]
+  bEnabled: 0x0170,  // 0x0170 (0x0004) [bool : 0x1]
+  bPlayerOnly: 0x0170,  // 0x0170 (0x0004) [bool : 0x2]
+  bRegistered: 0x0170,  // 0x0170 (0x0004) [bool : 0x4]
+  bClientSideOnly: 0x0170,  // 0x0170 (0x0004) [bool : 0x8]
+  Priority: 0x0174,  // 0x0174 (0x0001) [uint8]
+  MaxWidth: 0x0178,  // 0x0178 (0x0004) [int32]
+} as const;
+
+/**
  * AkAudio.SeqEvent_AkMusicCue Offsets
  * Size: 0x0190
  * Extends: SequenceEvent
@@ -490,7 +826,6 @@ export const SeqEvent_AkMusicCue = {
   CueName: 0x0180,  // 0x0180 (0x0010) [FString]
   ...SequenceEvent,
 } as const;
-
 
 /**
  * ScriptStruct AkAudio.AkSoundSource.ActiveSound Offsets

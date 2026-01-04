@@ -6,7 +6,25 @@
  * Import these to read/write memory at the correct locations.
  */
 
-import { Commandlet, Component, DistributionFloat, DistributionVector, ErrorList, Interface, Object, PackageMap, Subsystem } from './Core';
+/**
+ * Core.Object Offsets
+ * Size: 0x0060
+ */
+export const Object_ = {
+  VfTableObject: 0x0000,  // 0x0000 (0x0008) [FPointer]
+  HashNext: 0x0008,  // 0x0008 (0x0008) [FPointer]
+  ObjectFlags: 0x0010,  // 0x0010 (0x0008) [uint64]
+  HashOuterNext: 0x0018,  // 0x0018 (0x0008) [FPointer]
+  StateFrame: 0x0020,  // 0x0020 (0x0008) [FPointer]
+  Linker: 0x0028,  // 0x0028 (0x0008) [UObject*]
+  LinkerIndex: 0x0030,  // 0x0030 (0x0008) [FPointer]
+  ObjectInternalInteger: 0x0038,  // 0x0038 (0x0004) [int32]
+  NetIndex: 0x003C,  // 0x003C (0x0004) [int32]
+  Outer: 0x0040,  // 0x0040 (0x0008) [UObject*]
+  Name: 0x0048,  // 0x0048 (0x0008) [FName]
+  Class: 0x0050,  // 0x0050 (0x0008) [UClass*]
+  ObjectArchetype: 0x0058,  // 0x0058 (0x0008) [UObject*]
+} as const;
 
 /**
  * Engine.AICommandBase Offsets
@@ -14,7 +32,7 @@ import { Commandlet, Component, DistributionFloat, DistributionVector, ErrorList
  * Extends: Object
  */
 export const AICommandBase = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -181,7 +199,18 @@ export const Actor = {
   GeneratedEvents: 0x0238,  // 0x0238 (0x0010) [TArray<USequenceEvent*>]
   LatentActions: 0x0248,  // 0x0248 (0x0010) [TArray<USeqAct_Latent*>]
   IgnoredTouchClasses: 0x0258,  // 0x0258 (0x0010) [TArray<UClass*>]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Core.Component Offsets
+ * Size: 0x0070
+ * Extends: Object
+ */
+export const Component = {
+  TemplateOwnerClass: 0x0060,  // 0x0060 (0x0008) [UClass*]
+  TemplateName: 0x0068,  // 0x0068 (0x0008) [FName]
+  ...Object_,
 } as const;
 
 /**
@@ -216,7 +245,7 @@ export const ActorFactory = {
   NewActorClass: 0x0090,  // 0x0090 (0x0008) [UClass*]
   bPlaceable: 0x0098,  // 0x0098 (0x0004) [bool : 0x1]
   bShowInEditorQuickMenu: 0x0098,  // 0x0098 (0x0004) [bool : 0x2]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -606,7 +635,7 @@ export const AkBank = {
   AutoLoad: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
   GenerateDefinition: 0x0060,  // 0x0060 (0x0004) [bool : 0x2]
   LoadState: 0x0064,  // 0x0064 (0x000C) [FBankLoadState]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -615,7 +644,7 @@ export const AkBank = {
  * Extends: Object
  */
 export const AkBaseSoundObject = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -634,7 +663,7 @@ export const AkEvent = {
  * Extends: Object
  */
 export const AnimMetaData = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -666,7 +695,7 @@ export const AnimMetaData_SkelControlKeyFrame = {
  */
 export const AnimNotify = {
   NotifyColor: 0x0060,  // 0x0060 (0x0004) [FColor]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -893,7 +922,7 @@ export const AnimObject = {
   OutDrawY: 0x0070,  // 0x0070 (0x0004) [int32]
   CategoryDesc: 0x0078,  // 0x0078 (0x0010) [FString]
   SkelComponent: 0x0088,  // 0x0088 (0x0008) [unknown]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1364,7 +1393,7 @@ export const AnimSequence = {
   EncodingPkgVersion: 0x0190,  // 0x0190 (0x0004) [int32]
   CompressCommandletVersion: 0x0194,  // 0x0194 (0x0004) [int32]
   UseScore: 0x0198,  // 0x0198 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1385,7 +1414,7 @@ export const AnimSet = {
   ForceMeshTranslationBoneNames: 0x0168,  // 0x0168 (0x0010) [TArray<FName>]
   PreviewSkelMeshName: 0x0178,  // 0x0178 (0x0008) [FName]
   BestRatioSkelMeshName: 0x0180,  // 0x0180 (0x0008) [FName]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1441,7 +1470,7 @@ export const AnimationCompressionAlgorithm = {
   bNeedsSkeleton: 0x0070,  // 0x0070 (0x0004) [bool : 0x1]
   TranslationCompressionFormat: 0x0074,  // 0x0074 (0x0001) [AnimationCompressionFormat]
   RotationCompressionFormat: 0x0075,  // 0x0075 (0x0001) [AnimationCompressionFormat]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1566,7 +1595,7 @@ export const ApexAsset = {
   NamedReferences: 0x0080,  // 0x0080 (0x0010) [TArray<UApexAsset*>]
   SourceFilePath: 0x0090,  // 0x0090 (0x0010) [FString]
   SourceFileTimestamp: 0x00A0,  // 0x00A0 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1659,7 +1688,7 @@ export const ApexDestructibleAsset = {
  */
 export const ApexDestructibleDamageParameters = {
   DamageMap: 0x0060,  // 0x0060 (0x0010) [TArray<FDamagePair>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1774,6 +1803,16 @@ export const AudioComponent = {
 } as const;
 
 /**
+ * Core.Subsystem Offsets
+ * Size: 0x0068
+ * Extends: Object
+ */
+export const Subsystem = {
+  VfTable_FExec: 0x0060,  // 0x0060 (0x0008) [FPointer]
+  ...Object_,
+} as const;
+
+/**
  * Engine.AudioDevice Offsets
  * Size: 0x03A4
  * Extends: Subsystem
@@ -1836,7 +1875,7 @@ export const AudioDevice = {
  */
 export const AutoNavMeshPathObstacleUnregister = {
   PathObstacleRef: 0x0060,  // 0x0060 (0x0010) [TScriptInterface<UInterface_NavMeshPathObstacle>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1848,7 +1887,7 @@ export const BookMark = {
   Location: 0x0060,  // 0x0060 (0x000C) [FVector]
   Rotation: 0x006C,  // 0x006C (0x000C) [FRotator]
   HiddenLevels: 0x0078,  // 0x0078 (0x0010) [TArray<FString>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1859,7 +1898,7 @@ export const BookMark = {
 export const BookMark2D = {
   Zoom2D: 0x0060,  // 0x0060 (0x0004) [float]
   Location: 0x0064,  // 0x0064 (0x0008) [FIntPoint]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1976,7 +2015,7 @@ export const CameraAnim = {
   BasePPSettings: 0x0090,  // 0x0090 (0x0168) [FPostProcessSettings]
   BasePPSettingsAlpha: 0x01F8,  // 0x01F8 (0x0004) [float]
   BaseFOV: 0x01FC,  // 0x01FC (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2010,7 +2049,7 @@ export const CameraAnimInst = {
   LastPPSettings: 0x0100,  // 0x0100 (0x0168) [FPostProcessSettings]
   LastPPSettingsAlpha: 0x0268,  // 0x0268 (0x0004) [float]
   LastCameraLoc: 0x026C,  // 0x026C (0x000C) [FVector]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2029,7 +2068,7 @@ export const CameraModifier = {
   AlphaOutTime: 0x0078,  // 0x0078 (0x0004) [float]
   Alpha: 0x007C,  // 0x007C (0x0004) [float]
   TargetAlpha: 0x0080,  // 0x0080 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2063,7 +2102,7 @@ export const CameraShake = {
   AnimBlendInTime: 0x00D8,  // 0x00D8 (0x0004) [float]
   AnimBlendOutTime: 0x00DC,  // 0x00DC (0x0004) [float]
   RandomAnimSegmentDuration: 0x00E0,  // 0x00E0 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2090,7 +2129,7 @@ export const Canvas = {
   SceneView: 0x00A0,  // 0x00A0 (0x0008) [FPointer]
   ColorModulate: 0x00B0,  // 0x00B0 (0x0010) [FPlane]
   DefaultTexture: 0x00C0,  // 0x00C0 (0x0008) [UTexture2D*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2099,7 +2138,7 @@ export const Canvas = {
  * Extends: Object
  */
 export const Channel = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2119,7 +2158,7 @@ export const ActorChannel = {
 export const CheatManager = {
   ViewingFrom: 0x0060,  // 0x0060 (0x0010) [FString]
   OwnCamera: 0x0070,  // 0x0070 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2132,7 +2171,7 @@ export const Client = {
   DisplayGamma: 0x006C,  // 0x006C (0x0004) [float]
   InitialButtonRepeatDelay: 0x0070,  // 0x0070 (0x0004) [float]
   ButtonRepeatDelay: 0x0074,  // 0x0074 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2143,7 +2182,7 @@ export const Client = {
 export const ClipPadEntry = {
   Title: 0x0060,  // 0x0060 (0x0010) [FString]
   Text: 0x0070,  // 0x0070 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2161,7 +2200,16 @@ export const CloudSaveSystem = {
   ActiveSaveSlotOperations: 0x00C0,  // 0x00C0 (0x0010) [TArray<FSaveSlotOperation>]
   __OnGetSaveDataCallback__Delegate: 0x00D0,  // 0x00D0 (0x0018) [FScriptDelegate]
   __SaveSystemCallback__Delegate: 0x00E8,  // 0x00E8 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Core.Interface Offsets
+ * Size: 0x0060
+ * Extends: Object
+ */
+export const Interface = {
+  ...Object_,
 } as const;
 
 /**
@@ -2189,7 +2237,7 @@ export const CloudSaveSystemKVSInterface = {
  */
 export const CloudStorageBaseCloudSaveSystemKVS = {
   CloudStorage: 0x0060,  // 0x0060 (0x0008) [UCloudStorageBase*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2208,7 +2256,7 @@ export const CloudStorageUpgradeHelper = {
  */
 export const CodecMovie = {
   PlaybackDuration: 0x0060,  // 0x0060 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2344,7 +2392,7 @@ export const ControllerLayoutStack = {
   ControllerLayout_TrainingEditor: 0x0098,  // 0x0098 (0x0008) [FName]
   ControllerLayoutPriority_Default: 0x00A0,  // 0x00A0 (0x0004) [int32]
   ControllerLayoutPriority_Menu: 0x00A4,  // 0x00A4 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2374,7 +2422,7 @@ export const CrowdPopulationManagerBase = {
 export const CurveEdPresetCurve = {
   CurveName: 0x0060,  // 0x0060 (0x0010) [FString]
   Points: 0x0070,  // 0x0070 (0x0010) [TArray<FPresetGeneratedPoint>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2401,7 +2449,7 @@ export const DateTime = {
   Minute: 0x007C,  // 0x007C (0x0004) [int32]
   Second: 0x0080,  // 0x0080 (0x0004) [int32]
   TimeZone: 0x0084,  // 0x0084 (0x0001) [ETimeZone]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2447,6 +2495,18 @@ export const DecalManager = {
   DecalBlendRange: 0x028C,  // 0x028C (0x0008) [FVector2D]
   ActiveDecals: 0x0298,  // 0x0298 (0x0010) [TArray<FActiveDecalInfo>]
   ...Actor,
+} as const;
+
+/**
+ * Core.DistributionFloat Offsets
+ * Size: 0x007C
+ * Extends: Component
+ */
+export const DistributionFloat = {
+  VfTable_FCurveEdInterface: 0x0070,  // 0x0070 (0x0008) [FPointer]
+  bCanBeBaked: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
+  bIsDirty: 0x0078,  // 0x0078 (0x0004) [bool : 0x2]
+  ...Component,
 } as const;
 
 /**
@@ -2535,6 +2595,18 @@ export const DistributionFloatUniformRange = {
   MinLow: 0x008C,  // 0x008C (0x0004) [float]
   bMirrorMaxMin: 0x0090,  // 0x0090 (0x0004) [bool : 0x1]
   ...DistributionFloat,
+} as const;
+
+/**
+ * Core.DistributionVector Offsets
+ * Size: 0x007C
+ * Extends: Component
+ */
+export const DistributionVector = {
+  VfTable_FCurveEdInterface: 0x0070,  // 0x0070 (0x0008) [FPointer]
+  bCanBeBaked: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
+  bIsDirty: 0x0078,  // 0x0078 (0x0004) [bool : 0x2]
+  ...Component,
 } as const;
 
 /**
@@ -2656,7 +2728,7 @@ export const DistributionVectorUniformRange = {
  * Extends: Object
  */
 export const Download = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2678,7 +2750,7 @@ export const DownloadableContentEnumerator = {
   DLCRootDir: 0x0070,  // 0x0070 (0x0010) [FString]
   FindDLCDelegates: 0x0080,  // 0x0080 (0x0010) [TArray<FScriptDelegate>]
   __OnFindDLCComplete__Delegate: 0x0090,  // 0x0090 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2695,7 +2767,7 @@ export const DownloadableContentManager = {
   QueuedFullyLoadPackageInis: 0x00F0,  // 0x00F0 (0x0010) [TArray<FString>]
   GameEngine: 0x0100,  // 0x0100 (0x0008) [UGameEngine*]
   __OnRefreshComplete__Delegate: 0x0108,  // 0x0108 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2746,7 +2818,7 @@ export const DynamicSMActor_Spawnable = {
 export const EdCoordSystem = {
   M: 0x0060,  // 0x0060 (0x0040) [FMatrix]
   Desc: 0x00A0,  // 0x00A0 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3097,7 +3169,7 @@ export const Engine = {
  * Extends: Object
  */
 export const EngineBaseTypes = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3107,7 +3179,7 @@ export const EngineBaseTypes = {
  */
 export const EngineContent = {
   Content: 0x0060,  // 0x0060 (0x0010) [TArray<UObject*>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3116,7 +3188,7 @@ export const EngineContent = {
  * Extends: Object
  */
 export const EngineShare = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3125,7 +3197,7 @@ export const EngineShare = {
  * Extends: Object
  */
 export const EngineTypes = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3134,7 +3206,7 @@ export const EngineTypes = {
  * Extends: Object
  */
 export const EpochNow_RealTime = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3170,7 +3242,7 @@ export const FaceFXAnimSet = {
   ReferencedSoundCues: 0x0090,  // 0x0090 (0x0010) [TArray<USoundCue*>]
   ReferencedAkEvents: 0x00A0,  // 0x00A0 (0x0010) [TArray<UAkEvent*>]
   NumLoadErrors: 0x00B0,  // 0x00B0 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3188,7 +3260,18 @@ export const FaceFXAsset = {
   ReferencedSoundCues: 0x00B0,  // 0x00B0 (0x0010) [TArray<USoundCue*>]
   ReferencedAkEvents: 0x00C0,  // 0x00C0 (0x0010) [TArray<UAkEvent*>]
   NumLoadErrors: 0x00D0,  // 0x00D0 (0x0004) [int32]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Core.ErrorList Offsets
+ * Size: 0x0080
+ * Extends: Object
+ */
+export const ErrorList = {
+  LocalizationPackage: 0x0060,  // 0x0060 (0x0010) [FString]
+  LocalizationSection: 0x0070,  // 0x0070 (0x0010) [FString]
+  ...Object_,
 } as const;
 
 /**
@@ -3339,7 +3422,7 @@ export const Font = {
   bMapUppercaseToLowercase: 0x01B4,  // 0x01B4 (0x0004) [bool : 0x1]
   bMapLowercaseToUppercase: 0x01B4,  // 0x01B4 (0x0004) [bool : 0x2]
   VerticalOffsetOverride: 0x01B8,  // 0x01B8 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3349,7 +3432,7 @@ export const Font = {
  */
 export const FontImportOptions = {
   Data: 0x0060,  // 0x0060 (0x00B0) [FFontImportOptionsData]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3369,7 +3452,7 @@ export const ForceFeedbackManager = {
   ShakeRight: 0x008C,  // 0x008C (0x0004) [int32]
   EnableTime: 0x0090,  // 0x0090 (0x0004) [float]
   EnabledTimeRemaining: 0x0094,  // 0x0094 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3382,7 +3465,7 @@ export const ForceFeedbackWaveform = {
   Samples: 0x0068,  // 0x0068 (0x0010) [TArray<FWaveformSample>]
   WaveformFalloffStartDistance: 0x0078,  // 0x0078 (0x0004) [float]
   MaxWaveformDistance: 0x007C,  // 0x007C (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3391,7 +3474,7 @@ export const ForceFeedbackWaveform = {
  * Extends: Object
  */
 export const ForceFieldShape = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3450,7 +3533,7 @@ export const FractureManager = {
 export const FractureMaterial = {
   FractureEffect: 0x0060,  // 0x0060 (0x0008) [UParticleSystem*]
   FractureSound: 0x0068,  // 0x0068 (0x0008) [USoundCue*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3578,7 +3661,7 @@ export const GameplayEvents = {
   PawnClassArray: 0x01E0,  // 0x01E0 (0x0010) [TArray<FPawnClassEventData>]
   ActorArray: 0x01F0,  // 0x01F0 (0x0010) [TArray<FString>]
   SoundCueArray: 0x0200,  // 0x0200 (0x0010) [TArray<FString>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3590,7 +3673,7 @@ export const GameplayEventsHandler = {
   EventIDFilter: 0x0060,  // 0x0060 (0x0010) [TArray<int32>]
   GroupFilter: 0x0070,  // 0x0070 (0x0010) [TArray<FGameStatGroup>]
   Reader: 0x0080,  // 0x0080 (0x0008) [UGameplayEventsReader*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3639,7 +3722,7 @@ export const GameplayEventsWriter = {
 export const GenericParamListStatEntry = {
   StatEvent: 0x0060,  // 0x0060 (0x0008) [FPointer]
   Writer: 0x0068,  // 0x0068 (0x0008) [UGameplayEventsWriter*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3664,7 +3747,7 @@ export const GroupComponent_ORS = {
  * Extends: Object
  */
 export const GuidCache = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3753,7 +3836,7 @@ export const HeightFogComponent = {
  * Extends: Object
  */
 export const HttpBaseInterface = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3763,7 +3846,7 @@ export const HttpBaseInterface = {
  */
 export const HttpFactory = {
   HttpRequestClassName: 0x0060,  // 0x0060 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4118,7 +4201,7 @@ export const IniLocPatcher = {
   ReadTitleFileCompleteDelegates: 0x0098,  // 0x0098 (0x0010) [TArray<FScriptDelegate>]
   __OnReadTitleFileComplete__Delegate: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
   __OnAllTitleFilesCompleted__Delegate: 0x00C0,  // 0x00C0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4201,7 +4284,7 @@ export const InstancedFoliageSettings = {
   CullOption: 0x00C0,  // 0x00C0 (0x0001) [FoliageCullOption]
   DetailMode: 0x00C1,  // 0x00C1 (0x0001) [EDetailMode]
   DisplayOrder: 0x00C4,  // 0x00C4 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4310,7 +4393,7 @@ export const InterpActor_ForCinematic = {
 export const InterpCurveEdSetup = {
   Tabs: 0x0060,  // 0x0060 (0x0010) [TArray<FCurveEdTab>]
   ActiveTab: 0x0070,  // 0x0070 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4320,7 +4403,7 @@ export const InterpCurveEdSetup = {
  */
 export const InterpFilter = {
   Caption: 0x0060,  // 0x0060 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4360,7 +4443,7 @@ export const InterpGroup = {
   bIsFolder: 0x0098,  // 0x0098 (0x0004) [bool : 0x4]
   bIsParented: 0x0098,  // 0x0098 (0x0004) [bool : 0x8]
   bIsSelected: 0x0098,  // 0x0098 (0x0004) [bool : 0x10]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4411,7 +4494,7 @@ export const InterpGroupInst = {
   GroupActor: 0x0068,  // 0x0068 (0x0008) [UActor*]
   TrackInst: 0x0070,  // 0x0070 (0x0010) [TArray<UInterpTrackInst*>]
   CachedCamOverridePostProcess: 0x0080,  // 0x0080 (0x0008) [FPointer]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4471,7 +4554,7 @@ export const InterpTrack = {
   bIsSelected: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x40]
   bIsRecording: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x80]
   bIsCollapsed: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x100]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4615,7 +4698,7 @@ export const InterpTrackHeadTracking = {
  * Extends: Object
  */
 export const InterpTrackInst = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5144,7 +5227,7 @@ export const JsonObject = {
   ValueArray: 0x0100,  // 0x0100 (0x0010) [TArray<FString>]
   ObjectArray: 0x0110,  // 0x0110 (0x0010) [TArray<UJsonObject*>]
   bArray: 0x0120,  // 0x0120 (0x0004) [bool : 0x1]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5235,7 +5318,7 @@ export const KAssetSpawnable = {
 export const KMeshProps = {
   COMNudge: 0x0060,  // 0x0060 (0x000C) [FVector]
   AggGeom: 0x0070,  // 0x0070 (0x0050) [FKAggregateGeom]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5428,7 +5511,7 @@ export const LandscapeInfo = {
   SelectedRegion: 0x0300,  // 0x0300 (0x0050) [TMap<unknown, unknown>]
   HeightmapFilePath: 0x0350,  // 0x0350 (0x0010) [FString]
   bIsValid: 0x0360,  // 0x0360 (0x0004) [bool : 0x1]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5441,7 +5524,7 @@ export const LandscapeLayerInfoObject = {
   PhysMaterial: 0x0068,  // 0x0068 (0x0008) [UPhysicalMaterial*]
   Hardness: 0x0070,  // 0x0070 (0x0004) [float]
   bNoWeightBlend: 0x0074,  // 0x0074 (0x0004) [bool : 0x1]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5514,7 +5597,7 @@ export const LensFlare = {
   ThumbnailAngle: 0x02B4,  // 0x02B4 (0x000C) [FRotator]
   ThumbnailDistance: 0x02C0,  // 0x02C0 (0x0004) [float]
   ThumbnailImage: 0x02C8,  // 0x02C8 (0x0008) [UTexture2D*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5534,7 +5617,7 @@ export const LensFlareSource = {
  * Extends: Object
  */
 export const LevelBase = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5578,7 +5661,7 @@ export const LevelStreaming = {
   Keywords: 0x00F0,  // 0x00F0 (0x0010) [TArray<FString>]
   EditorGridVolume: 0x0100,  // 0x0100 (0x0008) [ULevelGridVolume*]
   GridPosition: 0x0108,  // 0x0108 (0x000C) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5819,7 +5902,7 @@ export const LightFunction = {
   SourceMaterial: 0x0060,  // 0x0060 (0x0008) [UMaterialInterface*]
   Scale: 0x0068,  // 0x0068 (0x000C) [FVector]
   DisabledBrightness: 0x0074,  // 0x0074 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5830,7 +5913,7 @@ export const LightFunction = {
 export const LightmappedSurfaceCollection = {
   SourceModel: 0x0060,  // 0x0060 (0x0008) [UModel*]
   Surfaces: 0x0068,  // 0x0068 (0x0010) [TArray<int32>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5852,7 +5935,7 @@ export const LightmassLevelSettings = {
   OcclusionExponent: 0x0084,  // 0x0084 (0x0004) [float]
   FullyOccludedSamplesFraction: 0x0088,  // 0x0088 (0x0004) [float]
   MaxOcclusionDistance: 0x008C,  // 0x008C (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5862,7 +5945,7 @@ export const LightmassLevelSettings = {
  */
 export const LightmassPrimitiveSettingsObject = {
   LightmassSettings: 0x0060,  // 0x0060 (0x001C) [FLightmassPrimitiveSettings]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5871,7 +5954,7 @@ export const LightmassPrimitiveSettingsObject = {
  * Extends: Object
  */
 export const LinkedAccountDetails = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5880,7 +5963,7 @@ export const LinkedAccountDetails = {
  * Extends: Object
  */
 export const MapInfo = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5909,7 +5992,7 @@ export const MaterialExpression = {
   BorderColor: 0x0098,  // 0x0098 (0x0004) [FColor]
   MenuCategories: 0x00A0,  // 0x00A0 (0x0010) [TArray<FName>]
   Outputs: 0x00B0,  // 0x00B0 (0x0010) [TArray<FExpressionOutput>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7333,7 +7416,7 @@ export const MaterialFunction = {
   LibraryCategories: 0x0090,  // 0x0090 (0x0010) [TArray<FString>]
   FunctionExpressions: 0x00A0,  // 0x00A0 (0x0010) [TArray<UMaterialExpression*>]
   FunctionEditorComments: 0x00B0,  // 0x00B0 (0x0010) [TArray<UMaterialExpressionComment*>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7382,7 +7465,7 @@ export const MatineeActor = {
  * Extends: Object
  */
 export const Model = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7490,7 +7573,7 @@ export const MorphTarget = {
   MorphLODModels: 0x0060,  // 0x0060 (0x0010) [TArray<int32>]
   MaterialSlotId: 0x0070,  // 0x0070 (0x0004) [int32]
   ScalarParameterName: 0x0074,  // 0x0074 (0x0008) [FName]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7502,7 +7585,7 @@ export const MorphTargetSet = {
   Targets: 0x0060,  // 0x0060 (0x0010) [TArray<UMorphTarget*>]
   BaseSkelMesh: 0x0070,  // 0x0070 (0x0008) [USkeletalMesh*]
   RawWedgePointIndices: 0x0078,  // 0x0078 (0x0010) [FArray_Mirror]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7511,7 +7594,7 @@ export const MorphTargetSet = {
  * Extends: Object
  */
 export const MorphWeightSequence = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7530,7 +7613,7 @@ export const MultiFont = {
  * Extends: Object
  */
 export const MusicTrackDataStructures = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7554,7 +7637,7 @@ export const NavMeshGoal_Filter = {
   bShowDebug: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
   NumNodesThrownOut: 0x0064,  // 0x0064 (0x0004) [int32]
   NumNodesProcessed: 0x0068,  // 0x0068 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7633,7 +7716,7 @@ export const NavMeshPathConstraint = {
   NumThrownOutNodes: 0x006C,  // 0x006C (0x0004) [int32]
   AddedDirectCost: 0x0070,  // 0x0070 (0x0004) [float]
   AddedHeuristicCost: 0x0074,  // 0x0074 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7649,7 +7732,7 @@ export const NavMeshPathGoalEvaluator = {
   NumNodesThrownOut: 0x0070,  // 0x0070 (0x0004) [int32]
   NumNodesProcessed: 0x0074,  // 0x0074 (0x0004) [int32]
   MaxOpenListSize: 0x0078,  // 0x0078 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7848,7 +7931,7 @@ export const NavigationHandle = {
   Breadcrumbs: 0x0128,  // 0x0128 (0x0078) [FVector]
   BreadCrumbMostRecentIdx: 0x01A0,  // 0x01A0 (0x0004) [int32]
   BreadCrumbDistanceInterval: 0x01A4,  // 0x01A4 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7857,7 +7940,7 @@ export const NavigationHandle = {
  * Extends: Object
  */
 export const NavigationMeshBase = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8006,7 +8089,7 @@ export const LiftExit = {
  * Extends: Object
  */
 export const NetConnectionEncryptor = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8057,7 +8140,7 @@ export const DemoRecDriver = {
  * Extends: Object
  */
 export const NetDriverSecurity = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8070,7 +8153,7 @@ export const NetworkEncryptionKey = {
   IV: 0x0070,  // 0x0070 (0x0010) [TArray<uint8>]
   HMACKey: 0x0080,  // 0x0080 (0x0010) [TArray<uint8>]
   SessionId: 0x0090,  // 0x0090 (0x0010) [TArray<uint8>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8349,7 +8432,7 @@ export const NxTornadoForceFieldCapsule = {
  * Extends: Object
  */
 export const ORS = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8359,7 +8442,7 @@ export const ORS = {
  */
 export const ObjectReferencer = {
   ReferencedObjects: 0x0060,  // 0x0060 (0x0010) [TArray<UObject*>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8404,7 +8487,7 @@ export const OnlineContentInterface = {
  * Extends: Object
  */
 export const OnlineEventTracker = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8467,7 +8550,7 @@ export const OnlineLobbyInterface = {
  * Extends: Object
  */
 export const OnlineLobbySettings = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8485,7 +8568,7 @@ export const OnlineMarketplaceInterface = {
  * Extends: Object
  */
 export const OnlineMatchmakingStats = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8546,7 +8629,7 @@ export const OnlinePlayerStorage = {
   ProfileMappings: 0x0080,  // 0x0080 (0x0010) [TArray<FSettingsPropertyPropertyMetaData>]
   AsyncState: 0x0090,  // 0x0090 (0x0001) [EOnlinePlayerStorageAsyncState]
   DeviceID: 0x0094,  // 0x0094 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8585,7 +8668,7 @@ export const OnlineRecentPlayersList = {
   RecentPlayersAddIndex: 0x00F0,  // 0x00F0 (0x0004) [int32]
   RecentPartiesAddIndex: 0x00F4,  // 0x00F4 (0x0004) [int32]
   CurrentPlayers: 0x00F8,  // 0x00F8 (0x0010) [TArray<FCurrentPlayerMet>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8595,7 +8678,7 @@ export const OnlineRecentPlayersList = {
  */
 export const OnlineSessionManager = {
   AdditionalPlayerIds: 0x0060,  // 0x0060 (0x0010) [TArray<FUniqueNetId>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8614,7 +8697,7 @@ export const OnlineSocialInterface = {
  */
 export const OnlineStats = {
   ViewIdMappings: 0x0060,  // 0x0060 (0x0010) [TArray<FStringIdToStringMapping>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8727,7 +8810,7 @@ export const OnlineSubsystem = {
   __OnDeviceSuspend__Delegate: 0x0330,  // 0x0330 (0x0018) [FScriptDelegate]
   __OnReadOnlineAvatarComplete__Delegate: 0x0348,  // 0x0348 (0x0018) [FScriptDelegate]
   __OnSystemUserControllerPairingChanged__Delegate: 0x0360,  // 0x0360 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8797,7 +8880,7 @@ export const PBRuleNodeBase = {
   InDrawY: 0x0088,  // 0x0088 (0x0004) [int32]
   DrawWidth: 0x008C,  // 0x008C (0x0004) [int32]
   DrawHeight: 0x0090,  // 0x0090 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9039,6 +9122,15 @@ export const PBRuleNodeWindowWall = {
 } as const;
 
 /**
+ * Core.PackageMap Offsets
+ * Size: 0x0118
+ * Extends: Object
+ */
+export const PackageMap = {
+  ...Object_,
+} as const;
+
+/**
  * Engine.PackageMapLevel Offsets
  * Size: 0x0120
  * Extends: PackageMap
@@ -9075,7 +9167,7 @@ export const ParticleEmitter = {
   PeakActiveParticles: 0x008C,  // 0x008C (0x0004) [int32]
   InitialAllocationCount: 0x0090,  // 0x0090 (0x0004) [int32]
   MediumDetailSpawnRateScale: 0x0094,  // 0x0094 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9107,7 +9199,7 @@ export const ParticleLODLevel = {
   OrbitModules: 0x00C8,  // 0x00C8 (0x0010) [TArray<UParticleModuleOrbit*>]
   EventReceiverModules: 0x00D8,  // 0x00D8 (0x0010) [TArray<UParticleModuleEventReceiverBase*>]
   PeakActiveParticles: 0x00E8,  // 0x00E8 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9144,7 +9236,7 @@ export const ParticleModule = {
   bRequiresUpdateInTick: 0x0060,  // 0x0060 (0x0004) [bool : 0x800]
   LODValidity: 0x0064,  // 0x0064 (0x0001) [uint8]
   ModuleEditorColor: 0x0068,  // 0x0068 (0x0004) [FColor]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9592,7 +9684,7 @@ export const ParticleModuleEventReceiverSpawn = {
  * Extends: Object
  */
 export const ParticleModuleEventSendToGame = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -10968,7 +11060,7 @@ export const ParticleSystem = {
   MacroUVRadius: 0x015C,  // 0x015C (0x0004) [float]
   CustomOcclusionBounds: 0x0160,  // 0x0160 (0x001C) [FBox]
   SoloTracking: 0x0180,  // 0x0180 (0x0010) [TArray<FLODSoloTrack>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -10979,7 +11071,26 @@ export const ParticleSystem = {
 export const ParticleSystemReplay = {
   ClipIDNumber: 0x0060,  // 0x0060 (0x0004) [int32]
   Frames: 0x0068,  // 0x0068 (0x0010) [TArray<FParticleSystemReplayFrame>]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Core.Commandlet Offsets
+ * Size: 0x00B4
+ * Extends: Object
+ */
+export const Commandlet = {
+  HelpDescription: 0x0060,  // 0x0060 (0x0010) [FString]
+  HelpUsage: 0x0070,  // 0x0070 (0x0010) [FString]
+  HelpWebLink: 0x0080,  // 0x0080 (0x0010) [FString]
+  HelpParamNames: 0x0090,  // 0x0090 (0x0010) [TArray<FString>]
+  HelpParamDescriptions: 0x00A0,  // 0x00A0 (0x0010) [TArray<FString>]
+  IsServer: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x1]
+  IsClient: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x2]
+  IsEditor: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x4]
+  LogToConsole: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x8]
+  ShowErrorCount: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x10]
+  ...Object_,
 } as const;
 
 /**
@@ -10999,7 +11110,7 @@ export const PatchScriptCommandlet = {
 export const PathConstraint = {
   CacheIdx: 0x0060,  // 0x0060 (0x0004) [int32]
   NextConstraint: 0x0068,  // 0x0068 (0x0008) [UPathConstraint*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -11012,7 +11123,7 @@ export const PathGoalEvaluator = {
   GeneratedGoal: 0x0068,  // 0x0068 (0x0008) [UNavigationPoint*]
   MaxPathVisits: 0x0070,  // 0x0070 (0x0004) [int32]
   CacheIdx: 0x0074,  // 0x0074 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -11384,7 +11495,7 @@ export const PhysXParticleSystem = {
   CollisionResponseCoefficient: 0x00B8,  // 0x00B8 (0x0004) [float]
   CascadeScene: 0x00C0,  // 0x00C0 (0x0008) [FPointer]
   PSys: 0x00C8,  // 0x00C8 (0x0008) [FPointer]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -11418,7 +11529,7 @@ export const PhysicalMaterial = {
   FractureSoundSingle: 0x00D0,  // 0x00D0 (0x0008) [USoundCue*]
   Parent: 0x00D8,  // 0x00D8 (0x0008) [UPhysicalMaterial*]
   PhysicalMaterialProperty: 0x00E0,  // 0x00E0 (0x0008) [UPhysicalMaterialPropertyBase*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -11427,7 +11538,7 @@ export const PhysicalMaterial = {
  * Extends: Object
  */
 export const PhysicalMaterialPropertyBase = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -11442,7 +11553,7 @@ export const PhysicsAsset = {
   BoundsBodies: 0x00C8,  // 0x00C8 (0x0010) [TArray<int32>]
   ConstraintSetup: 0x00D8,  // 0x00D8 (0x0010) [TArray<URB_ConstraintSetup*>]
   DefaultInstance: 0x00E8,  // 0x00E8 (0x0008) [UPhysicsAssetInstance*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -11463,7 +11574,7 @@ export const PhysicsAssetInstance = {
   AngularDampingScale: 0x00F0,  // 0x00F0 (0x0004) [float]
   AngularForceLimitScale: 0x00F4,  // 0x00F4 (0x0004) [float]
   bInitBodies: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x1]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -11473,7 +11584,7 @@ export const PhysicsAssetInstance = {
  */
 export const PhysicsLODVerticalEmitter = {
   ParticlePercentage: 0x0060,  // 0x0060 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -11506,7 +11617,7 @@ export const PitchTekSettings = {
   JumpBlastMaxHeight: 0x0150,  // 0x0150 (0x0004) [float]
   JumpBlastSettings: 0x0158,  // 0x0158 (0x0020) [FPitchTekTextureDecalSettings]
   CarPositionSettings: 0x0178,  // 0x0178 (0x0020) [FPitchTekTextureDecalSettings]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -11541,7 +11652,7 @@ export const PlatformBlockListStatus = {
 export const PlatformInterfaceBase = {
   AllDelegates: 0x0060,  // 0x0060 (0x0010) [TArray<FDelegateArray>]
   __PlatformInterfaceDelegate__Delegate: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -11658,7 +11769,7 @@ export const PlatformInterfaceWebResponse = {
   Headers: 0x0078,  // 0x0078 (0x0050) [FMap_Mirror]
   StringResponse: 0x00C8,  // 0x00C8 (0x0010) [FString]
   BinaryResponse: 0x00D8,  // 0x00D8 (0x0010) [TArray<uint8>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -11690,7 +11801,7 @@ export const Player = {
   PP_MidTonesMultiplier: 0x0094,  // 0x0094 (0x0004) [float]
   PP_ShadowsMultiplier: 0x0098,  // 0x0098 (0x0004) [float]
   __EventReceivedController__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -11974,7 +12085,7 @@ export const PointLightToggleable = {
  * Extends: Object
  */
 export const Polys = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -11994,7 +12105,7 @@ export const PortalMarker = {
  */
 export const PostProcessChain = {
   Effects: 0x0060,  // 0x0060 (0x0010) [TArray<UPostProcessEffect*>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -12015,7 +12126,7 @@ export const PostProcessEffect = {
   OutDrawY: 0x007C,  // 0x007C (0x0004) [int32]
   InDrawY: 0x0080,  // 0x0080 (0x0004) [int32]
   SceneDPG: 0x0084,  // 0x0084 (0x0001) [ESceneDepthPriorityGroup]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -12155,7 +12266,7 @@ export const Prefab = {
   PrefabPreview: 0x0090,  // 0x0090 (0x0008) [UTexture2D*]
   bWorldspacePrefab: 0x0098,  // 0x0098 (0x0004) [bool : 0x1]
   bAutoUpdatePrefabInstances: 0x0098,  // 0x0098 (0x0004) [bool : 0x2]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -12184,7 +12295,7 @@ export const PrefabInstance = {
  * Extends: Object
  */
 export const PrimaryPlayer = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -13081,7 +13192,7 @@ export const PrimitiveComponentFactory = {
   HiddenGame: 0x0060,  // 0x0060 (0x0004) [bool : 0x20]
   HiddenEditor: 0x0060,  // 0x0060 (0x0004) [bool : 0x40]
   CastShadow: 0x0060,  // 0x0060 (0x0004) [bool : 0x80]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -13121,7 +13232,7 @@ export const ProcBuildingRuleset = {
   Variations: 0x00B8,  // 0x00B8 (0x0010) [TArray<FPBVariationInfo>]
   ParamSwatches: 0x00C8,  // 0x00C8 (0x0010) [TArray<FPBParamSwatch>]
   Comments: 0x00D8,  // 0x00D8 (0x0010) [TArray<UPBRuleNodeComment*>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -13253,7 +13364,7 @@ export const RB_BodyInstance = {
   ContactReportForceThreshold: 0x00D8,  // 0x00D8 (0x0004) [float]
   InstanceMassScale: 0x00DC,  // 0x00DC (0x0004) [float]
   InstanceDampingScale: 0x00E0,  // 0x00E0 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -13326,7 +13437,7 @@ export const RB_ConstraintInstance = {
   AngularDriveDamping: 0x00D0,  // 0x00D0 (0x0004) [float]
   AngularDriveForceLimit: 0x00D4,  // 0x00D4 (0x0004) [float]
   DummyKinActor: 0x00D8,  // 0x00D8 (0x0008) [FPointer]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -13371,7 +13482,7 @@ export const RB_ConstraintSetup = {
   TwistLimitDamping: 0x0118,  // 0x0118 (0x0004) [float]
   AngularBreakThreshold: 0x011C,  // 0x011C (0x0004) [float]
   PulleyRatio: 0x0120,  // 0x0120 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -13556,7 +13667,7 @@ export const ReachSpec = {
   bDisabled: 0x00AC,  // 0x00AC (0x0004) [bool : 0x10]
   PruneSpecList: 0x00B0,  // 0x00B0 (0x0010) [TArray<UClass*>]
   BlockedBy: 0x00C0,  // 0x00C0 (0x0008) [UActor*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -13912,7 +14023,7 @@ export const RouteRenderingComponent = {
 export const SaveGameSummary = {
   BaseLevel: 0x0060,  // 0x0060 (0x0008) [FName]
   Description: 0x0068,  // 0x0068 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -13951,7 +14062,7 @@ export const SavedMove = {
   AccelDotThreshold: 0x0104,  // 0x0104 (0x0004) [float]
   RootMotionInterpCurrentTime: 0x0108,  // 0x0108 (0x0004) [float]
   RootMotionInterpCurveLastValue: 0x010C,  // 0x010C (0x000C) [FVector]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -13960,7 +14071,7 @@ export const SavedMove = {
  * Extends: Object
  */
 export const Scene = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -14182,7 +14293,7 @@ export const Scout = {
  */
 export const ScriptGroup_ORS = {
   GroupOwner: 0x0060,  // 0x0060 (0x0008) [UObject*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -14192,7 +14303,7 @@ export const ScriptGroup_ORS = {
  */
 export const ScriptViewportClient = {
   VfTable_FViewportClient: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -14253,7 +14364,7 @@ export const GameViewportClient = {
  * Extends: Object
  */
 export const Selection = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -14279,7 +14390,7 @@ export const SequenceObject = {
   DrawWidth: 0x00C4,  // 0x00C4 (0x0004) [int32]
   DrawHeight: 0x00C8,  // 0x00C8 (0x0004) [int32]
   PIESequenceObject: 0x00D0,  // 0x00D0 (0x0008) [USequenceObject*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -16526,7 +16637,7 @@ export const Settings = {
   Properties: 0x0070,  // 0x0070 (0x0010) [TArray<FSettingsProperty>]
   LocalizedSettingsMappings: 0x0080,  // 0x0080 (0x0010) [TArray<FLocalizedStringSettingMetaData>]
   PropertyMappings: 0x0090,  // 0x0090 (0x0010) [TArray<FSettingsPropertyPropertyMetaData>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -16594,7 +16705,7 @@ export const OnlineGameSettings = {
  * Extends: Object
  */
 export const ShaderCache = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -16603,7 +16714,7 @@ export const ShaderCache = {
  * Extends: Object
  */
 export const ShadowMap1D = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -16619,7 +16730,7 @@ export const ShadowMap2D = {
   bIsShadowFactorTexture: 0x0088,  // 0x0088 (0x0004) [bool : 0x1]
   Component: 0x0090,  // 0x0090 (0x0008) [unknown]
   InstanceIndex: 0x0098,  // 0x0098 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -17020,7 +17131,7 @@ export const SkeletalMesh = {
   ReleaseResourcesFence: 0x04E4,  // 0x04E4 (0x0004) [int32]
   SkelMeshRUID: 0x04E8,  // 0x04E8 (0x0008) [uint64]
   bUseClothingAssetMaterial: 0x04F0,  // 0x04F0 (0x0004) [bool : 0x1]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -17336,7 +17447,7 @@ export const SkeletalMeshSocket = {
   PreviewSkelComp: 0x00A0,  // 0x00A0 (0x0008) [unknown]
   PreviewStaticMesh: 0x00A8,  // 0x00A8 (0x0008) [UStaticMesh*]
   PreviewParticleSystem: 0x00B0,  // 0x00B0 (0x0008) [UParticleSystem*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -17398,7 +17509,7 @@ export const SoundClass = {
   bIsChild: 0x0090,  // 0x0090 (0x0004) [bool : 0x1]
   MenuID: 0x0094,  // 0x0094 (0x0004) [int32]
   EditorData: 0x0098,  // 0x0098 (0x0050) [TMap<unknown, unknown>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -17438,7 +17549,7 @@ export const SoundMode = {
   FadeInTime: 0x00A4,  // 0x00A4 (0x0004) [float]
   Duration: 0x00A8,  // 0x00A8 (0x0004) [float]
   FadeOutTime: 0x00AC,  // 0x00AC (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -17449,7 +17560,7 @@ export const SoundMode = {
 export const SoundNode = {
   NodeUpdateHint: 0x0060,  // 0x0060 (0x0004) [int32]
   ChildNodes: 0x0068,  // 0x0068 (0x0010) [TArray<USoundNode*>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -17801,7 +17912,7 @@ export const SpeechRecognition = {
   bDirty: 0x0118,  // 0x0118 (0x0004) [bool : 0x1]
   bInitialised: 0x0118,  // 0x0118 (0x0004) [bool : 0x2]
   FnxVoiceData: 0x0120,  // 0x0120 (0x0008) [FPointer]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -17822,7 +17933,7 @@ export const SpeedTree = {
   WindStrength: 0x00A8,  // 0x00A8 (0x0004) [float]
   WindDirection: 0x00AC,  // 0x00AC (0x000C) [FVector]
   LightingGuid: 0x00B8,  // 0x00B8 (0x0010) [FGuid]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -18189,7 +18300,7 @@ export const StaticMesh = {
   bStripComplexCollisionForConsole: 0x0168,  // 0x0168 (0x0004) [bool : 0x1]
   bPerLODStaticLightingForInstancing: 0x016C,  // 0x016C (0x0004) [bool : 0x1]
   StreamingDistanceMultiplier: 0x0170,  // 0x0170 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -18480,7 +18591,7 @@ export const StaticMeshComponentFactory = {
  * Extends: Object
  */
 export const Surface = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -18956,7 +19067,7 @@ export const TerrainComponent = {
  */
 export const TerrainLayerSetup = {
   Materials: 0x0060,  // 0x0060 (0x0010) [TArray<FTerrainFilteredMaterial>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -18974,7 +19085,7 @@ export const TerrainMaterial = {
   Material: 0x00B8,  // 0x00B8 (0x0008) [UMaterialInterface*]
   DisplacementMap: 0x00C0,  // 0x00C0 (0x0008) [UTexture2D*]
   DisplacementScale: 0x00C8,  // 0x00C8 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -19265,7 +19376,7 @@ export const TickEventBase = {
   DeltaSeconds: 0x0060,  // 0x0060 (0x0004) [float]
   TimeDilation: 0x0064,  // 0x0064 (0x0004) [float]
   Count: 0x0068,  // 0x0068 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -19296,7 +19407,7 @@ export const TimeWindow = {
   WindowDuration: 0x0068,  // 0x0068 (0x0004) [int32]
   WindowResetInterval: 0x006C,  // 0x006C (0x0004) [int32]
   bRepeatable: 0x0070,  // 0x0070 (0x0004) [bool : 0x1]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -19306,7 +19417,7 @@ export const TimeWindow = {
  */
 export const TranslationContext = {
   TranslatorTags: 0x0060,  // 0x0060 (0x0010) [TArray<UTranslatorTag*>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -19316,7 +19427,7 @@ export const TranslationContext = {
  */
 export const TranslatorTag = {
   Tag: 0x0060,  // 0x0060 (0x0008) [FName]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -19422,7 +19533,7 @@ export const UIDataStorePublisher = {
  * Extends: Object
  */
 export const UIManager = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -19432,7 +19543,7 @@ export const UIManager = {
  */
 export const UIRoot = {
   BadCapsLocContexts: 0x0060,  // 0x0060 (0x0010) [TArray<FString>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -20143,7 +20254,7 @@ export const GameUISceneClient = {
  */
 export const UISoundTheme = {
   SoundEventBindings: 0x0060,  // 0x0060 (0x0010) [TArray<FSoundEventMapping>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -20205,7 +20316,7 @@ export const UserCloudFileCloudSaveSystemDataBlobStore = {
   __GetDataBlobCallbackDelegate__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
   __SetDataBlobCallbackDelegate__Delegate: 0x00D0,  // 0x00D0 (0x0018) [FScriptDelegate]
   __DeleteDataBlobCallbackDelegate__Delegate: 0x00E8,  // 0x00E8 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -20632,7 +20743,7 @@ export const WallTransReachSpec = {
  */
 export const WaveFormBase = {
   TheWaveForm: 0x0060,  // 0x0060 (0x0008) [UForceFeedbackWaveform*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -20695,7 +20806,7 @@ export const WindPointSourceComponent = {
  * Extends: Object
  */
 export const World = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -20922,7 +21033,7 @@ export const WorldInfo = {
  * Extends: Object
  */
 export const _Types_Engine = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -20932,7 +21043,7 @@ export const _Types_Engine = {
  */
 export const __GameInfo__Login_0x1 = {
   NewPlayer: 0x0060,  // 0x0060 (0x0008) [UPlayerController*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -20942,9 +21053,8 @@ export const __GameInfo__Login_0x1 = {
  */
 export const __ScriptGroup_ORS__CreateObjects_0x1 = {
   ObjOuter: 0x0060,  // 0x0060 (0x0008) [UObject*]
-  ...Object,
+  ...Object_,
 } as const;
-
 
 /**
  * ScriptStruct Engine.OnlineSubsystem.AchievementDetails Offsets

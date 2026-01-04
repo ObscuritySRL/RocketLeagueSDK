@@ -6,8 +6,6 @@
  * Import these to read/write memory at the correct locations.
  */
 
-import { ScriptGroup_ORS } from './Engine';
-
 /**
  * FNameEntry Offsets
  * Size: 0x0020 (header only, Name is variable length)
@@ -32,6 +30,15 @@ export const TArray = {
 export const TArraySize = 0x10;
 
 /**
+ * Engine.ScriptGroup_ORS Offsets
+ * Size: 0x0068
+ * Extends: Object
+ */
+export const ScriptGroup_ORS = {
+  GroupOwner: 0x0060,  // 0x0060 (0x0008) [UObject*]
+} as const;
+
+/**
  * Core.Group_ORS Offsets
  * Size: 0x0138
  * Extends: ScriptGroup_ORS
@@ -44,7 +51,7 @@ export const Group_ORS = {
  * Core.Object Offsets
  * Size: 0x0060
  */
-export const Object = {
+export const Object_ = {
   VfTableObject: 0x0000,  // 0x0000 (0x0008) [FPointer]
   HashNext: 0x0008,  // 0x0008 (0x0008) [FPointer]
   ObjectFlags: 0x0010,  // 0x0010 (0x0008) [uint64]
@@ -66,7 +73,7 @@ export const Object = {
  * Extends: Object
  */
 export const ArrayFuncs = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -82,7 +89,7 @@ export const AsyncTask = {
   __EventAsyncTaskFail__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
   __EventAsyncTaskComplete__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
   __EventDisposed__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -104,7 +111,7 @@ export const AutomationTest = {
   MaterialsFailedCompile: 0x0070,  // 0x0070 (0x0010) [TArray<FString>]
   AsyncPreloadPackagesMissing: 0x0080,  // 0x0080 (0x0010) [TArray<FString>]
   ScriptWarnings: 0x0090,  // 0x0090 (0x0010) [TArray<FScriptWarning>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -113,7 +120,7 @@ export const AutomationTest = {
  * Extends: Object
  */
 export const Base64 = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -123,7 +130,7 @@ export const Base64 = {
  */
 export const Breadcrumbs = {
   BreadcrumbInstance: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -132,7 +139,7 @@ export const Breadcrumbs = {
  * Extends: Object
  */
 export const ClassTupleCollection_ORS = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -141,7 +148,7 @@ export const ClassTupleCollection_ORS = {
  * Extends: Object
  */
 export const ClassTuple_ORS = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -160,7 +167,7 @@ export const Commandlet = {
   IsEditor: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x4]
   LogToConsole: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x8]
   ShowErrorCount: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x10]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -171,7 +178,7 @@ export const Commandlet = {
 export const Component = {
   TemplateOwnerClass: 0x0060,  // 0x0060 (0x0008) [UClass*]
   TemplateName: 0x0068,  // 0x0068 (0x0008) [FName]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -180,7 +187,7 @@ export const Component = {
  * Extends: Object
  */
 export const Compression = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -189,7 +196,7 @@ export const Compression = {
  * Extends: Object
  */
 export const Config_ORS = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -207,7 +214,7 @@ export const DebugDrawer = {
   QueuedObjects: 0x0090,  // 0x0090 (0x0010) [TArray<UObject*>]
   PrintObjectCount: 0x00A0,  // 0x00A0 (0x0004) [int32]
   __LogFunc__Delegate: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -218,7 +225,7 @@ export const DebugDrawer = {
 export const DelegateTracker = {
   AsyncDelegates: 0x0060,  // 0x0060 (0x0010) [TArray<FAsyncDelegateInfo>]
   __PlaceholderDelegate__Delegate: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -250,12 +257,12 @@ export const DistributionVector = {
  * Size: 0x0084
  * Extends: Object
  */
-export const Error = {
+export const Error_ = {
   Type: 0x0060,  // 0x0060 (0x0008) [UErrorType*]
   Message: 0x0068,  // 0x0068 (0x0010) [FString]
   Code: 0x0078,  // 0x0078 (0x0004) [int32]
   RetryKey: 0x007C,  // 0x007C (0x0008) [FName]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -266,7 +273,7 @@ export const Error = {
 export const ErrorList = {
   LocalizationPackage: 0x0060,  // 0x0060 (0x0010) [FString]
   LocalizationSection: 0x0070,  // 0x0070 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -287,7 +294,7 @@ export const ArrayErrors = {
  */
 export const ErrorType = {
   LocalizationKey: 0x0060,  // 0x0060 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -298,7 +305,7 @@ export const ErrorType = {
 export const Exporter = {
   FormatExtension: 0x0068,  // 0x0068 (0x0010) [TArray<FString>]
   FormatDescription: 0x0078,  // 0x0078 (0x0010) [TArray<FString>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -319,7 +326,7 @@ export const Factory = {
   bAssetNameMatchesPackageName: 0x00A0,  // 0x00A0 (0x0004) [bool : 0x10]
   AutoPriority: 0x00A4,  // 0x00A4 (0x0004) [int32]
   ValidGameNames: 0x00A8,  // 0x00A8 (0x0010) [TArray<FString>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -452,7 +459,7 @@ export const FeatureSystem = {
   FastFreeplay: 0x0078,  // 0x0078 (0x0004) [bool : 0x4000000]
   MatchAdminMutator: 0x0078,  // 0x0078 (0x0004) [bool : 0x8000000]
   Thistle: 0x0078,  // 0x0078 (0x0004) [bool : 0x10000000]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -461,7 +468,7 @@ export const FeatureSystem = {
  * Extends: Object
  */
 export const Field = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -488,7 +495,7 @@ export const Enum = {
  * Extends: Object
  */
 export const FileSystem = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -497,7 +504,7 @@ export const FileSystem = {
  * Extends: Object
  */
 export const Global_ORS = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -515,7 +522,7 @@ export const HelpCommandlet = {
  * Extends: Object
  */
 export const Instance_ORS = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -524,7 +531,7 @@ export const Instance_ORS = {
  * Extends: Object
  */
 export const Interface = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -542,7 +549,7 @@ export const IDisposable = {
  * Extends: Object
  */
 export const Linker = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -569,7 +576,7 @@ export const LinkerSave = {
  * Extends: Object
  */
 export const MetaData = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -606,7 +613,7 @@ export const ObjectProvider = {
  * Extends: Object
  */
 export const ObjectRedirector = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -615,7 +622,7 @@ export const ObjectRedirector = {
  * Extends: Object
  */
 export const ObjectSerializer = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -624,7 +631,7 @@ export const ObjectSerializer = {
  * Extends: Object
  */
 export const ObjectUtil = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -633,7 +640,7 @@ export const ObjectUtil = {
  * Extends: Object
  */
 export const Package = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -642,7 +649,7 @@ export const Package = {
  * Extends: Object
  */
 export const PackageMap = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -768,7 +775,7 @@ export const ComponentProperty = {
  * Extends: Object
  */
 export const PropertyChangeDispatcher = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -786,7 +793,7 @@ export const QWordProperty = {
  * Extends: Object
  */
 export const RotatorConversions = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -833,7 +840,7 @@ export const Struct = {
  * Size: 0x0160
  * Extends: Struct
  */
-export const Function = {
+export const Function_ = {
   ...Struct,
 } as const;
 
@@ -880,7 +887,7 @@ export const StructProperty = {
  */
 export const Subscription = {
   __SubscriberCallback__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -889,7 +896,7 @@ export const Subscription = {
  * Extends: Object
  */
 export const SubscriptionCollection_ORS = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -899,7 +906,7 @@ export const SubscriptionCollection_ORS = {
  */
 export const Subsystem = {
   VfTable_FExec: 0x0060,  // 0x0060 (0x0008) [FPointer]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -945,7 +952,7 @@ export const TAsyncResult = {
  * Extends: Object
  */
 export const TextBuffer = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -963,7 +970,7 @@ export const TextBufferFactory = {
  * Extends: Object
  */
 export const UTF8 = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -972,7 +979,7 @@ export const UTF8 = {
  * Extends: Object
  */
 export const _LoggingDoc = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -981,7 +988,7 @@ export const _LoggingDoc = {
  * Extends: Object
  */
 export const _Types_Core = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -990,7 +997,7 @@ export const _Types_Core = {
  * Extends: Object
  */
 export const _Types_Generated = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1001,9 +1008,8 @@ export const _Types_Generated = {
 export const __AsyncTask__All_0x1 = {
   DependentsCount: 0x0060,  // 0x0060 (0x0004) [int32]
   Parent: 0x0068,  // 0x0068 (0x0008) [UAsyncTask*]
-  ...Object,
+  ...Object_,
 } as const;
-
 
 /**
  * ScriptStruct Core.Object.Array_Mirror Offsets

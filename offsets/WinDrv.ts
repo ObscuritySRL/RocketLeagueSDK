@@ -6,7 +6,19 @@
  * Import these to read/write memory at the correct locations.
  */
 
-import { Client, FacebookIntegration, ForceFeedbackManager, HttpRequestInterface, HttpResponseInterface } from './Engine';
+/**
+ * Engine.FacebookIntegration Offsets
+ * Size: 0x00E8
+ * Extends: PlatformInterfaceBase
+ */
+export const FacebookIntegration = {
+  AppID: 0x0088,  // 0x0088 (0x0010) [FString]
+  Permissions: 0x0098,  // 0x0098 (0x0010) [TArray<FString>]
+  Username: 0x00A8,  // 0x00A8 (0x0010) [FString]
+  UserId: 0x00B8,  // 0x00B8 (0x0010) [FString]
+  AccessToken: 0x00C8,  // 0x00C8 (0x0010) [FString]
+  FriendsList: 0x00D8,  // 0x00D8 (0x0010) [TArray<FFacebookFriend>]
+} as const;
 
 /**
  * WinDrv.FacebookWindows Offsets
@@ -17,6 +29,15 @@ export const FacebookWindows = {
   VfTable_FTickableObject: 0x00E8,  // 0x00E8 (0x0008) [FPointer]
   ChildProcHandle: 0x00F0,  // 0x00F0 (0x0008) [FPointer]
   ...FacebookIntegration,
+} as const;
+
+/**
+ * Engine.HttpRequestInterface Offsets
+ * Size: 0x0078
+ * Extends: HttpBaseInterface
+ */
+export const HttpRequestInterface = {
+  __OnProcessRequestComplete__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -44,6 +65,14 @@ export const HttpRequestWindowsMcp = {
 } as const;
 
 /**
+ * Engine.HttpResponseInterface Offsets
+ * Size: 0x0060
+ * Extends: HttpBaseInterface
+ */
+export const HttpResponseInterface = {
+} as const;
+
+/**
  * WinDrv.HttpResponseWindows Offsets
  * Size: 0x0078
  * Extends: HttpResponseInterface
@@ -55,6 +84,18 @@ export const HttpResponseWindows = {
 } as const;
 
 /**
+ * Engine.Client Offsets
+ * Size: 0x0078
+ * Extends: Object
+ */
+export const Client = {
+  MinDesiredFrameRate: 0x0068,  // 0x0068 (0x0004) [float]
+  DisplayGamma: 0x006C,  // 0x006C (0x0004) [float]
+  InitialButtonRepeatDelay: 0x0070,  // 0x0070 (0x0004) [float]
+  ButtonRepeatDelay: 0x0074,  // 0x0074 (0x0004) [float]
+} as const;
+
+/**
  * WinDrv.WindowsClient Offsets
  * Size: 0x03C0
  * Extends: Client
@@ -63,6 +104,25 @@ export const WindowsClient = {
   AudioDeviceClass: 0x0278,  // 0x0278 (0x0008) [UClass*]
   AllowJoystickInput: 0x02B8,  // 0x02B8 (0x0004) [int32]
   ...Client,
+} as const;
+
+/**
+ * Engine.ForceFeedbackManager Offsets
+ * Size: 0x0098
+ * Extends: Object
+ */
+export const ForceFeedbackManager = {
+  bAllowsForceFeedback: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
+  bIsPaused: 0x0060,  // 0x0060 (0x0004) [bool : 0x2]
+  FFWaveform: 0x0068,  // 0x0068 (0x0008) [UForceFeedbackWaveform*]
+  CurrentSample: 0x0070,  // 0x0070 (0x0004) [int32]
+  ElapsedTime: 0x0074,  // 0x0074 (0x0004) [float]
+  ScaleAllWaveformsBy: 0x0078,  // 0x0078 (0x0004) [float]
+  WaveformInstigator: 0x0080,  // 0x0080 (0x0008) [UActor*]
+  ShakeLeft: 0x0088,  // 0x0088 (0x0004) [int32]
+  ShakeRight: 0x008C,  // 0x008C (0x0004) [int32]
+  EnableTime: 0x0090,  // 0x0090 (0x0004) [float]
+  EnabledTimeRemaining: 0x0094,  // 0x0094 (0x0004) [float]
 } as const;
 
 /**

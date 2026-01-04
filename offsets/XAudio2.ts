@@ -6,7 +6,60 @@
  * Import these to read/write memory at the correct locations.
  */
 
-import { AudioDevice } from './Engine';
+/**
+ * Engine.AudioDevice Offsets
+ * Size: 0x03A4
+ * Extends: Subsystem
+ */
+export const AudioDevice = {
+  MaxChannels: 0x0068,  // 0x0068 (0x0004) [int32]
+  CommonAudioPoolSize: 0x006C,  // 0x006C (0x0004) [int32]
+  LowPassFilterResonance: 0x0070,  // 0x0070 (0x0004) [float]
+  MinCompressedDurationEditor: 0x0074,  // 0x0074 (0x0004) [float]
+  MinCompressedDurationGame: 0x0078,  // 0x0078 (0x0004) [float]
+  ChirpInSoundNodeWaveName: 0x0080,  // 0x0080 (0x0010) [FString]
+  ChirpInSoundNodeWave: 0x0090,  // 0x0090 (0x0008) [USoundNodeWave*]
+  ChirpOutSoundNodeWaveName: 0x0098,  // 0x0098 (0x0010) [FString]
+  ChirpOutSoundNodeWave: 0x00A8,  // 0x00A8 (0x0008) [USoundNodeWave*]
+  CommonAudioPool: 0x00B0,  // 0x00B0 (0x0008) [FPointer]
+  CommonAudioPoolFreeBytes: 0x00B8,  // 0x00B8 (0x0004) [int32]
+  AudioComponents: 0x00C0,  // 0x00C0 (0x0010) [TArray<unknown>]
+  Sources: 0x00D0,  // 0x00D0 (0x0010) [TArray<FPointer>]
+  FreeSources: 0x00E0,  // 0x00E0 (0x0010) [TArray<FPointer>]
+  WaveInstanceSourceMap: 0x00F0,  // 0x00F0 (0x0050) [TMap<unknown, unknown>]
+  bGameWasTicking: 0x0140,  // 0x0140 (0x0004) [bool : 0x1]
+  bSoundSpawningEnabled: 0x0140,  // 0x0140 (0x0004) [bool : 0x2]
+  Listeners: 0x0148,  // 0x0148 (0x0010) [TArray<FListener>]
+  CurrentTick: 0x0158,  // 0x0158 (0x0008) [uint64]
+  SoundClasses: 0x0160,  // 0x0160 (0x0050) [TMap<unknown, unknown>]
+  SourceSoundClasses: 0x01B0,  // 0x01B0 (0x0050) [TMap<unknown, unknown>]
+  CurrentSoundClasses: 0x0200,  // 0x0200 (0x0050) [TMap<unknown, unknown>]
+  DestinationSoundClasses: 0x0250,  // 0x0250 (0x0050) [TMap<unknown, unknown>]
+  SoundModes: 0x02A0,  // 0x02A0 (0x0050) [TMap<unknown, unknown>]
+  Effects: 0x02F0,  // 0x02F0 (0x0008) [FPointer]
+  BaseSoundModeName: 0x02F8,  // 0x02F8 (0x0008) [FName]
+  CurrentMode: 0x0300,  // 0x0300 (0x0008) [USoundMode*]
+  SoundModeStartTime: 0x0308,  // 0x0308 (0x0008) [FDouble]
+  SoundModeFadeInStartTime: 0x0310,  // 0x0310 (0x0008) [FDouble]
+  SoundModeFadeInEndTime: 0x0318,  // 0x0318 (0x0008) [FDouble]
+  SoundModeEndTime: 0x0320,  // 0x0320 (0x0008) [FDouble]
+  ListenerVolumeIndex: 0x0328,  // 0x0328 (0x0004) [int32]
+  ListenerInteriorSettings: 0x032C,  // 0x032C (0x0024) [FInteriorSettings]
+  InteriorStartTime: 0x0350,  // 0x0350 (0x0008) [FDouble]
+  InteriorEndTime: 0x0358,  // 0x0358 (0x0008) [FDouble]
+  ExteriorEndTime: 0x0360,  // 0x0360 (0x0008) [FDouble]
+  InteriorLPFEndTime: 0x0368,  // 0x0368 (0x0008) [FDouble]
+  ExteriorLPFEndTime: 0x0370,  // 0x0370 (0x0008) [FDouble]
+  InteriorVolumeInterp: 0x0378,  // 0x0378 (0x0004) [float]
+  InteriorLPFInterp: 0x037C,  // 0x037C (0x0004) [float]
+  ExteriorVolumeInterp: 0x0380,  // 0x0380 (0x0004) [float]
+  ExteriorLPFInterp: 0x0384,  // 0x0384 (0x0004) [float]
+  TestAudioComponent: 0x0388,  // 0x0388 (0x0008) [unknown]
+  TextToSpeech: 0x0390,  // 0x0390 (0x0008) [FPointer]
+  DebugState: 0x0398,  // 0x0398 (0x0001) [EDebugState]
+  TransientMasterVolume: 0x039C,  // 0x039C (0x0004) [float]
+  LastUpdateTime: 0x03A0,  // 0x03A0 (0x0004) [float]
+} as const;
 
 /**
  * XAudio2.XAudio2Device Offsets

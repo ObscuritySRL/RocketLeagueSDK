@@ -6,10 +6,15 @@
  * Import these to read/write memory at the correct locations.
  */
 
-import { Actor, ActorComponent, AnimNodeBlendList, AnimNodeSequence, AnimNotify_PlayParticleEffect, Camera, CameraModifier_CameraShake, CheatManager, DistributionFloatParameterBase, EngineShare, GameEngine, GameInfo, GameReplicationInfo, GameViewportClient, HUD, LensFlareComponent, LocalPlayer, MaterialEffect, OnlineGameSearch, ParticleModuleBeamTarget, ParticleModuleLocationBoneSocket, ParticleModuleLocationSkelVertSurface, ParticleModuleVelocityBase, ParticleModuleWorldForcesBase, Pawn, PhysicalMaterialPropertyBase, PlayerController, PlayerInput, PlayerReplicationInfo, PointLightComponent, RadialBlurComponent, ReplicationInfo, SequenceAction, SequenceCondition, SequenceEvent, Settings, TextureRenderTarget2D } from './Engine';
-import { AsyncTask, Component, DebugDrawer, ErrorList, ErrorType, Interface, Object } from './Core';
-import { GFxEngine, GFxMoviePlayer } from './GFxUI';
-import { WebApplication } from './IpDrv';
+/**
+ * Core.Component Offsets
+ * Size: 0x0070
+ * Extends: Object
+ */
+export const Component = {
+  TemplateOwnerClass: 0x0060,  // 0x0060 (0x0008) [UClass*]
+  TemplateName: 0x0068,  // 0x0068 (0x0008) [FName]
+} as const;
 
 /**
  * ProjectX.ActionQueue_X Offsets
@@ -22,6 +27,24 @@ export const ActionQueue_X = {
   QueueIndex: 0x0088,  // 0x0088 (0x0004) [int32]
   __ActionDelegate__Delegate: 0x0090,  // 0x0090 (0x0018) [FScriptDelegate]
   __QueueEmptied__Delegate: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
+  ...Component,
+} as const;
+
+/**
+ * Engine.ActorComponent Offsets
+ * Size: 0x009D
+ * Extends: Component
+ */
+export const ActorComponent = {
+  LocalViewers: 0x0070,  // 0x0070 (0x0010) [TArray<UPlayerController*>]
+  BulletSceneGroup: 0x0080,  // 0x0080 (0x0001) [uint8]
+  Scene: 0x0088,  // 0x0088 (0x0008) [FPointer]
+  Owner: 0x0090,  // 0x0090 (0x0008) [UActor*]
+  bAttached: 0x0098,  // 0x0098 (0x0004) [bool : 0x1]
+  bTickInEditor: 0x0098,  // 0x0098 (0x0004) [bool : 0x2]
+  bNeedsReattach: 0x0098,  // 0x0098 (0x0004) [bool : 0x4]
+  bNeedsUpdateTransform: 0x0098,  // 0x0098 (0x0004) [bool : 0x8]
+  TickGroup: 0x009C,  // 0x009C (0x0001) [ETickingGroup]
   ...Component,
 } as const;
 
@@ -47,6 +70,26 @@ export const ActivateAnimSeriesComponent_X = {
 } as const;
 
 /**
+ * Core.Object Offsets
+ * Size: 0x0060
+ */
+export const Object_ = {
+  VfTableObject: 0x0000,  // 0x0000 (0x0008) [FPointer]
+  HashNext: 0x0008,  // 0x0008 (0x0008) [FPointer]
+  ObjectFlags: 0x0010,  // 0x0010 (0x0008) [uint64]
+  HashOuterNext: 0x0018,  // 0x0018 (0x0008) [FPointer]
+  StateFrame: 0x0020,  // 0x0020 (0x0008) [FPointer]
+  Linker: 0x0028,  // 0x0028 (0x0008) [UObject*]
+  LinkerIndex: 0x0030,  // 0x0030 (0x0008) [FPointer]
+  ObjectInternalInteger: 0x0038,  // 0x0038 (0x0004) [int32]
+  NetIndex: 0x003C,  // 0x003C (0x0004) [int32]
+  Outer: 0x0040,  // 0x0040 (0x0008) [UObject*]
+  Name: 0x0048,  // 0x0048 (0x0008) [FName]
+  Class: 0x0050,  // 0x0050 (0x0008) [UClass*]
+  ObjectArchetype: 0x0058,  // 0x0058 (0x0008) [UObject*]
+} as const;
+
+/**
  * ProjectX.AdHocBeacon_X Offsets
  * Size: 0x0070
  * Extends: Object
@@ -54,7 +97,7 @@ export const ActivateAnimSeriesComponent_X = {
 export const AdHocBeacon_X = {
   VfTable_FTickableObject: 0x0060,  // 0x0060 (0x0008) [FPointer]
   pAdHoc: 0x0068,  // 0x0068 (0x0008) [FPointer]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -67,7 +110,7 @@ export const AdHocInterface_X = {
   AdHocBeacon: 0x0068,  // 0x0068 (0x0008) [UAdHocBeacon_X*]
   OnlineGameParty: 0x0070,  // 0x0070 (0x0008) [UOnlineGameParty_X*]
   Matchmaking: 0x0078,  // 0x0078 (0x0008) [UOnlineGameMatchmaking_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -77,7 +120,23 @@ export const AdHocInterface_X = {
  */
 export const AgeGateRequiredResponse = {
   ageGateRequired: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.AnimNodeBlendList Offsets
+ * Size: 0x016C
+ * Extends: AnimNodeBlendBase
+ */
+export const AnimNodeBlendList = {
+  TargetWeight: 0x0148,  // 0x0148 (0x0010) [TArray<float>]
+  BlendTimeToGo: 0x0158,  // 0x0158 (0x0004) [float]
+  ActiveChildIndex: 0x015C,  // 0x015C (0x0004) [int32]
+  bPlayActiveChild: 0x0160,  // 0x0160 (0x0004) [bool : 0x1]
+  bForceChildFullWeightWhenBecomingRelevant: 0x0160,  // 0x0160 (0x0004) [bool : 0x2]
+  bSkipBlendWhenNotRendered: 0x0160,  // 0x0160 (0x0004) [bool : 0x4]
+  SliderPosition: 0x0164,  // 0x0164 (0x0004) [float]
+  EditorActiveChildIndex: 0x0168,  // 0x0168 (0x0004) [int32]
 } as const;
 
 /**
@@ -109,6 +168,52 @@ export const AnimNodeBlendList_X = {
  */
 export const AnimNodeCustomSeries_X = {
   ...AnimNodeBlendBase_X,
+} as const;
+
+/**
+ * Engine.AnimNodeSequence Offsets
+ * Size: 0x01A8
+ * Extends: AnimNode
+ */
+export const AnimNodeSequence = {
+  AnimSeqName: 0x0130,  // 0x0130 (0x0008) [FName]
+  Rate: 0x0138,  // 0x0138 (0x0004) [float]
+  bPlaying: 0x013C,  // 0x013C (0x0004) [bool : 0x1]
+  bLooping: 0x013C,  // 0x013C (0x0004) [bool : 0x2]
+  bCauseActorAnimEnd: 0x013C,  // 0x013C (0x0004) [bool : 0x4]
+  bCauseActorAnimPlay: 0x013C,  // 0x013C (0x0004) [bool : 0x8]
+  bZeroRootRotation: 0x013C,  // 0x013C (0x0004) [bool : 0x10]
+  bZeroRootTranslation: 0x013C,  // 0x013C (0x0004) [bool : 0x20]
+  bDisableWarningWhenAnimNotFound: 0x013C,  // 0x013C (0x0004) [bool : 0x40]
+  bNoNotifies: 0x013C,  // 0x013C (0x0004) [bool : 0x80]
+  bForceRefposeWhenNotPlaying: 0x013C,  // 0x013C (0x0004) [bool : 0x100]
+  bIsIssuingNotifies: 0x013C,  // 0x013C (0x0004) [bool : 0x200]
+  bForceAlwaysSlave: 0x013C,  // 0x013C (0x0004) [bool : 0x400]
+  bSynchronize: 0x013C,  // 0x013C (0x0004) [bool : 0x800]
+  bReverseSync: 0x013C,  // 0x013C (0x0004) [bool : 0x1000]
+  bShowTimeLineSlider: 0x013C,  // 0x013C (0x0004) [bool : 0x2000]
+  bLoopCameraAnim: 0x013C,  // 0x013C (0x0004) [bool : 0x4000]
+  bRandomizeCameraAnimLoopStartTime: 0x013C,  // 0x013C (0x0004) [bool : 0x8000]
+  bEditorOnlyAddRefPoseToAdditiveAnimation: 0x013C,  // 0x013C (0x0004) [bool : 0x10000]
+  bCheckForFinishAnimEarly: 0x013C,  // 0x013C (0x0004) [bool : 0x20000]
+  bBlendingOut: 0x013C,  // 0x013C (0x0004) [bool : 0x40000]
+  CurrentTime: 0x0140,  // 0x0140 (0x0004) [float]
+  PreviousTime: 0x0144,  // 0x0144 (0x0004) [float]
+  EndTime: 0x0148,  // 0x0148 (0x0004) [float]
+  AnimSeq: 0x0150,  // 0x0150 (0x0008) [UAnimSequence*]
+  AnimLinkupIndex: 0x0158,  // 0x0158 (0x0004) [int32]
+  NotifyWeightThreshold: 0x015C,  // 0x015C (0x0004) [float]
+  SynchGroupName: 0x0160,  // 0x0160 (0x0008) [FName]
+  SynchPosOffset: 0x0168,  // 0x0168 (0x0004) [float]
+  CameraAnim: 0x0170,  // 0x0170 (0x0008) [UCameraAnim*]
+  ActiveCameraAnimInstance: 0x0178,  // 0x0178 (0x0008) [UCameraAnimInst*]
+  CameraAnimScale: 0x0180,  // 0x0180 (0x0004) [float]
+  CameraAnimPlayRate: 0x0184,  // 0x0184 (0x0004) [float]
+  CameraAnimBlendInTime: 0x0188,  // 0x0188 (0x0004) [float]
+  CameraAnimBlendOutTime: 0x018C,  // 0x018C (0x0004) [float]
+  RootBoneOption: 0x0190,  // 0x0190 (0x0003) [ERootBoneAxis]
+  RootRotationOption: 0x0193,  // 0x0193 (0x0003) [ERootRotationOption]
+  MetaDataSkelControlList: 0x0198,  // 0x0198 (0x0010) [TArray<USkelControlBase*>]
 } as const;
 
 /**
@@ -148,6 +253,23 @@ export const AnimNodeSeries_X = {
 } as const;
 
 /**
+ * Engine.AnimNotify_PlayParticleEffect Offsets
+ * Size: 0x0098
+ * Extends: AnimNotify
+ */
+export const AnimNotify_PlayParticleEffect = {
+  PSTemplate: 0x0068,  // 0x0068 (0x0008) [UParticleSystem*]
+  bIsExtremeContent: 0x0070,  // 0x0070 (0x0004) [bool : 0x1]
+  bAttach: 0x0070,  // 0x0070 (0x0004) [bool : 0x2]
+  bPreview: 0x0070,  // 0x0070 (0x0004) [bool : 0x4]
+  bSkipIfOwnerIsHidden: 0x0070,  // 0x0070 (0x0004) [bool : 0x8]
+  PSNonExtremeContentTemplate: 0x0078,  // 0x0078 (0x0008) [UParticleSystem*]
+  SocketName: 0x0080,  // 0x0080 (0x0008) [FName]
+  BoneName: 0x0088,  // 0x0088 (0x0008) [FName]
+  BoneSocketModuleActorName: 0x0090,  // 0x0090 (0x0008) [FName]
+} as const;
+
+/**
  * ProjectX.AnimNotify_PlayParticleEffect_X Offsets
  * Size: 0x00A0
  * Extends: AnimNotify_PlayParticleEffect
@@ -170,6 +292,173 @@ export const AnimateParametersComponent_X = {
   AnimTime: 0x00D4,  // 0x00D4 (0x0004) [float]
   EndTime: 0x00D8,  // 0x00D8 (0x0004) [float]
   ...ActorComponent,
+} as const;
+
+/**
+ * Engine.Actor Offsets
+ * Size: 0x0268
+ * Extends: Object
+ */
+export const Actor = {
+  ActorDependantPSCs: 0x0060,  // 0x0060 (0x0010) [TArray<unknown>]
+  Components: 0x0070,  // 0x0070 (0x0010) [TArray<unknown>]
+  AllComponents: 0x0080,  // 0x0080 (0x0010) [TArray<unknown>]
+  Location: 0x0090,  // 0x0090 (0x000C) [FVector]
+  Rotation: 0x009C,  // 0x009C (0x000C) [FRotator]
+  DrawScale: 0x00A8,  // 0x00A8 (0x0004) [float]
+  DrawScale3D: 0x00AC,  // 0x00AC (0x000C) [FVector]
+  PrePivot: 0x00B8,  // 0x00B8 (0x000C) [FVector]
+  EditorIconColor: 0x00C4,  // 0x00C4 (0x0004) [FColor]
+  DetachFence: 0x00C8,  // 0x00C8 (0x0004) [FRenderCommandFence]
+  CustomTimeDilation: 0x00CC,  // 0x00CC (0x0004) [float]
+  Physics: 0x00D0,  // 0x00D0 (0x0001) [EPhysics]
+  RemoteRole: 0x00D1,  // 0x00D1 (0x0001) [ENetRole]
+  Role: 0x00D2,  // 0x00D2 (0x0001) [ENetRole]
+  CollisionType: 0x00D3,  // 0x00D3 (0x0001) [ECollisionType]
+  ReplicatedCollisionType: 0x00D4,  // 0x00D4 (0x0001) [ECollisionType]
+  TickGroup: 0x00D5,  // 0x00D5 (0x0001) [ETickingGroup]
+  Owner: 0x00D8,  // 0x00D8 (0x0008) [UActor*]
+  Base: 0x00E0,  // 0x00E0 (0x0008) [UActor*]
+  Timers: 0x00E8,  // 0x00E8 (0x0010) [TArray<FTimerData>]
+  bStatic: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x1]
+  bHidden: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x2]
+  bHiddenSelf: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x4]
+  bNoDelete: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x8]
+  bDeleteMe: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x10]
+  bTicked: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x20]
+  bOnlyOwnerSee: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x40]
+  bTickIsDisabled: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x80]
+  bWorldGeometry: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x100]
+  bIgnoreRigidBodyPawns: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x200]
+  bOrientOnSlope: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x400]
+  bIgnoreEncroachers: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x800]
+  bPushedByEncroachers: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x1000]
+  bDestroyedByInterpActor: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x2000]
+  bRouteBeginPlayEvenIfStatic: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x4000]
+  bIsMoving: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x8000]
+  bAlwaysEncroachCheck: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x10000]
+  bHasAlternateTargetLocation: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x20000]
+  bCanStepUpOn: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x40000]
+  bNetTemporary: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x80000]
+  bOnlyRelevantToOwner: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x100000]
+  bNetDirty: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x200000]
+  bAlwaysRelevant: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x400000]
+  bReplicateInstigator: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x800000]
+  bReplicateMovement: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x1000000]
+  bSkipActorPropertyReplication: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x2000000]
+  bUpdateSimulatedPosition: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x4000000]
+  bTearOff: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x8000000]
+  bOnlyDirtyReplication: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x10000000]
+  bAllowFluidSurfaceInteraction: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x20000000]
+  bDemoRecording: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x40000000]
+  bDemoOwner: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x-80000000]
+  bForceDemoRelevant: 0x00FC,  // 0x00FC (0x0004) [bool : 0x1]
+  bNetInitialRotation: 0x00FC,  // 0x00FC (0x0004) [bool : 0x2]
+  bReplicateRigidBodyLocation: 0x00FC,  // 0x00FC (0x0004) [bool : 0x4]
+  bKillDuringLevelTransition: 0x00FC,  // 0x00FC (0x0004) [bool : 0x8]
+  bExchangedRoles: 0x00FC,  // 0x00FC (0x0004) [bool : 0x10]
+  bConsiderAllStaticMeshComponentsForStreaming: 0x00FC,  // 0x00FC (0x0004) [bool : 0x20]
+  bDebug: 0x00FC,  // 0x00FC (0x0004) [bool : 0x40]
+  bPostRenderIfNotVisible: 0x00FC,  // 0x00FC (0x0004) [bool : 0x80]
+  bForceNetUpdate: 0x00FC,  // 0x00FC (0x0004) [bool : 0x100]
+  bForcePacketUpdate: 0x00FC,  // 0x00FC (0x0004) [bool : 0x200]
+  bPendingNetUpdate: 0x00FC,  // 0x00FC (0x0004) [bool : 0x400]
+  bHardAttach: 0x00FC,  // 0x00FC (0x0004) [bool : 0x800]
+  bIgnoreBaseRotation: 0x00FC,  // 0x00FC (0x0004) [bool : 0x1000]
+  bShadowParented: 0x00FC,  // 0x00FC (0x0004) [bool : 0x2000]
+  bSkipAttachedMoves: 0x00FC,  // 0x00FC (0x0004) [bool : 0x4000]
+  bCanBeAdheredTo: 0x00FC,  // 0x00FC (0x0004) [bool : 0x8000]
+  bCanBeFrictionedTo: 0x00FC,  // 0x00FC (0x0004) [bool : 0x10000]
+  bGameRelevant: 0x00FC,  // 0x00FC (0x0004) [bool : 0x20000]
+  bMovable: 0x00FC,  // 0x00FC (0x0004) [bool : 0x40000]
+  bShouldBaseAtStartup: 0x00FC,  // 0x00FC (0x0004) [bool : 0x80000]
+  bPendingDelete: 0x00FC,  // 0x00FC (0x0004) [bool : 0x100000]
+  bCanTeleport: 0x00FC,  // 0x00FC (0x0004) [bool : 0x200000]
+  bAlwaysTick: 0x00FC,  // 0x00FC (0x0004) [bool : 0x400000]
+  bBlocksNavigation: 0x00FC,  // 0x00FC (0x0004) [bool : 0x800000]
+  BlockRigidBody: 0x00FC,  // 0x00FC (0x0004) [bool : 0x1000000]
+  bCollideWhenPlacing: 0x00FC,  // 0x00FC (0x0004) [bool : 0x2000000]
+  bCollideActors: 0x00FC,  // 0x00FC (0x0004) [bool : 0x4000000]
+  bCollideWorld: 0x00FC,  // 0x00FC (0x0004) [bool : 0x8000000]
+  bCollideComplex: 0x00FC,  // 0x00FC (0x0004) [bool : 0x10000000]
+  bBlockActors: 0x00FC,  // 0x00FC (0x0004) [bool : 0x20000000]
+  bBlocksTeleport: 0x00FC,  // 0x00FC (0x0004) [bool : 0x40000000]
+  bMoveIgnoresDestruction: 0x00FC,  // 0x00FC (0x0004) [bool : 0x-80000000]
+  bProjectileMoveSingleBlocking: 0x0100,  // 0x0100 (0x0004) [bool : 0x1]
+  bNoEncroachCheck: 0x0100,  // 0x0100 (0x0004) [bool : 0x2]
+  bCollideAsEncroacher: 0x0100,  // 0x0100 (0x0004) [bool : 0x4]
+  bPhysRigidBodyOutOfWorldCheck: 0x0100,  // 0x0100 (0x0004) [bool : 0x8]
+  bComponentOutsideWorld: 0x0100,  // 0x0100 (0x0004) [bool : 0x10]
+  bForceOctreeSNFilter: 0x0100,  // 0x0100 (0x0004) [bool : 0x20]
+  bForceOctreeMNFilter: 0x0100,  // 0x0100 (0x0004) [bool : 0x40]
+  bRigidBodyWasAwake: 0x0100,  // 0x0100 (0x0004) [bool : 0x80]
+  bCallRigidBodyWakeEvents: 0x0100,  // 0x0100 (0x0004) [bool : 0x100]
+  bBounce: 0x0100,  // 0x0100 (0x0004) [bool : 0x200]
+  bJustTeleported: 0x0100,  // 0x0100 (0x0004) [bool : 0x400]
+  bEnableMobileTouch: 0x0100,  // 0x0100 (0x0004) [bool : 0x800]
+  bNetInitial: 0x0100,  // 0x0100 (0x0004) [bool : 0x1000]
+  bNetOwner: 0x0100,  // 0x0100 (0x0004) [bool : 0x2000]
+  bHiddenEd: 0x0100,  // 0x0100 (0x0004) [bool : 0x4000]
+  bEditable: 0x0100,  // 0x0100 (0x0004) [bool : 0x8000]
+  bHiddenEdGroup: 0x0100,  // 0x0100 (0x0004) [bool : 0x10000]
+  bHiddenEdLayer: 0x0100,  // 0x0100 (0x0004) [bool : 0x20000]
+  bHiddenEdCustom: 0x0100,  // 0x0100 (0x0004) [bool : 0x40000]
+  bHiddenEdTemporary: 0x0100,  // 0x0100 (0x0004) [bool : 0x80000]
+  bHiddenEdLevel: 0x0100,  // 0x0100 (0x0004) [bool : 0x100000]
+  bHiddenEdScene: 0x0100,  // 0x0100 (0x0004) [bool : 0x200000]
+  bHiddenEdNoPhysics: 0x0100,  // 0x0100 (0x0004) [bool : 0x400000]
+  bEdShouldSnap: 0x0100,  // 0x0100 (0x0004) [bool : 0x800000]
+  bTempEditor: 0x0100,  // 0x0100 (0x0004) [bool : 0x1000000]
+  bPathColliding: 0x0100,  // 0x0100 (0x0004) [bool : 0x2000000]
+  bPathTemp: 0x0100,  // 0x0100 (0x0004) [bool : 0x4000000]
+  bScriptInitialized: 0x0100,  // 0x0100 (0x0004) [bool : 0x8000000]
+  bLockLocation: 0x0100,  // 0x0100 (0x0004) [bool : 0x10000000]
+  bForceAllowKismetModification: 0x0100,  // 0x0100 (0x0004) [bool : 0x20000000]
+  bDedicatedServerRelevant: 0x0100,  // 0x0100 (0x0004) [bool : 0x40000000]
+  bLockedFromEditorDeletion: 0x0100,  // 0x0100 (0x0004) [bool : 0x-80000000]
+  bComponentsDirty: 0x0104,  // 0x0104 (0x0004) [bool : 0x1]
+  bUpdateComponentsIfEmpty: 0x0104,  // 0x0104 (0x0004) [bool : 0x2]
+  bDebugEffectIsRelevant: 0x0104,  // 0x0104 (0x0004) [bool : 0x4]
+  SkelMeshCompTickTag: 0x0108,  // 0x0108 (0x0004) [int32]
+  NetTag: 0x010C,  // 0x010C (0x0004) [int32]
+  NetUpdateTime: 0x0110,  // 0x0110 (0x0004) [float]
+  NetUpdateFrequency: 0x0114,  // 0x0114 (0x0004) [float]
+  NetPriority: 0x0118,  // 0x0118 (0x0004) [float]
+  LastNetUpdateTime: 0x011C,  // 0x011C (0x0004) [float]
+  LastForcePacketUpdateTime: 0x0120,  // 0x0120 (0x0004) [float]
+  TimeSinceLastTick: 0x0124,  // 0x0124 (0x0004) [float]
+  Instigator: 0x0128,  // 0x0128 (0x0008) [UPawn*]
+  WorldInfo: 0x0130,  // 0x0130 (0x0008) [UWorldInfo*]
+  LifeSpan: 0x0138,  // 0x0138 (0x0004) [float]
+  CreationTime: 0x013C,  // 0x013C (0x0004) [float]
+  LastRenderTime: 0x0140,  // 0x0140 (0x0004) [float]
+  Tag: 0x0144,  // 0x0144 (0x0008) [FName]
+  InitialState: 0x014C,  // 0x014C (0x0008) [FName]
+  Layer: 0x0154,  // 0x0154 (0x0008) [FName]
+  Group: 0x015C,  // 0x015C (0x0008) [FName]
+  HiddenEditorViews: 0x0168,  // 0x0168 (0x0008) [uint64]
+  Touching: 0x0170,  // 0x0170 (0x0010) [TArray<UActor*>]
+  Children: 0x0180,  // 0x0180 (0x0010) [TArray<UActor*>]
+  LatentFloat: 0x0190,  // 0x0190 (0x0004) [float]
+  LatentSeqNode: 0x0198,  // 0x0198 (0x0008) [UAnimNodeSequence*]
+  PhysicsVolume: 0x01A0,  // 0x01A0 (0x0008) [UPhysicsVolume*]
+  Velocity: 0x01A8,  // 0x01A8 (0x000C) [FVector]
+  Acceleration: 0x01B4,  // 0x01B4 (0x000C) [FVector]
+  AngularVelocity: 0x01C0,  // 0x01C0 (0x000C) [FVector]
+  BaseSkelComponent: 0x01D0,  // 0x01D0 (0x0008) [unknown]
+  BaseBoneName: 0x01D8,  // 0x01D8 (0x0008) [FName]
+  Attached: 0x01E0,  // 0x01E0 (0x0010) [TArray<UActor*>]
+  RelativeLocation: 0x01F0,  // 0x01F0 (0x000C) [FVector]
+  RelativeRotation: 0x01FC,  // 0x01FC (0x000C) [FRotator]
+  CollisionComponent: 0x0208,  // 0x0208 (0x0008) [unknown]
+  OverlapTag: 0x0210,  // 0x0210 (0x0004) [int32]
+  RotationRate: 0x0214,  // 0x0214 (0x000C) [FRotator]
+  PendingTouch: 0x0220,  // 0x0220 (0x0008) [UActor*]
+  SupportedEvents: 0x0228,  // 0x0228 (0x0010) [TArray<UClass*>]
+  GeneratedEvents: 0x0238,  // 0x0238 (0x0010) [TArray<USequenceEvent*>]
+  LatentActions: 0x0248,  // 0x0248 (0x0010) [TArray<USeqAct_Latent*>]
+  IgnoredTouchClasses: 0x0258,  // 0x0258 (0x0010) [TArray<UClass*>]
+  ...Object_,
 } as const;
 
 /**
@@ -216,7 +505,7 @@ export const AvatarRequester_X = {
   PendingAvatarRequests: 0x0088,  // 0x0088 (0x0010) [TArray<UPendingAvatarRequest_X*>]
   __RequestAvatars__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
   __RequestAvatarPermission__Delegate: 0x00B0,  // 0x00B0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -225,7 +514,7 @@ export const AvatarRequester_X = {
  * Extends: Object
  */
 export const Aws4Signature_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -244,7 +533,7 @@ export const BanMessage_X = {
   Citations: 0x00D8,  // 0x00D8 (0x0010) [TArray<FString>]
   BannedUntilTime: 0x00E8,  // 0x00E8 (0x0004) [float]
   __EventBanEnded__Delegate: 0x00F0,  // 0x00F0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -253,7 +542,7 @@ export const BanMessage_X = {
  * Extends: Object
  */
 export const BeaconMessage_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -302,7 +591,7 @@ export const BlockStatusReporter_X = {
   Config: 0x0078,  // 0x0078 (0x0008) [UBlockStatusReporterConfig_X*]
   __EventBlockListDownloaded__Delegate: 0x0080,  // 0x0080 (0x0018) [FScriptDelegate]
   __EventPlayerStatusDownloaded__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -328,7 +617,7 @@ export const BlogTile_X = {
   CategoryID: 0x0100,  // 0x0100 (0x0004) [int32]
   PlaylistId: 0x0104,  // 0x0104 (0x0004) [int32]
   InfoURL: 0x0108,  // 0x0108 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -340,7 +629,7 @@ export const BreadcrumbBroadcaster_X = {
   BreadcrumbConfig: 0x0060,  // 0x0060 (0x0008) [UBreadcrumbConfig_X*]
   BreadcrumbInstance: 0x0068,  // 0x0068 (0x0008) [FPointer]
   __OnCrumbAddedDelegate__Delegate: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -351,7 +640,7 @@ export const BreadcrumbBroadcaster_X = {
 export const CDN_X = {
   URL: 0x0060,  // 0x0060 (0x0010) [FString]
   BlogURL: 0x0070,  // 0x0070 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -360,7 +649,7 @@ export const CDN_X = {
  * Extends: Object
  */
 export const CRC_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -370,7 +659,7 @@ export const CRC_X = {
  */
 export const CabinedModeResponse = {
   ArrayOfCabinedModeData: 0x0060,  // 0x0060 (0x0010) [TArray<FCabinedModeData>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -400,7 +689,7 @@ export const CachedWebData_X = {
   LoadError: 0x00A8,  // 0x00A8 (0x0008) [UError*]
   DownloadError: 0x00B0,  // 0x00B0 (0x0008) [UError*]
   bNewData: 0x00B8,  // 0x00B8 (0x0004) [bool : 0x1]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -412,6 +701,16 @@ export const CameraAttachmentComponent_X = {
   Attachments: 0x00A0,  // 0x00A0 (0x0010) [TArray<unknown>]
   bDirtyTransform: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x1]
   ...ActorComponent,
+} as const;
+
+/**
+ * Engine.CameraModifier_CameraShake Offsets
+ * Size: 0x009C
+ * Extends: CameraModifier
+ */
+export const CameraModifier_CameraShake = {
+  ActiveShakes: 0x0088,  // 0x0088 (0x0010) [TArray<FCameraShakeInstance>]
+  SplitScreenShakeScale: 0x0098,  // 0x0098 (0x0004) [float]
 } as const;
 
 /**
@@ -442,7 +741,63 @@ export const CameraStateBlender_X = {
  * Extends: Object
  */
 export const CameraUtils_X = {
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.Camera Offsets
+ * Size: 0x05B8
+ * Extends: Actor
+ */
+export const Camera = {
+  PCOwner: 0x0268,  // 0x0268 (0x0008) [UPlayerController*]
+  CameraStyle: 0x0270,  // 0x0270 (0x0008) [FName]
+  DefaultFOV: 0x0278,  // 0x0278 (0x0004) [float]
+  bLockedFOV: 0x027C,  // 0x027C (0x0004) [bool : 0x1]
+  bConstrainAspectRatio: 0x027C,  // 0x027C (0x0004) [bool : 0x2]
+  bEnableFading: 0x027C,  // 0x027C (0x0004) [bool : 0x4]
+  bFadeAudio: 0x027C,  // 0x027C (0x0004) [bool : 0x8]
+  bForceDisableTemporalAA: 0x027C,  // 0x027C (0x0004) [bool : 0x10]
+  bEnableColorScaling: 0x027C,  // 0x027C (0x0004) [bool : 0x20]
+  bEnableColorScaleInterp: 0x027C,  // 0x027C (0x0004) [bool : 0x40]
+  bUseClientSideCameraUpdates: 0x027C,  // 0x027C (0x0004) [bool : 0x80]
+  bDebugClientSideCamera: 0x027C,  // 0x027C (0x0004) [bool : 0x100]
+  bShouldSendClientSideCameraUpdate: 0x027C,  // 0x027C (0x0004) [bool : 0x200]
+  LockedFOV: 0x0280,  // 0x0280 (0x0004) [float]
+  ConstrainedAspectRatio: 0x0284,  // 0x0284 (0x0004) [float]
+  DefaultAspectRatio: 0x0288,  // 0x0288 (0x0004) [float]
+  OffAxisYawAngle: 0x028C,  // 0x028C (0x0004) [float]
+  OffAxisPitchAngle: 0x0290,  // 0x0290 (0x0004) [float]
+  FadeColor: 0x0294,  // 0x0294 (0x0004) [FColor]
+  FadeAmount: 0x0298,  // 0x0298 (0x0004) [float]
+  CamOverridePostProcessAlpha: 0x029C,  // 0x029C (0x0004) [float]
+  CamPostProcessSettings: 0x02A0,  // 0x02A0 (0x0168) [FPostProcessSettings]
+  RenderingOverrides: 0x0408,  // 0x0408 (0x0004) [FRenderingPerformanceOverrides]
+  ColorScale: 0x040C,  // 0x040C (0x000C) [FVector]
+  DesiredColorScale: 0x0418,  // 0x0418 (0x000C) [FVector]
+  OriginalColorScale: 0x0424,  // 0x0424 (0x000C) [FVector]
+  ColorScaleInterpDuration: 0x0430,  // 0x0430 (0x0004) [float]
+  ColorScaleInterpStartTime: 0x0434,  // 0x0434 (0x0004) [float]
+  CameraCache: 0x0438,  // 0x0438 (0x0020) [FTCameraCache]
+  LastFrameCameraCache: 0x0458,  // 0x0458 (0x0020) [FTCameraCache]
+  ViewTarget: 0x0478,  // 0x0478 (0x0038) [FTViewTarget]
+  PendingViewTarget: 0x04B0,  // 0x04B0 (0x0038) [FTViewTarget]
+  BlendTimeToGo: 0x04E8,  // 0x04E8 (0x0004) [float]
+  BlendParams: 0x04EC,  // 0x04EC (0x0010) [FViewTargetTransitionParams]
+  ModifierList: 0x0500,  // 0x0500 (0x0010) [TArray<UCameraModifier*>]
+  FreeCamDistance: 0x0510,  // 0x0510 (0x0004) [float]
+  FreeCamOffset: 0x0514,  // 0x0514 (0x000C) [FVector]
+  FadeAlpha: 0x0520,  // 0x0520 (0x0008) [FVector2D]
+  FadeTime: 0x0528,  // 0x0528 (0x0004) [float]
+  FadeTimeRemaining: 0x052C,  // 0x052C (0x0004) [float]
+  CameraLensEffects: 0x0530,  // 0x0530 (0x0010) [TArray<UEmitterCameraLensEffectBase*>]
+  CameraShakeCamMod: 0x0540,  // 0x0540 (0x0008) [UCameraModifier_CameraShake*]
+  CameraShakeCamModClass: 0x0548,  // 0x0548 (0x0008) [UClass*]
+  AnimInstPool: 0x0550,  // 0x0550 (0x0040) [UCameraAnimInst*]
+  ActiveAnims: 0x0590,  // 0x0590 (0x0010) [TArray<UCameraAnimInst*>]
+  FreeAnims: 0x05A0,  // 0x05A0 (0x0010) [TArray<UCameraAnimInst*>]
+  AnimCameraActor: 0x05B0,  // 0x05B0 (0x0008) [UDynamicCameraActor*]
+  ...Actor,
 } as const;
 
 /**
@@ -496,6 +851,23 @@ export const CanvasTextureComponent_X = {
 } as const;
 
 /**
+ * Engine.TextureRenderTarget2D Offsets
+ * Size: 0x0198
+ * Extends: TextureRenderTarget
+ */
+export const TextureRenderTarget2D = {
+  SizeX: 0x0158,  // 0x0158 (0x0004) [int32]
+  SizeY: 0x015C,  // 0x015C (0x0004) [int32]
+  Format: 0x0160,  // 0x0160 (0x0001) [EPixelFormat]
+  AddressX: 0x0161,  // 0x0161 (0x0001) [TextureAddress]
+  AddressY: 0x0162,  // 0x0162 (0x0001) [TextureAddress]
+  ClearColor: 0x0164,  // 0x0164 (0x0010) [FLinearColor]
+  bForceLinearGamma: 0x0174,  // 0x0174 (0x0004) [bool : 0x1]
+  ExtraTexCreateFlags: 0x0178,  // 0x0178 (0x0004) [int32]
+  __EventResourceUpdated__Delegate: 0x0180,  // 0x0180 (0x0018) [FScriptDelegate]
+} as const;
+
+/**
  * ProjectX.CanvasTexture_X Offsets
  * Size: 0x01B0
  * Extends: TextureRenderTarget2D
@@ -503,6 +875,17 @@ export const CanvasTextureComponent_X = {
 export const CanvasTexture_X = {
   __Draw__Delegate: 0x0198,  // 0x0198 (0x0018) [FScriptDelegate]
   ...TextureRenderTarget2D,
+} as const;
+
+/**
+ * Engine.CheatManager Offsets
+ * Size: 0x0080
+ * Extends: Object
+ */
+export const CheatManager = {
+  ViewingFrom: 0x0060,  // 0x0060 (0x0010) [FString]
+  OwnCamera: 0x0070,  // 0x0070 (0x0010) [FString]
+  ...Object_,
 } as const;
 
 /**
@@ -521,7 +904,7 @@ export const CheatManager_X = {
  * Extends: Object
  */
 export const CheatObject_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -540,7 +923,7 @@ export const CheckReservation_X = {
   ReservationBeacon: 0x0108,  // 0x0108 (0x0008) [unknown]
   __OnStartSearch__Delegate: 0x0110,  // 0x0110 (0x0018) [FScriptDelegate]
   __OnFoundReservation__Delegate: 0x0128,  // 0x0128 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -555,7 +938,7 @@ export const ClanforgeReservation_X = {
   SendFailures: 0x00A8,  // 0x00A8 (0x0004) [int32]
   QueuedRequests: 0x00B0,  // 0x00B0 (0x0010) [TArray<UWebRequest_X*>]
   PendingRequest: 0x00C0,  // 0x00C0 (0x0008) [UWebRequest_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -572,7 +955,7 @@ export const ClientNetMetrics_X = {
   PsyPings: 0x00A0,  // 0x00A0 (0x0010) [TArray<float>]
   PsyPacketsLost: 0x00B0,  // 0x00B0 (0x0004) [int32]
   ConnectionType: 0x00B4,  // 0x00B4 (0x0001) [EConnectionType_X]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -583,6 +966,17 @@ export const ClientNetMetrics_X = {
 export const ClientReservationMessage_X = {
   Reservation: 0x0060,  // 0x0060 (0x0070) [FServerReservationData]
   ...BeaconMessage_X,
+} as const;
+
+/**
+ * Core.ErrorList Offsets
+ * Size: 0x0080
+ * Extends: Object
+ */
+export const ErrorList = {
+  LocalizationPackage: 0x0060,  // 0x0060 (0x0010) [FString]
+  LocalizationSection: 0x0070,  // 0x0070 (0x0010) [FString]
+  ...Object_,
 } as const;
 
 /**
@@ -626,7 +1020,7 @@ export const ClubInvite_X = {
   ClubName: 0x0068,  // 0x0068 (0x0010) [FString]
   ClubTag: 0x0078,  // 0x0078 (0x0010) [FString]
   InvitedBy: 0x0088,  // 0x0088 (0x00B8) [FClubMember]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -640,7 +1034,7 @@ export const ClubServerResult_X = {
   ServerName: 0x0078,  // 0x0078 (0x0010) [FString]
   CustomServerName: 0x0088,  // 0x0088 (0x0010) [FString]
   CustomServerPassword: 0x0098,  // 0x0098 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -653,7 +1047,7 @@ export const ClubSettings_X = {
   ClubTag: 0x0070,  // 0x0070 (0x0010) [FString]
   PrimaryColor: 0x0080,  // 0x0080 (0x0004) [int32]
   AccentColor: 0x0084,  // 0x0084 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -679,7 +1073,7 @@ export const ClubDetails_X = {
  * Extends: Object
  */
 export const ClubUtil_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -692,7 +1086,7 @@ export const ColorPalette_X = {
   HueCount: 0x0064,  // 0x0064 (0x0004) [int32]
   ValueCount: 0x0068,  // 0x0068 (0x0004) [int32]
   Colors: 0x0070,  // 0x0070 (0x0010) [TArray<FLinearColor>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -701,7 +1095,7 @@ export const ColorPalette_X = {
  * Extends: Object
  */
 export const Compression_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -717,7 +1111,7 @@ export const ControlPreset_X = {
   SteamInputBindings: 0x0088,  // 0x0088 (0x0010) [TArray<FPlayerBinding>]
   CustomPresetName: 0x0098,  // 0x0098 (0x0008) [FName]
   DefaultPresetName: 0x00A0,  // 0x00A0 (0x0008) [FName]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -726,7 +1120,7 @@ export const ControlPreset_X = {
  * Extends: Object
  */
 export const CrashReport_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -745,7 +1139,7 @@ export const DDoSService_X = {
   DDoSStartProtectionInFlight_Name: 0x00B0,  // 0x00B0 (0x0008) [FName]
   DDoSProtectionEnabled_Name: 0x00B8,  // 0x00B8 (0x0008) [FName]
   DDoSProtectionDisabled_Name: 0x00C0,  // 0x00C0 (0x0008) [FName]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -756,7 +1150,25 @@ export const DDoSService_X = {
 export const DSPendingMessage_X = {
   Message: 0x0060,  // 0x0060 (0x0008) [UDSR_DSMessage_X*]
   TimeoutTime: 0x0068,  // 0x0068 (0x0004) [float]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Core.DebugDrawer Offsets
+ * Size: 0x00C0
+ * Extends: Object
+ */
+export const DebugDrawer = {
+  DefaultTextColor: 0x0060,  // 0x0060 (0x0004) [FColor]
+  bSilent: 0x0064,  // 0x0064 (0x0004) [bool : 0x1]
+  bPrintActorsInline: 0x0064,  // 0x0064 (0x0004) [bool : 0x2]
+  Indentation: 0x0068,  // 0x0068 (0x0004) [int32]
+  IndentationString: 0x0070,  // 0x0070 (0x0010) [FString]
+  PrintedObjects: 0x0080,  // 0x0080 (0x0010) [TArray<UObject*>]
+  QueuedObjects: 0x0090,  // 0x0090 (0x0010) [TArray<UObject*>]
+  PrintObjectCount: 0x00A0,  // 0x00A0 (0x0004) [int32]
+  __LogFunc__Delegate: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
+  ...Object_,
 } as const;
 
 /**
@@ -782,7 +1194,7 @@ export const DebugDrawer_X = {
  * Extends: Object
  */
 export const DecodeObjectTypes_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -793,7 +1205,7 @@ export const DecodeObjectTypes_X = {
 export const DecodeObject_X = {
   Checksum: 0x0060,  // 0x0060 (0x0004) [int32]
   Error: 0x0068,  // 0x0068 (0x0008) [UError*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -819,6 +1231,20 @@ export const DecodeObjectUObject_X = {
 } as const;
 
 /**
+ * Engine.DistributionFloatParameterBase Offsets
+ * Size: 0x00A1
+ * Extends: DistributionFloatConstant
+ */
+export const DistributionFloatParameterBase = {
+  ParameterName: 0x0088,  // 0x0088 (0x0008) [FName]
+  MinInput: 0x0090,  // 0x0090 (0x0004) [float]
+  MaxInput: 0x0094,  // 0x0094 (0x0004) [float]
+  MinOutput: 0x0098,  // 0x0098 (0x0004) [float]
+  MaxOutput: 0x009C,  // 0x009C (0x0004) [float]
+  ParamMode: 0x00A0,  // 0x00A0 (0x0001) [DistributionParamMode]
+} as const;
+
+/**
  * ProjectX.DistributionFloatShakeParameter_X Offsets
  * Size: 0x00A8
  * Extends: DistributionFloatParameterBase
@@ -834,7 +1260,7 @@ export const DistributionFloatShakeParameter_X = {
  */
 export const DownloadedPlaylistsData_X = {
   Playlists: 0x0060,  // 0x0060 (0x0010) [TArray<UGameSettingPlaylist_X*>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -846,7 +1272,7 @@ export const DynamicValueModifier_X = {
   DisplayName: 0x0060,  // 0x0060 (0x0010) [FString]
   Type: 0x0070,  // 0x0070 (0x0001) [EDynamicValueModType]
   Priority: 0x0074,  // 0x0074 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -886,7 +1312,7 @@ export const DynamicValue_X = {
   MinValue: 0x006C,  // 0x006C (0x0004) [float]
   Modifiers: 0x0070,  // 0x0070 (0x0010) [TArray<UDynamicValueModifier_X*>]
   CachedValue: 0x0080,  // 0x0080 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -904,7 +1330,7 @@ export const EASAuthResponse = {
   product_id: 0x00B8,  // 0x00B8 (0x0010) [FString]
   sandbox_id: 0x00C8,  // 0x00C8 (0x0010) [FString]
   deployment_id: 0x00D8,  // 0x00D8 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -915,7 +1341,7 @@ export const EASAuthResponse = {
 export const EOSHelpers_X = {
   __HTTPRequestCallback__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
   __ConvertErrorFunction__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -925,7 +1351,7 @@ export const EOSHelpers_X = {
  */
 export const EOSMetricEvent_X = {
   EventName: 0x0060,  // 0x0060 (0x0008) [FName]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -958,7 +1384,7 @@ export const EOSMetrics_X = {
   CurrentEvents: 0x00A0,  // 0x00A0 (0x0010) [FMetricEventJsonStruct]
   LatestLocation: 0x00B0,  // 0x00B0 (0x0010) [FString]
   StreamingServiceType: 0x00C0,  // 0x00C0 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -971,7 +1397,7 @@ export const EOS_ErrorResponse = {
   NumericErrorCode: 0x0070,  // 0x0070 (0x0004) [int32]
   ErrorCode: 0x0078,  // 0x0078 (0x0010) [FString]
   MessageVars: 0x0088,  // 0x0088 (0x0010) [TArray<FString>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -981,7 +1407,7 @@ export const EOS_ErrorResponse = {
  */
 export const EOS_GetAccountsResponse = {
   Accounts: 0x0060,  // 0x0060 (0x0010) [TArray<FEOSAccountInfo>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1006,7 +1432,7 @@ export const EOS_AccountSummaryResponse = {
 export const EOS_ManageBlockListResponse = {
   AccountId: 0x0060,  // 0x0060 (0x0010) [FString]
   Created: 0x0070,  // 0x0070 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1016,7 +1442,7 @@ export const EOS_ManageBlockListResponse = {
  */
 export const EOS_ManageFriendsListResponse = {
   Status: 0x0060,  // 0x0060 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1026,7 +1452,7 @@ export const EOS_ManageFriendsListResponse = {
  */
 export const EffectsMap_X = {
   Effects: 0x0060,  // 0x0060 (0x0010) [TArray<FEffectsMapping>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1035,7 +1461,7 @@ export const EffectsMap_X = {
  * Extends: Object
  */
 export const EnableOnlineSave_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1046,7 +1472,7 @@ export const EnableOnlineSave_X = {
 export const EncodeObjectFactory_X = {
   JsonSerializer: 0x0060,  // 0x0060 (0x0008) [UJSONSerializer_X*]
   ObjectSerializer: 0x0068,  // 0x0068 (0x0008) [UObjectSerializer_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1055,7 +1481,7 @@ export const EncodeObjectFactory_X = {
  * Extends: Object
  */
 export const EncodeObjectTypes_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1067,7 +1493,7 @@ export const EncodeObject_X = {
   Encoding: 0x0060,  // 0x0060 (0x0001) [EObjectEncoding]
   Checksum: 0x0064,  // 0x0064 (0x0004) [int32]
   Encoded: 0x0068,  // 0x0068 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1088,6 +1514,15 @@ export const EncodeObjectJson_X = {
 export const EncodeObjectUObject_X = {
   ObjectSerializer: 0x0078,  // 0x0078 (0x0008) [UObjectSerializer_X*]
   ...EncodeObject_X,
+} as const;
+
+/**
+ * Engine.EngineShare Offsets
+ * Size: 0x0060
+ * Extends: Object
+ */
+export const EngineShare = {
+  ...Object_,
 } as const;
 
 /**
@@ -1169,7 +1604,7 @@ export const EpicFriendsPlugin_X = {
   __HTTPRequestCallback__Delegate: 0x00F0,  // 0x00F0 (0x0018) [FScriptDelegate]
   __AddFriendCallback__Delegate: 0x0108,  // 0x0108 (0x0018) [FScriptDelegate]
   __GetOutgoingFriendsCallback__Delegate: 0x0120,  // 0x0120 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1207,7 +1642,7 @@ export const EpicLogin_X = {
   __EventReceivedEpicAuthTicket__Delegate: 0x0140,  // 0x0140 (0x0018) [FScriptDelegate]
   __EventInitialized__Delegate: 0x0158,  // 0x0158 (0x0018) [FScriptDelegate]
   __EventCreatedEpicGamesAccount__Delegate: 0x0170,  // 0x0170 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1218,7 +1653,7 @@ export const EpicLogin_X = {
 export const EpochTimerTick_X = {
   VfTable_FTickableObject: 0x0060,  // 0x0060 (0x0008) [FPointer]
   Timers: 0x0068,  // 0x0068 (0x0010) [TArray<FEpochTimer>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1227,7 +1662,7 @@ export const EpochTimerTick_X = {
  * Extends: Object
  */
 export const EpochTimers_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1340,7 +1775,7 @@ export const EulaTextResponse = {
   URL: 0x00E0,  // 0x00E0 (0x0010) [FString]
   WasDeclined: 0x00F0,  // 0x00F0 (0x0004) [bool : 0x1]
   HasResponse: 0x00F0,  // 0x00F0 (0x0004) [bool : 0x2]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1462,7 +1897,7 @@ export const Explosion_X = {
  * Extends: Object
  */
 export const FXActorEvent_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1503,7 +1938,7 @@ export const FXActor_X = {
  * Extends: Object
  */
 export const FXAttachmentTraitBase_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1517,7 +1952,23 @@ export const FakeData_X = {
   Data2: 0x00A0,  // 0x00A0 (0x0090) [FFakeData2]
   Data3: 0x0130,  // 0x0130 (0x0130) [FFakeData3]
   Data4: 0x0260,  // 0x0260 (0x0120) [FFakeData4]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Core.AsyncTask Offsets
+ * Size: 0x00D0
+ * Extends: Object
+ */
+export const AsyncTask = {
+  bComplete: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
+  bDisposed: 0x0060,  // 0x0060 (0x0004) [bool : 0x2]
+  Error: 0x0068,  // 0x0068 (0x0008) [UError*]
+  __EventAsyncTaskSuccess__Delegate: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
+  __EventAsyncTaskFail__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
+  __EventAsyncTaskComplete__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
+  __EventDisposed__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
+  ...Object_,
 } as const;
 
 /**
@@ -1540,7 +1991,7 @@ export const FindServerTask_X = {
 export const FuncTestCommandPair_X = {
   Device: 0x0060,  // 0x0060 (0x0008) [FName]
   Command: 0x0068,  // 0x0068 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1552,7 +2003,7 @@ export const FuncTestDesc_X = {
   TestName: 0x0060,  // 0x0060 (0x0010) [FString]
   Tags: 0x0070,  // 0x0070 (0x0010) [TArray<FName>]
   Groups: 0x0080,  // 0x0080 (0x0010) [TArray<UFuncTestGroup_X*>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1562,7 +2013,7 @@ export const FuncTestDesc_X = {
  */
 export const FuncTestGroup_X = {
   Commands: 0x0060,  // 0x0060 (0x0010) [TArray<UFuncTestCommandPair_X*>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1578,7 +2029,7 @@ export const GFxDataRow_X = {
   ProxyObject: 0x0080,  // 0x0080 (0x0008) [UObject*]
   Shell: 0x0088,  // 0x0088 (0x0008) [UGFxShell_X*]
   RowIndex: 0x0090,  // 0x0090 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1601,6 +2052,19 @@ export const GFxDataStore_X = {
   ObjectNameToTable: 0x0090,  // 0x0090 (0x0050) [FMap_Mirror]
   bDebugGetValue: 0x00E0,  // 0x00E0 (0x0004) [bool : 0x1]
   ...Component,
+} as const;
+
+/**
+ * GFxUI.GFxEngine Offsets
+ * Size: 0x0128
+ * Extends: Object
+ */
+export const GFxEngine = {
+  GCReferences: 0x0060,  // 0x0060 (0x0010) [TArray<FGCReference>]
+  RefCount: 0x0070,  // 0x0070 (0x0004) [int32]
+  LoadingScreenInfo: 0x0078,  // 0x0078 (0x00A0) [FLoadingMovieMapInfo]
+  IgnoreWarningsThatStartWith: 0x0118,  // 0x0118 (0x0010) [TArray<FString>]
+  ...Object_,
 } as const;
 
 /**
@@ -1632,7 +2096,65 @@ export const GFxModal_X = {
   ConfirmString: 0x0088,  // 0x0088 (0x0010) [FString]
   __ClickDelegate__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
   __EventClosed__Delegate: 0x00B0,  // 0x00B0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * GFxUI.GFxMoviePlayer Offsets
+ * Size: 0x0218
+ * Extends: Object
+ */
+export const GFxMoviePlayer = {
+  pMovie: 0x0060,  // 0x0060 (0x0008) [FPointer]
+  pCaptureKeys: 0x0068,  // 0x0068 (0x0008) [FPointer]
+  pFocusIgnoreKeys: 0x0070,  // 0x0070 (0x0008) [FPointer]
+  ASUClasses: 0x0078,  // 0x0078 (0x0050) [TMap<unknown, unknown>]
+  ASUObjects: 0x00C8,  // 0x00C8 (0x0050) [TMap<unknown, unknown>]
+  NextASUObject: 0x0118,  // 0x0118 (0x0004) [int32]
+  MovieInfo: 0x0120,  // 0x0120 (0x0008) [USwfMovie*]
+  bMovieIsOpen: 0x0128,  // 0x0128 (0x0004) [bool : 0x1]
+  bDisplayWithHudOff: 0x0128,  // 0x0128 (0x0004) [bool : 0x2]
+  bEnableGammaCorrection: 0x0128,  // 0x0128 (0x0004) [bool : 0x4]
+  bWidgetsInitializedThisFrame: 0x0128,  // 0x0128 (0x0004) [bool : 0x8]
+  bLogUnhandedWidgetInitializations: 0x0128,  // 0x0128 (0x0004) [bool : 0x10]
+  bAllowInput: 0x0128,  // 0x0128 (0x0004) [bool : 0x20]
+  bAllowFocus: 0x0128,  // 0x0128 (0x0004) [bool : 0x40]
+  bAutoPlay: 0x0128,  // 0x0128 (0x0004) [bool : 0x80]
+  bPauseGameWhileActive: 0x0128,  // 0x0128 (0x0004) [bool : 0x100]
+  bDisableWorldRendering: 0x0128,  // 0x0128 (0x0004) [bool : 0x200]
+  bCaptureWorldRendering: 0x0128,  // 0x0128 (0x0004) [bool : 0x400]
+  bCloseOnLevelChange: 0x0128,  // 0x0128 (0x0004) [bool : 0x800]
+  bOnlyOwnerFocusable: 0x0128,  // 0x0128 (0x0004) [bool : 0x1000]
+  bForceFullViewport: 0x0128,  // 0x0128 (0x0004) [bool : 0x2000]
+  bDiscardNonOwnerInput: 0x0128,  // 0x0128 (0x0004) [bool : 0x4000]
+  bCaptureInput: 0x0128,  // 0x0128 (0x0004) [bool : 0x8000]
+  bCaptureMouseInput: 0x0128,  // 0x0128 (0x0004) [bool : 0x10000]
+  bIgnoreMouseInput: 0x0128,  // 0x0128 (0x0004) [bool : 0x20000]
+  bIsSplitscreenLayoutModified: 0x0128,  // 0x0128 (0x0004) [bool : 0x40000]
+  bShowHardwareMouseCursor: 0x0128,  // 0x0128 (0x0004) [bool : 0x80000]
+  bForceFullScreen: 0x0128,  // 0x0128 (0x0004) [bool : 0x100000]
+  bBlurLesserMovies: 0x0128,  // 0x0128 (0x0004) [bool : 0x200000]
+  bHideLesserMovies: 0x0128,  // 0x0128 (0x0004) [bool : 0x400000]
+  bIsPriorityBlurred: 0x0128,  // 0x0128 (0x0004) [bool : 0x800000]
+  bIsPriorityHidden: 0x0128,  // 0x0128 (0x0004) [bool : 0x1000000]
+  bIgnoreVisibilityEffect: 0x0128,  // 0x0128 (0x0004) [bool : 0x2000000]
+  bIgnoreBlurEffect: 0x0128,  // 0x0128 (0x0004) [bool : 0x4000000]
+  RenderTexture: 0x0130,  // 0x0130 (0x0008) [UTextureRenderTarget2D*]
+  LocalPlayerOwnerIndex: 0x0138,  // 0x0138 (0x0004) [int32]
+  ExternalInterface: 0x0140,  // 0x0140 (0x0008) [UObject*]
+  CaptureKeys: 0x0148,  // 0x0148 (0x0010) [TArray<FName>]
+  FocusIgnoreKeys: 0x0158,  // 0x0158 (0x0010) [TArray<FName>]
+  ExternalTextures: 0x0168,  // 0x0168 (0x0010) [TArray<FExternalTexture>]
+  SoundThemes: 0x0178,  // 0x0178 (0x0010) [TArray<FSoundThemeBinding>]
+  TimingMode: 0x0188,  // 0x0188 (0x0001) [GFxTimingMode]
+  RenderTextureMode: 0x0189,  // 0x0189 (0x0001) [GFxRenderTextureMode]
+  Priority: 0x018A,  // 0x018A (0x0001) [uint8]
+  WidgetBindings: 0x0190,  // 0x0190 (0x0010) [TArray<FGFxWidgetBinding>]
+  WidgetPathBindings: 0x01A0,  // 0x01A0 (0x0050) [TMap<unknown, unknown>]
+  SplitscreenLayoutObject: 0x01F0,  // 0x01F0 (0x0008) [UGFxObject*]
+  SplitscreenLayoutYAdjust: 0x01F8,  // 0x01F8 (0x0004) [int32]
+  __OnPostAdvance__Delegate: 0x0200,  // 0x0200 (0x0018) [FScriptDelegate]
+  ...Object_,
 } as const;
 
 /**
@@ -1666,7 +2188,7 @@ export const GFxMoviePlayer_X = {
  */
 export const GFxObjectReference_X = {
   Value: 0x0060,  // 0x0060 (0x0030) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1716,7 +2238,30 @@ export const GFxSoundPack_X = {
   ExportClassName: 0x0060,  // 0x0060 (0x0010) [FString]
   Sounds: 0x0070,  // 0x0070 (0x0010) [TArray<FSoundPackSoundRef>]
   bHasSubtitles: 0x0080,  // 0x0080 (0x0004) [bool : 0x1]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.GameReplicationInfo Offsets
+ * Size: 0x02D8
+ * Extends: ReplicationInfo
+ */
+export const GameReplicationInfo = {
+  RegistryGroup: 0x0268,  // 0x0268 (0x0008) [unknown]
+  GameClass: 0x0270,  // 0x0270 (0x0008) [UClass*]
+  bStopCountDown: 0x0278,  // 0x0278 (0x0004) [bool : 0x1]
+  bMatchHasBegun: 0x0278,  // 0x0278 (0x0004) [bool : 0x2]
+  bMatchIsOver: 0x0278,  // 0x0278 (0x0004) [bool : 0x4]
+  RemainingTime: 0x027C,  // 0x027C (0x0004) [int32]
+  ElapsedTime: 0x0280,  // 0x0280 (0x0004) [int32]
+  RemainingMinute: 0x0284,  // 0x0284 (0x0004) [int32]
+  GoalScore: 0x0288,  // 0x0288 (0x0004) [int32]
+  TimeLimit: 0x028C,  // 0x028C (0x0004) [int32]
+  Teams: 0x0290,  // 0x0290 (0x0010) [TArray<UTeamInfo*>]
+  ServerName: 0x02A0,  // 0x02A0 (0x0010) [FString]
+  Winner: 0x02B0,  // 0x02B0 (0x0008) [UActor*]
+  PRIArray: 0x02B8,  // 0x02B8 (0x0010) [TArray<UPlayerReplicationInfo*>]
+  InactivePRIArray: 0x02C8,  // 0x02C8 (0x0010) [TArray<UPlayerReplicationInfo*>]
 } as const;
 
 /**
@@ -1743,12 +2288,148 @@ export const GRI_X = {
 } as const;
 
 /**
+ * Engine.GameEngine Offsets
+ * Size: 0x0B48
+ * Extends: Engine
+ */
+export const GameEngine = {
+  GPendingLevel: 0x0958,  // 0x0958 (0x0008) [UPendingLevel*]
+  PendingLevelPlayerControllerClassName: 0x0960,  // 0x0960 (0x0010) [FString]
+  LastURL: 0x0970,  // 0x0970 (0x0060) [FURL]
+  LastRemoteURL: 0x09D0,  // 0x09D0 (0x0060) [FURL]
+  ServerActors: 0x0A30,  // 0x0A30 (0x0010) [TArray<FString>]
+  TravelURL: 0x0A40,  // 0x0A40 (0x0010) [FString]
+  TravelType: 0x0A50,  // 0x0A50 (0x0001) [uint8]
+  bWorldWasLoadedThisTick: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x1]
+  bCheckForMovieCapture: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x2]
+  bTriggerPostLoadMap: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x4]
+  bStartedLoadMapMovie: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x8]
+  bUnloadingMap: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x10]
+  bShouldCommitPendingMapChange: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x20]
+  bClearAnimSetLinkupCachesOnLoadMap: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x40]
+  bEnableSecondaryDisplay: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x80]
+  bEnableSecondaryViewport: 0x0A54,  // 0x0A54 (0x0004) [bool : 0x100]
+  OnlineSubsystem: 0x0A58,  // 0x0A58 (0x0008) [UOnlineSubsystem*]
+  DLCEnumerator: 0x0A60,  // 0x0A60 (0x0008) [UDownloadableContentEnumerator*]
+  DownloadableContentEnumeratorClassName: 0x0A68,  // 0x0A68 (0x0010) [FString]
+  DLCManager: 0x0A78,  // 0x0A78 (0x0008) [UDownloadableContentManager*]
+  DownloadableContentManagerClassName: 0x0A80,  // 0x0A80 (0x0010) [FString]
+  LevelsToLoadForPendingMapChange: 0x0A90,  // 0x0A90 (0x0010) [TArray<FName>]
+  LoadedLevelsForPendingMapChange: 0x0AA0,  // 0x0AA0 (0x0010) [TArray<ULevel*>]
+  PendingMapChangeFailureDescription: 0x0AB0,  // 0x0AB0 (0x0010) [FString]
+  MaxDeltaTime: 0x0AC0,  // 0x0AC0 (0x0004) [float]
+  SecondaryViewportClientClassName: 0x0AC8,  // 0x0AC8 (0x0010) [FString]
+  SecondaryViewportClients: 0x0AD8,  // 0x0AD8 (0x0010) [TArray<UScriptViewportClient*>]
+  SecondaryViewportFrames: 0x0AE8,  // 0x0AE8 (0x0010) [TArray<FPointer>]
+  PendingLevelStreamingStatusUpdates: 0x0AF8,  // 0x0AF8 (0x0010) [TArray<FLevelStreamingStatus>]
+  ObjectReferencers: 0x0B08,  // 0x0B08 (0x0010) [TArray<UObjectReferencer*>]
+  PackagesToFullyLoad: 0x0B18,  // 0x0B18 (0x0010) [TArray<FFullyLoadedPackagesInfo>]
+  NamedNetDrivers: 0x0B28,  // 0x0B28 (0x0010) [TArray<FNamedNetDriver>]
+  AnimTags: 0x0B38,  // 0x0B38 (0x0010) [TArray<FAnimTag>]
+} as const;
+
+/**
  * ProjectX.GameEngine_X Offsets
  * Size: 0x0B48
  * Extends: GameEngine
  */
 export const GameEngine_X = {
   ...GameEngine,
+} as const;
+
+/**
+ * Engine.GameInfo Offsets
+ * Size: 0x0488
+ * Extends: Info
+ */
+export const GameInfo = {
+  RegistryGroup: 0x0268,  // 0x0268 (0x0008) [unknown]
+  BulletScenesCount: 0x0270,  // 0x0270 (0x0004) [int32]
+  bRestartLevel: 0x0274,  // 0x0274 (0x0004) [bool : 0x1]
+  bPauseable: 0x0274,  // 0x0274 (0x0004) [bool : 0x2]
+  bTeamGame: 0x0274,  // 0x0274 (0x0004) [bool : 0x4]
+  bGameEnded: 0x0274,  // 0x0274 (0x0004) [bool : 0x8]
+  bOverTime: 0x0274,  // 0x0274 (0x0004) [bool : 0x10]
+  bDelayedStart: 0x0274,  // 0x0274 (0x0004) [bool : 0x20]
+  bWaitingToStartMatch: 0x0274,  // 0x0274 (0x0004) [bool : 0x40]
+  bChangeLevels: 0x0274,  // 0x0274 (0x0004) [bool : 0x80]
+  bAlreadyChanged: 0x0274,  // 0x0274 (0x0004) [bool : 0x100]
+  bGameRestarted: 0x0274,  // 0x0274 (0x0004) [bool : 0x200]
+  bLevelChange: 0x0274,  // 0x0274 (0x0004) [bool : 0x400]
+  bKickLiveIdlers: 0x0274,  // 0x0274 (0x0004) [bool : 0x800]
+  bFixedPlayerStart: 0x0274,  // 0x0274 (0x0004) [bool : 0x1000]
+  bDoFearCostFallOff: 0x0274,  // 0x0274 (0x0004) [bool : 0x2000]
+  bUseSeamlessTravel: 0x0274,  // 0x0274 (0x0004) [bool : 0x4000]
+  bHasNetworkError: 0x0274,  // 0x0274 (0x0004) [bool : 0x8000]
+  bRequiresPushToTalk: 0x0274,  // 0x0274 (0x0004) [bool : 0x10000]
+  bIsStandbyCheckingEnabled: 0x0274,  // 0x0274 (0x0004) [bool : 0x20000]
+  bIsStandbyCheckingOn: 0x0274,  // 0x0274 (0x0004) [bool : 0x40000]
+  bHasStandbyCheatTriggered: 0x0274,  // 0x0274 (0x0004) [bool : 0x80000]
+  bKeepingLoadingMovieOpen: 0x0274,  // 0x0274 (0x0004) [bool : 0x100000]
+  CauseEventCommand: 0x0278,  // 0x0278 (0x0010) [FString]
+  BugLocString: 0x0288,  // 0x0288 (0x0010) [FString]
+  BugRotString: 0x0298,  // 0x0298 (0x0010) [FString]
+  GameDifficulty: 0x02A8,  // 0x02A8 (0x0004) [float]
+  GameSpeed: 0x02AC,  // 0x02AC (0x0004) [float]
+  DefaultPawnClass: 0x02B0,  // 0x02B0 (0x0008) [UClass*]
+  HUDType: 0x02B8,  // 0x02B8 (0x0008) [UClass*]
+  SecondaryHUDType: 0x02C0,  // 0x02C0 (0x0008) [UClass*]
+  MaxSpectators: 0x02C8,  // 0x02C8 (0x0004) [int32]
+  MaxSpectatorsAllowed: 0x02CC,  // 0x02CC (0x0004) [int32]
+  NumSpectators: 0x02D0,  // 0x02D0 (0x0004) [int32]
+  MaxPlayers: 0x02D4,  // 0x02D4 (0x0004) [int32]
+  MaxPlayersAllowed: 0x02D8,  // 0x02D8 (0x0004) [int32]
+  NumPlayers: 0x02DC,  // 0x02DC (0x0004) [int32]
+  NumBots: 0x02E0,  // 0x02E0 (0x0004) [int32]
+  NumTravellingPlayers: 0x02E4,  // 0x02E4 (0x0004) [int32]
+  CurrentID: 0x02E8,  // 0x02E8 (0x0004) [int32]
+  DefaultPlayerName: 0x02F0,  // 0x02F0 (0x0010) [FString]
+  GameName: 0x0300,  // 0x0300 (0x0010) [FString]
+  FearCostFallOff: 0x0310,  // 0x0310 (0x0004) [float]
+  GoalScore: 0x0314,  // 0x0314 (0x0004) [int32]
+  MaxLives: 0x0318,  // 0x0318 (0x0004) [int32]
+  TimeLimit: 0x031C,  // 0x031C (0x0004) [int32]
+  BaseMutator: 0x0320,  // 0x0320 (0x0008) [UMutator*]
+  AutoTestManagerClass: 0x0328,  // 0x0328 (0x0008) [UClass*]
+  MyAutoTestManager: 0x0330,  // 0x0330 (0x0008) [UAutoTestManager*]
+  PlayerControllerClass: 0x0338,  // 0x0338 (0x0008) [UClass*]
+  PlayerReplicationInfoClass: 0x0340,  // 0x0340 (0x0008) [UClass*]
+  GameReplicationInfoClass: 0x0348,  // 0x0348 (0x0008) [UClass*]
+  GameReplicationInfo: 0x0350,  // 0x0350 (0x0008) [UGameReplicationInfo*]
+  PopulationManager: 0x0358,  // 0x0358 (0x0008) [UCrowdPopulationManagerBase*]
+  PopulationManagerClass: 0x0360,  // 0x0360 (0x0008) [UClass*]
+  MaxIdleTime: 0x0368,  // 0x0368 (0x0004) [float]
+  MaxTimeMargin: 0x036C,  // 0x036C (0x0004) [float]
+  TimeMarginSlack: 0x0370,  // 0x0370 (0x0004) [float]
+  MinTimeMargin: 0x0374,  // 0x0374 (0x0004) [float]
+  InactivePRIArray: 0x0378,  // 0x0378 (0x0010) [TArray<UPlayerReplicationInfo*>]
+  Pausers: 0x0388,  // 0x0388 (0x0010) [TArray<FScriptDelegate>]
+  OnlineSub: 0x0398,  // 0x0398 (0x0008) [UOnlineSubsystem*]
+  GameInterface: 0x03A0,  // 0x03A0 (0x0010) [TScriptInterface<UOnlineGameInterface>]
+  OnlineStatsWriteClass: 0x03B0,  // 0x03B0 (0x0008) [UClass*]
+  CoverReplicatorBase: 0x03B8,  // 0x03B8 (0x0008) [UCoverReplicator*]
+  OnlineGameSettingsClass: 0x03C0,  // 0x03C0 (0x0008) [UClass*]
+  ServerOptions: 0x03C8,  // 0x03C8 (0x0010) [FString]
+  AdjustedNetSpeed: 0x03D8,  // 0x03D8 (0x0004) [int32]
+  LastNetSpeedUpdateTime: 0x03DC,  // 0x03DC (0x0004) [float]
+  TotalNetBandwidth: 0x03E0,  // 0x03E0 (0x0004) [int32]
+  MinDynamicBandwidth: 0x03E4,  // 0x03E4 (0x0004) [int32]
+  MaxDynamicBandwidth: 0x03E8,  // 0x03E8 (0x0004) [int32]
+  StandbyRxCheatTime: 0x03EC,  // 0x03EC (0x0004) [float]
+  StandbyTxCheatTime: 0x03F0,  // 0x03F0 (0x0004) [float]
+  BadPingThreshold: 0x03F4,  // 0x03F4 (0x0004) [int32]
+  PercentMissingForRxStandby: 0x03F8,  // 0x03F8 (0x0004) [float]
+  PercentMissingForTxStandby: 0x03FC,  // 0x03FC (0x0004) [float]
+  PercentForBadPing: 0x0400,  // 0x0400 (0x0004) [float]
+  JoinInProgressStandbyWaitTime: 0x0404,  // 0x0404 (0x0004) [float]
+  StreamingPauseIcon: 0x0408,  // 0x0408 (0x0008) [UMaterial*]
+  GameInfoClassAliases: 0x0410,  // 0x0410 (0x0010) [TArray<FGameClassShortName>]
+  DefaultGameType: 0x0420,  // 0x0420 (0x0010) [FString]
+  DefaultMapPrefixes: 0x0430,  // 0x0430 (0x0010) [TArray<FGameTypePrefix>]
+  CustomMapPrefixes: 0x0440,  // 0x0440 (0x0010) [TArray<FGameTypePrefix>]
+  AnimTreePoolSize: 0x0450,  // 0x0450 (0x0004) [int32]
+  __CanUnpause__Delegate: 0x0458,  // 0x0458 (0x0018) [FScriptDelegate]
+  __NameSanitizedDelegate__Delegate: 0x0470,  // 0x0470 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -1803,7 +2484,7 @@ export const GameSettingCategory_X = {
   GameSettings: 0x0098,  // 0x0098 (0x0010) [TArray<UGameSetting_X*>]
   SortPriority: 0x00A8,  // 0x00A8 (0x0004) [int32]
   ColorOverride: 0x00AC,  // 0x00AC (0x0004) [FColor]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1813,7 +2494,7 @@ export const GameSettingCategory_X = {
  */
 export const GameSetting_X = {
   bHidden: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1868,6 +2549,57 @@ export const GameSettingPlaylist_X = {
 } as const;
 
 /**
+ * Engine.GameViewportClient Offsets
+ * Size: 0x0260
+ * Extends: ScriptViewportClient
+ */
+export const GameViewportClient = {
+  VfTable_FExec: 0x0068,  // 0x0068 (0x0008) [FPointer]
+  Viewport: 0x0070,  // 0x0070 (0x0008) [FPointer]
+  ViewportFrame: 0x0078,  // 0x0078 (0x0008) [FPointer]
+  GlobalInteractions: 0x0080,  // 0x0080 (0x0010) [TArray<UInteraction*>]
+  UIControllerClass: 0x0090,  // 0x0090 (0x0008) [UClass*]
+  UIController: 0x0098,  // 0x0098 (0x0008) [UUIInteraction*]
+  ViewportConsole: 0x00A0,  // 0x00A0 (0x0008) [UConsole*]
+  ShowFlags: 0x00A8,  // 0x00A8 (0x0010) [FExportShowFlags_Mirror]
+  LoadingMessage: 0x00B8,  // 0x00B8 (0x0010) [FString]
+  SavingMessage: 0x00C8,  // 0x00C8 (0x0010) [FString]
+  ConnectingMessage: 0x00D8,  // 0x00D8 (0x0010) [FString]
+  PausedMessage: 0x00E8,  // 0x00E8 (0x0010) [FString]
+  PrecachingMessage: 0x00F8,  // 0x00F8 (0x0010) [FString]
+  bShowTitleSafeZone: 0x0108,  // 0x0108 (0x0004) [bool : 0x1]
+  bDisplayHardwareMouseCursor: 0x0108,  // 0x0108 (0x0004) [bool : 0x2]
+  bOverrideDiffuseAndSpecular: 0x0108,  // 0x0108 (0x0004) [bool : 0x4]
+  bIsPlayInEditorViewport: 0x0108,  // 0x0108 (0x0004) [bool : 0x8]
+  bShowSystemMouseCursor: 0x0108,  // 0x0108 (0x0004) [bool : 0x10]
+  bDisableWorldRendering: 0x0108,  // 0x0108 (0x0004) [bool : 0x20]
+  bCapturedWorldRendering: 0x0108,  // 0x0108 (0x0004) [bool : 0x40]
+  bDebugNoGFxUI: 0x0108,  // 0x0108 (0x0004) [bool : 0x80]
+  TitleSafeZone: 0x010C,  // 0x010C (0x0010) [FTitleSafeZoneArea]
+  GamepadInputAPI: 0x011C,  // 0x011C (0x0001) [EInputAPI]
+  DesiredSplitscreenType: 0x011D,  // 0x011D (0x0001) [ESplitScreenType]
+  ActiveSplitscreenType: 0x011E,  // 0x011E (0x0001) [ESplitScreenType]
+  Default2PSplitType: 0x011F,  // 0x011F (0x0001) [ESplitScreenType]
+  Default3PSplitType: 0x0120,  // 0x0120 (0x0001) [ESplitScreenType]
+  Gamepads: 0x0128,  // 0x0128 (0x0010) [TArray<FGamepadInfo>]
+  SplitscreenInfo: 0x0138,  // 0x0138 (0x0010) [TArray<FSplitscreenData>]
+  ProgressMessage: 0x0148,  // 0x0148 (0x0020) [FString]
+  ProgressTimeOut: 0x0168,  // 0x0168 (0x0004) [float]
+  ProgressFadeTime: 0x016C,  // 0x016C (0x0004) [float]
+  DebugProperties: 0x0170,  // 0x0170 (0x0010) [TArray<FDebugDisplayProperty>]
+  ScaleformInteraction: 0x0180,  // 0x0180 (0x0008) [FPointer]
+  __HandleInputKey__Delegate: 0x0188,  // 0x0188 (0x0018) [FScriptDelegate]
+  __HandleInputAxis__Delegate: 0x01A0,  // 0x01A0 (0x0018) [FScriptDelegate]
+  __HandleInputChar__Delegate: 0x01B8,  // 0x01B8 (0x0018) [FScriptDelegate]
+  __EventScreenDraggedOnNewScreen__Delegate: 0x01D0,  // 0x01D0 (0x0018) [FScriptDelegate]
+  __EventScaleformEnabledChanged__Delegate: 0x01E8,  // 0x01E8 (0x0018) [FScriptDelegate]
+  __EventGamepadInputAPIChanged__Delegate: 0x0200,  // 0x0200 (0x0018) [FScriptDelegate]
+  __EventGamepadConnectionStatusChanged__Delegate: 0x0218,  // 0x0218 (0x0018) [FScriptDelegate]
+  __EventGampadConnected__Delegate: 0x0230,  // 0x0230 (0x0018) [FScriptDelegate]
+  __EventGampadDisconnected__Delegate: 0x0248,  // 0x0248 (0x0018) [FScriptDelegate]
+} as const;
+
+/**
  * ProjectX.GameViewportClient_X Offsets
  * Size: 0x02E0
  * Extends: GameViewportClient
@@ -1891,7 +2623,7 @@ export const GameViewportClient_X = {
  * Extends: Object
  */
 export const GeForceNow_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1906,7 +2638,7 @@ export const GetPlayerStorageResultItem_X = {
   Checksum: 0x0080,  // 0x0080 (0x0004) [int32]
   bChecksumMatch: 0x0084,  // 0x0084 (0x0004) [bool : 0x1]
   Encoding: 0x0088,  // 0x0088 (0x0001) [EObjectEncoding]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1916,7 +2648,7 @@ export const GetPlayerStorageResultItem_X = {
  */
 export const GetPlayerStorageResult_X = {
   Items: 0x0060,  // 0x0060 (0x0010) [TArray<UGetPlayerStorageResultItem_X*>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1926,6 +2658,48 @@ export const GetPlayerStorageResult_X = {
  */
 export const GoalCollisionShape_X = {
   ...ExplosionCollisionShapes_X,
+} as const;
+
+/**
+ * Engine.HUD Offsets
+ * Size: 0x0308
+ * Extends: Actor
+ */
+export const HUD = {
+  WhiteColor: 0x0268,  // 0x0268 (0x0004) [FColor]
+  GreenColor: 0x026C,  // 0x026C (0x0004) [FColor]
+  RedColor: 0x0270,  // 0x0270 (0x0004) [FColor]
+  PlayerOwner: 0x0278,  // 0x0278 (0x0008) [UPlayerController*]
+  bLostFocusPaused: 0x0280,  // 0x0280 (0x0004) [bool : 0x1]
+  bShowHUD: 0x0280,  // 0x0280 (0x0004) [bool : 0x2]
+  bShowScores: 0x0280,  // 0x0280 (0x0004) [bool : 0x4]
+  bShowDebugInfo: 0x0280,  // 0x0280 (0x0004) [bool : 0x8]
+  bShowBadConnectionAlert: 0x0280,  // 0x0280 (0x0004) [bool : 0x10]
+  bShowDirectorInfoDebug: 0x0280,  // 0x0280 (0x0004) [bool : 0x20]
+  bShowDirectorInfoHUD: 0x0280,  // 0x0280 (0x0004) [bool : 0x40]
+  bRenderFullScreen: 0x0280,  // 0x0280 (0x0004) [bool : 0x80]
+  bScaleCanvasForCinematicMode: 0x0280,  // 0x0280 (0x0004) [bool : 0x100]
+  bShowOverlays: 0x0280,  // 0x0280 (0x0004) [bool : 0x200]
+  HudCanvasScale: 0x0284,  // 0x0284 (0x0004) [float]
+  PostRenderedActors: 0x0288,  // 0x0288 (0x0010) [TArray<UActor*>]
+  ConsoleMessages: 0x0298,  // 0x0298 (0x0010) [TArray<FConsoleMessage>]
+  ConsoleColor: 0x02A8,  // 0x02A8 (0x0004) [FColor]
+  ConsoleMessageCount: 0x02AC,  // 0x02AC (0x0004) [int32]
+  ConsoleFontSize: 0x02B0,  // 0x02B0 (0x0004) [int32]
+  ConsoleMessagePosX: 0x02B4,  // 0x02B4 (0x0004) [float]
+  ConsoleMessagePosY: 0x02B8,  // 0x02B8 (0x0004) [float]
+  Canvas: 0x02C0,  // 0x02C0 (0x0008) [UCanvas*]
+  LastHUDRenderTime: 0x02C8,  // 0x02C8 (0x0004) [float]
+  RenderDelta: 0x02CC,  // 0x02CC (0x0004) [float]
+  SizeX: 0x02D0,  // 0x02D0 (0x0004) [float]
+  SizeY: 0x02D4,  // 0x02D4 (0x0004) [float]
+  CenterX: 0x02D8,  // 0x02D8 (0x0004) [float]
+  CenterY: 0x02DC,  // 0x02DC (0x0004) [float]
+  RatioX: 0x02E0,  // 0x02E0 (0x0004) [float]
+  RatioY: 0x02E4,  // 0x02E4 (0x0004) [float]
+  DebugDisplay: 0x02E8,  // 0x02E8 (0x0010) [TArray<FName>]
+  KismetTextInfo: 0x02F8,  // 0x02F8 (0x0010) [TArray<FKismetDrawTextInfo>]
+  ...Actor,
 } as const;
 
 /**
@@ -1946,7 +2720,16 @@ export const HUD_X = {
  * Extends: Object
  */
 export const Hashes_X = {
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Core.Interface Offsets
+ * Size: 0x0060
+ * Extends: Object
+ */
+export const Interface = {
+  ...Object_,
 } as const;
 
 /**
@@ -2024,7 +2807,7 @@ export const InterpComponent_X = {
  * Extends: Object
  */
 export const JsonTests_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2034,7 +2817,7 @@ export const JsonTests_X = {
  */
 export const KeyRequestResponse = {
   requiredKeys: 0x0060,  // 0x0060 (0x0010) [TArray<FString>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2059,7 +2842,7 @@ export const LanBeacon_X = {
  * Extends: Object
  */
 export const LanBrowser_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2085,7 +2868,37 @@ export const AdHocBrowser_X = {
 export const LanServerRecord_X = {
   ServerId: 0x0060,  // 0x0060 (0x0010) [FString]
   MetaData: 0x0070,  // 0x0070 (0x0010) [FString]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.LensFlareComponent Offsets
+ * Size: 0x02BC
+ * Extends: PrimitiveComponent
+ */
+export const LensFlareComponent = {
+  Template: 0x0258,  // 0x0258 (0x0008) [ULensFlare*]
+  PreviewInnerCone: 0x0260,  // 0x0260 (0x0008) [unknown]
+  PreviewOuterCone: 0x0268,  // 0x0268 (0x0008) [unknown]
+  PreviewRadius: 0x0270,  // 0x0270 (0x0008) [unknown]
+  bAutoActivate: 0x0278,  // 0x0278 (0x0004) [bool : 0x1]
+  bIsActive: 0x0278,  // 0x0278 (0x0004) [bool : 0x2]
+  bHasTranslucency: 0x0278,  // 0x0278 (0x0004) [bool : 0x4]
+  bHasUnlitTranslucency: 0x0278,  // 0x0278 (0x0004) [bool : 0x8]
+  bHasUnlitDistortion: 0x0278,  // 0x0278 (0x0004) [bool : 0x10]
+  bUsesSceneColor: 0x0278,  // 0x0278 (0x0004) [bool : 0x20]
+  bHasSeparateTranslucency: 0x0278,  // 0x0278 (0x0004) [bool : 0x40]
+  bUseTrueConeCalculation: 0x0278,  // 0x0278 (0x0004) [bool : 0x80]
+  bVisibleForMobile: 0x0278,  // 0x0278 (0x0004) [bool : 0x100]
+  OuterCone: 0x027C,  // 0x027C (0x0004) [float]
+  InnerCone: 0x0280,  // 0x0280 (0x0004) [float]
+  ConeFudgeFactor: 0x0284,  // 0x0284 (0x0004) [float]
+  Radius: 0x0288,  // 0x0288 (0x0004) [float]
+  MinStrength: 0x028C,  // 0x028C (0x0004) [float]
+  SourceColor: 0x0290,  // 0x0290 (0x0010) [FLinearColor]
+  Materials: 0x02A0,  // 0x02A0 (0x0010) [TArray<FLensFlareElementMaterials>]
+  ReleaseResourcesFence: 0x02B0,  // 0x02B0 (0x0008) [FPointer]
+  NextTraceTime: 0x02B8,  // 0x02B8 (0x0004) [float]
 } as const;
 
 /**
@@ -2121,7 +2934,7 @@ export const LinkedAccountMap_X = {
  */
 export const LocalCacheTests_X = {
   CacheFilePath: 0x0060,  // 0x0060 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2138,7 +2951,7 @@ export const LocalCache_X = {
   bDebug: 0x00A8,  // 0x00A8 (0x0004) [bool : 0x1]
   __EventImportFinished__Delegate: 0x00B0,  // 0x00B0 (0x0018) [FScriptDelegate]
   __EventExportFinished__Delegate: 0x00C8,  // 0x00C8 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2150,7 +2963,45 @@ export const LocalClubData_X = {
   Clubs: 0x0060,  // 0x0060 (0x0010) [TArray<UClubDetails_X*>]
   Invites: 0x0070,  // 0x0070 (0x0010) [TArray<FPlayerClubPair>]
   NextClubID: 0x0080,  // 0x0080 (0x0004) [int32]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.LocalPlayer Offsets
+ * Size: 0x04D0
+ * Extends: Player
+ */
+export const LocalPlayer = {
+  VfTable_FObserverInterface: 0x00B8,  // 0x00B8 (0x0008) [FPointer]
+  ControllerId: 0x00C0,  // 0x00C0 (0x0004) [int32]
+  ViewportClient: 0x00C8,  // 0x00C8 (0x0008) [UGameViewportClient*]
+  Origin: 0x00D0,  // 0x00D0 (0x0008) [FVector2D]
+  Size: 0x00D8,  // 0x00D8 (0x0008) [FVector2D]
+  PlayerPostProcess: 0x00E0,  // 0x00E0 (0x0008) [UPostProcessChain*]
+  PlayerPostProcessChains: 0x00E8,  // 0x00E8 (0x0010) [TArray<UPostProcessChain*>]
+  bForceDefaultPostProcessChain: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x1]
+  bWantToResetToMapDefaultPP: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x2]
+  bSentSplitJoin: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x4]
+  bPendingServerAuth: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x8]
+  bDrawWorldFullScreen: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x10]
+  bReplayFXDirtied: 0x00F8,  // 0x00F8 (0x0004) [bool : 0x20]
+  ViewState: 0x0100,  // 0x0100 (0x0008) [FPointer]
+  ViewState2: 0x0108,  // 0x0108 (0x0008) [FPointer]
+  ActorVisibilityHistory: 0x0110,  // 0x0110 (0x0010) [FSynchronizedActorVisibilityHistory]
+  LastViewLocation: 0x0120,  // 0x0120 (0x000C) [FVector]
+  CurrentPPInfo: 0x0130,  // 0x0130 (0x0178) [FCurrentPostProcessVolumeInfo]
+  LevelPPInfo: 0x02A8,  // 0x02A8 (0x0178) [FCurrentPostProcessVolumeInfo]
+  ActivePPOverrides: 0x0420,  // 0x0420 (0x0010) [TArray<FPostProcessSettingsOverride>]
+  AspectRatioAxisConstraint: 0x0430,  // 0x0430 (0x0001) [EAspectRatioAxisConstraint]
+  LastMap: 0x0438,  // 0x0438 (0x0010) [FString]
+  TagContext: 0x0448,  // 0x0448 (0x0008) [UTranslationContext*]
+  CachedAuthInt: 0x0450,  // 0x0450 (0x0010) [TScriptInterface<UOnlineAuthInterface>]
+  ServerAuthTimestamp: 0x0460,  // 0x0460 (0x0004) [float]
+  ServerAuthTimeout: 0x0464,  // 0x0464 (0x0004) [int32]
+  ServerAuthRetryCount: 0x0468,  // 0x0468 (0x0004) [int32]
+  MaxServerAuthRetryCount: 0x046C,  // 0x046C (0x0004) [int32]
+  ServerAuthUID: 0x0470,  // 0x0470 (0x0048) [FUniqueNetId]
+  __bForceDefaultPostProcessChain__ChangeNotify: 0x04B8,  // 0x04B8 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -2172,7 +3023,7 @@ export const LocalPlayer_X = {
 export const LocalizedAccountLinkURL = {
   Language: 0x0060,  // 0x0060 (0x0010) [FString]
   URL: 0x0070,  // 0x0070 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2183,7 +3034,7 @@ export const LocalizedAccountLinkURL = {
 export const LoginResponse_X = {
   BannedMessage: 0x0060,  // 0x0060 (0x0010) [FString]
   BannedMinutes: 0x0070,  // 0x0070 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2244,7 +3095,7 @@ export const MatchData_X = {
   Team0Score: 0x012C,  // 0x012C (0x0004) [int32]
   Team1Score: 0x0130,  // 0x0130 (0x0004) [int32]
   Players: 0x0138,  // 0x0138 (0x0010) [TArray<UMatchPlayerData_X*>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2254,6 +3105,18 @@ export const MatchData_X = {
  */
 export const MatchEndedMessage_X = {
   ...BeaconMessage_X,
+} as const;
+
+/**
+ * IpDrv.WebApplication Offsets
+ * Size: 0x0080
+ * Extends: Object
+ */
+export const WebApplication = {
+  WorldInfo: 0x0060,  // 0x0060 (0x0008) [UWorldInfo*]
+  WebServer: 0x0068,  // 0x0068 (0x0008) [UWebServer*]
+  Path: 0x0070,  // 0x0070 (0x0010) [FString]
+  ...Object_,
 } as const;
 
 /**
@@ -2275,7 +3138,7 @@ export const MatchLog_X = {
   LogFileStartSize: 0x0060,  // 0x0060 (0x0004) [int32]
   URL: 0x0068,  // 0x0068 (0x0010) [FString]
   Content: 0x0078,  // 0x0078 (0x0010) [TArray<uint8>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2306,7 +3169,7 @@ export const MatchPlayerData_X = {
   ClubID: 0x0158,  // 0x0158 (0x0004) [int32]
   Skills: 0x015C,  // 0x015C (0x0024) [FMatchSkillUpdate]
   ActorID: 0x0180,  // 0x0180 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2318,7 +3181,16 @@ export const MatchRecorder_X = {
   MatchDataClass: 0x0060,  // 0x0060 (0x0008) [UClass*]
   PlayerDataClass: 0x0068,  // 0x0068 (0x0008) [UClass*]
   Match: 0x0070,  // 0x0070 (0x0008) [UMatchData_X*]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.MaterialEffect Offsets
+ * Size: 0x0090
+ * Extends: PostProcessEffect
+ */
+export const MaterialEffect = {
+  Material: 0x0088,  // 0x0088 (0x0008) [UMaterialInterface*]
 } as const;
 
 /**
@@ -2407,7 +3279,7 @@ export const MetricsSystem_X = {
  * Extends: Object
  */
 export const MirrorUtils_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2426,7 +3298,7 @@ export const NNXErrors_X = {
  * Extends: Object
  */
 export const NetMetricsSystem_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2446,7 +3318,15 @@ export const NetMetrics_X = {
  * Extends: Object
  */
 export const NetModeBase = {
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.ReplicationInfo Offsets
+ * Size: 0x0268
+ * Extends: Info
+ */
+export const ReplicationInfo = {
 } as const;
 
 /**
@@ -2464,7 +3344,7 @@ export const NetModeReplicator_X = {
  * Extends: Object
  */
 export const NetModeSystem_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2546,7 +3426,7 @@ export const NetMode_Standalone = {
  */
 export const NetworkPingEvent_X = {
   DeltaSeconds: 0x0060,  // 0x0060 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2555,7 +3435,7 @@ export const NetworkPingEvent_X = {
  * Extends: Object
  */
 export const NullResponse = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2577,7 +3457,7 @@ export const OnlineClubCache_X = {
 export const OnlineClubManager_X = {
   Connection: 0x0060,  // 0x0060 (0x0008) [UPsyNetConnection_X*]
   __EventClubChanged__Delegate: 0x0068,  // 0x0068 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2593,7 +3473,7 @@ export const OnlineClubProvider_X = {
   PlayerClubSyncResults: 0x0098,  // 0x0098 (0x0010) [TArray<FPlayerClubSyncResult>]
   __EventSyncComplete__Delegate: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
   __EventPlayerSynced__Delegate: 0x00C0,  // 0x00C0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2605,7 +3485,7 @@ export const OnlineClubServerList_X = {
   Servers: 0x0060,  // 0x0060 (0x0010) [TArray<UClubServerResult_X*>]
   RPC: 0x0070,  // 0x0070 (0x0008) [URPC_GetClubPrivateMatches_X*]
   Error: 0x0078,  // 0x0078 (0x0008) [UError*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2615,7 +3495,7 @@ export const OnlineClubServerList_X = {
  */
 export const OnlineConfigDispatcher_X = {
   bDebug: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2626,7 +3506,7 @@ export const OnlineConfigDispatcher_X = {
 export const OnlineConfig_X = {
   bAllowOnServer: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
   AllSubscriptions: 0x0068,  // 0x0068 (0x0010) [TArray<FModifierSubscription>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -2883,7 +3763,29 @@ export const EpicFriends_X = {
  * Extends: Object
  */
 export const OnlineGameReservations_AssignTeamsByParty_X = {
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.OnlineGameSearch Offsets
+ * Size: 0x0154
+ * Extends: Settings
+ */
+export const OnlineGameSearch = {
+  MaxSearchResults: 0x00A0,  // 0x00A0 (0x0004) [int32]
+  Query: 0x00A4,  // 0x00A4 (0x000C) [FLocalizedStringSetting]
+  bIsLanQuery: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x1]
+  bUsesArbitration: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x2]
+  bIsSearchInProgress: 0x00B0,  // 0x00B0 (0x0004) [bool : 0x4]
+  GameSettingsClass: 0x00B8,  // 0x00B8 (0x0008) [UClass*]
+  Results: 0x00C0,  // 0x00C0 (0x0010) [TArray<FOnlineGameSearchResult>]
+  ManualSkillOverride: 0x00D0,  // 0x00D0 (0x0038) [FOverrideSkill]
+  NamedProperties: 0x0108,  // 0x0108 (0x0010) [TArray<FNamedObjectProperty>]
+  FilterQuery: 0x0118,  // 0x0118 (0x0020) [FOnlineGameSearchQuery]
+  AdditionalSearchCriteria: 0x0138,  // 0x0138 (0x0010) [FString]
+  PingBucketSize: 0x0148,  // 0x0148 (0x0004) [int32]
+  NumPingProbes: 0x014C,  // 0x014C (0x0004) [int32]
+  MaxPingBytes: 0x0150,  // 0x0150 (0x0004) [int32]
 } as const;
 
 /**
@@ -2897,6 +3799,19 @@ export const OnlineGameSearch_X = {
   MapName: 0x0178,  // 0x0178 (0x0010) [FString]
   GameTagsDelimiter: 0x0188,  // 0x0188 (0x0010) [FString]
   ...OnlineGameSearch,
+} as const;
+
+/**
+ * Engine.Settings Offsets
+ * Size: 0x00A0
+ * Extends: Object
+ */
+export const Settings = {
+  LocalizedSettings: 0x0060,  // 0x0060 (0x0010) [TArray<FLocalizedStringSetting>]
+  Properties: 0x0070,  // 0x0070 (0x0010) [TArray<FSettingsProperty>]
+  LocalizedSettingsMappings: 0x0080,  // 0x0080 (0x0010) [TArray<FLocalizedStringSettingMetaData>]
+  PropertyMappings: 0x0090,  // 0x0090 (0x0010) [TArray<FSettingsPropertyPropertyMetaData>]
+  ...Object_,
 } as const;
 
 /**
@@ -2982,7 +3897,7 @@ export const OnlineMessageComponent_X = {
  * Extends: Object
  */
 export const OnlineMessage_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3038,7 +3953,7 @@ export const OnlinePlayerPermissions_X = {
   PendingPlayerRequests: 0x0068,  // 0x0068 (0x0010) [TArray<FUniqueNetId>]
   PlayerPermissions: 0x0078,  // 0x0078 (0x0010) [TArray<FPlayerPermissionsList>]
   __EventUpdated__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3058,7 +3973,7 @@ export const OnlinePlayerStorageConfig_X = {
  */
 export const OnlinePlayerStorageManifest_X = {
   MetaData: 0x0060,  // 0x0060 (0x0010) [TArray<FStorageMetadata>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3075,7 +3990,7 @@ export const OnlinePlayerStorageQueue_X = {
   __EventStorageSuccess__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
   __EventOutOfSync__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
   __EventStorageError__Delegate: 0x00D0,  // 0x00D0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3085,7 +4000,7 @@ export const OnlinePlayerStorageQueue_X = {
  */
 export const OnlinePlayerStorageSync_X = {
   __EventSyncSuccess__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3118,7 +4033,53 @@ export const OnlineResource_X = {
  */
 export const OnlineSaveLock_X = {
   EnableCount: 0x0060,  // 0x0060 (0x0004) [int32]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.PlayerReplicationInfo Offsets
+ * Size: 0x0410
+ * Extends: ReplicationInfo
+ */
+export const PlayerReplicationInfo = {
+  ObjectProvider: 0x0268,  // 0x0268 (0x0008) [unknown]
+  RegistryGroup: 0x0270,  // 0x0270 (0x0008) [unknown]
+  Score: 0x0278,  // 0x0278 (0x0004) [int32]
+  Deaths: 0x027C,  // 0x027C (0x0004) [int32]
+  Ping: 0x0280,  // 0x0280 (0x0001) [uint8]
+  TTSSpeaker: 0x0281,  // 0x0281 (0x0001) [ETTSSpeaker]
+  NumLives: 0x0284,  // 0x0284 (0x0004) [int32]
+  PlayerName: 0x0288,  // 0x0288 (0x0010) [FString]
+  OldName: 0x0298,  // 0x0298 (0x0010) [FString]
+  PlayerID: 0x02A8,  // 0x02A8 (0x0004) [int32]
+  Team: 0x02B0,  // 0x02B0 (0x0008) [UTeamInfo*]
+  bAdmin: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x1]
+  bIsSpectator: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x2]
+  bOnlySpectator: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x4]
+  bWaitingPlayer: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x8]
+  bReadyToPlay: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x10]
+  bOutOfLives: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x20]
+  bBot: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x40]
+  bIsInactive: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x80]
+  bFromPreviousLevel: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x100]
+  bTimedOut: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x200]
+  bUnregistered: 0x02B8,  // 0x02B8 (0x0004) [bool : 0x400]
+  StartTime: 0x02BC,  // 0x02BC (0x0004) [int32]
+  StringSpectating: 0x02C0,  // 0x02C0 (0x0010) [FString]
+  StringUnknown: 0x02D0,  // 0x02D0 (0x0010) [FString]
+  Kills: 0x02E0,  // 0x02E0 (0x0004) [int32]
+  ExactPing: 0x02E4,  // 0x02E4 (0x0004) [float]
+  SavedNetworkAddress: 0x02E8,  // 0x02E8 (0x0010) [FString]
+  UniqueId: 0x02F8,  // 0x02F8 (0x0048) [FUniqueNetId]
+  SessionName: 0x0340,  // 0x0340 (0x0008) [FName]
+  AutomatedTestingData: 0x0348,  // 0x0348 (0x0008) [FAutomatedTestingDatum]
+  Avatar: 0x0350,  // 0x0350 (0x0008) [UTexture2D*]
+  PacketStats: 0x0358,  // 0x0358 (0x001C) [FNetPacketStats]
+  PrevPacketStats: 0x0374,  // 0x0374 (0x001C) [FNetPacketStats]
+  NetStats: 0x0390,  // 0x0390 (0x0058) [FClientConnectionStats]
+  RemoteUserData: 0x03E8,  // 0x03E8 (0x0010) [FPRIRemoteUserData]
+  __EventTeamChanged__Delegate: 0x03F8,  // 0x03F8 (0x0018) [FScriptDelegate]
+  ...ReplicationInfo,
 } as const;
 
 /**
@@ -3150,12 +4111,50 @@ export const ParameterDispenser_X = {
 } as const;
 
 /**
+ * Engine.ParticleModuleBeamTarget Offsets
+ * Size: 0x010C
+ * Extends: ParticleModuleBeamBase
+ */
+export const ParticleModuleBeamTarget = {
+  TargetMethod: 0x0070,  // 0x0070 (0x0001) [Beam2SourceTargetMethod]
+  TargetTangentMethod: 0x0071,  // 0x0071 (0x0001) [Beam2SourceTargetTangentMethod]
+  TargetName: 0x0074,  // 0x0074 (0x0008) [FName]
+  Target: 0x0080,  // 0x0080 (0x0028) [FRawDistributionVector]
+  bTargetAbsolute: 0x00A8,  // 0x00A8 (0x0004) [bool : 0x1]
+  bLockTarget: 0x00A8,  // 0x00A8 (0x0004) [bool : 0x2]
+  bLockTargetTangent: 0x00A8,  // 0x00A8 (0x0004) [bool : 0x4]
+  bLockTargetStength: 0x00A8,  // 0x00A8 (0x0004) [bool : 0x8]
+  TargetTangent: 0x00B0,  // 0x00B0 (0x0028) [FRawDistributionVector]
+  TargetBone: 0x00D8,  // 0x00D8 (0x0008) [FName]
+  TargetStrength: 0x00E0,  // 0x00E0 (0x0028) [FRawDistributionFloat]
+  LockRadius: 0x0108,  // 0x0108 (0x0004) [float]
+} as const;
+
+/**
  * ProjectX.ParticleModuleBeamTarget_X Offsets
  * Size: 0x0110
  * Extends: ParticleModuleBeamTarget
  */
 export const ParticleModuleBeamTarget_X = {
   ...ParticleModuleBeamTarget,
+} as const;
+
+/**
+ * Engine.ParticleModuleLocationBoneSocket Offsets
+ * Size: 0x00AC
+ * Extends: ParticleModuleLocationBase
+ */
+export const ParticleModuleLocationBoneSocket = {
+  SourceType: 0x0070,  // 0x0070 (0x0001) [ELocationBoneSocketSource]
+  SelectionMethod: 0x0071,  // 0x0071 (0x0001) [ELocationBoneSocketSelectionMethod]
+  UniversalOffset: 0x0074,  // 0x0074 (0x000C) [FVector]
+  SourceLocations: 0x0080,  // 0x0080 (0x0010) [TArray<FLocationBoneSocketInfo>]
+  bUpdatePositionEachFrame: 0x0090,  // 0x0090 (0x0004) [bool : 0x1]
+  bOrientMeshEmitters: 0x0090,  // 0x0090 (0x0004) [bool : 0x2]
+  bInheritVelocityAtSpawn: 0x0090,  // 0x0090 (0x0004) [bool : 0x4]
+  SkelMeshActorParamName: 0x0094,  // 0x0094 (0x0008) [FName]
+  EditorSkelMesh: 0x00A0,  // 0x00A0 (0x0008) [USkeletalMesh*]
+  LastUpdateTime: 0x00A8,  // 0x00A8 (0x0004) [float]
 } as const;
 
 /**
@@ -3168,12 +4167,42 @@ export const ParticleModuleLocationBoneSocket_X = {
 } as const;
 
 /**
+ * Engine.ParticleModuleLocationSkelVertSurface Offsets
+ * Size: 0x00D0
+ * Extends: ParticleModuleLocationBase
+ */
+export const ParticleModuleLocationSkelVertSurface = {
+  SourceType: 0x0070,  // 0x0070 (0x0001) [ELocationSkelVertSurfaceSource]
+  UniversalOffset: 0x0074,  // 0x0074 (0x000C) [FVector]
+  bUpdatePositionEachFrame: 0x0080,  // 0x0080 (0x0004) [bool : 0x1]
+  bOrientMeshEmitters: 0x0080,  // 0x0080 (0x0004) [bool : 0x2]
+  bEnforceNormalCheck: 0x0080,  // 0x0080 (0x0004) [bool : 0x4]
+  SkelMeshActorParamName: 0x0084,  // 0x0084 (0x0008) [FName]
+  EditorSkelMesh: 0x0090,  // 0x0090 (0x0008) [USkeletalMesh*]
+  ValidAssociatedBones: 0x0098,  // 0x0098 (0x0010) [TArray<FName>]
+  NormalToCompare: 0x00A8,  // 0x00A8 (0x000C) [FVector]
+  NormalCheckToleranceDegrees: 0x00B4,  // 0x00B4 (0x0004) [float]
+  NormalCheckTolerance: 0x00B8,  // 0x00B8 (0x0004) [float]
+  ValidMaterialIndices: 0x00C0,  // 0x00C0 (0x0010) [TArray<int32>]
+} as const;
+
+/**
  * ProjectX.ParticleModuleLocationSkelVertSurface_X Offsets
  * Size: 0x00D0
  * Extends: ParticleModuleLocationSkelVertSurface
  */
 export const ParticleModuleLocationSkelVertSurface_X = {
   ...ParticleModuleLocationSkelVertSurface,
+} as const;
+
+/**
+ * Engine.ParticleModuleVelocityBase Offsets
+ * Size: 0x0074
+ * Extends: ParticleModule
+ */
+export const ParticleModuleVelocityBase = {
+  bInWorldSpace: 0x0070,  // 0x0070 (0x0004) [bool : 0x1]
+  bApplyOwnerScale: 0x0070,  // 0x0070 (0x0004) [bool : 0x2]
 } as const;
 
 /**
@@ -3194,6 +4223,14 @@ export const ParticleModuleVelocitySurfaceNormal_X = {
  */
 export const ParticleModuleVelocitySurfaceNormalStatic_X = {
   ...ParticleModuleVelocitySurfaceNormal_X,
+} as const;
+
+/**
+ * Engine.ParticleModuleWorldForcesBase Offsets
+ * Size: 0x0070
+ * Extends: ParticleModule
+ */
+export const ParticleModuleWorldForcesBase = {
 } as const;
 
 /**
@@ -3258,7 +4295,7 @@ export const Parties_X = {
   __EventSignedPartyChatRecieved__Delegate: 0x0390,  // 0x0390 (0x0018) [FScriptDelegate]
   __EventSignedPartyChatSent__Delegate: 0x03A8,  // 0x03A8 (0x0018) [FScriptDelegate]
   __OnHostStartPlayTogether__Delegate: 0x03C0,  // 0x03C0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3327,7 +4364,7 @@ export const PartyErrors_X = {
  * Extends: Object
  */
 export const PartyJoinedEvent_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3496,7 +4533,7 @@ export const PartyMetrics_X = {
 export const PartyPlatformSession_X = {
   PartyID: 0x0060,  // 0x0060 (0x0010) [FUniqueLobbyId]
   __EventPartyIdChanged__Delegate: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3507,7 +4544,7 @@ export const PartyPlatformSession_X = {
 export const PartySequence_CreateParty_X = {
   PendingRPC: 0x0060,  // 0x0060 (0x0008) [URPC_PartyCreate_X*]
   __EventPartyCreated__Delegate: 0x0068,  // 0x0068 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3516,7 +4553,7 @@ export const PartySequence_CreateParty_X = {
  * Extends: Object
  */
 export const PartySequence_InviteToParty_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3525,7 +4562,7 @@ export const PartySequence_InviteToParty_X = {
  * Extends: Object
  */
 export const PartySequence_InvitedToPlatformParty_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3534,7 +4571,7 @@ export const PartySequence_InvitedToPlatformParty_X = {
  * Extends: Object
  */
 export const PartySequence_InvitedToPsyNetParty_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3544,7 +4581,7 @@ export const PartySequence_InvitedToPsyNetParty_X = {
  */
 export const PartySequence_JoinParty_X = {
   __EventJoinedParty__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3553,7 +4590,7 @@ export const PartySequence_JoinParty_X = {
  * Extends: Object
  */
 export const PartySequence_JoinRequest_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3562,7 +4599,7 @@ export const PartySequence_JoinRequest_X = {
  * Extends: Object
  */
 export const PartySequence_LeaveParty_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3571,7 +4608,7 @@ export const PartySequence_LeaveParty_X = {
  * Extends: Object
  */
 export const PartySequence_PsyNetPartyUpgrade_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3580,7 +4617,7 @@ export const PartySequence_PsyNetPartyUpgrade_X = {
  * Extends: Object
  */
 export const PauseMetricsState_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3589,7 +4626,172 @@ export const PauseMetricsState_X = {
  * Extends: Object
  */
 export const PauseStaticDataSync_X = {
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.Pawn Offsets
+ * Size: 0x0514
+ * Extends: Actor
+ */
+export const Pawn = {
+  VfTable_IInterface_Speaker: 0x0268,  // 0x0268 (0x0008) [FPointer]
+  ObjectProvider: 0x0270,  // 0x0270 (0x0008) [unknown]
+  RegistryGroup: 0x0278,  // 0x0278 (0x0008) [unknown]
+  MaxStepHeight: 0x0280,  // 0x0280 (0x0004) [float]
+  MaxJumpHeight: 0x0284,  // 0x0284 (0x0004) [float]
+  WalkableFloorZ: 0x0288,  // 0x0288 (0x0004) [float]
+  LedgeCheckThreshold: 0x028C,  // 0x028C (0x0004) [float]
+  PartialLedgeMoveDir: 0x0290,  // 0x0290 (0x000C) [FVector]
+  Controller: 0x02A0,  // 0x02A0 (0x0008) [UController*]
+  NextPawn: 0x02A8,  // 0x02A8 (0x0008) [UPawn*]
+  NetRelevancyTime: 0x02B0,  // 0x02B0 (0x0004) [float]
+  LastRealViewer: 0x02B8,  // 0x02B8 (0x0008) [UPlayerController*]
+  LastViewer: 0x02C0,  // 0x02C0 (0x0008) [UActor*]
+  bScriptTickSpecial: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x1]
+  bUpAndOut: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x2]
+  bIsWalking: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x4]
+  bWantsToCrouch: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x8]
+  bIsCrouched: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x10]
+  bTryToUncrouch: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x20]
+  bCanCrouch: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x40]
+  bCrawler: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x80]
+  bReducedSpeed: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x100]
+  bJumpCapable: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x200]
+  bCanJump: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x400]
+  bCanWalk: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x800]
+  bCanFly: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x1000]
+  bCanStrafe: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x2000]
+  bAvoidLedges: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x4000]
+  bStopAtLedges: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x8000]
+  bAllowLedgeOverhang: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x10000]
+  bPartiallyOverLedge: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x20000]
+  bSimulateGravity: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x40000]
+  bIgnoreForces: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x80000]
+  bCanWalkOffLedges: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x100000]
+  bCanBeBaseForPawns: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x200000]
+  bSimGravityDisabled: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x400000]
+  bDirectHitWall: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x800000]
+  bPushesRigidBodies: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x1000000]
+  bForceFloorCheck: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x2000000]
+  bForceKeepAnchor: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x4000000]
+  bCanMantle: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x8000000]
+  bCanClimbUp: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x10000000]
+  bCanClimbCeilings: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x20000000]
+  bCanSwatTurn: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x40000000]
+  bCanLeap: 0x02C8,  // 0x02C8 (0x0004) [bool : 0x-80000000]
+  bCanCoverSlip: 0x02CC,  // 0x02CC (0x0004) [bool : 0x1]
+  bDisplayPathErrors: 0x02CC,  // 0x02CC (0x0004) [bool : 0x2]
+  bAmbientCreature: 0x02CC,  // 0x02CC (0x0004) [bool : 0x4]
+  bLOSHearing: 0x02CC,  // 0x02CC (0x0004) [bool : 0x8]
+  bMuffledHearing: 0x02CC,  // 0x02CC (0x0004) [bool : 0x10]
+  bDontPossess: 0x02CC,  // 0x02CC (0x0004) [bool : 0x20]
+  bRollToDesired: 0x02CC,  // 0x02CC (0x0004) [bool : 0x40]
+  bStationary: 0x02CC,  // 0x02CC (0x0004) [bool : 0x80]
+  bCachedRelevant: 0x02CC,  // 0x02CC (0x0004) [bool : 0x100]
+  bModifyReachSpecCost: 0x02CC,  // 0x02CC (0x0004) [bool : 0x200]
+  bModifyNavPointDest: 0x02CC,  // 0x02CC (0x0004) [bool : 0x400]
+  bPrevBypassSimulatedClientPhysics: 0x02CC,  // 0x02CC (0x0004) [bool : 0x800]
+  bRunPhysicsWithNoController: 0x02CC,  // 0x02CC (0x0004) [bool : 0x1000]
+  bForceMaxAccel: 0x02CC,  // 0x02CC (0x0004) [bool : 0x2000]
+  bLimitFallAccel: 0x02CC,  // 0x02CC (0x0004) [bool : 0x4000]
+  bForceRMVelocity: 0x02CC,  // 0x02CC (0x0004) [bool : 0x8000]
+  bForceRegularVelocity: 0x02CC,  // 0x02CC (0x0004) [bool : 0x10000]
+  bDesiredRotationSet: 0x02CC,  // 0x02CC (0x0004) [bool : 0x20000]
+  bLockDesiredRotation: 0x02CC,  // 0x02CC (0x0004) [bool : 0x40000]
+  bUnlockWhenReached: 0x02CC,  // 0x02CC (0x0004) [bool : 0x80000]
+  bNeedsBaseTickedFirst: 0x02CC,  // 0x02CC (0x0004) [bool : 0x100000]
+  bUsedByMatinee: 0x02CC,  // 0x02CC (0x0004) [bool : 0x200000]
+  bRootMotionFromInterpCurve: 0x02CC,  // 0x02CC (0x0004) [bool : 0x400000]
+  bDebugShowCameraLocation: 0x02CC,  // 0x02CC (0x0004) [bool : 0x800000]
+  bFastAttachedMove: 0x02CC,  // 0x02CC (0x0004) [bool : 0x1000000]
+  WalkingPhysics: 0x02D0,  // 0x02D0 (0x0001) [EPhysics]
+  PathSearchType: 0x02D1,  // 0x02D1 (0x0001) [EPathSearchType]
+  RemoteViewPitch: 0x02D2,  // 0x02D2 (0x0001) [uint8]
+  UncrouchTime: 0x02D4,  // 0x02D4 (0x0004) [float]
+  CrouchHeight: 0x02D8,  // 0x02D8 (0x0004) [float]
+  CrouchRadius: 0x02DC,  // 0x02DC (0x0004) [float]
+  FullHeight: 0x02E0,  // 0x02E0 (0x0004) [int32]
+  PathConstraintList: 0x02E8,  // 0x02E8 (0x0008) [UPathConstraint*]
+  PathGoalList: 0x02F0,  // 0x02F0 (0x0008) [UPathGoalEvaluator*]
+  DesiredSpeed: 0x02F8,  // 0x02F8 (0x0004) [float]
+  MaxDesiredSpeed: 0x02FC,  // 0x02FC (0x0004) [float]
+  HearingThreshold: 0x0300,  // 0x0300 (0x0004) [float]
+  Alertness: 0x0304,  // 0x0304 (0x0004) [float]
+  SightRadius: 0x0308,  // 0x0308 (0x0004) [float]
+  PeripheralVision: 0x030C,  // 0x030C (0x0004) [float]
+  AvgPhysicsTime: 0x0310,  // 0x0310 (0x0004) [float]
+  Mass: 0x0314,  // 0x0314 (0x0004) [float]
+  Buoyancy: 0x0318,  // 0x0318 (0x0004) [float]
+  MeleeRange: 0x031C,  // 0x031C (0x0004) [float]
+  Anchor: 0x0320,  // 0x0320 (0x0008) [UNavigationPoint*]
+  AnchorItem: 0x0328,  // 0x0328 (0x0004) [int32]
+  LastAnchor: 0x0330,  // 0x0330 (0x0008) [UNavigationPoint*]
+  FindAnchorFailedTime: 0x0338,  // 0x0338 (0x0004) [float]
+  LastValidAnchorTime: 0x033C,  // 0x033C (0x0004) [float]
+  DestinationOffset: 0x0340,  // 0x0340 (0x0004) [float]
+  NextPathRadius: 0x0344,  // 0x0344 (0x0004) [float]
+  SerpentineDir: 0x0348,  // 0x0348 (0x000C) [FVector]
+  SerpentineDist: 0x0354,  // 0x0354 (0x0004) [float]
+  SerpentineTime: 0x0358,  // 0x0358 (0x0004) [float]
+  MaxPitchLimit: 0x035C,  // 0x035C (0x0004) [int32]
+  GroundSpeed: 0x0360,  // 0x0360 (0x0004) [float]
+  AirSpeed: 0x0364,  // 0x0364 (0x0004) [float]
+  AccelRate: 0x0368,  // 0x0368 (0x0004) [float]
+  JumpZ: 0x036C,  // 0x036C (0x0004) [float]
+  OutofWaterZ: 0x0370,  // 0x0370 (0x0004) [float]
+  MaxOutOfWaterStepHeight: 0x0374,  // 0x0374 (0x0004) [float]
+  AirControl: 0x0378,  // 0x0378 (0x0004) [float]
+  WalkingPct: 0x037C,  // 0x037C (0x0004) [float]
+  MovementSpeedModifier: 0x0380,  // 0x0380 (0x0004) [float]
+  CrouchedPct: 0x0384,  // 0x0384 (0x0004) [float]
+  MaxFallSpeed: 0x0388,  // 0x0388 (0x0004) [float]
+  AIMaxFallSpeedFactor: 0x038C,  // 0x038C (0x0004) [float]
+  BaseEyeHeight: 0x0390,  // 0x0390 (0x0004) [float]
+  EyeHeight: 0x0394,  // 0x0394 (0x0004) [float]
+  Floor: 0x0398,  // 0x0398 (0x000C) [FVector]
+  RMVelocity: 0x03A4,  // 0x03A4 (0x000C) [FVector]
+  noise1spot: 0x03B0,  // 0x03B0 (0x000C) [FVector]
+  noise1time: 0x03BC,  // 0x03BC (0x0004) [float]
+  noise1other: 0x03C0,  // 0x03C0 (0x0008) [UPawn*]
+  noise1loudness: 0x03C8,  // 0x03C8 (0x0004) [float]
+  noise2spot: 0x03CC,  // 0x03CC (0x000C) [FVector]
+  noise2time: 0x03D8,  // 0x03D8 (0x0004) [float]
+  noise2other: 0x03E0,  // 0x03E0 (0x0008) [UPawn*]
+  noise2loudness: 0x03E8,  // 0x03E8 (0x0004) [float]
+  SoundDampening: 0x03EC,  // 0x03EC (0x0004) [float]
+  DamageScaling: 0x03F0,  // 0x03F0 (0x0004) [float]
+  MenuName: 0x03F8,  // 0x03F8 (0x0010) [FString]
+  ControllerClass: 0x0408,  // 0x0408 (0x0008) [UClass*]
+  PlayerReplicationInfo: 0x0410,  // 0x0410 (0x0008) [UPlayerReplicationInfo*]
+  LandMovementState: 0x0418,  // 0x0418 (0x0008) [FName]
+  WaterMovementState: 0x0420,  // 0x0420 (0x0008) [FName]
+  LastStartSpot: 0x0428,  // 0x0428 (0x0008) [UPlayerStart*]
+  LastStartTime: 0x0430,  // 0x0430 (0x0004) [float]
+  Mesh: 0x0438,  // 0x0438 (0x0008) [unknown]
+  CylinderComponent: 0x0440,  // 0x0440 (0x0008) [unknown]
+  RBPushRadius: 0x0448,  // 0x0448 (0x0004) [float]
+  RBPushStrength: 0x044C,  // 0x044C (0x0004) [float]
+  AlwaysRelevantDistanceSquared: 0x0450,  // 0x0450 (0x0004) [float]
+  LastHitBy: 0x0458,  // 0x0458 (0x0008) [UController*]
+  ViewPitchMin: 0x0460,  // 0x0460 (0x0004) [float]
+  ViewPitchMax: 0x0464,  // 0x0464 (0x0004) [float]
+  AllowedYawError: 0x0468,  // 0x0468 (0x0004) [int32]
+  DesiredRotation: 0x046C,  // 0x046C (0x000C) [FRotator]
+  PreRagdollCollisionComponent: 0x0478,  // 0x0478 (0x0008) [unknown]
+  PhysicsPushBody: 0x0480,  // 0x0480 (0x0008) [URB_BodyInstance*]
+  FailedLandingCount: 0x0488,  // 0x0488 (0x0004) [int32]
+  SlotNodes: 0x0490,  // 0x0490 (0x0010) [TArray<UAnimNodeSlot*>]
+  InterpGroupList: 0x04A0,  // 0x04A0 (0x0010) [TArray<UInterpGroup*>]
+  FacialAudioComp: 0x04B0,  // 0x04B0 (0x0008) [unknown]
+  MIC_PawnMat: 0x04B8,  // 0x04B8 (0x0008) [UMaterialInstanceConstant*]
+  MIC_PawnHair: 0x04C0,  // 0x04C0 (0x0008) [UMaterialInstanceConstant*]
+  ScalarParameterInterpArray: 0x04C8,  // 0x04C8 (0x0010) [TArray<FScalarParameterInterpStruct>]
+  RootMotionInterpCurve: 0x04D8,  // 0x04D8 (0x0028) [FRootMotionCurve]
+  RootMotionInterpRate: 0x0500,  // 0x0500 (0x0004) [float]
+  RootMotionInterpCurrentTime: 0x0504,  // 0x0504 (0x0004) [float]
+  RootMotionInterpCurveLastValue: 0x0508,  // 0x0508 (0x000C) [FVector]
+  ...Actor,
 } as const;
 
 /**
@@ -3614,7 +4816,7 @@ export const PendingAvatarRequest_X = {
   PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
   Size: 0x00A8,  // 0x00A8 (0x0001) [AvatarSize]
   OnAvatarRequestComplete: 0x00B0,  // 0x00B0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3643,7 +4845,16 @@ export const PerCon_X = {
   URL: 0x0068,  // 0x0068 (0x0010) [FString]
   Status: 0x0078,  // 0x0078 (0x0001) [EPerConStatus]
   __EventStatusChanged__Delegate: 0x0080,  // 0x0080 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.PhysicalMaterialPropertyBase Offsets
+ * Size: 0x0060
+ * Extends: Object
+ */
+export const PhysicalMaterialPropertyBase = {
+  ...Object_,
 } as const;
 
 /**
@@ -3681,7 +4892,7 @@ export const PlatformFriends_X = {
  * Extends: Object
  */
 export const PlatformSystem_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3690,7 +4901,7 @@ export const PlatformSystem_X = {
  * Extends: Object
  */
 export const Platform_Console = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3699,7 +4910,7 @@ export const Platform_Console = {
  * Extends: Object
  */
 export const Platform_DedicatedServer = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3708,7 +4919,7 @@ export const Platform_DedicatedServer = {
  * Extends: Object
  */
 export const Platform_Dingo = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3717,7 +4928,7 @@ export const Platform_Dingo = {
  * Extends: Object
  */
 export const Platform_GameClient = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3726,7 +4937,7 @@ export const Platform_GameClient = {
  * Extends: Object
  */
 export const Platform_NNX = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3735,7 +4946,7 @@ export const Platform_NNX = {
  * Extends: Object
  */
 export const Platform_Orbis = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3744,7 +4955,7 @@ export const Platform_Orbis = {
  * Extends: Object
  */
 export const Platform_PC = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3753,7 +4964,7 @@ export const Platform_PC = {
  * Extends: Object
  */
 export const Platform_Server = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3781,6 +4992,128 @@ export const PlayerActivityMetrics_X = {
 } as const;
 
 /**
+ * Engine.PlayerController Offsets
+ * Size: 0x07E8
+ * Extends: Controller
+ */
+export const PlayerController = {
+  Player: 0x0478,  // 0x0478 (0x0008) [UPlayer*]
+  PlayerCamera: 0x0480,  // 0x0480 (0x0008) [UCamera*]
+  CameraClass: 0x0488,  // 0x0488 (0x0008) [UClass*]
+  bFrozen: 0x0490,  // 0x0490 (0x0004) [bool : 0x1]
+  bPressedJump: 0x0490,  // 0x0490 (0x0004) [bool : 0x2]
+  bDoubleJump: 0x0490,  // 0x0490 (0x0004) [bool : 0x4]
+  bUpdatePosition: 0x0490,  // 0x0490 (0x0004) [bool : 0x8]
+  bUpdating: 0x0490,  // 0x0490 (0x0004) [bool : 0x10]
+  bCheatFlying: 0x0490,  // 0x0490 (0x0004) [bool : 0x20]
+  bCameraPositionLocked: 0x0490,  // 0x0490 (0x0004) [bool : 0x40]
+  bShortConnectTimeOut: 0x0490,  // 0x0490 (0x0004) [bool : 0x80]
+  bPendingDestroy: 0x0490,  // 0x0490 (0x0004) [bool : 0x100]
+  bWasSpeedHack: 0x0490,  // 0x0490 (0x0004) [bool : 0x200]
+  bWasSaturated: 0x0490,  // 0x0490 (0x0004) [bool : 0x400]
+  bAimingHelp: 0x0490,  // 0x0490 (0x0004) [bool : 0x800]
+  bCameraCut: 0x0490,  // 0x0490 (0x0004) [bool : 0x1000]
+  bClientSimulatingViewTarget: 0x0490,  // 0x0490 (0x0004) [bool : 0x2000]
+  bHasVoiceHandshakeCompleted: 0x0490,  // 0x0490 (0x0004) [bool : 0x4000]
+  bIsChatBanned: 0x0490,  // 0x0490 (0x0004) [bool : 0x8000]
+  bIsSocialBanned: 0x0490,  // 0x0490 (0x0004) [bool : 0x10000]
+  bCinematicMode: 0x0490,  // 0x0490 (0x0004) [bool : 0x20000]
+  bInteractiveMode: 0x0490,  // 0x0490 (0x0004) [bool : 0x40000]
+  bCinemaDisableInputMove: 0x0490,  // 0x0490 (0x0004) [bool : 0x80000]
+  bCinemaDisableInputLook: 0x0490,  // 0x0490 (0x0004) [bool : 0x100000]
+  bIgnoreNetworkMessages: 0x0490,  // 0x0490 (0x0004) [bool : 0x200000]
+  bShowKismetDrawText: 0x0490,  // 0x0490 (0x0004) [bool : 0x400000]
+  bReplicateAllPawns: 0x0490,  // 0x0490 (0x0004) [bool : 0x800000]
+  bIsUsingStreamingVolumes: 0x0490,  // 0x0490 (0x0004) [bool : 0x1000000]
+  bIsExternalUIOpen: 0x0490,  // 0x0490 (0x0004) [bool : 0x2000000]
+  bIsControllerConnected: 0x0490,  // 0x0490 (0x0004) [bool : 0x4000000]
+  bCheckSoundOcclusion: 0x0490,  // 0x0490 (0x0004) [bool : 0x8000000]
+  bDebugCameraAnims: 0x0490,  // 0x0490 (0x0004) [bool : 0x10000000]
+  bBlockCameraAnimsFromOverridingPostProcess: 0x0490,  // 0x0490 (0x0004) [bool : 0x20000000]
+  bLogHearSoundOverflow: 0x0490,  // 0x0490 (0x0004) [bool : 0x40000000]
+  bCheckRelevancyThroughPortals: 0x0490,  // 0x0490 (0x0004) [bool : 0x-80000000]
+  bDebugClientAdjustPosition: 0x0494,  // 0x0494 (0x0004) [bool : 0x1]
+  MaxResponseTime: 0x0498,  // 0x0498 (0x0004) [float]
+  WaitDelay: 0x049C,  // 0x049C (0x0004) [float]
+  AcknowledgedPawn: 0x04A0,  // 0x04A0 (0x0008) [UPawn*]
+  DoubleClickDir: 0x04A8,  // 0x04A8 (0x0001) [EDoubleClickDir]
+  bIgnoreMoveInput: 0x04A9,  // 0x04A9 (0x0001) [uint8]
+  bIgnoreLookInput: 0x04AA,  // 0x04AA (0x0001) [uint8]
+  bRun: 0x04AB,  // 0x04AB (0x0001) [uint8]
+  bDuck: 0x04AC,  // 0x04AC (0x0001) [uint8]
+  NetPlayerIndex: 0x04AD,  // 0x04AD (0x0001) [uint8]
+  ViewTarget: 0x04B0,  // 0x04B0 (0x0008) [UActor*]
+  RealViewTarget: 0x04B8,  // 0x04B8 (0x0008) [UPlayerReplicationInfo*]
+  ControllingDirTrackInst: 0x04C0,  // 0x04C0 (0x0008) [UInterpTrackInstDirector*]
+  FOVAngle: 0x04C8,  // 0x04C8 (0x0004) [float]
+  DesiredFOV: 0x04CC,  // 0x04CC (0x0004) [float]
+  DefaultFOV: 0x04D0,  // 0x04D0 (0x0004) [float]
+  LODDistanceFactor: 0x04D4,  // 0x04D4 (0x0004) [float]
+  TargetViewRotation: 0x04D8,  // 0x04D8 (0x000C) [FRotator]
+  TargetEyeHeight: 0x04E4,  // 0x04E4 (0x0004) [float]
+  BlendedTargetViewRotation: 0x04E8,  // 0x04E8 (0x000C) [FRotator]
+  myHUD: 0x04F8,  // 0x04F8 (0x0008) [UHUD*]
+  mySecondaryHUD: 0x0500,  // 0x0500 (0x0008) [UHUD*]
+  SavedMoveClass: 0x0508,  // 0x0508 (0x0008) [UClass*]
+  SavedMoves: 0x0510,  // 0x0510 (0x0008) [USavedMove*]
+  FreeMoves: 0x0518,  // 0x0518 (0x0008) [USavedMove*]
+  PendingMove: 0x0520,  // 0x0520 (0x0008) [USavedMove*]
+  LastAckedAccel: 0x0528,  // 0x0528 (0x000C) [FVector]
+  CurrentTimeStamp: 0x0534,  // 0x0534 (0x0004) [float]
+  LastUpdateTime: 0x0538,  // 0x0538 (0x0004) [float]
+  ServerTimeStamp: 0x053C,  // 0x053C (0x0004) [float]
+  TimeMargin: 0x0540,  // 0x0540 (0x0004) [float]
+  ClientUpdateTime: 0x0544,  // 0x0544 (0x0004) [float]
+  MaxTimeMargin: 0x0548,  // 0x0548 (0x0004) [float]
+  LastActiveTime: 0x054C,  // 0x054C (0x0004) [float]
+  DynamicPingThreshold: 0x0550,  // 0x0550 (0x0004) [float]
+  LastPingUpdate: 0x0554,  // 0x0554 (0x0004) [float]
+  LastSpeedHackLog: 0x0558,  // 0x0558 (0x0004) [float]
+  PendingAdjustment: 0x0560,  // 0x0560 (0x0038) [FClientAdjustment]
+  GroundPitch: 0x0598,  // 0x0598 (0x0004) [int32]
+  CheatManager: 0x05A0,  // 0x05A0 (0x0008) [UCheatManager*]
+  CheatClass: 0x05A8,  // 0x05A8 (0x0008) [UClass*]
+  PlayerInput: 0x05B0,  // 0x05B0 (0x0008) [UPlayerInput*]
+  InputClass: 0x05B8,  // 0x05B8 (0x0008) [UClass*]
+  FailedPathStart: 0x05C0,  // 0x05C0 (0x000C) [FVector]
+  CylinderComponent: 0x05D0,  // 0x05D0 (0x0008) [unknown]
+  ForceFeedbackManagerClassName: 0x05D8,  // 0x05D8 (0x0010) [FString]
+  ForceFeedbackManager: 0x05E8,  // 0x05E8 (0x0008) [UForceFeedbackManager*]
+  Interactions: 0x05F0,  // 0x05F0 (0x0010) [TArray<UInteraction*>]
+  VoiceMuteList: 0x0600,  // 0x0600 (0x0010) [TArray<FUniqueNetId>]
+  GameplayVoiceMuteList: 0x0610,  // 0x0610 (0x0010) [TArray<FUniqueNetId>]
+  VoicePacketFilter: 0x0620,  // 0x0620 (0x0010) [TArray<FUniqueNetId>]
+  ConnectedPeers: 0x0630,  // 0x0630 (0x0010) [TArray<FConnectedPeerInfo>]
+  BestNextHostPeers: 0x0640,  // 0x0640 (0x0010) [TArray<FUniqueNetId>]
+  MigratedSearchToJoin: 0x0650,  // 0x0650 (0x0008) [UOnlineGameSearch*]
+  OnlineSub: 0x0658,  // 0x0658 (0x0008) [UOnlineSubsystem*]
+  VoiceInterface: 0x0660,  // 0x0660 (0x0010) [TScriptInterface<UOnlineVoiceInterface>]
+  OnlinePlayerData: 0x0670,  // 0x0670 (0x0008) [UUIDataStore_OnlinePlayerData*]
+  InteractDistance: 0x0678,  // 0x0678 (0x0004) [float]
+  DelayedJoinSessionName: 0x067C,  // 0x067C (0x0008) [FName]
+  InputRequests: 0x0688,  // 0x0688 (0x0010) [TArray<FInputMatchRequest>]
+  LastBroadcastTime: 0x0698,  // 0x0698 (0x0004) [float]
+  LastBroadcastString: 0x06A0,  // 0x06A0 (0x0040) [FString]
+  PendingMapChangeLevelNames: 0x06E0,  // 0x06E0 (0x0010) [TArray<FName>]
+  MyCoverReplicator: 0x06F0,  // 0x06F0 (0x0008) [UCoverReplicator*]
+  DebugTextList: 0x06F8,  // 0x06F8 (0x0010) [TArray<FDebugTextInfo>]
+  SpectatorCameraSpeed: 0x0708,  // 0x0708 (0x0004) [float]
+  PendingSwapConnection: 0x0710,  // 0x0710 (0x0008) [UNetConnection*]
+  MinRespawnDelay: 0x0718,  // 0x0718 (0x0004) [float]
+  MaxConcurrentHearSounds: 0x071C,  // 0x071C (0x0004) [int32]
+  HearSoundActiveComponents: 0x0720,  // 0x0720 (0x0010) [TArray<unknown>]
+  HearSoundPoolComponents: 0x0730,  // 0x0730 (0x0010) [TArray<unknown>]
+  HiddenActors: 0x0740,  // 0x0740 (0x0010) [TArray<UActor*>]
+  LastSpectatorStateSynchTime: 0x0750,  // 0x0750 (0x0004) [float]
+  __EventConnectionTimedOut__Delegate: 0x0758,  // 0x0758 (0x0018) [FScriptDelegate]
+  __EventDisconnected__Delegate: 0x0770,  // 0x0770 (0x0018) [FScriptDelegate]
+  __EventUnrecoverableActorChannelOverflow__Delegate: 0x0788,  // 0x0788 (0x0018) [FScriptDelegate]
+  __OnMissingPeersUnregistered__Delegate: 0x07A0,  // 0x07A0 (0x0018) [FScriptDelegate]
+  __CanUnpause__Delegate: 0x07B8,  // 0x07B8 (0x0018) [FScriptDelegate]
+  __InputMatchDelegate__Delegate: 0x07D0,  // 0x07D0 (0x0018) [FScriptDelegate]
+} as const;
+
+/**
  * ProjectX.PlayerController_X Offsets
  * Size: 0x0890
  * Extends: PlayerController
@@ -3798,6 +5131,72 @@ export const PlayerController_X = {
   __EventDestroyed__Delegate: 0x0860,  // 0x0860 (0x0018) [FScriptDelegate]
   __EventPlayerCameraChange__Delegate: 0x0878,  // 0x0878 (0x0018) [FScriptDelegate]
   ...PlayerController,
+} as const;
+
+/**
+ * Engine.PlayerInput Offsets
+ * Size: 0x02F8
+ * Extends: Input
+ */
+export const PlayerInput = {
+  bUsingGamepad: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x1]
+  bInvertMouse: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x2]
+  bInvertTurn: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x4]
+  bWasForward: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x8]
+  bWasBack: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x10]
+  bWasLeft: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x20]
+  bWasRight: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x40]
+  bEdgeForward: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x80]
+  bEdgeBack: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x100]
+  bEdgeLeft: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x200]
+  bEdgeRight: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x400]
+  bEnableMouseSmoothing: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x800]
+  bEnableFOVScaling: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x1000]
+  bLockTurnUntilRelease: 0x01B0,  // 0x01B0 (0x0004) [bool : 0x2000]
+  LastAxisKeyName: 0x01B4,  // 0x01B4 (0x0008) [FName]
+  DoubleClickTimer: 0x01BC,  // 0x01BC (0x0004) [float]
+  DoubleClickTime: 0x01C0,  // 0x01C0 (0x0004) [float]
+  MouseSensitivity: 0x01C4,  // 0x01C4 (0x0004) [float]
+  aBaseX: 0x01C8,  // 0x01C8 (0x0004) [float]
+  aBaseY: 0x01CC,  // 0x01CC (0x0004) [float]
+  aBaseZ: 0x01D0,  // 0x01D0 (0x0004) [float]
+  aMouseX: 0x01D4,  // 0x01D4 (0x0004) [float]
+  aMouseY: 0x01D8,  // 0x01D8 (0x0004) [float]
+  aForward: 0x01DC,  // 0x01DC (0x0004) [float]
+  aTurn: 0x01E0,  // 0x01E0 (0x0004) [float]
+  aStrafe: 0x01E4,  // 0x01E4 (0x0004) [float]
+  aUp: 0x01E8,  // 0x01E8 (0x0004) [float]
+  aLookUp: 0x01EC,  // 0x01EC (0x0004) [float]
+  aRightAnalogTrigger: 0x01F0,  // 0x01F0 (0x0004) [float]
+  aLeftAnalogTrigger: 0x01F4,  // 0x01F4 (0x0004) [float]
+  aPS3AccelX: 0x01F8,  // 0x01F8 (0x0004) [float]
+  aPS3AccelY: 0x01FC,  // 0x01FC (0x0004) [float]
+  aPS3AccelZ: 0x0200,  // 0x0200 (0x0004) [float]
+  aPS3Gyro: 0x0204,  // 0x0204 (0x0004) [float]
+  aWiiUPointerX: 0x0208,  // 0x0208 (0x0004) [float]
+  aWiiUPointerY: 0x020C,  // 0x020C (0x0004) [float]
+  aTilt: 0x0210,  // 0x0210 (0x000C) [FVector]
+  aRotationRate: 0x021C,  // 0x021C (0x000C) [FVector]
+  aGravity: 0x0228,  // 0x0228 (0x000C) [FVector]
+  aAcceleration: 0x0234,  // 0x0234 (0x000C) [FVector]
+  aTouch: 0x0240,  // 0x0240 (0x003C) [FVector]
+  aBackTouch: 0x027C,  // 0x027C (0x003C) [FVector]
+  RawJoyUp: 0x02B8,  // 0x02B8 (0x0004) [float]
+  RawJoyRight: 0x02BC,  // 0x02BC (0x0004) [float]
+  RawJoyLookRight: 0x02C0,  // 0x02C0 (0x0004) [float]
+  RawJoyLookUp: 0x02C4,  // 0x02C4 (0x0004) [float]
+  MoveForwardSpeed: 0x02C8,  // 0x02C8 (0x0004) [float]
+  MoveStrafeSpeed: 0x02CC,  // 0x02CC (0x0004) [float]
+  LookRightScale: 0x02D0,  // 0x02D0 (0x0004) [float]
+  LookUpScale: 0x02D4,  // 0x02D4 (0x0004) [float]
+  bStrafe: 0x02D8,  // 0x02D8 (0x0001) [uint8]
+  bXAxis: 0x02D9,  // 0x02D9 (0x0001) [uint8]
+  bYAxis: 0x02DA,  // 0x02DA (0x0001) [uint8]
+  ZeroTime: 0x02DC,  // 0x02DC (0x0008) [float]
+  SmoothedMouse: 0x02E4,  // 0x02E4 (0x0008) [float]
+  MouseSamples: 0x02EC,  // 0x02EC (0x0004) [int32]
+  MouseSamplingTotal: 0x02F0,  // 0x02F0 (0x0004) [float]
+  AutoUnlockTurnTime: 0x02F4,  // 0x02F4 (0x0004) [float]
 } as const;
 
 /**
@@ -3882,7 +5281,7 @@ export const PlaylistSettings_X = {
   ServerCommand: 0x0130,  // 0x0130 (0x0010) [FString]
   MapSetName: 0x0140,  // 0x0140 (0x0008) [FName]
   PopulationBuckets: 0x0148,  // 0x0148 (0x0010) [TArray<int32>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3894,7 +5293,27 @@ export const PlaylistSkillCache_X = {
   Players: 0x0060,  // 0x0060 (0x0010) [TArray<FUpdatedPlayerSkillRating>]
   RankedConfig: 0x0070,  // 0x0070 (0x0008) [URankedConfig_X*]
   __EventPlaylistSkillChanged__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.PointLightComponent Offsets
+ * Size: 0x0264
+ * Extends: LightComponent
+ */
+export const PointLightComponent = {
+  ShadowRadiusMultiplier: 0x01C8,  // 0x01C8 (0x0004) [float]
+  Radius: 0x01CC,  // 0x01CC (0x0004) [float]
+  FalloffExponent: 0x01D0,  // 0x01D0 (0x0004) [float]
+  ShadowFalloffExponent: 0x01D4,  // 0x01D4 (0x0004) [float]
+  MinShadowFalloffRadius: 0x01D8,  // 0x01D8 (0x0004) [float]
+  CachedParentToWorld: 0x01E0,  // 0x01E0 (0x0040) [FMatrix]
+  Translation: 0x0220,  // 0x0220 (0x000C) [FVector]
+  ShadowPlane: 0x0230,  // 0x0230 (0x0010) [FPlane]
+  PreviewLightRadius: 0x0240,  // 0x0240 (0x0008) [unknown]
+  LightmassSettings: 0x0248,  // 0x0248 (0x0010) [FLightmassPointLightSettings]
+  PreviewLightSourceRadius: 0x0258,  // 0x0258 (0x0008) [unknown]
+  MaxShadowDistanceToCastInLightDirection: 0x0260,  // 0x0260 (0x0004) [float]
 } as const;
 
 /**
@@ -3922,7 +5341,7 @@ export const PostProcessManager_X = {
   ActiveChains: 0x00A0,  // 0x00A0 (0x0010) [TArray<FPPChainInfo>]
   ChainDefaults: 0x00B0,  // 0x00B0 (0x0010) [TArray<FPPChainInfo>]
   PostProcessOverrides: 0x00C0,  // 0x00C0 (0x0010) [TArray<FPostProcessOverride>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3931,7 +5350,7 @@ export const PostProcessManager_X = {
  * Extends: Object
  */
 export const PreExitEvent_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3944,7 +5363,7 @@ export const PresetMutators_X = {
   RequiresMaps: 0x0070,  // 0x0070 (0x0010) [TArray<FName>]
   bHideSettings: 0x0080,  // 0x0080 (0x0004) [bool : 0x1]
   OverrideName: 0x0088,  // 0x0088 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3954,7 +5373,7 @@ export const PresetMutators_X = {
  */
 export const PrimaryAuthLoggedIn_TA = {
   PrimaryAuthedConnection: 0x0060,  // 0x0060 (0x0008) [UPsyNetConnection_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3975,7 +5394,7 @@ export const PrivilegeCheck_X = {
   CheckDelegates: 0x00A8,  // 0x00A8 (0x0010) [TArray<FScriptDelegate>]
   EventFinished: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
   __CheckDelegate__Delegate: 0x00D0,  // 0x00D0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -3988,7 +5407,7 @@ export const PsyNetBeaconConnection_X = {
   ReservationID: 0x0068,  // 0x0068 (0x0010) [FString]
   ConnectionID: 0x0078,  // 0x0078 (0x0010) [FString]
   TimeoutTime: 0x0088,  // 0x0088 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4033,7 +5452,7 @@ export const PsyNetChannel_X = {
   ServiceQueue: 0x0080,  // 0x0080 (0x0010) [TArray<FPendingChannelService>]
   Subscriptions: 0x0090,  // 0x0090 (0x0008) [unknown]
   __EventClosed__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4043,7 +5462,7 @@ export const PsyNetChannel_X = {
  */
 export const PsyNetClientServiceCollection_X = {
   ServiceArchetypes: 0x0060,  // 0x0060 (0x0010) [TArray<UPsyNetClientService_X*>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4057,7 +5476,7 @@ export const PsyNetClientService_X = {
   Error: 0x0078,  // 0x0078 (0x0008) [UError*]
   Connection: 0x0080,  // 0x0080 (0x0008) [UPsyNetConnection_X*]
   Expiration: 0x0088,  // 0x0088 (0x0008) [uint64]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4160,7 +5579,17 @@ export const PsyNetConnection_X = {
   __EventPerConDisconnected__Delegate: 0x0188,  // 0x0188 (0x0018) [FScriptDelegate]
   __EventEnabled__Delegate: 0x01A0,  // 0x01A0 (0x0018) [FScriptDelegate]
   __EventDisabled__Delegate: 0x01B8,  // 0x01B8 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Core.ErrorType Offsets
+ * Size: 0x0070
+ * Extends: Object
+ */
+export const ErrorType = {
+  LocalizationKey: 0x0060,  // 0x0060 (0x0010) [FString]
+  ...Object_,
 } as const;
 
 /**
@@ -4180,7 +5609,7 @@ export const PsyNetErrorType_X = {
 export const PsyNetMessage_X = {
   Headers: 0x0060,  // 0x0060 (0x0008) [unknown]
   Body: 0x0068,  // 0x0068 (0x0010) [TArray<uint8>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4190,7 +5619,7 @@ export const PsyNetMessage_X = {
  */
 export const PsyNetMessenger_X = {
   __EventMessageReceived__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4243,7 +5672,7 @@ export const PsyNetRequestQue_X = {
   RequestTimeout: 0x0060,  // 0x0060 (0x0004) [float]
   Requests: 0x0068,  // 0x0068 (0x0010) [TArray<FPsyNetRequest>]
   __SendMessageDelegate__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4268,7 +5697,7 @@ export const PsyNetServiceProvider_X = {
   Subscriptions: 0x0068,  // 0x0068 (0x0008) [unknown]
   Channels: 0x0070,  // 0x0070 (0x0010) [TArray<UPsyNetChannel_X*>]
   __EventServiceExecuted__Delegate: 0x0080,  // 0x0080 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4277,7 +5706,7 @@ export const PsyNetServiceProvider_X = {
  * Extends: Object
  */
 export const PsyNetServiceSerializer_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4632,7 +6061,7 @@ export const PsyNetUrl_X = {
   bUseSubsystemURL: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
   URL: 0x0068,  // 0x0068 (0x0010) [FString]
   URLv2: 0x0078,  // 0x0078 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4668,7 +6097,7 @@ export const PsyNet_X = {
   __EventPrimaryPlayerLoggedIn__Delegate: 0x0118,  // 0x0118 (0x0018) [FScriptDelegate]
   __EventPrimaryPlayerLoggedOut__Delegate: 0x0130,  // 0x0130 (0x0018) [FScriptDelegate]
   __EventCheaterReported__Delegate: 0x0148,  // 0x0148 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4695,7 +6124,7 @@ export const RPCBatch_X = {
   ResponseMessage: 0x00B8,  // 0x00B8 (0x0008) [UPsyNetMessage_X*]
   ResponseError: 0x00C0,  // 0x00C0 (0x0008) [UError*]
   bUseRpcV2: 0x00C8,  // 0x00C8 (0x0004) [bool : 0x1]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -4751,7 +6180,7 @@ export const RPC_X = {
   __EventSuccess__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
   __EventFail__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
   __EventComplete__Delegate: 0x00D0,  // 0x00D0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5888,6 +7317,25 @@ export const RPC_UpdateSkills_X = {
 } as const;
 
 /**
+ * Engine.RadialBlurComponent Offsets
+ * Size: 0x0110
+ * Extends: ActorComponent
+ */
+export const RadialBlurComponent = {
+  Material: 0x00A0,  // 0x00A0 (0x0008) [UMaterialInterface*]
+  DepthPriorityGroup: 0x00A8,  // 0x00A8 (0x0001) [ESceneDepthPriorityGroup]
+  BlurScale: 0x00AC,  // 0x00AC (0x0004) [float]
+  BlurFalloffExponent: 0x00B0,  // 0x00B0 (0x0004) [float]
+  BlurOpacity: 0x00B4,  // 0x00B4 (0x0004) [float]
+  MaxCullDistance: 0x00B8,  // 0x00B8 (0x0004) [float]
+  DistanceFalloffExponent: 0x00BC,  // 0x00BC (0x0004) [float]
+  bRenderAsVelocity: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x1]
+  bEnabled: 0x00C0,  // 0x00C0 (0x0004) [bool : 0x2]
+  LocalToWorld: 0x00D0,  // 0x00D0 (0x0040) [FMatrix]
+  ...ActorComponent,
+} as const;
+
+/**
  * ProjectX.RadialBlurComponent_X Offsets
  * Size: 0x0118
  * Extends: RadialBlurComponent
@@ -5906,7 +7354,7 @@ export const RadialBlurComponent_X = {
 export const RandomStream_X = {
   Stream: 0x0060,  // 0x0060 (0x0004) [FRandomStream_Mirror]
   CurrentSeed: 0x0064,  // 0x0064 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5949,7 +7397,7 @@ export const RegionPingData_X = {
   PingsReceived: 0x006C,  // 0x006C (0x0004) [int32]
   LowestPing: 0x0070,  // 0x0070 (0x0004) [float]
   LastSendTime: 0x0074,  // 0x0074 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5959,7 +7407,7 @@ export const RegionPingData_X = {
  */
 export const RegionPingMessage_X = {
   bIsResponse: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -5977,7 +7425,7 @@ export const RegionPing_X = {
   AvgPing: 0x0090,  // 0x0090 (0x0004) [float]
   PingCount: 0x0094,  // 0x0094 (0x0004) [int32]
   PingResult: 0x0098,  // 0x0098 (0x0001) [RegionPingResult]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -6007,7 +7455,7 @@ export const Region_X = {
   Id: 0x0070,  // 0x0070 (0x0010) [FString]
   Label: 0x0080,  // 0x0080 (0x0010) [FString]
   Secret: 0x0090,  // 0x0090 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -6021,7 +7469,7 @@ export const RemoteAvatarPermissionsRequestBatch_X = {
   Disallowed: 0x0080,  // 0x0080 (0x0010) [TArray<FUniqueNetId>]
   __EventAllowed__Delegate: 0x0090,  // 0x0090 (0x0018) [FScriptDelegate]
   __EventDisallowed__Delegate: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -6033,7 +7481,7 @@ export const RemoteAvatarPermissionsRequest_X = {
   PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
   __EventAllowed__Delegate: 0x00A8,  // 0x00A8 (0x0018) [FScriptDelegate]
   __EventDisallowed__Delegate: 0x00C0,  // 0x00C0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -6048,7 +7496,7 @@ export const RemoteAvatarPermissions_X = {
   AllRequests: 0x0080,  // 0x0080 (0x0010) [TArray<URemoteAvatarPermissionsRequest_X*>]
   PermissionCache: 0x0090,  // 0x0090 (0x0050) [FMap_Mirror]
   __SendRPC__Delegate: 0x00E0,  // 0x00E0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -6221,7 +7669,7 @@ export const RetryDelay_X = {
   Id: 0x0060,  // 0x0060 (0x0008) [FName]
   DelaySeconds: 0x0068,  // 0x0068 (0x0010) [TArray<float>]
   bUseRandomMultiplier: 0x0078,  // 0x0078 (0x0004) [bool : 0x1]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -6248,7 +7696,7 @@ export const RetryPolicy_X = {
   Errors: 0x0060,  // 0x0060 (0x0010) [TArray<FName>]
   RetryDelay: 0x0070,  // 0x0070 (0x0008) [FName]
   Services: 0x0078,  // 0x0078 (0x0010) [TArray<FString>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -6258,7 +7706,7 @@ export const RetryPolicy_X = {
  */
 export const RuntimeParameterBase_X = {
   ParameterName: 0x0060,  // 0x0060 (0x0008) [FName]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -6276,7 +7724,7 @@ export const RuntimeParameter_Speed_X = {
  * Extends: Object
  */
 export const RuntimeParameters_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -6286,7 +7734,18 @@ export const RuntimeParameters_X = {
  */
 export const SaveLock_X = {
   GFxEngine: 0x0060,  // 0x0060 (0x0008) [UGFxEngine_X*]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.SequenceAction Offsets
+ * Size: 0x0160
+ * Extends: SequenceOp
+ */
+export const SequenceAction = {
+  HandlerName: 0x0140,  // 0x0140 (0x0008) [FName]
+  bCallHandler: 0x0148,  // 0x0148 (0x0004) [bool : 0x1]
+  Targets: 0x0150,  // 0x0150 (0x0010) [TArray<UObject*>]
 } as const;
 
 /**
@@ -6325,6 +7784,27 @@ export const SeqAct_TriggerFXActor_X = {
 } as const;
 
 /**
+ * Engine.SequenceEvent Offsets
+ * Size: 0x017C
+ * Extends: SequenceOp
+ */
+export const SequenceEvent = {
+  DuplicateEvts: 0x0140,  // 0x0140 (0x0010) [TArray<USequenceEvent*>]
+  Originator: 0x0150,  // 0x0150 (0x0008) [UActor*]
+  Instigator: 0x0158,  // 0x0158 (0x0008) [UActor*]
+  ActivationTime: 0x0160,  // 0x0160 (0x0004) [float]
+  TriggerCount: 0x0164,  // 0x0164 (0x0004) [int32]
+  MaxTriggerCount: 0x0168,  // 0x0168 (0x0004) [int32]
+  ReTriggerDelay: 0x016C,  // 0x016C (0x0004) [float]
+  bEnabled: 0x0170,  // 0x0170 (0x0004) [bool : 0x1]
+  bPlayerOnly: 0x0170,  // 0x0170 (0x0004) [bool : 0x2]
+  bRegistered: 0x0170,  // 0x0170 (0x0004) [bool : 0x4]
+  bClientSideOnly: 0x0170,  // 0x0170 (0x0004) [bool : 0x8]
+  Priority: 0x0174,  // 0x0174 (0x0001) [uint8]
+  MaxWidth: 0x0178,  // 0x0178 (0x0004) [int32]
+} as const;
+
+/**
  * ProjectX.SeqEvent_Spawned_X Offsets
  * Size: 0x0188
  * Extends: SequenceEvent
@@ -6332,6 +7812,14 @@ export const SeqAct_TriggerFXActor_X = {
 export const SeqEvent_Spawned_X = {
   Spawned: 0x0180,  // 0x0180 (0x0008) [UActor*]
   ...SequenceEvent,
+} as const;
+
+/**
+ * Engine.SequenceCondition Offsets
+ * Size: 0x0140
+ * Extends: SequenceOp
+ */
+export const SequenceCondition = {
 } as const;
 
 /**
@@ -6349,7 +7837,7 @@ export const SequenceCondition_X = {
  * Extends: Object
  */
 export const Serializer_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -6405,7 +7893,7 @@ export const ServerExploitManager_X = {
   DedicatedServer: 0x0060,  // 0x0060 (0x0008) [UOnlineGameDedicatedServer_X*]
   SubmittedReports: 0x0068,  // 0x0068 (0x0010) [TArray<FMatchExploitReportData>]
   __SubmitReport__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -6438,7 +7926,7 @@ export const ServerPlayerTracker_X = {
  */
 export const ServerToServerMessage_X = {
   ServerId: 0x0060,  // 0x0060 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -6486,7 +7974,7 @@ export const MigrationStartedMessage_X = {
  */
 export const SetPlayerStorageResult_X = {
   Items: 0x0060,  // 0x0060 (0x0010) [TArray<FSetPlayerStorageResultItem>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -6543,7 +8031,7 @@ export const SignedMessageObject_X = {
   SanitizedReceivedTextMessage: 0x00D0,  // 0x00D0 (0x0010) [FString]
   PublicKey: 0x00E0,  // 0x00E0 (0x0010) [FString]
   SigningError: 0x00F0,  // 0x00F0 (0x0008) [UError*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -6595,7 +8083,7 @@ export const SphereCollisionShape_X = {
  */
 export const StateObject_X = {
   bDebug: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7385,7 +8873,7 @@ export const OnlinePlayer_X = {
  */
 export const StaticDataError_X = {
   Error: 0x0060,  // 0x0060 (0x0008) [UError*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7398,7 +8886,7 @@ export const StatusObserver_X = {
   AcceptedTypes: 0x0070,  // 0x0070 (0x0010) [TArray<UClass*>]
   bInitComplete: 0x0080,  // 0x0080 (0x0004) [bool : 0x1]
   __bInitComplete__ChangeNotify: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7409,7 +8897,7 @@ export const StatusObserver_X = {
 export const StatusTrigger_X = {
   bTriggered: 0x0060,  // 0x0060 (0x0004) [bool : 0x1]
   EventPropertyChange: 0x0068,  // 0x0068 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7418,7 +8906,7 @@ export const StatusTrigger_X = {
  * Extends: Object
  */
 export const StringUtil_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7429,7 +8917,7 @@ export const StringUtil_X = {
 export const SuperRegion_X = {
   Id: 0x0060,  // 0x0060 (0x0010) [FString]
   Label: 0x0070,  // 0x0070 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7439,7 +8927,7 @@ export const SuperRegion_X = {
  */
 export const SyncedSkillData_X = {
   OnlineGameSkill: 0x0060,  // 0x0060 (0x0008) [UOnlineGameSkill_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7448,7 +8936,7 @@ export const SyncedSkillData_X = {
  * Extends: Object
  */
 export const SystemInfo_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7562,7 +9050,7 @@ export const TcpConnection = {
   __EventConnected__Delegate: 0x00F8,  // 0x00F8 (0x0018) [FScriptDelegate]
   __EventDisconnected__Delegate: 0x0110,  // 0x0110 (0x0018) [FScriptDelegate]
   __EventReceivedBunch__Delegate: 0x0128,  // 0x0128 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7571,7 +9059,7 @@ export const TcpConnection = {
  * Extends: Object
  */
 export const TestsHelper_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7611,7 +9099,7 @@ export const TimeWindowOptional_X = {
   Time: 0x0070,  // 0x0070 (0x0010) [TScriptInterface<UIEpochNow>]
   __EventWindowStarted__Delegate: 0x0080,  // 0x0080 (0x0018) [FScriptDelegate]
   __EventWindowEnded__Delegate: 0x0098,  // 0x0098 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7645,7 +9133,7 @@ export const TickComponent_X = {
 export const Timers_X = {
   TickComponent: 0x0060,  // 0x0060 (0x0008) [unknown]
   __TickDelegate__Delegate: 0x0068,  // 0x0068 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7671,7 +9159,7 @@ export const TriggerInfo = {
   Triggers: 0x0068,  // 0x0068 (0x0010) [TArray<UStatusTrigger_X*>]
   Callback: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
   __UpdateTrigger__Delegate: 0x0090,  // 0x0090 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7680,7 +9168,7 @@ export const TriggerInfo = {
  * Extends: Object
  */
 export const UIStrings_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7689,7 +9177,7 @@ export const UIStrings_X = {
  * Extends: Object
  */
 export const URLValidator_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7714,7 +9202,7 @@ export const UdpLanBrowser_X = {
 export const UdpLanServer_X = {
   Beacon: 0x0060,  // 0x0060 (0x0008) [unknown]
   MetaData: 0x0068,  // 0x0068 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7763,7 +9251,7 @@ export const UrlConfig_X = {
   CrossPlatformSupportURL: 0x0080,  // 0x0080 (0x0010) [FString]
   LegalTextWebFolder: 0x0090,  // 0x0090 (0x0010) [FString]
   ValidUrls_Switch: 0x00A0,  // 0x00A0 (0x0010) [TArray<FString>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7772,7 +9260,7 @@ export const UrlConfig_X = {
  * Extends: Object
  */
 export const UserBugReportComponent_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7794,7 +9282,7 @@ export const VanityConfig_X = {
 export const WebCache_X = {
   Requests: 0x0060,  // 0x0060 (0x0010) [TArray<FCachedDataRequest>]
   __CachedDataCallback__Delegate: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7818,7 +9306,7 @@ export const WebImageCache_X = {
   Decoder: 0x0060,  // 0x0060 (0x0008) [UImageDecoder*]
   Downloads: 0x0068,  // 0x0068 (0x0008) [unknown]
   __ImageSyncCallback__Delegate: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7831,7 +9319,7 @@ export const WebImageDownload_X = {
   bSRGB: 0x0070,  // 0x0070 (0x0004) [bool : 0x1]
   Texture: 0x0078,  // 0x0078 (0x0008) [UTexture2DDynamic*]
   AsyncResult: 0x0080,  // 0x0080 (0x0008) [UTAsyncResult__Texture2DDynamic*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7856,7 +9344,7 @@ export const WebRequest_X = {
   ResponseData: 0x00A8,  // 0x00A8 (0x0010) [TArray<uint8>]
   Error: 0x00B8,  // 0x00B8 (0x0008) [UError*]
   __EventCompleted__Delegate: 0x00C0,  // 0x00C0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7897,7 +9385,7 @@ export const WordFilterConfig_X = {
 export const WordFilterTypes_X = {
   __CommentSanitizedDelegate__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
   __CommentErrorDelegate__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7906,7 +9394,7 @@ export const WordFilterTypes_X = {
  * Extends: Object
  */
 export const _ReservationTypes_X = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7915,7 +9403,7 @@ export const _ReservationTypes_X = {
  * Extends: Object
  */
 export const _SharedHelpers = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7927,7 +9415,7 @@ export const _Types_X = {
   __OnPriviledgeChecked__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
   __ServiceExecutionDelegate__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
   __OnTimer__Delegate: 0x0090,  // 0x0090 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7938,7 +9426,7 @@ export const _Types_X = {
 export const __AdHocBrowser_X__CreateErrorDelegate_0x1 = {
   Task: 0x0060,  // 0x0060 (0x0008) [UAsyncTask*]
   ErrorDelegate: 0x0068,  // 0x0068 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7950,7 +9438,7 @@ export const __AdHocBrowser_X__CreateServer_0x1 = {
   MetaData: 0x0060,  // 0x0060 (0x0010) [FString]
   Task: 0x0070,  // 0x0070 (0x0008) [UAsyncTask*]
   ApcDelegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7962,7 +9450,7 @@ export const __AdHocBrowser_X__JoinServer_0x1 = {
   Task: 0x0060,  // 0x0060 (0x0008) [UAsyncTask*]
   ServerId: 0x0068,  // 0x0068 (0x0010) [FString]
   Options: 0x0078,  // 0x0078 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7973,7 +9461,7 @@ export const __AdHocBrowser_X__JoinServer_0x1 = {
 export const __AdHocInterface_X__DisableAdHoc_0x1 = {
   Task: 0x0060,  // 0x0060 (0x0008) [UAsyncTask*]
   DestroyedDelegate: 0x0068,  // 0x0068 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7984,7 +9472,7 @@ export const __AdHocInterface_X__DisableAdHoc_0x1 = {
 export const __AdHocInterface_X__EnableAdHoc_0x1 = {
   Task: 0x0060,  // 0x0060 (0x0008) [UAsyncTask*]
   InitDelegate: 0x0068,  // 0x0068 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -7994,7 +9482,7 @@ export const __AdHocInterface_X__EnableAdHoc_0x1 = {
  */
 export const __AvatarRequester_X__AddCallbackToRequest_0x1 = {
   ReadOnlineAvatarCompleteDelegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8005,7 +9493,7 @@ export const __AvatarRequester_X__AddCallbackToRequest_0x1 = {
 export const __AvatarRequester_X__FindRequestFromArray_0x1 = {
   PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
   Size: 0x00A8,  // 0x00A8 (0x0001) [AvatarSize]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8016,7 +9504,7 @@ export const __AvatarRequester_X__FindRequestFromArray_0x1 = {
 export const __AvatarRequester_X__GetPlayerAvatar_0x1 = {
   PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
   Size: 0x00A8,  // 0x00A8 (0x0001) [AvatarSize]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8027,7 +9515,7 @@ export const __AvatarRequester_X__GetPlayerAvatar_0x1 = {
 export const __AvatarRequester_X__GetPlayerAvatars_0x1 = {
   ReadOnlineAvatarCompleteDelegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
   Size: 0x0078,  // 0x0078 (0x0001) [AvatarSize]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8038,7 +9526,7 @@ export const __AvatarRequester_X__GetPlayerAvatars_0x1 = {
 export const __AvatarRequester_X__RemoveRequestFromArray_0x1 = {
   PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
   Size: 0x00A8,  // 0x00A8 (0x0001) [AvatarSize]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8048,7 +9536,7 @@ export const __AvatarRequester_X__RemoveRequestFromArray_0x1 = {
  */
 export const __AvatarRequester_X__TimerReadAvatars_0x1 = {
   BatchAvatarSize: 0x0060,  // 0x0060 (0x0001) [AvatarSize]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8058,7 +9546,7 @@ export const __AvatarRequester_X__TimerReadAvatars_0x1 = {
  */
 export const __BlockStatusReporter_X__OnBlockListDownloadComplete_0x1 = {
   BlockedPlayersArray: 0x0060,  // 0x0060 (0x0010) [TArray<FOnlineFriend>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8068,7 +9556,7 @@ export const __BlockStatusReporter_X__OnBlockListDownloadComplete_0x1 = {
  */
 export const __BlockStatusReporter_X__TriggerPlayerCallback_0x1 = {
   EpicId: 0x0060,  // 0x0060 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8081,7 +9569,7 @@ export const __CheatManager_X__RandomSleep_0x1 = {
   MaxDelay: 0x0064,  // 0x0064 (0x0004) [float]
   MinSleep: 0x0068,  // 0x0068 (0x0004) [float]
   MaxSleep: 0x006C,  // 0x006C (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8091,7 +9579,7 @@ export const __CheatManager_X__RandomSleep_0x1 = {
  */
 export const __ClubUtil_X__IsClubTeam_0x1 = {
   TeamClubs: 0x0060,  // 0x0060 (0x0010) [TArray<uint64>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8101,7 +9589,7 @@ export const __ClubUtil_X__IsClubTeam_0x1 = {
  */
 export const __CrossplayConfig_X__GetDisabledCrossplayGroup_0x1 = {
   PlayerPlatform: 0x0060,  // 0x0060 (0x0001) [OnlinePlatform]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8111,7 +9599,7 @@ export const __CrossplayConfig_X__GetDisabledCrossplayGroup_0x1 = {
  */
 export const __EOSHelpers_X__RequestEOSToken_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8129,7 +9617,7 @@ export const __EOSHelpers_X__SendHTTPRequestEOSToken_0x2 = {
   EOS: 0x00C0,  // 0x00C0 (0x0008) [UOnlineSubsystem*]
   LocalPlayerNum: 0x00C8,  // 0x00C8 (0x0004) [int32]
   BodyJson: 0x00D0,  // 0x00D0 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8141,7 +9629,7 @@ export const __EOSHelpers_X__SendHTTPRequestSelectAuth_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
   ConvertErrorNew: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
   ResponseClass: 0x0090,  // 0x0090 (0x0008) [UClass*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8159,7 +9647,7 @@ export const __EOSHelpers_X__SendHTTPRequest_0x1 = {
   EOS: 0x00C0,  // 0x00C0 (0x0008) [UOnlineSubsystem*]
   LocalPlayerNum: 0x00C8,  // 0x00C8 (0x0004) [int32]
   BodyJson: 0x00D0,  // 0x00D0 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8169,7 +9657,7 @@ export const __EOSHelpers_X__SendHTTPRequest_0x1 = {
  */
 export const __EpicFriendsPlugin_X__AcceptFriendRequest_0x1 = {
   FriendId: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8180,7 +9668,7 @@ export const __EpicFriendsPlugin_X__AcceptFriendRequest_0x1 = {
 export const __EpicFriendsPlugin_X__AddFriendWithCustomCallback_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
   FriendId: 0x0078,  // 0x0078 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8190,7 +9678,7 @@ export const __EpicFriendsPlugin_X__AddFriendWithCustomCallback_0x1 = {
  */
 export const __EpicFriendsPlugin_X__GetOutgoingFriendRequestsWithCustomCallback_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8200,7 +9688,7 @@ export const __EpicFriendsPlugin_X__GetOutgoingFriendRequestsWithCustomCallback_
  */
 export const __EpicFriendsPlugin_X__RejectFriendRequest_0x1 = {
   FriendId: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8210,7 +9698,7 @@ export const __EpicFriendsPlugin_X__RejectFriendRequest_0x1 = {
  */
 export const __EpicFriendsPlugin_X__RemoveFriend_0x1 = {
   FriendId: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8220,7 +9708,7 @@ export const __EpicFriendsPlugin_X__RemoveFriend_0x1 = {
  */
 export const __EpicFriendsPlugin_X__bLock_0x1 = {
   CapturedParams: 0x0060,  // 0x0060 (0x0010) [TArray<FHTTPRequestCapturedParam>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8230,7 +9718,7 @@ export const __EpicFriendsPlugin_X__bLock_0x1 = {
  */
 export const __EpicLogin_X__HandleLoginChanged_0x1 = {
   InLocalPlayerNum: 0x0060,  // 0x0060 (0x0001) [uint8]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8240,7 +9728,7 @@ export const __EpicLogin_X__HandleLoginChanged_0x1 = {
  */
 export const __EpicLogin_X__RequestNintendoAccountAuthorization_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8251,7 +9739,7 @@ export const __EpicLogin_X__RequestNintendoAccountAuthorization_0x1 = {
 export const __EpicLogin_X__TriggerAuthTicketDelegate_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
   NetId: 0x0078,  // 0x0078 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8261,7 +9749,7 @@ export const __EpicLogin_X__TriggerAuthTicketDelegate_0x1 = {
  */
 export const __EpicLogin_X__UpdateTwoFactorAuthenticationStatus_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8271,7 +9759,7 @@ export const __EpicLogin_X__UpdateTwoFactorAuthenticationStatus_0x1 = {
  */
 export const __LocalClubData_X__GetClubByID_0x1 = {
   Id: 0x0060,  // 0x0060 (0x0008) [uint64]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8281,7 +9769,7 @@ export const __LocalClubData_X__GetClubByID_0x1 = {
  */
 export const __LocalClubData_X__GetClubForPlayer_0x1 = {
   PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8291,7 +9779,7 @@ export const __LocalClubData_X__GetClubForPlayer_0x1 = {
  */
 export const __MatchRecorder_X__GetPlayerData_0x1 = {
   PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8301,7 +9789,7 @@ export const __MatchRecorder_X__GetPlayerData_0x1 = {
  */
 export const __OnlineClubCache_X__GetClubDetails_0x1 = {
   ClubID: 0x0060,  // 0x0060 (0x0008) [uint64]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8311,7 +9799,7 @@ export const __OnlineClubCache_X__GetClubDetails_0x1 = {
  */
 export const __OnlineClubCache_X__GetPlayerClubDetails_0x1 = {
   PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8322,7 +9810,7 @@ export const __OnlineClubCache_X__GetPlayerClubDetails_0x1 = {
 export const __OnlineClubManager_X__AcceptClubInvite_0x1 = {
   ClubID: 0x0060,  // 0x0060 (0x0008) [uint64]
   SenderPlayerID: 0x0068,  // 0x0068 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8333,7 +9821,7 @@ export const __OnlineClubManager_X__AcceptClubInvite_0x1 = {
 export const __OnlineClubManager_X__InviteToClub_0x1 = {
   ClubID: 0x0060,  // 0x0060 (0x0008) [uint64]
   InvitedPlayerID: 0x0068,  // 0x0068 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8343,7 +9831,7 @@ export const __OnlineClubManager_X__InviteToClub_0x1 = {
  */
 export const __OnlineClubManager_X__LeaveClub_0x1 = {
   ClubID: 0x0060,  // 0x0060 (0x0008) [uint64]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8354,7 +9842,7 @@ export const __OnlineClubManager_X__LeaveClub_0x1 = {
 export const __OnlineClubManager_X__RejectClubInvite_0x1 = {
   ClubID: 0x0060,  // 0x0060 (0x0008) [uint64]
   SenderPlayerID: 0x0068,  // 0x0068 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8364,7 +9852,7 @@ export const __OnlineClubManager_X__RejectClubInvite_0x1 = {
  */
 export const __OnlineClubManager_X__RemoveFromClub_0x1 = {
   KickedPlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8376,7 +9864,7 @@ export const __OnlineClubManager_X__SetNewRole_0x1 = {
   MemberPlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
   OriginalRole: 0x00A8,  // 0x00A8 (0x0001) [EClubRole]
   NewRole: 0x00A9,  // 0x00A9 (0x0001) [EClubRole]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8386,7 +9874,7 @@ export const __OnlineClubManager_X__SetNewRole_0x1 = {
  */
 export const __OnlineClubProvider_X__HandleClubSynced_0x1 = {
   RPC: 0x0060,  // 0x0060 (0x0008) [URPC_GetClubDetails_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8396,7 +9884,7 @@ export const __OnlineClubProvider_X__HandleClubSynced_0x1 = {
  */
 export const __OnlineClubProvider_X__SyncClubDetailsArray_0x1 = {
   RPC: 0x0060,  // 0x0060 (0x0008) [URPC_GetClubDetailsArray_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8407,7 +9895,7 @@ export const __OnlineClubProvider_X__SyncClubDetailsArray_0x1 = {
 export const __OnlineClubProvider_X__SyncClubDetails_0x1 = {
   ClubID: 0x0060,  // 0x0060 (0x0008) [uint64]
   RPC: 0x0068,  // 0x0068 (0x0008) [URPC_GetClubDetails_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8418,7 +9906,7 @@ export const __OnlineClubProvider_X__SyncClubDetails_0x1 = {
 export const __OnlineClubProvider_X__SyncPlayerClubDetails_0x1 = {
   PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
   RPC: 0x00A8,  // 0x00A8 (0x0008) [URPC_GetPlayerClubDetails_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8428,7 +9916,7 @@ export const __OnlineClubProvider_X__SyncPlayerClubDetails_0x1 = {
  */
 export const __OnlineGameMatchmaking_X__AddRecommendedServers_0x1 = {
   AccPingThreshold: 0x0060,  // 0x0060 (0x0004) [float]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8438,7 +9926,7 @@ export const __OnlineGameMatchmaking_X__AddRecommendedServers_0x1 = {
  */
 export const __OnlineGameMatchmaking_X__GetSubRegionPings_0x1 = {
   SuperRegionID: 0x0060,  // 0x0060 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8448,7 +9936,7 @@ export const __OnlineGameMatchmaking_X__GetSubRegionPings_0x1 = {
  */
 export const __OnlineGameMatchmaking_X__OnReceiveGameServer_0x1 = {
   Reservation: 0x0060,  // 0x0060 (0x0070) [FServerReservationData]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8458,7 +9946,7 @@ export const __OnlineGameMatchmaking_X__OnReceiveGameServer_0x1 = {
  */
 export const __OnlineGameMatchmaking_X__RecordStart_0x2 = {
   RegionIds: 0x0060,  // 0x0060 (0x0010) [TArray<FString>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8468,7 +9956,7 @@ export const __OnlineGameMatchmaking_X__RecordStart_0x2 = {
  */
 export const __OnlineGameParty_X__BroadcastAllLocalPlayers_0x2 = {
   Primary: 0x0060,  // 0x0060 (0x0180) [FPartyMember]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8480,7 +9968,7 @@ export const __OnlineGameParty_X__CreatePartyInternal_0x1 = {
   LobbyInterface: 0x0060,  // 0x0060 (0x0010) [TScriptInterface<UOnlineLobbyInterface>]
   LocalPlayerNum: 0x0070,  // 0x0070 (0x0004) [int32]
   Handler: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8490,7 +9978,7 @@ export const __OnlineGameParty_X__CreatePartyInternal_0x1 = {
  */
 export const __OnlineGameParty_X__GetPlayersWithPrimaryMemberID_0x1 = {
   InPrimaryID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8501,7 +9989,7 @@ export const __OnlineGameParty_X__GetPlayersWithPrimaryMemberID_0x1 = {
 export const __OnlineGameParty_X__HandleClientReservationMessage_0x1 = {
   Message: 0x0060,  // 0x0060 (0x0008) [UClientReservationMessage_X*]
   Settings: 0x0068,  // 0x0068 (0x0020) [FJoinMatchSettings]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8511,7 +9999,7 @@ export const __OnlineGameParty_X__HandleClientReservationMessage_0x1 = {
  */
 export const __OnlineGameParty_X__HandleConfirmJoinGame_0x1 = {
   InSettings: 0x0060,  // 0x0060 (0x0058) [FPartyJoinMatchSettings]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8521,7 +10009,7 @@ export const __OnlineGameParty_X__HandleConfirmJoinGame_0x1 = {
  */
 export const __OnlineGameParty_X__HandleConfirmJoinGame_ConnectionValid_0x1 = {
   Settings: 0x0060,  // 0x0060 (0x0020) [FJoinMatchSettings]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8531,7 +10019,7 @@ export const __OnlineGameParty_X__HandleConfirmJoinGame_ConnectionValid_0x1 = {
  */
 export const __OnlineGameParty_X__HasMultiplePlatforms_0x1 = {
   PartyLeaderCrossPlayGroup: 0x0060,  // 0x0060 (0x0010) [TArray<OnlinePlatform>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8542,7 +10030,7 @@ export const __OnlineGameParty_X__HasMultiplePlatforms_0x1 = {
 export const __OnlineGameParty_X__JoinParty_0x1 = {
   LocalPlayerNum: 0x0060,  // 0x0060 (0x0004) [int32]
   InPartyId: 0x0068,  // 0x0068 (0x0010) [FUniqueLobbyId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8552,7 +10040,7 @@ export const __OnlineGameParty_X__JoinParty_0x1 = {
  */
 export const __OnlineGameParty_X__UpdatePartyInfo_0x1 = {
   Lobby: 0x0060,  // 0x0060 (0x0030) [FActiveLobbyInfo]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8563,7 +10051,7 @@ export const __OnlineGameParty_X__UpdatePartyInfo_0x1 = {
 export const __OnlineGameReservations_X__GetMigrationReservationData_0x1 = {
   CurrentPlayers: 0x0060,  // 0x0060 (0x0010) [TArray<FMigrationReservationData>]
   GEngine: 0x0070,  // 0x0070 (0x0008) [UEngine*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8573,7 +10061,7 @@ export const __OnlineGameReservations_X__GetMigrationReservationData_0x1 = {
  */
 export const __OnlineGameReservations_X__RecordReservation_0x1 = {
   Message: 0x0060,  // 0x0060 (0x0008) [UAddReservationMessage_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8583,7 +10071,7 @@ export const __OnlineGameReservations_X__RecordReservation_0x1 = {
  */
 export const __OnlineGameReservations_X__SetPlayersWithMigrationData_0x2 = {
   GEngine: 0x0060,  // 0x0060 (0x0008) [UEngine*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8594,7 +10082,7 @@ export const __OnlineGameReservations_X__SetPlayersWithMigrationData_0x2 = {
 export const __OnlineGameSkill_X__ClearPartyMembersSkill_0x1 = {
   PrimaryPlayerId: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
   PartyObject: 0x00A8,  // 0x00A8 (0x0008) [UOnlineGameParty_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8604,7 +10092,7 @@ export const __OnlineGameSkill_X__ClearPartyMembersSkill_0x1 = {
  */
 export const __OnlineGameSkill_X__ClearSkill_0x1 = {
   PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8615,7 +10103,7 @@ export const __OnlineGameSkill_X__ClearSkill_0x1 = {
 export const __OnlineGameSkill_X__HandleSyncedPlayerSkill_0x1 = {
   PlayerSkillRatings: 0x0060,  // 0x0060 (0x0010) [TArray<FPlayerSkillRating>]
   PlayerID: 0x0070,  // 0x0070 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8625,7 +10113,7 @@ export const __OnlineGameSkill_X__HandleSyncedPlayerSkill_0x1 = {
  */
 export const __OnlineGameSkill_X__OnSkillSynced_0x1 = {
   PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8635,7 +10123,7 @@ export const __OnlineGameSkill_X__OnSkillSynced_0x1 = {
  */
 export const __OnlineGameWordFilter_X__InternalSanitize_0x1 = {
   Id: 0x0060,  // 0x0060 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8645,7 +10133,7 @@ export const __OnlineGameWordFilter_X__InternalSanitize_0x1 = {
  */
 export const __OnlineGame_X__CheckPsyNetConnection_0x1 = {
   Task: 0x0060,  // 0x0060 (0x0008) [UAsyncTask*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8655,7 +10143,7 @@ export const __OnlineGame_X__CheckPsyNetConnection_0x1 = {
  */
 export const __OnlineGame_X__GetOnlinePlayerFromEpicId_0x1 = {
   EpicAccountId: 0x0060,  // 0x0060 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8665,7 +10153,7 @@ export const __OnlineGame_X__GetOnlinePlayerFromEpicId_0x1 = {
  */
 export const __OnlineGame_X__GetOnlinePlayerFromPlayerId_0x1 = {
   PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8675,7 +10163,7 @@ export const __OnlineGame_X__GetOnlinePlayerFromPlayerId_0x1 = {
  */
 export const __OnlineLegalTextEOS_X__HandleEOSInitialized_0x1 = {
   EOS: 0x0060,  // 0x0060 (0x0008) [UOnlineSubsystem*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8685,7 +10173,7 @@ export const __OnlineLegalTextEOS_X__HandleEOSInitialized_0x1 = {
  */
 export const __OnlineLegalTextEOS_X__RequestKey_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8696,7 +10184,7 @@ export const __OnlineLegalTextEOS_X__RequestKey_0x1 = {
 export const __OnlinePlayerFriends_X__AcceptEpicFriendInvite_0x1 = {
   FriendId: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
   InPin: 0x00A8,  // 0x00A8 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8708,7 +10196,7 @@ export const __OnlinePlayerFriends_X__BlockPlayer_0x1 = {
   BlockedID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
   EpicAccountId: 0x00A8,  // 0x00A8 (0x0048) [FUniqueNetId]
   Callback: 0x00F0,  // 0x00F0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8718,7 +10206,7 @@ export const __OnlinePlayerFriends_X__BlockPlayer_0x1 = {
  */
 export const __OnlinePlayerFriends_X__DeclineEpicFriendInvite_0x1 = {
   FriendId: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8729,7 +10217,7 @@ export const __OnlinePlayerFriends_X__DeclineEpicFriendInvite_0x1 = {
 export const __OnlinePlayerFriends_X__InviteEpicFriend_0x1 = {
   FriendPlayerId: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
   InPin: 0x00A8,  // 0x00A8 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8739,7 +10227,7 @@ export const __OnlinePlayerFriends_X__InviteEpicFriend_0x1 = {
  */
 export const __OnlinePlayerFriends_X__LinkPlatformToEpic_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8749,7 +10237,7 @@ export const __OnlinePlayerFriends_X__LinkPlatformToEpic_0x1 = {
  */
 export const __OnlinePlayerFriends_X__RemoveEpicFriend_0x1 = {
   FriendId: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8759,7 +10247,7 @@ export const __OnlinePlayerFriends_X__RemoveEpicFriend_0x1 = {
  */
 export const __OnlinePlayerFriends_X__SubscribeToEpicFriendsPlugin_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8769,7 +10257,7 @@ export const __OnlinePlayerFriends_X__SubscribeToEpicFriendsPlugin_0x1 = {
  */
 export const __OnlinePlayerFriends_X__TriggerSocialCallback_0x1 = {
   InPlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8781,7 +10269,7 @@ export const __OnlinePlayerFriends_X__UnblockPlayer_0x1 = {
   UnblockID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
   EpicAccountId: 0x00A8,  // 0x00A8 (0x0048) [FUniqueNetId]
   Callback: 0x00F0,  // 0x00F0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8791,7 +10279,7 @@ export const __OnlinePlayerFriends_X__UnblockPlayer_0x1 = {
  */
 export const __OnlinePlayerStorageQueue_X__GetStorageMaxSizeBytes_0x1 = {
   Category: 0x0060,  // 0x0060 (0x0008) [FName]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8802,7 +10290,7 @@ export const __OnlinePlayerStorageQueue_X__GetStorageMaxSizeBytes_0x1 = {
 export const __OnlinePlayerStorageQueue_X__HandleStorageSuccess_0x2 = {
   OutOfSync: 0x0060,  // 0x0060 (0x0010) [TArray<FSetPlayerStorageResultItem>]
   RPC: 0x0070,  // 0x0070 (0x0008) [URPC_PlayerStorageSet_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8812,7 +10300,7 @@ export const __OnlinePlayerStorageQueue_X__HandleStorageSuccess_0x2 = {
  */
 export const __OnlinePlayerStorageQueue_X__MapResultItem_0x1 = {
   Item: 0x0060,  // 0x0060 (0x0010) [FSetPlayerStorageResultItem]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8822,7 +10310,7 @@ export const __OnlinePlayerStorageQueue_X__MapResultItem_0x1 = {
  */
 export const __OnlinePlayerStorageSync_X__SyncObjects_0x1 = {
   ResponseTask: 0x0060,  // 0x0060 (0x0008) [UAsyncTask*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8832,7 +10320,7 @@ export const __OnlinePlayerStorageSync_X__SyncObjects_0x1 = {
  */
 export const __PRI_X__RegisterPlayerWithSession_0x1 = {
   OnlineSub: 0x0060,  // 0x0060 (0x0008) [UOnlineSubsystem*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8843,7 +10331,7 @@ export const __PRI_X__RegisterPlayerWithSession_0x1 = {
 export const __Parties_X__HandleIncomingPartyNotification_0x1 = {
   Notification: 0x0060,  // 0x0060 (0x0008) [UPsyNetService_Party_X*]
   PrimaryPlayer: 0x0068,  // 0x0068 (0x0008) [UOnlinePlayer_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8853,7 +10341,7 @@ export const __Parties_X__HandleIncomingPartyNotification_0x1 = {
  */
 export const __PartyMessageQueue_X__SendMessage_0x1 = {
   Task: 0x0060,  // 0x0060 (0x0008) [UAsyncTask*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8866,7 +10354,7 @@ export const __PartySequence_CreateParty_X__CreateParty_0x1 = {
   LocalPlayerNum: 0x0070,  // 0x0070 (0x0004) [int32]
   MaxPlayers: 0x0074,  // 0x0074 (0x0004) [int32]
   Type: 0x0078,  // 0x0078 (0x0001) [ELobbyVisibility]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8877,7 +10365,7 @@ export const __PartySequence_CreateParty_X__CreateParty_0x1 = {
 export const __PartySequence_InvitedToPlatformParty_X__HandlePlayerInvited_0x1 = {
   InLobbyId: 0x0060,  // 0x0060 (0x0010) [FUniqueLobbyId]
   FriendId: 0x0070,  // 0x0070 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8888,7 +10376,7 @@ export const __PartySequence_InvitedToPlatformParty_X__HandlePlayerInvited_0x1 =
 export const __PartySequence_InvitedToPsyNetParty_X__HandlePlayerInvitedPrompt_0x1 = {
   InLobbyId: 0x0060,  // 0x0060 (0x0010) [FUniqueLobbyId]
   InviterId: 0x0070,  // 0x0070 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8899,7 +10387,7 @@ export const __PartySequence_InvitedToPsyNetParty_X__HandlePlayerInvitedPrompt_0
 export const __PartySequence_InvitedToPsyNetParty_X__HandlePlayerInvitedSilent_0x1 = {
   InLobbyId: 0x0060,  // 0x0060 (0x0010) [FUniqueLobbyId]
   InviterId: 0x0070,  // 0x0070 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8909,7 +10397,7 @@ export const __PartySequence_InvitedToPsyNetParty_X__HandlePlayerInvitedSilent_0
  */
 export const __PartySequence_JoinParty_X__HandleGetPlatformPartyMessage_0x1 = {
   Message: 0x0060,  // 0x0060 (0x0008) [UPartyMessage_GetPlatformParty_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8919,7 +10407,7 @@ export const __PartySequence_JoinParty_X__HandleGetPlatformPartyMessage_0x1 = {
  */
 export const __PsyNetBeacon_X__SendMessageToClients_0x1 = {
   Connection: 0x0060,  // 0x0060 (0x0008) [UPsyNetBeaconConnection_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8930,7 +10418,7 @@ export const __PsyNetBeacon_X__SendMessageToClients_0x1 = {
 export const __PsyNetBeacon_X__SendMessageToServer_0x1 = {
   RPC: 0x0060,  // 0x0060 (0x0008) [URPC_RelayToServer_X*]
   Connection: 0x0068,  // 0x0068 (0x0008) [UPsyNetBeaconConnection_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8940,7 +10428,7 @@ export const __PsyNetBeacon_X__SendMessageToServer_0x1 = {
  */
 export const __PsyNetConnection_X__ProcessServiceCall_0x1 = {
   Response: 0x0060,  // 0x0060 (0x0008) [UPsyNetMessage_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8951,7 +10439,7 @@ export const __PsyNetConnection_X__ProcessServiceCall_0x1 = {
 export const __PsyNetMessengerHttp_X__SendMessage_0x1 = {
   PsyRequestID: 0x0060,  // 0x0060 (0x0010) [FString]
   Task: 0x0070,  // 0x0070 (0x0008) [UAsyncTask*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8961,7 +10449,7 @@ export const __PsyNetMessengerHttp_X__SendMessage_0x1 = {
  */
 export const __PsyNetRequestQue_X__SendRequest_0x1 = {
   RequestID: 0x0060,  // 0x0060 (0x0008) [FName]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8971,7 +10459,7 @@ export const __PsyNetRequestQue_X__SendRequest_0x1 = {
  */
 export const __PsyNetServiceProvider_X__CreateChannel_0x1 = {
   ChannelName: 0x0060,  // 0x0060 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8981,7 +10469,7 @@ export const __PsyNetServiceProvider_X__CreateChannel_0x1 = {
  */
 export const __PsyNetServiceProvider_X__ExecuteRequest_0x1 = {
   Response: 0x0060,  // 0x0060 (0x0008) [UPsyNetMessage_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -8993,7 +10481,7 @@ export const __PsyNetServiceProvider_X__ExecuteServiceMessage_0x1 = {
   ServiceName: 0x0060,  // 0x0060 (0x0010) [FString]
   Service: 0x0070,  // 0x0070 (0x0008) [UPsyNetClientService_X*]
   Task: 0x0078,  // 0x0078 (0x0008) [UTAsyncResult__PsyNetClientService_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9003,7 +10491,7 @@ export const __PsyNetServiceProvider_X__ExecuteServiceMessage_0x1 = {
  */
 export const __PsyNetWordFilter_X__WordFilterSanitizeString_0x1 = {
   Usage: 0x0060,  // 0x0060 (0x0001) [EWordFilterUsage]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9013,7 +10501,7 @@ export const __PsyNetWordFilter_X__WordFilterSanitizeString_0x1 = {
  */
 export const __RPCQueue_X__CreateBatchSingleRPC_0x1 = {
   Batch: 0x0060,  // 0x0060 (0x0008) [URPCBatch_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9023,7 +10511,7 @@ export const __RPCQueue_X__CreateBatchSingleRPC_0x1 = {
  */
 export const __RPCQueue_X__CreateBatch_0x2 = {
   Batch: 0x0060,  // 0x0060 (0x0008) [URPCBatch_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9033,7 +10521,7 @@ export const __RPCQueue_X__CreateBatch_0x2 = {
  */
 export const __RPC_X__CreateTask_0x1 = {
   InCallback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9043,7 +10531,7 @@ export const __RPC_X__CreateTask_0x1 = {
  */
 export const __RegionConfig_X__GetSubRegions_0x1 = {
   SuperRegionID: 0x0060,  // 0x0060 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9053,7 +10541,7 @@ export const __RegionConfig_X__GetSubRegions_0x1 = {
  */
 export const __RemoteAvatarPermissions_X__GetPermissions_0x1 = {
   Batch: 0x0060,  // 0x0060 (0x0008) [URemoteAvatarPermissionsRequestBatch_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9063,7 +10551,7 @@ export const __RemoteAvatarPermissions_X__GetPermissions_0x1 = {
  */
 export const __RemoteAvatarPermissions_X__SetAvatarPermission_0x1 = {
   PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9073,7 +10561,7 @@ export const __RemoteAvatarPermissions_X__SetAvatarPermission_0x1 = {
  */
 export const __ServerPlayerTracker_X__AddPlayer_0x1 = {
   PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9083,7 +10571,7 @@ export const __ServerPlayerTracker_X__AddPlayer_0x1 = {
  */
 export const __StatusObserver_X__FindByAcceptedType_0x1 = {
   InType: 0x0060,  // 0x0060 (0x0008) [UClass*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9093,7 +10581,7 @@ export const __StatusObserver_X__FindByAcceptedType_0x1 = {
  */
 export const __StatusObserver_X__ObservesTriggerType_0x1 = {
   InTrigger: 0x0060,  // 0x0060 (0x0008) [UStatusTrigger_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9103,7 +10591,7 @@ export const __StatusObserver_X__ObservesTriggerType_0x1 = {
  */
 export const __TAsyncResult__ClubDetails_X__Copy_0x1 = {
   Instance: 0x0060,  // 0x0060 (0x0008) [UTAsyncResult__ClubDetails_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9113,7 +10601,7 @@ export const __TAsyncResult__ClubDetails_X__Copy_0x1 = {
  */
 export const __TAsyncResult__ClubDetails_X__NotifyOnResultComplete_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9123,7 +10611,7 @@ export const __TAsyncResult__ClubDetails_X__NotifyOnResultComplete_0x1 = {
  */
 export const __TAsyncResult__ClubDetails_X__NotifyOnResult_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9133,7 +10621,7 @@ export const __TAsyncResult__ClubDetails_X__NotifyOnResult_0x1 = {
  */
 export const __TAsyncResult__ClubDetails_X__SetResultWhen_0x1 = {
   GetResultDelegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9143,7 +10631,7 @@ export const __TAsyncResult__ClubDetails_X__SetResultWhen_0x1 = {
  */
 export const __TAsyncResult__PsyNetClientService_X__Copy_0x1 = {
   Instance: 0x0060,  // 0x0060 (0x0008) [UTAsyncResult__PsyNetClientService_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9153,7 +10641,7 @@ export const __TAsyncResult__PsyNetClientService_X__Copy_0x1 = {
  */
 export const __TAsyncResult__PsyNetClientService_X__NotifyOnResultComplete_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9163,7 +10651,7 @@ export const __TAsyncResult__PsyNetClientService_X__NotifyOnResultComplete_0x1 =
  */
 export const __TAsyncResult__PsyNetClientService_X__NotifyOnResult_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9173,7 +10661,7 @@ export const __TAsyncResult__PsyNetClientService_X__NotifyOnResult_0x1 = {
  */
 export const __TAsyncResult__PsyNetClientService_X__SetResultWhen_0x1 = {
   GetResultDelegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9183,7 +10671,7 @@ export const __TAsyncResult__PsyNetClientService_X__SetResultWhen_0x1 = {
  */
 export const __TAsyncResult__PsyNetMessage_X__Copy_0x1 = {
   Instance: 0x0060,  // 0x0060 (0x0008) [UTAsyncResult__PsyNetMessage_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9193,7 +10681,7 @@ export const __TAsyncResult__PsyNetMessage_X__Copy_0x1 = {
  */
 export const __TAsyncResult__PsyNetMessage_X__NotifyOnResultComplete_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9203,7 +10691,7 @@ export const __TAsyncResult__PsyNetMessage_X__NotifyOnResultComplete_0x1 = {
  */
 export const __TAsyncResult__PsyNetMessage_X__NotifyOnResult_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9213,7 +10701,7 @@ export const __TAsyncResult__PsyNetMessage_X__NotifyOnResult_0x1 = {
  */
 export const __TAsyncResult__PsyNetMessage_X__SetResultWhen_0x1 = {
   GetResultDelegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9223,7 +10711,7 @@ export const __TAsyncResult__PsyNetMessage_X__SetResultWhen_0x1 = {
  */
 export const __TAsyncResult__Texture2DDynamic__Copy_0x1 = {
   Instance: 0x0060,  // 0x0060 (0x0008) [UTAsyncResult__Texture2DDynamic*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9233,7 +10721,7 @@ export const __TAsyncResult__Texture2DDynamic__Copy_0x1 = {
  */
 export const __TAsyncResult__Texture2DDynamic__NotifyOnResultComplete_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9243,7 +10731,7 @@ export const __TAsyncResult__Texture2DDynamic__NotifyOnResultComplete_0x1 = {
  */
 export const __TAsyncResult__Texture2DDynamic__NotifyOnResult_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9253,7 +10741,7 @@ export const __TAsyncResult__Texture2DDynamic__NotifyOnResult_0x1 = {
  */
 export const __TAsyncResult__Texture2DDynamic__SetResultWhen_0x1 = {
   GetResultDelegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9263,7 +10751,7 @@ export const __TAsyncResult__Texture2DDynamic__SetResultWhen_0x1 = {
  */
 export const __TAsyncResult__array_ClubInvite_X__Copy_0x1 = {
   Instance: 0x0060,  // 0x0060 (0x0008) [UTAsyncResult__array_ClubInvite_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9273,7 +10761,7 @@ export const __TAsyncResult__array_ClubInvite_X__Copy_0x1 = {
  */
 export const __TAsyncResult__array_ClubInvite_X__NotifyOnResultComplete_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9283,7 +10771,7 @@ export const __TAsyncResult__array_ClubInvite_X__NotifyOnResultComplete_0x1 = {
  */
 export const __TAsyncResult__array_ClubInvite_X__NotifyOnResult_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9293,7 +10781,7 @@ export const __TAsyncResult__array_ClubInvite_X__NotifyOnResult_0x1 = {
  */
 export const __TAsyncResult__array_ClubInvite_X__SetResultWhen_0x1 = {
   GetResultDelegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9303,7 +10791,7 @@ export const __TAsyncResult__array_ClubInvite_X__SetResultWhen_0x1 = {
  */
 export const __TAsyncResult__array_LanServerRecord_X__Copy_0x1 = {
   Instance: 0x0060,  // 0x0060 (0x0008) [UTAsyncResult__array_LanServerRecord_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9313,7 +10801,7 @@ export const __TAsyncResult__array_LanServerRecord_X__Copy_0x1 = {
  */
 export const __TAsyncResult__array_LanServerRecord_X__NotifyOnResultComplete_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9323,7 +10811,7 @@ export const __TAsyncResult__array_LanServerRecord_X__NotifyOnResultComplete_0x1
  */
 export const __TAsyncResult__array_LanServerRecord_X__NotifyOnResult_0x1 = {
   Callback: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9333,7 +10821,7 @@ export const __TAsyncResult__array_LanServerRecord_X__NotifyOnResult_0x1 = {
  */
 export const __TAsyncResult__array_LanServerRecord_X__SetResultWhen_0x1 = {
   GetResultDelegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9343,7 +10831,7 @@ export const __TAsyncResult__array_LanServerRecord_X__SetResultWhen_0x1 = {
  */
 export const __TitleConfig_X__GetClubTitleData_0x1 = {
   TitleId: 0x0060,  // 0x0060 (0x0008) [FName]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9353,7 +10841,7 @@ export const __TitleConfig_X__GetClubTitleData_0x1 = {
  */
 export const __TitleConfig_X__GetTitleData_0x1 = {
   TitleId: 0x0060,  // 0x0060 (0x0008) [FName]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9363,7 +10851,7 @@ export const __TitleConfig_X__GetTitleData_0x1 = {
  */
 export const __WebCache_X__DownloadData_0x1 = {
   WebRequest: 0x0060,  // 0x0060 (0x0008) [UWebRequest_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9373,7 +10861,7 @@ export const __WebCache_X__DownloadData_0x1 = {
  */
 export const __WebImageCache_X__HandleImageData_0x1 = {
   Download: 0x0060,  // 0x0060 (0x0008) [UWebImageDownload_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9383,7 +10871,7 @@ export const __WebImageCache_X__HandleImageData_0x1 = {
  */
 export const __WebImageCache_X__StartSync_0x1 = {
   Download: 0x0060,  // 0x0060 (0x0008) [UWebImageDownload_X*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9393,7 +10881,7 @@ export const __WebImageCache_X__StartSync_0x1 = {
  */
 export const __WebImageCache_X__SyncUncachedImage_0x1 = {
   Task: 0x0060,  // 0x0060 (0x0008) [UTAsyncResult__Texture2DDynamic*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9403,7 +10891,7 @@ export const __WebImageCache_X__SyncUncachedImage_0x1 = {
  */
 export const ____OnlineGameParty_X__UpdatePartyInfo_0x1____OnlineGameParty_X__UpdatePartyInfo_0x1_0x1 = {
   PM: 0x0060,  // 0x0060 (0x0180) [FPartyMember]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -9413,9 +10901,8 @@ export const ____OnlineGameParty_X__UpdatePartyInfo_0x1____OnlineGameParty_X__Up
  */
 export const ____OnlinePlayerStorageQueue_X__HandleStorageSuccess_0x2____OnlinePlayerStorageQueue_X__HandleStorageSuccess_0x4_0x1 = {
   R: 0x0060,  // 0x0060 (0x0010) [FSetPlayerStorageResultItem]
-  ...Object,
+  ...Object_,
 } as const;
-
 
 /**
  * ScriptStruct ProjectX.EOS_AccountSummaryResponse.AccountSettings Offsets

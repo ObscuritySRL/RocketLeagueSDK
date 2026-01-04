@@ -6,8 +6,16 @@
  * Import these to read/write memory at the correct locations.
  */
 
-import { Interaction, SequenceAction, SequenceEvent } from './Engine';
-import { Object } from './Core';
+/**
+ * Engine.SequenceAction Offsets
+ * Size: 0x0160
+ * Extends: SequenceOp
+ */
+export const SequenceAction = {
+  HandlerName: 0x0140,  // 0x0140 (0x0008) [FName]
+  bCallHandler: 0x0148,  // 0x0148 (0x0004) [bool : 0x1]
+  Targets: 0x0150,  // 0x0150 (0x0010) [TArray<UObject*>]
+} as const;
 
 /**
  * GFxUI.GFxAction_CloseMovie Offsets
@@ -87,6 +95,26 @@ export const GFxAction_SetVariable = {
 } as const;
 
 /**
+ * Core.Object Offsets
+ * Size: 0x0060
+ */
+export const Object_ = {
+  VfTableObject: 0x0000,  // 0x0000 (0x0008) [FPointer]
+  HashNext: 0x0008,  // 0x0008 (0x0008) [FPointer]
+  ObjectFlags: 0x0010,  // 0x0010 (0x0008) [uint64]
+  HashOuterNext: 0x0018,  // 0x0018 (0x0008) [FPointer]
+  StateFrame: 0x0020,  // 0x0020 (0x0008) [FPointer]
+  Linker: 0x0028,  // 0x0028 (0x0008) [UObject*]
+  LinkerIndex: 0x0030,  // 0x0030 (0x0008) [FPointer]
+  ObjectInternalInteger: 0x0038,  // 0x0038 (0x0004) [int32]
+  NetIndex: 0x003C,  // 0x003C (0x0004) [int32]
+  Outer: 0x0040,  // 0x0040 (0x0008) [UObject*]
+  Name: 0x0048,  // 0x0048 (0x0008) [FName]
+  Class: 0x0050,  // 0x0050 (0x0008) [UClass*]
+  ObjectArchetype: 0x0058,  // 0x0058 (0x0008) [UObject*]
+} as const;
+
+/**
  * GFxUI.GFxEngine Offsets
  * Size: 0x0128
  * Extends: Object
@@ -96,7 +124,28 @@ export const GFxEngine = {
   RefCount: 0x0070,  // 0x0070 (0x0004) [int32]
   LoadingScreenInfo: 0x0078,  // 0x0078 (0x00A0) [FLoadingMovieMapInfo]
   IgnoreWarningsThatStartWith: 0x0118,  // 0x0118 (0x0010) [TArray<FString>]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.SequenceEvent Offsets
+ * Size: 0x017C
+ * Extends: SequenceOp
+ */
+export const SequenceEvent = {
+  DuplicateEvts: 0x0140,  // 0x0140 (0x0010) [TArray<USequenceEvent*>]
+  Originator: 0x0150,  // 0x0150 (0x0008) [UActor*]
+  Instigator: 0x0158,  // 0x0158 (0x0008) [UActor*]
+  ActivationTime: 0x0160,  // 0x0160 (0x0004) [float]
+  TriggerCount: 0x0164,  // 0x0164 (0x0004) [int32]
+  MaxTriggerCount: 0x0168,  // 0x0168 (0x0004) [int32]
+  ReTriggerDelay: 0x016C,  // 0x016C (0x0004) [float]
+  bEnabled: 0x0170,  // 0x0170 (0x0004) [bool : 0x1]
+  bPlayerOnly: 0x0170,  // 0x0170 (0x0004) [bool : 0x2]
+  bRegistered: 0x0170,  // 0x0170 (0x0004) [bool : 0x4]
+  bClientSideOnly: 0x0170,  // 0x0170 (0x0004) [bool : 0x8]
+  Priority: 0x0174,  // 0x0174 (0x0001) [uint8]
+  MaxWidth: 0x0178,  // 0x0178 (0x0004) [int32]
 } as const;
 
 /**
@@ -117,7 +166,7 @@ export const GFxEvent_FSCommand = {
  * Extends: Object
  */
 export const GFxFSCmdHandler = {
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -127,6 +176,18 @@ export const GFxFSCmdHandler = {
  */
 export const GFxFSCmdHandler_Kismet = {
   ...GFxFSCmdHandler,
+} as const;
+
+/**
+ * Engine.Interaction Offsets
+ * Size: 0x00D0
+ * Extends: UIRoot
+ */
+export const Interaction = {
+  __OnReceivedNativeInputKey__Delegate: 0x0070,  // 0x0070 (0x0018) [FScriptDelegate]
+  __OnReceivedNativeInputAxis__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
+  __OnReceivedNativeInputChar__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
+  __OnInitialize__Delegate: 0x00B8,  // 0x00B8 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -195,7 +256,7 @@ export const GFxMoviePlayer = {
   SplitscreenLayoutObject: 0x01F0,  // 0x01F0 (0x0008) [UGFxObject*]
   SplitscreenLayoutYAdjust: 0x01F8,  // 0x01F8 (0x0004) [int32]
   __OnPostAdvance__Delegate: 0x0200,  // 0x0200 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -206,7 +267,7 @@ export const GFxMoviePlayer = {
 export const GFxObject = {
   Value: 0x0060,  // 0x0060 (0x0030) [int32]
   SubWidgetBindings: 0x0090,  // 0x0090 (0x0010) [TArray<FGFxWidgetBinding>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -229,7 +290,7 @@ export const GFxRawData = {
   ReferencedSwfs: 0x0070,  // 0x0070 (0x0010) [TArray<FString>]
   References: 0x0080,  // 0x0080 (0x0010) [TArray<UObject*>]
   UserReferences: 0x0090,  // 0x0090 (0x0010) [TArray<UObject*>]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -265,7 +326,6 @@ export const SwfMovie = {
 export const FlashMovie = {
   ...SwfMovie,
 } as const;
-
 
 /**
  * ScriptStruct GFxUI.GFxObject.ASColorTransform Offsets

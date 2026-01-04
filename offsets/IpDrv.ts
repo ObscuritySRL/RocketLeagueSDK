@@ -6,9 +6,25 @@
  * Import these to read/write memory at the correct locations.
  */
 
-import { Component, ErrorList, Object } from './Core';
-import { Download, HttpRequestInterface, HttpResponseInterface, Info, NetConnection, NetDriver, OnlineSubsystem, UIDataStore, UIResourceDataProvider } from './Engine';
-import { EmsFile, TitleFile } from './Engine';
+/**
+ * Core.Object Offsets
+ * Size: 0x0060
+ */
+export const Object_ = {
+  VfTableObject: 0x0000,  // 0x0000 (0x0008) [FPointer]
+  HashNext: 0x0008,  // 0x0008 (0x0008) [FPointer]
+  ObjectFlags: 0x0010,  // 0x0010 (0x0008) [uint64]
+  HashOuterNext: 0x0018,  // 0x0018 (0x0008) [FPointer]
+  StateFrame: 0x0020,  // 0x0020 (0x0008) [FPointer]
+  Linker: 0x0028,  // 0x0028 (0x0008) [UObject*]
+  LinkerIndex: 0x0030,  // 0x0030 (0x0008) [FPointer]
+  ObjectInternalInteger: 0x0038,  // 0x0038 (0x0004) [int32]
+  NetIndex: 0x003C,  // 0x003C (0x0004) [int32]
+  Outer: 0x0040,  // 0x0040 (0x0008) [UObject*]
+  Name: 0x0048,  // 0x0048 (0x0008) [FName]
+  Class: 0x0050,  // 0x0050 (0x0008) [UClass*]
+  ObjectArchetype: 0x0058,  // 0x0058 (0x0008) [UObject*]
+} as const;
 
 /**
  * IpDrv.AdHocDelegates Offsets
@@ -25,7 +41,18 @@ export const AdHocDelegates = {
   __EventStationDisconnected__Delegate: 0x00F0,  // 0x00F0 (0x0018) [FScriptDelegate]
   __EventAdHocFinalized__Delegate: 0x0108,  // 0x0108 (0x0018) [FScriptDelegate]
   __EventAdHocDestroyed__Delegate: 0x0120,  // 0x0120 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Core.ErrorList Offsets
+ * Size: 0x0080
+ * Extends: Object
+ */
+export const ErrorList = {
+  LocalizationPackage: 0x0060,  // 0x0060 (0x0010) [FString]
+  LocalizationSection: 0x0070,  // 0x0070 (0x0010) [FString]
+  ...Object_,
 } as const;
 
 /**
@@ -49,7 +76,18 @@ export const AvatarDownload = {
   AvatarSize: 0x00B8,  // 0x00B8 (0x0001) [AvatarSize]
   Texture: 0x00C0,  // 0x00C0 (0x0008) [UTexture*]
   Callbacks: 0x00C8,  // 0x00C8 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Core.Component Offsets
+ * Size: 0x0070
+ * Extends: Object
+ */
+export const Component = {
+  TemplateOwnerClass: 0x0060,  // 0x0060 (0x0008) [UClass*]
+  TemplateName: 0x0068,  // 0x0068 (0x0008) [FName]
+  ...Object_,
 } as const;
 
 /**
@@ -83,7 +121,16 @@ export const AvatarDownloadMap = {
 export const ClientBeaconAddressResolver = {
   BeaconPort: 0x0060,  // 0x0060 (0x0004) [int32]
   BeaconName: 0x0064,  // 0x0064 (0x0008) [FName]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.Download Offsets
+ * Size: 0x0AB0
+ * Extends: Object
+ */
+export const Download = {
+  ...Object_,
 } as const;
 
 /**
@@ -102,6 +149,15 @@ export const HTTPDownload = {
 } as const;
 
 /**
+ * Engine.HttpRequestInterface Offsets
+ * Size: 0x0078
+ * Extends: HttpBaseInterface
+ */
+export const HttpRequestInterface = {
+  __OnProcessRequestComplete__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
+} as const;
+
+/**
  * IpDrv.HttpRequestCurl Offsets
  * Size: 0x00C0
  * Extends: HttpRequestInterface
@@ -113,6 +169,14 @@ export const HttpRequestCurl = {
   Payload: 0x00A0,  // 0x00A0 (0x0010) [TArray<uint8>]
   AllowedRedirectURLs: 0x00B0,  // 0x00B0 (0x0010) [TArray<FString>]
   ...HttpRequestInterface,
+} as const;
+
+/**
+ * Engine.HttpResponseInterface Offsets
+ * Size: 0x0060
+ * Extends: HttpBaseInterface
+ */
+export const HttpResponseInterface = {
 } as const;
 
 /**
@@ -135,7 +199,15 @@ export const ImageDecoder = {
   VfTable_FTickableObject: 0x0060,  // 0x0060 (0x0008) [FPointer]
   ActiveDecodeRequests: 0x0068,  // 0x0068 (0x0010) [TArray<FDecodeImageRequest>]
   __ImageDecodedDelegate__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.Info Offsets
+ * Size: 0x0268
+ * Extends: Actor
+ */
+export const Info = {
 } as const;
 
 /**
@@ -164,7 +236,7 @@ export const InternetLink = {
 export const McpServiceBase = {
   McpConfigClassName: 0x0060,  // 0x0060 (0x0010) [FString]
   McpConfig: 0x0070,  // 0x0070 (0x0008) [UMcpServiceConfig*]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -383,7 +455,7 @@ export const McpServiceConfig = {
   Domain: 0x0070,  // 0x0070 (0x0010) [FString]
   AppKey: 0x0080,  // 0x0080 (0x0010) [FString]
   AppSecret: 0x0090,  // 0x0090 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -509,7 +581,7 @@ export const MeshBeacon = {
   MaxBandwidthTestSendTime: 0x009C,  // 0x009C (0x0004) [float]
   MaxBandwidthTestReceiveTime: 0x00A0,  // 0x00A0 (0x0004) [float]
   MaxBandwidthHistoryEntries: 0x00A4,  // 0x00A4 (0x0004) [int32]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -597,7 +669,7 @@ export const OnlineAuthInterfaceImpl = {
   __OnServerConnectionClose__Delegate: 0x0380,  // 0x0380 (0x0018) [FScriptDelegate]
   __OnReceivedAuthCode__Delegate: 0x0398,  // 0x0398 (0x0018) [FScriptDelegate]
   __OnAccountAuthorization__Delegate: 0x03B0,  // 0x03B0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -621,7 +693,7 @@ export const OnlineEventsInterfaceMcp = {
 export const OnlineFriendsInterfaceImpl = {
   VfTable_IOnlineFriendsInterface: 0x0060,  // 0x0060 (0x0008) [FPointer]
   __OnReceivedLinkedAccount__Delegate: 0x0068,  // 0x0068 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -672,7 +744,7 @@ export const OnlineGameInterfaceImpl = {
   __OnQosStatusChanged__Delegate: 0x02D0,  // 0x02D0 (0x0018) [FScriptDelegate]
   __EventReportMatchmakingInfo__Delegate: 0x02E8,  // 0x02E8 (0x0018) [FScriptDelegate]
   __OnGamePlayersChanged__Delegate: 0x0300,  // 0x0300 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -691,7 +763,7 @@ export const OnlineImageDownloaderWeb = {
   FailedDownloadCount: 0x00DC,  // 0x00DC (0x0004) [int32]
   __OnOnlineImageFinished__Delegate: 0x00E0,  // 0x00E0 (0x0018) [FScriptDelegate]
   __EventImageDecoded__Delegate: 0x00F8,  // 0x00F8 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -731,7 +803,7 @@ export const OnlineLobbyInterfaceImpl = {
   __OnLobbySessionCreated__Delegate: 0x0278,  // 0x0278 (0x0018) [FScriptDelegate]
   __OnLobbyError__Delegate: 0x0290,  // 0x0290 (0x0018) [FScriptDelegate]
   __OnHostStartPlayTogether__Delegate: 0x02A8,  // 0x02A8 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -758,7 +830,7 @@ export const OnlinePersistentAuthInterfaceImpl = {
   UnderageUserDetectedDelegates: 0x0078,  // 0x0078 (0x0010) [TArray<FScriptDelegate>]
   __OnReceievedPinGrantCode__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
   __OnUnderageUserDetected__Delegate: 0x00A0,  // 0x00A0 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -790,7 +862,16 @@ export const OnlinePlaylistManager = {
   PlaylistRefreshInterval: 0x0114,  // 0x0114 (0x0004) [float]
   __OnReadPlaylistComplete__Delegate: 0x0118,  // 0x0118 (0x0018) [FScriptDelegate]
   __OnPlaylistPopulationDataUpdated__Delegate: 0x0130,  // 0x0130 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.UIResourceDataProvider Offsets
+ * Size: 0x009C
+ * Extends: UIPropertyDataProvider
+ */
+export const UIResourceDataProvider = {
+  bSkipDuringEnumeration: 0x0098,  // 0x0098 (0x0004) [bool : 0x1]
 } as const;
 
 /**
@@ -814,7 +895,69 @@ export const OnlinePlaylistProvider = {
 export const OnlinePurchaseInterfaceImpl = {
   __EventGetAppPriceInfoComplete__Delegate: 0x0060,  // 0x0060 (0x0018) [FScriptDelegate]
   __OnMicroTxnResponse__Delegate: 0x0078,  // 0x0078 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
+} as const;
+
+/**
+ * Engine.OnlineSubsystem Offsets
+ * Size: 0x0378
+ * Extends: Object
+ */
+export const OnlineSubsystem = {
+  VfTable_FTickableObject: 0x0060,  // 0x0060 (0x0008) [FPointer]
+  AccountInterface: 0x0068,  // 0x0068 (0x0010) [TScriptInterface<UOnlineAccountInterface>]
+  PlayerInterface: 0x0078,  // 0x0078 (0x0010) [TScriptInterface<UOnlinePlayerInterface>]
+  PlayerInterfaceEx: 0x0088,  // 0x0088 (0x0010) [TScriptInterface<UOnlinePlayerInterfaceEx>]
+  MarketplaceInterface: 0x0098,  // 0x0098 (0x0010) [TScriptInterface<UOnlineMarketplaceInterface>]
+  SystemInterface: 0x00A8,  // 0x00A8 (0x0010) [TScriptInterface<UOnlineSystemInterface>]
+  GameInterface: 0x00B8,  // 0x00B8 (0x0010) [TScriptInterface<UOnlineGameInterface>]
+  ContentInterface: 0x00C8,  // 0x00C8 (0x0010) [TScriptInterface<UOnlineContentInterface>]
+  VoiceInterface: 0x00D8,  // 0x00D8 (0x0010) [TScriptInterface<UOnlineVoiceInterface>]
+  StatsInterface: 0x00E8,  // 0x00E8 (0x0010) [TScriptInterface<UOnlineStatsInterface>]
+  NewsInterface: 0x00F8,  // 0x00F8 (0x0010) [TScriptInterface<UOnlineNewsInterface>]
+  PartyChatInterface: 0x0108,  // 0x0108 (0x0010) [TScriptInterface<UOnlinePartyChatInterface>]
+  TitleFileInterface: 0x0118,  // 0x0118 (0x0010) [TScriptInterface<UOnlineTitleFileInterface>]
+  TitleFileCacheInterface: 0x0128,  // 0x0128 (0x0010) [TScriptInterface<UOnlineTitleFileCacheInterface>]
+  UserCloudInterface: 0x0138,  // 0x0138 (0x0010) [TScriptInterface<UUserCloudFileInterface>]
+  SharedCloudInterface: 0x0148,  // 0x0148 (0x0010) [TScriptInterface<USharedCloudFileInterface>]
+  SocialInterface: 0x0158,  // 0x0158 (0x0010) [TScriptInterface<UOnlineSocialInterface>]
+  AuthInterface: 0x0168,  // 0x0168 (0x0010) [TScriptInterface<UOnlineAuthInterface>]
+  PersistentAuthInterface: 0x0178,  // 0x0178 (0x0010) [TScriptInterface<UOnlinePersistentAuthInterface>]
+  GameDVRInterface: 0x0188,  // 0x0188 (0x0010) [TScriptInterface<UOnlineGameDVRInterface>]
+  CommunityContentInterface: 0x0198,  // 0x0198 (0x0010) [TScriptInterface<UOnlineCommunityContentInterface>]
+  PurchaseInterface: 0x01A8,  // 0x01A8 (0x0010) [TScriptInterface<UOnlinePurchaseInterface>]
+  LobbyInterface: 0x01B8,  // 0x01B8 (0x0010) [TScriptInterface<UOnlineLobbyInterface>]
+  FriendsInterface: 0x01C8,  // 0x01C8 (0x0010) [TScriptInterface<UOnlineFriendsInterface>]
+  GameClipsInterface: 0x01D8,  // 0x01D8 (0x0010) [TScriptInterface<UOnlineGameClipsInterface>]
+  SearchClass: 0x01E8,  // 0x01E8 (0x0008) [UClass*]
+  bSupportsMultiSignin: 0x01F0,  // 0x01F0 (0x0004) [bool : 0x1]
+  bSupportsMultiVoice: 0x01F0,  // 0x01F0 (0x0004) [bool : 0x2]
+  bShowPrivilegeCheckErrors: 0x01F0,  // 0x01F0 (0x0004) [bool : 0x4]
+  AccountSettings: 0x01F8,  // 0x01F8 (0x0010) [TArray<unknown>]
+  BlockListStatuses: 0x0208,  // 0x0208 (0x0010) [TArray<unknown>]
+  UnsupportedCorrectiveActionURLs: 0x0218,  // 0x0218 (0x0010) [TArray<unknown>]
+  SessionManager: 0x0228,  // 0x0228 (0x0008) [UOnlineSessionManager*]
+  SteamDLC: 0x0230,  // 0x0230 (0x0010) [TArray<FSteamDLCInfo>]
+  PS4DLC: 0x0240,  // 0x0240 (0x0010) [TArray<FPS4DLCInfo>]
+  XboxOneDLC: 0x0250,  // 0x0250 (0x0010) [TArray<FXboxOneDLCInfo>]
+  SwitchDLC: 0x0260,  // 0x0260 (0x0010) [TArray<FSwitchDLCInfo>]
+  EpicDLC: 0x0270,  // 0x0270 (0x0010) [TArray<FEpicDLCInfo>]
+  OnlinePlatformType: 0x0280,  // 0x0280 (0x0001) [OnlinePlatform]
+  CurrentConnectionStatus: 0x0281,  // 0x0281 (0x0001) [EOnlineServerConnectionStatus]
+  OnlineSubsystemNames: 0x0288,  // 0x0288 (0x0010) [TArray<FString>]
+  NamedInterfaces: 0x0298,  // 0x0298 (0x0010) [TArray<FNamedInterface>]
+  NamedInterfaceDefs: 0x02A8,  // 0x02A8 (0x0010) [TArray<FNamedInterfaceDef>]
+  Sessions: 0x02B8,  // 0x02B8 (0x0010) [TArray<FNamedSession>]
+  IniLocPatcherClassName: 0x02C8,  // 0x02C8 (0x0010) [FString]
+  Patcher: 0x02D8,  // 0x02D8 (0x0008) [UIniLocPatcher*]
+  AsyncMinCompletionTime: 0x02E0,  // 0x02E0 (0x0004) [float]
+  __FeaturePrivilegeLevelUpdated__Delegate: 0x02E8,  // 0x02E8 (0x0018) [FScriptDelegate]
+  __EventPlatformAccountSettingsCreated__Delegate: 0x0300,  // 0x0300 (0x0018) [FScriptDelegate]
+  __EventPlatformBlockListStatusCreated__Delegate: 0x0318,  // 0x0318 (0x0018) [FScriptDelegate]
+  __OnDeviceSuspend__Delegate: 0x0330,  // 0x0330 (0x0018) [FScriptDelegate]
+  __OnReadOnlineAvatarComplete__Delegate: 0x0348,  // 0x0348 (0x0018) [FScriptDelegate]
+  __OnSystemUserControllerPairingChanged__Delegate: 0x0360,  // 0x0360 (0x0018) [FScriptDelegate]
+  ...Object_,
 } as const;
 
 /**
@@ -898,7 +1041,7 @@ export const PartyBeacon = {
   ElapsedHeartbeatTime: 0x0080,  // 0x0080 (0x0004) [float]
   BeaconName: 0x0084,  // 0x0084 (0x0008) [FName]
   __OnDestroyComplete__Delegate: 0x0090,  // 0x0090 (0x0018) [FScriptDelegate]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -957,7 +1100,7 @@ export const TargetUserChatPermChangedEvent = {
   PlayerID: 0x0060,  // 0x0060 (0x0048) [FUniqueNetId]
   TargetId: 0x00A8,  // 0x00A8 (0x0048) [FUniqueNetId]
   bAllowed: 0x00F0,  // 0x00F0 (0x0004) [bool : 0x1]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -975,6 +1118,34 @@ export const TcpLink = {
 } as const;
 
 /**
+ * Engine.NetDriver Offsets
+ * Size: 0x0298
+ * Extends: Subsystem
+ */
+export const NetDriver = {
+  MatchFailureSeconds: 0x0070,  // 0x0070 (0x0004) [float]
+  ConnectionTimeout: 0x00EC,  // 0x00EC (0x0004) [float]
+  KeepAliveTime: 0x00F0,  // 0x00F0 (0x0004) [float]
+  RelevantTimeout: 0x00F4,  // 0x00F4 (0x0004) [float]
+  SpawnPrioritySeconds: 0x00F8,  // 0x00F8 (0x0004) [float]
+  ServerTravelPause: 0x00FC,  // 0x00FC (0x0004) [float]
+  MinClientRate: 0x0100,  // 0x0100 (0x0004) [int32]
+  MaxClientRate: 0x0104,  // 0x0104 (0x0004) [int32]
+  MedianClientRate: 0x0108,  // 0x0108 (0x0004) [int32]
+  MinReplicationRate: 0x010C,  // 0x010C (0x0004) [int32]
+  MaxReplicationRate: 0x0110,  // 0x0110 (0x0004) [int32]
+  MedianReplicationRate: 0x0114,  // 0x0114 (0x0004) [int32]
+  NetServerMaxTickRate: 0x0118,  // 0x0118 (0x0004) [int32]
+  bClampListenServerTickRate: 0x011C,  // 0x011C (0x0004) [bool : 0x1]
+  AllowDownloads: 0x0120,  // 0x0120 (0x0004) [bool : 0x1]
+  AllowPeerConnections: 0x0124,  // 0x0124 (0x0004) [bool : 0x1]
+  AllowPeerVoice: 0x0128,  // 0x0128 (0x0004) [bool : 0x1]
+  MaxDownloadSize: 0x0150,  // 0x0150 (0x0004) [int32]
+  DownloadManagers: 0x0158,  // 0x0158 (0x0010) [TArray<FString>]
+  NetConnectionClassName: 0x0210,  // 0x0210 (0x0010) [FString]
+} as const;
+
+/**
  * IpDrv.TcpNetDriver Offsets
  * Size: 0x0318
  * Extends: NetDriver
@@ -983,6 +1154,18 @@ export const TcpNetDriver = {
   AllowPlayerPortUnreach: 0x02F0,  // 0x02F0 (0x0004) [bool : 0x1]
   LogPortUnreach: 0x02F4,  // 0x02F4 (0x0004) [bool : 0x1]
   ...NetDriver,
+} as const;
+
+/**
+ * Engine.NetConnection Offsets
+ * Size: 0xB1F0
+ * Extends: Player
+ */
+export const NetConnection = {
+  Children: 0xB1B0,  // 0xB1B0 (0x0010) [TArray<UChildConnection*>]
+  bUseSessionUID: 0xB1DC,  // 0xB1DC (0x0004) [bool : 0x1]
+  BadConnectionPingThreshold: 0xB1E8,  // 0xB1E8 (0x0004) [float]
+  BadConnectionReceiveTimeThreshold: 0xB1EC,  // 0xB1EC (0x0004) [float]
 } as const;
 
 /**
@@ -1006,6 +1189,17 @@ export const TitleFileDownloadCache = {
   __OnLoadTitleFileComplete__Delegate: 0x00B0,  // 0x00B0 (0x0018) [FScriptDelegate]
   __OnSaveTitleFileComplete__Delegate: 0x00C8,  // 0x00C8 (0x0018) [FScriptDelegate]
   ...MCPBase,
+} as const;
+
+/**
+ * Engine.UIDataStore Offsets
+ * Size: 0x00A0
+ * Extends: UIDataProvider
+ */
+export const UIDataStore = {
+  Tag: 0x0070,  // 0x0070 (0x0008) [FName]
+  RefreshSubscriberNotifies: 0x0078,  // 0x0078 (0x0010) [TArray<FScriptDelegate>]
+  __OnDataStoreValueUpdated__Delegate: 0x0088,  // 0x0088 (0x0018) [FScriptDelegate]
 } as const;
 
 /**
@@ -1033,7 +1227,7 @@ export const WebApplication = {
   WorldInfo: 0x0060,  // 0x0060 (0x0008) [UWorldInfo*]
   WebServer: 0x0068,  // 0x0068 (0x0008) [UWebServer*]
   Path: 0x0070,  // 0x0070 (0x0010) [FString]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1088,7 +1282,7 @@ export const WebRequest = {
   RequestType: 0x00B8,  // 0x00B8 (0x0001) [ERequestType]
   HeaderMap: 0x00C0,  // 0x00C0 (0x0050) [FMap_Mirror]
   VariableMap: 0x0110,  // 0x0110 (0x0050) [FMap_Mirror]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1104,7 +1298,7 @@ export const WebResponse = {
   Connection: 0x00E0,  // 0x00E0 (0x0008) [UWebConnection*]
   bSentText: 0x00E8,  // 0x00E8 (0x0004) [bool : 0x1]
   bSentResponse: 0x00E8,  // 0x00E8 (0x0004) [bool : 0x2]
-  ...Object,
+  ...Object_,
 } as const;
 
 /**
@@ -1127,7 +1321,6 @@ export const WebServer = {
   ConnID: 0x04A4,  // 0x04A4 (0x0004) [int32]
   ...TcpLink,
 } as const;
-
 
 /**
  * ScriptStruct IpDrv.AdHocDelegates.AdHocAccessPointInfo Offsets
@@ -1580,6 +1773,17 @@ export const McpUncompressMessageRequest = {
 } as const;
 
 /**
+ * ScriptStruct Engine.OnlineSubsystem.EmsFile Offsets
+ * Size: 0x0034
+ */
+export const EmsFile = {
+  Hash: 0x0000,  // 0x0000 (0x0010) [FString]
+  DLName: 0x0010,  // 0x0010 (0x0010) [FString]
+  Filename: 0x0020,  // 0x0020 (0x0010) [FString]
+  FileSize: 0x0030,  // 0x0030 (0x0004) [int32]
+} as const;
+
+/**
  * ScriptStruct IpDrv.McpUserCloudFileDownload.McpUserCloudFileInfo Offsets
  * Size: 0x0068
  * Extends: EmsFile
@@ -1743,6 +1947,16 @@ export const SaveSlotRequestState = {
 export const InventoryItemRequestState = {
   ItemID: 0x0028,  // 0x0028 (0x0010) [FString]
   ...SaveSlotRequestState,
+} as const;
+
+/**
+ * ScriptStruct Engine.OnlineSubsystem.TitleFile Offsets
+ * Size: 0x0028
+ */
+export const TitleFile = {
+  Filename: 0x0000,  // 0x0000 (0x0010) [FString]
+  AsyncState: 0x0010,  // 0x0010 (0x0001) [EOnlineEnumerationReadState]
+  Data: 0x0018,  // 0x0018 (0x0010) [TArray<uint8>]
 } as const;
 
 /**
