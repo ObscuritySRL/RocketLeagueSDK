@@ -14,7 +14,7 @@ This SDK provides type definitions and offset constants for use with memory read
 
 ```typescript
 import Memory from 'bun-memory';
-import { GNames, GObjects } from 'rlsdk/types/offsets';
+import { GNames, GObjects } from 'rlsdk/offsets';
 import { Object_ as UObject, FNameEntry } from 'rlsdk/offsets/Core';
 import { CarComponent_Boost_TA } from 'rlsdk/offsets/TAGame';
 
