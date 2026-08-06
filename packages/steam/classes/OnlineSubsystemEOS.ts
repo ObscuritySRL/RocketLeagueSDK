@@ -9,12 +9,6 @@ import type {
   ECommunicationMethod,
   EFeaturePrivilege,
   EFeaturePrivilegeLevel,
-  EGameClipsAvailability,
-  EGameClipsClipStatus,
-  EGameClipsConnection,
-  EGameClipsConnectionStatus,
-  EGameClipsMaskStatus,
-  EGameClipsRecording,
   ELoginStatus,
   ENATType,
   ENetworkNotificationPosition,
@@ -32,7 +26,6 @@ import type {
   FEmsFile,
   FFriendHistoryKey,
   FFriendsQuery,
-  FGameClipsMaskArea,
   FLocalizedStringSetting,
   FOnlineFriend,
   FOnlineFriendMessage,
@@ -81,7 +74,7 @@ export type UAudioDevicesChangedEvent = UObject & {};
 
 /**
  * Class OnlineSubsystemEOS.EOSErrors
- * Size: 0x00F8
+ * Size: 0x00A0
  * Extends: UErrorList
  */
 export type UEOSErrors = UErrorList & {
@@ -89,17 +82,6 @@ export type UEOSErrors = UErrorList & {
   BlockedListNotFound: UErrorType; // 0x0088 (0x0008) [UErrorType*]
   AcceptFriendRequestFailed: UErrorType; // 0x0090 (0x0008) [UErrorType*]
   RejectFriendRequestFailed: UErrorType; // 0x0098 (0x0008) [UErrorType*]
-  GameClipsActivationFailed: UErrorType; // 0x00a0 (0x0008) [UErrorType*]
-  GameClipsCleanAudioFailed: UErrorType; // 0x00a8 (0x0008) [UErrorType*]
-  GameClipsRecorderInitFailed: UErrorType; // 0x00b0 (0x0008) [UErrorType*]
-  GameClipsStartRecordingFailed: UErrorType; // 0x00b8 (0x0008) [UErrorType*]
-  GameClipsMaskAreaInvalid: UErrorType; // 0x00c0 (0x0008) [UErrorType*]
-  GameClipsStatusListenerFailed: UErrorType; // 0x00c8 (0x0008) [UErrorType*]
-  GameClipsUserStatusListenerFailed: UErrorType; // 0x00d0 (0x0008) [UErrorType*]
-  GameClipsNotAvailable: UErrorType; // 0x00d8 (0x0008) [UErrorType*]
-  GameClipsFailedToUpload: UErrorType; // 0x00e0 (0x0008) [UErrorType*]
-  GameClipsCoolingDown: UErrorType; // 0x00e8 (0x0008) [UErrorType*]
-  GameClipsUploadLimitReached: UErrorType; // 0x00f0 (0x0008) [UErrorType*]
 };
 
 /**
@@ -189,50 +171,6 @@ export type UOnlineFriendsInterfaceEOS = UOnlineFriendsInterfaceImpl & {
 // OnlineFriendsInterfaceEOS Functions
 // GetActivePlatformId(LocalUserNum: number, AccountId: FUniqueNetId, PlatformId: FUniqueNetId): boolean
 // RequestLinkedAccounts(LocalUserNum: number, AccountIds: FUniqueNetId[], Callback: FScriptDelegate): boolean
-
-/**
- * Class OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS
- * Size: 0x0110
- * Extends: UObject
- */
-export type UOnlineGameClipsInterfaceEOS = UObject & {
-  GameClipsHandle: FPointer; // 0x0060 (0x0008) [FPointer]
-  __EventAvailabilityChanged__Delegate: FScriptDelegate; // 0x0068 (0x0018) [FScriptDelegate]
-  __EventRecordingChanged__Delegate: FScriptDelegate; // 0x0080 (0x0018) [FScriptDelegate]
-  __EventConnectionStatusChanged__Delegate: FScriptDelegate; // 0x0098 (0x0018) [FScriptDelegate]
-  __EventClipStatusChanged__Delegate: FScriptDelegate; // 0x00b0 (0x0018) [FScriptDelegate]
-  __EventMaskStatusChanged__Delegate: FScriptDelegate; // 0x00c8 (0x0018) [FScriptDelegate]
-  __EventGeneralErrorOccurred__Delegate: FScriptDelegate; // 0x00e0 (0x0018) [FScriptDelegate]
-  __EventClipErrorOccurred__Delegate: FScriptDelegate; // 0x00f8 (0x0018) [FScriptDelegate]
-};
-
-// OnlineGameClipsInterfaceEOS Functions
-// NotifyEventClipErrorOccurred(InCallback: FScriptDelegate): void
-// EventClipErrorOccurred(InEpicAccountId: string, ClipId: number, InErrorType: UErrorType): void
-// NotifyEventGeneralErrorOccurred(InCallback: FScriptDelegate): void
-// EventGeneralErrorOccurred(InErrorType: UErrorType): void
-// NotifyEventMaskStatusChanged(InCallback: FScriptDelegate): void
-// EventMaskStatusChanged(InMaskAreaHandle: bigint, InMaskArea: FGameClipsMaskArea, InNewMaskStatus: EGameClipsMaskStatus): void
-// NotifyEventClipStatusChanged(InCallback: FScriptDelegate): void
-// EventClipStatusChanged(InEpicAccountId: string, InClipId: number, InNewClipStatus: EGameClipsClipStatus): void
-// NotifyEventConnectionStatusChanged(InCallback: FScriptDelegate): void
-// EventConnectionStatusChanged(InEpicAccountId: string, InConnection: EGameClipsConnection, InNewConnectionStatus: EGameClipsConnectionStatus): void
-// NotifyEventRecordingChanged(InCallback: FScriptDelegate): void
-// EventRecordingChanged(InNewRecording: EGameClipsRecording): void
-// NotifyEventAvailabilityChanged(InCallback: FScriptDelegate): void
-// EventAvailabilityChanged(InNewAvailability: EGameClipsAvailability): void
-// IsUploading(): boolean
-// IsRecording(): boolean
-// IsAvailable(): boolean
-// GetTimeUntilUnthrottled(InEpicAccountId: string): number
-// IsClipUploadingLimitReached(InEpicAccountId: string): boolean
-// SetUserMaxClipUploadsPerMinute(InMaxClipUploadsPerMinute: number): void
-// IsAccountLinked(InEpicAccountId: string): boolean
-// CreateClip(InEpicAccountId: string, InClipType: string): number
-// DisableMaskArea(InMaskAreaHandle: bigint): void
-// EnableMaskArea(InMaskArea: FGameClipsMaskArea): bigint
-// StopRecording(): void
-// StartRecording(InClipDuration: bigint): void
 
 /**
  * Class OnlineSubsystemEOS.OnlineGameInterfaceEOS
@@ -652,67 +590,64 @@ export type UOnlineStatsInterfaceEOS = UObject & {
 
 /**
  * Class OnlineSubsystemEOS.OnlineSubsystemEOS
- * Size: 0x0748
+ * Size: 0x0720
  * Extends: UOnlineSubsystemCommonImpl
  */
 export type UOnlineSubsystemEOS = UOnlineSubsystemCommonImpl & {
-  PlayerInterfaceEOS: UOnlinePlayerInterfaceEOS; // 0x03c0 (0x0008) [UOnlinePlayerInterfaceEOS*]
-  GameInterfaceEOS: UOnlineGameInterfaceEOS; // 0x03c8 (0x0008) [UOnlineGameInterfaceEOS*]
-  StatsInterfaceEOS: UOnlineStatsInterfaceEOS; // 0x03d0 (0x0008) [UOnlineStatsInterfaceEOS*]
-  AuthInterfaceEOS: UOnlineAuthInterfaceEOS; // 0x03d8 (0x0008) [UOnlineAuthInterfaceEOS*]
-  PersistentAuthInterfaceEOS: UOnlinePersistentAuthInterfaceEOS; // 0x03e0 (0x0008) [UOnlinePersistentAuthInterfaceEOS*]
-  FriendsInterfaceEOS: UOnlineFriendsInterfaceEOS; // 0x03e8 (0x0008) [UOnlineFriendsInterfaceEOS*]
-  UserCloudFileInterfaceEOS: UOnlineUserCloudFileInterfaceEOS; // 0x03f0 (0x0008) [UOnlineUserCloudFileInterfaceEOS*]
-  VoiceInterfaceEOS: UOnlineVoiceInterfaceEOS; // 0x03f8 (0x0008) [UOnlineVoiceInterfaceEOS*]
-  GameClipsInterfaceEOS: UOnlineGameClipsInterfaceEOS; // 0x0400 (0x0008) [UOnlineGameClipsInterfaceEOS*]
-  AntiCheatInterfaceEOS: UOnlineAntiCheatInterfaceEOS; // 0x0408 (0x0008) [UOnlineAntiCheatInterfaceEOS*]
-  SpeechRecognitionCompleteDelegates: FScriptDelegate[]; // 0x0410 (0x0010) [TArray<FScriptDelegate>]
-  AuthHandle: FPointer; // 0x0420 (0x0008) [FPointer]
-  FriendsHandle: FPointer; // 0x0428 (0x0008) [FPointer]
-  UserInfoHandle: FPointer; // 0x0430 (0x0008) [FPointer]
-  PresenceHandle: FPointer; // 0x0438 (0x0008) [FPointer]
-  ConnectHandle: FPointer; // 0x0440 (0x0008) [FPointer]
-  SessionsHandle: FPointer; // 0x0448 (0x0008) [FPointer]
-  PDSHandle: FPointer; // 0x0450 (0x0008) [FPointer]
-  StatsHandle: FPointer; // 0x0458 (0x0008) [FPointer]
-  AchievementsHandle: FPointer; // 0x0460 (0x0008) [FPointer]
-  EcomHandle: FPointer; // 0x0468 (0x0008) [FPointer]
-  UIHandle: FPointer; // 0x0470 (0x0008) [FPointer]
-  RTCHandle: FPointer; // 0x0478 (0x0008) [FPointer]
-  RTCAudioHandle: FPointer; // 0x0480 (0x0008) [FPointer]
-  RTCAdminHandle: FPointer; // 0x0488 (0x0008) [FPointer]
-  GameClipsHandle: FPointer; // 0x0490 (0x0008) [FPointer]
-  EULATrackingHandle: FPointer; // 0x0498 (0x0008) [FPointer]
-  bLastTickShouldRecordAudioVal: boolean; // 0x04a0 (0x0004) [bool : 0x1]
-  UnlockedDLC: FName[]; // 0x04a8 (0x0010) [TArray<FName>]
-  UnlockedDLCDelegates: FScriptDelegate[]; // 0x04b8 (0x0010) [TArray<FScriptDelegate>]
-  ExternalUIChangeDelegates: FScriptDelegate[]; // 0x04c8 (0x0010) [TArray<FScriptDelegate>]
-  __OnMicroTxnResponse__Delegate: FScriptDelegate; // 0x04d8 (0x0018) [FScriptDelegate]
-  __EventGetAppPriceInfoComplete__Delegate: FScriptDelegate; // 0x04f0 (0x0018) [FScriptDelegate]
-  __OnPlayerTalking__Delegate: FScriptDelegate; // 0x0508 (0x0018) [FScriptDelegate]
-  __OnRecognitionComplete__Delegate: FScriptDelegate; // 0x0520 (0x0018) [FScriptDelegate]
-  __OnReadOnlineStatsComplete__Delegate: FScriptDelegate; // 0x0538 (0x0018) [FScriptDelegate]
-  __OnRegisterHostStatGuidComplete__Delegate: FScriptDelegate; // 0x0550 (0x0018) [FScriptDelegate]
-  __OnFlushOnlineStatsComplete__Delegate: FScriptDelegate; // 0x0568 (0x0018) [FScriptDelegate]
-  __OnLinkStatusChange__Delegate: FScriptDelegate; // 0x0580 (0x0018) [FScriptDelegate]
-  __OnExternalUIChange__Delegate: FScriptDelegate; // 0x0598 (0x0018) [FScriptDelegate]
-  __OnControllerChange__Delegate: FScriptDelegate; // 0x05b0 (0x0018) [FScriptDelegate]
-  __OnConnectionStatusChange__Delegate: FScriptDelegate; // 0x05c8 (0x0018) [FScriptDelegate]
-  __OnStorageDeviceChange__Delegate: FScriptDelegate; // 0x05e0 (0x0018) [FScriptDelegate]
-  __OnCreateOnlineAccountCompleted__Delegate: FScriptDelegate; // 0x05f8 (0x0018) [FScriptDelegate]
-  __OnPlayerTalkingStateChange__Delegate: FScriptDelegate; // 0x0610 (0x0018) [FScriptDelegate]
-  __OnCloseKickPlayerDialog__Delegate: FScriptDelegate; // 0x0628 (0x0018) [FScriptDelegate]
-  __OnCommerceDialogClosed__Delegate: FScriptDelegate; // 0x0640 (0x0018) [FScriptDelegate]
-  __OnErrorDialogClosed__Delegate: FScriptDelegate; // 0x0658 (0x0018) [FScriptDelegate]
-  __OnUnlockedDLCChange__Delegate: FScriptDelegate; // 0x0670 (0x0018) [FScriptDelegate]
-  __OnStorePurchaseCompleteDelegate__Delegate: FScriptDelegate; // 0x0688 (0x0018) [FScriptDelegate]
-  __OnUserOrphaned__Delegate: FScriptDelegate; // 0x06a0 (0x0018) [FScriptDelegate]
-  __OnUserRestored__Delegate: FScriptDelegate; // 0x06b8 (0x0018) [FScriptDelegate]
-  __OnPlayerSigningOut__Delegate: FScriptDelegate; // 0x06d0 (0x0018) [FScriptDelegate]
-  __EventCryptoKeyCreated__Delegate: FScriptDelegate; // 0x06e8 (0x0018) [FScriptDelegate]
-  __EventTextMessageSigned__Delegate: FScriptDelegate; // 0x0700 (0x0018) [FScriptDelegate]
-  __EventTextMessageValidated__Delegate: FScriptDelegate; // 0x0718 (0x0018) [FScriptDelegate]
-  __OnCaptureAvailabilityChange__Delegate: FScriptDelegate; // 0x0730 (0x0018) [FScriptDelegate]
+  PlayerInterfaceEOS: UOnlinePlayerInterfaceEOS; // 0x03b0 (0x0008) [UOnlinePlayerInterfaceEOS*]
+  GameInterfaceEOS: UOnlineGameInterfaceEOS; // 0x03b8 (0x0008) [UOnlineGameInterfaceEOS*]
+  StatsInterfaceEOS: UOnlineStatsInterfaceEOS; // 0x03c0 (0x0008) [UOnlineStatsInterfaceEOS*]
+  AuthInterfaceEOS: UOnlineAuthInterfaceEOS; // 0x03c8 (0x0008) [UOnlineAuthInterfaceEOS*]
+  PersistentAuthInterfaceEOS: UOnlinePersistentAuthInterfaceEOS; // 0x03d0 (0x0008) [UOnlinePersistentAuthInterfaceEOS*]
+  FriendsInterfaceEOS: UOnlineFriendsInterfaceEOS; // 0x03d8 (0x0008) [UOnlineFriendsInterfaceEOS*]
+  UserCloudFileInterfaceEOS: UOnlineUserCloudFileInterfaceEOS; // 0x03e0 (0x0008) [UOnlineUserCloudFileInterfaceEOS*]
+  VoiceInterfaceEOS: UOnlineVoiceInterfaceEOS; // 0x03e8 (0x0008) [UOnlineVoiceInterfaceEOS*]
+  AntiCheatInterfaceEOS: UOnlineAntiCheatInterfaceEOS; // 0x03f0 (0x0008) [UOnlineAntiCheatInterfaceEOS*]
+  SpeechRecognitionCompleteDelegates: FScriptDelegate[]; // 0x03f8 (0x0010) [TArray<FScriptDelegate>]
+  AuthHandle: FPointer; // 0x0408 (0x0008) [FPointer]
+  FriendsHandle: FPointer; // 0x0410 (0x0008) [FPointer]
+  UserInfoHandle: FPointer; // 0x0418 (0x0008) [FPointer]
+  PresenceHandle: FPointer; // 0x0420 (0x0008) [FPointer]
+  ConnectHandle: FPointer; // 0x0428 (0x0008) [FPointer]
+  SessionsHandle: FPointer; // 0x0430 (0x0008) [FPointer]
+  PDSHandle: FPointer; // 0x0438 (0x0008) [FPointer]
+  StatsHandle: FPointer; // 0x0440 (0x0008) [FPointer]
+  AchievementsHandle: FPointer; // 0x0448 (0x0008) [FPointer]
+  EcomHandle: FPointer; // 0x0450 (0x0008) [FPointer]
+  UIHandle: FPointer; // 0x0458 (0x0008) [FPointer]
+  RTCHandle: FPointer; // 0x0460 (0x0008) [FPointer]
+  RTCAudioHandle: FPointer; // 0x0468 (0x0008) [FPointer]
+  RTCAdminHandle: FPointer; // 0x0470 (0x0008) [FPointer]
+  EULATrackingHandle: FPointer; // 0x0478 (0x0008) [FPointer]
+  UnlockedDLC: FName[]; // 0x0480 (0x0010) [TArray<FName>]
+  UnlockedDLCDelegates: FScriptDelegate[]; // 0x0490 (0x0010) [TArray<FScriptDelegate>]
+  ExternalUIChangeDelegates: FScriptDelegate[]; // 0x04a0 (0x0010) [TArray<FScriptDelegate>]
+  __OnMicroTxnResponse__Delegate: FScriptDelegate; // 0x04b0 (0x0018) [FScriptDelegate]
+  __EventGetAppPriceInfoComplete__Delegate: FScriptDelegate; // 0x04c8 (0x0018) [FScriptDelegate]
+  __OnPlayerTalking__Delegate: FScriptDelegate; // 0x04e0 (0x0018) [FScriptDelegate]
+  __OnRecognitionComplete__Delegate: FScriptDelegate; // 0x04f8 (0x0018) [FScriptDelegate]
+  __OnReadOnlineStatsComplete__Delegate: FScriptDelegate; // 0x0510 (0x0018) [FScriptDelegate]
+  __OnRegisterHostStatGuidComplete__Delegate: FScriptDelegate; // 0x0528 (0x0018) [FScriptDelegate]
+  __OnFlushOnlineStatsComplete__Delegate: FScriptDelegate; // 0x0540 (0x0018) [FScriptDelegate]
+  __OnLinkStatusChange__Delegate: FScriptDelegate; // 0x0558 (0x0018) [FScriptDelegate]
+  __OnExternalUIChange__Delegate: FScriptDelegate; // 0x0570 (0x0018) [FScriptDelegate]
+  __OnControllerChange__Delegate: FScriptDelegate; // 0x0588 (0x0018) [FScriptDelegate]
+  __OnConnectionStatusChange__Delegate: FScriptDelegate; // 0x05a0 (0x0018) [FScriptDelegate]
+  __OnStorageDeviceChange__Delegate: FScriptDelegate; // 0x05b8 (0x0018) [FScriptDelegate]
+  __OnCreateOnlineAccountCompleted__Delegate: FScriptDelegate; // 0x05d0 (0x0018) [FScriptDelegate]
+  __OnPlayerTalkingStateChange__Delegate: FScriptDelegate; // 0x05e8 (0x0018) [FScriptDelegate]
+  __OnCloseKickPlayerDialog__Delegate: FScriptDelegate; // 0x0600 (0x0018) [FScriptDelegate]
+  __OnCommerceDialogClosed__Delegate: FScriptDelegate; // 0x0618 (0x0018) [FScriptDelegate]
+  __OnErrorDialogClosed__Delegate: FScriptDelegate; // 0x0630 (0x0018) [FScriptDelegate]
+  __OnUnlockedDLCChange__Delegate: FScriptDelegate; // 0x0648 (0x0018) [FScriptDelegate]
+  __OnStorePurchaseCompleteDelegate__Delegate: FScriptDelegate; // 0x0660 (0x0018) [FScriptDelegate]
+  __OnUserOrphaned__Delegate: FScriptDelegate; // 0x0678 (0x0018) [FScriptDelegate]
+  __OnUserRestored__Delegate: FScriptDelegate; // 0x0690 (0x0018) [FScriptDelegate]
+  __OnPlayerSigningOut__Delegate: FScriptDelegate; // 0x06a8 (0x0018) [FScriptDelegate]
+  __EventCryptoKeyCreated__Delegate: FScriptDelegate; // 0x06c0 (0x0018) [FScriptDelegate]
+  __EventTextMessageSigned__Delegate: FScriptDelegate; // 0x06d8 (0x0018) [FScriptDelegate]
+  __EventTextMessageValidated__Delegate: FScriptDelegate; // 0x06f0 (0x0018) [FScriptDelegate]
+  __OnCaptureAvailabilityChange__Delegate: FScriptDelegate; // 0x0708 (0x0018) [FScriptDelegate]
 };
 
 // OnlineSubsystemEOS Functions
@@ -983,12 +918,3 @@ export type UOnlineVoiceInterfaceEOS = UObject & {
 // EventRemovedFromVoiceRoom(EpicAccountId: string, RoomName: string, RemovedResult: EVoiceResultCode): void
 // EventJoinedVoiceRoom(EpicAccountId: string, RoomName: string, JoinResult: EVoiceResultCode): void
 // EventLeftVoiceRoom(EpicAccountId: string, RoomName: string, LeaveResult: EVoiceResultCode): void
-
-/**
- * Class OnlineSubsystemEOS.VideoRecorderEOS
- * Size: 0x0068
- * Extends: UObject
- */
-export type UVideoRecorderEOS = UObject & {
-  VfTable_FTickableObject: FPointer; // 0x0060 (0x0008) [FPointer]
-};

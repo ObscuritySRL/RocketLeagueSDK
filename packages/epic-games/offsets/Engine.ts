@@ -6997,18 +6997,6 @@ export const FGameClassShortName = {
 } as const;
 
 /**
- * Engine._Types_Engine.GameClipsMaskArea Offsets
- * Size: 0x0018
- */
-export const FGameClipsMaskArea = {
-  MaskId: 0x0000n, // 0x0000 (0x0008) [uint64]
-  TopLeftX: 0x0008n, // 0x0008 (0x0004) [float]
-  TopLeftY: 0x000cn, // 0x000c (0x0004) [float]
-  BottomRightX: 0x0010n, // 0x0010 (0x0004) [float]
-  BottomRightY: 0x0014n, // 0x0014 (0x0004) [float]
-} as const;
-
-/**
  * Engine.GameViewportClient.GamepadInfo Offsets
  * Size: 0x0008
  */
@@ -17348,15 +17336,6 @@ export const OnlineFriendsInterface = {
 } as const;
 
 /**
- * Engine.OnlineGameClipsInterface Offsets
- * Size: 0x0060
- * Extends: Interface
- */
-export const OnlineGameClipsInterface = {
-  ...Interface,
-} as const;
-
-/**
  * Engine.OnlineGameDVRInterface Offsets
  * Size: 0x0060
  * Extends: Interface
@@ -17707,7 +17686,7 @@ export const OnlineStatsWrite_TA = {
 
 /**
  * Engine.OnlineSubsystem Offsets
- * Size: 0x0378
+ * Size: 0x0368
  * Extends: Object_
  */
 export const OnlineSubsystem = {
@@ -17735,35 +17714,34 @@ export const OnlineSubsystem = {
   PurchaseInterface: 0x01a8n, // 0x01a8 (0x0010) [UOnlinePurchaseInterface*]
   LobbyInterface: 0x01b8n, // 0x01b8 (0x0010) [UOnlineLobbyInterface*]
   FriendsInterface: 0x01c8n, // 0x01c8 (0x0010) [UOnlineFriendsInterface*]
-  GameClipsInterface: 0x01d8n, // 0x01d8 (0x0010) [UOnlineGameClipsInterface*]
-  SearchClass: 0x01e8n, // 0x01e8 (0x0008) [UOnlineGameSearch*]
-  bSupportsMultiSignin: 0x01f0n, // 0x01f0 (0x0004) [bool : 0x1]
-  bSupportsMultiVoice: 0x01f0n, // 0x01f0 (0x0004) [bool : 0x2]
-  bShowPrivilegeCheckErrors: 0x01f0n, // 0x01f0 (0x0004) [bool : 0x4]
-  AccountSettings: 0x01f8n, // 0x01f8 (0x0010) [TArray<UPlatformAccountSettings*>]
-  BlockListStatuses: 0x0208n, // 0x0208 (0x0010) [TArray<UPlatformBlockListStatus*>]
-  UnsupportedCorrectiveActionURLs: 0x0218n, // 0x0218 (0x0010) [TArray<UPlatformURL*>]
-  SessionManager: 0x0228n, // 0x0228 (0x0008) [UOnlineSessionManager*]
-  SteamDLC: 0x0230n, // 0x0230 (0x0010) [TArray<FSteamDLCInfo>]
-  PS4DLC: 0x0240n, // 0x0240 (0x0010) [TArray<FPS4DLCInfo>]
-  XboxOneDLC: 0x0250n, // 0x0250 (0x0010) [TArray<FXboxOneDLCInfo>]
-  SwitchDLC: 0x0260n, // 0x0260 (0x0010) [TArray<FSwitchDLCInfo>]
-  EpicDLC: 0x0270n, // 0x0270 (0x0010) [TArray<FEpicDLCInfo>]
-  OnlinePlatformType: 0x0280n, // 0x0280 (0x0001) [OnlinePlatform]
-  CurrentConnectionStatus: 0x0281n, // 0x0281 (0x0001) [EOnlineServerConnectionStatus]
-  OnlineSubsystemNames: 0x0288n, // 0x0288 (0x0010) [TArray<FString>]
-  NamedInterfaces: 0x0298n, // 0x0298 (0x0010) [TArray<FNamedInterface>]
-  NamedInterfaceDefs: 0x02a8n, // 0x02a8 (0x0010) [TArray<FNamedInterfaceDef>]
-  Sessions: 0x02b8n, // 0x02b8 (0x0010) [TArray<FNamedSession>]
-  IniLocPatcherClassName: 0x02c8n, // 0x02c8 (0x0010) [FString]
-  Patcher: 0x02d8n, // 0x02d8 (0x0008) [UIniLocPatcher*]
-  AsyncMinCompletionTime: 0x02e0n, // 0x02e0 (0x0004) [float]
-  __FeaturePrivilegeLevelUpdated__Delegate: 0x02e8n, // 0x02e8 (0x0018) [FScriptDelegate]
-  __EventPlatformAccountSettingsCreated__Delegate: 0x0300n, // 0x0300 (0x0018) [FScriptDelegate]
-  __EventPlatformBlockListStatusCreated__Delegate: 0x0318n, // 0x0318 (0x0018) [FScriptDelegate]
-  __OnDeviceSuspend__Delegate: 0x0330n, // 0x0330 (0x0018) [FScriptDelegate]
-  __OnReadOnlineAvatarComplete__Delegate: 0x0348n, // 0x0348 (0x0018) [FScriptDelegate]
-  __OnSystemUserControllerPairingChanged__Delegate: 0x0360n, // 0x0360 (0x0018) [FScriptDelegate]
+  SearchClass: 0x01d8n, // 0x01d8 (0x0008) [UOnlineGameSearch*]
+  bSupportsMultiSignin: 0x01e0n, // 0x01e0 (0x0004) [bool : 0x1]
+  bSupportsMultiVoice: 0x01e0n, // 0x01e0 (0x0004) [bool : 0x2]
+  bShowPrivilegeCheckErrors: 0x01e0n, // 0x01e0 (0x0004) [bool : 0x4]
+  AccountSettings: 0x01e8n, // 0x01e8 (0x0010) [TArray<UPlatformAccountSettings*>]
+  BlockListStatuses: 0x01f8n, // 0x01f8 (0x0010) [TArray<UPlatformBlockListStatus*>]
+  UnsupportedCorrectiveActionURLs: 0x0208n, // 0x0208 (0x0010) [TArray<UPlatformURL*>]
+  SessionManager: 0x0218n, // 0x0218 (0x0008) [UOnlineSessionManager*]
+  SteamDLC: 0x0220n, // 0x0220 (0x0010) [TArray<FSteamDLCInfo>]
+  PS4DLC: 0x0230n, // 0x0230 (0x0010) [TArray<FPS4DLCInfo>]
+  XboxOneDLC: 0x0240n, // 0x0240 (0x0010) [TArray<FXboxOneDLCInfo>]
+  SwitchDLC: 0x0250n, // 0x0250 (0x0010) [TArray<FSwitchDLCInfo>]
+  EpicDLC: 0x0260n, // 0x0260 (0x0010) [TArray<FEpicDLCInfo>]
+  OnlinePlatformType: 0x0270n, // 0x0270 (0x0001) [OnlinePlatform]
+  CurrentConnectionStatus: 0x0271n, // 0x0271 (0x0001) [EOnlineServerConnectionStatus]
+  OnlineSubsystemNames: 0x0278n, // 0x0278 (0x0010) [TArray<FString>]
+  NamedInterfaces: 0x0288n, // 0x0288 (0x0010) [TArray<FNamedInterface>]
+  NamedInterfaceDefs: 0x0298n, // 0x0298 (0x0010) [TArray<FNamedInterfaceDef>]
+  Sessions: 0x02a8n, // 0x02a8 (0x0010) [TArray<FNamedSession>]
+  IniLocPatcherClassName: 0x02b8n, // 0x02b8 (0x0010) [FString]
+  Patcher: 0x02c8n, // 0x02c8 (0x0008) [UIniLocPatcher*]
+  AsyncMinCompletionTime: 0x02d0n, // 0x02d0 (0x0004) [float]
+  __FeaturePrivilegeLevelUpdated__Delegate: 0x02d8n, // 0x02d8 (0x0018) [FScriptDelegate]
+  __EventPlatformAccountSettingsCreated__Delegate: 0x02f0n, // 0x02f0 (0x0018) [FScriptDelegate]
+  __EventPlatformBlockListStatusCreated__Delegate: 0x0308n, // 0x0308 (0x0018) [FScriptDelegate]
+  __OnDeviceSuspend__Delegate: 0x0320n, // 0x0320 (0x0018) [FScriptDelegate]
+  __OnReadOnlineAvatarComplete__Delegate: 0x0338n, // 0x0338 (0x0018) [FScriptDelegate]
+  __OnSystemUserControllerPairingChanged__Delegate: 0x0350n, // 0x0350 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 

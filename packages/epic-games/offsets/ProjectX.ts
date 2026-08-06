@@ -11996,6 +11996,15 @@ export const PsyNetWordFilter_X = {
 } as const;
 
 /**
+ * ProjectX.QREnconder_X Offsets
+ * Size: 0x0060
+ * Extends: Object_
+ */
+export const QREnconder_X = {
+  ...Object_,
+} as const;
+
+/**
  * ProjectX.QueuedOfflineMessage_X Offsets
  * Size: 0x0060
  * Extends: Interface

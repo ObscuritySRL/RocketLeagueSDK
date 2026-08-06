@@ -904,6 +904,15 @@ export enum EForceFeedbackType {
 }
 
 /**
+ * Enum TAGame._Types_TA.EFreeLookBallCamRotationMode
+ */
+export enum EFreeLookBallCamRotationMode {
+  FreeLookBallCamRotationMode_Traditional = 0,
+  FreeLookBallCamRotationMode_InPlace = 1,
+  FreeLookBallCamRotationMode_MAX = 2,
+}
+
+/**
  * Enum TAGame._FreeplayCommandsTypes_TA.EFreeplayCommand
  */
 export enum EFreeplayCommand {
@@ -1791,6 +1800,15 @@ export enum EReasonType {
 }
 
 /**
+ * Enum TAGame.K3SUserPermissions_TA.ERemediationMethod
+ */
+export enum ERemediationMethod {
+  AGE_VERIFICATION = 0,
+  PARENT_VERIFICATION = 1,
+  ERemediationMethod_MAX = 2,
+}
+
+/**
  * Enum TAGame.Replay_TA.EReplayState
  */
 export enum EReplayState {
@@ -1908,7 +1926,8 @@ export enum ERotationType {
 export enum ESaveExportSchemaVersion {
   SaveExportVersion_Base = 0,
   SaveExportVersion_Products = 1,
-  SaveExportVersion_Max = 2,
+  SaveExportVersion_LoadoutUsage = 2,
+  SaveExportVersion_Max = 3,
 }
 
 /**

@@ -1755,18 +1755,18 @@ export type UOnlinePurchaseInterfaceImpl = UObject & {
 
 /**
  * Class IpDrv.OnlineSubsystemCommonImpl
- * Size: 0x03C0
+ * Size: 0x03B0
  * Extends: UOnlineSubsystem
  */
 export type UOnlineSubsystemCommonImpl = UOnlineSubsystem & {
-  VoiceEngine: FPointer; // 0x0378 (0x0008) [FPointer]
-  MaxLocalTalkers: number; // 0x0380 (0x0004) [int32]
-  MaxRemoteTalkers: number; // 0x0384 (0x0004) [int32]
-  bIsUsingSpeechRecognition: boolean; // 0x0388 (0x0004) [bool : 0x1]
-  GameInterfaceImpl: UOnlineGameInterfaceImpl; // 0x0390 (0x0008) [UOnlineGameInterfaceImpl*]
-  AuthInterfaceImpl: UOnlineAuthInterfaceImpl; // 0x0398 (0x0008) [UOnlineAuthInterfaceImpl*]
-  PurchaseInterfaceImpl: UOnlinePurchaseInterfaceImpl; // 0x03a0 (0x0008) [UOnlinePurchaseInterfaceImpl*]
-  __OnSanitizeStringComplete__Delegate: FScriptDelegate; // 0x03a8 (0x0018) [FScriptDelegate]
+  VoiceEngine: FPointer; // 0x0368 (0x0008) [FPointer]
+  MaxLocalTalkers: number; // 0x0370 (0x0004) [int32]
+  MaxRemoteTalkers: number; // 0x0374 (0x0004) [int32]
+  bIsUsingSpeechRecognition: boolean; // 0x0378 (0x0004) [bool : 0x1]
+  GameInterfaceImpl: UOnlineGameInterfaceImpl; // 0x0380 (0x0008) [UOnlineGameInterfaceImpl*]
+  AuthInterfaceImpl: UOnlineAuthInterfaceImpl; // 0x0388 (0x0008) [UOnlineAuthInterfaceImpl*]
+  PurchaseInterfaceImpl: UOnlinePurchaseInterfaceImpl; // 0x0390 (0x0008) [UOnlinePurchaseInterfaceImpl*]
+  __OnSanitizeStringComplete__Delegate: FScriptDelegate; // 0x0398 (0x0018) [FScriptDelegate]
 };
 
 // OnlineSubsystemCommonImpl Functions

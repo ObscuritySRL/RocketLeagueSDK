@@ -147,6 +147,7 @@ import type {
   EProductQuality,
   EProductTradeRestriction,
   EQuickChatState,
+  ERemediationMethod,
   ERocketPassNotificationRewardType,
   ERocketPassTierLockState,
   ERocketPassTierType,
@@ -729,6 +730,19 @@ export type FBoostMeshOverride = {
  */
 export type FBoostOptionData = {
   LocalizedName: string; // 0x0000 (0x0010) [FString]
+};
+
+/**
+ * ScriptStruct TAGame._StatsAPITypes_TA.BoostPickupEvent
+ * Size: 0x004C
+ */
+export type FBoostPickupEvent = {
+  MatchGUID: string; // 0x0000 (0x0010) [FString]
+  Player: FPlayerDataPacket; // 0x0010 (0x0018) [FPlayerDataPacket]
+  Location: FVector; // 0x0028 (0x000c) [FVector]
+  BoostAmount: number; // 0x0034 (0x0004) [float]
+  BoostType: string; // 0x0038 (0x0010) [FString]
+  bReplay: boolean; // 0x0048 (0x0004) [bool : 0x1]
 };
 
 /**
@@ -1990,29 +2004,6 @@ export type FEngineAudioNativeState_OnGround = FEngineAudioNativeState & {
 };
 
 /**
- * ScriptStruct TAGame.EOSGameClipsMetrics_TA.EOSGameClipsAccountLinkInfo
- * Size: 0x0028
- */
-export type FEOSGameClipsAccountLinkInfo = {
-  EpicAccountId: string; // 0x0000 (0x0010) [FString]
-  bLinkedToPostparty: boolean; // 0x0010 (0x0004) [bool : 0x1]
-  Errors: FName[]; // 0x0018 (0x0010) [TArray<FName>]
-};
-
-/**
- * ScriptStruct TAGame.EOSGameClipsMetrics_TA.EOSGameClipsClipInfo
- * Size: 0x0040
- */
-export type FEOSGameClipsClipInfo = {
-  EpicAccountId: string; // 0x0000 (0x0010) [FString]
-  ClipId: number; // 0x0010 (0x0004) [int32]
-  ClipType: string; // 0x0018 (0x0010) [FString]
-  ClipUploadStartTimestamp: number; // 0x0028 (0x0004) [float]
-  ClipUploadEndTimestamp: number; // 0x002c (0x0004) [float]
-  Errors: FName[]; // 0x0030 (0x0010) [TArray<FName>]
-};
-
-/**
  * ScriptStruct TAGame.EOSUserPermissions_TA.EOSPermissionsResponse
  * Size: 0x0138
  */
@@ -2097,6 +2088,7 @@ export type FESportEventData = {
   ButtonDescription: string; // 0x00c0 (0x0010) [FString]
   bShowLiveNow: boolean; // 0x00d0 (0x0004) [bool : 0x1]
   bCanNavigateToEventURL: boolean; // 0x00d0 (0x0004) [bool : 0x2]
+  bWorldCup: boolean; // 0x00d0 (0x0004) [bool : 0x4]
 };
 
 /**
@@ -2444,13 +2436,14 @@ export type FGameModeData = {
  */
 export type FGameUpdateState = {
   Teams: FTeamUpdateState[]; // 0x0000 (0x0010) [TArray<FTeamUpdateState>]
-  TimeSeconds: number; // 0x0010 (0x0004) [int32]
-  bOverTime: boolean; // 0x0014 (0x0004) [bool : 0x1]
-  frame: number; // 0x0018 (0x0004) [int32]
-  Elapsed: number; // 0x001c (0x0004) [float]
-  Ball: FBallUpdateState; // 0x0020 (0x0008) [FBallUpdateState]
-  bReplay: boolean; // 0x0028 (0x0004) [bool : 0x1]
-  bHasWinner: boolean; // 0x0028 (0x0004) [bool : 0x2]
+  PlaylistId: number; // 0x0010 (0x0004) [int32]
+  TimeSeconds: number; // 0x0014 (0x0004) [int32]
+  bOverTime: boolean; // 0x0018 (0x0004) [bool : 0x1]
+  frame: number; // 0x001c (0x0004) [int32]
+  Elapsed: number; // 0x0020 (0x0004) [float]
+  Ball: FBallUpdateState; // 0x0024 (0x0008) [FBallUpdateState]
+  bReplay: boolean; // 0x002c (0x0004) [bool : 0x1]
+  bHasWinner: boolean; // 0x002c (0x0004) [bool : 0x2]
   Winner: string; // 0x0030 (0x0010) [FString]
   Arena: string; // 0x0040 (0x0010) [FString]
   bHasTarget: boolean; // 0x0050 (0x0004) [bool : 0x1]
@@ -3154,7 +3147,7 @@ export type FJiggleCarData = {
 export type FJsonMetadata = {
   UserId: FUniqueNetId; // 0x0000 (0x0048) [FUniqueNetId]
   platformKey: string; // 0x0048 (0x0010) [FString]
-  schemaVersion: number; // 0x0058 (0x0004) [int32]
+  SchemaVersion: number; // 0x0058 (0x0004) [int32]
   clientVersion: number; // 0x005c (0x0004) [int32]
   timestampUtc: bigint; // 0x0060 (0x0008) [uint64]
   settingsVersion: number; // 0x0068 (0x0004) [int32]
@@ -3233,6 +3226,15 @@ export type FK3SOptions = {
 };
 
 /**
+ * ScriptStruct TAGame.K3SUserPermissions_TA.K3SRemediation
+ * Size: 0x0018
+ */
+export type FK3SRemediation = {
+  remediationMethod: ERemediationMethod; // 0x0000 (0x0001) [ERemediationMethod]
+  remediationUrl: string; // 0x0008 (0x0010) [FString]
+};
+
+/**
  * ScriptStruct TAGame.K3SUserPermissions_TA.K3SResponse
  * Size: 0x0010
  */
@@ -3257,6 +3259,7 @@ export type FK3SSetting = {
   ParentLimitFromOrgLevel: boolean; // 0x01e8 (0x0004) [bool : 0x1]
   PreferredValueFromOrgLevel: boolean; // 0x01e8 (0x0004) [bool : 0x2]
   IsOrgLevel: boolean; // 0x01e8 (0x0004) [bool : 0x4]
+  Allowed: boolean; // 0x01e8 (0x0004) [bool : 0x8]
 };
 
 /**
@@ -3334,6 +3337,14 @@ export type FLoadObjectResult = {
   ObjectData: UObject; // 0x0010 (0x0008) [UObject*]
   Error: UError; // 0x0018 (0x0008) [UError*]
   Code: EBasicLoadResult; // 0x0020 (0x0001) [EBasicLoadResult]
+};
+
+/**
+ * ScriptStruct TAGame._Types_TA.LoadoutAssetNames
+ * Size: 0x0010
+ */
+export type FLoadoutAssetNames = {
+  Assets: string[]; // 0x0000 (0x0010) [TArray<FString>]
 };
 
 /**
@@ -4564,6 +4575,16 @@ export type FPlayerActorIDPair = {
 };
 
 /**
+ * ScriptStruct TAGame._StatsAPITypes_TA.PlayerChangeEvent
+ * Size: 0x0030
+ */
+export type FPlayerChangeEvent = {
+  MatchGUID: string; // 0x0000 (0x0010) [FString]
+  PlayerName: string; // 0x0010 (0x0010) [FString]
+  PrimaryID: string; // 0x0020 (0x0010) [FString]
+};
+
+/**
  * ScriptStruct TAGame._Types_TA.PlayerChatMessage
  * Size: 0x0068
  */
@@ -4635,7 +4656,7 @@ export type FPlayerMessageInfo = {
  * Size: 0x0010
  */
 export type FPlayerPickupData = {
-  PickupClass: USpecialPickup_TA; // 0x0000 (0x0008) [USpecialPickup_TA*]
+  PickupClass: FName; // 0x0000 (0x0008) [FName]
   TimeTillItem: number; // 0x0008 (0x0004) [int32]
   MaxTimeTillItem: number; // 0x000c (0x0004) [int32]
 };
@@ -4684,7 +4705,7 @@ export type FPlayerStats = {
 
 /**
  * ScriptStruct TAGame._StatsAPITypes_TA.PlayerUpdateState
- * Size: 0x0078
+ * Size: 0x0098
  */
 export type FPlayerUpdateState = {
   Name: string; // 0x0000 (0x0010) [FString]
@@ -4699,16 +4720,18 @@ export type FPlayerUpdateState = {
   Touches: number; // 0x003c (0x0004) [int32]
   CarTouches: number; // 0x0040 (0x0004) [int32]
   Demos: number; // 0x0044 (0x0004) [int32]
-  bOnWall: boolean; // 0x0048 (0x0004) [bool : 0x1]
-  bOnGround: boolean; // 0x0048 (0x0004) [bool : 0x2]
-  bPowersliding: boolean; // 0x0048 (0x0004) [bool : 0x4]
-  bDemolished: boolean; // 0x0048 (0x0004) [bool : 0x8]
-  Attacker: FPlayerDataPacket; // 0x0050 (0x0018) [FPlayerDataPacket]
-  bHasCar: boolean; // 0x0068 (0x0004) [bool : 0x1]
-  Speed: number; // 0x006c (0x0004) [float]
-  Boost: number; // 0x0070 (0x0004) [int32]
-  bBoosting: boolean; // 0x0074 (0x0004) [bool : 0x1]
-  bSupersonic: boolean; // 0x0074 (0x0004) [bool : 0x2]
+  Loadout: string[]; // 0x0048 (0x0010) [TArray<FString>]
+  bOnWall: boolean; // 0x0058 (0x0004) [bool : 0x1]
+  bOnGround: boolean; // 0x0058 (0x0004) [bool : 0x2]
+  bPowersliding: boolean; // 0x0058 (0x0004) [bool : 0x4]
+  bDemolished: boolean; // 0x0058 (0x0004) [bool : 0x8]
+  Attacker: FPlayerDataPacket; // 0x0060 (0x0018) [FPlayerDataPacket]
+  bHasCar: boolean; // 0x0078 (0x0004) [bool : 0x1]
+  Speed: number; // 0x007c (0x0004) [float]
+  Boost: number; // 0x0080 (0x0004) [int32]
+  bBoosting: boolean; // 0x0084 (0x0004) [bool : 0x1]
+  bSupersonic: boolean; // 0x0084 (0x0004) [bool : 0x2]
+  PickupClass: string; // 0x0088 (0x0010) [FString]
 };
 
 /**
@@ -4772,6 +4795,17 @@ export type FPlaylistTrack = {
  */
 export type FPlaylistTitleTrack = FPlaylistTrack & {
   StartupLogoDisplayDurationMS: number; // 0x0010 (0x0004) [float]
+};
+
+/**
+ * ScriptStruct TAGame.EOSPermissions_TA.PolicyDecisionAggregation
+ * Size: 0x0030
+ */
+export type FPolicyDecisionAggregation = {
+  bDecisionPresent: boolean; // 0x0000 (0x0004) [bool : 0x1]
+  bDecisionDenied: boolean; // 0x0000 (0x0004) [bool : 0x2]
+  DenyReason: string; // 0x0008 (0x0010) [FString]
+  PrimaryRemediation: FK3SRemediation; // 0x0018 (0x0018) [FK3SRemediation]
 };
 
 /**
@@ -5130,8 +5164,7 @@ export type FProfileCameraSettings = {
   SwivelSpeed: number; // 0x0014 (0x0004) [float]
   TransitionSpeed: number; // 0x0018 (0x0004) [float]
   bUnconstrainRotation: boolean; // 0x001c (0x0004) [bool : 0x1]
-  bAutoRecenter: boolean; // 0x001c (0x0004) [bool : 0x2]
-  bFreeLookSmoothing: boolean; // 0x001c (0x0004) [bool : 0x4]
+  bFreeLookSmoothing: boolean; // 0x001c (0x0004) [bool : 0x2]
 };
 
 /**
@@ -5451,6 +5484,15 @@ export type FReplayScoreData = {
   Speed: number; // 0x0010 (0x0004) [float]
   Time: number; // 0x0014 (0x0004) [float]
   ScoreTeam: number; // 0x0018 (0x0001) [uint8]
+};
+
+/**
+ * ScriptStruct TAGame._StatsAPITypes_TA.ReplayStartedEvent
+ * Size: 0x0020
+ */
+export type FReplayStartedEvent = {
+  Filename: string; // 0x0000 (0x0010) [FString]
+  Date: string; // 0x0010 (0x0010) [FString]
 };
 
 /**

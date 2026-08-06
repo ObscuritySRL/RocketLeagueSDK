@@ -73,7 +73,7 @@ export type UAkAmbientSoundActor = UKeypoint & {
 
 /**
  * Class AkAudio.AkAudioDevice
- * Size: 0x01B0
+ * Size: 0x01A8
  * Extends: USubsystem
  */
 export type UAkAudioDevice = USubsystem & {

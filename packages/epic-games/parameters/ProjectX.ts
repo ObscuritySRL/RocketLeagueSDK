@@ -15730,18 +15730,18 @@ export type OnlineGamePopulation_X_HandleGotAllPopulationPlaylistsRPC_Params = {
 };
 
 /**
- * Function ProjectX.OnlineGamePrivateMatch_X.__OnlineGamePrivateMatch_X__GetPreferredSubRegions_0x1
+ * Function ProjectX.OnlineGamePrivateMatch_X.Cancel
  */
-export type OnlineGamePrivateMatch_X___OnlineGamePrivateMatch_X__GetPreferredSubRegions_0x1_Params = {
+export type OnlineGamePrivateMatch_X_Cancel_Params = {};
+
+/**
+ * Function ProjectX.OnlineGamePrivateMatch_X.CompareSubRegionsByPingPreference
+ */
+export type OnlineGamePrivateMatch_X_CompareSubRegionsByPingPreference_Params = {
   A: URegionPing_X; // 0x0000 (0x0008) [URegionPing_X*] [CPF_Parm]
   B: URegionPing_X; // 0x0008 (0x0008) [URegionPing_X*] [CPF_Parm]
   ReturnValue: number; // 0x0010 (0x0004) [int32] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
 };
-
-/**
- * Function ProjectX.OnlineGamePrivateMatch_X.Cancel
- */
-export type OnlineGamePrivateMatch_X_Cancel_Params = {};
 
 /**
  * Function ProjectX.OnlineGamePrivateMatch_X.EventCancelPrivateMatch
@@ -25998,6 +25998,16 @@ export type PsyNetWordFilter_X_WordFilterSanitizeString_Params = {
 };
 
 /**
+ * Function ProjectX.QREnconder_X.BuildForURL
+ */
+export type QREnconder_X_BuildForURL_Params = {
+  URL: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
+  Owner: UObject; // 0x0010 (0x0008) [UObject*] [CPF_Parm | CPF_OptionalParm]
+  ScaleFactor: number; // 0x0018 (0x0004) [int32] [CPF_Parm | CPF_OptionalParm]
+  ReturnValue: UTexture; // 0x0020 (0x0008) [UTexture*] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
  * Function ProjectX.QueuedOfflineMessage_X.GetOfflineTimeToLiveSeconds
  */
 export type QueuedOfflineMessage_X_GetOfflineTimeToLiveSeconds_Params = {
@@ -27422,7 +27432,7 @@ export type RPC_LoginAuthPlayer_X_SetConsoleType_Params = {
  * Function ProjectX.RPC_LoginAuthPlayer_X.SetEpicAccountId
  */
 export type RPC_LoginAuthPlayer_X_SetEpicAccountId_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
+  InEpicAccountID: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
   ReturnValue: URPC_LoginAuthPlayer_X; // 0x0010 (0x0008) [URPC_LoginAuthPlayer_X*] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
 };
 

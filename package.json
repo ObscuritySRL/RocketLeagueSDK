@@ -16,6 +16,8 @@
     "typecheck": "bun run --filter '@rlsdk/*' typecheck",
     "format": "biome format --write .",
     "check": "biome check .",
+    "sync:epic-games": "bun run scripts/sync-sdk.ts epic-games",
+    "sync:steam": "bun run scripts/sync-sdk.ts steam",
     "publish:epic-games": "cd packages/epic-games && bun publish",
     "publish:steam": "cd packages/steam && bun publish"
   },

@@ -46,7 +46,6 @@ import type {
   UNetConnection,
   UOnlineAuthInterface,
   UOnlineCommunityContentInterface,
-  UOnlineGameClipsInterface,
   UOnlineGameSettings,
   UOnlinePlayerInterface,
   UOnlineRecentPlayersList,
@@ -383,9 +382,6 @@ import type {
   UDemolishedCar_TA,
   UDynamicMapEventsConfig_TA,
   UDynamicSpawnPointMesh_TA,
-  UEOSGameClipsConfig_TA,
-  UEOSGameClipsManager_TA,
-  UEOSGameClipsSettingsSave_TA,
   UEOSMtxPurchaseEvent_X,
   UEOSOnlineStorageUploader_TA,
   UEOSPermissions_TA,
@@ -524,6 +520,7 @@ import type {
   UGFxData_Vote_TA,
   UGFxData_WalletCurrency_TA,
   UGFxEngine_TA,
+  UGFxHUD_Replay_TA,
   UGFxHUD_Spectator_TA,
   UGFxHUD_TA,
   UGFxModal_Ban_TA,
@@ -593,6 +590,7 @@ import type {
   UItemShopNotification_TA,
   UJoinGameConnectionChecker_TA,
   UJsonSaveObject_TA,
+  UK3SUserPermissions_TA,
   UKeepUpIndicator_TA,
   UKeyRegistrationResponse,
   ULanServerMetaData_TA,
@@ -690,6 +688,7 @@ import type {
   UOnlineProductStore_TA,
   UOnlineProduct_TA,
   UOnlineSaveRecord_TA,
+  UOnlineSettingsMetadata_TA,
   UOnlineStorageSyncManager_TA,
   UOutOfWorldVolume_TA,
   UPRI_KnockOut_TA,
@@ -1050,6 +1049,7 @@ import type {
   USkeletalMeshComponent_TA,
   USkillDecayFeature_TA,
   USkillDecayedEvent_TA,
+  USocketCommand_TA,
   USonyPricingInfo_TA,
   USoundSettingsControllerSave_TA,
   USoundSettingsSave_TA,
@@ -1213,7 +1213,6 @@ import type {
   U__CrumbTrails_TA__SetupActivationCondition_0x1,
   U__CrumbTrails_TA__SetupCompletionCondition_0x1,
   U__CurrencyProductSet_TA__GetCurrencyIndexFromHashID_0x1,
-  U__EOSGameClipsMetrics_TA__RecordClipInfo_0x1,
   U__EOSVoiceManager_TA__ClearRoomCredentialsForPlayer_0x1,
   U__EOSVoiceManager_TA__GetPlayerPermissionError_0x1,
   U__EOSVoiceManager_TA__GetPlayerVoiceRoomByEpicId_0x1,
@@ -1401,6 +1400,7 @@ import type {
   U__GFxData_TradeInFilter_TA__GetPossibleTradeInData_0x1,
   U__GFxData_TradeInFilter_TA__UpdatePossibleTradeInQuantities_0x1,
   U__GFxData_Training_TA__HandlePrimaryGameplaySettingsSave_0x1,
+  U__GFxData_Training_TA__PlayFreeplayMap_0x1,
   U__GFxData_Training_TA__SetTrainingEditorGameEvent_0x2,
   U__GFxData_Wallet_TA__GetCurrencyRow_0x1,
   U__GFxData_WorldCupManager_TA__HandleGetWorldCupEventDataReceived_0x1,
@@ -1429,6 +1429,7 @@ import type {
   U__GameEvent_Soccar_TA__GetClubIDsRecordingCandidates_0x1,
   U__GameEvent_Soccar_TA__GetGoalByTeamIndex_0x1,
   U__GameEvent_Soccar_TA__GetIsSeriesComplete_0x1,
+  U__GameEvent_Soccar_TA__GetSpawnOrientation_0x2,
   U__GameEvent_Soccar_TA__HandleGetPlayerCountriesDataReceived_0x1,
   U__GameEvent_Soccar_TA__HandlePlayerSkillUpdated_0x1,
   U__GameEvent_Soccar_TA__InitClubMatch_0x2,
@@ -1575,6 +1576,7 @@ import type {
   U__ShopsService_PsyNet_TA__GetShopCatalogue_0x1,
   U__ShopsService_PsyNet_TA__GetShopCatalogues_0x1,
   U__ShopsService_PsyNet_TA__Purchase_0x1,
+  U__SocketCommandManager_TA__ProcessCommand_0x1,
   U__SpecialEvent_TA__SyncImageForIndex_0x1,
   U__StatFactory_TA__OnGoalScored_0x1,
   U__StatusObserver_Products_TA__UpdateTriggersBySlot_0x1,
@@ -1669,12 +1671,6 @@ import type {
   EFeaturePrivilege,
   EFeaturePrivilegeLevel,
   EForceMode,
-  EGameClipsAvailability,
-  EGameClipsClipStatus,
-  EGameClipsConnection,
-  EGameClipsConnectionStatus,
-  EGameClipsMaskStatus,
-  EGameClipsRecording,
   EHighContrastRenderingID,
   EInputPlatformType,
   ELobbyKickReason,
@@ -1859,7 +1855,6 @@ import type {
   FEmsFile,
   FFontParameterValue,
   FFriendHistoryKey,
-  FGameClipsMaskArea,
   FKeyBind,
   FKeyValuePair,
   FLinkedAccountData,
@@ -1961,6 +1956,7 @@ import type {
   FBoostMeshMaterialOverride,
   FBoostMeshOverride,
   FBoostOptionData,
+  FBoostPickupEvent,
   FBotLoadout,
   FBracketRequest,
   FBreakoutDamageState,
@@ -2030,8 +2026,6 @@ import type {
   FDemolishInvulnerability,
   FDepartmentData,
   FDragonEntry,
-  FEOSGameClipsAccountLinkInfo,
-  FEOSGameClipsClipInfo,
   FEOSShopPurchaseEventProduct,
   FESportEventData,
   FEditorIntroCar,
@@ -2209,6 +2203,7 @@ import type {
   FPlatformMetric,
   FPlatformMetricData,
   FPlatformParam,
+  FPlayerChangeEvent,
   FPlayerChatMessage,
   FPlayerDataPacket,
   FPlayerGameID,
@@ -2261,6 +2256,7 @@ import type {
   FReplayHeaderLoadResult,
   FReplayPlayerStats,
   FReplayScoreData,
+  FReplayStartedEvent,
   FReportedPlayerInfo,
   FResimMetricData,
   FRocketPassBundleInfo,
@@ -2984,13 +2980,6 @@ export type __EngagementEventsConfig_TA__GetNextEventTime_0x1___EngagementEvents
 };
 
 /**
- * Function TAGame.__EOSGameClipsMetrics_TA__RecordClipInfo_0x1.__EOSGameClipsMetrics_TA__RecordClipInfo_0x1
- */
-export type __EOSGameClipsMetrics_TA__RecordClipInfo_0x1___EOSGameClipsMetrics_TA__RecordClipInfo_0x1_Params = {
-  ErrorName: FName; // 0x0000 (0x0008) [FName] [CPF_Parm]
-};
-
-/**
  * Function TAGame.__EOSVoiceManager_TA__ClearRoomCredentialsForPlayer_0x1.__EOSVoiceManager_TA__ClearRoomCredentialsForPlayer_0x1
  */
 export type __EOSVoiceManager_TA__ClearRoomCredentialsForPlayer_0x1___EOSVoiceManager_TA__ClearRoomCredentialsForPlayer_0x1_Params = {
@@ -3345,6 +3334,14 @@ export type __GameEvent_Soccar_TA__GetIsSeriesComplete_0x1___GameEvent_Soccar_TA
  */
 export type __GameEvent_Soccar_TA__GetShouldStart_0x1___GameEvent_Soccar_TA__GetShouldStart_0x1_Params = {
   PRI: UPRI_TA; // 0x0000 (0x0008) [UPRI_TA*] [CPF_Parm]
+};
+
+/**
+ * Function TAGame.__GameEvent_Soccar_TA__GetSpawnOrientation_0x2.__GameEvent_Soccar_TA__GetSpawnOrientation_0x2
+ */
+export type __GameEvent_Soccar_TA__GetSpawnOrientation_0x2___GameEvent_Soccar_TA__GetSpawnOrientation_0x2_Params = {
+  P: UActor; // 0x0000 (0x0008) [UActor*] [CPF_Parm]
+  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
 };
 
 /**
@@ -5185,6 +5182,14 @@ export type __GFxData_TradeInFilter_TA__UpdatePossibleTradeInQuantities_0x1___GF
 export type __GFxData_Training_TA__HandlePrimaryGameplaySettingsSave_0x1___GFxData_Training_TA__HandlePrimaryGameplaySettingsSave_0x1_Params = {};
 
 /**
+ * Function TAGame.__GFxData_Training_TA__PlayFreeplayMap_0x1.__GFxData_Training_TA__PlayFreeplayMap_0x1
+ */
+export type __GFxData_Training_TA__PlayFreeplayMap_0x1___GFxData_Training_TA__PlayFreeplayMap_0x1_Params = {
+  P: UMapData_TA; // 0x0000 (0x0008) [UMapData_TA*] [CPF_Parm]
+  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
  * Function TAGame.__GFxData_Training_TA__SetTrainingEditorGameEvent_0x2.__GFxData_Training_TA__SetTrainingEditorGameEvent_0x2
  */
 export type __GFxData_Training_TA__SetTrainingEditorGameEvent_0x2___GFxData_Training_TA__SetTrainingEditorGameEvent_0x2_Params = {};
@@ -5633,6 +5638,14 @@ export type __OnlineGameDLC_TA__GetDlcIdFromName_0x1___OnlineGameDLC_TA__GetDlcI
  * Function TAGame.__OnlineGameParty_TA__AddPlayerPartyServiceLobbyMessage_0x1.__OnlineGameParty_TA__AddPlayerPartyServiceLobbyMessage_0x1
  */
 export type __OnlineGameParty_TA__AddPlayerPartyServiceLobbyMessage_0x1___OnlineGameParty_TA__AddPlayerPartyServiceLobbyMessage_0x1_Params = {
+  P: UPlayerReplicationInfo; // 0x0000 (0x0008) [UPlayerReplicationInfo*] [CPF_Parm]
+  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
+ * Function TAGame.__OnlineGameParty_TA__AddPlayerPartyServiceLobbyMessage_0x1.__OnlineGameParty_TA__AddPlayerPartyServiceLobbyMessage_0x2
+ */
+export type __OnlineGameParty_TA__AddPlayerPartyServiceLobbyMessage_0x1___OnlineGameParty_TA__AddPlayerPartyServiceLobbyMessage_0x2_Params = {
   P: UPersona_TA; // 0x0000 (0x0008) [UPersona_TA*] [CPF_Parm]
 };
 
@@ -6525,6 +6538,14 @@ export type __ShopsService_PsyNet_TA__Purchase_0x1___ShopsService_PsyNet_TA__Pur
  */
 export type __ShopsService_PsyNet_TA__Purchase_0x1___ShopsService_PsyNet_TA__Purchase_0x2_Params = {
   RPC: URPC_X; // 0x0000 (0x0008) [URPC_X*] [CPF_Parm]
+};
+
+/**
+ * Function TAGame.__SocketCommandManager_TA__ProcessCommand_0x1.__SocketCommandManager_TA__ProcessCommand_0x1
+ */
+export type __SocketCommandManager_TA__ProcessCommand_0x1___SocketCommandManager_TA__ProcessCommand_0x1_Params = {
+  P: USocketCommand_TA; // 0x0000 (0x0008) [USocketCommand_TA*] [CPF_Parm]
+  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
 };
 
 /**
@@ -13088,6 +13109,14 @@ export type Ball_Spawner_TA_HandleBallAdded_Params = {
 };
 
 /**
+ * Function TAGame.Ball_Spawner_TA.HandleCarAdded
+ */
+export type Ball_Spawner_TA_HandleCarAdded_Params = {
+  Car: UCar_TA; // 0x0000 (0x0008) [UCar_TA*] [CPF_Parm]
+  NewFXActor: UFXActor_TA; // 0x0008 (0x0008) [UFXActor_TA*]
+};
+
+/**
  * Function TAGame.Ball_Spawner_TA.HandleGameStateChanged
  */
 export type Ball_Spawner_TA_HandleGameStateChanged_Params = {
@@ -13138,6 +13167,11 @@ export type Ball_Spawner_TA_SpawnBall_Params = {};
 export type Ball_Spawner_TA_SpawnFX_Params = {
   GameEvent: UGameEvent_Soccar_TA; // 0x0000 (0x0008) [UGameEvent_Soccar_TA*] [CPF_Parm]
 };
+
+/**
+ * Function TAGame.Ball_Spawner_TA.SubscribeToCars
+ */
+export type Ball_Spawner_TA_SubscribeToCars_Params = {};
 
 /**
  * Function TAGame.Ball_TA.__bItemFreeze__ChangeNotifyFunc
@@ -13320,6 +13354,16 @@ export type Ball_TA_GetActiveTeamColor_Params = {
 export type Ball_TA_GetAdditionalCarBounceScaleZ_Params = {
   Car: UCar_TA; // 0x0000 (0x0008) [UCar_TA*] [CPF_Parm]
   ReturnValue: number; // 0x0008 (0x0004) [float] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
+ * Function TAGame.Ball_TA.GetAttackerPRI
+ */
+export type Ball_TA_GetAttackerPRI_Params = {
+  HitCar: UCar_TA; // 0x0000 (0x0008) [UCar_TA*] [CPF_Parm]
+  OldTeamNum: number; // 0x0008 (0x0004) [int32] [CPF_Parm]
+  ReturnValue: UPRI_TA; // 0x0010 (0x0008) [UPRI_TA*] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  Index: number; // 0x0018 (0x0004) [int32]
 };
 
 /**
@@ -13571,7 +13615,6 @@ export type Ball_TA_RecordCarHit_Params = {
   HitType: EBallHitType; // 0x0020 (0x0001) [EBallHitType] [CPF_Parm | CPF_OptionalParm]
   OldTeamNum: number; // 0x0024 (0x0004) [int32]
   AttackerPRI: UPRI_TA; // 0x0028 (0x0008) [UPRI_TA*]
-  Index: number; // 0x0030 (0x0004) [int32]
 };
 
 /**
@@ -13716,6 +13759,15 @@ export type Ball_TA_SetWarnEffect_Params = {
 export type Ball_TA_SetWorldBounceScale_Params = {
   NewScale: number; // 0x0000 (0x0004) [float] [CPF_Parm]
   PhysMaterial: UPhysicalMaterial; // 0x0008 (0x0008) [UPhysicalMaterial*]
+};
+
+/**
+ * Function TAGame.Ball_TA.ShouldDemolishVehicle
+ */
+export type Ball_TA_ShouldDemolishVehicle_Params = {
+  HitCar: UCar_TA; // 0x0000 (0x0008) [UCar_TA*] [CPF_Parm]
+  HitType: EBallHitType; // 0x0008 (0x0001) [EBallHitType] [CPF_Parm]
+  ReturnValue: boolean; // 0x000c (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
 };
 
 /**
@@ -17187,6 +17239,13 @@ export type CameraState_Car_TA_CalculateDesiredAirRotation_Params = {
 export type CameraState_Car_TA_EndCameraState_Params = {};
 
 /**
+ * Function TAGame.CameraState_Car_TA.GetCarFacingRotation
+ */
+export type CameraState_Car_TA_GetCarFacingRotation_Params = {
+  ReturnValue: FRotator; // 0x0000 (0x000c) [FRotator] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
  * Function TAGame.CameraState_Car_TA.GetEndBlendParams
  */
 export type CameraState_Car_TA_GetEndBlendParams_Params = {
@@ -17210,6 +17269,11 @@ export type CameraState_Car_TA_GetNewFOVParameters_Params = {
 export type CameraState_Car_TA_OverrideBlendParams_Params = {
   Params: FViewTargetTransitionParams; // 0x0000 (0x0010) [FViewTargetTransitionParams] [CPF_Parm | CPF_OutParm]
 };
+
+/**
+ * Function TAGame.CameraState_Car_TA.ResetInterpState
+ */
+export type CameraState_Car_TA_ResetInterpState_Params = {};
 
 /**
  * Function TAGame.CameraState_Car_TA.ResetView
@@ -17854,6 +17918,21 @@ export type CameraState_DemoSpawnSelect_TA_UpdatePOV_Params = {
 };
 
 /**
+ * Function TAGame.CameraState_Director_TA.AnyCarMoving
+ */
+export type CameraState_Director_TA_AnyCarMoving_Params = {
+  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  CData: FCarData; // 0x0008 (0x0058) [FCarData]
+};
+
+/**
+ * Function TAGame.CameraState_Director_TA.AnyCars
+ */
+export type CameraState_Director_TA_AnyCars_Params = {
+  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
  * Function TAGame.CameraState_Director_TA.GetProxyCameraState
  */
 export type CameraState_Director_TA_GetProxyCameraState_Params = {
@@ -17900,6 +17979,7 @@ export type CameraState_Director_TA_IsDisabled_Params = {
  */
 export type CameraState_Director_TA_SetSelector_Params = {
   InSelector: UCameraStateSelector_TA; // 0x0000 (0x0008) [UCameraStateSelector_TA*] [CPF_Parm]
+  bSkipInitial: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OptionalParm]
 };
 
 /**
@@ -18658,6 +18738,23 @@ export type CameraState_PodiumSpotlight_TA_GetFocusCenter_Params = {
 };
 
 /**
+ * Function TAGame.CameraState_PodiumSpotlight_TA.GetRotation
+ */
+export type CameraState_PodiumSpotlight_TA_GetRotation_Params = {
+  PitchDeg: number; // 0x0000 (0x0004) [float] [CPF_Parm]
+  YawDeg: number; // 0x0004 (0x0004) [float] [CPF_Parm]
+  ReturnValue: FRotator; // 0x0008 (0x000c) [FRotator] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  StructInitializer_0x1: FRotator; // 0x0014 (0x000c) [FRotator] [CPF_OutParm]
+};
+
+/**
+ * Function TAGame.CameraState_PodiumSpotlight_TA.GetSoccarGame
+ */
+export type CameraState_PodiumSpotlight_TA_GetSoccarGame_Params = {
+  ReturnValue: UGameEvent_Soccar_TA; // 0x0000 (0x0008) [UGameEvent_Soccar_TA*] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
  * Function TAGame.CameraState_PodiumSpotlight_TA.ShouldExecute
  */
 export type CameraState_PodiumSpotlight_TA_ShouldExecute_Params = {
@@ -18685,8 +18782,7 @@ export type CameraState_PodiumSpotlight_TA_UpdatePOV_Params = {
   AppliedAnimDistanceOffset: number; // 0x0038 (0x0004) [float]
   AppliedAnimPitchOffset: number; // 0x003c (0x0004) [float]
   AppliedAnimZOffset: number; // 0x0040 (0x0004) [float]
-  StructInitializer_0x1: FRotator; // 0x0044 (0x000c) [FRotator] [CPF_OutParm]
-  StructInitializer_0x2: FVector; // 0x0050 (0x000c) [FVector] [CPF_OutParm]
+  StructInitializer_0x1: FVector; // 0x0044 (0x000c) [FVector] [CPF_OutParm]
 };
 
 /**
@@ -19988,7 +20084,8 @@ export type CameraStateSelector_Priority_TA_Init_Params = {
 export type CameraStateSelector_Priority_TA_SelectState_Params = {
   InCurrentState: UCameraState_X; // 0x0000 (0x0008) [UCameraState_X*] [CPF_Parm]
   ReturnValue: UCameraState_X; // 0x0008 (0x0008) [UCameraState_X*] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-  bIsCurrentStale: boolean; // 0x0010 (0x0004) [bool : 0x1]
+  bSkippingInitial: boolean; // 0x0010 (0x0004) [bool : 0x1]
+  bIsCurrentStale: boolean; // 0x0014 (0x0004) [bool : 0x1]
   SelectedState: UCameraState_X; // 0x0018 (0x0008) [UCameraState_X*]
   TestState: UCameraState_X; // 0x0020 (0x0008) [UCameraState_X*]
   Index: number; // 0x0028 (0x0004) [int32]
@@ -19998,7 +20095,9 @@ export type CameraStateSelector_Priority_TA_SelectState_Params = {
 /**
  * Function TAGame.CameraStateSelector_Priority_TA.SetActive
  */
-export type CameraStateSelector_Priority_TA_SetActive_Params = {};
+export type CameraStateSelector_Priority_TA_SetActive_Params = {
+  bSkipInitial: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OptionalParm]
+};
 
 /**
  * Function TAGame.CameraStateSelector_RandomSequence_TA.Init
@@ -20018,7 +20117,9 @@ export type CameraStateSelector_RandomSequence_TA_Reshuffle_Params = {
 /**
  * Function TAGame.CameraStateSelector_RandomSequence_TA.SetActive
  */
-export type CameraStateSelector_RandomSequence_TA_SetActive_Params = {};
+export type CameraStateSelector_RandomSequence_TA_SetActive_Params = {
+  bSkipInitial: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OptionalParm]
+};
 
 /**
  * Function TAGame.CameraStateSelector_Sequence_TA.GetNextStateIndex
@@ -20038,7 +20139,9 @@ export type CameraStateSelector_Sequence_TA_SelectState_Params = {
 /**
  * Function TAGame.CameraStateSelector_Sequence_TA.SetActive
  */
-export type CameraStateSelector_Sequence_TA_SetActive_Params = {};
+export type CameraStateSelector_Sequence_TA_SetActive_Params = {
+  bSkipInitial: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OptionalParm]
+};
 
 /**
  * Function TAGame.CameraStateSelector_TA.Init
@@ -20059,7 +20162,9 @@ export type CameraStateSelector_TA_SelectState_Params = {
 /**
  * Function TAGame.CameraStateSelector_TA.SetActive
  */
-export type CameraStateSelector_TA_SetActive_Params = {};
+export type CameraStateSelector_TA_SetActive_Params = {
+  bSkipInitial: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OptionalParm]
+};
 
 /**
  * Function TAGame.CameraTrack_TA.__CameraTrack_TA__RebuildCurves_0x1
@@ -29494,454 +29599,6 @@ export type EnvironmentZone_TA_GetEnvironmentZone_Params = {
 };
 
 /**
- * Function TAGame.EOSGameClipsConfig_TA.__bFeatureEnabled__ChangeNotifyFunc
- */
-export type EOSGameClipsConfig_TA___bFeatureEnabled__ChangeNotifyFunc_Params = {};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.__EOSGameClipsController_TA__HandleGameClipsManagerChanged_0x1
- */
-export type EOSGameClipsController_TA___EOSGameClipsController_TA__HandleGameClipsManagerChanged_0x1_Params = {};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.__EOSGameClipsController_TA__SetGameClipsInterface_0x1
- */
-export type EOSGameClipsController_TA___EOSGameClipsController_TA__SetGameClipsInterface_0x1_Params = {
-  InErrorType: UErrorType; // 0x0000 (0x0008) [UErrorType*] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.__EOSGameClipsController_TA__SetGameClipsInterface_0x2
- */
-export type EOSGameClipsController_TA___EOSGameClipsController_TA__SetGameClipsInterface_0x2_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  InClipId: number; // 0x0010 (0x0004) [int32] [CPF_Parm]
-  InErrorType: UErrorType; // 0x0018 (0x0008) [UErrorType*] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.CaptureClipPressed
- */
-export type EOSGameClipsController_TA_CaptureClipPressed_Params = {
-  InGameClipInputType: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  CooldownTime: number; // 0x0010 (0x0004) [float]
-};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.Construct
- */
-export type EOSGameClipsController_TA_Construct_Params = {};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.CreateClip
- */
-export type EOSGameClipsController_TA_CreateClip_Params = {
-  InGameClipInputType: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  AccountId: string; // 0x0010 (0x0010) [FString]
-  ClipId: number; // 0x0020 (0x0004) [int32]
-};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.EventClippedDuringReplay
- */
-export type EOSGameClipsController_TA_EventClippedDuringReplay_Params = {};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.EventClipStatusChanged
- */
-export type EOSGameClipsController_TA_EventClipStatusChanged_Params = {
-  InClipId: number; // 0x0000 (0x0004) [int32] [CPF_Parm]
-  InNewClipStatus: EGameClipsClipStatus; // 0x0004 (0x0001) [EGameClipsClipStatus] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.EventErrorOccurred
- */
-export type EOSGameClipsController_TA_EventErrorOccurred_Params = {
-  InErrorType: UErrorType; // 0x0000 (0x0008) [UErrorType*] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.GetCooldownTime
- */
-export type EOSGameClipsController_TA_GetCooldownTime_Params = {
-  ReturnValue: number; // 0x0000 (0x0004) [float] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-  CurrentTimeSeconds: number; // 0x0004 (0x0004) [float]
-  TimeSinceRecordingStarted: number; // 0x0008 (0x0004) [float]
-  TimeSinceLastClip: number; // 0x000c (0x0004) [float]
-  TimeUntilClippingEnabledAfterRecordingStarted: number; // 0x0010 (0x0004) [float]
-  TimeUntilClippingEnabledAfterPreviousClip: number; // 0x0014 (0x0004) [float]
-};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.GetEpicAccountId
- */
-export type EOSGameClipsController_TA_GetEpicAccountId_Params = {
-  ReturnValue: string; // 0x0000 (0x0010) [FString] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.GetTimeUntilUnthrottled
- */
-export type EOSGameClipsController_TA_GetTimeUntilUnthrottled_Params = {
-  ReturnValue: number; // 0x0000 (0x0004) [float] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.HandleClipStatusChanged
- */
-export type EOSGameClipsController_TA_HandleClipStatusChanged_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  InClipId: number; // 0x0010 (0x0004) [int32] [CPF_Parm]
-  InNewClipStatus: EGameClipsClipStatus; // 0x0014 (0x0001) [EGameClipsClipStatus] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.HandleErrorOccurred
- */
-export type EOSGameClipsController_TA_HandleErrorOccurred_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  InErrorType: UErrorType; // 0x0010 (0x0008) [UErrorType*] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.HandleGameClipsManagerChanged
- */
-export type EOSGameClipsController_TA_HandleGameClipsManagerChanged_Params = {};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.HandleRecordingChanged
- */
-export type EOSGameClipsController_TA_HandleRecordingChanged_Params = {
-  InNewRecording: EGameClipsRecording; // 0x0000 (0x0001) [EGameClipsRecording] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.IsAccountLinked
- */
-export type EOSGameClipsController_TA_IsAccountLinked_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.PlaySoundEffect
- */
-export type EOSGameClipsController_TA_PlaySoundEffect_Params = {
-  SoundEffect: UAkSoundCue; // 0x0000 (0x0008) [UAkSoundCue*] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.SetGameClipsInterface
- */
-export type EOSGameClipsController_TA_SetGameClipsInterface_Params = {
-  InGameClipsInterface: UOnlineGameClipsInterface; // 0x0000 (0x0010) [UOnlineGameClipsInterface*] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsController_TA.ShutDown
- */
-export type EOSGameClipsController_TA_ShutDown_Params = {
-  PlayerOwner: ULocalPlayer_TA; // 0x0000 (0x0008) [ULocalPlayer_TA*]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.__bClippingAvailable__ChangeNotifyFunc
- */
-export type EOSGameClipsManager_TA___bClippingAvailable__ChangeNotifyFunc_Params = {};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.__CurrentClipType__ChangeNotifyFunc
- */
-export type EOSGameClipsManager_TA___CurrentClipType__ChangeNotifyFunc_Params = {};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.__EOSGameClipsManager_TA__HandleGameEventChanged_0x1
- */
-export type EOSGameClipsManager_TA___EOSGameClipsManager_TA__HandleGameEventChanged_0x1_Params = {
-  InGameEvent: UGameEvent_TA; // 0x0000 (0x0008) [UGameEvent_TA*] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.__EOSGameClipsManager_TA__UpdateRecording_0x1
- */
-export type EOSGameClipsManager_TA___EOSGameClipsManager_TA__UpdateRecording_0x1_Params = {};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.AddInactiveAccount
- */
-export type EOSGameClipsManager_TA_AddInactiveAccount_Params = {
-  InAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.Construct
- */
-export type EOSGameClipsManager_TA_Construct_Params = {};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.EventCreateGameClipInitiated
- */
-export type EOSGameClipsManager_TA_EventCreateGameClipInitiated_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  InClipId: number; // 0x0010 (0x0004) [int32] [CPF_Parm]
-  InClipType: string; // 0x0018 (0x0010) [FString] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.EventMaskStatusChanged
- */
-export type EOSGameClipsManager_TA_EventMaskStatusChanged_Params = {
-  InMaskAreaHandle: bigint; // 0x0000 (0x0008) [uint64] [CPF_Parm]
-  InMaskArea: FGameClipsMaskArea; // 0x0008 (0x0018) [FGameClipsMaskArea] [CPF_Parm]
-  InNewMaskStatus: EGameClipsMaskStatus; // 0x0020 (0x0001) [EGameClipsMaskStatus] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.HandleAvailabilityChanged
- */
-export type EOSGameClipsManager_TA_HandleAvailabilityChanged_Params = {
-  NewAvailability: EGameClipsAvailability; // 0x0000 (0x0001) [EGameClipsAvailability] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.HandleConnectionStatusChanged
- */
-export type EOSGameClipsManager_TA_HandleConnectionStatusChanged_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  InConnection: EGameClipsConnection; // 0x0010 (0x0001) [EGameClipsConnection] [CPF_Parm]
-  InNewConnectionStatus: EGameClipsConnectionStatus; // 0x0011 (0x0001) [EGameClipsConnectionStatus] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.HandleGameClipsConfigChanged
- */
-export type EOSGameClipsManager_TA_HandleGameClipsConfigChanged_Params = {};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.HandleGameEventChanged
- */
-export type EOSGameClipsManager_TA_HandleGameEventChanged_Params = {};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.HandleGameStateChanged
- */
-export type EOSGameClipsManager_TA_HandleGameStateChanged_Params = {
-  InStateName: FName; // 0x0000 (0x0008) [FName] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.HandleMaskStatusChanged
- */
-export type EOSGameClipsManager_TA_HandleMaskStatusChanged_Params = {
-  InMaskAreaHandle: bigint; // 0x0000 (0x0008) [uint64] [CPF_Parm]
-  InMaskArea: FGameClipsMaskArea; // 0x0008 (0x0018) [FGameClipsMaskArea] [CPF_Parm]
-  InNewMaskStatus: EGameClipsMaskStatus; // 0x0020 (0x0001) [EGameClipsMaskStatus] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.HandleOnlineSubChanged
- */
-export type EOSGameClipsManager_TA_HandleOnlineSubChanged_Params = {};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.HandleRecordingChanged
- */
-export type EOSGameClipsManager_TA_HandleRecordingChanged_Params = {
-  NewRecording: EGameClipsRecording; // 0x0000 (0x0001) [EGameClipsRecording] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.HideMaskArea
- */
-export type EOSGameClipsManager_TA_HideMaskArea_Params = {
-  InMaskId: bigint; // 0x0000 (0x0008) [uint64] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.IsAccountLinked
- */
-export type EOSGameClipsManager_TA_IsAccountLinked_Params = {
-  InAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  ReturnValue: boolean; // 0x0010 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.IsAnyAccountActive
- */
-export type EOSGameClipsManager_TA_IsAnyAccountActive_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.IsAnyAccountLinked
- */
-export type EOSGameClipsManager_TA_IsAnyAccountLinked_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.IsCabinedClippingDisabled
- */
-export type EOSGameClipsManager_TA_IsCabinedClippingDisabled_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-  bCabinedClippingDisabled: boolean; // 0x0004 (0x0004) [bool : 0x1]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.IsClippingInCorrectState
- */
-export type EOSGameClipsManager_TA_IsClippingInCorrectState_Params = {
-  InGameClipInputType: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  ReturnValue: boolean; // 0x0010 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.IsClippingInGameplay
- */
-export type EOSGameClipsManager_TA_IsClippingInGameplay_Params = {
-  InGameClipInputType: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  ReturnValue: boolean; // 0x0010 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.IsClippingInGoalReplay
- */
-export type EOSGameClipsManager_TA_IsClippingInGoalReplay_Params = {
-  InGameClipInputType: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  ReturnValue: boolean; // 0x0010 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.IsSimulating
- */
-export type EOSGameClipsManager_TA_IsSimulating_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.OnCaptureAvailabilityChange
- */
-export type EOSGameClipsManager_TA_OnCaptureAvailabilityChange_Params = {
-  bIsAvailable: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.RemoveInactiveAccount
- */
-export type EOSGameClipsManager_TA_RemoveInactiveAccount_Params = {
-  InAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.SetGameClipsInterface
- */
-export type EOSGameClipsManager_TA_SetGameClipsInterface_Params = {
-  InGameClipsInterface: UOnlineGameClipsInterface; // 0x0000 (0x0010) [UOnlineGameClipsInterface*] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.ShowMaskArea
- */
-export type EOSGameClipsManager_TA_ShowMaskArea_Params = {
-  InMaskArea: FGameClipsMaskArea; // 0x0000 (0x0018) [FGameClipsMaskArea] [CPF_Parm]
-  ReturnValue: bigint; // 0x0018 (0x0008) [uint64] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.EOSGameClipsManager_TA.UpdateRecording
- */
-export type EOSGameClipsManager_TA_UpdateRecording_Params = {};
-
-/**
- * Function TAGame.EOSGameClipsMetrics_TA.AddClip
- */
-export type EOSGameClipsMetrics_TA_AddClip_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  InClipId: number; // 0x0010 (0x0004) [int32] [CPF_Parm]
-  ReturnValue: number; // 0x0014 (0x0004) [int32] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-  ClipIndex: number; // 0x0018 (0x0004) [int32]
-  NewClip: FEOSGameClipsClipInfo; // 0x0020 (0x0040) [FEOSGameClipsClipInfo]
-  StructInitializer_0x1: FEOSGameClipsClipInfo; // 0x0060 (0x0040) [FEOSGameClipsClipInfo] [CPF_OutParm]
-};
-
-/**
- * Function TAGame.EOSGameClipsMetrics_TA.HandleClipErrorOccurred
- */
-export type EOSGameClipsMetrics_TA_HandleClipErrorOccurred_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  InClipId: number; // 0x0010 (0x0004) [int32] [CPF_Parm]
-  InErrorType: UErrorType; // 0x0018 (0x0008) [UErrorType*] [CPF_Parm]
-  ClipIndex: number; // 0x0020 (0x0004) [int32]
-};
-
-/**
- * Function TAGame.EOSGameClipsMetrics_TA.HandleClipStatusChanged
- */
-export type EOSGameClipsMetrics_TA_HandleClipStatusChanged_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  InClipId: number; // 0x0010 (0x0004) [int32] [CPF_Parm]
-  InNewClipStatus: EGameClipsClipStatus; // 0x0014 (0x0001) [EGameClipsClipStatus] [CPF_Parm]
-  ClipIndex: number; // 0x0018 (0x0004) [int32]
-};
-
-/**
- * Function TAGame.EOSGameClipsMetrics_TA.HandleConnectionStatusChanged
- */
-export type EOSGameClipsMetrics_TA_HandleConnectionStatusChanged_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  InConnection: EGameClipsConnection; // 0x0010 (0x0001) [EGameClipsConnection] [CPF_Parm]
-  InNewConnectionStatus: EGameClipsConnectionStatus; // 0x0011 (0x0001) [EGameClipsConnectionStatus] [CPF_Parm]
-  AccountLinkInfo: FEOSGameClipsAccountLinkInfo; // 0x0018 (0x0028) [FEOSGameClipsAccountLinkInfo]
-};
-
-/**
- * Function TAGame.EOSGameClipsMetrics_TA.HandleCreateClipInitiated
- */
-export type EOSGameClipsMetrics_TA_HandleCreateClipInitiated_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  InClipId: number; // 0x0010 (0x0004) [int32] [CPF_Parm]
-  InClipType: string; // 0x0018 (0x0010) [FString] [CPF_Parm | CPF_OutParm]
-  ClipIndex: number; // 0x0028 (0x0004) [int32]
-};
-
-/**
- * Function TAGame.EOSGameClipsMetrics_TA.HandleGameClipsManagerChanged
- */
-export type EOSGameClipsMetrics_TA_HandleGameClipsManagerChanged_Params = {};
-
-/**
- * Function TAGame.EOSGameClipsMetrics_TA.HandleGeneralErrorOccurred
- */
-export type EOSGameClipsMetrics_TA_HandleGeneralErrorOccurred_Params = {
-  InErrorType: UErrorType; // 0x0000 (0x0008) [UErrorType*] [CPF_Parm]
-};
-
-/**
- * Function TAGame.EOSGameClipsMetrics_TA.RecordAccountLinking
- */
-export type EOSGameClipsMetrics_TA_RecordAccountLinking_Params = {
-  InAccountMetric: FEOSGameClipsAccountLinkInfo; // 0x0000 (0x0028) [FEOSGameClipsAccountLinkInfo] [CPF_Parm]
-  Index: number; // 0x0028 (0x0004) [int32]
-};
-
-/**
- * Function TAGame.EOSGameClipsMetrics_TA.RecordClipInfo
- */
-export type EOSGameClipsMetrics_TA_RecordClipInfo_Params = {
-  InClipInfoMetric: FEOSGameClipsClipInfo; // 0x0000 (0x0040) [FEOSGameClipsClipInfo] [CPF_Parm]
-  ClipIndex: number; // 0x0040 (0x0004) [int32]
-  Index: number; // 0x0044 (0x0004) [int32]
-  _0x1: U__EOSGameClipsMetrics_TA__RecordClipInfo_0x1; // 0x0048 (0x0008) [U__EOSGameClipsMetrics_TA__RecordClipInfo_0x1*]
-};
-
-/**
- * Function TAGame.EOSGameClipsMetrics_TA.SetGameClipsInterface
- */
-export type EOSGameClipsMetrics_TA_SetGameClipsInterface_Params = {
-  InGameClipsInterface: UOnlineGameClipsInterface; // 0x0000 (0x0010) [UOnlineGameClipsInterface*] [CPF_Parm]
-};
-
-/**
  * Function TAGame.EOSOnlineStorageSync_TA.EventSyncObjectSuccess
  */
 export type EOSOnlineStorageSync_TA_EventSyncObjectSuccess_Params = {
@@ -30574,7 +30231,15 @@ export type EOSPermissions_TA_PromptForPin_Params = {
  * Function TAGame.EOSPermissions_TA.RequestEOSPermissions
  */
 export type EOSPermissions_TA_RequestEOSPermissions_Params = {
-  PlayerNetId: FUniqueNetId; // 0x0000 (0x0048) [FUniqueNetId]
+  bPolicyValidationOnly: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OptionalParm]
+  PlayerNetId: FUniqueNetId; // 0x0008 (0x0048) [FUniqueNetId]
+};
+
+/**
+ * Function TAGame.EOSPermissions_TA.SetDownloadedPermissions
+ */
+export type EOSPermissions_TA_SetDownloadedPermissions_Params = {
+  InDownloadedPermissions: UK3SUserPermissions_TA; // 0x0000 (0x0008) [UK3SUserPermissions_TA*] [CPF_Parm]
 };
 
 /**
@@ -32380,7 +32045,8 @@ export type ExplosionPreviewer_TA_ApplyExplosionParameters_Params = {
  * Function TAGame.ExplosionPreviewer_TA.ClearPreview
  */
 export type ExplosionPreviewer_TA_ClearPreview_Params = {
-  StructInitializer_0x1: FProductInstanceID; // 0x0000 (0x0010) [FProductInstanceID] [CPF_OutParm]
+  PreviewCam: UCamera; // 0x0000 (0x0008) [UCamera*]
+  StructInitializer_0x1: FProductInstanceID; // 0x0008 (0x0010) [FProductInstanceID] [CPF_OutParm]
 };
 
 /**
@@ -37527,6 +37193,11 @@ export type GameEvent_Soccar_SubRules_TA_ShouldSpawnBall_Params = {
 export type GameEvent_Soccar_SubRules_TA_Unapply_Params = {};
 
 /**
+ * Function TAGame.GameEvent_Soccar_TA.__bAllowHonorDuels__ChangeNotifyFunc
+ */
+export type GameEvent_Soccar_TA___bAllowHonorDuels__ChangeNotifyFunc_Params = {};
+
+/**
  * Function TAGame.GameEvent_Soccar_TA.__bCanDropOnlineRewards__ChangeNotifyFunc
  */
 export type GameEvent_Soccar_TA___bCanDropOnlineRewards__ChangeNotifyFunc_Params = {};
@@ -38405,14 +38076,15 @@ export type GameEvent_Soccar_TA_GetClosestGoal_Params = {
 export type GameEvent_Soccar_TA_GetClosestVehicle_Params = {
   InLocation: FVector; // 0x0000 (0x000c) [FVector] [CPF_Parm]
   TeamNum: number; // 0x000c (0x0004) [int32] [CPF_Parm | CPF_OptionalParm]
-  ReturnValue: UCar_TA; // 0x0010 (0x0008) [UCar_TA*] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-  TargetCars: UCar_TA[]; // 0x0018 (0x0010) [TArray<UCar_TA*>]
-  _0x1: U__GameEvent_Soccar_TA__GetClosestVehicle_0x1; // 0x0028 (0x0008) [U__GameEvent_Soccar_TA__GetClosestVehicle_0x1*]
-  FilterLocal_0x2: UCar_TA[]; // 0x0030 (0x0010) [TArray<UCar_TA*>] [CPF_OutParm]
-  TargetCar: UCar_TA; // 0x0040 (0x0008) [UCar_TA*]
-  DistanceToTargetSq: number; // 0x0048 (0x0004) [float]
-  Car: UCar_TA; // 0x0050 (0x0008) [UCar_TA*]
-  DistanceToCarSq: number; // 0x0058 (0x0004) [float]
+  ExcludedCar: UCar_TA; // 0x0010 (0x0008) [UCar_TA*] [CPF_Parm | CPF_OptionalParm]
+  ReturnValue: UCar_TA; // 0x0018 (0x0008) [UCar_TA*] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  TargetCars: UCar_TA[]; // 0x0020 (0x0010) [TArray<UCar_TA*>]
+  _0x1: U__GameEvent_Soccar_TA__GetClosestVehicle_0x1; // 0x0030 (0x0008) [U__GameEvent_Soccar_TA__GetClosestVehicle_0x1*]
+  FilterLocal_0x2: UCar_TA[]; // 0x0038 (0x0010) [TArray<UCar_TA*>] [CPF_OutParm]
+  TargetCar: UCar_TA; // 0x0048 (0x0008) [UCar_TA*]
+  DistanceToTargetSq: number; // 0x0050 (0x0004) [float]
+  Car: UCar_TA; // 0x0058 (0x0008) [UCar_TA*]
+  DistanceToCarSq: number; // 0x0060 (0x0004) [float]
 };
 
 /**
@@ -38620,19 +38292,41 @@ export type GameEvent_Soccar_TA_GetSpawnOrientation_Params = {
   out_Location: FVector; // 0x0008 (0x000c) [FVector] [CPF_Parm | CPF_OutParm]
   out_Rotation: FRotator; // 0x0014 (0x000c) [FRotator] [CPF_Parm | CPF_OutParm]
   ReturnValue: boolean; // 0x0020 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-  I: number; // 0x0024 (0x0004) [int32]
-  Count: number; // 0x0028 (0x0004) [int32]
-  PRI: UPRI_TA; // 0x0030 (0x0008) [UPRI_TA*]
-  Team: UTeam_Soccar_TA; // 0x0038 (0x0008) [UTeam_Soccar_TA*]
-  SpawnSpots: UActor[]; // 0x0040 (0x0010) [TArray<UActor*>]
+  StartingIndex: number; // 0x0024 (0x0004) [int32]
+  PRI: UPRI_TA; // 0x0028 (0x0008) [UPRI_TA*]
+  Team: UTeam_Soccar_TA; // 0x0030 (0x0008) [UTeam_Soccar_TA*]
+  SpawnSpots: UActor[]; // 0x0038 (0x0010) [TArray<UActor*>]
+  bSelectedSpawn: boolean; // 0x0048 (0x0004) [bool : 0x1]
   OriginalSpawnSpots: UActor[]; // 0x0050 (0x0010) [TArray<UActor*>]
   ArrayInitializer_0x1: UActor[]; // 0x0060 (0x0010) [TArray<UActor*>] [CPF_OutParm]
   ArrayInitializer_0x2: UActor[]; // 0x0070 (0x0010) [TArray<UActor*>] [CPF_OutParm]
   FilterLocal_0x1: UActor[]; // 0x0080 (0x0010) [TArray<UActor*>] [CPF_OutParm]
-  ActiveIndex: number; // 0x0090 (0x0004) [int32]
-  SpawnSpotLocation: FVector; // 0x0094 (0x000c) [FVector]
-  SpawnSpotRotation: FRotator; // 0x00a0 (0x000c) [FRotator]
-  OffsetLocation: FVector; // 0x00ac (0x000c) [FVector]
+  NumPlayersDown: number; // 0x0090 (0x0004) [int32]
+  SoccarTeam: UTeam_TA; // 0x0098 (0x0008) [UTeam_TA*]
+  UsedSpawns: UActor[]; // 0x00a0 (0x0010) [TArray<UActor*>]
+  SpawnIndex: number; // 0x00b0 (0x0004) [int32]
+  TeamNumIdx: number; // 0x00b4 (0x0004) [int32]
+  SortLocal_0x2: UActor[]; // 0x00b8 (0x0010) [TArray<UActor*>] [CPF_OutParm]
+  LastUsedIndex: number; // 0x00c8 (0x0004) [int32]
+  CurrentIndex: number; // 0x00cc (0x0004) [int32]
+  _0x3: U__GameEvent_Soccar_TA__GetSpawnOrientation_0x2; // 0x00d0 (0x0008) [U__GameEvent_Soccar_TA__GetSpawnOrientation_0x2*]
+};
+
+/**
+ * Function TAGame.GameEvent_Soccar_TA.GetSpawnOrientationFromLocations
+ */
+export type GameEvent_Soccar_TA_GetSpawnOrientationFromLocations_Params = {
+  SpawnSpots: UActor[]; // 0x0000 (0x0010) [TArray<UActor*>] [CPF_Parm | CPF_OutParm]
+  StartingIndex: number; // 0x0010 (0x0004) [int32] [CPF_Parm]
+  PRI: UPRI_TA; // 0x0018 (0x0008) [UPRI_TA*] [CPF_Parm]
+  out_Location: FVector; // 0x0020 (0x000c) [FVector] [CPF_Parm | CPF_OutParm]
+  out_Rotation: FRotator; // 0x002c (0x000c) [FRotator] [CPF_Parm | CPF_OutParm]
+  ReturnValue: boolean; // 0x0038 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  ActiveIndex: number; // 0x003c (0x0004) [int32]
+  Count: number; // 0x0040 (0x0004) [int32]
+  SpawnSpotLocation: FVector; // 0x0044 (0x000c) [FVector]
+  SpawnSpotRotation: FRotator; // 0x0050 (0x000c) [FRotator]
+  OffsetLocation: FVector; // 0x005c (0x000c) [FVector]
 };
 
 /**
@@ -39505,6 +39199,19 @@ export type GameEvent_Soccar_TA_ShowSecondsRemainingCountdown_Params = {
 };
 
 /**
+ * Function TAGame.GameEvent_Soccar_TA.SortPreferableSpawn
+ */
+export type GameEvent_Soccar_TA_SortPreferableSpawn_Params = {
+  A: UActor; // 0x0000 (0x0008) [UActor*] [CPF_Parm]
+  B: UActor; // 0x0008 (0x0008) [UActor*] [CPF_Parm]
+  ReturnValue: number; // 0x0010 (0x0004) [int32] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  CenterDistASq: number; // 0x0014 (0x0004) [float]
+  CenterDistBSq: number; // 0x0018 (0x0004) [float]
+  bLeftA: boolean; // 0x001c (0x0004) [bool : 0x1]
+  bLeftB: boolean; // 0x0020 (0x0004) [bool : 0x1]
+};
+
+/**
  * Function TAGame.GameEvent_Soccar_TA.SpawnBall
  */
 export type GameEvent_Soccar_TA_SpawnBall_Params = {
@@ -39658,6 +39365,13 @@ export type GameEvent_Soccar_TA_UpdateTeamScores_Params = {
  */
 export type GameEvent_Soccar_TA_UpdateTotalGameTimePlayed_Params = {
   DeltaTime: number; // 0x0000 (0x0004) [float] [CPF_Parm]
+};
+
+/**
+ * Function TAGame.GameEvent_Soccar_TA.UseDisadvantageSpawnAdjustment
+ */
+export type GameEvent_Soccar_TA_UseDisadvantageSpawnAdjustment_Params = {
+  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
 };
 
 /**
@@ -41579,6 +41293,15 @@ export type GameEvent_Team_TA_InitBotSkill_Params = {};
  */
 export type GameEvent_Team_TA_InitGame_Params = {
   Options: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
+};
+
+/**
+ * Function TAGame.GameEvent_Team_TA.IsPendingAntiCheatAuth
+ */
+export type GameEvent_Team_TA_IsPendingAntiCheatAuth_Params = {
+  PRI: UPRI_TA; // 0x0000 (0x0008) [UPRI_TA*] [CPF_Parm]
+  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  PC: UPlayerController_TA; // 0x0010 (0x0008) [UPlayerController_TA*]
 };
 
 /**
@@ -51075,337 +50798,6 @@ export type GFxData_EngagementEventsConfig_TA_SetStartNotificationShown_Params =
 };
 
 /**
- * Function TAGame.GFxData_EOSGameClipsConfig_TA.HandleGameClipsConfigChanged
- */
-export type GFxData_EOSGameClipsConfig_TA_HandleGameClipsConfigChanged_Params = {};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsController_TA.__GFxData_EOSGameClipsController_TA__HandleEOSGameClipsControllerChanged_0x1
- */
-export type GFxData_EOSGameClipsController_TA___GFxData_EOSGameClipsController_TA__HandleEOSGameClipsControllerChanged_0x1_Params = {};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsController_TA.__GFxData_EOSGameClipsController_TA__InitGameClipsController_0x1
- */
-export type GFxData_EOSGameClipsController_TA___GFxData_EOSGameClipsController_TA__InitGameClipsController_0x1_Params = {
-  P: UPlayer; // 0x0000 (0x0008) [UPlayer*] [CPF_Parm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsController_TA.AddHUDMessage
- */
-export type GFxData_EOSGameClipsController_TA_AddHUDMessage_Params = {
-  InChatMessage: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  ChatData: UGFxData_Chat_TA; // 0x0010 (0x0008) [UGFxData_Chat_TA*]
-  StructInitializer_0x1: FGFxChatMessage; // 0x0018 (0x0098) [FGFxChatMessage] [CPF_OutParm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsController_TA.AddMaskedArea
- */
-export type GFxData_EOSGameClipsController_TA_AddMaskedArea_Params = {
-  InTopLeftX: number; // 0x0000 (0x0004) [float] [CPF_Parm]
-  InTopLeftY: number; // 0x0004 (0x0004) [float] [CPF_Parm]
-  InBottomRightX: number; // 0x0008 (0x0004) [float] [CPF_Parm]
-  InBottomRightY: number; // 0x000c (0x0004) [float] [CPF_Parm]
-  ReturnValue: bigint; // 0x0010 (0x0008) [uint64] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-  MaskedId: bigint; // 0x0018 (0x0008) [uint64]
-  MaskArea: FGameClipsMaskArea; // 0x0020 (0x0018) [FGameClipsMaskArea]
-  StructInitializer_0x1: FGameClipsMaskArea; // 0x0038 (0x0018) [FGameClipsMaskArea] [CPF_OutParm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsController_TA.GetMaskAsString
- */
-export type GFxData_EOSGameClipsController_TA_GetMaskAsString_Params = {
-  InTopLeftX: number; // 0x0000 (0x0004) [float] [CPF_Parm]
-  InTopLeftY: number; // 0x0004 (0x0004) [float] [CPF_Parm]
-  InBottomRightX: number; // 0x0008 (0x0004) [float] [CPF_Parm]
-  InBottomRightY: number; // 0x000c (0x0004) [float] [CPF_Parm]
-  ReturnValue: string; // 0x0010 (0x0010) [FString] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsController_TA.HandleBindingsChanged
- */
-export type GFxData_EOSGameClipsController_TA_HandleBindingsChanged_Params = {
-  PlayerInput: UPlayerInput_X; // 0x0000 (0x0008) [UPlayerInput_X*] [CPF_Parm]
-  bGameClipsKeyBindingsSet: boolean; // 0x0008 (0x0004) [bool : 0x1]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsController_TA.HandleClipStatusChanged
- */
-export type GFxData_EOSGameClipsController_TA_HandleClipStatusChanged_Params = {
-  InClipId: number; // 0x0000 (0x0004) [int32] [CPF_Parm]
-  InNewClipStatus: EGameClipsClipStatus; // 0x0004 (0x0001) [EGameClipsClipStatus] [CPF_Parm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsController_TA.HandleEOSGameClipsControllerChanged
- */
-export type GFxData_EOSGameClipsController_TA_HandleEOSGameClipsControllerChanged_Params = {
-  PlayerInput: UPlayerInput_X; // 0x0000 (0x0008) [UPlayerInput_X*]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsController_TA.HandleErrorOccurred
- */
-export type GFxData_EOSGameClipsController_TA_HandleErrorOccurred_Params = {
-  InErrorType: UErrorType; // 0x0000 (0x0008) [UErrorType*] [CPF_Parm]
-  TimeRemaining: number; // 0x0008 (0x0004) [int32]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsController_TA.InitGameClipsController
- */
-export type GFxData_EOSGameClipsController_TA_InitGameClipsController_Params = {
-  PC: UPlayerController_TA; // 0x0000 (0x0008) [UPlayerController_TA*]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsController_TA.IsMaskedAreaValid
- */
-export type GFxData_EOSGameClipsController_TA_IsMaskedAreaValid_Params = {
-  InTopLeftX: number; // 0x0000 (0x0004) [float] [CPF_Parm]
-  InTopLeftY: number; // 0x0004 (0x0004) [float] [CPF_Parm]
-  InBottomRightX: number; // 0x0008 (0x0004) [float] [CPF_Parm]
-  InBottomRightY: number; // 0x000c (0x0004) [float] [CPF_Parm]
-  ReturnValue: boolean; // 0x0010 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-  bValid: boolean; // 0x0014 (0x0004) [bool : 0x1]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsController_TA.OnRemoved
- */
-export type GFxData_EOSGameClipsController_TA_OnRemoved_Params = {};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsController_TA.OnShellSet
- */
-export type GFxData_EOSGameClipsController_TA_OnShellSet_Params = {};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsController_TA.RemoveMaskedArea
- */
-export type GFxData_EOSGameClipsController_TA_RemoveMaskedArea_Params = {
-  MaskedAreaId: bigint; // 0x0000 (0x0008) [uint64] [CPF_Parm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsController_TA.ShouldShowGoalReplayClippingButton
- */
-export type GFxData_EOSGameClipsController_TA_ShouldShowGoalReplayClippingButton_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsLocalPlayer_TA.__GFxData_EOSGameClipsLocalPlayer_TA__GameClipsManagerChanged_0x1
- */
-export type GFxData_EOSGameClipsLocalPlayer_TA___GFxData_EOSGameClipsLocalPlayer_TA__GameClipsManagerChanged_0x1_Params = {};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsLocalPlayer_TA.GameClipsManagerChanged
- */
-export type GFxData_EOSGameClipsLocalPlayer_TA_GameClipsManagerChanged_Params = {};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsLocalPlayer_TA.GameEventChanged
- */
-export type GFxData_EOSGameClipsLocalPlayer_TA_GameEventChanged_Params = {};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsLocalPlayer_TA.GetEpicAccountId
- */
-export type GFxData_EOSGameClipsLocalPlayer_TA_GetEpicAccountId_Params = {
-  ReturnValue: string; // 0x0000 (0x0010) [FString] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsLocalPlayer_TA.IsAccountInCabinedMode
- */
-export type GFxData_EOSGameClipsLocalPlayer_TA_IsAccountInCabinedMode_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsLocalPlayer_TA.IsAccountLinked
- */
-export type GFxData_EOSGameClipsLocalPlayer_TA_IsAccountLinked_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsLocalPlayer_TA.IsUserEligibleForClipping
- */
-export type GFxData_EOSGameClipsLocalPlayer_TA_IsUserEligibleForClipping_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsLocalPlayer_TA.OnRemoved
- */
-export type GFxData_EOSGameClipsLocalPlayer_TA_OnRemoved_Params = {};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsLocalPlayer_TA.OnShellSet
- */
-export type GFxData_EOSGameClipsLocalPlayer_TA_OnShellSet_Params = {};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsLocalPlayer_TA.SetLinkAccountPopupShown
- */
-export type GFxData_EOSGameClipsLocalPlayer_TA_SetLinkAccountPopupShown_Params = {
-  bLinkAccountPopupShown: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm]
-  SettingsSave: UEOSGameClipsSettingsSave_TA; // 0x0008 (0x0008) [UEOSGameClipsSettingsSave_TA*]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsLocalPlayer_TA.ShouldAllowExternalLinks
- */
-export type GFxData_EOSGameClipsLocalPlayer_TA_ShouldAllowExternalLinks_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsLocalPlayer_TA.ShouldShowInSettingsMenu
- */
-export type GFxData_EOSGameClipsLocalPlayer_TA_ShouldShowInSettingsMenu_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsLocalPlayer_TA.ShouldShowLinkAccountPopup
- */
-export type GFxData_EOSGameClipsLocalPlayer_TA_ShouldShowLinkAccountPopup_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-  SettingsSave: UEOSGameClipsSettingsSave_TA; // 0x0008 (0x0008) [UEOSGameClipsSettingsSave_TA*]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsMaskArea_TA.__GFxData_EOSGameClipsMaskArea_TA__DrawDebugMaskAreas_0x1
- */
-export type GFxData_EOSGameClipsMaskArea_TA___GFxData_EOSGameClipsMaskArea_TA__DrawDebugMaskAreas_0x1_Params = {
-  MaskArea: FGameClipsMaskArea; // 0x0000 (0x0018) [FGameClipsMaskArea] [CPF_Parm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsMaskArea_TA.AddMaskedArea
- */
-export type GFxData_EOSGameClipsMaskArea_TA_AddMaskedArea_Params = {
-  InTopLeftX: number; // 0x0000 (0x0004) [float] [CPF_Parm]
-  InTopLeftY: number; // 0x0004 (0x0004) [float] [CPF_Parm]
-  InBottomRightX: number; // 0x0008 (0x0004) [float] [CPF_Parm]
-  InBottomRightY: number; // 0x000c (0x0004) [float] [CPF_Parm]
-  ReturnValue: bigint; // 0x0010 (0x0008) [uint64] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-  MaskedId: bigint; // 0x0018 (0x0008) [uint64]
-  MaskArea: FGameClipsMaskArea; // 0x0020 (0x0018) [FGameClipsMaskArea]
-  StructInitializer_0x1: FGameClipsMaskArea; // 0x0038 (0x0018) [FGameClipsMaskArea] [CPF_OutParm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsMaskArea_TA.DrawDebugMaskAreas
- */
-export type GFxData_EOSGameClipsMaskArea_TA_DrawDebugMaskAreas_Params = {
-  InHUD: UHUD; // 0x0000 (0x0008) [UHUD*] [CPF_Parm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsMaskArea_TA.DrawMaskArea
- */
-export type GFxData_EOSGameClipsMaskArea_TA_DrawMaskArea_Params = {
-  InMaskArea: FGameClipsMaskArea; // 0x0000 (0x0018) [FGameClipsMaskArea] [CPF_Parm]
-  TransformedLeftX: number; // 0x0018 (0x0004) [float]
-  TransformedLeftY: number; // 0x001c (0x0004) [float]
-  TransformedRightX: number; // 0x0020 (0x0004) [float]
-  TransformedRightY: number; // 0x0024 (0x0004) [float]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsMaskArea_TA.GetMaskAsString
- */
-export type GFxData_EOSGameClipsMaskArea_TA_GetMaskAsString_Params = {
-  InTopLeftX: number; // 0x0000 (0x0004) [float] [CPF_Parm]
-  InTopLeftY: number; // 0x0004 (0x0004) [float] [CPF_Parm]
-  InBottomRightX: number; // 0x0008 (0x0004) [float] [CPF_Parm]
-  InBottomRightY: number; // 0x000c (0x0004) [float] [CPF_Parm]
-  ReturnValue: string; // 0x0010 (0x0010) [FString] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsMaskArea_TA.HandleGameClipsManagerChanged
- */
-export type GFxData_EOSGameClipsMaskArea_TA_HandleGameClipsManagerChanged_Params = {};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsMaskArea_TA.HandleMaskStatusChanged
- */
-export type GFxData_EOSGameClipsMaskArea_TA_HandleMaskStatusChanged_Params = {
-  InMaskAreaHandle: bigint; // 0x0000 (0x0008) [uint64] [CPF_Parm]
-  InMaskArea: FGameClipsMaskArea; // 0x0008 (0x0018) [FGameClipsMaskArea] [CPF_Parm]
-  InNewMaskStatus: EGameClipsMaskStatus; // 0x0020 (0x0001) [EGameClipsMaskStatus] [CPF_Parm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsMaskArea_TA.IsDebugEnabled
- */
-export type GFxData_EOSGameClipsMaskArea_TA_IsDebugEnabled_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-  bIsDebugEnabled: boolean; // 0x0004 (0x0004) [bool : 0x1]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsMaskArea_TA.IsMaskedAreaValid
- */
-export type GFxData_EOSGameClipsMaskArea_TA_IsMaskedAreaValid_Params = {
-  InTopLeftX: number; // 0x0000 (0x0004) [float] [CPF_Parm]
-  InTopLeftY: number; // 0x0004 (0x0004) [float] [CPF_Parm]
-  InBottomRightX: number; // 0x0008 (0x0004) [float] [CPF_Parm]
-  InBottomRightY: number; // 0x000c (0x0004) [float] [CPF_Parm]
-  ReturnValue: boolean; // 0x0010 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-  bValid: boolean; // 0x0014 (0x0004) [bool : 0x1]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsMaskArea_TA.OnMaskedAreaAdded
- */
-export type GFxData_EOSGameClipsMaskArea_TA_OnMaskedAreaAdded_Params = {
-  MaskedAreaId: bigint; // 0x0000 (0x0008) [uint64] [CPF_Parm]
-  InTopLeftX: number; // 0x0008 (0x0004) [float] [CPF_Parm]
-  InTopLeftY: number; // 0x000c (0x0004) [float] [CPF_Parm]
-  InBottomRightX: number; // 0x0010 (0x0004) [float] [CPF_Parm]
-  InBottomRightY: number; // 0x0014 (0x0004) [float] [CPF_Parm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsMaskArea_TA.OnMaskedAreaRemoved
- */
-export type GFxData_EOSGameClipsMaskArea_TA_OnMaskedAreaRemoved_Params = {
-  MaskedAreaId: bigint; // 0x0000 (0x0008) [uint64] [CPF_Parm]
-  InTopLeftX: number; // 0x0008 (0x0004) [float] [CPF_Parm]
-  InTopLeftY: number; // 0x000c (0x0004) [float] [CPF_Parm]
-  InBottomRightX: number; // 0x0010 (0x0004) [float] [CPF_Parm]
-  InBottomRightY: number; // 0x0014 (0x0004) [float] [CPF_Parm]
-};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsMaskArea_TA.OnRemoved
- */
-export type GFxData_EOSGameClipsMaskArea_TA_OnRemoved_Params = {};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsMaskArea_TA.OnShellSet
- */
-export type GFxData_EOSGameClipsMaskArea_TA_OnShellSet_Params = {};
-
-/**
- * Function TAGame.GFxData_EOSGameClipsMaskArea_TA.RemoveMaskedArea
- */
-export type GFxData_EOSGameClipsMaskArea_TA_RemoveMaskedArea_Params = {
-  MaskedAreaId: bigint; // 0x0000 (0x0008) [uint64] [CPF_Parm]
-};
-
-/**
  * Function TAGame.GFxData_EOSVoiceManager_TA.__GFxData_EOSVoiceManager_TA__HandlePsyNetConnected_0x1
  */
 export type GFxData_EOSVoiceManager_TA___GFxData_EOSVoiceManager_TA__HandlePsyNetConnected_0x1_Params = {
@@ -53694,6 +53086,7 @@ export type GFxData_Friends_TA_HandleFriendsListChanged_Params = {
  */
 export type GFxData_Friends_TA_HandleGameEventAdded_Params = {
   GameEvent: UGameEvent_TA; // 0x0000 (0x0008) [UGameEvent_TA*] [CPF_Parm]
+  Soccar: UGameEvent_Soccar_TA; // 0x0008 (0x0008) [UGameEvent_Soccar_TA*]
 };
 
 /**
@@ -53701,6 +53094,7 @@ export type GFxData_Friends_TA_HandleGameEventAdded_Params = {
  */
 export type GFxData_Friends_TA_HandleGameEventRemoved_Params = {
   GameEvent: UGameEvent_TA; // 0x0000 (0x0008) [UGameEvent_TA*] [CPF_Parm]
+  Soccar: UGameEvent_Soccar_TA; // 0x0008 (0x0008) [UGameEvent_Soccar_TA*]
 };
 
 /**
@@ -53714,11 +53108,23 @@ export type GFxData_Friends_TA_HandleIncomingEpicFriendInvite_Params = {
 };
 
 /**
+ * Function TAGame.GFxData_Friends_TA.HandleMatchFinished
+ */
+export type GFxData_Friends_TA_HandleMatchFinished_Params = {
+  GameEvent: UGameEvent_Soccar_TA; // 0x0000 (0x0008) [UGameEvent_Soccar_TA*] [CPF_Parm]
+  GRI: UGRI_X; // 0x0008 (0x0008) [UGRI_X*]
+  PRI: UPRI_TA; // 0x0010 (0x0008) [UPRI_TA*]
+  Persona: UPersona_TA; // 0x0018 (0x0008) [UPersona_TA*]
+  BasePRI: UPlayerReplicationInfo; // 0x0020 (0x0008) [UPlayerReplicationInfo*]
+};
+
+/**
  * Function TAGame.GFxData_Friends_TA.HandleMatchGUIDChanged
  */
 export type GFxData_Friends_TA_HandleMatchGUIDChanged_Params = {
   GRI: UGRI_X; // 0x0000 (0x0008) [UGRI_X*] [CPF_Parm]
-  _0x1: U__GFxData_Friends_TA__HandleMatchGUIDChanged_0x1; // 0x0008 (0x0008) [U__GFxData_Friends_TA__HandleMatchGUIDChanged_0x1*]
+  PRI: UPRI_TA; // 0x0008 (0x0008) [UPRI_TA*]
+  _0x1: U__GFxData_Friends_TA__HandleMatchGUIDChanged_0x1; // 0x0010 (0x0008) [U__GFxData_Friends_TA__HandleMatchGUIDChanged_0x1*]
 };
 
 /**
@@ -54078,6 +53484,16 @@ export type GFxData_Friends_TA_OnRemoved_Params = {};
  */
 export type GFxData_Friends_TA_OnShellSet_Params = {
   OnlineFriends: UOnlinePlayerFriends_X; // 0x0000 (0x0008) [UOnlinePlayerFriends_X*]
+};
+
+/**
+ * Function TAGame.GFxData_Friends_TA.PlayerIsAnonymized
+ */
+export type GFxData_Friends_TA_PlayerIsAnonymized_Params = {
+  PRI: UPRI_TA; // 0x0000 (0x0008) [UPRI_TA*] [CPF_Parm]
+  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  bIsAnonymized: boolean; // 0x000c (0x0004) [bool : 0x1]
+  ViewerPRI: UPRI_TA; // 0x0010 (0x0008) [UPRI_TA*]
 };
 
 /**
@@ -54523,6 +53939,15 @@ export type GFxData_Garage_TA_EquipProduct_Params = {
 export type GFxData_Garage_TA_EventResetTabIndexes_Params = {};
 
 /**
+ * Function TAGame.GFxData_Garage_TA.GetBaseBody
+ */
+export type GFxData_Garage_TA_GetBaseBody_Params = {
+  InBody: UProduct_TA; // 0x0000 (0x0008) [UProduct_TA*] [CPF_Parm]
+  ReturnValue: UProduct_TA; // 0x0008 (0x0008) [UProduct_TA*] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  BaseBodyAsset: UProductAsset_Body_TA; // 0x0010 (0x0008) [UProductAsset_Body_TA*]
+};
+
+/**
  * Function TAGame.GFxData_Garage_TA.GetEquipActionAsTeamIndex
  */
 export type GFxData_Garage_TA_GetEquipActionAsTeamIndex_Params = {
@@ -54694,6 +54119,8 @@ export type GFxData_Garage_TA_IsSameBody_Params = {
   PendingBodyProduct: UProduct_TA; // 0x0000 (0x0008) [UProduct_TA*] [CPF_Parm]
   EquippedProduct: UProduct_TA; // 0x0008 (0x0008) [UProduct_TA*] [CPF_Parm]
   ReturnValue: boolean; // 0x0010 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  PendingBaseBody: UProduct_TA; // 0x0018 (0x0008) [UProduct_TA*]
+  EquippedBaseBody: UProduct_TA; // 0x0020 (0x0008) [UProduct_TA*]
 };
 
 /**
@@ -56627,9 +56054,11 @@ export type GFxData_Map_TA_UpdateFreeplayMapList_Params = {
   Map: UMapData_TA; // 0x0010 (0x0008) [UMapData_TA*]
   GameMode: UGameMode_TA; // 0x0018 (0x0008) [UGameMode_TA*]
   MapData: FGFxMapData; // 0x0020 (0x0038) [FGFxMapData]
-  RandomFreeplayData: FGFxMapData; // 0x0058 (0x0038) [FGFxMapData]
-  LocalizedGameMode: string; // 0x0090 (0x0010) [FString]
-  RocketLabsMedleyFreeplayData: FGFxMapData; // 0x00a0 (0x0038) [FGFxMapData]
+  SoccarMode: UGameMode_TA; // 0x0058 (0x0008) [UGameMode_TA*]
+  SoccarMapData: FGFxMapData; // 0x0060 (0x0038) [FGFxMapData]
+  RandomFreeplayData: FGFxMapData; // 0x0098 (0x0038) [FGFxMapData]
+  LocalizedGameMode: string; // 0x00d0 (0x0010) [FString]
+  RocketLabsMedleyFreeplayData: FGFxMapData; // 0x00e0 (0x0038) [FGFxMapData]
 };
 
 /**
@@ -60243,13 +59672,6 @@ export type GFxData_Mutators_TA_UpdateNumSelectedMutaors_Params = {
 };
 
 /**
- * Function TAGame.GFxData_Nameplate_TA.__GFxData_Nameplate_TA__HandleProfileSet_0x1
- */
-export type GFxData_Nameplate_TA___GFxData_Nameplate_TA__HandleProfileSet_0x1_Params = {
-  Settings: UProfileGameplaySave_TA; // 0x0000 (0x0008) [UProfileGameplaySave_TA*] [CPF_Parm]
-};
-
-/**
  * Function TAGame.GFxData_Nameplate_TA.__GFxData_Nameplate_TA__SetNameplateComponent_0x1
  */
 export type GFxData_Nameplate_TA___GFxData_Nameplate_TA__SetNameplateComponent_0x1_Params = {
@@ -60281,6 +59703,13 @@ export type GFxData_Nameplate_TA_GetOnlineGame_Params = {
  */
 export type GFxData_Nameplate_TA_HandleAnonymizationChanged_Params = {
   InPRI: UPRI_TA; // 0x0000 (0x0008) [UPRI_TA*] [CPF_Parm]
+};
+
+/**
+ * Function TAGame.GFxData_Nameplate_TA.HandleGameplaySettingsLoaded
+ */
+export type GFxData_Nameplate_TA_HandleGameplaySettingsLoaded_Params = {
+  Settings: UProfileGameplaySave_TA; // 0x0000 (0x0008) [UProfileGameplaySave_TA*] [CPF_Parm]
 };
 
 /**
@@ -62422,6 +61851,13 @@ export type GFxData_PlayerRecord_TA_GetOnlineGame_Params = {
 };
 
 /**
+ * Function TAGame.GFxData_PlayerRecord_TA.HandleGameplaySettingsLoaded
+ */
+export type GFxData_PlayerRecord_TA_HandleGameplaySettingsLoaded_Params = {
+  Settings: UProfileGameplaySave_TA; // 0x0000 (0x0008) [UProfileGameplaySave_TA*] [CPF_Parm]
+};
+
+/**
  * Function TAGame.GFxData_PlayerRecord_TA.HandlePlayerNameChanged
  */
 export type GFxData_PlayerRecord_TA_HandlePlayerNameChanged_Params = {
@@ -62437,6 +61873,13 @@ export type GFxData_PlayerRecord_TA_HandlePlayerNameSanitized_Params = {
 };
 
 /**
+ * Function TAGame.GFxData_PlayerRecord_TA.HandleProfileSet
+ */
+export type GFxData_PlayerRecord_TA_HandleProfileSet_Params = {
+  InLocalPlayer: ULocalPlayer_TA; // 0x0000 (0x0008) [ULocalPlayer_TA*] [CPF_Parm]
+};
+
+/**
  * Function TAGame.GFxData_PlayerRecord_TA.HandleUniqueIdChanged
  */
 export type GFxData_PlayerRecord_TA_HandleUniqueIdChanged_Params = {
@@ -62447,6 +61890,11 @@ export type GFxData_PlayerRecord_TA_HandleUniqueIdChanged_Params = {
  * Function TAGame.GFxData_PlayerRecord_TA.OnRemoved
  */
 export type GFxData_PlayerRecord_TA_OnRemoved_Params = {};
+
+/**
+ * Function TAGame.GFxData_PlayerRecord_TA.OnShellSet
+ */
+export type GFxData_PlayerRecord_TA_OnShellSet_Params = {};
 
 /**
  * Function TAGame.GFxData_PlayerRecord_TA.PrintDebugInfo
@@ -62479,6 +61927,11 @@ export type GFxData_PlayerRecord_TA_SetPRI_Params = {
   InPRI: UPRI_TA; // 0x0000 (0x0008) [UPRI_TA*] [CPF_Parm]
   EmptyNetID: FUniqueNetId; // 0x0008 (0x0048) [FUniqueNetId]
 };
+
+/**
+ * Function TAGame.GFxData_PlayerRecord_TA.UpdateAnonymizedName
+ */
+export type GFxData_PlayerRecord_TA_UpdateAnonymizedName_Params = {};
 
 /**
  * Function TAGame.GFxData_PlayerReport_TA.OnShellSet
@@ -62999,13 +62452,6 @@ export type GFxData_PremiumGarage_TA_GetProfile_Params = {
 };
 
 /**
- * Function TAGame.GFxData_PRI_TA.__GFxData_PRI_TA__HandleProfileSet_0x1
- */
-export type GFxData_PRI_TA___GFxData_PRI_TA__HandleProfileSet_0x1_Params = {
-  Settings: UProfileGameplaySave_TA; // 0x0000 (0x0008) [UProfileGameplaySave_TA*] [CPF_Parm]
-};
-
-/**
  * Function TAGame.GFxData_PRI_TA.__GFxData_PRI_TA__SetPRI_0x1
  */
 export type GFxData_PRI_TA___GFxData_PRI_TA__SetPRI_0x1_Params = {
@@ -63100,6 +62546,13 @@ export type GFxData_PRI_TA_HandleClub_Params = {
  * Function TAGame.GFxData_PRI_TA.HandleClubID
  */
 export type GFxData_PRI_TA_HandleClubID_Params = {};
+
+/**
+ * Function TAGame.GFxData_PRI_TA.HandleGameplaySettingsLoaded
+ */
+export type GFxData_PRI_TA_HandleGameplaySettingsLoaded_Params = {
+  Settings: UProfileGameplaySave_TA; // 0x0000 (0x0008) [UProfileGameplaySave_TA*] [CPF_Parm]
+};
 
 /**
  * Function TAGame.GFxData_PRI_TA.HandleInfectedStatusChanged
@@ -63360,7 +62813,8 @@ export type GFxData_PRI_TA_SetPlayerIDString_Params = {
  */
 export type GFxData_PRI_TA_SetPlayerTitle_Params = {
   TitleId: FName; // 0x0000 (0x0008) [FName] [CPF_Parm]
-  Data: FPlayerTitleData; // 0x0008 (0x0030) [FPlayerTitleData]
+  ViewerPRI: UPRI_TA; // 0x0008 (0x0008) [UPRI_TA*]
+  Data: FPlayerTitleData; // 0x0010 (0x0030) [FPlayerTitleData]
 };
 
 /**
@@ -63385,6 +62839,14 @@ export type GFxData_PRI_TA_ShowSpecialEventVisualsChanged_Params = {
   ViralItemConfig: UViralItemConfig_TA; // 0x0000 (0x0008) [UViralItemConfig_TA*]
   ScoreboardInfectedTypes: EInfectedType[]; // 0x0008 (0x0010) [TArray<EInfectedType>]
   AvatarInfectedTypes: EInfectedType[]; // 0x0018 (0x0010) [TArray<EInfectedType>]
+};
+
+/**
+ * Function TAGame.GFxData_PRI_TA.UpdateAnonymizedPlayerBanner
+ */
+export type GFxData_PRI_TA_UpdateAnonymizedPlayerBanner_Params = {
+  DefaultBannerData: FOnlineProductData; // 0x0000 (0x0040) [FOnlineProductData]
+  DefaultBannerProduct: UOnlineProduct_TA; // 0x0040 (0x0008) [UOnlineProduct_TA*]
 };
 
 /**
@@ -68972,6 +68434,7 @@ export type GFxData_Settings_TA_InitChatSettings_Params = {
   TextDefault: EChatPermissionLevel; // 0x0020 (0x0001) [EChatPermissionLevel]
   PartyChatSettings: UGFxData_UserSetting_TA; // 0x0028 (0x0008) [UGFxData_UserSetting_TA*]
   bVisualOnlyRestriction: boolean; // 0x0030 (0x0004) [bool : 0x1]
+  bPolicyRestricted: boolean; // 0x0034 (0x0004) [bool : 0x1]
   WordFilterConfig: UWordFilterConfig_X; // 0x0038 (0x0008) [UWordFilterConfig_X*]
   bAllowMatureLanguageFilterSetting: boolean; // 0x0040 (0x0004) [bool : 0x1]
   bTextReportingSettingEnabled: boolean; // 0x0044 (0x0004) [bool : 0x1]
@@ -68979,19 +68442,20 @@ export type GFxData_Settings_TA_InitChatSettings_Params = {
   bSettingsEnabled: boolean; // 0x004c (0x0004) [bool : 0x1]
   VoiceChatPermissionLevel: EChatPermissionLevel; // 0x0050 (0x0001) [EChatPermissionLevel]
   VoiceChatSettings: UGFxData_UserSetting_TA; // 0x0058 (0x0008) [UGFxData_UserSetting_TA*]
-  VoiceManager: UEOSVoiceManager_TA; // 0x0060 (0x0008) [UEOSVoiceManager_TA*]
-  InputDeviceSetting: UGFxData_UserSetting_TA; // 0x0068 (0x0008) [UGFxData_UserSetting_TA*]
-  InputAudioDevices: FVoiceAudioDevice[]; // 0x0070 (0x0010) [TArray<FVoiceAudioDevice>]
-  DefaultInputLabel: string; // 0x0080 (0x0010) [FString]
-  InputVoiceDevice: FVoiceAudioDevice; // 0x0090 (0x0028) [FVoiceAudioDevice]
-  OutputDeviceSetting: UGFxData_UserSetting_TA; // 0x00b8 (0x0008) [UGFxData_UserSetting_TA*]
-  OutputAudioDevices: FVoiceAudioDevice[]; // 0x00c0 (0x0010) [TArray<FVoiceAudioDevice>]
-  DefaultOutputLabel: string; // 0x00d0 (0x0010) [FString]
-  OutputVoiceDevice: FVoiceAudioDevice; // 0x00e0 (0x0028) [FVoiceAudioDevice]
-  VoiceInputModeSetting: UGFxData_UserSetting_TA; // 0x0108 (0x0008) [UGFxData_UserSetting_TA*]
-  PreferredVoiceRoomSetting: UGFxData_UserSetting_TA; // 0x0110 (0x0008) [UGFxData_UserSetting_TA*]
-  NotificationSetting: UGFxData_UserSetting_TA; // 0x0118 (0x0008) [UGFxData_UserSetting_TA*]
-  VoiceReportingLevelSetting: UGFxData_UserSetting_TA; // 0x0120 (0x0008) [UGFxData_UserSetting_TA*]
+  bCabinedOrNonPrimary: boolean; // 0x0060 (0x0004) [bool : 0x1]
+  VoiceManager: UEOSVoiceManager_TA; // 0x0068 (0x0008) [UEOSVoiceManager_TA*]
+  InputDeviceSetting: UGFxData_UserSetting_TA; // 0x0070 (0x0008) [UGFxData_UserSetting_TA*]
+  InputAudioDevices: FVoiceAudioDevice[]; // 0x0078 (0x0010) [TArray<FVoiceAudioDevice>]
+  DefaultInputLabel: string; // 0x0088 (0x0010) [FString]
+  InputVoiceDevice: FVoiceAudioDevice; // 0x0098 (0x0028) [FVoiceAudioDevice]
+  OutputDeviceSetting: UGFxData_UserSetting_TA; // 0x00c0 (0x0008) [UGFxData_UserSetting_TA*]
+  OutputAudioDevices: FVoiceAudioDevice[]; // 0x00c8 (0x0010) [TArray<FVoiceAudioDevice>]
+  DefaultOutputLabel: string; // 0x00d8 (0x0010) [FString]
+  OutputVoiceDevice: FVoiceAudioDevice; // 0x00e8 (0x0028) [FVoiceAudioDevice]
+  VoiceInputModeSetting: UGFxData_UserSetting_TA; // 0x0110 (0x0008) [UGFxData_UserSetting_TA*]
+  PreferredVoiceRoomSetting: UGFxData_UserSetting_TA; // 0x0118 (0x0008) [UGFxData_UserSetting_TA*]
+  NotificationSetting: UGFxData_UserSetting_TA; // 0x0120 (0x0008) [UGFxData_UserSetting_TA*]
+  VoiceReportingLevelSetting: UGFxData_UserSetting_TA; // 0x0128 (0x0008) [UGFxData_UserSetting_TA*]
 };
 
 /**
@@ -69150,7 +68614,8 @@ export type GFxData_Settings_TA_OnControlPresetChanged_Params = {};
  * Function TAGame.GFxData_Settings_TA.OnRemoved
  */
 export type GFxData_Settings_TA_OnRemoved_Params = {
-  AccountSettings: UAccountSettingsComponent_TA; // 0x0000 (0x0008) [UAccountSettingsComponent_TA*]
+  OnlinePlayer: UOnlinePlayer_TA; // 0x0000 (0x0008) [UOnlinePlayer_TA*]
+  AccountSettings: UAccountSettingsComponent_TA; // 0x0008 (0x0008) [UAccountSettingsComponent_TA*]
 };
 
 /**
@@ -70038,6 +69503,7 @@ export type GFxData_Settings_TA_SetMasterVolume_Params = {
 export type GFxData_Settings_TA_SetMatchChatFilter_Params = {
   UserSetting: UGFxData_UserSetting_TA; // 0x0000 (0x0008) [UGFxData_UserSetting_TA*] [CPF_Parm]
   Value: string; // 0x0008 (0x0010) [FString] [CPF_Parm]
+  NewFilter: EChatFilter; // 0x0018 (0x0001) [EChatFilter]
 };
 
 /**
@@ -70221,6 +69687,7 @@ export type GFxData_Settings_TA_SetParticleDetail_Params = {
 export type GFxData_Settings_TA_SetPartyChatFilter_Params = {
   UserSetting: UGFxData_UserSetting_TA; // 0x0000 (0x0008) [UGFxData_UserSetting_TA*] [CPF_Parm]
   Value: string; // 0x0008 (0x0010) [FString] [CPF_Parm]
+  NewFilter: EChatFilter; // 0x0018 (0x0001) [EChatFilter]
 };
 
 /**
@@ -70567,6 +70034,7 @@ export type GFxData_Settings_TA_SetVisibleMMRPreference_Params = {
 export type GFxData_Settings_TA_SetVoiceChatFilter_Params = {
   UserSetting: UGFxData_UserSetting_TA; // 0x0000 (0x0008) [UGFxData_UserSetting_TA*] [CPF_Parm]
   Value: string; // 0x0008 (0x0010) [FString] [CPF_Parm]
+  NewFilter: EChatFilter; // 0x0018 (0x0001) [EChatFilter]
 };
 
 /**
@@ -71098,6 +70566,14 @@ export type GFxData_Shops_TA___GFxData_Shops_TA__BuildShopCatalogues_0x1_Params 
 };
 
 /**
+ * Function TAGame.GFxData_Shops_TA.__GFxData_Shops_TA__GetEsportsTabHasNew_0x1
+ */
+export type GFxData_Shops_TA___GFxData_Shops_TA__GetEsportsTabHasNew_0x1_Params = {
+  S: UGFxData_ShopCatalogue_TA; // 0x0000 (0x0008) [UGFxData_ShopCatalogue_TA*] [CPF_Parm]
+  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
  * Function TAGame.GFxData_Shops_TA.__GFxData_Shops_TA__HandleGetAllShops_0x1
  */
 export type GFxData_Shops_TA___GFxData_Shops_TA__HandleGetAllShops_0x1_Params = {
@@ -71295,6 +70771,13 @@ export type GFxData_Shops_TA_GetCrateShop_Params = {
 };
 
 /**
+ * Function TAGame.GFxData_Shops_TA.GetEsportsTabHasNew
+ */
+export type GFxData_Shops_TA_GetEsportsTabHasNew_Params = {
+  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
  * Function TAGame.GFxData_Shops_TA.GetItemFromID
  */
 export type GFxData_Shops_TA_GetItemFromID_Params = {
@@ -71447,6 +70930,13 @@ export type GFxData_Shops_TA_LoadCataloguesByIndex_Params = {
   ShopIndex: number; // 0x0010 (0x0004) [int32]
   Catalogue: UGFxData_ShopCatalogue_TA; // 0x0018 (0x0008) [UGFxData_ShopCatalogue_TA*]
   _0x1: U__GFxData_Shops_TA__LoadCataloguesByIndex_0x1; // 0x0020 (0x0008) [U__GFxData_Shops_TA__LoadCataloguesByIndex_0x1*]
+};
+
+/**
+ * Function TAGame.GFxData_Shops_TA.MarkEsportsShopsViewed
+ */
+export type GFxData_Shops_TA_MarkEsportsShopsViewed_Params = {
+  Catalogue: UGFxData_ShopCatalogue_TA; // 0x0000 (0x0008) [UGFxData_ShopCatalogue_TA*]
 };
 
 /**
@@ -74079,7 +73569,8 @@ export type GFxData_TradeInFilter_TA_HandleSaveDataLoaded_Params = {
  * Function TAGame.GFxData_TradeInFilter_TA.Init
  */
 export type GFxData_TradeInFilter_TA_Init_Params = {
-  InTradeInFilter: FProductTradeInFilter; // 0x0000 (0x0050) [FProductTradeInFilter] [CPF_Parm | CPF_OutParm]
+  ProductTradeIn: UGFxData_ProductTradeIn_TA; // 0x0000 (0x0008) [UGFxData_ProductTradeIn_TA*] [CPF_Parm]
+  InTradeInFilter: FProductTradeInFilter; // 0x0008 (0x0050) [FProductTradeInFilter] [CPF_Parm | CPF_OutParm]
 };
 
 /**
@@ -74346,7 +73837,8 @@ export type GFxData_Training_TA_InternalPlayFreeplay_Params = {
   bDisableConfirmation: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OptionalParm]
   SavedValues: UUISavedValues_TA; // 0x0008 (0x0008) [UUISavedValues_TA*]
   FreeplayMap: FName; // 0x0010 (0x0008) [FName]
-  Prefs: UMapPrefsSave_TA; // 0x0018 (0x0008) [UMapPrefsSave_TA*]
+  ModeIdx: number; // 0x0018 (0x0004) [int32]
+  Prefs: UMapPrefsSave_TA; // 0x0020 (0x0008) [UMapPrefsSave_TA*]
 };
 
 /**
@@ -74390,11 +73882,14 @@ export type GFxData_Training_TA_PlayFreeplay_Params = {};
  */
 export type GFxData_Training_TA_PlayFreeplayMap_Params = {
   Map: FName; // 0x0000 (0x0008) [FName] [CPF_Parm]
-  Prefs: UMapPrefsSave_TA; // 0x0008 (0x0008) [UMapPrefsSave_TA*]
-  GameMode: UGameMode_TA; // 0x0010 (0x0008) [UGameMode_TA*]
-  GFxMap: UGFxData_Map_TA; // 0x0018 (0x0008) [UGFxData_Map_TA*]
-  GameModeIndex: number; // 0x0020 (0x0004) [int32]
-  MapSet: UMapSet_TA; // 0x0028 (0x0008) [UMapSet_TA*]
+  GameModeIdx: number; // 0x0008 (0x0004) [int32] [CPF_Parm]
+  Prefs: UMapPrefsSave_TA; // 0x0010 (0x0008) [UMapPrefsSave_TA*]
+  GameMode: UGameMode_TA; // 0x0018 (0x0008) [UGameMode_TA*]
+  GFxMap: UGFxData_Map_TA; // 0x0020 (0x0008) [UGFxData_Map_TA*]
+  GameModeIndex: number; // 0x0028 (0x0004) [int32]
+  MapSet: UMapSet_TA; // 0x0030 (0x0008) [UMapSet_TA*]
+  PrefMode: UGameMode_TA; // 0x0038 (0x0008) [UGameMode_TA*]
+  _0x1: U__GFxData_Training_TA__PlayFreeplayMap_0x1; // 0x0040 (0x0008) [U__GFxData_Training_TA__PlayFreeplayMap_0x1*]
 };
 
 /**
@@ -78405,6 +77900,14 @@ export type GFxShell_TA_CreateModal_Params = {
 export type GFxShell_TA_CreateSaveErrorModal_Params = {
   Error: UError; // 0x0000 (0x0008) [UError*] [CPF_Parm]
   ReturnValue: UGFxModal_X; // 0x0008 (0x0008) [UGFxModal_X*] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
+ * Function TAGame.GFxShell_TA.DebugHitTest
+ */
+export type GFxShell_TA_DebugHitTest_Params = {
+  triggerMode: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
+  bShowClassInfo: boolean; // 0x0010 (0x0004) [bool : 0x1] [CPF_Parm]
 };
 
 /**
@@ -84847,6 +84350,14 @@ export type MatchStatsExporter_TA_AllowExtraPlayerStateData_Params = {
 };
 
 /**
+ * Function TAGame.MatchStatsExporter_TA.AllowSpectatorData
+ */
+export type MatchStatsExporter_TA_AllowSpectatorData_Params = {
+  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  PrimaryPRI: UPRI_TA; // 0x0008 (0x0008) [UPRI_TA*]
+};
+
+/**
  * Function TAGame.MatchStatsExporter_TA.BroadcastEvent
  */
 export type MatchStatsExporter_TA_BroadcastEvent_Params = {
@@ -84866,9 +84377,19 @@ export type MatchStatsExporter_TA_BroadcastMatchGUIDEvent_Params = {
 };
 
 /**
- * Function TAGame.MatchStatsExporter_TA.CreateSocketManager
+ * Function TAGame.MatchStatsExporter_TA.BroadcastPlayerChangeEvent
  */
-export type MatchStatsExporter_TA_CreateSocketManager_Params = {
+export type MatchStatsExporter_TA_BroadcastPlayerChangeEvent_Params = {
+  PRI: UPRI_TA; // 0x0000 (0x0008) [UPRI_TA*] [CPF_Parm]
+  bJoined: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm]
+  ChangeEvent: FPlayerChangeEvent; // 0x0010 (0x0030) [FPlayerChangeEvent]
+  ChangeJson: string; // 0x0040 (0x0010) [FString]
+};
+
+/**
+ * Function TAGame.MatchStatsExporter_TA.CreateSocketManagers
+ */
+export type MatchStatsExporter_TA_CreateSocketManagers_Params = {
   ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
 };
 
@@ -84880,6 +84401,16 @@ export type MatchStatsExporter_TA_GetBallState_Params = {
   ReturnValue: FBallUpdateState; // 0x0008 (0x0008) [FBallUpdateState] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
   NewBallState: FBallUpdateState; // 0x0010 (0x0008) [FBallUpdateState]
   BallSpeed: number; // 0x0018 (0x0004) [float]
+};
+
+/**
+ * Function TAGame.MatchStatsExporter_TA.GetBoostPickupEvent
+ */
+export type MatchStatsExporter_TA_GetBoostPickupEvent_Params = {
+  Pickup: UVehiclePickup_Boost_TA; // 0x0000 (0x0008) [UVehiclePickup_Boost_TA*] [CPF_Parm]
+  ReturnValue: FBoostPickupEvent; // 0x0008 (0x0050) [FBoostPickupEvent] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  Instigator: UCar_TA; // 0x0058 (0x0008) [UCar_TA*]
+  NewEvent: FBoostPickupEvent; // 0x0060 (0x0050) [FBoostPickupEvent]
 };
 
 /**
@@ -84950,9 +84481,9 @@ export type MatchStatsExporter_TA_GetPlayerDataPacket_Params = {
  */
 export type MatchStatsExporter_TA_GetPlayerState_Params = {
   PRI: UPRI_TA; // 0x0000 (0x0008) [UPRI_TA*] [CPF_Parm]
-  ReturnValue: FPlayerUpdateState; // 0x0008 (0x0078) [FPlayerUpdateState] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-  NewPlayerState: FPlayerUpdateState; // 0x0080 (0x0078) [FPlayerUpdateState]
-  bAllowExtraData: boolean; // 0x00f8 (0x0004) [bool : 0x1]
+  ReturnValue: FPlayerUpdateState; // 0x0008 (0x0098) [FPlayerUpdateState] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  NewPlayerState: FPlayerUpdateState; // 0x00a0 (0x0098) [FPlayerUpdateState]
+  bAllowExtraData: boolean; // 0x0138 (0x0004) [bool : 0x1]
 };
 
 /**
@@ -84990,6 +84521,17 @@ export type MatchStatsExporter_TA_HandleActiveRoundChanged_Params = {
  */
 export type MatchStatsExporter_TA_HandleBallExploded_Params = {
   Ball: UBall_TA; // 0x0000 (0x0008) [UBall_TA*] [CPF_Parm]
+};
+
+/**
+ * Function TAGame.MatchStatsExporter_TA.HandleBoostPickup
+ */
+export type MatchStatsExporter_TA_HandleBoostPickup_Params = {
+  Pickup: UVehiclePickup_TA; // 0x0000 (0x0008) [UVehiclePickup_TA*] [CPF_Parm]
+  BoostPickup: UVehiclePickup_Boost_TA; // 0x0008 (0x0008) [UVehiclePickup_Boost_TA*]
+  Instigator: UCar_TA; // 0x0010 (0x0008) [UCar_TA*]
+  NewEvent: FBoostPickupEvent; // 0x0018 (0x0050) [FBoostPickupEvent]
+  EventJson: string; // 0x0068 (0x0010) [FString]
 };
 
 /**
@@ -85059,6 +84601,22 @@ export type MatchStatsExporter_TA_HandlePauseChanged_Params = {
 };
 
 /**
+ * Function TAGame.MatchStatsExporter_TA.HandlePlayerAdded
+ */
+export type MatchStatsExporter_TA_HandlePlayerAdded_Params = {
+  GameEvent: UGameEvent_TA; // 0x0000 (0x0008) [UGameEvent_TA*] [CPF_Parm]
+  PRI: UPRI_TA; // 0x0008 (0x0008) [UPRI_TA*] [CPF_Parm]
+};
+
+/**
+ * Function TAGame.MatchStatsExporter_TA.HandlePlayerRemoved
+ */
+export type MatchStatsExporter_TA_HandlePlayerRemoved_Params = {
+  GameEvent: UGameEvent_TA; // 0x0000 (0x0008) [UGameEvent_TA*] [CPF_Parm]
+  PRI: UPRI_TA; // 0x0008 (0x0008) [UPRI_TA*] [CPF_Parm]
+};
+
+/**
  * Function TAGame.MatchStatsExporter_TA.HandlePodiumSpotlightStarted
  */
 export type MatchStatsExporter_TA_HandlePodiumSpotlightStarted_Params = {
@@ -85070,6 +84628,8 @@ export type MatchStatsExporter_TA_HandlePodiumSpotlightStarted_Params = {
  */
 export type MatchStatsExporter_TA_HandleReplayGameInit_Params = {
   Game: UGameInfo_Replay_TA; // 0x0000 (0x0008) [UGameInfo_Replay_TA*] [CPF_Parm]
+  ReplayEvent: FReplayStartedEvent; // 0x0008 (0x0020) [FReplayStartedEvent]
+  EventJson: string; // 0x0028 (0x0010) [FString]
 };
 
 /**
@@ -85115,6 +84675,43 @@ export type MatchStatsExporter_TA_Init_Params = {
 };
 
 /**
+ * Function TAGame.MatchStatsExporter_TA.IsInReplay
+ */
+export type MatchStatsExporter_TA_IsInReplay_Params = {
+  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
+ * Function TAGame.MatchStatsExporter_TA.IsReplayObjectSeeking
+ */
+export type MatchStatsExporter_TA_IsReplayObjectSeeking_Params = {
+  Replay: UReplay_TA; // 0x0000 (0x0008) [UReplay_TA*] [CPF_Parm]
+  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
+ * Function TAGame.MatchStatsExporter_TA.IsReplaySeeking
+ */
+export type MatchStatsExporter_TA_IsReplaySeeking_Params = {
+  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  StandaloneReplay: UGameInfo_Replay_TA; // 0x0008 (0x0008) [UGameInfo_Replay_TA*]
+};
+
+/**
+ * Function TAGame.MatchStatsExporter_TA.IsStatsAPIRunning
+ */
+export type MatchStatsExporter_TA_IsStatsAPIRunning_Params = {
+  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
+ * Function TAGame.MatchStatsExporter_TA.ProcessSocketCommand
+ */
+export type MatchStatsExporter_TA_ProcessSocketCommand_Params = {
+  CommandJson: string; // 0x0000 (0x0010) [FString] [CPF_Parm | CPF_OutParm]
+};
+
+/**
  * Function TAGame.MatchStatsExporter_TA.SendBallHitEvent
  */
 export type MatchStatsExporter_TA_SendBallHitEvent_Params = {
@@ -85129,9 +84726,9 @@ export type MatchStatsExporter_TA_SendDataToSockets_Params = {
 };
 
 /**
- * Function TAGame.MatchStatsExporter_TA.TickSocketManager
+ * Function TAGame.MatchStatsExporter_TA.TickSocketManagers
  */
-export type MatchStatsExporter_TA_TickSocketManager_Params = {};
+export type MatchStatsExporter_TA_TickSocketManagers_Params = {};
 
 /**
  * Function TAGame.MatchStatsExporter_TA.ToKph
@@ -85152,10 +84749,11 @@ export type MatchStatsExporter_TA_UpdateGameEventState_Params = {
   TeamRef: UTeam_TA; // 0x00a8 (0x0008) [UTeam_TA*]
   NoneCoalescing_0x2: UTeam_TA; // 0x00b0 (0x0008) [UTeam_TA*]
   TeamState: FTeamUpdateState; // 0x00b8 (0x0038) [FTeamUpdateState]
-  ReplayGameInfo: UGameInfo_Replay_TA; // 0x00f0 (0x0008) [UGameInfo_Replay_TA*]
-  Ball: UBall_TA; // 0x00f8 (0x0008) [UBall_TA*]
-  ViewedCar: UCar_TA; // 0x0100 (0x0008) [UCar_TA*]
-  NewStateJson: string; // 0x0108 (0x0010) [FString]
+  GRI: UGRI_TA; // 0x00f0 (0x0008) [UGRI_TA*]
+  ReplayGameInfo: UGameInfo_Replay_TA; // 0x00f8 (0x0008) [UGameInfo_Replay_TA*]
+  Ball: UBall_TA; // 0x0100 (0x0008) [UBall_TA*]
+  ViewedCar: UCar_TA; // 0x0108 (0x0008) [UCar_TA*]
+  NewStateJson: string; // 0x0110 (0x0010) [FString]
 };
 
 /**
@@ -91190,11 +90788,6 @@ export type OnlineGame_TA___OnlineGame_TA__GetSessionPlayerIds_0x5_Params = {
 };
 
 /**
- * Function TAGame.OnlineGame_TA.__OnlineGame_TA__OnInit_0x1
- */
-export type OnlineGame_TA___OnlineGame_TA__OnInit_0x1_Params = {};
-
-/**
  * Function TAGame.OnlineGame_TA.CanChatWithPlayer
  */
 export type OnlineGame_TA_CanChatWithPlayer_Params = {
@@ -91866,8 +91459,10 @@ export type OnlineGameParty_TA_AddPartyServiceLobbyMessage_Params = {
 export type OnlineGameParty_TA_AddPlayerPartyServiceLobbyMessage_Params = {
   Member: FPartyMember; // 0x0000 (0x0180) [FPartyMember] [CPF_Parm]
   Message: string; // 0x0180 (0x0010) [FString] [CPF_Parm]
-  Persona: UPersona_TA; // 0x0190 (0x0008) [UPersona_TA*]
-  _0x1: U__OnlineGameParty_TA__AddPlayerPartyServiceLobbyMessage_0x1; // 0x0198 (0x0008) [U__OnlineGameParty_TA__AddPlayerPartyServiceLobbyMessage_0x1*]
+  AnonymizedName: string; // 0x0190 (0x0010) [FString]
+  _0x1: U__OnlineGameParty_TA__AddPlayerPartyServiceLobbyMessage_0x1; // 0x01a0 (0x0008) [U__OnlineGameParty_TA__AddPlayerPartyServiceLobbyMessage_0x1*]
+  PRI: UPRI_TA; // 0x01a8 (0x0008) [UPRI_TA*]
+  ViewerPRI: UPRI_TA; // 0x01b0 (0x0008) [UPRI_TA*]
 };
 
 /**
@@ -94858,6 +94453,13 @@ export type OnlineSessionManager_TA_CanCrossplayTextChat_Params = {
 };
 
 /**
+ * Function TAGame.OnlineSessionManager_TA.GetExtraMatchDataString
+ */
+export type OnlineSessionManager_TA_GetExtraMatchDataString_Params = {
+  ReturnValue: string; // 0x0000 (0x0010) [FString] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
  * Function TAGame.OnlineSessionManager_TA.GetRemoteSessionPlayerIds
  */
 export type OnlineSessionManager_TA_GetRemoteSessionPlayerIds_Params = {
@@ -95971,7 +95573,7 @@ export type Persona_TA_SetClubRole_Params = {
  * Function TAGame.Persona_TA.SetEpicAccountId
  */
 export type Persona_TA_SetEpicAccountId_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
+  InEpicAccountID: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
 };
 
 /**
@@ -97040,16 +96642,6 @@ export type PlayerController_Replay_TA_ReceivedPlayer_Params = {
 export type PlayerController_TA___bReportedPlayer__ChangeNotifyFunc_Params = {};
 
 /**
- * Function TAGame.PlayerController_TA.__EOSGameClipsController__ChangeNotifyFunc
- */
-export type PlayerController_TA___EOSGameClipsController__ChangeNotifyFunc_Params = {};
-
-/**
- * Function TAGame.PlayerController_TA.__EOSGameClipsControllerArchetype__ChangeNotifyFunc
- */
-export type PlayerController_TA___EOSGameClipsControllerArchetype__ChangeNotifyFunc_Params = {};
-
-/**
  * Function TAGame.PlayerController_TA.__FreeplaySessionManager__ChangeNotifyFunc
  */
 export type PlayerController_TA___FreeplaySessionManager__ChangeNotifyFunc_Params = {};
@@ -97227,13 +96819,6 @@ export type PlayerController_TA_CanChatWith_Params = {
 export type PlayerController_TA_CanSendMessage_Params = {
   bQuickChatMessage: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm]
   ReturnValue: boolean; // 0x0004 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function TAGame.PlayerController_TA.CaptureClip
- */
-export type PlayerController_TA_CaptureClip_Params = {
-  InGameClipInputType: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
 };
 
 /**
@@ -98065,14 +97650,6 @@ export type PlayerController_TA_IdleKick_Params = {};
  */
 export type PlayerController_TA_IgnoreMoveInput_Params = {
   bNewMoveInput: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm]
-};
-
-/**
- * Function TAGame.PlayerController_TA.InitEOSGameClipsController
- */
-export type PlayerController_TA_InitEOSGameClipsController_Params = {
-  GameClipsManager: UEOSGameClipsManager_TA; // 0x0000 (0x0008) [UEOSGameClipsManager_TA*]
-  EOSAccountId: string; // 0x0008 (0x0010) [FString]
 };
 
 /**
@@ -99633,104 +99210,100 @@ export type PlayerInput_TA_GetDefaultActions_Params = {
   StructInitializer_0x1b: FBindingAction; // 0x05d0 (0x0038) [FBindingAction] [CPF_OutParm]
   StructInitializer_0x1c: FBindingAction; // 0x0608 (0x0038) [FBindingAction] [CPF_OutParm]
   StructInitializer_0x1d: FBindingAction; // 0x0640 (0x0038) [FBindingAction] [CPF_OutParm]
-  EOSGameClipsManager: UEOSGameClipsManager_TA; // 0x0678 (0x0008) [UEOSGameClipsManager_TA*]
-  EOSGameClipsConfig: UEOSGameClipsConfig_TA; // 0x0680 (0x0008) [UEOSGameClipsConfig_TA*]
-  StructInitializer_0x1e: FBindingAction; // 0x0688 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x1f: FBindingAction; // 0x06c0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x20: FBindingAction; // 0x06f8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x21: FBindingAction; // 0x0730 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x22: FBindingAction; // 0x0768 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x23: FBindingAction; // 0x07a0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x24: FBindingAction; // 0x07d8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x25: FBindingAction; // 0x0810 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x26: FBindingAction; // 0x0848 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x27: FBindingAction; // 0x0880 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x28: FBindingAction; // 0x08b8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x29: FBindingAction; // 0x08f0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x2a: FBindingAction; // 0x0928 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x2b: FBindingAction; // 0x0960 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x2c: FBindingAction; // 0x0998 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x2d: FBindingAction; // 0x09d0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x2e: FBindingAction; // 0x0a08 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x2f: FBindingAction; // 0x0a40 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x30: FBindingAction; // 0x0a78 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x31: FBindingAction; // 0x0ab0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x32: FBindingAction; // 0x0ae8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x33: FBindingAction; // 0x0b20 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x34: FBindingAction; // 0x0b58 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x35: FBindingAction; // 0x0b90 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x36: FBindingAction; // 0x0bc8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x37: FBindingAction; // 0x0c00 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x38: FBindingAction; // 0x0c38 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x39: FBindingAction; // 0x0c70 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x3a: FBindingAction; // 0x0ca8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x3b: FBindingAction; // 0x0ce0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x3c: FBindingAction; // 0x0d18 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x3d: FBindingAction; // 0x0d50 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x3e: FBindingAction; // 0x0d88 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x3f: FBindingAction; // 0x0dc0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x40: FBindingAction; // 0x0df8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x41: FBindingAction; // 0x0e30 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x42: FBindingAction; // 0x0e68 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x43: FBindingAction; // 0x0ea0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x44: FBindingAction; // 0x0ed8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x45: FBindingAction; // 0x0f10 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x46: FBindingAction; // 0x0f48 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x47: FBindingAction; // 0x0f80 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x48: FBindingAction; // 0x0fb8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x49: FBindingAction; // 0x0ff0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x4a: FBindingAction; // 0x1028 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x4b: FBindingAction; // 0x1060 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x4c: FBindingAction; // 0x1098 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x4d: FBindingAction; // 0x10d0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x4e: FBindingAction; // 0x1108 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x4f: FBindingAction; // 0x1140 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x50: FBindingAction; // 0x1178 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x51: FBindingAction; // 0x11b0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x52: FBindingAction; // 0x11e8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x53: FBindingAction; // 0x1220 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x54: FBindingAction; // 0x1258 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x55: FBindingAction; // 0x1290 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x56: FBindingAction; // 0x12c8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x57: FBindingAction; // 0x1300 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x58: FBindingAction; // 0x1338 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x59: FBindingAction; // 0x1370 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x5a: FBindingAction; // 0x13a8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x5b: FBindingAction; // 0x13e0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x5c: FBindingAction; // 0x1418 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x5d: FBindingAction; // 0x1450 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x5e: FBindingAction; // 0x1488 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x5f: FBindingAction; // 0x14c0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x60: FBindingAction; // 0x14f8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x61: FBindingAction; // 0x1530 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x62: FBindingAction; // 0x1568 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x63: FBindingAction; // 0x15a0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x64: FBindingAction; // 0x15d8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x65: FBindingAction; // 0x1610 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x66: FBindingAction; // 0x1648 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x67: FBindingAction; // 0x1680 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x68: FBindingAction; // 0x16b8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x69: FBindingAction; // 0x16f0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x6a: FBindingAction; // 0x1728 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x6b: FBindingAction; // 0x1760 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x6c: FBindingAction; // 0x1798 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x6d: FBindingAction; // 0x17d0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x6e: FBindingAction; // 0x1808 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x6f: FBindingAction; // 0x1840 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x70: FBindingAction; // 0x1878 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x71: FBindingAction; // 0x18b0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x72: FBindingAction; // 0x18e8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x73: FBindingAction; // 0x1920 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x74: FBindingAction; // 0x1958 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x75: FBindingAction; // 0x1990 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x76: FBindingAction; // 0x19c8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x77: FBindingAction; // 0x1a00 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x78: FBindingAction; // 0x1a38 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x79: FBindingAction; // 0x1a70 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x7a: FBindingAction; // 0x1aa8 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x7b: FBindingAction; // 0x1ae0 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x7c: FBindingAction; // 0x1b18 (0x0038) [FBindingAction] [CPF_OutParm]
-  StructInitializer_0x7d: FBindingAction; // 0x1b50 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x1e: FBindingAction; // 0x0678 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x1f: FBindingAction; // 0x06b0 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x20: FBindingAction; // 0x06e8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x21: FBindingAction; // 0x0720 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x22: FBindingAction; // 0x0758 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x23: FBindingAction; // 0x0790 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x24: FBindingAction; // 0x07c8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x25: FBindingAction; // 0x0800 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x26: FBindingAction; // 0x0838 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x27: FBindingAction; // 0x0870 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x28: FBindingAction; // 0x08a8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x29: FBindingAction; // 0x08e0 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x2a: FBindingAction; // 0x0918 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x2b: FBindingAction; // 0x0950 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x2c: FBindingAction; // 0x0988 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x2d: FBindingAction; // 0x09c0 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x2e: FBindingAction; // 0x09f8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x2f: FBindingAction; // 0x0a30 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x30: FBindingAction; // 0x0a68 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x31: FBindingAction; // 0x0aa0 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x32: FBindingAction; // 0x0ad8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x33: FBindingAction; // 0x0b10 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x34: FBindingAction; // 0x0b48 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x35: FBindingAction; // 0x0b80 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x36: FBindingAction; // 0x0bb8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x37: FBindingAction; // 0x0bf0 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x38: FBindingAction; // 0x0c28 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x39: FBindingAction; // 0x0c60 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x3a: FBindingAction; // 0x0c98 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x3b: FBindingAction; // 0x0cd0 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x3c: FBindingAction; // 0x0d08 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x3d: FBindingAction; // 0x0d40 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x3e: FBindingAction; // 0x0d78 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x3f: FBindingAction; // 0x0db0 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x40: FBindingAction; // 0x0de8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x41: FBindingAction; // 0x0e20 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x42: FBindingAction; // 0x0e58 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x43: FBindingAction; // 0x0e90 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x44: FBindingAction; // 0x0ec8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x45: FBindingAction; // 0x0f00 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x46: FBindingAction; // 0x0f38 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x47: FBindingAction; // 0x0f70 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x48: FBindingAction; // 0x0fa8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x49: FBindingAction; // 0x0fe0 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x4a: FBindingAction; // 0x1018 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x4b: FBindingAction; // 0x1050 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x4c: FBindingAction; // 0x1088 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x4d: FBindingAction; // 0x10c0 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x4e: FBindingAction; // 0x10f8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x4f: FBindingAction; // 0x1130 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x50: FBindingAction; // 0x1168 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x51: FBindingAction; // 0x11a0 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x52: FBindingAction; // 0x11d8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x53: FBindingAction; // 0x1210 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x54: FBindingAction; // 0x1248 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x55: FBindingAction; // 0x1280 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x56: FBindingAction; // 0x12b8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x57: FBindingAction; // 0x12f0 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x58: FBindingAction; // 0x1328 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x59: FBindingAction; // 0x1360 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x5a: FBindingAction; // 0x1398 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x5b: FBindingAction; // 0x13d0 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x5c: FBindingAction; // 0x1408 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x5d: FBindingAction; // 0x1440 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x5e: FBindingAction; // 0x1478 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x5f: FBindingAction; // 0x14b0 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x60: FBindingAction; // 0x14e8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x61: FBindingAction; // 0x1520 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x62: FBindingAction; // 0x1558 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x63: FBindingAction; // 0x1590 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x64: FBindingAction; // 0x15c8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x65: FBindingAction; // 0x1600 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x66: FBindingAction; // 0x1638 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x67: FBindingAction; // 0x1670 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x68: FBindingAction; // 0x16a8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x69: FBindingAction; // 0x16e0 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x6a: FBindingAction; // 0x1718 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x6b: FBindingAction; // 0x1750 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x6c: FBindingAction; // 0x1788 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x6d: FBindingAction; // 0x17c0 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x6e: FBindingAction; // 0x17f8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x6f: FBindingAction; // 0x1830 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x70: FBindingAction; // 0x1868 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x71: FBindingAction; // 0x18a0 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x72: FBindingAction; // 0x18d8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x73: FBindingAction; // 0x1910 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x74: FBindingAction; // 0x1948 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x75: FBindingAction; // 0x1980 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x76: FBindingAction; // 0x19b8 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x77: FBindingAction; // 0x19f0 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x78: FBindingAction; // 0x1a28 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x79: FBindingAction; // 0x1a60 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x7a: FBindingAction; // 0x1a98 (0x0038) [FBindingAction] [CPF_OutParm]
+  StructInitializer_0x7b: FBindingAction; // 0x1ad0 (0x0038) [FBindingAction] [CPF_OutParm]
 };
 
 /**
@@ -100809,6 +100382,29 @@ export type PostMatchCelebrationPreviewer_TA_UpdateMesh_Params = {
 };
 
 /**
+ * Function TAGame.PostMatchMetrics_TA.HandleMatchDestroyed
+ */
+export type PostMatchMetrics_TA_HandleMatchDestroyed_Params = {
+  SoccarEvent: UGameEvent_Soccar_TA; // 0x0000 (0x0008) [UGameEvent_Soccar_TA*] [CPF_Parm]
+};
+
+/**
+ * Function TAGame.PostMatchMetrics_TA.PostMatchPresence
+ */
+export type PostMatchMetrics_TA_PostMatchPresence_Params = {
+  MatchGUID: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
+  MatchEndEpoch: bigint; // 0x0010 (0x0008) [uint64] [CPF_Parm]
+  PlayerLeftEpoch: bigint; // 0x0018 (0x0008) [uint64] [CPF_Parm]
+};
+
+/**
+ * Function TAGame.PostMatchMetrics_TA.RecordMatchEnded
+ */
+export type PostMatchMetrics_TA_RecordMatchEnded_Params = {
+  SoccarEvent: UGameEvent_Soccar_TA; // 0x0000 (0x0008) [UGameEvent_Soccar_TA*] [CPF_Parm]
+};
+
+/**
  * Function TAGame.PostProcessManager_TA.ApplyPostProcessTypeOverride
  */
 export type PostProcessManager_TA_ApplyPostProcessTypeOverride_Params = {};
@@ -101365,6 +100961,13 @@ export type PRI_KnockOut_TA_HasLives_Params = {
 };
 
 /**
+ * Function TAGame.PRI_KnockOut_TA.HasPlayerTeam
+ */
+export type PRI_KnockOut_TA_HasPlayerTeam_Params = {
+  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
  * Function TAGame.PRI_KnockOut_TA.OnActiveMVPChanged
  */
 export type PRI_KnockOut_TA_OnActiveMVPChanged_Params = {};
@@ -101509,6 +101112,14 @@ export type PRI_TA___PRI_TA__InitClientLoadoutAttributes_0x1_Params = {
 export type PRI_TA___PRI_TA__InitFromAttributes_0x1_Params = {
   A: UProductAttribute_TA; // 0x0000 (0x0008) [UProductAttribute_TA*] [CPF_Parm]
   ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
+ * Function TAGame.PRI_TA.__PRI_TA__OnLoadoutsSetInternal_0x1
+ */
+export type PRI_TA___PRI_TA__OnLoadoutsSetInternal_0x1_Params = {
+  P: number; // 0x0000 (0x0004) [int32] [CPF_Parm]
+  ReturnValue: string; // 0x0008 (0x0010) [FString] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
 };
 
 /**
@@ -102599,6 +102210,8 @@ export type PRI_TA_OnLoadoutsSet_Params = {};
  */
 export type PRI_TA_OnLoadoutsSetInternal_Params = {
   TeamIndex: number; // 0x0000 (0x0004) [int32]
+  Index: number; // 0x0004 (0x0004) [int32]
+  MapLocal_0x1: string[]; // 0x0008 (0x0010) [TArray<FString>] [CPF_OutParm]
 };
 
 /**
@@ -103290,6 +102903,13 @@ export type PRI_TA_TryAwardTimeRestrictedStat_Params = {
  * Function TAGame.PRI_TA.Unregister
  */
 export type PRI_TA_Unregister_Params = {};
+
+/**
+ * Function TAGame.PRI_TA.UpdateAssetLoadoutTitle
+ */
+export type PRI_TA_UpdateAssetLoadoutTitle_Params = {
+  Index: number; // 0x0000 (0x0004) [int32]
+};
 
 /**
  * Function TAGame.PRI_TA.UpdateCarLocalPlayer
@@ -105967,6 +105587,14 @@ export type ProductDatabase_TA_FindProductByProductID_Params = {
 export type ProductDatabase_TA_GetAllProductsBySlot_Params = {
   Slot: UProductSlot_TA; // 0x0000 (0x0008) [UProductSlot_TA*] [CPF_Parm]
   ReturnValue: UProduct_TA[]; // 0x0008 (0x0010) [TArray<UProduct_TA*>] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
+ * Function TAGame.ProductDatabase_TA.GetBaseBodyForSpecialEditionVariant
+ */
+export type ProductDatabase_TA_GetBaseBodyForSpecialEditionVariant_Params = {
+  EquippedBody: UProduct_TA; // 0x0000 (0x0008) [UProduct_TA*] [CPF_Parm]
+  ReturnValue: UProductAsset_Body_TA; // 0x0008 (0x0008) [UProductAsset_Body_TA*] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
 };
 
 /**
@@ -108996,6 +108624,11 @@ export type ProfileLoadoutSave_TA_OnLoad_Params = {
 };
 
 /**
+ * Function TAGame.ProfileLoadoutSave_TA.RecordEquippedLoadoutUsage
+ */
+export type ProfileLoadoutSave_TA_RecordEquippedLoadoutUsage_Params = {};
+
+/**
  * Function TAGame.ProfileLoadoutSave_TA.RenamePreset
  */
 export type ProfileLoadoutSave_TA_RenamePreset_Params = {
@@ -109282,6 +108915,13 @@ export type RBActor_TA_EnableCCD_Params = {
 export type RBActor_TA_EventRigidBodyCollision_Params = {
   RBActor: URBActor_TA; // 0x0000 (0x0008) [URBActor_TA*] [CPF_Parm]
   Collision: FAccumulatedRigidBodyCollision; // 0x0008 (0x0080) [FAccumulatedRigidBodyCollision] [CPF_Parm]
+};
+
+/**
+ * Function TAGame.RBActor_TA.EventWeldedActorChanged
+ */
+export type RBActor_TA_EventWeldedActorChanged_Params = {
+  RBActor: URBActor_TA; // 0x0000 (0x0008) [URBActor_TA*] [CPF_Parm]
 };
 
 /**
@@ -117864,9 +117504,7 @@ export type SettingsSnapshotManager_TA___SettingsSnapshotManager_TA__HandleSaveM
 export type SettingsSnapshotManager_TA_AreSettingsSynced_Params = {
   OnlineSettings: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
   ReturnValue: boolean; // 0x0010 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-  OnlineSettingsJson: UJsonObject; // 0x0018 (0x0008) [UJsonObject*]
-  OnlineSettingsVersion: number; // 0x0020 (0x0004) [int32]
-  OnlineSettingsChecksum: number; // 0x0024 (0x0004) [int32]
+  OnlineMetadata: UOnlineSettingsMetadata_TA; // 0x0018 (0x0008) [UOnlineSettingsMetadata_TA*]
 };
 
 /**
@@ -118987,6 +118625,14 @@ export type ShopTabsConfig_TA_IsValidEsportsTeamRegion_Params = {
 };
 
 /**
+ * Function TAGame.ShopTabsConfig_TA.IsValidEsportsTeamShop
+ */
+export type ShopTabsConfig_TA_IsValidEsportsTeamShop_Params = {
+  Shop: UGFxData_ShopCatalogue_TA; // 0x0000 (0x0008) [UGFxData_ShopCatalogue_TA*] [CPF_Parm]
+  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
  * Function TAGame.ShopTabsConfig_TA.ValidateShop
  */
 export type ShopTabsConfig_TA_ValidateShop_Params = {
@@ -119407,6 +119053,174 @@ export type SkyLightVolume_TA_SetTeamColorListeners_Params = {};
 export type SkyLightVolumeComponent_TA_SetLowerLightProperties_Params = {
   NewBrightness: number; // 0x0000 (0x0004) [float] [CPF_Parm]
   NewLightColor: FColor; // 0x0004 (0x0004) [FColor] [CPF_Parm]
+};
+
+/**
+ * Function TAGame.SocketCommand_ChangePOV_TA.Apply
+ */
+export type SocketCommand_ChangePOV_TA_Apply_Params = {
+  ReplayViewer: UGFxData_ReplayViewer_TA; // 0x0000 (0x0008) [UGFxData_ReplayViewer_TA*]
+  DesiredMode: FName; // 0x0008 (0x0008) [FName]
+  TargetPRI: UPRI_TA; // 0x0010 (0x0008) [UPRI_TA*]
+};
+
+/**
+ * Function TAGame.SocketCommand_ChangePOV_TA.CanApply
+ */
+export type SocketCommand_ChangePOV_TA_CanApply_Params = {
+  CommandJson: UJsonObject; // 0x0000 (0x0008) [UJsonObject*] [CPF_Parm]
+  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  PrimaryPlayer: UOnlinePlayer_X; // 0x0010 (0x0008) [UOnlinePlayer_X*]
+  ReplayCamera: UCamera_Replay_TA; // 0x0018 (0x0008) [UCamera_Replay_TA*]
+};
+
+/**
+ * Function TAGame.SocketCommand_ChangePOV_TA.GetFocusActorString
+ */
+export type SocketCommand_ChangePOV_TA_GetFocusActorString_Params = {
+  PRI: UPRI_TA; // 0x0000 (0x0008) [UPRI_TA*] [CPF_Parm]
+  ReturnValue: string; // 0x0008 (0x0010) [FString] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  FocusCarString: string; // 0x0018 (0x0010) [FString]
+};
+
+/**
+ * Function TAGame.SocketCommand_ChangePOV_TA.GetPRIForShortcut
+ */
+export type SocketCommand_ChangePOV_TA_GetPRIForShortcut_Params = {
+  InShortcut: number; // 0x0000 (0x0004) [int32] [CPF_Parm]
+  ReturnValue: UPRI_TA; // 0x0008 (0x0008) [UPRI_TA*] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  GRI: UGRI_X; // 0x0010 (0x0008) [UGRI_X*]
+  Index: number; // 0x0018 (0x0004) [int32]
+  PRI: UPRI_TA; // 0x0020 (0x0008) [UPRI_TA*]
+};
+
+/**
+ * Function TAGame.SocketCommand_ChangePOV_TA.IsNumeric
+ */
+export type SocketCommand_ChangePOV_TA_IsNumeric_Params = {
+  S: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
+  ReturnValue: boolean; // 0x0010 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  Index: number; // 0x0014 (0x0004) [int32]
+};
+
+/**
+ * Function TAGame.SocketCommand_GameSpeed_TA.Apply
+ */
+export type SocketCommand_GameSpeed_TA_Apply_Params = {
+  ReplayViewer: UGFxData_ReplayViewer_TA; // 0x0000 (0x0008) [UGFxData_ReplayViewer_TA*]
+};
+
+/**
+ * Function TAGame.SocketCommand_GameSpeed_TA.CanApply
+ */
+export type SocketCommand_GameSpeed_TA_CanApply_Params = {
+  CommandJson: UJsonObject; // 0x0000 (0x0008) [UJsonObject*] [CPF_Parm]
+  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
+ * Function TAGame.SocketCommand_HUDVisibility_TA.Apply
+ */
+export type SocketCommand_HUDVisibility_TA_Apply_Params = {
+  PrimaryPlayer: UOnlinePlayer_X; // 0x0000 (0x0008) [UOnlinePlayer_X*]
+  ProfileGameplaySave: UProfileGameplaySave_TA; // 0x0008 (0x0008) [UProfileGameplaySave_TA*]
+};
+
+/**
+ * Function TAGame.SocketCommand_HUDVisibility_TA.CanApply
+ */
+export type SocketCommand_HUDVisibility_TA_CanApply_Params = {
+  CommandJson: UJsonObject; // 0x0000 (0x0008) [UJsonObject*] [CPF_Parm]
+  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
+ * Function TAGame.SocketCommand_LoadReplay_TA.Apply
+ */
+export type SocketCommand_LoadReplay_TA_Apply_Params = {};
+
+/**
+ * Function TAGame.SocketCommand_LoadReplay_TA.CanApply
+ */
+export type SocketCommand_LoadReplay_TA_CanApply_Params = {
+  CommandJson: UJsonObject; // 0x0000 (0x0008) [UJsonObject*] [CPF_Parm]
+  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
+ * Function TAGame.SocketCommand_PauseMatch_TA.Apply
+ */
+export type SocketCommand_PauseMatch_TA_Apply_Params = {
+  PC: UPlayerController; // 0x0000 (0x0008) [UPlayerController*]
+  ReplayHUD: UGFxHUD_Replay_TA; // 0x0008 (0x0008) [UGFxHUD_Replay_TA*]
+  PC_TA: UPlayerController_TA; // 0x0010 (0x0008) [UPlayerController_TA*]
+};
+
+/**
+ * Function TAGame.SocketCommand_PauseMatch_TA.CanApply
+ */
+export type SocketCommand_PauseMatch_TA_CanApply_Params = {
+  CommandJson: UJsonObject; // 0x0000 (0x0008) [UJsonObject*] [CPF_Parm]
+  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
+ * Function TAGame.SocketCommand_Replay_TA.CanApply
+ */
+export type SocketCommand_Replay_TA_CanApply_Params = {
+  CommandJson: UJsonObject; // 0x0000 (0x0008) [UJsonObject*] [CPF_Parm]
+  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
+ * Function TAGame.SocketCommand_SeekReplay_TA.Apply
+ */
+export type SocketCommand_SeekReplay_TA_Apply_Params = {
+  ReplayViewer: UGFxData_ReplayViewer_TA; // 0x0000 (0x0008) [UGFxData_ReplayViewer_TA*]
+  DesiredFrame: number; // 0x0008 (0x0004) [int32]
+};
+
+/**
+ * Function TAGame.SocketCommand_SeekReplay_TA.CanApply
+ */
+export type SocketCommand_SeekReplay_TA_CanApply_Params = {
+  CommandJson: UJsonObject; // 0x0000 (0x0008) [UJsonObject*] [CPF_Parm]
+  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
+ * Function TAGame.SocketCommand_TA.Apply
+ */
+export type SocketCommand_TA_Apply_Params = {};
+
+/**
+ * Function TAGame.SocketCommand_TA.CanApply
+ */
+export type SocketCommand_TA_CanApply_Params = {
+  CommandJson: UJsonObject; // 0x0000 (0x0008) [UJsonObject*] [CPF_Parm]
+  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
+ * Function TAGame.SocketCommand_TA.GetReplayViewer
+ */
+export type SocketCommand_TA_GetReplayViewer_Params = {
+  ReturnValue: UGFxData_ReplayViewer_TA; // 0x0000 (0x0008) [UGFxData_ReplayViewer_TA*] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+  PrimaryPlayer: UOnlinePlayer_X; // 0x0008 (0x0008) [UOnlinePlayer_X*]
+  Shell: UGFxShell_TA; // 0x0010 (0x0008) [UGFxShell_TA*]
+};
+
+/**
+ * Function TAGame.SocketCommandManager_TA.ProcessCommand
+ */
+export type SocketCommandManager_TA_ProcessCommand_Params = {
+  CommandJson: string; // 0x0000 (0x0010) [FString] [CPF_Parm | CPF_OutParm]
+  JSON: UJsonObject; // 0x0010 (0x0008) [UJsonObject*]
+  DataJson: UJsonObject; // 0x0018 (0x0008) [UJsonObject*]
+  CommandClass: USocketCommand_TA; // 0x0020 (0x0008) [USocketCommand_TA*]
+  _0x1: U__SocketCommandManager_TA__ProcessCommand_0x1; // 0x0028 (0x0008) [U__SocketCommandManager_TA__ProcessCommand_0x1*]
+  Cmd: USocketCommand_TA; // 0x0030 (0x0008) [USocketCommand_TA*]
+  DataString: string; // 0x0038 (0x0010) [FString]
 };
 
 /**
@@ -121279,6 +121093,13 @@ export type SpecialPickup_TA_GetActiveIcon_Params = {
  */
 export type SpecialPickup_TA_GetActiveTimePercent_Params = {
   ReturnValue: number; // 0x0000 (0x0004) [float] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
+ * Function TAGame.SpecialPickup_TA.GetArchetypeName
+ */
+export type SpecialPickup_TA_GetArchetypeName_Params = {
+  ReturnValue: FName; // 0x0000 (0x0008) [FName] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
 };
 
 /**
@@ -123824,16 +123645,28 @@ export type StoredChatData_TA_StoreChatMessage_Params = {
 };
 
 /**
- * Function TAGame.StreamerSafeAnonymizationUtils_TA.__StreamerSafeAnonymizationUtils_TA__HandleLocalProfileSet_0x1
+ * Function TAGame.StreamerSafeAnonymizationUtils_TA.ClearAnonymizationSettings
  */
-export type StreamerSafeAnonymizationUtils_TA___StreamerSafeAnonymizationUtils_TA__HandleLocalProfileSet_0x1_Params = {
-  Settings: UProfileGameplaySave_TA; // 0x0000 (0x0008) [UProfileGameplaySave_TA*] [CPF_Parm]
-};
+export type StreamerSafeAnonymizationUtils_TA_ClearAnonymizationSettings_Params = {};
 
 /**
  * Function TAGame.StreamerSafeAnonymizationUtils_TA.Destroy
  */
 export type StreamerSafeAnonymizationUtils_TA_Destroy_Params = {};
+
+/**
+ * Function TAGame.StreamerSafeAnonymizationUtils_TA.HandleAnonymizationSaveAdded
+ */
+export type StreamerSafeAnonymizationUtils_TA_HandleAnonymizationSaveAdded_Params = {
+  Settings: UProfileGameplaySave_TA; // 0x0000 (0x0008) [UProfileGameplaySave_TA*] [CPF_Parm]
+};
+
+/**
+ * Function TAGame.StreamerSafeAnonymizationUtils_TA.HandleAnonymizationSaveRemoved
+ */
+export type StreamerSafeAnonymizationUtils_TA_HandleAnonymizationSaveRemoved_Params = {
+  Settings: UProfileGameplaySave_TA; // 0x0000 (0x0008) [UProfileGameplaySave_TA*] [CPF_Parm]
+};
 
 /**
  * Function TAGame.StreamerSafeAnonymizationUtils_TA.HandleLocalProfileSet
@@ -128742,6 +128575,11 @@ export type TourUtils_TA_NextRound_Params = {
   Round: number; // 0x0000 (0x0004) [int32] [CPF_Parm]
   ReturnValue: number; // 0x0004 (0x0004) [int32] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
 };
+
+/**
+ * Function TAGame.TrackerWallDynamicMeshActor_TA.HandlePylonAdded
+ */
+export type TrackerWallDynamicMeshActor_TA_HandlePylonAdded_Params = {};
 
 /**
  * Function TAGame.TradingMetrics_TA.InvalidProductOffered

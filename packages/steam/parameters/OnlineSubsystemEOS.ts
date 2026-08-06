@@ -4,7 +4,7 @@
  */
 
 import type { FName, FScriptDelegate } from '../types/GameDefines';
-import type { UError, UErrorType } from '../classes/Core';
+import type { UError } from '../classes/Core';
 import type { UDateTime, UOnlineGameSearch, UOnlineGameSettings, UOnlinePlayerStorage, UOnlineProfileSettings, UOnlineStatsRead, UOnlineStatsWrite, UOnlineSubsystem, USpeechRecognition } from '../classes/Engine';
 import type { U__OnlinePlayerInterfaceEOS__LinkedAccount_0x1, U__OnlinePlayerInterfaceEOS__RequestNativePlatformAuthTicket_0x1 } from '../classes/OnlineSubsystemEOS';
 import type { EClientActionCode, EClientActionReason, EClientAuthStatus, EClientIntegrityViolation, EInputAPI, EVoiceResultCode, OnlinePlatform } from '../enums/Core';
@@ -12,12 +12,6 @@ import type {
   ECommunicationMethod,
   EFeaturePrivilege,
   EFeaturePrivilegeLevel,
-  EGameClipsAvailability,
-  EGameClipsClipStatus,
-  EGameClipsConnection,
-  EGameClipsConnectionStatus,
-  EGameClipsMaskStatus,
-  EGameClipsRecording,
   ELoginStatus,
   ENATType,
   ENetworkNotificationPosition,
@@ -35,7 +29,6 @@ import type {
   FEmsFile,
   FFriendHistoryKey,
   FFriendsQuery,
-  FGameClipsMaskArea,
   FLocalizedStringSetting,
   FOnlineFriend,
   FOnlineFriendMessage,
@@ -266,200 +259,6 @@ export type OnlineFriendsInterfaceEOS_RequestLinkedAccounts_Params = {
   Callback: FScriptDelegate; // 0x0018 (0x0018) [FScriptDelegate] [CPF_Parm]
   ReturnValue: boolean; // 0x0030 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
 };
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.CreateClip
- */
-export type OnlineGameClipsInterfaceEOS_CreateClip_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  InClipType: string; // 0x0010 (0x0010) [FString] [CPF_Parm]
-  ReturnValue: number; // 0x0020 (0x0004) [int32] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.DisableMaskArea
- */
-export type OnlineGameClipsInterfaceEOS_DisableMaskArea_Params = {
-  InMaskAreaHandle: bigint; // 0x0000 (0x0008) [uint64] [CPF_Parm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.EnableMaskArea
- */
-export type OnlineGameClipsInterfaceEOS_EnableMaskArea_Params = {
-  InMaskArea: FGameClipsMaskArea; // 0x0000 (0x0018) [FGameClipsMaskArea] [CPF_Parm | CPF_OutParm]
-  ReturnValue: bigint; // 0x0018 (0x0008) [uint64] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.EventAvailabilityChanged
- */
-export type OnlineGameClipsInterfaceEOS_EventAvailabilityChanged_Params = {
-  InNewAvailability: EGameClipsAvailability; // 0x0000 (0x0001) [EGameClipsAvailability] [CPF_Parm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.EventClipErrorOccurred
- */
-export type OnlineGameClipsInterfaceEOS_EventClipErrorOccurred_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  ClipId: number; // 0x0010 (0x0004) [int32] [CPF_Parm]
-  InErrorType: UErrorType; // 0x0018 (0x0008) [UErrorType*] [CPF_Parm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.EventClipStatusChanged
- */
-export type OnlineGameClipsInterfaceEOS_EventClipStatusChanged_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  InClipId: number; // 0x0010 (0x0004) [int32] [CPF_Parm]
-  InNewClipStatus: EGameClipsClipStatus; // 0x0014 (0x0001) [EGameClipsClipStatus] [CPF_Parm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.EventConnectionStatusChanged
- */
-export type OnlineGameClipsInterfaceEOS_EventConnectionStatusChanged_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  InConnection: EGameClipsConnection; // 0x0010 (0x0001) [EGameClipsConnection] [CPF_Parm]
-  InNewConnectionStatus: EGameClipsConnectionStatus; // 0x0011 (0x0001) [EGameClipsConnectionStatus] [CPF_Parm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.EventGeneralErrorOccurred
- */
-export type OnlineGameClipsInterfaceEOS_EventGeneralErrorOccurred_Params = {
-  InErrorType: UErrorType; // 0x0000 (0x0008) [UErrorType*] [CPF_Parm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.EventMaskStatusChanged
- */
-export type OnlineGameClipsInterfaceEOS_EventMaskStatusChanged_Params = {
-  InMaskAreaHandle: bigint; // 0x0000 (0x0008) [uint64] [CPF_Parm]
-  InMaskArea: FGameClipsMaskArea; // 0x0008 (0x0018) [FGameClipsMaskArea] [CPF_Parm]
-  InNewMaskStatus: EGameClipsMaskStatus; // 0x0020 (0x0001) [EGameClipsMaskStatus] [CPF_Parm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.EventRecordingChanged
- */
-export type OnlineGameClipsInterfaceEOS_EventRecordingChanged_Params = {
-  InNewRecording: EGameClipsRecording; // 0x0000 (0x0001) [EGameClipsRecording] [CPF_Parm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.GetTimeUntilUnthrottled
- */
-export type OnlineGameClipsInterfaceEOS_GetTimeUntilUnthrottled_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  ReturnValue: number; // 0x0010 (0x0004) [float] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.IsAccountLinked
- */
-export type OnlineGameClipsInterfaceEOS_IsAccountLinked_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  ReturnValue: boolean; // 0x0010 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.IsAvailable
- */
-export type OnlineGameClipsInterfaceEOS_IsAvailable_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.IsClipUploadingLimitReached
- */
-export type OnlineGameClipsInterfaceEOS_IsClipUploadingLimitReached_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  ReturnValue: boolean; // 0x0010 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.IsRecording
- */
-export type OnlineGameClipsInterfaceEOS_IsRecording_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.IsUploading
- */
-export type OnlineGameClipsInterfaceEOS_IsUploading_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.NotifyEventAvailabilityChanged
- */
-export type OnlineGameClipsInterfaceEOS_NotifyEventAvailabilityChanged_Params = {
-  InCallback: FScriptDelegate; // 0x0000 (0x0018) [FScriptDelegate] [CPF_Parm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.NotifyEventClipErrorOccurred
- */
-export type OnlineGameClipsInterfaceEOS_NotifyEventClipErrorOccurred_Params = {
-  InCallback: FScriptDelegate; // 0x0000 (0x0018) [FScriptDelegate] [CPF_Parm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.NotifyEventClipStatusChanged
- */
-export type OnlineGameClipsInterfaceEOS_NotifyEventClipStatusChanged_Params = {
-  InCallback: FScriptDelegate; // 0x0000 (0x0018) [FScriptDelegate] [CPF_Parm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.NotifyEventConnectionStatusChanged
- */
-export type OnlineGameClipsInterfaceEOS_NotifyEventConnectionStatusChanged_Params = {
-  InCallback: FScriptDelegate; // 0x0000 (0x0018) [FScriptDelegate] [CPF_Parm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.NotifyEventGeneralErrorOccurred
- */
-export type OnlineGameClipsInterfaceEOS_NotifyEventGeneralErrorOccurred_Params = {
-  InCallback: FScriptDelegate; // 0x0000 (0x0018) [FScriptDelegate] [CPF_Parm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.NotifyEventMaskStatusChanged
- */
-export type OnlineGameClipsInterfaceEOS_NotifyEventMaskStatusChanged_Params = {
-  InCallback: FScriptDelegate; // 0x0000 (0x0018) [FScriptDelegate] [CPF_Parm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.NotifyEventRecordingChanged
- */
-export type OnlineGameClipsInterfaceEOS_NotifyEventRecordingChanged_Params = {
-  InCallback: FScriptDelegate; // 0x0000 (0x0018) [FScriptDelegate] [CPF_Parm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.SetUserMaxClipUploadsPerMinute
- */
-export type OnlineGameClipsInterfaceEOS_SetUserMaxClipUploadsPerMinute_Params = {
-  InMaxClipUploadsPerMinute: number; // 0x0000 (0x0004) [int32] [CPF_Parm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.StartRecording
- */
-export type OnlineGameClipsInterfaceEOS_StartRecording_Params = {
-  InClipDuration: bigint; // 0x0000 (0x0008) [uint64] [CPF_Parm]
-};
-
-/**
- * Function OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS.StopRecording
- */
-export type OnlineGameClipsInterfaceEOS_StopRecording_Params = {};
 
 /**
  * Function OnlineSubsystemEOS.OnlineGameInterfaceEOS.AcceptGameInvite

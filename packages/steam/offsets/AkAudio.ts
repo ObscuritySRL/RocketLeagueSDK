@@ -266,7 +266,7 @@ export const Subsystem = {
 
 /**
  * AkAudio.AkAudioDevice Offsets
- * Size: 0x01b0
+ * Size: 0x01a8
  * Extends: Subsystem
  */
 export const AkAudioDevice = {

@@ -77,12 +77,6 @@ import type {
   EFocusType,
   EForceMode,
   EFunctionInputType,
-  EGameClipsAvailability,
-  EGameClipsClipStatus,
-  EGameClipsConnection,
-  EGameClipsConnectionStatus,
-  EGameClipsMaskStatus,
-  EGameClipsRecording,
   EGameObjectShaderParameterType,
   EGameShaderParameterType,
   EHeadTrackingAction,
@@ -410,7 +404,6 @@ import type {
   FFunctionExpressionInput,
   FFunctionExpressionOutput,
   FGameClassShortName,
-  FGameClipsMaskArea,
   FGameResourceDataProvider,
   FGameSearchCfg,
   FGameSessionInformation,
@@ -14141,41 +14134,6 @@ export type UOnlineFriendsInterface = UInterface & {};
 // OnReceivedLinkedAccount(bSuccess: boolean, LinkedAccountData: FLinkedAccountData[]): void
 
 /**
- * Class Engine.OnlineGameClipsInterface
- * Size: 0x0060
- * Extends: UInterface
- */
-export type UOnlineGameClipsInterface = UInterface & {};
-
-// OnlineGameClipsInterface Functions
-// NotifyEventClipErrorOccurred(InCallback: FScriptDelegate): void
-// EventClipErrorOccurred(InEpicAccountId: string, ClipId: number, InErrorType: UErrorType): void
-// NotifyEventGeneralErrorOccurred(InCallback: FScriptDelegate): void
-// EventGeneralErrorOccurred(InErrorType: UErrorType): void
-// NotifyEventMaskStatusChanged(InCallback: FScriptDelegate): void
-// EventMaskStatusChanged(InMaskAreaHandle: bigint, InMaskArea: FGameClipsMaskArea, InNewMaskStatus: EGameClipsMaskStatus): void
-// NotifyEventClipStatusChanged(InCallback: FScriptDelegate): void
-// EventClipStatusChanged(InEpicAccountId: string, InClipId: number, InNewClipStatus: EGameClipsClipStatus): void
-// NotifyEventConnectionStatusChanged(InCallback: FScriptDelegate): void
-// EventConnectionStatusChanged(InEpicAccountId: string, InConnection: EGameClipsConnection, InNewConnectionStatus: EGameClipsConnectionStatus): void
-// NotifyEventRecordingChanged(InCallback: FScriptDelegate): void
-// EventRecordingChanged(InNewRecording: EGameClipsRecording): void
-// NotifyEventAvailabilityChanged(InCallback: FScriptDelegate): void
-// EventAvailabilityChanged(InNewAvailability: EGameClipsAvailability): void
-// IsAccountLinked(InEpicAccountId: string): boolean
-// IsUploading(): boolean
-// IsRecording(): boolean
-// IsAvailable(): boolean
-// GetTimeUntilUnthrottled(InEpicAccountId: string): number
-// IsClipUploadingLimitReached(InEpicAccountId: string): boolean
-// SetUserMaxClipUploadsPerMinute(InMaxClipUploadsPerMinute: number): void
-// CreateClip(InEpicAccountId: string, InClipType: string): number
-// DisableMaskArea(InMaskAreaHandle: bigint): void
-// EnableMaskArea(InMaskArea: FGameClipsMaskArea): bigint
-// StopRecording(): void
-// StartRecording(InClipDuration: bigint): void
-
-/**
  * Class Engine.OnlineGameDVRInterface
  * Size: 0x0060
  * Extends: UInterface
@@ -15032,6 +14990,7 @@ export type UOnlineSessionManager = UObject & {
 };
 
 // OnlineSessionManager Functions
+// GetExtraMatchDataString(): string
 // CanCrossplayTextChat(): boolean
 // GetRemoteSessionPlayerIds(): FUniqueNetId[]
 // RemovePlayerFromSession(PlayerID: FUniqueNetId): void
@@ -15166,7 +15125,7 @@ export type UOnlineStatsWrite_TA = UOnlineStatsWrite & {};
 
 /**
  * Class Engine.OnlineSubsystem
- * Size: 0x0378
+ * Size: 0x0368
  * Extends: UObject
  */
 export type UOnlineSubsystem = UObject & {
@@ -15194,35 +15153,34 @@ export type UOnlineSubsystem = UObject & {
   PurchaseInterface: UOnlinePurchaseInterface; // 0x01a8 (0x0010) [UOnlinePurchaseInterface*]
   LobbyInterface: UOnlineLobbyInterface; // 0x01b8 (0x0010) [UOnlineLobbyInterface*]
   FriendsInterface: UOnlineFriendsInterface; // 0x01c8 (0x0010) [UOnlineFriendsInterface*]
-  GameClipsInterface: UOnlineGameClipsInterface; // 0x01d8 (0x0010) [UOnlineGameClipsInterface*]
-  SearchClass: UOnlineGameSearch; // 0x01e8 (0x0008) [UOnlineGameSearch*]
-  bSupportsMultiSignin: boolean; // 0x01f0 (0x0004) [bool : 0x1]
-  bSupportsMultiVoice: boolean; // 0x01f0 (0x0004) [bool : 0x2]
-  bShowPrivilegeCheckErrors: boolean; // 0x01f0 (0x0004) [bool : 0x4]
-  AccountSettings: UPlatformAccountSettings[]; // 0x01f8 (0x0010) [TArray<UPlatformAccountSettings*>]
-  BlockListStatuses: UPlatformBlockListStatus[]; // 0x0208 (0x0010) [TArray<UPlatformBlockListStatus*>]
-  UnsupportedCorrectiveActionURLs: UPlatformURL[]; // 0x0218 (0x0010) [TArray<UPlatformURL*>]
-  SessionManager: UOnlineSessionManager; // 0x0228 (0x0008) [UOnlineSessionManager*]
-  SteamDLC: FSteamDLCInfo[]; // 0x0230 (0x0010) [TArray<FSteamDLCInfo>]
-  PS4DLC: FPS4DLCInfo[]; // 0x0240 (0x0010) [TArray<FPS4DLCInfo>]
-  XboxOneDLC: FXboxOneDLCInfo[]; // 0x0250 (0x0010) [TArray<FXboxOneDLCInfo>]
-  SwitchDLC: FSwitchDLCInfo[]; // 0x0260 (0x0010) [TArray<FSwitchDLCInfo>]
-  EpicDLC: FEpicDLCInfo[]; // 0x0270 (0x0010) [TArray<FEpicDLCInfo>]
-  OnlinePlatformType: OnlinePlatform; // 0x0280 (0x0001) [OnlinePlatform]
-  CurrentConnectionStatus: EOnlineServerConnectionStatus; // 0x0281 (0x0001) [EOnlineServerConnectionStatus]
-  OnlineSubsystemNames: string[]; // 0x0288 (0x0010) [TArray<FString>]
-  NamedInterfaces: FNamedInterface[]; // 0x0298 (0x0010) [TArray<FNamedInterface>]
-  NamedInterfaceDefs: FNamedInterfaceDef[]; // 0x02a8 (0x0010) [TArray<FNamedInterfaceDef>]
-  Sessions: FNamedSession[]; // 0x02b8 (0x0010) [TArray<FNamedSession>]
-  IniLocPatcherClassName: string; // 0x02c8 (0x0010) [FString]
-  Patcher: UIniLocPatcher; // 0x02d8 (0x0008) [UIniLocPatcher*]
-  AsyncMinCompletionTime: number; // 0x02e0 (0x0004) [float]
-  __FeaturePrivilegeLevelUpdated__Delegate: FScriptDelegate; // 0x02e8 (0x0018) [FScriptDelegate]
-  __EventPlatformAccountSettingsCreated__Delegate: FScriptDelegate; // 0x0300 (0x0018) [FScriptDelegate]
-  __EventPlatformBlockListStatusCreated__Delegate: FScriptDelegate; // 0x0318 (0x0018) [FScriptDelegate]
-  __OnDeviceSuspend__Delegate: FScriptDelegate; // 0x0330 (0x0018) [FScriptDelegate]
-  __OnReadOnlineAvatarComplete__Delegate: FScriptDelegate; // 0x0348 (0x0018) [FScriptDelegate]
-  __OnSystemUserControllerPairingChanged__Delegate: FScriptDelegate; // 0x0360 (0x0018) [FScriptDelegate]
+  SearchClass: UOnlineGameSearch; // 0x01d8 (0x0008) [UOnlineGameSearch*]
+  bSupportsMultiSignin: boolean; // 0x01e0 (0x0004) [bool : 0x1]
+  bSupportsMultiVoice: boolean; // 0x01e0 (0x0004) [bool : 0x2]
+  bShowPrivilegeCheckErrors: boolean; // 0x01e0 (0x0004) [bool : 0x4]
+  AccountSettings: UPlatformAccountSettings[]; // 0x01e8 (0x0010) [TArray<UPlatformAccountSettings*>]
+  BlockListStatuses: UPlatformBlockListStatus[]; // 0x01f8 (0x0010) [TArray<UPlatformBlockListStatus*>]
+  UnsupportedCorrectiveActionURLs: UPlatformURL[]; // 0x0208 (0x0010) [TArray<UPlatformURL*>]
+  SessionManager: UOnlineSessionManager; // 0x0218 (0x0008) [UOnlineSessionManager*]
+  SteamDLC: FSteamDLCInfo[]; // 0x0220 (0x0010) [TArray<FSteamDLCInfo>]
+  PS4DLC: FPS4DLCInfo[]; // 0x0230 (0x0010) [TArray<FPS4DLCInfo>]
+  XboxOneDLC: FXboxOneDLCInfo[]; // 0x0240 (0x0010) [TArray<FXboxOneDLCInfo>]
+  SwitchDLC: FSwitchDLCInfo[]; // 0x0250 (0x0010) [TArray<FSwitchDLCInfo>]
+  EpicDLC: FEpicDLCInfo[]; // 0x0260 (0x0010) [TArray<FEpicDLCInfo>]
+  OnlinePlatformType: OnlinePlatform; // 0x0270 (0x0001) [OnlinePlatform]
+  CurrentConnectionStatus: EOnlineServerConnectionStatus; // 0x0271 (0x0001) [EOnlineServerConnectionStatus]
+  OnlineSubsystemNames: string[]; // 0x0278 (0x0010) [TArray<FString>]
+  NamedInterfaces: FNamedInterface[]; // 0x0288 (0x0010) [TArray<FNamedInterface>]
+  NamedInterfaceDefs: FNamedInterfaceDef[]; // 0x0298 (0x0010) [TArray<FNamedInterfaceDef>]
+  Sessions: FNamedSession[]; // 0x02a8 (0x0010) [TArray<FNamedSession>]
+  IniLocPatcherClassName: string; // 0x02b8 (0x0010) [FString]
+  Patcher: UIniLocPatcher; // 0x02c8 (0x0008) [UIniLocPatcher*]
+  AsyncMinCompletionTime: number; // 0x02d0 (0x0004) [float]
+  __FeaturePrivilegeLevelUpdated__Delegate: FScriptDelegate; // 0x02d8 (0x0018) [FScriptDelegate]
+  __EventPlatformAccountSettingsCreated__Delegate: FScriptDelegate; // 0x02f0 (0x0018) [FScriptDelegate]
+  __EventPlatformBlockListStatusCreated__Delegate: FScriptDelegate; // 0x0308 (0x0018) [FScriptDelegate]
+  __OnDeviceSuspend__Delegate: FScriptDelegate; // 0x0320 (0x0018) [FScriptDelegate]
+  __OnReadOnlineAvatarComplete__Delegate: FScriptDelegate; // 0x0338 (0x0018) [FScriptDelegate]
+  __OnSystemUserControllerPairingChanged__Delegate: FScriptDelegate; // 0x0350 (0x0018) [FScriptDelegate]
 };
 
 // OnlineSubsystem Functions
@@ -15302,7 +15260,6 @@ export type UOnlineSubsystem = UObject & {
 // SetPartyChatInterface(NewInterface: UObject): boolean
 // SetNewsInterface(NewInterface: UObject): boolean
 // SetStatsInterface(NewInterface: UObject): boolean
-// SetGameClipsInterface(InGameClipsInterface: UObject): boolean
 // SetVoiceInterface(NewInterface: UObject): boolean
 // SetContentInterface(NewInterface: UObject): boolean
 // SetLobbyInterface(InInterface: UObject): boolean

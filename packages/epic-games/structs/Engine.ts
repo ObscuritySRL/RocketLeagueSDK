@@ -1839,18 +1839,6 @@ export type FGameClassShortName = {
 };
 
 /**
- * ScriptStruct Engine._Types_Engine.GameClipsMaskArea
- * Size: 0x0018
- */
-export type FGameClipsMaskArea = {
-  MaskId: bigint; // 0x0000 (0x0008) [uint64]
-  TopLeftX: number; // 0x0008 (0x0004) [float]
-  TopLeftY: number; // 0x000c (0x0004) [float]
-  BottomRightX: number; // 0x0010 (0x0004) [float]
-  BottomRightY: number; // 0x0014 (0x0004) [float]
-};
-
-/**
  * ScriptStruct Engine.GameViewportClient.GamepadInfo
  * Size: 0x0008
  */

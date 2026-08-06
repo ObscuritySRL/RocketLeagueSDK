@@ -69,7 +69,7 @@ export const ErrorList = {
 
 /**
  * OnlineSubsystemEOS.EOSErrors Offsets
- * Size: 0x00f8
+ * Size: 0x00a0
  * Extends: ErrorList
  */
 export const EOSErrors = {
@@ -77,17 +77,6 @@ export const EOSErrors = {
   BlockedListNotFound: 0x0088n, // 0x0088 (0x0008) [UErrorType*]
   AcceptFriendRequestFailed: 0x0090n, // 0x0090 (0x0008) [UErrorType*]
   RejectFriendRequestFailed: 0x0098n, // 0x0098 (0x0008) [UErrorType*]
-  GameClipsActivationFailed: 0x00a0n, // 0x00a0 (0x0008) [UErrorType*]
-  GameClipsCleanAudioFailed: 0x00a8n, // 0x00a8 (0x0008) [UErrorType*]
-  GameClipsRecorderInitFailed: 0x00b0n, // 0x00b0 (0x0008) [UErrorType*]
-  GameClipsStartRecordingFailed: 0x00b8n, // 0x00b8 (0x0008) [UErrorType*]
-  GameClipsMaskAreaInvalid: 0x00c0n, // 0x00c0 (0x0008) [UErrorType*]
-  GameClipsStatusListenerFailed: 0x00c8n, // 0x00c8 (0x0008) [UErrorType*]
-  GameClipsUserStatusListenerFailed: 0x00d0n, // 0x00d0 (0x0008) [UErrorType*]
-  GameClipsNotAvailable: 0x00d8n, // 0x00d8 (0x0008) [UErrorType*]
-  GameClipsFailedToUpload: 0x00e0n, // 0x00e0 (0x0008) [UErrorType*]
-  GameClipsCoolingDown: 0x00e8n, // 0x00e8 (0x0008) [UErrorType*]
-  GameClipsUploadLimitReached: 0x00f0n, // 0x00f0 (0x0008) [UErrorType*]
   ...ErrorList,
 } as const;
 
@@ -218,23 +207,6 @@ export const OnlineFriendsInterfaceImpl = {
 export const OnlineFriendsInterfaceEOS = {
   PlayerInterfaceEOS: 0x0080n, // 0x0080 (0x0008) [UOnlinePlayerInterfaceEOS*]
   ...OnlineFriendsInterfaceImpl,
-} as const;
-
-/**
- * OnlineSubsystemEOS.OnlineGameClipsInterfaceEOS Offsets
- * Size: 0x0110
- * Extends: Object_
- */
-export const OnlineGameClipsInterfaceEOS = {
-  GameClipsHandle: 0x0060n, // 0x0060 (0x0008) [FPointer]
-  __EventAvailabilityChanged__Delegate: 0x0068n, // 0x0068 (0x0018) [FScriptDelegate]
-  __EventRecordingChanged__Delegate: 0x0080n, // 0x0080 (0x0018) [FScriptDelegate]
-  __EventConnectionStatusChanged__Delegate: 0x0098n, // 0x0098 (0x0018) [FScriptDelegate]
-  __EventClipStatusChanged__Delegate: 0x00b0n, // 0x00b0 (0x0018) [FScriptDelegate]
-  __EventMaskStatusChanged__Delegate: 0x00c8n, // 0x00c8 (0x0018) [FScriptDelegate]
-  __EventGeneralErrorOccurred__Delegate: 0x00e0n, // 0x00e0 (0x0018) [FScriptDelegate]
-  __EventClipErrorOccurred__Delegate: 0x00f8n, // 0x00f8 (0x0018) [FScriptDelegate]
-  ...Object_,
 } as const;
 
 /**
@@ -436,7 +408,7 @@ export const OnlineStatsInterfaceEOS = {
 
 /**
  * Engine.OnlineSubsystem Offsets
- * Size: 0x0378
+ * Size: 0x0368
  * Extends: Object_
  */
 export const OnlineSubsystem = {
@@ -464,118 +436,114 @@ export const OnlineSubsystem = {
   PurchaseInterface: 0x01a8n, // 0x01a8 (0x0010) [UOnlinePurchaseInterface*]
   LobbyInterface: 0x01b8n, // 0x01b8 (0x0010) [UOnlineLobbyInterface*]
   FriendsInterface: 0x01c8n, // 0x01c8 (0x0010) [UOnlineFriendsInterface*]
-  GameClipsInterface: 0x01d8n, // 0x01d8 (0x0010) [UOnlineGameClipsInterface*]
-  SearchClass: 0x01e8n, // 0x01e8 (0x0008) [UOnlineGameSearch*]
-  bSupportsMultiSignin: 0x01f0n, // 0x01f0 (0x0004) [bool : 0x1]
-  bSupportsMultiVoice: 0x01f0n, // 0x01f0 (0x0004) [bool : 0x2]
-  bShowPrivilegeCheckErrors: 0x01f0n, // 0x01f0 (0x0004) [bool : 0x4]
-  AccountSettings: 0x01f8n, // 0x01f8 (0x0010) [TArray<UPlatformAccountSettings*>]
-  BlockListStatuses: 0x0208n, // 0x0208 (0x0010) [TArray<UPlatformBlockListStatus*>]
-  UnsupportedCorrectiveActionURLs: 0x0218n, // 0x0218 (0x0010) [TArray<UPlatformURL*>]
-  SessionManager: 0x0228n, // 0x0228 (0x0008) [UOnlineSessionManager*]
-  SteamDLC: 0x0230n, // 0x0230 (0x0010) [TArray<FSteamDLCInfo>]
-  PS4DLC: 0x0240n, // 0x0240 (0x0010) [TArray<FPS4DLCInfo>]
-  XboxOneDLC: 0x0250n, // 0x0250 (0x0010) [TArray<FXboxOneDLCInfo>]
-  SwitchDLC: 0x0260n, // 0x0260 (0x0010) [TArray<FSwitchDLCInfo>]
-  EpicDLC: 0x0270n, // 0x0270 (0x0010) [TArray<FEpicDLCInfo>]
-  OnlinePlatformType: 0x0280n, // 0x0280 (0x0001) [OnlinePlatform]
-  CurrentConnectionStatus: 0x0281n, // 0x0281 (0x0001) [EOnlineServerConnectionStatus]
-  OnlineSubsystemNames: 0x0288n, // 0x0288 (0x0010) [TArray<FString>]
-  NamedInterfaces: 0x0298n, // 0x0298 (0x0010) [TArray<FNamedInterface>]
-  NamedInterfaceDefs: 0x02a8n, // 0x02a8 (0x0010) [TArray<FNamedInterfaceDef>]
-  Sessions: 0x02b8n, // 0x02b8 (0x0010) [TArray<FNamedSession>]
-  IniLocPatcherClassName: 0x02c8n, // 0x02c8 (0x0010) [FString]
-  Patcher: 0x02d8n, // 0x02d8 (0x0008) [UIniLocPatcher*]
-  AsyncMinCompletionTime: 0x02e0n, // 0x02e0 (0x0004) [float]
-  __FeaturePrivilegeLevelUpdated__Delegate: 0x02e8n, // 0x02e8 (0x0018) [FScriptDelegate]
-  __EventPlatformAccountSettingsCreated__Delegate: 0x0300n, // 0x0300 (0x0018) [FScriptDelegate]
-  __EventPlatformBlockListStatusCreated__Delegate: 0x0318n, // 0x0318 (0x0018) [FScriptDelegate]
-  __OnDeviceSuspend__Delegate: 0x0330n, // 0x0330 (0x0018) [FScriptDelegate]
-  __OnReadOnlineAvatarComplete__Delegate: 0x0348n, // 0x0348 (0x0018) [FScriptDelegate]
-  __OnSystemUserControllerPairingChanged__Delegate: 0x0360n, // 0x0360 (0x0018) [FScriptDelegate]
+  SearchClass: 0x01d8n, // 0x01d8 (0x0008) [UOnlineGameSearch*]
+  bSupportsMultiSignin: 0x01e0n, // 0x01e0 (0x0004) [bool : 0x1]
+  bSupportsMultiVoice: 0x01e0n, // 0x01e0 (0x0004) [bool : 0x2]
+  bShowPrivilegeCheckErrors: 0x01e0n, // 0x01e0 (0x0004) [bool : 0x4]
+  AccountSettings: 0x01e8n, // 0x01e8 (0x0010) [TArray<UPlatformAccountSettings*>]
+  BlockListStatuses: 0x01f8n, // 0x01f8 (0x0010) [TArray<UPlatformBlockListStatus*>]
+  UnsupportedCorrectiveActionURLs: 0x0208n, // 0x0208 (0x0010) [TArray<UPlatformURL*>]
+  SessionManager: 0x0218n, // 0x0218 (0x0008) [UOnlineSessionManager*]
+  SteamDLC: 0x0220n, // 0x0220 (0x0010) [TArray<FSteamDLCInfo>]
+  PS4DLC: 0x0230n, // 0x0230 (0x0010) [TArray<FPS4DLCInfo>]
+  XboxOneDLC: 0x0240n, // 0x0240 (0x0010) [TArray<FXboxOneDLCInfo>]
+  SwitchDLC: 0x0250n, // 0x0250 (0x0010) [TArray<FSwitchDLCInfo>]
+  EpicDLC: 0x0260n, // 0x0260 (0x0010) [TArray<FEpicDLCInfo>]
+  OnlinePlatformType: 0x0270n, // 0x0270 (0x0001) [OnlinePlatform]
+  CurrentConnectionStatus: 0x0271n, // 0x0271 (0x0001) [EOnlineServerConnectionStatus]
+  OnlineSubsystemNames: 0x0278n, // 0x0278 (0x0010) [TArray<FString>]
+  NamedInterfaces: 0x0288n, // 0x0288 (0x0010) [TArray<FNamedInterface>]
+  NamedInterfaceDefs: 0x0298n, // 0x0298 (0x0010) [TArray<FNamedInterfaceDef>]
+  Sessions: 0x02a8n, // 0x02a8 (0x0010) [TArray<FNamedSession>]
+  IniLocPatcherClassName: 0x02b8n, // 0x02b8 (0x0010) [FString]
+  Patcher: 0x02c8n, // 0x02c8 (0x0008) [UIniLocPatcher*]
+  AsyncMinCompletionTime: 0x02d0n, // 0x02d0 (0x0004) [float]
+  __FeaturePrivilegeLevelUpdated__Delegate: 0x02d8n, // 0x02d8 (0x0018) [FScriptDelegate]
+  __EventPlatformAccountSettingsCreated__Delegate: 0x02f0n, // 0x02f0 (0x0018) [FScriptDelegate]
+  __EventPlatformBlockListStatusCreated__Delegate: 0x0308n, // 0x0308 (0x0018) [FScriptDelegate]
+  __OnDeviceSuspend__Delegate: 0x0320n, // 0x0320 (0x0018) [FScriptDelegate]
+  __OnReadOnlineAvatarComplete__Delegate: 0x0338n, // 0x0338 (0x0018) [FScriptDelegate]
+  __OnSystemUserControllerPairingChanged__Delegate: 0x0350n, // 0x0350 (0x0018) [FScriptDelegate]
   ...Object_,
 } as const;
 
 /**
  * IpDrv.OnlineSubsystemCommonImpl Offsets
- * Size: 0x03c0
+ * Size: 0x03b0
  * Extends: OnlineSubsystem
  */
 export const OnlineSubsystemCommonImpl = {
-  VoiceEngine: 0x0378n, // 0x0378 (0x0008) [FPointer]
-  MaxLocalTalkers: 0x0380n, // 0x0380 (0x0004) [int32]
-  MaxRemoteTalkers: 0x0384n, // 0x0384 (0x0004) [int32]
-  bIsUsingSpeechRecognition: 0x0388n, // 0x0388 (0x0004) [bool : 0x1]
-  GameInterfaceImpl: 0x0390n, // 0x0390 (0x0008) [UOnlineGameInterfaceImpl*]
-  AuthInterfaceImpl: 0x0398n, // 0x0398 (0x0008) [UOnlineAuthInterfaceImpl*]
-  PurchaseInterfaceImpl: 0x03a0n, // 0x03a0 (0x0008) [UOnlinePurchaseInterfaceImpl*]
-  __OnSanitizeStringComplete__Delegate: 0x03a8n, // 0x03a8 (0x0018) [FScriptDelegate]
+  VoiceEngine: 0x0368n, // 0x0368 (0x0008) [FPointer]
+  MaxLocalTalkers: 0x0370n, // 0x0370 (0x0004) [int32]
+  MaxRemoteTalkers: 0x0374n, // 0x0374 (0x0004) [int32]
+  bIsUsingSpeechRecognition: 0x0378n, // 0x0378 (0x0004) [bool : 0x1]
+  GameInterfaceImpl: 0x0380n, // 0x0380 (0x0008) [UOnlineGameInterfaceImpl*]
+  AuthInterfaceImpl: 0x0388n, // 0x0388 (0x0008) [UOnlineAuthInterfaceImpl*]
+  PurchaseInterfaceImpl: 0x0390n, // 0x0390 (0x0008) [UOnlinePurchaseInterfaceImpl*]
+  __OnSanitizeStringComplete__Delegate: 0x0398n, // 0x0398 (0x0018) [FScriptDelegate]
   ...OnlineSubsystem,
 } as const;
 
 /**
  * OnlineSubsystemEOS.OnlineSubsystemEOS Offsets
- * Size: 0x0748
+ * Size: 0x0720
  * Extends: OnlineSubsystemCommonImpl
  */
 export const OnlineSubsystemEOS = {
-  PlayerInterfaceEOS: 0x03c0n, // 0x03c0 (0x0008) [UOnlinePlayerInterfaceEOS*]
-  GameInterfaceEOS: 0x03c8n, // 0x03c8 (0x0008) [UOnlineGameInterfaceEOS*]
-  StatsInterfaceEOS: 0x03d0n, // 0x03d0 (0x0008) [UOnlineStatsInterfaceEOS*]
-  AuthInterfaceEOS: 0x03d8n, // 0x03d8 (0x0008) [UOnlineAuthInterfaceEOS*]
-  PersistentAuthInterfaceEOS: 0x03e0n, // 0x03e0 (0x0008) [UOnlinePersistentAuthInterfaceEOS*]
-  FriendsInterfaceEOS: 0x03e8n, // 0x03e8 (0x0008) [UOnlineFriendsInterfaceEOS*]
-  UserCloudFileInterfaceEOS: 0x03f0n, // 0x03f0 (0x0008) [UOnlineUserCloudFileInterfaceEOS*]
-  VoiceInterfaceEOS: 0x03f8n, // 0x03f8 (0x0008) [UOnlineVoiceInterfaceEOS*]
-  GameClipsInterfaceEOS: 0x0400n, // 0x0400 (0x0008) [UOnlineGameClipsInterfaceEOS*]
-  AntiCheatInterfaceEOS: 0x0408n, // 0x0408 (0x0008) [UOnlineAntiCheatInterfaceEOS*]
-  SpeechRecognitionCompleteDelegates: 0x0410n, // 0x0410 (0x0010) [TArray<FScriptDelegate>]
-  AuthHandle: 0x0420n, // 0x0420 (0x0008) [FPointer]
-  FriendsHandle: 0x0428n, // 0x0428 (0x0008) [FPointer]
-  UserInfoHandle: 0x0430n, // 0x0430 (0x0008) [FPointer]
-  PresenceHandle: 0x0438n, // 0x0438 (0x0008) [FPointer]
-  ConnectHandle: 0x0440n, // 0x0440 (0x0008) [FPointer]
-  SessionsHandle: 0x0448n, // 0x0448 (0x0008) [FPointer]
-  PDSHandle: 0x0450n, // 0x0450 (0x0008) [FPointer]
-  StatsHandle: 0x0458n, // 0x0458 (0x0008) [FPointer]
-  AchievementsHandle: 0x0460n, // 0x0460 (0x0008) [FPointer]
-  EcomHandle: 0x0468n, // 0x0468 (0x0008) [FPointer]
-  UIHandle: 0x0470n, // 0x0470 (0x0008) [FPointer]
-  RTCHandle: 0x0478n, // 0x0478 (0x0008) [FPointer]
-  RTCAudioHandle: 0x0480n, // 0x0480 (0x0008) [FPointer]
-  RTCAdminHandle: 0x0488n, // 0x0488 (0x0008) [FPointer]
-  GameClipsHandle: 0x0490n, // 0x0490 (0x0008) [FPointer]
-  EULATrackingHandle: 0x0498n, // 0x0498 (0x0008) [FPointer]
-  bLastTickShouldRecordAudioVal: 0x04a0n, // 0x04a0 (0x0004) [bool : 0x1]
-  UnlockedDLC: 0x04a8n, // 0x04a8 (0x0010) [TArray<FName>]
-  UnlockedDLCDelegates: 0x04b8n, // 0x04b8 (0x0010) [TArray<FScriptDelegate>]
-  ExternalUIChangeDelegates: 0x04c8n, // 0x04c8 (0x0010) [TArray<FScriptDelegate>]
-  __OnMicroTxnResponse__Delegate: 0x04d8n, // 0x04d8 (0x0018) [FScriptDelegate]
-  __EventGetAppPriceInfoComplete__Delegate: 0x04f0n, // 0x04f0 (0x0018) [FScriptDelegate]
-  __OnPlayerTalking__Delegate: 0x0508n, // 0x0508 (0x0018) [FScriptDelegate]
-  __OnRecognitionComplete__Delegate: 0x0520n, // 0x0520 (0x0018) [FScriptDelegate]
-  __OnReadOnlineStatsComplete__Delegate: 0x0538n, // 0x0538 (0x0018) [FScriptDelegate]
-  __OnRegisterHostStatGuidComplete__Delegate: 0x0550n, // 0x0550 (0x0018) [FScriptDelegate]
-  __OnFlushOnlineStatsComplete__Delegate: 0x0568n, // 0x0568 (0x0018) [FScriptDelegate]
-  __OnLinkStatusChange__Delegate: 0x0580n, // 0x0580 (0x0018) [FScriptDelegate]
-  __OnExternalUIChange__Delegate: 0x0598n, // 0x0598 (0x0018) [FScriptDelegate]
-  __OnControllerChange__Delegate: 0x05b0n, // 0x05b0 (0x0018) [FScriptDelegate]
-  __OnConnectionStatusChange__Delegate: 0x05c8n, // 0x05c8 (0x0018) [FScriptDelegate]
-  __OnStorageDeviceChange__Delegate: 0x05e0n, // 0x05e0 (0x0018) [FScriptDelegate]
-  __OnCreateOnlineAccountCompleted__Delegate: 0x05f8n, // 0x05f8 (0x0018) [FScriptDelegate]
-  __OnPlayerTalkingStateChange__Delegate: 0x0610n, // 0x0610 (0x0018) [FScriptDelegate]
-  __OnCloseKickPlayerDialog__Delegate: 0x0628n, // 0x0628 (0x0018) [FScriptDelegate]
-  __OnCommerceDialogClosed__Delegate: 0x0640n, // 0x0640 (0x0018) [FScriptDelegate]
-  __OnErrorDialogClosed__Delegate: 0x0658n, // 0x0658 (0x0018) [FScriptDelegate]
-  __OnUnlockedDLCChange__Delegate: 0x0670n, // 0x0670 (0x0018) [FScriptDelegate]
-  __OnStorePurchaseCompleteDelegate__Delegate: 0x0688n, // 0x0688 (0x0018) [FScriptDelegate]
-  __OnUserOrphaned__Delegate: 0x06a0n, // 0x06a0 (0x0018) [FScriptDelegate]
-  __OnUserRestored__Delegate: 0x06b8n, // 0x06b8 (0x0018) [FScriptDelegate]
-  __OnPlayerSigningOut__Delegate: 0x06d0n, // 0x06d0 (0x0018) [FScriptDelegate]
-  __EventCryptoKeyCreated__Delegate: 0x06e8n, // 0x06e8 (0x0018) [FScriptDelegate]
-  __EventTextMessageSigned__Delegate: 0x0700n, // 0x0700 (0x0018) [FScriptDelegate]
-  __EventTextMessageValidated__Delegate: 0x0718n, // 0x0718 (0x0018) [FScriptDelegate]
-  __OnCaptureAvailabilityChange__Delegate: 0x0730n, // 0x0730 (0x0018) [FScriptDelegate]
+  PlayerInterfaceEOS: 0x03b0n, // 0x03b0 (0x0008) [UOnlinePlayerInterfaceEOS*]
+  GameInterfaceEOS: 0x03b8n, // 0x03b8 (0x0008) [UOnlineGameInterfaceEOS*]
+  StatsInterfaceEOS: 0x03c0n, // 0x03c0 (0x0008) [UOnlineStatsInterfaceEOS*]
+  AuthInterfaceEOS: 0x03c8n, // 0x03c8 (0x0008) [UOnlineAuthInterfaceEOS*]
+  PersistentAuthInterfaceEOS: 0x03d0n, // 0x03d0 (0x0008) [UOnlinePersistentAuthInterfaceEOS*]
+  FriendsInterfaceEOS: 0x03d8n, // 0x03d8 (0x0008) [UOnlineFriendsInterfaceEOS*]
+  UserCloudFileInterfaceEOS: 0x03e0n, // 0x03e0 (0x0008) [UOnlineUserCloudFileInterfaceEOS*]
+  VoiceInterfaceEOS: 0x03e8n, // 0x03e8 (0x0008) [UOnlineVoiceInterfaceEOS*]
+  AntiCheatInterfaceEOS: 0x03f0n, // 0x03f0 (0x0008) [UOnlineAntiCheatInterfaceEOS*]
+  SpeechRecognitionCompleteDelegates: 0x03f8n, // 0x03f8 (0x0010) [TArray<FScriptDelegate>]
+  AuthHandle: 0x0408n, // 0x0408 (0x0008) [FPointer]
+  FriendsHandle: 0x0410n, // 0x0410 (0x0008) [FPointer]
+  UserInfoHandle: 0x0418n, // 0x0418 (0x0008) [FPointer]
+  PresenceHandle: 0x0420n, // 0x0420 (0x0008) [FPointer]
+  ConnectHandle: 0x0428n, // 0x0428 (0x0008) [FPointer]
+  SessionsHandle: 0x0430n, // 0x0430 (0x0008) [FPointer]
+  PDSHandle: 0x0438n, // 0x0438 (0x0008) [FPointer]
+  StatsHandle: 0x0440n, // 0x0440 (0x0008) [FPointer]
+  AchievementsHandle: 0x0448n, // 0x0448 (0x0008) [FPointer]
+  EcomHandle: 0x0450n, // 0x0450 (0x0008) [FPointer]
+  UIHandle: 0x0458n, // 0x0458 (0x0008) [FPointer]
+  RTCHandle: 0x0460n, // 0x0460 (0x0008) [FPointer]
+  RTCAudioHandle: 0x0468n, // 0x0468 (0x0008) [FPointer]
+  RTCAdminHandle: 0x0470n, // 0x0470 (0x0008) [FPointer]
+  EULATrackingHandle: 0x0478n, // 0x0478 (0x0008) [FPointer]
+  UnlockedDLC: 0x0480n, // 0x0480 (0x0010) [TArray<FName>]
+  UnlockedDLCDelegates: 0x0490n, // 0x0490 (0x0010) [TArray<FScriptDelegate>]
+  ExternalUIChangeDelegates: 0x04a0n, // 0x04a0 (0x0010) [TArray<FScriptDelegate>]
+  __OnMicroTxnResponse__Delegate: 0x04b0n, // 0x04b0 (0x0018) [FScriptDelegate]
+  __EventGetAppPriceInfoComplete__Delegate: 0x04c8n, // 0x04c8 (0x0018) [FScriptDelegate]
+  __OnPlayerTalking__Delegate: 0x04e0n, // 0x04e0 (0x0018) [FScriptDelegate]
+  __OnRecognitionComplete__Delegate: 0x04f8n, // 0x04f8 (0x0018) [FScriptDelegate]
+  __OnReadOnlineStatsComplete__Delegate: 0x0510n, // 0x0510 (0x0018) [FScriptDelegate]
+  __OnRegisterHostStatGuidComplete__Delegate: 0x0528n, // 0x0528 (0x0018) [FScriptDelegate]
+  __OnFlushOnlineStatsComplete__Delegate: 0x0540n, // 0x0540 (0x0018) [FScriptDelegate]
+  __OnLinkStatusChange__Delegate: 0x0558n, // 0x0558 (0x0018) [FScriptDelegate]
+  __OnExternalUIChange__Delegate: 0x0570n, // 0x0570 (0x0018) [FScriptDelegate]
+  __OnControllerChange__Delegate: 0x0588n, // 0x0588 (0x0018) [FScriptDelegate]
+  __OnConnectionStatusChange__Delegate: 0x05a0n, // 0x05a0 (0x0018) [FScriptDelegate]
+  __OnStorageDeviceChange__Delegate: 0x05b8n, // 0x05b8 (0x0018) [FScriptDelegate]
+  __OnCreateOnlineAccountCompleted__Delegate: 0x05d0n, // 0x05d0 (0x0018) [FScriptDelegate]
+  __OnPlayerTalkingStateChange__Delegate: 0x05e8n, // 0x05e8 (0x0018) [FScriptDelegate]
+  __OnCloseKickPlayerDialog__Delegate: 0x0600n, // 0x0600 (0x0018) [FScriptDelegate]
+  __OnCommerceDialogClosed__Delegate: 0x0618n, // 0x0618 (0x0018) [FScriptDelegate]
+  __OnErrorDialogClosed__Delegate: 0x0630n, // 0x0630 (0x0018) [FScriptDelegate]
+  __OnUnlockedDLCChange__Delegate: 0x0648n, // 0x0648 (0x0018) [FScriptDelegate]
+  __OnStorePurchaseCompleteDelegate__Delegate: 0x0660n, // 0x0660 (0x0018) [FScriptDelegate]
+  __OnUserOrphaned__Delegate: 0x0678n, // 0x0678 (0x0018) [FScriptDelegate]
+  __OnUserRestored__Delegate: 0x0690n, // 0x0690 (0x0018) [FScriptDelegate]
+  __OnPlayerSigningOut__Delegate: 0x06a8n, // 0x06a8 (0x0018) [FScriptDelegate]
+  __EventCryptoKeyCreated__Delegate: 0x06c0n, // 0x06c0 (0x0018) [FScriptDelegate]
+  __EventTextMessageSigned__Delegate: 0x06d8n, // 0x06d8 (0x0018) [FScriptDelegate]
+  __EventTextMessageValidated__Delegate: 0x06f0n, // 0x06f0 (0x0018) [FScriptDelegate]
+  __OnCaptureAvailabilityChange__Delegate: 0x0708n, // 0x0708 (0x0018) [FScriptDelegate]
   ...OnlineSubsystemCommonImpl,
 } as const;
 
@@ -626,15 +594,5 @@ export const OnlineVoiceInterfaceEOS = {
   __EventVoiceRecordingStatusChanged__Delegate: 0x0250n, // 0x0250 (0x0018) [FScriptDelegate]
   __OnPlayerTalkingStateChange__Delegate: 0x0268n, // 0x0268 (0x0018) [FScriptDelegate]
   __OnRecognitionComplete__Delegate: 0x0280n, // 0x0280 (0x0018) [FScriptDelegate]
-  ...Object_,
-} as const;
-
-/**
- * OnlineSubsystemEOS.VideoRecorderEOS Offsets
- * Size: 0x0068
- * Extends: Object_
- */
-export const VideoRecorderEOS = {
-  VfTable_FTickableObject: 0x0060n, // 0x0060 (0x0008) [FPointer]
   ...Object_,
 } as const;

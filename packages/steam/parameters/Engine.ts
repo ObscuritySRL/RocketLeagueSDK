@@ -4,7 +4,7 @@
  */
 
 import type { FName, FScriptDelegate } from '../types/GameDefines';
-import type { UAsyncTask, UComponent, UDebugDrawer, UError, UErrorType, UFeatureSystem, UInterface, UObject, UProperty } from '../classes/Core';
+import type { UAsyncTask, UComponent, UDebugDrawer, UError, UFeatureSystem, UInterface, UObject, UProperty } from '../classes/Core';
 import type {
   UAIController,
   UActor,
@@ -307,12 +307,6 @@ import type {
   EFeaturePrivilegeLevel,
   EFireLinkID,
   EForceMode,
-  EGameClipsAvailability,
-  EGameClipsClipStatus,
-  EGameClipsConnection,
-  EGameClipsConnectionStatus,
-  EGameClipsMaskStatus,
-  EGameClipsRecording,
   EHighContrastRenderingID,
   EHostMigrationProgress,
   EInputPlatformType,
@@ -401,7 +395,6 @@ import type {
   FFragmentGroup,
   FFriendHistoryKey,
   FFriendsQuery,
-  FGameClipsMaskArea,
   FGameTypePrefix,
   FGetSaveDataCallbackStruct,
   FIdToStringMapping,
@@ -18383,200 +18376,6 @@ export type OnlineFriendsInterface_RequestLinkedAccounts_Params = {
 };
 
 /**
- * Function Engine.OnlineGameClipsInterface.CreateClip
- */
-export type OnlineGameClipsInterface_CreateClip_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  InClipType: string; // 0x0010 (0x0010) [FString] [CPF_Parm]
-  ReturnValue: number; // 0x0020 (0x0004) [int32] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.DisableMaskArea
- */
-export type OnlineGameClipsInterface_DisableMaskArea_Params = {
-  InMaskAreaHandle: bigint; // 0x0000 (0x0008) [uint64] [CPF_Parm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.EnableMaskArea
- */
-export type OnlineGameClipsInterface_EnableMaskArea_Params = {
-  InMaskArea: FGameClipsMaskArea; // 0x0000 (0x0018) [FGameClipsMaskArea] [CPF_Parm | CPF_OutParm]
-  ReturnValue: bigint; // 0x0018 (0x0008) [uint64] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.EventAvailabilityChanged
- */
-export type OnlineGameClipsInterface_EventAvailabilityChanged_Params = {
-  InNewAvailability: EGameClipsAvailability; // 0x0000 (0x0001) [EGameClipsAvailability] [CPF_Parm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.EventClipErrorOccurred
- */
-export type OnlineGameClipsInterface_EventClipErrorOccurred_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  ClipId: number; // 0x0010 (0x0004) [int32] [CPF_Parm]
-  InErrorType: UErrorType; // 0x0018 (0x0008) [UErrorType*] [CPF_Parm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.EventClipStatusChanged
- */
-export type OnlineGameClipsInterface_EventClipStatusChanged_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  InClipId: number; // 0x0010 (0x0004) [int32] [CPF_Parm]
-  InNewClipStatus: EGameClipsClipStatus; // 0x0014 (0x0001) [EGameClipsClipStatus] [CPF_Parm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.EventConnectionStatusChanged
- */
-export type OnlineGameClipsInterface_EventConnectionStatusChanged_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  InConnection: EGameClipsConnection; // 0x0010 (0x0001) [EGameClipsConnection] [CPF_Parm]
-  InNewConnectionStatus: EGameClipsConnectionStatus; // 0x0011 (0x0001) [EGameClipsConnectionStatus] [CPF_Parm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.EventGeneralErrorOccurred
- */
-export type OnlineGameClipsInterface_EventGeneralErrorOccurred_Params = {
-  InErrorType: UErrorType; // 0x0000 (0x0008) [UErrorType*] [CPF_Parm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.EventMaskStatusChanged
- */
-export type OnlineGameClipsInterface_EventMaskStatusChanged_Params = {
-  InMaskAreaHandle: bigint; // 0x0000 (0x0008) [uint64] [CPF_Parm]
-  InMaskArea: FGameClipsMaskArea; // 0x0008 (0x0018) [FGameClipsMaskArea] [CPF_Parm]
-  InNewMaskStatus: EGameClipsMaskStatus; // 0x0020 (0x0001) [EGameClipsMaskStatus] [CPF_Parm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.EventRecordingChanged
- */
-export type OnlineGameClipsInterface_EventRecordingChanged_Params = {
-  InNewRecording: EGameClipsRecording; // 0x0000 (0x0001) [EGameClipsRecording] [CPF_Parm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.GetTimeUntilUnthrottled
- */
-export type OnlineGameClipsInterface_GetTimeUntilUnthrottled_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  ReturnValue: number; // 0x0010 (0x0004) [float] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.IsAccountLinked
- */
-export type OnlineGameClipsInterface_IsAccountLinked_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  ReturnValue: boolean; // 0x0010 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.IsAvailable
- */
-export type OnlineGameClipsInterface_IsAvailable_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.IsClipUploadingLimitReached
- */
-export type OnlineGameClipsInterface_IsClipUploadingLimitReached_Params = {
-  InEpicAccountId: string; // 0x0000 (0x0010) [FString] [CPF_Parm]
-  ReturnValue: boolean; // 0x0010 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.IsRecording
- */
-export type OnlineGameClipsInterface_IsRecording_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.IsUploading
- */
-export type OnlineGameClipsInterface_IsUploading_Params = {
-  ReturnValue: boolean; // 0x0000 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.NotifyEventAvailabilityChanged
- */
-export type OnlineGameClipsInterface_NotifyEventAvailabilityChanged_Params = {
-  InCallback: FScriptDelegate; // 0x0000 (0x0018) [FScriptDelegate] [CPF_Parm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.NotifyEventClipErrorOccurred
- */
-export type OnlineGameClipsInterface_NotifyEventClipErrorOccurred_Params = {
-  InCallback: FScriptDelegate; // 0x0000 (0x0018) [FScriptDelegate] [CPF_Parm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.NotifyEventClipStatusChanged
- */
-export type OnlineGameClipsInterface_NotifyEventClipStatusChanged_Params = {
-  InCallback: FScriptDelegate; // 0x0000 (0x0018) [FScriptDelegate] [CPF_Parm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.NotifyEventConnectionStatusChanged
- */
-export type OnlineGameClipsInterface_NotifyEventConnectionStatusChanged_Params = {
-  InCallback: FScriptDelegate; // 0x0000 (0x0018) [FScriptDelegate] [CPF_Parm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.NotifyEventGeneralErrorOccurred
- */
-export type OnlineGameClipsInterface_NotifyEventGeneralErrorOccurred_Params = {
-  InCallback: FScriptDelegate; // 0x0000 (0x0018) [FScriptDelegate] [CPF_Parm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.NotifyEventMaskStatusChanged
- */
-export type OnlineGameClipsInterface_NotifyEventMaskStatusChanged_Params = {
-  InCallback: FScriptDelegate; // 0x0000 (0x0018) [FScriptDelegate] [CPF_Parm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.NotifyEventRecordingChanged
- */
-export type OnlineGameClipsInterface_NotifyEventRecordingChanged_Params = {
-  InCallback: FScriptDelegate; // 0x0000 (0x0018) [FScriptDelegate] [CPF_Parm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.SetUserMaxClipUploadsPerMinute
- */
-export type OnlineGameClipsInterface_SetUserMaxClipUploadsPerMinute_Params = {
-  InMaxClipUploadsPerMinute: number; // 0x0000 (0x0004) [int32] [CPF_Parm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.StartRecording
- */
-export type OnlineGameClipsInterface_StartRecording_Params = {
-  InClipDuration: bigint; // 0x0000 (0x0008) [uint64] [CPF_Parm]
-};
-
-/**
- * Function Engine.OnlineGameClipsInterface.StopRecording
- */
-export type OnlineGameClipsInterface_StopRecording_Params = {};
-
-/**
  * Function Engine.OnlineGameDVRInterface.AddReadRecordedClipsCompleteDelegate
  */
 export type OnlineGameDVRInterface_AddReadRecordedClipsCompleteDelegate_Params = {
@@ -22871,6 +22670,13 @@ export type OnlineSessionManager_CanCrossplayTextChat_Params = {
 };
 
 /**
+ * Function Engine.OnlineSessionManager.GetExtraMatchDataString
+ */
+export type OnlineSessionManager_GetExtraMatchDataString_Params = {
+  ReturnValue: string; // 0x0000 (0x0010) [FString] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
+};
+
+/**
  * Function Engine.OnlineSessionManager.GetRemoteSessionPlayerIds
  */
 export type OnlineSessionManager_GetRemoteSessionPlayerIds_Params = {
@@ -23805,14 +23611,6 @@ export type OnlineSubsystem_SetDebugSpewLevel_Params = {
  */
 export type OnlineSubsystem_SetFriendsInterface_Params = {
   InFriendsInterface: UObject; // 0x0000 (0x0008) [UObject*] [CPF_Parm]
-  ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
-};
-
-/**
- * Function Engine.OnlineSubsystem.SetGameClipsInterface
- */
-export type OnlineSubsystem_SetGameClipsInterface_Params = {
-  InGameClipsInterface: UObject; // 0x0000 (0x0008) [UObject*] [CPF_Parm]
   ReturnValue: boolean; // 0x0008 (0x0004) [bool : 0x1] [CPF_Parm | CPF_OutParm | CPF_ReturnParm]
 };
 

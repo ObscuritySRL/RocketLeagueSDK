@@ -7675,10 +7675,10 @@ export type UOnlineGamePrivateMatch_X = UOnlineGameMatchmakingBase_X & {
 // HandleStartSearch(Task: UAsyncTask): void
 // OnReceiveGameServer(Reservation: FServerReservationData): void
 // HandleSearchTimeout(): void
-// static __OnlineGamePrivateMatch_X__GetPreferredSubRegions_0x1(A: URegionPing_X, B: URegionPing_X): number
 // GetPrivateMatchMakingRequest(SelectedRegion: string, InPlaylistID: number): FPrivateMatchmakingRequestData
 // GetSubRegionToMatchmake(SelectedRegion: string, PreferredSubRegions: URegionPing_X[]): string
 // GetPreferredRegion(SelectedRegion: string): string
+// static CompareSubRegionsByPingPreference(A: URegionPing_X, B: URegionPing_X): number
 // static GetPreferredSubRegions(SuperRegionID: string, RegionPings: URegionPing_X[]): URegionPing_X[]
 // Cancel(): void
 // ResetPrivateMatchSettings(): void
@@ -11005,6 +11005,16 @@ export type UPsyNetWordFilter_X = UComponent & {
 // QueueRPC(InRPC: URPC_FilterContent_X): void
 
 /**
+ * Class ProjectX.QREnconder_X
+ * Size: 0x0060
+ * Extends: UObject
+ */
+export type UQREnconder_X = UObject & {};
+
+// QREnconder_X Functions
+// static BuildForURL(URL: string, Owner: UObject, ScaleFactor: number): UTexture
+
+/**
  * Class ProjectX.QueuedOfflineMessage_X
  * Size: 0x0060
  * Extends: UInterface
@@ -12159,7 +12169,7 @@ export type URPC_LoginAuthPlayer_X = URPC_X & {
 
 // RPC_LoginAuthPlayer_X Functions
 // SetAsPrimaryAccount(bInPrimary: boolean): URPC_LoginAuthPlayer_X
-// SetEpicAccountId(InEpicAccountId: string): URPC_LoginAuthPlayer_X
+// SetEpicAccountId(InEpicAccountID: string): URPC_LoginAuthPlayer_X
 // SetEpicAuthTicket(InEpicAuthTicket: string): URPC_LoginAuthPlayer_X
 // SetLocalFirstPlayerID(InLocalFirstPlayerID: string): URPC_LoginAuthPlayer_X
 // SetConsoleType(InType: string): URPC_LoginAuthPlayer_X
